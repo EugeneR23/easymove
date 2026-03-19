@@ -269,7 +269,7 @@ export default function QuoteWizard() {
         <div className="lg:w-64 xl:w-72 shrink-0 hidden lg:block">
           <SidebarSteps current={step} data={data} />
         </div>
-        <div className="flex-1 bg-white p-6 md:p-10 min-h-[520px]">
+        <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px]">
           {step === 1 && <Step1MoveType {...stepProps} />}
           {step === 2 && <Step2HomeSize {...stepProps} />}
           {step === 3 && <Step3Locations {...stepProps} />}
