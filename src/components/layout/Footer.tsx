@@ -52,7 +52,6 @@ export default function Footer() {
                 { href: '/about', label: 'About Us' },
                 { href: '/quote', label: 'Get a Quote' },
                 { href: '/contact', label: 'Contact' },
-                { href: '/admin', label: 'Client Portal' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>

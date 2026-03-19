@@ -14,7 +14,7 @@ export default function StatsBar() {
       {/* Film grain */}
       <div className="absolute inset-0 grain-overlay" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4">
           {stats.map((stat, i) => (
             <div

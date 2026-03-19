@@ -54,10 +54,10 @@ export default function TestimonialsSection() {
       />
 
       <div className="relative container-max">
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 md:mb-14">
           <div className="w-8 h-px bg-gold mx-auto mb-6" />
           <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Client Experiences</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
             Trusted by South Florida Residents
           </h2>
           <p className="text-gray-600 mt-3 text-sm">Highly rated on Google and Thumbtack</p>
@@ -78,12 +78,12 @@ export default function TestimonialsSection() {
           {/* Editorial quote mark */}
           <div className="relative">
             <span
-              className="absolute -top-6 left-1/2 -translate-x-1/2 font-display text-[7rem] leading-none text-gold/[0.09] select-none pointer-events-none"
+              className="absolute -top-6 left-1/2 -translate-x-1/2 font-display text-[5rem] md:text-[7rem] leading-none text-gold/[0.09] select-none pointer-events-none"
               aria-hidden="true"
             >
               &ldquo;
             </span>
-            <blockquote className="relative font-display text-xl md:text-2xl text-white/85 italic leading-relaxed mb-10">
+            <blockquote className="relative font-display text-lg md:text-2xl text-white/85 italic leading-relaxed mb-8 md:mb-10">
               {t.quote}
             </blockquote>
           </div>
