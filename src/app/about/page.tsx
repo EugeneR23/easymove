@@ -68,7 +68,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 grain-overlay" />
           <div className="relative z-10 text-center px-4">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Our Story</p>
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-white">About EasyMove Elite</h1>
+            <h1 className="font-display text-3xl md:text-6xl font-bold text-white">About EasyMove Elite</h1>
             <p className="text-gray-400 mt-4 max-w-lg mx-auto">
               Founder-led. Crew-driven. Built for South Florida.
             </p>
@@ -77,7 +77,7 @@ export default function AboutPage() {
 
         {/* Story */}
         <section className="section-padding bg-white">
-          <div className="container-max grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="container-max grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div>
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Founder-Led</p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal mb-6 leading-tight">
@@ -113,7 +113,7 @@ export default function AboutPage() {
               <img
                 src="/images/About.png"
                 alt="EasyMove Elite team in South Florida"
-                className="w-full h-[420px] object-cover object-top"
+                className="w-full h-56 sm:h-80 lg:h-[420px] object-cover object-top"
               />
             </div>
           </div>
@@ -122,15 +122,15 @@ export default function AboutPage() {
         {/* Values */}
         <section className="section-padding bg-cream">
           <div className="container-max">
-            <div className="text-center mb-14">
+            <div className="text-center mb-10 md:mb-14">
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">What Drives Us</p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal">Our Commitments</h2>
+              <h2 className="font-display text-2xl md:text-4xl font-bold text-charcoal">Our Commitments</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
               {values.map((v) => {
                 const Icon = v.icon;
                 return (
-                  <div key={v.title} className="bg-cream p-8">
+                  <div key={v.title} className="bg-cream p-6 sm:p-8">
                     <div className="w-10 h-10 flex items-center justify-center mb-5">
                       <Icon className="text-gold" size={22} />
                     </div>
@@ -146,9 +146,9 @@ export default function AboutPage() {
         {/* Team */}
         <section className="section-padding bg-white">
           <div className="container-max">
-            <div className="text-center mb-14">
+            <div className="text-center mb-10 md:mb-14">
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">The Team</p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal">Small by Design</h2>
+              <h2 className="font-display text-2xl md:text-4xl font-bold text-charcoal">Small by Design</h2>
               <p className="text-gray-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">
                 Not a franchise. Not a call center. A tight crew where everyone knows what they&rsquo;re doing and why it matters.
               </p>
@@ -157,7 +157,7 @@ export default function AboutPage() {
             {/* Founder featured */}
             {team.filter((m) => m.featured).map((member) => (
               <div key={member.name} className="max-w-3xl mx-auto mb-14">
-                <div className="flex flex-col sm:flex-row gap-8 items-start bg-cream border border-gray-100 p-8">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start bg-cream border border-gray-100 p-6 sm:p-8">
                   <div className="shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img

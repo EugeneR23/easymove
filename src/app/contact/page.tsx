@@ -19,7 +19,7 @@ export default function ContactPage() {
       <main className="pt-20">
 
         {/* Hero */}
-        <section className="bg-charcoal py-20 px-4 text-center relative overflow-hidden">
+        <section className="bg-charcoal py-14 md:py-20 px-4 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="absolute bottom-0 left-0 right-0 h-px gold-separator" />
           <div className="absolute inset-0 grain-overlay" />
@@ -29,7 +29,7 @@ export default function ContactPage() {
           />
           <div className="relative">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Get in Touch</p>
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="font-display text-3xl md:text-6xl font-bold text-white mb-4">
               Let&rsquo;s Plan Your Move
             </h1>
             <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">

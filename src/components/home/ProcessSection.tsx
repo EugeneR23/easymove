@@ -31,10 +31,10 @@ export default function ProcessSection() {
   return (
     <section className="section-padding bg-cream border-t border-gray-100 border-b border-gray-200">
       <div className="container-max">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <div className="w-8 h-px bg-gold mx-auto mb-6" />
           <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">How It Works</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-charcoal">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal">
             A Move Without the Stress
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">

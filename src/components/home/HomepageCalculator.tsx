@@ -39,7 +39,7 @@ function PhaseTab({
         {done ? '✓' : num}
       </div>
       <span className={cn(
-        'text-xs font-semibold uppercase tracking-wider transition-all',
+        'text-xs font-semibold uppercase tracking-wider transition-all hidden sm:inline',
         active ? 'text-white' : done ? 'text-gold' : 'text-white/30',
       )}>{label}</span>
     </div>
@@ -121,7 +121,7 @@ export default function HomepageCalculator() {
           <div className="bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm">
 
             {/* Phase nav strip */}
-            <div className="bg-black/20 px-6 py-4 flex items-center gap-6 border-b border-white/10">
+            <div className="bg-black/20 px-4 sm:px-6 py-3.5 flex items-center gap-3 sm:gap-6 border-b border-white/10">
               <PhaseTab num={1} label="Move Type" active={phase === 1} done={phase > 1 && moveType !== null} />
               <ChevronRight size={12} className="text-white/20 shrink-0" />
               <PhaseTab num={2} label="Home Size"  active={phase === 2} done={phase > 2 && homeSize !== null} />
@@ -130,7 +130,7 @@ export default function HomepageCalculator() {
             </div>
 
             {/* Phase content */}
-            <div className="p-6 md:p-10">
+            <div className="p-5 sm:p-6 md:p-10">
 
               {/* ── Phase 1: Move type ── */}
               {phase === 1 && (

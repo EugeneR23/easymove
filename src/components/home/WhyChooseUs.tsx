@@ -39,16 +39,16 @@ export default function WhyChooseUs() {
     <section className="section-padding bg-white border-t border-gray-100">
       <div className="container-max">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-10 lg:mb-16">
           <div className="lg:col-span-1">
             <div className="w-8 h-px bg-gold mb-6" />
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Why EasyMove Elite</p>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-charcoal leading-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight">
               The Standard<br />Others Aspire To
             </h2>
           </div>
           <div className="lg:col-span-2 flex flex-col justify-center gap-6">
-            <p className="text-gray-500 text-lg leading-relaxed">
+            <p className="text-gray-500 text-base md:text-lg leading-relaxed">
               South Florida&rsquo;s luxury real estate market demands a moving company that understands
               building requirements, values discretion, and delivers without drama. That is what we do — every move, every time.
             </p>

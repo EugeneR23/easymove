@@ -4,7 +4,7 @@ import { Phone } from 'lucide-react';
 
 export default function CTABanner() {
   return (
-    <section className="relative py-24 bg-charcoal overflow-hidden">
+    <section className="relative py-14 md:py-24 bg-charcoal overflow-hidden">
       {/* Gold gradient top border */}
       <div className="absolute top-0 left-0 right-0 h-px gold-separator" />
       {/* Film grain */}
@@ -17,16 +17,16 @@ export default function CTABanner() {
 
       <div className="relative max-w-4xl mx-auto px-4 text-center">
         {/* Decorative cross-mark */}
-        <div className="flex items-center justify-center gap-4 mb-10">
+        <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
           <div className="flex-1 max-w-[80px] h-px gold-separator" />
           <div className="w-1.5 h-1.5 bg-gold rotate-45" />
           <div className="flex-1 max-w-[80px] h-px gold-separator" />
         </div>
 
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
           Ready to Plan<br className="hidden sm:block" /> Your Move?
         </h2>
-        <p className="text-gray-400 text-lg mb-12 max-w-xl mx-auto leading-relaxed">
+        <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed">
           Get a detailed, written estimate in minutes. A coordinator — not an automated system —
           reviews your move and confirms pricing within a few hours.
         </p>

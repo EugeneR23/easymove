@@ -30,10 +30,10 @@ export default function ServicesPreview() {
     <section className="relative section-padding bg-cream overflow-hidden">
       <div className="absolute inset-0 grain-overlay opacity-60" />
       <div className="relative container-max">
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 md:mb-14">
           <div className="w-8 h-px bg-gold mx-auto mb-6" />
           <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">What We Offer</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-charcoal">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal">
             Built for South Florida Living
           </h2>
           <p className="mt-4 text-gray-500 max-w-2xl mx-auto leading-relaxed">
@@ -70,7 +70,7 @@ export default function ServicesPreview() {
                 </div>
 
                 {/* Content */}
-                <div className="p-8 flex flex-col flex-1 bg-gradient-to-b from-white to-[#FDFCF9]">
+                <div className="p-6 flex flex-col flex-1 bg-gradient-to-b from-white to-[#FDFCF9]">
                   <h3 className="font-display text-xl font-semibold text-charcoal mb-3 leading-snug">
                     {service.name}
                   </h3>
