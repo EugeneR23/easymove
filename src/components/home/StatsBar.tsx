@@ -1,0 +1,35 @@
+const stats = [
+  { value: 'Boutique', label: 'Quality Over Volume', sub: 'We limit bookings to protect our standard' },
+  { value: 'Dedicated', label: 'One Coordinator', sub: 'Your single point of contact, start to finish' },
+  { value: 'Insured', label: 'Fully Covered', sub: 'COI provided on request for any building' },
+  { value: 'Local', label: 'South Florida Based', sub: 'Miami-Dade · Broward · Palm Beach' },
+];
+
+export default function StatsBar() {
+  return (
+    <section className="relative bg-charcoal overflow-hidden">
+      {/* Gold gradient borders */}
+      <div className="absolute top-0 left-0 right-0 h-px gold-separator" />
+      <div className="absolute bottom-0 left-0 right-0 h-px gold-separator" />
+      {/* Film grain */}
+      <div className="absolute inset-0 grain-overlay" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`text-center px-6 py-4 ${
+                i < stats.length - 1 ? 'border-r border-white/[0.07]' : ''
+              }`}
+            >
+              <p className="font-display text-3xl font-bold text-gold mb-2 tracking-wide">{stat.value}</p>
+              <p className="text-white text-sm font-medium mb-1">{stat.label}</p>
+              <p className="text-gray-600 text-xs leading-snug">{stat.sub}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
