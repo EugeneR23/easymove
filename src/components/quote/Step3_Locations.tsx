@@ -209,7 +209,7 @@ export default function Step3Locations({ data, update, onNext, onBack }: Props) 
           <div>
             <p className="text-sm font-semibold text-charcoal mb-1">How many floors up?</p>
             <p className="text-xs text-gray-400 mb-3">$50 per floor carried without an elevator.</p>
-            <div className="flex gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <Tile label="1st" sub="No charge" selected={aptFloor === 1} onClick={() => pickAptFloor(1)} />
               <Tile label="2nd" sub="+$50"      selected={aptFloor === 2} onClick={() => pickAptFloor(2)} />
               <Tile label="3rd" sub="+$100"     selected={aptFloor === 3} onClick={() => pickAptFloor(3)} />

@@ -44,7 +44,7 @@ export default function FounderBlock() {
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-6">
               <div className="w-6 h-px bg-gold" />
-              <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase">Founder's Commitment</p>
+              <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase">Founder&apos;s Commitment</p>
             </div>
 
             {/* Headline */}
