@@ -72,7 +72,7 @@ export default function FounderBlock() {
             {/* Attribution + CTA */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
               <p className="text-gold/70 text-sm font-semibold">
-                — Eugene Romanov, Founder &amp; Owner
+                &mdash; Eugene Romanov, Founder &amp; Owner
               </p>
               <Link
                 href="/about"
