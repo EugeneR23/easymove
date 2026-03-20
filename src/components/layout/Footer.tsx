@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -18,11 +18,6 @@ export default function Footer() {
             <p className="mt-3 text-xs text-gray-600">
               Fully Insured · COI Available on Request
             </p>
-            <div className="flex gap-4 mt-6">
-              <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-gold transition-colors"><Instagram size={18} /></a>
-              <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-gold transition-colors"><Facebook size={18} /></a>
-              <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-gold transition-colors"><Linkedin size={18} /></a>
-            </div>
           </div>
 
           {/* Services */}
