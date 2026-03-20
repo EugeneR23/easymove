@@ -1,5 +1,5 @@
 const stats = [
-  { value: 'Boutique', label: 'Quality Over Volume', sub: 'We limit bookings to protect our standard' },
+  { value: 'Focused', label: 'Fewer Moves, Done Better', sub: 'We limit bookings so every client gets our full attention' },
   { value: 'Dedicated', label: 'One Coordinator', sub: 'Your single point of contact, start to finish' },
   { value: 'Insured', label: 'Fully Covered', sub: 'COI provided on request for any building' },
   { value: 'Local', label: 'South Florida Based', sub: 'Miami-Dade · Broward · Palm Beach' },

@@ -36,13 +36,13 @@ export default function HeroSection() {
         </div>
 
         <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.08] mb-6 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
-          South Florida&rsquo;s Premier<br />
-          <span className="gold-text">White-Glove</span> Movers
+          Moving in South Florida<br />
+          <span className="gold-text">Done Right</span>
         </h1>
 
         <p className="text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
-          Founder-led, fully insured, and built around one standard: every item handled
-          as if it belongs to family. Serving Miami-Dade, Broward, and Palm Beach Counties.
+          Fully insured, no hidden fees, and a crew that treats your belongings with care.
+          Serving Miami-Dade, Broward &amp; Palm Beach Counties.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">

@@ -109,10 +109,10 @@ export default function HomepageCalculator() {
         <div className="text-center mb-12">
           <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Instant Estimate</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
-            What Does Your Move Cost?
+            Get Your Moving Price in Seconds
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
-            Answer two questions and see your starting price in South Florida. A real coordinator — not a bot — follows up with a confirmed quote.
+            Answer 2 questions and see your starting price right away. No obligation, no hidden fees — a real coordinator confirms the final number.
           </p>
         </div>
 
