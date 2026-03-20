@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
 import { calculatePricing, estimateDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
-import { sendEmail, sendTelegram, sendSMS } from '@/lib/notify';
+import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import type { Quote } from '@/types';
 
 export async function GET() {
@@ -152,7 +152,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${name}</b>\n📞 <b>${quote.phone || '—'}</b>\n📧 ${quote.email || '—'}\n\n📦 ${quote.moveType} · ${quote.inventory.homeSize}\n📍 ${quote.fromCity || '?'} → ${quote.toCity || '?'}\n📅 ${quote.preferredDate || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${body.notes}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
+    const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(quote.phone) || '—'}</b>\n📧 ${tgEscape(quote.email) || '—'}\n\n📦 ${tgEscape(quote.moveType)} · ${tgEscape(quote.inventory.homeSize)}\n📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}\n📅 ${tgEscape(quote.preferredDate) || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${tgEscape(body.notes)}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
 
     // All notifications are fire-and-forget — failures are logged but never block quote capture
     sendTelegram(tg).catch((err) => console.error('[api/quotes] Telegram failed:', err));

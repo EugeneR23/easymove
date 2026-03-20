@@ -1,6 +1,19 @@
 import { Resend } from 'resend';
 import twilio from 'twilio';
 
+/**
+ * Escape HTML special characters in user-provided strings before embedding
+ * them in Telegram messages that use parse_mode: 'HTML'.
+ * Unescaped <, >, & in customer names / cities / notes will cause the
+ * Telegram API to return a 400 and drop the notification silently.
+ */
+export function tgEscape(text: string | undefined | null): string {
+  return String(text ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 const TO_EMAIL  = process.env.NOTIFY_EMAIL      ?? 'etbcompanyllc24@gmail.com';
 const FROM_EMAIL = process.env.RESEND_FROM      ?? 'onboarding@resend.dev';
 const TG_TOKEN  = process.env.TELEGRAM_BOT_TOKEN;
