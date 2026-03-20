@@ -7,11 +7,14 @@ const reasons = [
     title: 'High-Rise Expertise',
     description: 'We manage elevator reservations, COI submissions, loading dock coordination, and floor/wall protection — everything your condo association requires.',
     href: '/services/residential-moving',
+    cta: 'High-rise & condo moving',
   },
   {
     icon: Shield,
     title: 'Fully Licensed & Insured',
     description: 'Fully insured for every move we take on. Certificate of Insurance available on request — standard for condo and HOA buildings across South Florida.',
+    href: '/about',
+    cta: 'About our credentials',
   },
   {
     icon: Clock,
@@ -32,6 +35,8 @@ const reasons = [
     icon: FileText,
     title: 'Transparent Pricing',
     description: 'Detailed written estimates before any work begins. No surprise fees, no "fuel surcharges" discovered on moving day. What we quote is what you pay.',
+    href: '/quote',
+    cta: 'Get a written estimate',
   },
 ];
 
@@ -50,8 +55,9 @@ export default function WhyChooseUs() {
           </div>
           <div className="lg:col-span-2 flex flex-col justify-center gap-6">
             <p className="text-gray-500 text-base md:text-lg leading-relaxed">
-              South Florida&rsquo;s luxury real estate market demands a moving company that understands
-              building requirements, values discretion, and delivers without drama. That is what we do — every move, every time.
+              From Brickell condos to Fort Lauderdale estates to Boca Raton high-rises — South Florida demands
+              a moving company that understands building requirements, values discretion, and delivers without drama.
+              That is what we do — every move, every time.
             </p>
             <Link
               href="/quote"
@@ -84,7 +90,7 @@ export default function WhyChooseUs() {
                     href={r.href}
                     className="inline-flex items-center gap-1 text-gold text-[11px] font-semibold uppercase tracking-wider mt-4 group/card-link hover:opacity-80 transition-opacity duration-200"
                   >
-                    <span className="border-b border-gold/40 pb-px">See the service</span>
+                    <span className="border-b border-gold/40 pb-px">{r.cta ?? 'Learn more'}</span>
                     <ArrowRight size={11} className="translate-x-0 group-hover/card-link:translate-x-[2px] transition-transform duration-200" />
                   </Link>
                 )}

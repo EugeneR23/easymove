@@ -21,7 +21,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!service) return { title: 'Service | EasyMove Elite' };
 
   const title = `${service.name} in South Florida | EasyMove Elite`;
-  const description = `${service.tagline} Fully insured, founder-led. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida. Get a written estimate today.`;
+  // Trim tagline at sentence boundary and append a short, keyword-rich suffix (~155 chars total)
+  const tagline = service.tagline.replace(/\.$/, '');
+  const description = `${tagline} — Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led. Free written estimate.`;
 
   return {
     title,
@@ -33,7 +35,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title,
       description,
       url: `https://www.easymoveelite.com/services/${service.slug}`,
-      images: [{ url: service.imageUrl, alt: service.name }],
+      images: [{ url: service.imageUrl, alt: `${service.name} — EasyMove Elite South Florida` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [service.imageUrl],
     },
   };
 }

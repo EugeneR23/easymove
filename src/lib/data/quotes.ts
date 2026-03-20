@@ -2,7 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import type { Quote } from '@/types';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'quotes.json');
+const DATA_FILE = process.env.VERCEL
+  ? path.join('/tmp', 'quotes.json')
+  : path.join(process.cwd(), 'data', 'quotes.json');
 
 function ensureFile() {
   if (!fs.existsSync(DATA_FILE)) {

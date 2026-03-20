@@ -2,7 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import type { Lead } from '@/types';
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'leads.json');
+const DATA_FILE = process.env.VERCEL
+  ? path.join('/tmp', 'leads.json')
+  : path.join(process.cwd(), 'data', 'leads.json');
 
 function ensureFile() {
   if (!fs.existsSync(DATA_FILE)) {

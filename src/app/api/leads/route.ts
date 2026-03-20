@@ -29,7 +29,12 @@ export async function POST(req: NextRequest) {
       adminNotes: '',
       assignedTo: '',
     };
-    createLead(lead);
+    try {
+      createLead(lead);
+      console.log('[api/leads] Lead saved:', lead.id);
+    } catch (writeErr) {
+      console.error('[api/leads] Storage write failed — continuing with notifications:', writeErr);
+    }
 
     // Build notifications
     const name    = [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 'Unknown';

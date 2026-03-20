@@ -7,15 +7,21 @@ import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Contact EasyMove Elite — South Florida Moving Company',
   description:
-    'Get in touch with EasyMove Elite. Call, email, or send a message — a real coordinator responds within a few hours. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.',
+    'Contact EasyMove Elite in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
   alternates: {
     canonical: 'https://www.easymoveelite.com/contact',
   },
   openGraph: {
     title: 'Contact EasyMove Elite — South Florida Moving Company',
     description:
-      'Reach our team directly. No automated systems — a real coordinator responds within a few hours. Call 786-305-1844 or fill out the form.',
+      'A real coordinator responds within hours. No automated systems. Call 786-305-1844 or fill out the form.',
     url: 'https://www.easymoveelite.com/contact',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact EasyMove Elite — South Florida Moving Company',
+    description:
+      'Reach a real coordinator within hours. Call 786-305-1844 or send a message. Serving Miami, Fort Lauderdale & Boca Raton.',
   },
 };
 
@@ -46,8 +52,8 @@ export default function ContactPage() {
               Let&rsquo;s Plan Your Move
             </h1>
             <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-              A real coordinator responds within a few hours — not an automated system.
-              Call, email, or fill out the form below.
+              A real coordinator responds within hours — not an automated system.
+              Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.
             </p>
           </div>
         </section>

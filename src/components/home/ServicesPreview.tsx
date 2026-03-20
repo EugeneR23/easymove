@@ -7,6 +7,7 @@ const PREVIEW = [
     name: 'High-Rise & Condo Moving',
     tagline: 'Specialist crews trained for South Florida\'s luxury towers — elevator reservations, floor protection, and building compliance handled for you.',
     href: '/services/residential-moving',
+    cta: 'Condo Moving Details',
     image: '/images/Local%20distance.png',
   },
   {
@@ -14,6 +15,7 @@ const PREVIEW = [
     name: 'Long-Distance & Nationwide',
     tagline: 'Dedicated trucks, GPS tracking, and a single coordinator from Miami pickup to final placement — anywhere in the country.',
     href: '/services/long-distance-moving',
+    cta: 'Long-Distance Details',
     image: '/images/Long%20distance.png',
   },
   {
@@ -21,6 +23,7 @@ const PREVIEW = [
     name: 'Fine Art & Specialty Items',
     tagline: 'Custom crating, climate-controlled transport, and white-glove installation for art collections, grand pianos, and wine cellars.',
     href: '/services/specialty-items',
+    cta: 'Art & Specialty Handling',
     image: '/images/Art%20wrap.png',
   },
 ];
@@ -37,8 +40,8 @@ export default function ServicesPreview() {
             Built for South Florida Living
           </h2>
           <p className="mt-4 text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            From Brickell high-rises to Boca estates, our services are designed around
-            the specific demands of premium South Florida relocations.
+            From Brickell high-rises to Boca Raton estates — residential, office, and specialty moves
+            designed for South Florida&rsquo;s premium market.
           </p>
         </div>
 
@@ -82,7 +85,7 @@ export default function ServicesPreview() {
                     className="group/link inline-flex items-center gap-1.5 text-gold text-[11px] font-semibold uppercase tracking-[0.12em] self-start"
                   >
                     <span className="border-b border-gold/40 pb-px group-hover/link:border-gold transition-colors duration-200">
-                      Learn More
+                      {service.cta}
                     </span>
                     <ArrowRight
                       size={12}
@@ -100,7 +103,7 @@ export default function ServicesPreview() {
             href="/services"
             className="inline-flex items-center gap-2 text-charcoal text-sm font-semibold uppercase tracking-wider border-b border-charcoal/40 pb-0.5 hover:text-gold hover:border-gold transition-colors duration-200"
           >
-            View All Services <ArrowRight size={14} />
+            View All Moving Services <ArrowRight size={14} />
           </Link>
         </div>
       </div>

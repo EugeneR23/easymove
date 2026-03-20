@@ -15,15 +15,21 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 export const metadata: Metadata = {
   title: 'EasyMove Elite — Premium Moving Company in South Florida',
   description:
-    'South Florida\'s premier white-glove moving company. Residential, high-rise, long-distance, fine art, and office moves in Miami, Fort Lauderdale, Boca Raton, and across Miami-Dade, Broward & Palm Beach Counties. Fully insured, founder-led.',
+    'South Florida\'s premier white-glove movers. Residential, high-rise, long-distance & fine art moves in Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led.',
   alternates: {
     canonical: 'https://www.easymoveelite.com',
   },
   openGraph: {
     title: 'EasyMove Elite — Premium Moving Company in South Florida',
     description:
-      'Founder-led, fully insured white-glove movers serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida. Transparent pricing, no surprises.',
+      'Founder-led, fully insured white-glove movers in Miami, Fort Lauderdale & Boca Raton. Transparent pricing, no surprises.',
     url: 'https://www.easymoveelite.com',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EasyMove Elite — Premium Moving Company in South Florida',
+    description:
+      'White-glove movers in Miami, Fort Lauderdale & Boca Raton. Founder-led, fully insured, no surprise fees.',
   },
 };
 
