@@ -3,9 +3,10 @@ import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable, normalizeSource } from '@/lib/airtable';
-import type { Lead, LeadSource } from '@/types';
+import type { Lead, LeadSource, MoveType } from '@/types';
 
 const LEAD_SOURCES = ['contact-form', 'quote-wizard', 'phone', 'referral'] as const satisfies readonly LeadSource[];
+const MOVE_TYPES = ['local', 'long-distance', 'international', 'office', 'specialty'] as const satisfies readonly MoveType[];
 
 function parseLeadSource(raw: unknown): LeadSource {
   if (typeof raw === 'string') {
@@ -13,6 +14,14 @@ function parseLeadSource(raw: unknown): LeadSource {
     if (match) return match;
   }
   return 'contact-form';
+}
+
+function parseMoveType(raw: unknown): MoveType | undefined {
+  if (typeof raw === 'string') {
+    const match = MOVE_TYPES.find((s) => s === raw);
+    if (match) return match;
+  }
+  return undefined;
 }
 
 export async function GET() {
@@ -64,7 +73,7 @@ export async function POST(req: NextRequest) {
       email:      (body.email     as string) ?? '',
       phone:      (body.phone     as string) ?? '',
       message:    (body.message   as string) ?? '',
-      moveType:   body.moveType as string | undefined,
+      moveType:   parseMoveType(body.moveType),
       moveDate:   body.moveDate as string | undefined,
       fromCity:   body.fromCity as string | undefined,
       toCity:     body.toCity   as string | undefined,
