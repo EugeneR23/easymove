@@ -17,9 +17,9 @@ export default function FounderBlock() {
         <div className="relative lg:w-[40%] aspect-[3/4] sm:aspect-auto sm:h-96 lg:h-auto overflow-hidden shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/Founder.jpg"
+            src="/images/Founder%202.jpg"
             alt="Eugene Romanov, Founder of EasyMove Elite"
-            className="w-full h-full object-cover object-[center_20%] lg:object-[center_12%]"
+            className="w-full h-full object-cover object-[center_30%] lg:object-[center_20%]"
           />
           {/* Blend edge into text panel on desktop */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-charcoal/60 hidden lg:block" />

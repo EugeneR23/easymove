@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
+import { sendToAirtable, normalizeSource } from '@/lib/airtable';
 import type { Lead } from '@/types';
 
 export async function GET() {
@@ -86,13 +87,30 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(lead.phone) || '—'}</b>\n📧 ${tgEscape(lead.email) || '—'}${lead.moveType ? '\n📦 ' + tgEscape(lead.moveType) : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (tgEscape(lead.fromCity) || '?') + ' → ' + (tgEscape(lead.toCity) || '?') : ''}${lead.message ? '\n💬 ' + tgEscape(lead.message).slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // All notifications are fire-and-forget — failures are logged but never block lead capture
+    // All notifications + CRM are fire-and-forget — failures are logged but never block lead capture
     sendTelegram(tg).catch((err) => console.error('[api/leads] Telegram failed:', err));
     sendSMS(
       lead.phone,
       'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
     ).catch((err) => console.error('[api/leads] SMS failed:', err));
     sendEmail(subject, html).catch((err) => console.error('[api/leads] Email failed:', err));
+
+    // Airtable CRM — added last so any failure never affects lead capture or notifications
+    sendToAirtable({
+      'Created At':  lead.createdAt,
+      'Ref ID':      lead.id,
+      'Source':      normalizeSource(lead.source),
+      'Status':      'New',
+      'Name':        name,
+      'Phone':       lead.phone   || '',
+      'Email':       lead.email   || '',
+      'Move Type':   lead.moveType  ?? '',
+      'From City':   lead.fromCity  ?? '',
+      'To City':     lead.toCity    ?? '',
+      'Notes':       lead.message  || '',
+      'Completed':   false,
+      'Deposit Paid': false,
+    }).catch((err) => console.error('[api/leads] Airtable failed:', err));
 
     return NextResponse.json(lead, { status: 201 });
   } catch (err) {

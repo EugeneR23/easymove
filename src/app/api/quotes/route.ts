@@ -3,6 +3,7 @@ import { readAllQuotes, createQuote } from '@/lib/data/quotes';
 import { calculatePricing, estimateDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
+import { sendToAirtable } from '@/lib/airtable';
 import type { Quote } from '@/types';
 
 export async function GET() {
@@ -154,13 +155,48 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(quote.phone) || '—'}</b>\n📧 ${tgEscape(quote.email) || '—'}\n\n📦 ${tgEscape(quote.moveType)} · ${tgEscape(quote.inventory.homeSize)}\n📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}\n📅 ${tgEscape(quote.preferredDate) || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${tgEscape(body.notes)}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // All notifications are fire-and-forget — failures are logged but never block quote capture
+    // All notifications + CRM are fire-and-forget — failures are logged but never block quote capture
     sendTelegram(tg).catch((err) => console.error('[api/quotes] Telegram failed:', err));
     sendSMS(
       quote.phone,
       'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
     ).catch((err) => console.error('[api/quotes] SMS failed:', err));
     sendEmail(subject, html).catch((err) => console.error('[api/quotes] Email failed:', err));
+
+    // Build property type label from inventory flags
+    const propertyType = quote.inventory.isHighRise
+      ? 'High-Rise'
+      : quote.inventory.hasElevator
+        ? 'Elevator Building'
+        : quote.inventory.hasStairs
+          ? 'Walk-Up'
+          : 'Standard';
+
+    const floorsStairs = quote.inventory.hasStairs
+      ? `${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''}`
+      : '';
+
+    // Airtable CRM — added last so any failure never affects lead capture or notifications
+    sendToAirtable({
+      'Created At':    quote.createdAt,
+      'Ref ID':        quote.id,
+      'Source':        'quote_form',
+      'Status':        'New',
+      'Name':          name,
+      'Phone':         quote.phone    || '',
+      'Email':         quote.email    || '',
+      'Move Type':     quote.moveType || '',
+      'Home Size':     quote.inventory.homeSize || '',
+      'From City':     quote.fromCity  || '',
+      'To City':       quote.toCity    || '',
+      'Property Type': propertyType,
+      'Floors / Stairs': floorsStairs,
+      'Add-ons':       addonsList.join(', '),
+      'Notes':         body.notes     || '',
+      'Estimated Price': quote.pricing.total,
+      'Completed':     false,
+      'Deposit Paid':  false,
+    }).catch((err) => console.error('[api/quotes] Airtable failed:', err));
 
     return NextResponse.json(quote, { status: 201 });
   } catch (err) {
