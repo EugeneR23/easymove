@@ -10,35 +10,100 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
+  console.log('[api/leads] POST received');
+
+  const status = {
+    endpoint:  '/api/leads',
+    leadSaved: false,
+    airtable:  false,
+    email:     false,
+    telegram:  false,
+    sms:       false,
+  };
+
   try {
-    const body = await req.json();
+    // ── 1. Parse body ──────────────────────────────────────────────────────────
+    let body: Record<string, unknown>;
+    try {
+      body = await req.json();
+    } catch {
+      console.error('[api/leads] Failed to parse request body');
+      return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
+
+    console.log('[api/leads] Payload received:', JSON.stringify({
+      source:    body.source,
+      firstName: body.firstName,
+      phone:     body.phone,
+      email:     body.email,
+      moveType:  body.moveType,
+      fromCity:  body.fromCity,
+      toCity:    body.toCity,
+    }));
+
+    // ── 2. Build lead object ───────────────────────────────────────────────────
     const lead: Lead = {
-      id: generateId(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      status: 'new',
-      source: body.source ?? 'contact-form',
-      firstName: body.firstName ?? '',
-      lastName: body.lastName ?? '',
-      email: body.email ?? '',
-      phone: body.phone ?? '',
-      message: body.message ?? '',
-      moveType: body.moveType,
-      moveDate: body.moveDate,
-      fromCity: body.fromCity,
-      toCity: body.toCity,
+      id:         generateId(),
+      createdAt:  new Date().toISOString(),
+      updatedAt:  new Date().toISOString(),
+      status:     'new',
+      source:     (body.source as string) ?? 'contact-form',
+      firstName:  (body.firstName as string) ?? '',
+      lastName:   (body.lastName  as string) ?? '',
+      email:      (body.email     as string) ?? '',
+      phone:      (body.phone     as string) ?? '',
+      message:    (body.message   as string) ?? '',
+      moveType:   body.moveType as string | undefined,
+      moveDate:   body.moveDate as string | undefined,
+      fromCity:   body.fromCity as string | undefined,
+      toCity:     body.toCity   as string | undefined,
       adminNotes: '',
       assignedTo: '',
     };
+
+    const name = [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 'Unknown';
+    console.log(`[api/leads] Lead built: id=${lead.id} name="${name}"`);
+
+    // ── 3. Local /tmp storage (best-effort cache — not primary, never blocks) ─
     try {
       createLead(lead);
-      console.log('[api/leads] Lead saved:', lead.id);
+      status.leadSaved = true;
+      console.log('[api/leads] Local storage write OK:', lead.id);
     } catch (writeErr) {
-      console.error('[api/leads] Storage write failed — continuing with notifications:', writeErr);
+      console.error('[api/leads] Local storage write failed (non-fatal):', writeErr);
     }
 
-    // Build notifications
-    const name    = [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 'Unknown';
+    // ── 4. Airtable — PRIMARY save, awaited. Failure returns 500 ──────────────
+    console.log('[api/leads] Writing to Airtable...');
+    try {
+      await sendToAirtable({
+        'Created At':   lead.createdAt,
+        'Ref ID':       lead.id,
+        'Source':       normalizeSource(lead.source),
+        'Status':       'New',
+        'Name':         name,
+        'Phone':        lead.phone    || '',
+        'Email':        lead.email    || '',
+        'Move Type':    lead.moveType ?? '',
+        'From City':    lead.fromCity ?? '',
+        'To City':      lead.toCity   ?? '',
+        'Notes':        lead.message  || '',
+        'Completed':    false,
+        'Deposit Paid': false,
+      });
+      status.airtable = true;
+      console.log('[api/leads] Airtable write OK');
+    } catch (airtableErr) {
+      console.error('[api/leads] Airtable write FAILED:', airtableErr);
+      console.log('[api/leads] DEBUG STATUS:', JSON.stringify(status));
+      return NextResponse.json(
+        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
+        { status: 500 },
+      );
+    }
+
+    // ── 5. Secondary notifications — all awaited, failures logged not fatal ───
     const subject = `🔥 New Lead — ${name}${lead.phone ? ' · ' + lead.phone : ''}`;
 
     const row = (label: string, value: string) =>
@@ -87,30 +152,32 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(lead.phone) || '—'}</b>\n📧 ${tgEscape(lead.email) || '—'}${lead.moveType ? '\n📦 ' + tgEscape(lead.moveType) : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (tgEscape(lead.fromCity) || '?') + ' → ' + (tgEscape(lead.toCity) || '?') : ''}${lead.message ? '\n💬 ' + tgEscape(lead.message).slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // All notifications + CRM are fire-and-forget — failures are logged but never block lead capture
-    sendTelegram(tg).catch((err) => console.error('[api/leads] Telegram failed:', err));
-    sendSMS(
-      lead.phone,
-      'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
-    ).catch((err) => console.error('[api/leads] SMS failed:', err));
-    sendEmail(subject, html).catch((err) => console.error('[api/leads] Email failed:', err));
+    console.log('[api/leads] Sending notifications (Telegram, SMS, Email)...');
 
-    // Airtable CRM — added last so any failure never affects lead capture or notifications
-    sendToAirtable({
-      'Created At':  lead.createdAt,
-      'Ref ID':      lead.id,
-      'Source':      normalizeSource(lead.source),
-      'Status':      'New',
-      'Name':        name,
-      'Phone':       lead.phone   || '',
-      'Email':       lead.email   || '',
-      'Move Type':   lead.moveType  ?? '',
-      'From City':   lead.fromCity  ?? '',
-      'To City':     lead.toCity    ?? '',
-      'Notes':       lead.message  || '',
-      'Completed':   false,
-      'Deposit Paid': false,
-    }).catch((err) => console.error('[api/leads] Airtable failed:', err));
+    const [tgResult, smsResult, emailResult] = await Promise.allSettled([
+      sendTelegram(tg),
+      sendSMS(
+        lead.phone,
+        'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
+      ),
+      sendEmail(subject, html),
+    ]);
+
+    status.telegram = tgResult.status  === 'fulfilled';
+    status.sms      = smsResult.status === 'fulfilled';
+    status.email    = emailResult.status === 'fulfilled';
+
+    if (!status.telegram) console.error('[api/leads] Telegram failed:', (tgResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/leads] Telegram OK');
+
+    if (!status.sms)      console.error('[api/leads] SMS failed:', (smsResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/leads] SMS OK');
+
+    if (!status.email)    console.error('[api/leads] Email failed:', (emailResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/leads] Email OK');
+
+    // ── 6. Final debug summary ────────────────────────────────────────────────
+    console.log(`[api/leads] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
 
     return NextResponse.json(lead, { status: 201 });
   } catch (err) {

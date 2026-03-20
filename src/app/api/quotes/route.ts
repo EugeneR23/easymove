@@ -12,56 +12,92 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
+  console.log('[api/quotes] POST received');
+
+  // Delivery status for debug log
+  const status = {
+    endpoint:   '/api/quotes',
+    leadSaved:  false,
+    airtable:   false,
+    email:      false,
+    telegram:   false,
+    sms:        false,
+  };
+
   try {
-    const body = await req.json();
-    const estimatedDistance = estimateDistance(body.fromState, body.toState);
+    // ── 1. Parse body ──────────────────────────────────────────────────────────
+    let body: Record<string, unknown>;
+    try {
+      body = await req.json();
+    } catch {
+      console.error('[api/quotes] Failed to parse request body');
+      return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
+
+    console.log('[api/quotes] Payload received:', JSON.stringify({
+      moveType:  body.moveType,
+      homeSize:  (body.inventory as Record<string, unknown>)?.homeSize,
+      fromCity:  body.fromCity,
+      toCity:    body.toCity,
+      firstName: body.firstName,
+      phone:     body.phone,
+      email:     body.email,
+    }));
+
+    // ── 2. Build quote object ──────────────────────────────────────────────────
+    const estimatedDistance = estimateDistance(
+      body.fromState as string,
+      body.toState   as string,
+    );
     const pricing = calculatePricing({
-      moveType: body.moveType,
+      moveType:          body.moveType          as string,
       estimatedDistance,
-      inventory: body.inventory,
-      addons: body.addons,
+      inventory:         body.inventory         as QuoteInventory,
+      addons:            body.addons            as QuoteAddons,
     });
 
     const quote: Quote = {
-      id: generateId(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      status: 'pending',
-      moveType: body.moveType,
-      fromAddress: body.fromAddress ?? '',
-      fromCity: body.fromCity ?? '',
-      fromState: body.fromState ?? '',
-      fromZip: body.fromZip ?? '',
-      toAddress: body.toAddress ?? '',
-      toCity: body.toCity ?? '',
-      toState: body.toState ?? '',
-      toZip: body.toZip ?? '',
+      id:          generateId(),
+      createdAt:   new Date().toISOString(),
+      updatedAt:   new Date().toISOString(),
+      status:      'pending',
+      moveType:    body.moveType    as string,
+      fromAddress: (body.fromAddress as string) ?? '',
+      fromCity:    (body.fromCity   as string) ?? '',
+      fromState:   (body.fromState  as string) ?? '',
+      fromZip:     (body.fromZip    as string) ?? '',
+      toAddress:   (body.toAddress  as string) ?? '',
+      toCity:      (body.toCity     as string) ?? '',
+      toState:     (body.toState    as string) ?? '',
+      toZip:       (body.toZip      as string) ?? '',
       estimatedDistance,
-      inventory: body.inventory,
-      addons: body.addons,
-      preferredDate: body.preferredDate ?? '',
-      flexibleDates: body.flexibleDates ?? false,
-      firstName: body.firstName ?? '',
-      lastName: body.lastName ?? '',
-      email: body.email ?? '',
-      phone: body.phone ?? '',
+      inventory:       body.inventory       as QuoteInventory,
+      addons:          body.addons          as QuoteAddons,
+      preferredDate:   (body.preferredDate  as string) ?? '',
+      flexibleDates:   (body.flexibleDates  as boolean) ?? false,
+      firstName:       (body.firstName      as string) ?? '',
+      lastName:        (body.lastName       as string) ?? '',
+      email:           (body.email          as string) ?? '',
+      phone:           (body.phone          as string) ?? '',
       pricing,
-      adminNotes: body.notes ? `Customer note: ${body.notes}` : '',
-      assignedTo: '',
+      adminNotes:  body.notes ? `Customer note: ${body.notes}` : '',
+      assignedTo:  '',
     };
 
+    const name = `${quote.firstName} ${quote.lastName}`.trim() || 'Unknown';
+    console.log(`[api/quotes] Quote built: id=${quote.id} name="${name}" total=$${pricing.total}`);
+
+    // ── 3. Local /tmp storage (best-effort cache — not primary, never blocks) ─
     try {
       createQuote(quote);
-      console.log('[api/quotes] Quote saved:', quote.id);
+      status.leadSaved = true;
+      console.log('[api/quotes] Local storage write OK:', quote.id);
     } catch (writeErr) {
-      console.error('[api/quotes] Storage write failed — continuing with notifications:', writeErr);
+      console.error('[api/quotes] Local storage write failed (non-fatal):', writeErr);
     }
 
-    // Build notifications — never block the response
-    const name    = `${quote.firstName} ${quote.lastName}`.trim() || 'Unknown';
-    const subject = `🔥 New Quote — ${name} · ${quote.fromCity || '?'} → ${quote.toCity || '?'} · $${quote.pricing.total}`;
-
-    // Build add-ons list
+    // ── 4. Build notification content ─────────────────────────────────────────
     const addonsList: string[] = [];
     if (quote.addons.packingService)    addonsList.push('Packing');
     if (quote.addons.furnitureAssembly) addonsList.push('Furniture disassembly');
@@ -70,15 +106,63 @@ export async function POST(req: NextRequest) {
     if (quote.addons.artHandling)       addonsList.push('Art/antique handling');
     if (quote.addons.climateControlled) addonsList.push('Packing materials requested');
 
-    // Build access notes
     const accessNotes: string[] = [];
-    if (quote.inventory.hasStairs)      accessNotes.push(`Stairs (${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''})`);
-    if (quote.inventory.hasElevator)    accessNotes.push('Elevator');
-    if (quote.inventory.isHighRise)     accessNotes.push('High-rise');
-    if (quote.inventory.needsCOI)       accessNotes.push('COI required');
+    if (quote.inventory.hasStairs)   accessNotes.push(`Stairs (${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''})`);
+    if (quote.inventory.hasElevator) accessNotes.push('Elevator');
+    if (quote.inventory.isHighRise)  accessNotes.push('High-rise');
+    if (quote.inventory.needsCOI)    accessNotes.push('COI required');
 
+    const propertyType = quote.inventory.isHighRise
+      ? 'High-Rise'
+      : quote.inventory.hasElevator
+        ? 'Elevator Building'
+        : quote.inventory.hasStairs
+          ? 'Walk-Up'
+          : 'Standard';
+
+    const floorsStairs = quote.inventory.hasStairs
+      ? `${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''}`
+      : '';
+
+    // ── 5. Airtable — PRIMARY save, awaited. Failure returns 500 ──────────────
+    console.log('[api/quotes] Writing to Airtable...');
+    try {
+      await sendToAirtable({
+        'Created At':      quote.createdAt,
+        'Ref ID':          quote.id,
+        'Source':          'quote_form',
+        'Status':          'New',
+        'Name':            name,
+        'Phone':           quote.phone    || '',
+        'Email':           quote.email    || '',
+        'Move Type':       quote.moveType || '',
+        'Home Size':       quote.inventory.homeSize || '',
+        'From City':       quote.fromCity  || '',
+        'To City':         quote.toCity    || '',
+        'Property Type':   propertyType,
+        'Floors / Stairs': floorsStairs,
+        'Add-ons':         addonsList.join(', '),
+        'Notes':           (body.notes as string) || '',
+        'Estimated Price': quote.pricing.total,
+        'Completed':       false,
+        'Deposit Paid':    false,
+      });
+      status.airtable = true;
+      console.log('[api/quotes] Airtable write OK');
+    } catch (airtableErr) {
+      console.error('[api/quotes] Airtable write FAILED:', airtableErr);
+      console.log('[api/quotes] DEBUG STATUS:', JSON.stringify(status));
+      return NextResponse.json(
+        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
+        { status: 500 },
+      );
+    }
+
+    // ── 6. Secondary notifications — all awaited, failures logged not fatal ───
     const row = (label: string, value: string | number | boolean) =>
       `<tr><td style="padding:6px 12px 6px 0;color:#666;white-space:nowrap;vertical-align:top"><b>${label}</b></td><td style="padding:6px 0;color:#111">${value}</td></tr>`;
+
+    const subject = `🔥 New Quote — ${name} · ${quote.fromCity || '?'} → ${quote.toCity || '?'} · $${quote.pricing.total}`;
 
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:600px">
@@ -153,50 +237,35 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(quote.phone) || '—'}</b>\n📧 ${tgEscape(quote.email) || '—'}\n\n📦 ${tgEscape(quote.moveType)} · ${tgEscape(quote.inventory.homeSize)}\n📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}\n📅 ${tgEscape(quote.preferredDate) || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${tgEscape(body.notes)}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
+    const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(quote.phone) || '—'}</b>\n📧 ${tgEscape(quote.email) || '—'}\n\n📦 ${tgEscape(quote.moveType)} · ${tgEscape(quote.inventory.homeSize)}\n📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}\n📅 ${tgEscape(quote.preferredDate) || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${tgEscape(body.notes as string)}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // All notifications + CRM are fire-and-forget — failures are logged but never block quote capture
-    sendTelegram(tg).catch((err) => console.error('[api/quotes] Telegram failed:', err));
-    sendSMS(
-      quote.phone,
-      'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
-    ).catch((err) => console.error('[api/quotes] SMS failed:', err));
-    sendEmail(subject, html).catch((err) => console.error('[api/quotes] Email failed:', err));
+    // All notifications awaited so Vercel doesn't kill them before they fire
+    console.log('[api/quotes] Sending notifications (Telegram, SMS, Email)...');
 
-    // Build property type label from inventory flags
-    const propertyType = quote.inventory.isHighRise
-      ? 'High-Rise'
-      : quote.inventory.hasElevator
-        ? 'Elevator Building'
-        : quote.inventory.hasStairs
-          ? 'Walk-Up'
-          : 'Standard';
+    const [tgResult, smsResult, emailResult] = await Promise.allSettled([
+      sendTelegram(tg),
+      sendSMS(
+        quote.phone,
+        'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
+      ),
+      sendEmail(subject, html),
+    ]);
 
-    const floorsStairs = quote.inventory.hasStairs
-      ? `${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''}`
-      : '';
+    status.telegram = tgResult.status === 'fulfilled';
+    status.sms      = smsResult.status === 'fulfilled';
+    status.email    = emailResult.status === 'fulfilled';
 
-    // Airtable CRM — added last so any failure never affects lead capture or notifications
-    sendToAirtable({
-      'Created At':    quote.createdAt,
-      'Ref ID':        quote.id,
-      'Source':        'quote_form',
-      'Status':        'New',
-      'Name':          name,
-      'Phone':         quote.phone    || '',
-      'Email':         quote.email    || '',
-      'Move Type':     quote.moveType || '',
-      'Home Size':     quote.inventory.homeSize || '',
-      'From City':     quote.fromCity  || '',
-      'To City':       quote.toCity    || '',
-      'Property Type': propertyType,
-      'Floors / Stairs': floorsStairs,
-      'Add-ons':       addonsList.join(', '),
-      'Notes':         body.notes     || '',
-      'Estimated Price': quote.pricing.total,
-      'Completed':     false,
-      'Deposit Paid':  false,
-    }).catch((err) => console.error('[api/quotes] Airtable failed:', err));
+    if (!status.telegram) console.error('[api/quotes] Telegram failed:', (tgResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/quotes] Telegram OK');
+
+    if (!status.sms)      console.error('[api/quotes] SMS failed:', (smsResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/quotes] SMS OK');
+
+    if (!status.email)    console.error('[api/quotes] Email failed:', (emailResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/quotes] Email OK');
+
+    // ── 7. Final debug summary ────────────────────────────────────────────────
+    console.log(`[api/quotes] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
 
     return NextResponse.json(quote, { status: 201 });
   } catch (err) {
@@ -204,3 +273,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to create quote' }, { status: 500 });
   }
 }
+
+// These type aliases avoid an import cycle — they mirror the types file exactly
+type QuoteInventory = Quote['inventory'];
+type QuoteAddons    = Quote['addons'];
