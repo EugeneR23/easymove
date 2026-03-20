@@ -3,7 +3,17 @@ import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable, normalizeSource } from '@/lib/airtable';
-import type { Lead } from '@/types';
+import type { Lead, LeadSource } from '@/types';
+
+const LEAD_SOURCES = ['contact-form', 'quote-wizard', 'phone', 'referral'] as const satisfies readonly LeadSource[];
+
+function parseLeadSource(raw: unknown): LeadSource {
+  if (typeof raw === 'string') {
+    const match = LEAD_SOURCES.find((s) => s === raw);
+    if (match) return match;
+  }
+  return 'contact-form';
+}
 
 export async function GET() {
   return NextResponse.json(readAllLeads());
@@ -48,7 +58,7 @@ export async function POST(req: NextRequest) {
       createdAt:  new Date().toISOString(),
       updatedAt:  new Date().toISOString(),
       status:     'new',
-      source:     (body.source as string) ?? 'contact-form',
+      source:     parseLeadSource(body.source),
       firstName:  (body.firstName as string) ?? '',
       lastName:   (body.lastName  as string) ?? '',
       email:      (body.email     as string) ?? '',
