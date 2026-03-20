@@ -200,16 +200,26 @@ function MobileEstimateBar({ data }: { data: WizardData }) {
   if (!estimate) return null;
 
   return (
-    <div className="lg:hidden fixed bottom-14 left-0 right-0 z-30 bg-charcoal/97 backdrop-blur-sm border-t border-gold/40 px-5 py-3 flex items-center justify-between shadow-[0_-4px_24px_rgba(0,0,0,0.35)]">
+    <div
+      className="lg:hidden fixed bottom-14 left-0 right-0 z-30 flex items-center justify-between px-5 py-3"
+      style={{
+        backgroundColor: '#0b0b0b',
+        borderTop: '1px solid rgba(212,160,23,0.35)',
+        boxShadow: '0 -6px 32px rgba(0,0,0,0.7)',
+        paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))',
+      }}
+    >
       <div>
-        <p className="text-white/50 text-[10px] uppercase tracking-wider leading-none mb-1">Estimated Total</p>
-        <p className="text-gold font-display font-bold text-xl leading-none">
-          {formatCurrency(estimate.total)}<span className="text-sm font-normal opacity-70">+</span>
+        <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', lineHeight: 1, marginBottom: '5px' }}>
+          Estimated Total
+        </p>
+        <p style={{ color: '#d4a017', fontWeight: 700, fontSize: '22px', lineHeight: 1, fontFamily: 'var(--font-display, serif)' }}>
+          {formatCurrency(estimate.total)}<span style={{ fontSize: '14px', fontWeight: 400, opacity: 0.65 }}>+</span>
         </p>
       </div>
-      <div className="text-right">
-        <p className="text-white/45 text-xs">{estimate.crewSize} movers · {estimate.estimatedHours} hrs est.</p>
-        <p className="text-white/25 text-[10px] mt-0.5">Updates as you go · Preliminary</p>
+      <div style={{ textAlign: 'right' }}>
+        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px' }}>{estimate.crewSize} movers · {estimate.estimatedHours} hrs est.</p>
+        <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '10px', marginTop: '3px' }}>Updates as you go · Preliminary</p>
       </div>
     </div>
   );
