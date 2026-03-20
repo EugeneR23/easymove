@@ -89,7 +89,7 @@ export default function QuoteSummary({ quote, data }: Props) {
           <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
               <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
-              <p className="font-display text-5xl font-bold text-gold">{formatCurrency(pricing.total)}</p>
+              <p className="font-display text-4xl sm:text-5xl font-bold text-gold">{formatCurrency(pricing.total)}</p>
               {isLocal && pricing.estimatedHours > 0 && (
                 <p className="text-gray-400 text-sm mt-1">
                   {pricing.crewSize} movers · est. {pricing.estimatedHours} hrs · 3-hour minimum
@@ -106,9 +106,9 @@ export default function QuoteSummary({ quote, data }: Props) {
           {lineItems.length > 1 && (
             <div className="mt-5 pt-5 border-t border-white/10 space-y-2">
               {lineItems.map((item) => (
-                <div key={item.label} className="flex justify-between text-sm">
-                  <span className="text-gray-400">{item.label}</span>
-                  <span className={item.value < 0 ? 'text-green-400 font-medium' : 'text-white font-medium'}>
+                <div key={item.label} className="flex justify-between text-sm gap-2">
+                  <span className="text-gray-400 flex-1 min-w-0 pr-1">{item.label}</span>
+                  <span className={`shrink-0 whitespace-nowrap ${item.value < 0 ? 'text-green-400 font-medium' : 'text-white font-medium'}`}>
                     {item.value < 0 ? `−${formatCurrency(-item.value)}` : formatCurrency(item.value)}
                   </span>
                 </div>
