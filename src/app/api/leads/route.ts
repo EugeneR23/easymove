@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
-import { sendEmail, sendTelegram, sendSMS } from '@/lib/notify';
+import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import type { Lead } from '@/types';
 
 export async function GET() {
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${name}</b>\n📞 <b>${lead.phone || '—'}</b>\n📧 ${lead.email || '—'}${lead.moveType ? '\n📦 ' + lead.moveType : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (lead.fromCity || '?') + ' → ' + (lead.toCity || '?') : ''}${lead.message ? '\n💬 ' + lead.message.slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
+    const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(lead.phone) || '—'}</b>\n📧 ${tgEscape(lead.email) || '—'}${lead.moveType ? '\n📦 ' + tgEscape(lead.moveType) : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (tgEscape(lead.fromCity) || '?') + ' → ' + (tgEscape(lead.toCity) || '?') : ''}${lead.message ? '\n💬 ' + tgEscape(lead.message).slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
 
     // All notifications are fire-and-forget — failures are logged but never block lead capture
     sendTelegram(tg).catch((err) => console.error('[api/leads] Telegram failed:', err));

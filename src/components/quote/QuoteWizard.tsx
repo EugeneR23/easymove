@@ -194,6 +194,27 @@ function SidebarSteps({ current, data }: { current: number; data: WizardData }) 
   );
 }
 
+// ─── Mobile sticky estimate bar — fixed above the call bar ───────────────────
+function MobileEstimateBar({ data }: { data: WizardData }) {
+  const estimate = getLiveEstimate(data);
+  if (!estimate) return null;
+
+  return (
+    <div className="lg:hidden fixed bottom-14 left-0 right-0 z-30 bg-charcoal/97 backdrop-blur-sm border-t border-gold/40 px-5 py-3 flex items-center justify-between shadow-[0_-4px_24px_rgba(0,0,0,0.35)]">
+      <div>
+        <p className="text-white/50 text-[10px] uppercase tracking-wider leading-none mb-1">Estimated Total</p>
+        <p className="text-gold font-display font-bold text-xl leading-none">
+          {formatCurrency(estimate.total)}<span className="text-sm font-normal opacity-70">+</span>
+        </p>
+      </div>
+      <div className="text-right">
+        <p className="text-white/45 text-xs">{estimate.crewSize} movers · {estimate.estimatedHours} hrs est.</p>
+        <p className="text-white/25 text-[10px] mt-0.5">Updates as you go · Preliminary</p>
+      </div>
+    </div>
+  );
+}
+
 // ─── Mobile progress bar ──────────────────────────────────────────────────────
 function MobileProgress({ current, total, data }: { current: number; total: number; data: WizardData }) {
   const pct     = Math.round(((current - 1) / (total - 1)) * 100);
@@ -243,16 +264,33 @@ export default function QuoteWizard() {
   const back   = () => setStep((s) => Math.max(s - 1, 1));
 
   async function handleSubmit() {
-    const res = await fetch('/api/quotes', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const payload = await res.json().catch(() => ({}));
-    if (res.ok) {
-      setSubmittedQuote(payload);
-    } else {
-      throw new Error(payload?.error ?? 'Submit failed');
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30_000);
+    try {
+      console.log('[QuoteWizard] Submitting:', {
+        moveType: data.moveType,
+        homeSize: data.inventory.homeSize,
+        from: data.fromCity || data.fromState,
+        to: data.toCity || data.toState,
+      });
+      const res = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      const payload = await res.json().catch(() => ({}));
+      console.log('[QuoteWizard] Response:', res.status, res.ok ? 'OK' : (payload?.error ?? 'unknown error'));
+      if (res.ok) {
+        setSubmittedQuote(payload);
+      } else {
+        throw new Error(payload?.error ?? `Server error ${res.status}`);
+      }
+    } catch (err) {
+      clearTimeout(timeoutId);
+      console.error('[QuoteWizard] Submit failed:', err);
+      throw err;
     }
   }
 
@@ -263,21 +301,24 @@ export default function QuoteWizard() {
   const stepProps = { data, update, onNext: next, onBack: back };
 
   return (
-    <div className="overflow-hidden border border-gray-100 shadow-luxury">
-      <MobileProgress current={step} total={6} data={data} />
-      <div className="flex flex-col lg:flex-row">
-        <div className="lg:w-64 xl:w-72 shrink-0 hidden lg:block">
-          <SidebarSteps current={step} data={data} />
-        </div>
-        <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px]">
-          {step === 1 && <Step1MoveType {...stepProps} />}
-          {step === 2 && <Step2HomeSize {...stepProps} />}
-          {step === 3 && <Step3Locations {...stepProps} />}
-          {step === 4 && <Step4Services {...stepProps} />}
-          {step === 5 && <Step5Schedule {...stepProps} />}
-          {step === 6 && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+    <>
+      <div className="overflow-hidden border border-gray-100 shadow-luxury">
+        <MobileProgress current={step} total={6} data={data} />
+        <div className="flex flex-col lg:flex-row">
+          <div className="lg:w-64 xl:w-72 shrink-0 hidden lg:block">
+            <SidebarSteps current={step} data={data} />
+          </div>
+          <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px]">
+            {step === 1 && <Step1MoveType {...stepProps} />}
+            {step === 2 && <Step2HomeSize {...stepProps} />}
+            {step === 3 && <Step3Locations {...stepProps} />}
+            {step === 4 && <Step4Services {...stepProps} />}
+            {step === 5 && <Step5Schedule {...stepProps} />}
+            {step === 6 && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+          </div>
         </div>
       </div>
-    </div>
+      <MobileEstimateBar data={data} />
+    </>
   );
 }
