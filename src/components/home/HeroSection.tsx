@@ -28,9 +28,9 @@ export default function HeroSection() {
 
       <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
         {/* Location badge */}
-        <div className="inline-flex items-center gap-2 border border-gold/40 bg-black/20 backdrop-blur-[2px] px-4 py-1.5 mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
-          <span className="text-gold text-xs font-semibold tracking-[0.25em] uppercase">
+        <div className="inline-flex items-center gap-2 border border-gold/40 bg-black/20 backdrop-blur-[2px] px-4 py-1.5 mb-8 max-w-full">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block shrink-0" />
+          <span className="text-gold text-xs font-semibold tracking-[0.08em] sm:tracking-[0.2em] uppercase">
             Miami · Fort Lauderdale · Boca Raton
           </span>
         </div>

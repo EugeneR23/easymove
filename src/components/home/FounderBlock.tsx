@@ -30,7 +30,7 @@ export default function FounderBlock() {
         </div>
 
         {/* Text panel */}
-        <div className="flex-1 bg-charcoal px-8 md:px-14 lg:px-16 py-14 lg:py-20 flex flex-col justify-center relative overflow-hidden">
+        <div className="flex-1 bg-charcoal px-5 sm:px-8 md:px-14 lg:px-16 py-12 lg:py-20 flex flex-col justify-center relative overflow-hidden">
           {/* Grain + gold top border */}
           <div className="absolute inset-0 grain-overlay" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
