@@ -85,8 +85,9 @@ export default function Footer() {
 
         {/* Service area */}
         <div className="border-t border-white/5 mt-12 pt-8">
+          <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-2">Moving Company Service Areas</p>
           <p className="text-xs text-gray-600 text-center mb-6">
-            Serving: Miami · Coral Gables · Coconut Grove · Brickell · Aventura · Sunny Isles Beach ·
+            Miami · Coral Gables · Coconut Grove · Brickell · Aventura · Sunny Isles Beach ·
             Hollywood · Fort Lauderdale · Pompano Beach · Boca Raton · Delray Beach · Palm Beach
           </p>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">

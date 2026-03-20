@@ -49,7 +49,12 @@ export async function POST(req: NextRequest) {
       assignedTo: '',
     };
 
-    createQuote(quote);
+    try {
+      createQuote(quote);
+      console.log('[api/quotes] Quote saved:', quote.id);
+    } catch (writeErr) {
+      console.error('[api/quotes] Storage write failed — continuing with notifications:', writeErr);
+    }
 
     // Build notifications — never block the response
     const name    = `${quote.firstName} ${quote.lastName}`.trim() || 'Unknown';

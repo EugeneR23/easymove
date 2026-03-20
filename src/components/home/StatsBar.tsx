@@ -7,7 +7,7 @@ const stats = [
 
 export default function StatsBar() {
   return (
-    <section className="relative bg-charcoal overflow-hidden">
+    <section className="relative bg-charcoal overflow-hidden -mt-px">
       {/* Gold gradient borders */}
       <div className="absolute top-0 left-0 right-0 h-px gold-separator" />
       <div className="absolute bottom-0 left-0 right-0 h-px gold-separator" />

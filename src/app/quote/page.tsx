@@ -9,15 +9,21 @@ import { Shield, Clock, Phone, Star, UserCheck, FileText, Truck } from 'lucide-r
 export const metadata: Metadata = {
   title: 'Get a Free Moving Estimate in South Florida — EasyMove Elite',
   description:
-    'Get a detailed moving estimate in under 2 minutes. A real coordinator — not an automated system — reviews your move and confirms pricing. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.',
+    'Get a free moving estimate in under 2 minutes. A real coordinator confirms your final price — no automated guesswork. Miami, Fort Lauderdale & Boca Raton.',
   alternates: {
     canonical: 'https://www.easymoveelite.com/quote',
   },
   openGraph: {
     title: 'Get a Free Moving Estimate — EasyMove Elite',
     description:
-      'Fast, written moving estimate with no obligation. 6 steps, under 2 minutes. A coordinator confirms your final price.',
+      'Free written moving estimate in under 2 minutes. No obligation. A real coordinator reviews your details and confirms pricing.',
     url: 'https://www.easymoveelite.com/quote',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Get a Free Moving Estimate — EasyMove Elite',
+    description:
+      'Under 2 minutes. A real coordinator confirms your final price. No obligation. Serving Miami, Fort Lauderdale & Boca Raton.',
   },
 };
 

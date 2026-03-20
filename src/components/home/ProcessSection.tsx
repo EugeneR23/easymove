@@ -1,4 +1,5 @@
-import { ClipboardList, MessageSquare, Package, Home } from 'lucide-react';
+import Link from 'next/link';
+import { ClipboardList, MessageSquare, Package, Home, ArrowRight } from 'lucide-react';
 
 const steps = [
   {
@@ -71,6 +72,15 @@ export default function ProcessSection() {
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-10 md:mt-14">
+          <Link
+            href="/quote"
+            className="inline-flex items-center gap-2 text-charcoal text-sm font-semibold uppercase tracking-wider border-b border-charcoal/40 pb-0.5 hover:text-gold hover:border-gold transition-colors duration-200"
+          >
+            Start with a free moving estimate <ArrowRight size={14} />
+          </Link>
         </div>
       </div>
     </section>

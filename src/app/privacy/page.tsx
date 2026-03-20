@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
-export const metadata: Metadata = { title: 'Privacy Policy — EasyMove Elite' };
+export const metadata: Metadata = {
+  title: 'Privacy Policy — EasyMove Elite',
+  description:
+    'How EasyMove Elite collects, uses, and protects your personal information when you request a moving estimate or contact us.',
+  robots: { index: false, follow: false },
+  alternates: {
+    canonical: 'https://www.easymoveelite.com/privacy',
+  },
+};
 
 export default function PrivacyPage() {
   return (

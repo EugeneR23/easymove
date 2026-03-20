@@ -112,7 +112,7 @@ export default function HomepageCalculator() {
             What Does Your Move Cost?
           </h2>
           <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
-            Answer two questions and see your starting price. A coordinator follows up with a confirmed quote — no automated booking.
+            Answer two questions and see your starting price in South Florida. A real coordinator — not a bot — follows up with a confirmed quote.
           </p>
         </div>
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | EasyMove Elite',
   },
   description:
-    'EasyMove Elite offers white-glove moving services across South Florida — Miami, Fort Lauderdale, Boca Raton, and surrounding areas. Fully insured, founder-led, with transparent pricing and no surprises.',
+    'Premium white-glove movers in Miami, Fort Lauderdale & Boca Raton. Founder-led, fully insured, no surprise fees. Residential, high-rise, long-distance & specialty moves.',
   keywords: [
     'movers Miami',
     'moving company Miami',
@@ -67,10 +67,9 @@ export const metadata: Metadata = {
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'MovingCompany',
+  '@type': ['MovingCompany', 'LocalBusiness'],
   name: 'EasyMove Elite',
   url: siteUrl,
-  logo: `${siteUrl}/images/logo.png`,
   image: `${siteUrl}/images/Hero.png`,
   description:
     'Premium white-glove moving company serving Miami-Dade, Broward, and Palm Beach Counties. Residential, high-rise, long-distance, fine art, office, and storage services.',
@@ -78,21 +77,28 @@ const localBusinessSchema = {
   email: 'hello@easymoveelite.com',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Miami',
     addressLocality: 'Miami',
     addressRegion: 'FL',
+    postalCode: '33101',
     addressCountry: 'US',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 25.7617,
+    longitude: -80.1918,
+  },
   areaServed: [
-    { '@type': 'City', name: 'Miami' },
+    { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
     { '@type': 'City', name: 'Coral Gables' },
     { '@type': 'City', name: 'Coconut Grove' },
     { '@type': 'City', name: 'Brickell' },
     { '@type': 'City', name: 'Aventura' },
     { '@type': 'City', name: 'Sunny Isles Beach' },
     { '@type': 'City', name: 'Hollywood' },
-    { '@type': 'City', name: 'Fort Lauderdale' },
+    { '@type': 'City', name: 'Fort Lauderdale', sameAs: 'https://en.wikipedia.org/wiki/Fort_Lauderdale,_Florida' },
     { '@type': 'City', name: 'Pompano Beach' },
-    { '@type': 'City', name: 'Boca Raton' },
+    { '@type': 'City', name: 'Boca Raton', sameAs: 'https://en.wikipedia.org/wiki/Boca_Raton,_Florida' },
     { '@type': 'City', name: 'Delray Beach' },
     { '@type': 'City', name: 'Palm Beach' },
   ],
@@ -104,11 +110,30 @@ const localBusinessSchema = {
       closes: '19:00',
     },
   ],
-  priceRange: '$$',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+17863051844',
+    contactType: 'customer service',
+    areaServed: 'US',
+    availableLanguage: ['English', 'Russian'],
+    contactOption: 'TollFree',
+  },
+  serviceType: [
+    'Residential Moving',
+    'High-Rise Moving',
+    'Condo Moving',
+    'Long-Distance Moving',
+    'International Moving',
+    'Office Moving',
+    'Fine Art Moving',
+    'Storage Coordination',
+  ],
+  priceRange: '$$$',
   foundingDate: '2021',
   founder: {
     '@type': 'Person',
     name: 'Eugene Romanov',
+    jobTitle: 'Founder & Owner',
   },
 };
 
