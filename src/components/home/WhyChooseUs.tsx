@@ -6,6 +6,7 @@ const reasons = [
     icon: Building2,
     title: 'High-Rise Expertise',
     description: 'We manage elevator reservations, COI submissions, loading dock coordination, and floor/wall protection — everything your condo association requires.',
+    href: '/services/residential-moving',
   },
   {
     icon: Shield,
@@ -78,6 +79,15 @@ export default function WhyChooseUs() {
                 </div>
                 <h3 className="font-display text-lg font-semibold text-charcoal mb-3">{r.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{r.description}</p>
+                {r.href && (
+                  <Link
+                    href={r.href}
+                    className="inline-flex items-center gap-1 text-gold text-[11px] font-semibold uppercase tracking-wider mt-4 group/card-link hover:opacity-80 transition-opacity duration-200"
+                  >
+                    <span className="border-b border-gold/40 pb-px">See the service</span>
+                    <ArrowRight size={11} className="translate-x-0 group-hover/card-link:translate-x-[2px] transition-transform duration-200" />
+                  </Link>
+                )}
               </div>
             );
           })}

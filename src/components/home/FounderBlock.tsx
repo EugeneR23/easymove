@@ -14,12 +14,12 @@ export default function FounderBlock() {
       <div className="flex flex-col lg:flex-row min-h-[460px]">
 
         {/* Photo panel */}
-        <div className="relative lg:w-[40%] h-80 sm:h-96 lg:h-auto overflow-hidden shrink-0">
+        <div className="relative lg:w-[40%] aspect-[3/4] sm:aspect-auto sm:h-96 lg:h-auto overflow-hidden shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/Founder.jpg"
             alt="Eugene Romanov, Founder of EasyMove Elite"
-            className="w-full h-full object-cover object-[center_12%]"
+            className="w-full h-full object-cover object-[center_20%] lg:object-[center_12%]"
           />
           {/* Blend edge into text panel on desktop */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-charcoal/60 hidden lg:block" />

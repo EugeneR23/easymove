@@ -4,7 +4,20 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
 
-export const metadata: Metadata = { title: 'About Us — EasyMove Elite' };
+export const metadata: Metadata = {
+  title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
+  description:
+    'EasyMove Elite is a founder-led, fully insured premium moving company built in South Florida. Learn about our story, our values, and the crew behind every move in Miami-Dade, Broward, and Palm Beach County.',
+  alternates: {
+    canonical: 'https://www.easymoveelite.com/about',
+  },
+  openGraph: {
+    title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
+    description:
+      'Founder-led and crew-driven. Built for South Florida. Learn the story behind EasyMove Elite and the people who make every move seamless.',
+    url: 'https://www.easymoveelite.com/about',
+  },
+};
 
 const values = [
   {
@@ -112,8 +125,8 @@ export default function AboutPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/About.png"
-                alt="EasyMove Elite team in South Florida"
-                className="w-full h-56 sm:h-80 lg:h-[420px] object-cover object-top"
+                alt="EasyMove Elite premium moving crew, South Florida"
+                className="w-full h-56 sm:h-80 lg:h-[420px] object-cover object-center sm:object-top"
               />
             </div>
           </div>

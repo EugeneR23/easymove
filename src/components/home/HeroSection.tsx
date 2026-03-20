@@ -4,7 +4,7 @@ import { ChevronDown, Shield, Star, Phone } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal">
       {/* Background — local hero image, animates with Ken Burns slow zoom */}
       <div
         className="absolute inset-0 bg-cover bg-no-repeat animate-kenburns"

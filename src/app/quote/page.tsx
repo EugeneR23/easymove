@@ -6,7 +6,20 @@ import ExitIntent from '@/components/quote/ExitIntent';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Shield, Clock, Phone, Star, UserCheck, FileText, Truck } from 'lucide-react';
 
-export const metadata: Metadata = { title: 'Get a Moving Estimate — EasyMove Elite' };
+export const metadata: Metadata = {
+  title: 'Get a Free Moving Estimate in South Florida — EasyMove Elite',
+  description:
+    'Get a detailed moving estimate in under 2 minutes. A real coordinator — not an automated system — reviews your move and confirms pricing. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.',
+  alternates: {
+    canonical: 'https://www.easymoveelite.com/quote',
+  },
+  openGraph: {
+    title: 'Get a Free Moving Estimate — EasyMove Elite',
+    description:
+      'Fast, written moving estimate with no obligation. 6 steps, under 2 minutes. A coordinator confirms your final price.',
+    url: 'https://www.easymoveelite.com/quote',
+  },
+};
 
 const TRUST_POINTS = [
   { icon: Shield, text: 'No hidden fees' },

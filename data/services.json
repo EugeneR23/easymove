@@ -126,12 +126,12 @@
     "id": "svc-4",
     "slug": "office-commercial",
     "createdAt": "2026-03-19T01:16:37.554Z",
-    "updatedAt": "2026-03-19T01:16:37.554Z",
+    "updatedAt": "2026-03-19T10:00:00.000Z",
     "category": "commercial",
     "name": "Office & Commercial",
     "sortOrder": 4,
-    "tagline": "Business moves scheduled around your hours, handled with the same care as residential work.",
-    "description": "Business moves need to happen around your schedule. We work evenings and weekends to keep your downtime short. Our crews handle office furniture, workstations, monitors, and AV equipment carefully, and we disassemble and reassemble modular furniture on-site. We're a small, focused team — not a large commercial moving company — so we take on office jobs where quality and communication matter more than raw speed. Eugene stays directly involved on every commercial job.",
+    "tagline": "Office and business moves across Miami, Fort Lauderdale, and Boca Raton — scheduled around your hours, executed without disrupting operations.",
+    "description": "Relocating a business in South Florida means working around office hours, building loading dock windows, and IT infrastructure that can't go down for long. We schedule around your timeline — evenings, weekends, or phased moves across multiple days — to keep disruption short. Our crews handle desks, workstations, monitors, server equipment, and AV systems with the same care we bring to residential work. Furniture is disassembled and reassembled on-site. Eugene stays directly involved on every commercial job, and you have one point of contact from first quote through the final placement.",
     "features": [
       {
         "icon": "Building2",
@@ -209,12 +209,12 @@
     "id": "svc-6",
     "slug": "storage-solutions",
     "createdAt": "2026-03-19T01:16:37.554Z",
-    "updatedAt": "2026-03-19T01:16:37.554Z",
+    "updatedAt": "2026-03-19T10:00:00.000Z",
     "category": "storage",
     "name": "Storage Coordination",
     "sortOrder": 6,
-    "tagline": "We pick up your items, place them in secure storage, and return them when you're ready.",
-    "description": "We can pick up your items, place them in a secure storage unit, and return them when needed. This removes the need for you to manage storage yourself. Pricing depends on unit size and duration.",
+    "tagline": "Moving and storage in South Florida — we handle pickup, secure climate-controlled storage in Miami-Dade, and redelivery when you're ready.",
+    "description": "Between a closing and your new home, during a renovation, or when your destination isn't ready yet, we coordinate short- and long-term storage at trusted, climate-controlled facilities across Miami-Dade and Broward County. We pick up from your current address, deliver to the facility, and handle redelivery on your schedule — so you're not juggling a separate storage relationship. Month-to-month terms, no pressure. Facilities are secured, monitored, and selected based on what you're storing and how long you need it. We stay involved from pickup through final placement.",
     "features": [
       {
         "icon": "Archive",

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
 import { calculatePricing, estimateDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
-import { sendEmail, sendTelegram } from '@/lib/notify';
+import { sendEmail, sendTelegram, sendSMS } from '@/lib/notify';
 import type { Quote } from '@/types';
 
 export async function GET() {
@@ -149,16 +149,13 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${name}</b>\n📞 <b>${quote.phone || '—'}</b>\n📧 ${quote.email || '—'}\n\n📦 ${quote.moveType} · ${quote.inventory.homeSize}\n📍 ${quote.fromCity || '?'} → ${quote.toCity || '?'}\n📅 ${quote.preferredDate || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${body.notes}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // Telegram is fire-and-forget — never blocks or fails the response
-    sendTelegram(tg).catch(() => null);
-
-    // Email is awaited — if it fails we return 500 so the form shows a real error
-    try {
-      await sendEmail(subject, html);
-    } catch (emailErr) {
-      console.error('[api/quotes] Email send failed:', emailErr);
-      return NextResponse.json({ error: 'Quote saved but notification email failed. Please call 786-305-1844.' }, { status: 500 });
-    }
+    // All notifications are fire-and-forget — failures are logged but never block quote capture
+    sendTelegram(tg).catch((err) => console.error('[api/quotes] Telegram failed:', err));
+    sendSMS(
+      quote.phone,
+      'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
+    ).catch((err) => console.error('[api/quotes] SMS failed:', err));
+    sendEmail(subject, html).catch((err) => console.error('[api/quotes] Email failed:', err));
 
     return NextResponse.json(quote, { status: 201 });
   } catch (err) {

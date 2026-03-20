@@ -38,7 +38,7 @@ export default function ProcessSection() {
             A Move Without the Stress
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl mx-auto leading-relaxed">
-            Every detail managed from first call to final placement.
+            Every detail managed from first call to final placement — across Miami-Dade, Broward, and Palm Beach County.
           </p>
         </div>
 

@@ -248,11 +248,11 @@ export default function QuoteWizard() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+    const payload = await res.json().catch(() => ({}));
     if (res.ok) {
-      const quote = await res.json();
-      setSubmittedQuote(quote);
+      setSubmittedQuote(payload);
     } else {
-      throw new Error('Submit failed');
+      throw new Error(payload?.error ?? 'Submit failed');
     }
   }
 
