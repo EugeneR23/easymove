@@ -7,7 +7,20 @@ import { readAllServices } from '@/lib/data/services';
 import { ArrowRight, Shield, Star, Building2 } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 
-export const metadata: Metadata = { title: 'Services — EasyMove Elite' };
+export const metadata: Metadata = {
+  title: 'Moving Services in South Florida — EasyMove Elite',
+  description:
+    'Explore our full range of moving services: residential & high-rise, long-distance, international, office & commercial, fine art & specialty, and storage coordination. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.',
+  alternates: {
+    canonical: 'https://www.easymoveelite.com/services',
+  },
+  openGraph: {
+    title: 'Moving Services in South Florida — EasyMove Elite',
+    description:
+      'White-glove moving services for every need — local, long-distance, high-rise, fine art, office, and storage. Fully insured, South Florida specialists.',
+    url: 'https://www.easymoveelite.com/services',
+  },
+};
 
 const trustBadges = [
   { icon: Shield, label: 'Fully Insured · COI on Request' },
@@ -35,8 +48,8 @@ export default async function ServicesPage() {
           <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">What We Offer</p>
           <h1 className="font-display text-3xl md:text-6xl font-bold text-white mb-4">Our Services</h1>
           <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-            Every service we offer is built around one standard: the same level of care and precision,
-            regardless of move size or distance.
+            From Brickell high-rises to Boca Raton estates — every service is built around one standard:
+            the same care and precision, regardless of move size or distance.
           </p>
 
           {/* Trust strip */}

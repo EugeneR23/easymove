@@ -4,7 +4,20 @@ import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 
-export const metadata: Metadata = { title: 'Contact Us — EasyMove Elite' };
+export const metadata: Metadata = {
+  title: 'Contact EasyMove Elite — South Florida Moving Company',
+  description:
+    'Get in touch with EasyMove Elite. Call, email, or send a message — a real coordinator responds within a few hours. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.',
+  alternates: {
+    canonical: 'https://www.easymoveelite.com/contact',
+  },
+  openGraph: {
+    title: 'Contact EasyMove Elite — South Florida Moving Company',
+    description:
+      'Reach our team directly. No automated systems — a real coordinator responds within a few hours. Call 786-305-1844 or fill out the form.',
+    url: 'https://www.easymoveelite.com/contact',
+  },
+};
 
 const areas = [
   'Miami', 'Coral Gables', 'Coconut Grove', 'Brickell',

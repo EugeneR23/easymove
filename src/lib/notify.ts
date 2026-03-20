@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import twilio from 'twilio';
 
 const TO_EMAIL  = process.env.NOTIFY_EMAIL      ?? 'etbcompanyllc24@gmail.com';
 const FROM_EMAIL = process.env.RESEND_FROM      ?? 'onboarding@resend.dev';
@@ -27,6 +28,44 @@ export async function sendEmail(subject: string, html: string): Promise<void> {
   if (error) {
     console.error('[notify] Resend error:', error);
     throw new Error(error.message);
+  }
+}
+
+/**
+ * Normalise a US phone number to E.164 format (+1XXXXXXXXXX).
+ * Returns the original string if the format is unrecognised.
+ */
+function normalizePhone(phone: string): string {
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith('1')) return `+${digits}`;
+  return phone;
+}
+
+/**
+ * Send an SMS to the customer via Twilio.
+ * Never throws — failure is logged but does not block the response.
+ */
+export async function sendSMS(to: string, body: string): Promise<void> {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken  = process.env.TWILIO_AUTH_TOKEN;
+  const from       = process.env.TWILIO_PHONE_NUMBER;
+
+  if (!accountSid || !authToken || !from) {
+    console.warn('[notify] Twilio not configured — SMS skipped');
+    return;
+  }
+
+  if (!to) {
+    console.warn('[notify] SMS skipped — no recipient phone number');
+    return;
+  }
+
+  try {
+    const client = twilio(accountSid, authToken);
+    await client.messages.create({ body, from, to: normalizePhone(to) });
+  } catch (err) {
+    console.error('[notify] Twilio SMS failed:', err);
   }
 }
 

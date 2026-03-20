@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
-import { sendEmail, sendTelegram } from '@/lib/notify';
+import { sendEmail, sendTelegram, sendSMS } from '@/lib/notify';
 import type { Lead } from '@/types';
 
 export async function GET() {
@@ -81,16 +81,13 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${name}</b>\n📞 <b>${lead.phone || '—'}</b>\n📧 ${lead.email || '—'}${lead.moveType ? '\n📦 ' + lead.moveType : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (lead.fromCity || '?') + ' → ' + (lead.toCity || '?') : ''}${lead.message ? '\n💬 ' + lead.message.slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // Telegram is fire-and-forget — never blocks or fails the response
-    sendTelegram(tg).catch(() => null);
-
-    // Email is awaited — if it fails return 500 so the form shows a real error
-    try {
-      await sendEmail(subject, html);
-    } catch (emailErr) {
-      console.error('[api/leads] Email send failed:', emailErr);
-      return NextResponse.json({ error: 'Message saved but notification email failed. Please call 786-305-1844.' }, { status: 500 });
-    }
+    // All notifications are fire-and-forget — failures are logged but never block lead capture
+    sendTelegram(tg).catch((err) => console.error('[api/leads] Telegram failed:', err));
+    sendSMS(
+      lead.phone,
+      'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
+    ).catch((err) => console.error('[api/leads] SMS failed:', err));
+    sendEmail(subject, html).catch((err) => console.error('[api/leads] Email failed:', err));
 
     return NextResponse.json(lead, { status: 201 });
   } catch (err) {

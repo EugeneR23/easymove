@@ -18,7 +18,24 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const service = readOneService(params.slug);
-  return { title: service ? `${service.name} — EasyMove Elite` : 'Service' };
+  if (!service) return { title: 'Service | EasyMove Elite' };
+
+  const title = `${service.name} in South Florida | EasyMove Elite`;
+  const description = `${service.tagline} Fully insured, founder-led. Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida. Get a written estimate today.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.easymoveelite.com/services/${service.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `https://www.easymoveelite.com/services/${service.slug}`,
+      images: [{ url: service.imageUrl, alt: service.name }],
+    },
+  };
 }
 
 function DynamicIcon({ name, ...props }: { name: string; size?: number; className?: string }) {
@@ -38,7 +55,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         {/* Hero */}
         <section className="relative h-80 md:h-[440px] flex items-end overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={service.imageUrl} alt={service.name} className="absolute inset-0 w-full h-full object-cover" />
+          <img src={service.imageUrl} alt={`${service.name} — EasyMove Elite South Florida`} className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 w-full">
@@ -47,6 +64,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </span>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-white">{service.name}</h1>
             <p className="text-gray-300 mt-3 max-w-xl">{service.tagline}</p>
+            <p className="text-gold/55 text-[11px] font-semibold tracking-[0.2em] uppercase mt-4">
+              Miami · Fort Lauderdale · Boca Raton
+            </p>
           </div>
         </section>
 
