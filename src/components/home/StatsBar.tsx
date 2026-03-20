@@ -19,11 +19,11 @@ export default function StatsBar() {
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`text-center px-6 py-4 ${
+              className={`text-center px-3 sm:px-6 py-4 ${
                 i < stats.length - 1 ? 'border-r border-white/[0.07]' : ''
               }`}
             >
-              <p className="font-display text-3xl font-bold text-gold mb-2 tracking-wide">{stat.value}</p>
+              <p className="font-display text-xl sm:text-3xl font-bold text-gold mb-2 tracking-wide">{stat.value}</p>
               <p className="text-white text-sm font-medium mb-1">{stat.label}</p>
               <p className="text-gray-600 text-xs leading-snug">{stat.sub}</p>
             </div>

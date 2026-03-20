@@ -145,7 +145,7 @@ export default function ContactPage() {
                       <p className="text-charcoal text-sm font-medium">Miami-Dade · Broward · Palm Beach</p>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-1.5 pl-[52px]">
+                  <div className="flex flex-wrap gap-1.5 pl-0 sm:pl-[52px]">
                     {areas.map((a) => (
                       <span key={a} className="text-[10px] bg-cream border border-gray-200 text-gray-500 px-2.5 py-0.5 tracking-wide">
                         {a}

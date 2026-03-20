@@ -81,7 +81,7 @@ export default function QuotePage() {
         </div>
 
         {/* Wizard */}
-        <div className="max-w-4xl mx-auto px-4 pt-6 pb-24 lg:pb-8">
+        <div className="max-w-4xl mx-auto px-4 pt-6 pb-36 lg:pb-8">
           <QuoteWizard />
 
           {/* Trust strip below wizard */}
