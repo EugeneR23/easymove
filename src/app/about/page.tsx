@@ -48,28 +48,11 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: 'Eugene Romanov',
-    role: 'Founder & Owner',
-    bio: 'Eugene built EasyMove Elite from the ground up after years of watching clients get let down by large, impersonal moving companies. His standard: you speak directly with the owner, the crew knows the building before they arrive, and every item is handled as if it belongs to family. He is present on every high-value and complex move.',
-    image: '/images/Founder.jpg',
-    featured: true,
-  },
-  {
-    name: 'Natalie Ferreira',
-    role: 'Client Coordinator',
-    bio: 'Natalie is usually the first voice you hear. She handles scheduling, building approvals, COI requests, and any questions that come up before or after your move.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
-    featured: false,
-  },
-  {
-    name: 'James Okafor',
-    role: 'Lead Field Crew',
-    bio: 'James has been with the company since the beginning. He leads our field crews on high-rise, fine art, and full-estate moves — the jobs where nothing can go wrong.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
-    featured: false,
-  },
+const howWeWork = [
+  { title: 'No subcontractors', description: 'Every move is handled by our own trained crew — not a third-party app crew hired for the day.' },
+  { title: 'Direct accountability', description: 'Eugene is the person you call if anything needs attention. Not a support line. Not a dispatcher.' },
+  { title: 'Quality control on every job', description: 'The same standards apply whether you\'re moving a studio or a full estate. No "easy" jobs treated carelessly.' },
+  { title: 'Crew briefed before arrival', description: 'Building access, elevator windows, COI requirements — all confirmed before the crew ever shows up.' },
 ];
 
 export default function AboutPage() {
@@ -162,64 +145,63 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team */}
+        {/* Founder-led */}
         <section className="section-padding bg-white">
           <div className="container-max">
-            <div className="text-center mb-10 md:mb-14">
-              <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">The Team</p>
-              <h2 className="font-display text-2xl md:text-4xl font-bold text-charcoal">Small by Design</h2>
-              <p className="text-gray-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">
-                Not a franchise. Not a call center. A tight crew where everyone knows what they&rsquo;re doing and why it matters.
-              </p>
-            </div>
+            <div className="max-w-3xl mx-auto">
 
-            {/* Founder featured */}
-            {team.filter((m) => m.featured).map((member) => (
-              <div key={member.name} className="max-w-3xl mx-auto mb-14">
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start bg-cream border border-gray-100 p-6 sm:p-8">
-                  <div className="shrink-0">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-32 h-32 object-cover object-top bg-gray-200"
-                    />
-                    <div className="mt-3 flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                      <span className="text-xs text-gray-400">South Florida</span>
-                    </div>
+              {/* Founder card */}
+              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start bg-cream border border-gray-100 p-6 sm:p-8 mb-12">
+                <div className="shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/Founder.jpg"
+                    alt="Eugene Romanov, Founder of EasyMove Elite"
+                    className="w-32 h-32 object-cover object-top bg-gray-200"
+                  />
+                  <div className="mt-3 flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                    <span className="text-xs text-gray-400">South Florida</span>
                   </div>
-                  <div>
-                    <h3 className="font-display font-semibold text-charcoal text-xl">{member.name}</h3>
-                    <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">{member.role}</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
-                    <div className="flex flex-wrap gap-3 mt-5">
-                      {['Licensed & Insured', 'Hands-on leadership', 'Direct line: 786-305-1844'].map((badge) => (
-                        <span key={badge} className="text-xs border border-gray-200 px-3 py-1 text-gray-500">{badge}</span>
-                      ))}
-                    </div>
+                </div>
+                <div>
+                  <h3 className="font-display font-semibold text-charcoal text-xl">Eugene Romanov</h3>
+                  <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Founder &amp; Owner</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Eugene built EasyMove Elite from the ground up after years of watching clients get let down
+                    by large, impersonal moving companies. His standard: you speak directly with the owner,
+                    the crew knows the building before they arrive, and every item is handled as if it belongs
+                    to family. He is present on every high-value and complex move.
+                  </p>
+                  <div className="flex flex-wrap gap-3 mt-5">
+                    {['Licensed & Insured', 'Hands-on leadership', 'Direct: 786-305-1844'].map((badge) => (
+                      <span key={badge} className="text-xs border border-gray-200 px-3 py-1 text-gray-500">{badge}</span>
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
 
-            {/* Supporting crew */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-              {team.filter((m) => !m.featured).map((member) => (
-                <div key={member.name} className="group flex gap-5 items-start">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-16 h-16 object-cover shrink-0"
-                  />
-                  <div>
-                    <h3 className="font-display font-semibold text-charcoal">{member.name}</h3>
-                    <p className="text-gold text-xs uppercase tracking-widest mt-0.5 mb-2">{member.role}</p>
-                    <p className="text-gray-500 text-sm leading-relaxed">{member.bio}</p>
-                  </div>
+              {/* How we work */}
+              <div>
+                <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">How We Work</p>
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-charcoal mb-3 leading-tight">
+                  Your Move is Personally Managed
+                </h2>
+                <p className="text-gray-500 text-sm leading-relaxed mb-8">
+                  When you book with EasyMove Elite, you&rsquo;re not working with a dispatcher or a call center.
+                  Eugene takes your call, coordinates the crew, and is reachable throughout your move.
+                  No subcontractors. No strangers sent by an app.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-100">
+                  {howWeWork.map((item) => (
+                    <div key={item.title} className="bg-white p-5 sm:p-6">
+                      <p className="font-semibold text-charcoal text-sm mb-2">{item.title}</p>
+                      <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
             </div>
           </div>
         </section>

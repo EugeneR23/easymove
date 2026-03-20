@@ -79,7 +79,7 @@ export default function FounderBlock() {
                 className="group/link inline-flex items-center gap-1.5 text-white/40 text-[11px] font-semibold uppercase tracking-[0.12em] hover:text-white/70 transition-colors duration-200"
               >
                 <span className="border-b border-white/20 pb-px group-hover/link:border-white/50 transition-colors duration-200">
-                  Meet the team
+                  Our story
                 </span>
                 <ArrowRight
                   size={11}
