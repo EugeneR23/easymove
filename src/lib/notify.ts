@@ -30,8 +30,16 @@ export async function sendEmail(subject: string, html: string): Promise<void> {
     return;
   }
 
+  if (FROM_EMAIL === 'onboarding@resend.dev') {
+    console.warn('[notify] RESEND_FROM is using the default onboarding@resend.dev sender. ' +
+      'This only works when sending to your own Resend-verified email. ' +
+      'Set RESEND_FROM to a verified domain address (e.g. noreply@easy-move-florida.com).');
+  }
+
+  console.log(`[notify] Sending email via Resend: to=${TO_EMAIL} from=${FROM_EMAIL} subject="${subject}"`);
+
   const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: `EasyMove Elite <${FROM_EMAIL}>`,
     to:   TO_EMAIL,
     subject,
@@ -42,6 +50,8 @@ export async function sendEmail(subject: string, html: string): Promise<void> {
     console.error('[notify] Resend error:', error);
     throw new Error(error.message);
   }
+
+  console.log('[notify] Resend email sent OK, id:', data?.id);
 }
 
 /**
@@ -88,21 +98,23 @@ export async function sendSMS(to: string, body: string): Promise<void> {
  */
 export async function sendTelegram(text: string): Promise<void> {
   if (!TG_TOKEN || !TG_CHAT) {
-    console.warn('[notify] Telegram not configured — skipped');
+    console.warn('[notify] Telegram not configured (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing) — skipped');
     return;
   }
 
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'HTML' }),
-    });
-    if (!res.ok) {
-      const body = await res.text();
-      console.error('[notify] Telegram API error:', res.status, body);
-    }
-  } catch (err) {
-    console.error('[notify] Telegram fetch failed:', err);
+  console.log(`[notify] Sending Telegram message to chat ${TG_CHAT}, length=${text.length}`);
+
+  const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'HTML' }),
+  });
+
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '');
+    console.error(`[notify] Telegram API error ${res.status}:`, detail);
+    throw new Error(`Telegram ${res.status}: ${detail}`);
   }
+
+  console.log('[notify] Telegram message sent OK');
 }
