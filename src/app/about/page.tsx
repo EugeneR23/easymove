@@ -155,9 +155,9 @@ export default function AboutPage() {
                 <div className="shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/Founder.jpg"
+                    src="/images/Founder%202.jpg"
                     alt="Eugene Romanov, Founder of EasyMove Elite"
-                    className="w-32 h-32 object-cover object-top bg-gray-200"
+                    className="w-32 h-32 object-cover object-[center_20%] bg-gray-200"
                   />
                   <div className="mt-3 flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-gold" />
