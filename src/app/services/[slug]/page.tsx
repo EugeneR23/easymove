@@ -116,7 +116,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white border border-gray-100 p-6 sticky top-24">
+              <div className="bg-white border border-gray-100 p-6 lg:sticky lg:top-24">
                 {service.pricingNote ? (
                   <div className="mb-7">
                     {service.pricingNote.split('\n').map((line, i) =>

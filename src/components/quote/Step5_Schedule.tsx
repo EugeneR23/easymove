@@ -55,7 +55,7 @@ export default function Step5Schedule({ data, update, onNext, onBack }: Props) {
         <Button variant="ghost" onClick={onBack}>Back</Button>
         <div className="flex items-center gap-4">
           <p className="text-gray-400 text-xs hidden sm:block">Almost done — just one more step</p>
-          <Button onClick={onNext} disabled={!data.preferredDate}>Continue</Button>
+          <Button onClick={onNext} disabled={!data.preferredDate && !data.flexibleDates}>Continue</Button>
         </div>
       </div>
     </div>
