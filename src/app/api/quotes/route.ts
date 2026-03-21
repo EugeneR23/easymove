@@ -4,7 +4,17 @@ import { calculatePricing, estimateDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
-import type { Quote } from '@/types';
+import type { Quote, MoveType } from '@/types';
+
+const MOVE_TYPES = ['local', 'long-distance', 'international', 'office', 'specialty'] as const satisfies readonly MoveType[];
+
+function parseMoveType(raw: unknown): MoveType {
+  if (typeof raw === 'string') {
+    const match = MOVE_TYPES.find((s) => s === raw);
+    if (match) return match;
+  }
+  return 'local';
+}
 
 export async function GET() {
   const quotes = readAllQuotes();
@@ -50,8 +60,9 @@ export async function POST(req: NextRequest) {
       body.fromState as string,
       body.toState   as string,
     );
+    const moveType = parseMoveType(body.moveType);
     const pricing = calculatePricing({
-      moveType:          body.moveType          as string,
+      moveType,
       estimatedDistance,
       inventory:         body.inventory         as QuoteInventory,
       addons:            body.addons            as QuoteAddons,
@@ -62,7 +73,7 @@ export async function POST(req: NextRequest) {
       createdAt:   new Date().toISOString(),
       updatedAt:   new Date().toISOString(),
       status:      'pending',
-      moveType:    body.moveType    as string,
+      moveType,
       fromAddress: (body.fromAddress as string) ?? '',
       fromCity:    (body.fromCity   as string) ?? '',
       fromState:   (body.fromState  as string) ?? '',
