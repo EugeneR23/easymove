@@ -201,26 +201,23 @@ function MobileEstimateBar({ data }: { data: WizardData }) {
 
   return (
     <div
-      className="lg:hidden fixed bottom-14 left-0 right-0 z-30 flex items-center justify-between px-5 py-2"
+      className="lg:hidden fixed bottom-14 left-0 right-0 z-30 flex items-center justify-between px-5 overflow-hidden"
       style={{
+        height: '44px',
         backgroundColor: '#0b0b0b',
         borderTop: '1px solid rgba(212,160,23,0.35)',
         boxShadow: '0 -4px 20px rgba(0,0,0,0.6)',
-        paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))',
       }}
     >
-      <div className="flex items-baseline gap-2">
+      <div className="flex items-baseline gap-1.5">
         <p style={{ color: '#d4a017', fontWeight: 700, fontSize: '18px', lineHeight: 1, fontFamily: 'var(--font-display, serif)' }}>
-          {formatCurrency(estimate.total)}<span style={{ fontSize: '12px', fontWeight: 400, opacity: 0.6 }}>+</span>
+          {formatCurrency(estimate.total)}<span style={{ fontSize: '11px', fontWeight: 400, opacity: 0.6 }}>+</span>
         </p>
-        <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          est.
-        </p>
+        <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>est.</p>
       </div>
-      <div style={{ textAlign: 'right' }}>
-        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '11px', lineHeight: 1 }}>{estimate.crewSize} movers · {estimate.estimatedHours} hrs</p>
-        <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '9px', marginTop: '3px' }}>Preliminary</p>
-      </div>
+      <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px' }}>
+        {estimate.crewSize} movers · {estimate.estimatedHours} hrs
+      </p>
     </div>
   );
 }
@@ -274,32 +271,61 @@ export default function QuoteWizard() {
   const back   = () => setStep((s) => Math.max(s - 1, 1));
 
   async function handleSubmit() {
+    // 55s timeout — Vercel Hobby functions cut off at 60s.
+    // Mobile LTE can add 10–20s on top of server processing.
+    const TIMEOUT_MS = 55_000;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30_000);
+    const timeoutId  = setTimeout(() => {
+      console.warn('[QuoteWizard] Aborting fetch after', TIMEOUT_MS / 1000, 's — network too slow');
+      controller.abort();
+    }, TIMEOUT_MS);
+
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+    const tag = isMobile ? '[QuoteWizard][mobile]' : '[QuoteWizard][desktop]';
+
+    console.log(tag, 'handleSubmit fired — payload:', {
+      moveType:  data.moveType,
+      homeSize:  data.inventory.homeSize,
+      fromCity:  data.fromCity  || data.fromState,
+      toCity:    data.toCity    || data.toState,
+      firstName: data.firstName || '(empty)',
+      lastName:  data.lastName  || '(empty)',
+      email:     data.email     || '(empty)',
+      phone:     data.phone     || '(empty)',
+    });
+
     try {
-      console.log('[QuoteWizard] Submitting:', {
-        moveType: data.moveType,
-        homeSize: data.inventory.homeSize,
-        from: data.fromCity || data.fromState,
-        to: data.toCity || data.toState,
-      });
+      const bodyStr = JSON.stringify(data);
+      console.log(tag, 'fetch → POST /api/quotes, body size:', bodyStr.length, 'bytes');
+
       const res = await fetch('/api/quotes', {
-        method: 'POST',
+        method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        signal: controller.signal,
+        body:    bodyStr,
+        signal:  controller.signal,
       });
+
       clearTimeout(timeoutId);
-      const payload = await res.json().catch(() => ({}));
-      console.log('[QuoteWizard] Response:', res.status, res.ok ? 'OK' : (payload?.error ?? 'unknown error'));
+      console.log(tag, 'fetch resolved — status:', res.status, res.statusText);
+
+      const payload = await res.json().catch((parseErr) => {
+        console.warn(tag, 'Could not parse response JSON:', parseErr);
+        return {};
+      });
+
+      console.log(tag, 'response payload:', JSON.stringify(payload).slice(0, 200));
+
       if (res.ok) {
+        console.log(tag, 'SUCCESS — triggering QuoteSummary');
         setSubmittedQuote(payload);
       } else {
-        throw new Error(payload?.error ?? `Server error ${res.status}`);
+        const msg = payload?.error ?? `Server error ${res.status}`;
+        console.error(tag, 'Non-OK response:', res.status, msg);
+        throw new Error(msg);
       }
     } catch (err) {
       clearTimeout(timeoutId);
-      console.error('[QuoteWizard] Submit failed:', err);
+      console.error(tag, 'Submit failed:', err instanceof Error ? err.message : err);
       throw err;
     }
   }
