@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CheckCircle, Phone, ArrowRight, Shield, Clock, Mail } from 'lucide-react';
+import { CheckCircle, Phone, ArrowRight, Shield } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
@@ -21,24 +21,6 @@ interface Props {
   data: WizardData;
 }
 
-const NEXT_STEPS = [
-  {
-    icon: Mail,
-    label: 'Confirmation email sent',
-    sub: 'Check your inbox — your reference number and details are on their way.',
-  },
-  {
-    icon: Clock,
-    label: 'Coordinator reviews your move',
-    sub: 'A real person looks at your details — home size, access, add-ons — and prepares your confirmed price.',
-  },
-  {
-    icon: Phone,
-    label: 'We follow up with your quote',
-    sub: 'Typically within a few hours. We\u2019ll confirm the final price and answer any questions before you commit to anything.',
-  },
-];
-
 export default function QuoteSummary({ quote, data }: Props) {
   const { pricing } = quote;
   const ref     = quote.id.slice(-8).toUpperCase();
@@ -54,60 +36,54 @@ export default function QuoteSummary({ quote, data }: Props) {
       const floor   = flights + 1;
       const ordinal = floor === 2 ? '2nd' : floor === 3 ? '3rd' : `${floor}th`;
       const floorStr = flights === 1 ? `${ordinal} floor` : `up to ${ordinal} floor`;
-      return {
-        label: `Additional floor (${floorStr}) — no elevator`,
-        value: pricing.accessFee,
-      };
+      return { label: `Floor access (${floorStr})`, value: pricing.accessFee };
     })() : null,
-    pricing.addonsFee > 0 ? { label: 'Additional services',   value: pricing.addonsFee } : null,
-    pricing.discount  > 0 ? { label: 'Discount',              value: -pricing.discount } : null,
+    pricing.addonsFee > 0 ? { label: 'Additional services', value: pricing.addonsFee } : null,
+    pricing.discount  > 0 ? { label: 'Discount',             value: -pricing.discount } : null,
   ].filter(Boolean) as { label: string; value: number }[];
 
   return (
-    <div className="bg-white border border-gray-100 shadow-card overflow-hidden">
+    <div className="w-full bg-white border border-gray-100 shadow-card overflow-hidden">
 
-      {/* Confirmation banner */}
-      <div className="bg-charcoal px-6 md:px-10 py-8 text-center relative">
+      {/* ── Confirmation banner ──────────────────────────────────────────────── */}
+      <div className="bg-charcoal px-5 sm:px-8 py-8 text-center relative">
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
-        <div className="w-14 h-14 border border-gold/40 flex items-center justify-center mx-auto mb-4">
-          <CheckCircle size={26} className="text-gold" />
+        <div className="w-12 h-12 border border-gold/40 flex items-center justify-center mx-auto mb-4">
+          <CheckCircle size={22} className="text-gold" />
         </div>
-        <p className="text-gold text-xs font-semibold tracking-[0.25em] uppercase mb-2">Request Received</p>
-        <h2 className="font-display text-3xl font-bold text-white mb-1">
-          Your request has been received
+        <p className="text-gold text-xs font-semibold tracking-[0.15em] uppercase mb-2">Request Received</p>
+        <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
+          We&rsquo;ll be in touch shortly
         </h2>
-        <p className="text-gray-400 text-sm mt-2 max-w-md mx-auto">
-          A coordinator will review your details and contact you shortly with a confirmed price.
+        <p className="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">
+          Your details are with our team. Expect a call or message with your confirmed price.
         </p>
-        <p className="text-white/25 text-xs mt-3">Reference #{ref}</p>
+        <p className="text-white/25 text-xs mt-4">Reference #{ref}</p>
       </div>
 
-      <div className="p-6 md:p-10">
+      {/* ── Body ─────────────────────────────────────────────────────────────── */}
+      <div className="p-5 sm:p-8">
 
-        {/* Price block */}
-        <div className="bg-charcoal p-6 mb-8">
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            <div>
-              <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
-              <p className="font-display text-4xl sm:text-5xl font-bold text-gold">{formatCurrency(pricing.total)}</p>
-              {isLocal && pricing.estimatedHours > 0 && (
-                <p className="text-gray-400 text-sm mt-1">
-                  {pricing.crewSize} movers · est. {pricing.estimatedHours} hrs · 3-hour minimum
-                </p>
-              )}
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-gray-500 max-w-[180px] leading-snug">
-                Preliminary estimate. Final price confirmed by your coordinator — in writing, before your move.
-              </p>
-            </div>
-          </div>
+        {/* Price block — single-column on mobile */}
+        <div className="bg-charcoal p-5 mb-6">
+          <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
+          <p className="font-display text-4xl font-bold text-gold mb-1">
+            {formatCurrency(pricing.total)}
+          </p>
+          {isLocal && pricing.estimatedHours > 0 && (
+            <p className="text-gray-500 text-xs">
+              {pricing.crewSize} movers · est. {pricing.estimatedHours} hrs · 3-hr minimum
+            </p>
+          )}
+          <p className="text-gray-600 text-xs mt-3 leading-snug">
+            Preliminary only — final price confirmed in writing before your move.
+          </p>
 
           {lineItems.length > 1 && (
-            <div className="mt-5 pt-5 border-t border-white/10 space-y-2">
+            <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
               {lineItems.map((item) => (
                 <div key={item.label} className="flex justify-between text-sm gap-2">
-                  <span className="text-gray-400 flex-1 min-w-0 pr-1">{item.label}</span>
+                  <span className="text-gray-400 flex-1 min-w-0 pr-1 break-words">{item.label}</span>
                   <span className={`shrink-0 whitespace-nowrap ${item.value < 0 ? 'text-green-400 font-medium' : 'text-white font-medium'}`}>
                     {item.value < 0 ? `−${formatCurrency(-item.value)}` : formatCurrency(item.value)}
                   </span>
@@ -117,76 +93,55 @@ export default function QuoteSummary({ quote, data }: Props) {
           )}
         </div>
 
-        {/* Move details */}
-        <div className="bg-cream p-5 mb-8">
-          <p className="text-xs uppercase tracking-wider text-gray-400 mb-4">Your Move Details</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+        {/* Move details — 2-col always */}
+        <div className="bg-cream p-4 mb-6">
+          <p className="text-xs uppercase tracking-wider text-gray-400 mb-3">Your Move</p>
+          <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
-              <span className="text-gray-400 text-xs block mb-1">Type</span>
+              <span className="text-gray-400 text-xs block mb-0.5">Type</span>
               <span className="text-charcoal font-medium capitalize">{data.moveType.replace('-', ' ')}</span>
             </div>
             <div>
-              <span className="text-gray-400 text-xs block mb-1">Home Size</span>
+              <span className="text-gray-400 text-xs block mb-0.5">Home Size</span>
               <span className="text-charcoal font-medium capitalize">{data.inventory.homeSize ?? '—'}</span>
             </div>
-            <div>
-              <span className="text-gray-400 text-xs block mb-1">From</span>
-              <span className="text-charcoal font-medium">{data.fromCity || '—'}</span>
-            </div>
-            <div>
-              <span className="text-gray-400 text-xs block mb-1">To</span>
-              <span className="text-charcoal font-medium">{data.toCity || '—'}</span>
-            </div>
+            {data.fromCity && (
+              <div>
+                <span className="text-gray-400 text-xs block mb-0.5">From</span>
+                <span className="text-charcoal font-medium">{data.fromCity}</span>
+              </div>
+            )}
+            {data.toCity && (
+              <div>
+                <span className="text-gray-400 text-xs block mb-0.5">To</span>
+                <span className="text-charcoal font-medium">{data.toCity}</span>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* What happens next */}
-        <div className="mb-8">
-          <p className="text-xs uppercase tracking-wider text-gray-400 mb-5">What Happens Next</p>
-          <ol className="space-y-5">
-            {NEXT_STEPS.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <li key={s.label} className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
-                      <Icon size={14} className="text-gold" />
-                    </div>
-                    {i < NEXT_STEPS.length - 1 && (
-                      <div className="w-px flex-1 my-2 min-h-[16px] bg-gray-100" />
-                    )}
-                  </div>
-                  <div className="pb-2">
-                    <p className="font-semibold text-charcoal text-sm">{s.label}</p>
-                    <p className="text-gray-400 text-xs mt-1 leading-relaxed">{s.sub}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-
-        {/* Call CTA */}
-        <div className="border border-gold/20 bg-gold/5 p-5 flex items-center justify-between gap-4 mb-6 flex-wrap">
-          <div>
-            <p className="font-semibold text-charcoal text-sm">Prefer to talk now?</p>
-            <p className="text-gray-500 text-xs mt-0.5">Mon–Sat, 8am–7pm EST</p>
-          </div>
+        {/* Call CTA — full-width button on mobile */}
+        <div className="border border-gold/20 bg-gold/5 p-4 mb-5">
+          <p className="font-semibold text-charcoal text-sm">Prefer to talk now?</p>
+          <p className="text-gray-500 text-xs mt-0.5 mb-3">Mon–Sat, 8am–7pm EST</p>
           <a
             href="tel:7863051844"
-            className="inline-flex items-center gap-2 bg-charcoal text-white px-5 py-2.5 text-sm font-semibold hover:bg-charcoal/80 transition-colors"
+            className="flex items-center justify-center gap-2 bg-charcoal text-white px-4 py-2.5 text-sm font-semibold w-full hover:bg-charcoal/80 transition-colors"
           >
             <Phone size={14} />
             786-305-1844
           </a>
         </div>
 
-        {/* Trust + navigation */}
-        <div className="flex items-center gap-2 mb-6">
-          <Shield size={12} className="text-gold shrink-0" />
-          <p className="text-xs text-gray-400">Fully insured · COI available · Local South Florida team · No hidden fees</p>
+        {/* Trust line — flex-wrap safe */}
+        <div className="flex items-start gap-2 mb-5">
+          <Shield size={12} className="text-gold shrink-0 mt-0.5" />
+          <p className="text-xs text-gray-400 min-w-0 leading-relaxed">
+            Fully insured · COI available · Local South Florida team · No hidden fees
+          </p>
         </div>
 
+        {/* Navigation */}
         <div className="flex flex-col sm:flex-row gap-3">
           <Link href="/" className="flex-1">
             <Button variant="ghost" className="w-full">Back to Home</Button>
@@ -197,6 +152,7 @@ export default function QuoteSummary({ quote, data }: Props) {
             </Button>
           </Link>
         </div>
+
       </div>
     </div>
   );
