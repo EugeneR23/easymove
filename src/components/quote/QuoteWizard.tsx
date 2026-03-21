@@ -30,9 +30,9 @@ const DEFAULT_DATA: WizardData = {
   fromAddress: '', fromCity: '', fromState: 'FL', fromZip: '',
   toAddress:   '', toCity:   '', toState:   'FL', toZip:   '',
   inventory: {
-    homeSize: '2br',
+    homeSize: 'studio',
     crewSize: 2,
-    bedrooms: 2,
+    bedrooms: 0,
     bathrooms: 1,
     estimatedBoxes: 0,
     specialItems: [],
@@ -201,25 +201,25 @@ function MobileEstimateBar({ data }: { data: WizardData }) {
 
   return (
     <div
-      className="lg:hidden fixed bottom-14 left-0 right-0 z-30 flex items-center justify-between px-5 py-3"
+      className="lg:hidden fixed bottom-14 left-0 right-0 z-30 flex items-center justify-between px-5 py-2"
       style={{
         backgroundColor: '#0b0b0b',
         borderTop: '1px solid rgba(212,160,23,0.35)',
-        boxShadow: '0 -6px 32px rgba(0,0,0,0.7)',
-        paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))',
+        boxShadow: '0 -4px 20px rgba(0,0,0,0.6)',
+        paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))',
       }}
     >
-      <div>
-        <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', lineHeight: 1, marginBottom: '5px' }}>
-          Estimated Total
+      <div className="flex items-baseline gap-2">
+        <p style={{ color: '#d4a017', fontWeight: 700, fontSize: '18px', lineHeight: 1, fontFamily: 'var(--font-display, serif)' }}>
+          {formatCurrency(estimate.total)}<span style={{ fontSize: '12px', fontWeight: 400, opacity: 0.6 }}>+</span>
         </p>
-        <p style={{ color: '#d4a017', fontWeight: 700, fontSize: '22px', lineHeight: 1, fontFamily: 'var(--font-display, serif)' }}>
-          {formatCurrency(estimate.total)}<span style={{ fontSize: '14px', fontWeight: 400, opacity: 0.65 }}>+</span>
+        <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          est.
         </p>
       </div>
       <div style={{ textAlign: 'right' }}>
-        <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '12px' }}>{estimate.crewSize} movers · {estimate.estimatedHours} hrs est.</p>
-        <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '10px', marginTop: '3px' }}>Updates as you go · Preliminary</p>
+        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '11px', lineHeight: 1 }}>{estimate.crewSize} movers · {estimate.estimatedHours} hrs</p>
+        <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '9px', marginTop: '3px' }}>Preliminary</p>
       </div>
     </div>
   );
