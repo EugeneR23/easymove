@@ -109,6 +109,7 @@ export async function POST(req: NextRequest) {
     }
 
     // ── 4. Build notification content ─────────────────────────────────────────
+    // (Airtable write and notification sends happen together in step 6 below)
     const addonsList: string[] = [];
     if (quote.addons.packingService)    addonsList.push('Packing');
     if (quote.addons.furnitureAssembly) addonsList.push('Furniture disassembly');
@@ -135,41 +136,7 @@ export async function POST(req: NextRequest) {
       ? `${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''}`
       : '';
 
-    // ── 5. Airtable — PRIMARY save, awaited. Failure returns 500 ──────────────
-    console.log('[api/quotes] Writing to Airtable...');
-    try {
-      await sendToAirtable({
-        'Created At':      quote.createdAt,
-        'Ref ID':          quote.id,
-        'Source':          'quote_form',
-        'Status':          'New',
-        'Name':            name,
-        'Phone':           quote.phone    || '',
-        'Email':           quote.email    || '',
-        'Move Type':       quote.moveType || '',
-        'Home Size':       quote.inventory.homeSize || '',
-        'From City':       quote.fromCity  || '',
-        'To City':         quote.toCity    || '',
-        'Property Type':   propertyType,
-        'Floors / Stairs': floorsStairs,
-        'Add-ons':         addonsList.join(', '),
-        'Notes':           (body.notes as string) || '',
-        'Estimated Price': quote.pricing.total,
-        'Completed':       false,
-        'Deposit Paid':    false,
-      });
-      status.airtable = true;
-      console.log('[api/quotes] Airtable write OK');
-    } catch (airtableErr) {
-      console.error('[api/quotes] Airtable write FAILED:', airtableErr);
-      console.log('[api/quotes] DEBUG STATUS:', JSON.stringify(status));
-      return NextResponse.json(
-        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
-        { status: 500 },
-      );
-    }
-
-    // ── 6. Secondary notifications — all awaited, failures logged not fatal ───
+    // ── 5. Build email / Telegram message strings ─────────────────────────────
     const row = (label: string, value: string | number | boolean) =>
       `<tr><td style="padding:6px 12px 6px 0;color:#666;white-space:nowrap;vertical-align:top"><b>${label}</b></td><td style="padding:6px 0;color:#111">${value}</td></tr>`;
 
@@ -250,10 +217,32 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(quote.phone) || '—'}</b>\n📧 ${tgEscape(quote.email) || '—'}\n\n📦 ${tgEscape(quote.moveType)} · ${tgEscape(quote.inventory.homeSize)}\n📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}\n📅 ${tgEscape(quote.preferredDate) || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${tgEscape(body.notes as string)}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
 
-    // All notifications awaited so Vercel doesn't kill them before they fire
-    console.log('[api/quotes] Sending notifications (Telegram, SMS, Email)...');
+    // ── 6. Airtable (primary) + all notifications in parallel ─────────────────
+    // Running in parallel ensures Telegram/email fire even if Airtable fails.
+    // Airtable failure still returns 500 — but only after notifications are sent.
+    console.log('[api/quotes] Writing to Airtable + sending notifications in parallel...');
 
-    const [tgResult, smsResult, emailResult] = await Promise.allSettled([
+    const [airtableResult, tgResult, smsResult, emailResult] = await Promise.allSettled([
+      sendToAirtable({
+        'Created At':      quote.createdAt,
+        'Ref ID':          quote.id,
+        'Source':          'quote_form',
+        'Status':          'New',
+        'Name':            name,
+        'Phone':           quote.phone    || '',
+        'Email':           quote.email    || '',
+        'Move Type':       quote.moveType || '',
+        'Home Size':       quote.inventory.homeSize || '',
+        'From City':       quote.fromCity  || '',
+        'To City':         quote.toCity    || '',
+        'Property Type':   propertyType,
+        'Floors / Stairs': floorsStairs,
+        'Add-ons':         addonsList.join(', '),
+        'Notes':           (body.notes as string) || '',
+        'Estimated Price': quote.pricing.total,
+        'Completed':       false,
+        'Deposit Paid':    false,
+      }),
       sendTelegram(tg),
       sendSMS(
         quote.phone,
@@ -262,9 +251,13 @@ export async function POST(req: NextRequest) {
       sendEmail(subject, html),
     ]);
 
-    status.telegram = tgResult.status === 'fulfilled';
-    status.sms      = smsResult.status === 'fulfilled';
-    status.email    = emailResult.status === 'fulfilled';
+    status.airtable = airtableResult.status === 'fulfilled';
+    status.telegram = tgResult.status       === 'fulfilled';
+    status.sms      = smsResult.status      === 'fulfilled';
+    status.email    = emailResult.status    === 'fulfilled';
+
+    if (!status.airtable) console.error('[api/quotes] Airtable FAILED:', (airtableResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/quotes] Airtable OK');
 
     if (!status.telegram) console.error('[api/quotes] Telegram failed:', (tgResult as PromiseRejectedResult).reason);
     else                  console.log('[api/quotes] Telegram OK');
@@ -277,6 +270,14 @@ export async function POST(req: NextRequest) {
 
     // ── 7. Final debug summary ────────────────────────────────────────────────
     console.log(`[api/quotes] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
+
+    // Return 500 if Airtable (primary save) failed — but notifications already sent above
+    if (!status.airtable) {
+      return NextResponse.json(
+        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(quote, { status: 201 });
   } catch (err) {
