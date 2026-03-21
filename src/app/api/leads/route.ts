@@ -93,36 +93,7 @@ export async function POST(req: NextRequest) {
       console.error('[api/leads] Local storage write failed (non-fatal):', writeErr);
     }
 
-    // ── 4. Airtable — PRIMARY save, awaited. Failure returns 500 ──────────────
-    console.log('[api/leads] Writing to Airtable...');
-    try {
-      await sendToAirtable({
-        'Created At':   lead.createdAt,
-        'Ref ID':       lead.id,
-        'Source':       normalizeSource(lead.source),
-        'Status':       'New',
-        'Name':         name,
-        'Phone':        lead.phone    || '',
-        'Email':        lead.email    || '',
-        'Move Type':    lead.moveType ?? '',
-        'From City':    lead.fromCity ?? '',
-        'To City':      lead.toCity   ?? '',
-        'Notes':        lead.message  || '',
-        'Completed':    false,
-        'Deposit Paid': false,
-      });
-      status.airtable = true;
-      console.log('[api/leads] Airtable write OK');
-    } catch (airtableErr) {
-      console.error('[api/leads] Airtable write FAILED:', airtableErr);
-      console.log('[api/leads] DEBUG STATUS:', JSON.stringify(status));
-      return NextResponse.json(
-        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
-        { status: 500 },
-      );
-    }
-
-    // ── 5. Secondary notifications — all awaited, failures logged not fatal ───
+    // ── 4. Build notification strings ─────────────────────────────────────────
     const subject = `🔥 New Lead — ${name}${lead.phone ? ' · ' + lead.phone : ''}`;
 
     const row = (label: string, value: string) =>
@@ -171,9 +142,27 @@ export async function POST(req: NextRequest) {
 
     const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(lead.phone) || '—'}</b>\n📧 ${tgEscape(lead.email) || '—'}${lead.moveType ? '\n📦 ' + tgEscape(lead.moveType) : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (tgEscape(lead.fromCity) || '?') + ' → ' + (tgEscape(lead.toCity) || '?') : ''}${lead.message ? '\n💬 ' + tgEscape(lead.message).slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
 
-    console.log('[api/leads] Sending notifications (Telegram, SMS, Email)...');
+    // ── 5. Airtable (primary) + all notifications in parallel ─────────────────
+    // Running in parallel ensures Telegram/email fire even if Airtable fails.
+    // Airtable failure still returns 500 — but only after notifications are sent.
+    console.log('[api/leads] Writing to Airtable + sending notifications in parallel...');
 
-    const [tgResult, smsResult, emailResult] = await Promise.allSettled([
+    const [airtableResult, tgResult, smsResult, emailResult] = await Promise.allSettled([
+      sendToAirtable({
+        'Created At':   lead.createdAt,
+        'Ref ID':       lead.id,
+        'Source':       normalizeSource(lead.source),
+        'Status':       'New',
+        'Name':         name,
+        'Phone':        lead.phone    || '',
+        'Email':        lead.email    || '',
+        'Move Type':    lead.moveType ?? '',
+        'From City':    lead.fromCity ?? '',
+        'To City':      lead.toCity   ?? '',
+        'Notes':        lead.message  || '',
+        'Completed':    false,
+        'Deposit Paid': false,
+      }),
       sendTelegram(tg),
       sendSMS(
         lead.phone,
@@ -182,9 +171,13 @@ export async function POST(req: NextRequest) {
       sendEmail(subject, html),
     ]);
 
-    status.telegram = tgResult.status  === 'fulfilled';
-    status.sms      = smsResult.status === 'fulfilled';
-    status.email    = emailResult.status === 'fulfilled';
+    status.airtable = airtableResult.status === 'fulfilled';
+    status.telegram = tgResult.status       === 'fulfilled';
+    status.sms      = smsResult.status      === 'fulfilled';
+    status.email    = emailResult.status    === 'fulfilled';
+
+    if (!status.airtable) console.error('[api/leads] Airtable FAILED:', (airtableResult as PromiseRejectedResult).reason);
+    else                  console.log('[api/leads] Airtable OK');
 
     if (!status.telegram) console.error('[api/leads] Telegram failed:', (tgResult as PromiseRejectedResult).reason);
     else                  console.log('[api/leads] Telegram OK');
@@ -197,6 +190,14 @@ export async function POST(req: NextRequest) {
 
     // ── 6. Final debug summary ────────────────────────────────────────────────
     console.log(`[api/leads] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
+
+    // Return 500 if Airtable (primary save) failed — but notifications already sent above
+    if (!status.airtable) {
+      return NextResponse.json(
+        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json(lead, { status: 201 });
   } catch (err) {
