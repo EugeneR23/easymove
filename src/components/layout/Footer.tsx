@@ -12,11 +12,11 @@ export default function Footer() {
               EasyMove<span className="text-gold">Elite</span>
             </span>
             <p className="mt-4 text-sm leading-relaxed">
-              South Florida&rsquo;s premium white-glove moving company. Serving Miami-Dade,
+              Professional, reliable movers serving Miami-Dade,
               Broward, and Palm Beach Counties since 2021.
             </p>
             <p className="mt-3 text-xs text-gray-600">
-              Fully Insured · COI Available on Request
+              Licensed &amp; Insured · COI Available on Request
             </p>
           </div>
 
@@ -47,6 +47,9 @@ export default function Footer() {
                 { href: '/about', label: 'About Us' },
                 { href: '/quote', label: 'Get a Quote' },
                 { href: '/contact', label: 'Contact' },
+                { href: '/miami-movers', label: 'Miami Movers' },
+                { href: '/fort-lauderdale-movers', label: 'Fort Lauderdale Movers' },
+                { href: '/boca-raton-movers', label: 'Boca Raton Movers' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
@@ -65,7 +68,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={13} className="text-gold shrink-0" />
-                <a href="mailto:hello@easymoveelite.com" className="hover:text-gold transition-colors">hello@easymoveelite.com</a>
+                <a href="mailto:etbcompanyllc24@gmail.com" className="hover:text-gold transition-colors">etbcompanyllc24@gmail.com</a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={13} className="text-gold shrink-0 mt-0.5" />
@@ -86,7 +89,17 @@ export default function Footer() {
             Hollywood · Fort Lauderdale · Pompano Beach · Boca Raton · Delray Beach · Palm Beach
           </p>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-            <p>&copy; {new Date().getFullYear()} EasyMove Elite LLC. All rights reserved.</p>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <p>&copy; {new Date().getFullYear()} EasyMove Elite LLC. All rights reserved.</p>
+              <a
+                href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-gold/60 hover:text-gold transition-colors"
+              >
+                <span className="text-[10px] uppercase tracking-widest">22+ Reviews on Thumbtack ↗</span>
+              </a>
+            </div>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>

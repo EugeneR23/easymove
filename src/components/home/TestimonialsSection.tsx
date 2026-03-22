@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, ExternalLink } from 'lucide-react';
 
 const testimonials = [
   {
@@ -60,7 +60,15 @@ export default function TestimonialsSection() {
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
             Trusted by South Florida Residents
           </h2>
-          <p className="text-gray-600 mt-3 text-sm">Highly rated on Google and Thumbtack</p>
+          <a
+            href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-3 text-gold/70 hover:text-gold text-sm transition-colors duration-200 group"
+          >
+            <span>22+ verified reviews on Thumbtack</span>
+            <ExternalLink size={12} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+          </a>
         </div>
 
         <div className="max-w-3xl mx-auto text-center">

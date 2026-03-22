@@ -1,5 +1,5 @@
 // ─── Move Types ──────────────────────────────────────────────────────────────
-export type MoveType = 'local' | 'long-distance' | 'international' | 'office' | 'specialty';
+export type MoveType = 'local' | 'long-distance' | 'international' | 'office' | 'specialty' | 'packing-only';
 export type HomeSize = 'studio' | '1br' | '2br' | '3br' | '4br+' | 'office';
 export type CrewSize = 2 | 3;
 export type QuoteStatus = 'pending' | 'reviewed' | 'sent' | 'accepted' | 'declined';
@@ -42,6 +42,9 @@ export interface QuotePricing {
   truckFee: number;        // flat truck/travel fee
   accessFee: number;       // stairs/elevator/high-rise fees
   addonsFee: number;       // packing, specialty, etc.
+  travelFee: number;       // travel time surcharge for long local trips
+  travelMiles: number;     // estimated driving distance (local moves)
+  travelMinutes: number;   // estimated travel time (local moves)
   // legacy fields (kept for admin dashboard compatibility)
   baseRate: number;
   distanceFee: number;

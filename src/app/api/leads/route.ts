@@ -149,7 +149,7 @@ export async function POST(req: NextRequest) {
 
     const [airtableResult, tgResult, smsResult, emailResult] = await Promise.allSettled([
       sendToAirtable({
-        'Created At':   lead.createdAt,
+        'Created At':   new Date(lead.createdAt).toISOString().split('T')[0],
         'Ref ID':       lead.id,
         'Source':       normalizeSource(lead.source),
         'Status':       'New',
@@ -160,6 +160,7 @@ export async function POST(req: NextRequest) {
         'From City':    lead.fromCity ?? '',
         'To City':      lead.toCity   ?? '',
         'Notes':        lead.message  || '',
+        ...(lead.moveDate ? { 'Job Date': lead.moveDate } : {}),
         'Completed':    false,
         'Deposit Paid': false,
       }),
@@ -191,12 +192,10 @@ export async function POST(req: NextRequest) {
     // ── 6. Final debug summary ────────────────────────────────────────────────
     console.log(`[api/leads] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
 
-    // Return 500 if Airtable (primary save) failed — but notifications already sent above
+    // Airtable failure is non-blocking — Telegram + email are the live alerts.
+    // Log the failure but always return 201 so the customer sees success.
     if (!status.airtable) {
-      return NextResponse.json(
-        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
-        { status: 500 },
-      );
+      console.warn('[api/leads] Airtable write failed — lead captured via Telegram/email, CRM sync missed');
     }
 
     return NextResponse.json(lead, { status: 201 });

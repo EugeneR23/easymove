@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
+import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -112,8 +113,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-wider text-gray-400 mb-1">Email</p>
-                      <a href="mailto:hello@easymoveelite.com" className="text-charcoal text-sm font-medium hover:text-gold transition-colors">
-                        hello@easymoveelite.com
+                      <a href="mailto:etbcompanyllc24@gmail.com" className="text-charcoal text-sm font-medium hover:text-gold transition-colors">
+                        etbcompanyllc24@gmail.com
                       </a>
                       <p className="text-gray-400 text-xs mt-0.5">Replies within 2 business hours</p>
                     </div>
@@ -170,6 +171,7 @@ export default function ContactPage() {
 
       </main>
       <Footer />
+      <MobileStickyBar />
     </>
   );
 }

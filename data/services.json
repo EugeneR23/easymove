@@ -117,7 +117,7 @@
         "label": "Single point of contact throughout"
       }
     ],
-    "startingPrice": 4500,
+    "startingPrice": 2500,
     "priceUnit": "flat-rate",
     "imageUrl": "/images/International.png",
     "isActive": true
@@ -202,6 +202,7 @@
     ],
     "startingPrice": 800,
     "priceUnit": "custom",
+    "pricingNote": "Every specialty move is quoted individually.\n• Price depends on item count, size, and required crating\n• Grand piano moves quoted separately\n• Call or request a quote — we'll assess and give you a clear number",
     "imageUrl": "/images/Art%20wrap.png",
     "isActive": true
   },

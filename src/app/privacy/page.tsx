@@ -66,8 +66,8 @@ export default function PrivacyPage() {
               <p>
                 You can opt out at any time by replying <strong>STOP</strong> to any SMS or by
                 contacting us directly at{' '}
-                <a href="mailto:hello@easymoveelite.com" className="text-gold hover:underline">
-                  hello@easymoveelite.com
+                <a href="mailto:etbcompanyllc24@gmail.com" className="text-gold hover:underline">
+                  etbcompanyllc24@gmail.com
                 </a>.
               </p>
             </Section>
@@ -108,8 +108,8 @@ export default function PrivacyPage() {
               </ul>
               <p>
                 To exercise any of these rights, contact us at{' '}
-                <a href="mailto:hello@easymoveelite.com" className="text-gold hover:underline">
-                  hello@easymoveelite.com
+                <a href="mailto:etbcompanyllc24@gmail.com" className="text-gold hover:underline">
+                  etbcompanyllc24@gmail.com
                 </a>.
               </p>
             </Section>
@@ -129,8 +129,8 @@ export default function PrivacyPage() {
                 EasyMove Elite LLC<br />
                 <a href="tel:7863051844" className="hover:text-gold transition-colors">786-305-1844</a>
                 <br />
-                <a href="mailto:hello@easymoveelite.com" className="hover:text-gold transition-colors">
-                  hello@easymoveelite.com
+                <a href="mailto:etbcompanyllc24@gmail.com" className="hover:text-gold transition-colors">
+                  etbcompanyllc24@gmail.com
                 </a>
               </p>
             </div>

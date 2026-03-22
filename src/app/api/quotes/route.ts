@@ -6,7 +6,7 @@ import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
 import type { Quote, MoveType } from '@/types';
 
-const MOVE_TYPES = ['local', 'long-distance', 'international', 'office', 'specialty'] as const satisfies readonly MoveType[];
+const MOVE_TYPES = ['local', 'long-distance', 'international', 'office', 'specialty', 'packing-only'] as const satisfies readonly MoveType[];
 
 function parseMoveType(raw: unknown): MoveType {
   if (typeof raw === 'string') {
@@ -64,6 +64,8 @@ export async function POST(req: NextRequest) {
     const pricing = calculatePricing({
       moveType,
       estimatedDistance,
+      fromCity:          (body.fromCity as string) ?? '',
+      toCity:            (body.toCity   as string) ?? '',
       inventory:         body.inventory         as QuoteInventory,
       addons:            body.addons            as QuoteAddons,
     });
@@ -112,7 +114,8 @@ export async function POST(req: NextRequest) {
     // (Airtable write and notification sends happen together in step 6 below)
     const addonsList: string[] = [];
     if (quote.addons.packingService)    addonsList.push('Packing');
-    if (quote.addons.furnitureAssembly) addonsList.push('Furniture disassembly');
+    if (quote.addons.unpackingService)  addonsList.push('Unpacking');
+    if (quote.addons.furnitureAssembly) addonsList.push('Furniture assembly/disassembly');
     if (quote.addons.storageMonths > 0) addonsList.push(`Storage (${quote.addons.storageMonths} mo)`);
     if (quote.addons.autoTransport)     addonsList.push('Auto transport');
     if (quote.addons.artHandling)       addonsList.push('Art/antique handling');
@@ -164,6 +167,8 @@ export async function POST(req: NextRequest) {
           <table style="border-collapse:collapse;font-size:14px;width:100%">
             ${row('Move type', quote.moveType)}
             ${row('Home size', quote.inventory.homeSize)}
+            ${quote.inventory.bedrooms > 0 ? row('Bedrooms', quote.inventory.bedrooms) : ''}
+            ${row('Property', propertyType + (floorsStairs ? ` — ${floorsStairs}` : ''))}
             ${row('Crew', `${quote.pricing.crewSize} movers`)}
             ${row('From', `${quote.fromAddress ? quote.fromAddress + ', ' : ''}${quote.fromCity || '—'}, ${quote.fromState} ${quote.fromZip}`)}
             ${row('To', `${quote.toAddress ? quote.toAddress + ', ' : ''}${quote.toCity || '—'}, ${quote.toState} ${quote.toZip}`)}
@@ -175,11 +180,12 @@ export async function POST(req: NextRequest) {
 
           <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">📦 Inventory</p>
           <table style="border-collapse:collapse;font-size:14px;width:100%">
-            ${row('Est. boxes', quote.inventory.estimatedBoxes)}
-            ${row('Special items', quote.inventory.specialItems.length > 0 ? quote.inventory.specialItems.join(', ') : 'None')}
-            ${row('Garage', quote.inventory.hasGarage ? 'Yes' : 'No')}
-            ${row('Storage unit', quote.inventory.hasStorage ? 'Yes' : 'No')}
-            ${row('Access', accessNotes.length > 0 ? accessNotes.join(', ') : 'No issues')}
+            ${quote.inventory.estimatedBoxes > 0 ? row('Est. boxes', quote.inventory.estimatedBoxes) : ''}
+            ${quote.inventory.specialItems.length > 0 ? row('Special items', quote.inventory.specialItems.join(', ')) : ''}
+            ${quote.inventory.hasGarage  ? row('Garage',       'Yes — include in move') : ''}
+            ${quote.inventory.hasStorage ? row('Storage unit', 'Yes — include in move') : ''}
+            ${quote.inventory.needsCOI   ? row('COI',          'Required by building') : ''}
+            ${accessNotes.length > 0     ? row('Access',       accessNotes.join(', '))  : row('Access', 'No issues')}
           </table>
 
           ${addonsList.length > 0 ? `
@@ -199,7 +205,8 @@ export async function POST(req: NextRequest) {
           <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">💰 Estimated Price</p>
           <table style="border-collapse:collapse;font-size:14px;width:100%">
             ${row('Labor', `$${quote.pricing.laborRate}`)}
-            ${row('Truck fee', `$${quote.pricing.truckFee}`)}
+            ${quote.pricing.truckFee > 0 ? row('Truck fee', `$${quote.pricing.truckFee}`) : ''}
+            ${quote.pricing.travelFee > 0 ? row('Travel time', `$${quote.pricing.travelFee} (~${quote.pricing.travelMiles} mi · ~${quote.pricing.travelMinutes} min)`) : ''}
             ${quote.pricing.accessFee > 0 ? row('Access fee', `$${quote.pricing.accessFee}`) : ''}
             ${quote.pricing.addonsFee > 0 ? row('Add-ons fee', `$${quote.pricing.addonsFee}`) : ''}
             ${quote.pricing.discount > 0 ? row('Discount', `-$${quote.pricing.discount}`) : ''}
@@ -215,7 +222,47 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    const tg = `🔥 <b>NEW QUOTE</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(quote.phone) || '—'}</b>\n📧 ${tgEscape(quote.email) || '—'}\n\n📦 ${tgEscape(quote.moveType)} · ${tgEscape(quote.inventory.homeSize)}\n📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}\n📅 ${tgEscape(quote.preferredDate) || 'Flexible'}\n💰 <b>~$${quote.pricing.total}</b>${body.notes ? `\n\n📝 <i>${tgEscape(body.notes as string)}</i>` : ''}\n\n⚡ Call: 786-305-1844`;
+    // Build Telegram detail lines — only include fields the client actually filled in
+    const tgLines: string[] = [
+      `🔥 <b>NEW QUOTE</b>`,
+      `👤 <b>${tgEscape(name)}</b>`,
+      `📞 <b>${tgEscape(quote.phone) || '—'}</b>`,
+      `📧 ${tgEscape(quote.email) || '—'}`,
+      ``,
+      `🚚 <b>${tgEscape(quote.moveType)}</b> · ${tgEscape(quote.inventory.homeSize)}${quote.inventory.bedrooms > 0 ? ` · ${quote.inventory.bedrooms} bed` : ''}`,
+      `📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}`,
+      `📅 ${tgEscape(quote.preferredDate) || 'Flexible'}`,
+      `💰 <b>~$${quote.pricing.total}</b> · ${quote.pricing.crewSize} movers · est. ${quote.pricing.estimatedHours}h${quote.pricing.travelFee > 0 ? ` · 🛣 ~${quote.pricing.travelMiles}mi ~${quote.pricing.travelMinutes}min` : ''}`,
+      ``,
+      `🏠 ${tgEscape(propertyType)}`,
+    ];
+
+    if (quote.inventory.hasStairs && quote.inventory.stairsFlights > 0) {
+      const floor = quote.inventory.stairsFlights + 1;
+      const ord = floor === 2 ? '2nd' : floor === 3 ? '3rd' : `${floor}th`;
+      tgLines.push(`🪜 Stairs — ${quote.inventory.stairsFlights} flight${quote.inventory.stairsFlights !== 1 ? 's' : ''} (${ord} floor)`);
+    }
+    if (quote.inventory.hasElevator && !quote.inventory.hasStairs) tgLines.push(`🛗 Elevator available`);
+    if (quote.inventory.needsCOI)  tgLines.push(`📋 COI required by building`);
+    if (quote.inventory.hasGarage) tgLines.push(`🚗 Garage included`);
+    if (quote.inventory.hasStorage) tgLines.push(`📦 Storage unit included`);
+    if (quote.inventory.estimatedBoxes > 0) tgLines.push(`📦 ~${quote.inventory.estimatedBoxes} boxes`);
+    if (quote.inventory.specialItems.length > 0) tgLines.push(`🎹 Special items: ${quote.inventory.specialItems.map(tgEscape).join(', ')}`);
+
+    if (addonsList.length > 0) {
+      tgLines.push(``);
+      tgLines.push(`➕ <b>Add-ons:</b> ${addonsList.join(' · ')}`);
+    }
+
+    if (body.notes) {
+      tgLines.push(``);
+      tgLines.push(`📝 <i>${tgEscape(body.notes as string)}</i>`);
+    }
+
+    tgLines.push(``);
+    tgLines.push(`⚡ Call: 786-305-1844`);
+
+    const tg = tgLines.join('\n');
 
     // ── 6. Airtable (primary) + all notifications in parallel ─────────────────
     // Running in parallel ensures Telegram/email fire even if Airtable fails.
@@ -224,7 +271,7 @@ export async function POST(req: NextRequest) {
 
     const [airtableResult, tgResult, smsResult, emailResult] = await Promise.allSettled([
       sendToAirtable({
-        'Created At':      quote.createdAt,
+        'Created At':      new Date(quote.createdAt).toISOString().split('T')[0],
         'Ref ID':          quote.id,
         'Source':          'quote_form',
         'Status':          'New',
@@ -240,6 +287,7 @@ export async function POST(req: NextRequest) {
         'Add-ons':         addonsList.join(', '),
         'Notes':           (body.notes as string) || '',
         'Estimated Price': quote.pricing.total,
+        ...(quote.preferredDate ? { 'Job Date': quote.preferredDate } : {}),
         'Completed':       false,
         'Deposit Paid':    false,
       }),
@@ -271,12 +319,10 @@ export async function POST(req: NextRequest) {
     // ── 7. Final debug summary ────────────────────────────────────────────────
     console.log(`[api/quotes] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
 
-    // Return 500 if Airtable (primary save) failed — but notifications already sent above
+    // Airtable failure is non-blocking — Telegram + email are the live alerts.
+    // Log the failure but always return 201 so the customer sees success.
     if (!status.airtable) {
-      return NextResponse.json(
-        { error: 'Lead could not be saved. Please call 786-305-1844 directly.' },
-        { status: 500 },
-      );
+      console.warn('[api/quotes] Airtable write failed — lead captured via Telegram/email, CRM sync missed');
     }
 
     return NextResponse.json(quote, { status: 201 });

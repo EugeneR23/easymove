@@ -1,8 +1,8 @@
 const stats = [
-  { value: 'Focused', label: 'Fewer Moves, Done Better', sub: 'We limit bookings so every client gets our full attention' },
-  { value: 'Dedicated', label: 'One Coordinator', sub: 'Your single point of contact, start to finish' },
-  { value: 'Insured', label: 'Fully Covered', sub: 'COI provided on request for any building' },
-  { value: 'Local', label: 'South Florida Based', sub: 'Miami-Dade · Broward · Palm Beach' },
+  { value: '500+',      label: 'Moves Completed',        sub: 'Local, long-distance & packing' },
+  { value: '4.9 ★',    label: 'Top-Rated',               sub: 'Across verified platforms' },
+  { value: 'Since 2021', label: 'Serving South Florida', sub: 'Miami-Dade · Broward · Palm Beach' },
+  { value: '$0',        label: 'Hidden Fees',             sub: 'Final price confirmed in writing' },
 ];
 
 export default function StatsBar() {
