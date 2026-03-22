@@ -1,6 +1,22 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 const siteUrl = 'https://www.easymoveelite.com';
 
@@ -140,8 +156,10 @@ const localBusinessSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
+        {/* Preload hero image — critical LCP resource */}
+        <link rel="preload" as="image" href="/images/Hero.png" />
         {/* Google Tag Manager */}
         <Script
           id="gtm-head"
