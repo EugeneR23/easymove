@@ -272,7 +272,7 @@ export default function QuoteWizard() {
   const [data, setData] = useState<WizardData>(DEFAULT_DATA);
   const [submittedQuote, setSubmittedQuote] = useState<{
     id: string;
-    pricing: { total: number; laborRate: number; truckFee: number; accessFee: number; addonsFee: number; discount: number; estimatedHours: number; crewSize: number; isLongDistance: boolean };
+    pricing: { total: number; laborRate: number; truckFee: number; accessFee: number; addonsFee: number; travelFee: number; travelMiles: number; travelMinutes: number; discount: number; estimatedHours: number; crewSize: number; isLongDistance: boolean };
   } | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
