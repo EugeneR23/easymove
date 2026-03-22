@@ -91,7 +91,7 @@ const localBusinessSchema = {
   description:
     'Premium white-glove moving company serving Miami-Dade, Broward, and Palm Beach Counties. Residential, high-rise, long-distance, fine art, office, and storage services.',
   telephone: '+17863051844',
-  email: 'etbcompanyllc24@gmail.com',
+  email: 'romanov@easy-move-florida.com',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Miami',

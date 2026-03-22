@@ -113,8 +113,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-wider text-gray-400 mb-1">Email</p>
-                      <a href="mailto:etbcompanyllc24@gmail.com" className="text-charcoal text-sm font-medium hover:text-gold transition-colors">
-                        etbcompanyllc24@gmail.com
+                      <a href="mailto:romanov@easy-move-florida.com" className="text-charcoal text-sm font-medium hover:text-gold transition-colors">
+                        romanov@easy-move-florida.com
                       </a>
                       <p className="text-gray-400 text-xs mt-0.5">Replies within 2 business hours</p>
                     </div>

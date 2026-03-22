@@ -34,7 +34,7 @@ export default function CityMoversPage({ city }: Props) {
     description: city.metaDescription,
     url: `https://www.easymoveelite.com/${city.slug}`,
     telephone: '+17863051844',
-    email: 'etbcompanyllc24@gmail.com',
+    email: 'romanov@easy-move-florida.com',
     areaServed: {
       '@type': 'AdministrativeArea',
       name: `${city.name}, ${city.state}`,
