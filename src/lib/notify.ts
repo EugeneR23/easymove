@@ -14,7 +14,7 @@ export function tgEscape(text: string | undefined | null): string {
     .replace(/>/g, '&gt;');
 }
 
-const TO_EMAIL  = process.env.NOTIFY_EMAIL      ?? 'romanov@easy-move-florida.com';
+const TO_EMAIL  = process.env.NOTIFY_EMAIL      ?? 'etbcompanyllc24@gmail.com';
 const FROM_EMAIL = process.env.RESEND_FROM      ?? 'onboarding@resend.dev';
 const TG_TOKEN  = process.env.TELEGRAM_BOT_TOKEN;
 const TG_CHAT   = process.env.TELEGRAM_CHAT_ID;
