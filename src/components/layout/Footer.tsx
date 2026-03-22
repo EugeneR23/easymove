@@ -69,7 +69,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={13} className="text-gold shrink-0" />
-                <a href="mailto:etbcompanyllc24@gmail.com" className="hover:text-gold transition-colors">etbcompanyllc24@gmail.com</a>
+                <a href="mailto:romanov@easy-move-florida.com" className="hover:text-gold transition-colors">romanov@easy-move-florida.com</a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={13} className="text-gold shrink-0 mt-0.5" />
