@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer';
 import QuoteWizard from '@/components/quote/QuoteWizard';
 import ExitIntent from '@/components/quote/ExitIntent';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
-import { Shield, Clock, Phone, Star, UserCheck, FileText, Truck } from 'lucide-react';
+import { Shield, Clock, Phone, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Get a Free Moving Estimate in South Florida — EasyMove Elite',
@@ -51,37 +51,8 @@ export default function QuotePage() {
           </p>
         </div>
 
-        {/* What happens next */}
-        <div className="bg-[#f8f6f2] py-10 px-4">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-center text-gold text-[10px] font-semibold tracking-[0.3em] uppercase mb-5">
-              What Happens Next
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {[
-                { icon: UserCheck, title: 'Review your move',     sub: 'Handled by a real coordinator' },
-                { icon: FileText,  title: 'Get final price',       sub: 'No surprises'                 },
-                { icon: Truck,     title: 'We handle everything',  sub: 'You relax'                    },
-              ].map(({ icon: Icon, title, sub }) => (
-                <div
-                  key={title}
-                  className="bg-white border border-[#eee] rounded-lg px-4 py-4 flex items-center gap-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-gold/30 shadow-[0_1px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
-                >
-                  <div className="w-7 h-7 rounded-full border border-gold/20 bg-gold/5 flex items-center justify-center shrink-0">
-                    <Icon size={13} className="text-gold" />
-                  </div>
-                  <div>
-                    <p className="font-display text-[#111] text-sm font-semibold leading-snug">{title}</p>
-                    <p className="text-gray-400 text-[11px] mt-0.5">{sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Wizard */}
-        <div className="max-w-4xl mx-auto px-4 pt-6 pb-36 lg:pb-8">
+        <div className="max-w-4xl mx-auto px-4 pt-6 pb-36 lg:pb-8 overflow-hidden">
           <QuoteWizard />
 
           {/* Trust strip below wizard */}

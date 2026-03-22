@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { MoveType, QuoteInventory, QuoteAddons } from '@/types';
@@ -10,6 +10,7 @@ import Step3Locations from './Step3_Locations';
 import Step4Services from './Step4_Services';
 import Step5Schedule from './Step5_Schedule';
 import Step6Contact from './Step6_Contact';
+import StepPackingMaterials from './Step_PackingMaterials';
 import QuoteSummary from './QuoteSummary';
 import { Check, TrendingUp } from 'lucide-react';
 
@@ -58,13 +59,21 @@ const DEFAULT_DATA: WizardData = {
   notes: '',
 };
 
-const STEPS = [
+const DEFAULT_STEPS = [
   { label: 'Move Type',  sub: 'Local, long-distance, specialty' },
   { label: 'Home Size',  sub: 'Crew size & starting price'      },
   { label: 'Locations',  sub: 'Pickup & delivery details'       },
   { label: 'Add-ons',    sub: 'Packing, storage, and more'      },
   { label: 'Date',       sub: 'Preferred move date'             },
   { label: 'Contact',    sub: 'Name, email, phone'              },
+];
+
+const PACKING_STEPS = [
+  { label: 'Service',   sub: 'Packing only'          },
+  { label: 'Home Size', sub: 'Number of rooms'        },
+  { label: 'Materials', sub: 'Boxes & supplies'       },
+  { label: 'Date',      sub: 'Preferred packing date' },
+  { label: 'Contact',   sub: 'Name, email, phone'     },
 ];
 
 // Step-specific microcopy — shown in mobile strip and sidebar
@@ -97,7 +106,7 @@ function getLiveEstimate(data: WizardData) {
 }
 
 // ─── Sidebar step list ────────────────────────────────────────────────────────
-function SidebarSteps({ current, data }: { current: number; data: WizardData }) {
+function SidebarSteps({ current, data, steps }: { current: number; data: WizardData; steps: { label: string; sub: string }[] }) {
   const estimate = getLiveEstimate(data);
   const rangeHigh = estimate ? Math.round(estimate.total * 1.4) : null;
 
@@ -112,7 +121,7 @@ function SidebarSteps({ current, data }: { current: number; data: WizardData }) 
 
       {/* Steps */}
       <ol className="space-y-0 flex-1">
-        {STEPS.map((s, i) => {
+        {steps.map((s, i) => {
           const num    = i + 1;
           const done   = num < current;
           const active = num === current;
@@ -127,7 +136,7 @@ function SidebarSteps({ current, data }: { current: number; data: WizardData }) 
                 )}>
                   {done ? <Check size={13} strokeWidth={2.5} /> : num}
                 </div>
-                {i < STEPS.length - 1 && (
+                {i < steps.length - 1 && (
                   <div className={cn(
                     'w-px flex-1 my-2 min-h-[24px] transition-colors duration-300',
                     done ? 'bg-gold/40' : 'bg-white/10',
@@ -223,7 +232,7 @@ function MobileEstimateBar({ data }: { data: WizardData }) {
 }
 
 // ─── Mobile progress bar ──────────────────────────────────────────────────────
-function MobileProgress({ current, total, data }: { current: number; total: number; data: WizardData }) {
+function MobileProgress({ current, total, data, steps }: { current: number; total: number; data: WizardData; steps: { label: string; sub: string }[] }) {
   const pct     = Math.round(((current - 1) / (total - 1)) * 100);
   const micro   = STEP_MICRO[current] ?? '';
   const estimate = getLiveEstimate(data);
@@ -235,7 +244,7 @@ function MobileProgress({ current, total, data }: { current: number; total: numb
           <p className="text-white/60 text-xs">
             Step <span className="text-gold font-semibold">{current}</span> of {total}
             {' — '}
-            <span className="text-white">{STEPS[current - 1]?.label}</span>
+            <span className="text-white">{steps[current - 1]?.label}</span>
           </p>
           <p className="text-white/30 text-[10px] mt-0.5">{micro}</p>
         </div>
@@ -266,9 +275,30 @@ export default function QuoteWizard() {
     pricing: { total: number; laborRate: number; truckFee: number; accessFee: number; addonsFee: number; discount: number; estimatedHours: number; crewSize: number; isLongDistance: boolean };
   } | null>(null);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  function scrollToWizard() {
+    setTimeout(() => {
+      if (!containerRef.current) return;
+      const top = containerRef.current.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 30);
+  }
+
+  useEffect(() => {
+    if (submittedQuote) {
+      // Jump to top instantly — no animation, prevents jarring mid-page scroll
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    }
+  }, [submittedQuote]);
+
+  const isPacking  = data.moveType === 'packing-only';
+  const totalSteps = isPacking ? 5 : 6;
+  const activeSteps = isPacking ? PACKING_STEPS : DEFAULT_STEPS;
+
   const update = (patch: Partial<WizardData>) => setData((d) => ({ ...d, ...patch }));
-  const next   = () => setStep((s) => Math.min(s + 1, 6));
-  const back   = () => setStep((s) => Math.max(s - 1, 1));
+  const next   = () => { setStep((s) => Math.min(s + 1, totalSteps)); scrollToWizard(); };
+  const back   = () => { setStep((s) => Math.max(s - 1, 1)); scrollToWizard(); };
 
   async function handleSubmit() {
     // 55s timeout — Vercel Hobby functions cut off at 60s.
@@ -330,31 +360,38 @@ export default function QuoteWizard() {
     }
   }
 
-  if (submittedQuote) {
-    return <QuoteSummary quote={submittedQuote} data={data} />;
-  }
-
   const stepProps = { data, update, onNext: next, onBack: back };
 
   return (
     <>
-      <div className="overflow-hidden border border-gray-100 shadow-luxury">
-        <MobileProgress current={step} total={6} data={data} />
-        <div className="flex flex-col lg:flex-row">
-          <div className="lg:w-64 xl:w-72 shrink-0 hidden lg:block">
-            <SidebarSteps current={step} data={data} />
-          </div>
-          <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px]">
-            {step === 1 && <Step1MoveType {...stepProps} />}
-            {step === 2 && <Step2HomeSize {...stepProps} />}
-            {step === 3 && <Step3Locations {...stepProps} />}
-            {step === 4 && <Step4Services {...stepProps} />}
-            {step === 5 && <Step5Schedule {...stepProps} />}
-            {step === 6 && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
-          </div>
-        </div>
+      <div ref={containerRef} className="overflow-hidden border border-gray-100 shadow-luxury">
+        {submittedQuote ? (
+          <QuoteSummary quote={submittedQuote} data={data} embedded />
+        ) : (
+          <>
+            <MobileProgress current={step} total={totalSteps} data={data} steps={activeSteps} />
+            <div className="flex flex-col lg:flex-row">
+              <div className="lg:w-64 xl:w-72 shrink-0 hidden lg:block">
+                <SidebarSteps current={step} data={data} steps={activeSteps} />
+              </div>
+              <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px]">
+                {step === 1 && <Step1MoveType {...stepProps} />}
+                {step === 2 && <Step2HomeSize {...stepProps} />}
+                {/* Packing-only flow: Materials → Schedule → Contact */}
+                {step === 3 && isPacking  && <StepPackingMaterials {...stepProps} />}
+                {step === 4 && isPacking  && <Step5Schedule {...stepProps} />}
+                {step === 5 && isPacking  && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+                {/* Standard flow: Locations → Add-ons → Schedule → Contact */}
+                {step === 3 && !isPacking && <Step3Locations {...stepProps} />}
+                {step === 4 && !isPacking && <Step4Services {...stepProps} />}
+                {step === 5 && !isPacking && <Step5Schedule {...stepProps} />}
+                {step === 6 && !isPacking && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+              </div>
+            </div>
+          </>
+        )}
       </div>
-      <MobileEstimateBar data={data} />
+      {!submittedQuote && <MobileEstimateBar data={data} />}
     </>
   );
 }

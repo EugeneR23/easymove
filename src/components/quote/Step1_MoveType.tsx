@@ -1,13 +1,14 @@
 import { cn } from '@/lib/utils';
 import type { MoveType } from '@/types';
-import { Truck, MapPin, Star } from 'lucide-react';
+import { Truck, MapPin, Star, Package } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string; icon: React.ElementType }[] = [
-  { value: 'local',         label: 'Local Move',        sub: 'Same city or within South Florida', icon: Truck },
-  { value: 'long-distance', label: 'Long-Distance',     sub: 'Out of state or out of region',     icon: MapPin },
-  { value: 'specialty',     label: 'Specialty / Fine Art', sub: 'Piano, art, wine, custom items', icon: Star },
+  { value: 'local',         label: 'Local Move',           sub: 'Same city or within South Florida',      icon: Truck   },
+  { value: 'long-distance', label: 'Long-Distance',        sub: 'Out of state or out of region',          icon: MapPin  },
+  { value: 'packing-only',  label: 'Packing Only',         sub: 'We pack your home — you handle the move', icon: Package },
+  { value: 'specialty',     label: 'Specialty / Fine Art', sub: 'Piano, art, wine, custom items',         icon: Star    },
 ];
 
 interface Props { data: WizardData; update: (p: Partial<WizardData>) => void; onNext: () => void; onBack: () => void }
@@ -54,6 +55,15 @@ export default function Step1MoveType({ data, update, onNext }: Props) {
           );
         })}
       </div>
+
+      {data.moveType === 'packing-only' && (
+        <div className="bg-cream border border-gold/20 p-4 mb-6">
+          <p className="text-sm text-charcoal font-medium mb-1">Professional packing service.</p>
+          <p className="text-xs text-gray-500">
+            We come to you and carefully pack everything. You arrange transport or use your own vehicle.
+          </p>
+        </div>
+      )}
 
       {data.moveType === 'specialty' && (
         <div className="bg-cream border border-gold/20 p-4 mb-6">

@@ -9,10 +9,21 @@ import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 // ─── Move type ────────────────────────────────────────────────────────────────
 const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
-  { value: 'local',         label: 'Local Move',         sub: 'Within South Florida' },
-  { value: 'long-distance', label: 'Long Distance',      sub: 'Out of state'         },
-  { value: 'specialty',     label: 'Specialty / Office', sub: 'Custom quote'         },
+  { value: 'local',         label: 'Local Move',    sub: 'Within South Florida' },
+  { value: 'long-distance', label: 'Long Distance', sub: 'Out of state'         },
+  { value: 'packing-only',  label: 'Packing Only',  sub: 'We pack, you move'    },
+  { value: 'specialty',     label: 'Specialty',     sub: 'Piano, art, office'   },
 ];
+
+// ─── Packing price helper ─────────────────────────────────────────────────────
+const PACKING_HOURS: Record<HomeSize, number> = {
+  studio: 3, '1br': 3, '2br': 4.5, '3br': 6, '4br+': 8, office: 5,
+};
+const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119 };
+
+function packingStartingPrice(size: HomeSize, crew: CrewSize): number {
+  return Math.round(PACKING_RATE[crew] * Math.max(3, PACKING_HOURS[size]));
+}
 
 // ─── Home sizes ───────────────────────────────────────────────────────────────
 const HOME_SIZES: { value: HomeSize; label: string; hours: string }[] = [
@@ -57,22 +68,43 @@ export default function HomepageCalculator() {
   const [gateEmail, setGateEmail] = useState('');
   const emailRef = useRef<HTMLInputElement>(null);
 
-  const isLocal  = moveType === 'local';
-  const isCustom = moveType === 'specialty';
+  const cardRef  = useRef<HTMLDivElement>(null);
+  const isLocal    = moveType === 'local';
+  const isCustom   = moveType === 'specialty';
+  const isPacking  = moveType === 'packing-only';
 
   const price2 = homeSize ? localStartingPrice(homeSize, 2) : null;
   const price3 = homeSize ? localStartingPrice(homeSize, 3) : null;
-  const selectedPrice = homeSize ? localStartingPrice(homeSize, crew) : null;
+  const selectedPrice        = homeSize ? localStartingPrice(homeSize, crew) : null;
+  const selectedPackingPrice = homeSize ? packingStartingPrice(homeSize, crew) : null;
+
+  function scrollToCard() {
+    setTimeout(() => {
+      if (!cardRef.current) return;
+      const top = cardRef.current.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 30);
+  }
 
   function selectMoveType(t: MoveType) {
     setMoveType(t);
     if (t === 'specialty') { setPhase(3); }
     else                   { setPhase(2); }
+    scrollToCard();
+  }
+
+  function getPackingWizardHref() {
+    const params = new URLSearchParams();
+    params.set('type', 'packing-only');
+    if (homeSize) params.set('size', homeSize);
+    params.set('crew', String(crew));
+    return `/quote?${params.toString()}`;
   }
 
   function selectHomeSize(s: HomeSize) {
     setHomeSize(s);
     setPhase(3);
+    scrollToCard();
   }
 
   function reset() {
@@ -117,7 +149,7 @@ export default function HomepageCalculator() {
         </div>
 
         {/* Calculator card */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto" ref={cardRef}>
           <div className="bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm">
 
             {/* Phase nav strip */}
@@ -136,7 +168,7 @@ export default function HomepageCalculator() {
               {phase === 1 && (
                 <div>
                   <p className="text-white/60 text-sm mb-6">Select the type of move you need</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {MOVE_TYPES.map((t) => (
                       <button
                         key={t.value}
@@ -154,13 +186,15 @@ export default function HomepageCalculator() {
                 </div>
               )}
 
-              {/* ── Phase 2: Home size (local only) ── */}
-              {phase === 2 && isLocal && (
+              {/* ── Phase 2: Home size (local + packing) ── */}
+              {phase === 2 && (isLocal || isPacking) && (
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <p className="text-gold text-xs font-semibold uppercase tracking-wider mb-1">Local Move</p>
-                      <p className="text-white/60 text-sm">Select your home size to see starting hours &amp; price</p>
+                      <p className="text-gold text-xs font-semibold uppercase tracking-wider mb-1">
+                        {isPacking ? 'Packing Only' : 'Local Move'}
+                      </p>
+                      <p className="text-white/60 text-sm">Select your home size to see starting price</p>
                     </div>
                     <button onClick={reset} className="text-white/30 hover:text-white/60 text-xs transition-colors">
                       ← Change
@@ -169,7 +203,9 @@ export default function HomepageCalculator() {
 
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {HOME_SIZES.map((s) => {
-                      const p = localStartingPrice(s.value, crew);
+                      const p = isPacking
+                        ? packingStartingPrice(s.value, crew)
+                        : localStartingPrice(s.value, crew);
                       const selected = homeSize === s.value;
                       return (
                         <button
@@ -237,7 +273,73 @@ export default function HomepageCalculator() {
                         </button>
                       </div>
 
-                      {isLocal && homeSize ? (
+                      {isPacking && homeSize ? (
+                        <>
+                          {/* Crew toggle — packing */}
+                          <div className="grid grid-cols-2 gap-3 mb-6">
+                            {([2, 3] as CrewSize[]).map((c) => {
+                              const p = packingStartingPrice(homeSize, c);
+                              const sel = crew === c;
+                              return (
+                                <button
+                                  key={c}
+                                  type="button"
+                                  onClick={() => setCrew(c)}
+                                  className={cn(
+                                    'p-4 border transition-all text-left',
+                                    sel ? 'border-gold bg-gold/10' : 'border-white/10 hover:border-gold/40',
+                                  )}
+                                >
+                                  <p className={cn('font-semibold text-sm mb-0.5', sel ? 'text-gold' : 'text-white')}>
+                                    {c} Packers
+                                  </p>
+                                  <p className="text-white/40 text-xs mb-2">
+                                    ${c === 2 ? '79' : '119'}/hr · 3-hr minimum
+                                  </p>
+                                  <p className={cn('font-bold text-lg', sel ? 'text-gold' : 'text-white/50')}>
+                                    {formatCurrency(p)}
+                                  </p>
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          {/* Big price */}
+                          <div className="bg-black/30 border border-gold/20 p-6 mb-6 flex items-center justify-between">
+                            <div>
+                              <p className="text-white/50 text-xs uppercase tracking-wider mb-1">Starting from</p>
+                              <p className="font-display text-4xl font-bold text-gold">{formatCurrency(selectedPackingPrice!)}</p>
+                              <p className="text-white/40 text-xs mt-1">3-hr minimum · {crew} packers · materials not included</p>
+                            </div>
+                            <div className="text-right hidden sm:block">
+                              <p className="text-white/30 text-xs">Preliminary estimate</p>
+                              <p className="text-white/30 text-xs">Final price confirmed</p>
+                              <p className="text-white/30 text-xs">before appointment</p>
+                            </div>
+                          </div>
+
+                          {/* CTA */}
+                          <div className="border border-gold/20 bg-black/20 p-5 mb-4">
+                            <p className="text-white font-display font-semibold text-lg mb-1">Book Your Packing Service</p>
+                            <p className="text-white/50 text-xs mb-4 leading-relaxed">
+                              Tell us a bit more and a coordinator will confirm your final price.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-3">
+                              <Link href={getPackingWizardHref()} className="flex-1">
+                                <span className="flex items-center justify-center gap-2 bg-gold text-white px-6 py-3.5 text-sm font-semibold hover:bg-gold-dark transition-colors w-full">
+                                  Get My Quote <ArrowRight size={15} />
+                                </span>
+                              </Link>
+                              <a href="tel:7863051844" className="flex items-center justify-center gap-2 border border-white/20 text-white px-6 py-3.5 text-sm font-semibold hover:border-gold hover:text-gold transition-all">
+                                Call 786-305-1844
+                              </a>
+                            </div>
+                          </div>
+                          <button onClick={reset} className="text-white/30 hover:text-white/60 text-xs transition-colors">
+                            ← Start over
+                          </button>
+                        </>
+                      ) : isLocal && homeSize ? (
                         <>
                           {/* Crew toggle */}
                           <div className="grid grid-cols-2 gap-3 mb-6">

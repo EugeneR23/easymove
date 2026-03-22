@@ -18,7 +18,9 @@ interface Props { data: WizardData; update: (p: Partial<WizardData>) => void; on
 
 export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
   const inv = data.inventory;
-  const isLocal = data.moveType === 'local';
+  const isLocal   = data.moveType === 'local';
+  const isPacking = data.moveType === 'packing-only';
+  const showCrew  = isLocal || isPacking;
 
   const setHomeSize = (size: HomeSize) => {
     update({ inventory: { ...inv, homeSize: size } });
@@ -33,9 +35,11 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
     <div>
       <h2 className="font-display text-2xl font-semibold text-charcoal mb-2">What size is your home?</h2>
       <p className="text-gray-500 text-sm mb-8">
-        {isLocal
-          ? 'Select your home size — your live estimate updates automatically as you go.'
-          : 'This helps us size your long-distance shipment.'}
+        {isPacking
+          ? 'Select your home size to get a packing estimate.'
+          : isLocal
+            ? 'Select your home size — your live estimate updates automatically as you go.'
+            : 'This helps us size your long-distance shipment.'}
       </p>
 
       {/* Home size grid */}
@@ -71,17 +75,24 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
         })}
       </div>
 
-      {/* Crew size — only show for local moves */}
-      {isLocal && (
+      {/* Crew size — show for local moves and packing-only */}
+      {showCrew && (
         <div className="mb-8">
-          <p className="text-sm font-semibold text-charcoal mb-1">Crew size</p>
+          <p className="text-sm font-semibold text-charcoal mb-1">
+            {isPacking ? 'Crew size' : 'Crew size'}
+          </p>
           <p className="text-xs text-gray-400 mb-4">
-            2 movers handle most homes. 3 movers are recommended for 3+ bedrooms, heavy items, or tight timelines.
+            {isPacking
+              ? '2 packers handle most homes. 3 packers are faster for larger spaces or tight timelines.'
+              : '2 movers handle most homes. 3 movers are recommended for 3+ bedrooms, heavy items, or tight timelines.'}
           </p>
           <div className="grid grid-cols-2 gap-3">
             {([2, 3] as CrewSize[]).map((crew) => {
               const selected = (inv.crewSize ?? 2) === crew;
-              const price = localStartingPrice(inv.homeSize ?? '2br', crew);
+              const packingRate = crew === 2 ? 79 : 119;
+              const localRate   = crew === 2 ? 119 : 169;
+              const localPrice  = localStartingPrice(inv.homeSize ?? '2br', crew);
+              const packingMin  = packingRate * 3;
               return (
                 <button
                   key={crew}
@@ -92,14 +103,20 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
                     selected ? 'border-gold bg-gold/5' : 'border-gray-200 hover:border-gold/40',
                   )}
                 >
-                  <p className={cn('font-semibold mb-0.5', selected ? 'text-charcoal' : 'text-charcoal')}>
-                    {crew} Movers
+                  <p className="font-semibold text-charcoal mb-0.5">
+                    {crew} {isPacking ? 'Packers' : 'Movers'}
                   </p>
                   <p className="text-gray-400 text-xs mb-2">
-                    {crew === 2 ? '$119/hr · $79 truck fee' : '$169/hr · $99 truck fee'}
+                    {isPacking
+                      ? `$${packingRate}/hr · 3-hr minimum`
+                      : `$${localRate}/hr · ${crew === 2 ? '$79' : '$99'} truck fee`}
                   </p>
                   <p className={cn('text-xs font-semibold', selected ? 'text-gold' : 'text-gray-400')}>
-                    {inv.homeSize ? `from ${formatCurrency(price)}` : 'Select home size above'}
+                    {inv.homeSize
+                      ? isPacking
+                        ? `from ${formatCurrency(packingMin)}`
+                        : `from ${formatCurrency(localPrice)}`
+                      : 'Select home size above'}
                   </p>
                 </button>
               );
@@ -108,10 +125,9 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
         </div>
       )}
 
-      {isLocal && (
+      {showCrew && (
         <p className="text-xs text-gray-400 mb-6 bg-gray-50 p-3 border border-gray-100">
-          3-hour minimum applies to all local moves.
-          All prices are preliminary estimates — final quote confirmed after move review.
+          3-hour minimum applies. All prices are preliminary — final quote confirmed before your appointment.
         </p>
       )}
 

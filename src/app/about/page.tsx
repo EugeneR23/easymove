@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
+import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -113,7 +114,7 @@ export default function AboutPage() {
             <div className="relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/About.png"
+                src="/images/about.png"
                 alt="EasyMove Elite premium moving crew, South Florida"
                 className="w-full h-56 sm:h-80 lg:h-[420px] object-cover object-center sm:object-top"
               />
@@ -155,9 +156,9 @@ export default function AboutPage() {
                 <div className="shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/Founder%202.jpg"
+                    src="/images/founder-2.png"
                     alt="Eugene Romanov, Founder of EasyMove Elite"
-                    className="w-32 h-32 object-cover object-[center_20%] bg-gray-200"
+                    className="w-48 h-48 object-cover object-[center_20%] bg-gray-200"
                   />
                   <div className="mt-3 flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-gold" />
@@ -231,6 +232,7 @@ export default function AboutPage() {
         <CTABanner />
       </main>
       <Footer />
+      <MobileStickyBar />
     </>
   );
 }

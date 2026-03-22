@@ -17,7 +17,7 @@ export default function FounderBlock() {
         <div className="relative lg:w-[40%] aspect-[3/4] sm:aspect-auto sm:h-96 lg:h-auto overflow-hidden shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/Founder%202.jpg"
+            src="/images/founder.jpg"
             alt="Eugene Romanov, Founder of EasyMove Elite"
             className="w-full h-full object-cover object-[center_30%] lg:object-[center_20%]"
           />

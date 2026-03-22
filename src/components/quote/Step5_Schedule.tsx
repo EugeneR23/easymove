@@ -1,3 +1,5 @@
+'use client';
+import { useEffect } from 'react';
 import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import type { WizardData } from './QuoteWizard';
@@ -9,6 +11,14 @@ export default function Step5Schedule({ data, update, onNext, onBack }: Props) {
   minDate.setDate(minDate.getDate() + 3);
   const minDateStr = minDate.toISOString().split('T')[0];
 
+  // Pre-fill with the earliest available date so the field is never empty
+  useEffect(() => {
+    if (!data.preferredDate) {
+      update({ preferredDate: minDateStr });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <h2 className="font-display text-2xl font-semibold text-charcoal mb-2">When do you need to move?</h2>
@@ -19,10 +29,12 @@ export default function Step5Schedule({ data, update, onNext, onBack }: Props) {
         <input
           type="date"
           min={minDateStr}
-          value={data.preferredDate}
+          value={data.preferredDate || minDateStr}
           onChange={(e) => update({ preferredDate: e.target.value })}
-          className="block w-full md:w-72 px-4 py-3 border border-gray-200 text-charcoal focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm"
+          className="block w-full px-4 py-4 bg-white border-2 border-gold/40 text-charcoal text-base font-medium cursor-pointer focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 hover:border-gold/60 transition-colors"
+          style={{ colorScheme: 'light' }}
         />
+        <p className="text-gray-400 text-xs mt-2">Tap to change your preferred move date</p>
       </div>
 
       <button

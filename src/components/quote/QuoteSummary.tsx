@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CheckCircle, Phone, ArrowRight, Shield } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
+import { PACKING_COST } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
@@ -10,6 +11,9 @@ interface Pricing {
   truckFee: number;
   accessFee: number;
   addonsFee: number;
+  travelFee: number;
+  travelMiles: number;
+  travelMinutes: number;
   discount: number;
   estimatedHours: number;
   crewSize: number;
@@ -19,55 +23,79 @@ interface Pricing {
 interface Props {
   quote: { id: string; pricing: Pricing };
   data: WizardData;
+  embedded?: boolean;
 }
 
-export default function QuoteSummary({ quote, data }: Props) {
+export default function QuoteSummary({ quote, data, embedded = false }: Props) {
   const { pricing } = quote;
   const ref     = quote.id.slice(-8).toUpperCase();
   const isLocal = !pricing.isLongDistance && data.moveType !== 'specialty';
 
+  const isPacking = data.moveType === 'packing-only';
+  const size      = data.inventory.homeSize ?? '2br';
+
+  // ── Labor label ────────────────────────────────────────────────────────────
+  const laborLabel = isPacking
+    ? `Packing — ${pricing.crewSize} packers × ${pricing.estimatedHours}h`
+    : isLocal
+      ? `Labour — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`
+      : 'Base rate';
+
+  // ── Access fee label ───────────────────────────────────────────────────────
+  const accessLabel = (() => {
+    const flights = data.inventory.stairsFlights ?? 1;
+    const floor   = flights + 1;
+    const ordinal = floor === 2 ? '2nd' : floor === 3 ? '3rd' : `${floor}th`;
+    return `Stairs — ${ordinal} floor ($${flights * 50} per flight)`;
+  })();
+
+  // ── Addon line items (one per service) ────────────────────────────────────
+  const addonLines: { label: string; value: number }[] = [];
+  if (data.addons.packingService)    addonLines.push({ label: 'Packing service',           value: PACKING_COST[size] ?? 375 });
+  if (data.addons.unpackingService)  addonLines.push({ label: 'Unpacking service',          value: PACKING_COST[size] ?? 375 });
+  if (data.addons.storageMonths > 0) addonLines.push({ label: `Storage — ${data.addons.storageMonths} month${data.addons.storageMonths > 1 ? 's' : ''}`, value: data.addons.storageMonths * 200 });
+  if (data.addons.autoTransport)     addonLines.push({ label: 'Auto transport',             value: 1200 });
+  if (data.addons.artHandling)       addonLines.push({ label: 'Art & antique handling',     value: data.inventory.specialItems.length > 0 ? data.inventory.specialItems.length * 150 : 300 });
+
+  const travelLabel = pricing.travelMiles > 0
+    ? `Travel — ~${pricing.travelMiles} mi · ~${pricing.travelMinutes} min est.`
+    : 'Travel time';
+
   const lineItems = [
-    isLocal && pricing.laborRate > 0
-      ? { label: `Labour — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`, value: pricing.laborRate }
-      : { label: 'Base rate', value: pricing.laborRate },
-    pricing.truckFee  > 0 ? { label: 'Truck & travel fee', value: pricing.truckFee } : null,
-    pricing.accessFee > 0 ? (() => {
-      const flights = data.inventory.stairsFlights ?? 1;
-      const floor   = flights + 1;
-      const ordinal = floor === 2 ? '2nd' : floor === 3 ? '3rd' : `${floor}th`;
-      const floorStr = flights === 1 ? `${ordinal} floor` : `up to ${ordinal} floor`;
-      return { label: `Floor access (${floorStr})`, value: pricing.accessFee };
-    })() : null,
-    pricing.addonsFee > 0 ? { label: 'Additional services', value: pricing.addonsFee } : null,
-    pricing.discount  > 0 ? { label: 'Discount',             value: -pricing.discount } : null,
+    pricing.laborRate > 0 ? { label: laborLabel, value: pricing.laborRate } : null,
+    pricing.truckFee  > 0 ? { label: 'Truck fee', value: pricing.truckFee } : null,
+    pricing.travelFee > 0 ? { label: travelLabel, value: pricing.travelFee } : null,
+    pricing.accessFee > 0 ? { label: accessLabel, value: pricing.accessFee } : null,
+    ...addonLines,
+    pricing.discount  > 0 ? { label: 'Discount', value: -pricing.discount } : null,
   ].filter(Boolean) as { label: string; value: number }[];
 
   return (
-    <div className="w-full bg-white border border-gray-100 shadow-card overflow-hidden">
+    <div className={embedded ? 'w-full bg-white overflow-hidden' : 'w-full bg-white border border-gray-100 shadow-card overflow-hidden'}>
 
       {/* ── Confirmation banner ──────────────────────────────────────────────── */}
-      <div className="bg-charcoal px-5 sm:px-8 py-8 text-center relative">
+      <div className="bg-charcoal px-5 sm:px-8 py-8 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
         <div className="w-12 h-12 border border-gold/40 flex items-center justify-center mx-auto mb-4">
           <CheckCircle size={22} className="text-gold" />
         </div>
         <p className="text-gold text-xs font-semibold tracking-[0.15em] uppercase mb-2">Request Received</p>
         <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
-          We&rsquo;ll be in touch shortly
+          We&rsquo;ll contact you shortly
         </h2>
         <p className="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">
-          Your details are with our team. Expect a call or message with your confirmed price.
+          We&rsquo;ll review your details and confirm your final price — usually within a few hours.
         </p>
         <p className="text-white/25 text-xs mt-4">Reference #{ref}</p>
       </div>
 
       {/* ── Body ─────────────────────────────────────────────────────────────── */}
-      <div className="p-5 sm:p-8">
+      <div className="p-5 sm:p-8 overflow-hidden">
 
         {/* Price block — single-column on mobile */}
-        <div className="bg-charcoal p-5 mb-6">
+        <div className="bg-charcoal p-5 mb-6 overflow-hidden">
           <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
-          <p className="font-display text-4xl font-bold text-gold mb-1">
+          <p className="font-display text-4xl font-bold text-gold mb-1 break-all">
             {formatCurrency(pricing.total)}
           </p>
           {isLocal && pricing.estimatedHours > 0 && (
@@ -94,27 +122,27 @@ export default function QuoteSummary({ quote, data }: Props) {
         </div>
 
         {/* Move details — 2-col always */}
-        <div className="bg-cream p-4 mb-6">
+        <div className="bg-cream p-4 mb-6 overflow-hidden">
           <p className="text-xs uppercase tracking-wider text-gray-400 mb-3">Your Move</p>
           <div className="grid grid-cols-2 gap-3 text-sm">
-            <div>
+            <div className="min-w-0">
               <span className="text-gray-400 text-xs block mb-0.5">Type</span>
-              <span className="text-charcoal font-medium capitalize">{data.moveType.replace('-', ' ')}</span>
+              <span className="text-charcoal font-medium capitalize block truncate">{data.moveType.replace('-', ' ')}</span>
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="text-gray-400 text-xs block mb-0.5">Home Size</span>
-              <span className="text-charcoal font-medium capitalize">{data.inventory.homeSize ?? '—'}</span>
+              <span className="text-charcoal font-medium capitalize block truncate">{data.inventory.homeSize ?? '—'}</span>
             </div>
             {data.fromCity && (
-              <div>
+              <div className="min-w-0">
                 <span className="text-gray-400 text-xs block mb-0.5">From</span>
-                <span className="text-charcoal font-medium">{data.fromCity}</span>
+                <span className="text-charcoal font-medium block truncate">{data.fromCity}</span>
               </div>
             )}
             {data.toCity && (
-              <div>
+              <div className="min-w-0">
                 <span className="text-gray-400 text-xs block mb-0.5">To</span>
-                <span className="text-charcoal font-medium">{data.toCity}</span>
+                <span className="text-charcoal font-medium block truncate">{data.toCity}</span>
               </div>
             )}
           </div>
@@ -143,10 +171,10 @@ export default function QuoteSummary({ quote, data }: Props) {
 
         {/* Navigation */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/" className="flex-1">
+          <Link href="/" className="flex-1 min-w-0">
             <Button variant="ghost" className="w-full">Back to Home</Button>
           </Link>
-          <Link href="/contact" className="flex-1">
+          <Link href="/contact" className="flex-1 min-w-0">
             <Button variant="primary" className="w-full inline-flex items-center justify-center gap-2">
               Talk to a Coordinator <ArrowRight size={15} />
             </Button>

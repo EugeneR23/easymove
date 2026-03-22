@@ -36,13 +36,13 @@ export default function HeroSection() {
         </div>
 
         <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.08] mb-6 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
-          Moving in South Florida<br />
-          <span className="gold-text">Done Right</span>
+          South Florida Moving<br />
+          <span className="gold-text">You Can Count On</span>
         </h1>
 
         <p className="text-gray-300 text-base md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
-          Fully insured, no hidden fees, and a crew that treats your belongings with care.
-          Serving Miami-Dade, Broward &amp; Palm Beach Counties.
+          500+ completed moves. Licensed &amp; insured. No hidden fees, no surprises —
+          just a crew that shows up on time and handles your home with care.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
@@ -66,7 +66,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
             <div className="flex items-center gap-2 text-white/60">
               <Shield size={14} className="text-gold shrink-0" />
-              <span className="text-xs tracking-widest uppercase">Fully Insured</span>
+              <span className="text-xs tracking-widest uppercase">Licensed &amp; Insured</span>
             </div>
             <div className="w-px h-4 bg-white/15 hidden md:block" />
             <div className="flex items-center gap-1.5 text-white/60">

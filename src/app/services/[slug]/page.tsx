@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
+import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { readOneService, readAllServices } from '@/lib/data/services';
 import { formatCurrency } from '@/lib/utils';
 import Button from '@/components/ui/Button';
@@ -171,6 +172,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <CTABanner />
       </main>
       <Footer />
+      <MobileStickyBar />
     </>
   );
 }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
+import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { readAllServices } from '@/lib/data/services';
 import { ArrowRight, Shield, Star, Building2 } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
@@ -153,6 +154,7 @@ export default async function ServicesPage() {
         <CTABanner />
       </main>
       <Footer />
+      <MobileStickyBar />
     </>
   );
 }

@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button';
 import Select from '@/components/ui/Select';
 import Textarea from '@/components/ui/Textarea';
 import { formatDate } from '@/lib/utils';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Star } from 'lucide-react';
 
 const STATUS_OPTIONS: { value: LeadStatus; label: string }[] = [
   { value: 'new', label: 'New' },
@@ -25,6 +25,8 @@ export default function LeadDetailPage() {
   const [notes, setNotes] = useState('');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [sendingReview, setSendingReview] = useState(false);
+  const [reviewSent, setReviewSent] = useState(false);
 
   useEffect(() => {
     fetch(`/api/leads/${id}`)
@@ -35,6 +37,28 @@ export default function LeadDetailPage() {
         setNotes(data.adminNotes ?? '');
       });
   }, [id]);
+
+  async function sendReviewRequest() {
+    if (!lead?.phone) return;
+    if (!confirm(`Send a Google review request SMS to ${lead.firstName}?\n${lead.phone}`)) return;
+    setSendingReview(true);
+    try {
+      const res = await fetch('/api/review-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: lead.phone, name: `${lead.firstName} ${lead.lastName}`.trim() }),
+      });
+      if (res.ok) {
+        setReviewSent(true);
+      } else {
+        const { error } = await res.json();
+        alert(`Failed: ${error}`);
+      }
+    } catch {
+      alert('Network error — SMS not sent');
+    }
+    setSendingReview(false);
+  }
 
   async function save() {
     setSaving(true);
@@ -115,6 +139,26 @@ export default function LeadDetailPage() {
             <Button onClick={save} loading={saving} className="w-full">
               {saved ? '✓ Saved' : 'Save Changes'}
             </Button>
+
+            <div className="border-t border-gray-100 pt-4 mt-2">
+              <p className="text-xs text-gray-400 mb-3">Send a Google review link via SMS after the move.</p>
+              {reviewSent ? (
+                <div className="flex items-center gap-2 text-green-600 text-sm font-medium">
+                  <Star size={14} className="fill-green-600 text-green-600" />
+                  SMS sent to {lead.phone}
+                </div>
+              ) : (
+                <Button
+                  onClick={sendReviewRequest}
+                  loading={sendingReview}
+                  disabled={!lead.phone}
+                  className="w-full bg-amber-50 border border-amber-200 text-amber-800 hover:bg-amber-100 disabled:opacity-40"
+                >
+                  <Star size={13} className="mr-1.5" />
+                  {lead.phone ? 'Send Review Request SMS' : 'No phone on file'}
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>
