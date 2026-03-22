@@ -9,6 +9,7 @@ import FounderBlock from '@/components/home/FounderBlock';
 import ServicesPreview from '@/components/home/ServicesPreview';
 import ProcessSection from '@/components/home/ProcessSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
+import WorkGallery from '@/components/home/WorkGallery';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 
@@ -43,6 +44,7 @@ export default function HomePage() {
         <HomepageCalculator />
         <WhyChooseUs />
         <FounderBlock />
+        <WorkGallery />
         <ServicesPreview />
         <ProcessSection />
         <TestimonialsSection />
