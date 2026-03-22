@@ -50,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/miami-movers`,            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/fort-lauderdale-movers`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/boca-raton-movers`,        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/packing-services`,         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
   ];
 
   return [...staticRoutes, ...cityRoutes, ...serviceRoutes];

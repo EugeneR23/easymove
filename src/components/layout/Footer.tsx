@@ -50,6 +50,7 @@ export default function Footer() {
                 { href: '/miami-movers', label: 'Miami Movers' },
                 { href: '/fort-lauderdale-movers', label: 'Fort Lauderdale Movers' },
                 { href: '/boca-raton-movers', label: 'Boca Raton Movers' },
+                { href: '/packing-services', label: 'Packing Services' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>

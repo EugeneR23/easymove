@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 const commitments = [
@@ -15,11 +16,13 @@ export default function FounderBlock() {
 
         {/* Photo panel */}
         <div className="relative lg:w-[40%] aspect-[3/4] sm:aspect-auto sm:h-96 lg:h-auto overflow-hidden shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/founder.jpg"
             alt="Eugene Romanov, Founder of EasyMove Elite"
-            className="w-full h-full object-cover object-[center_30%] lg:object-[center_20%]"
+            fill
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            className="object-cover object-[center_30%] lg:object-[center_20%]"
+            priority
           />
           {/* Blend edge into text panel on desktop */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-charcoal/60 hidden lg:block" />
