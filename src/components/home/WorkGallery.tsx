@@ -9,6 +9,7 @@ const photos = [
   { src: '/images/Real/2.png', caption: 'Truck loaded & secured' },
   { src: '/images/Real/5.png', caption: 'Organized & labeled by room' },
   { src: '/images/Real/3.png', caption: 'Safe transport · every move' },
+  { src: '/images/Real/10.png', caption: 'White-glove wrap · specialty item' },
 ];
 
 export default function WorkGallery() {

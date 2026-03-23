@@ -35,7 +35,7 @@ const PREVIEW = [
     tagline: 'Custom crating, climate-controlled transport, and white-glove installation for art collections, grand pianos, and wine cellars.',
     href: '/services/specialty-items',
     cta: 'Art & Specialty Handling',
-    image: '/images/Art%20wrap.png',
+    image: '/images/Real/10.png',
   },
 ];
 
