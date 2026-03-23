@@ -93,13 +93,16 @@ function getLiveEstimate(data: WizardData) {
 
   const fromState = data.fromState || 'FL';
   const toState   = data.toState   || (data.moveType === 'local' ? 'FL' : 'NY');
+  // No travel surcharge until cities are entered in step 3 — keeps sidebar estimate consistent with homepage calculator
   const distance  = data.moveType === 'local'
-    ? 20
+    ? 0
     : estimateDistance(fromState, toState);
 
   return calculatePricing({
     moveType: data.moveType,
     estimatedDistance: distance,
+    fromCity: data.fromCity || undefined,
+    toCity:   data.toCity   || undefined,
     inventory: data.inventory,
     addons: data.addons,
   });

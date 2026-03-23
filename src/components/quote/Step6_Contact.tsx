@@ -24,7 +24,7 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
   const [error, setError]     = useState('');
 
   // ── Derived validity — mirrors what the backend requires ──────────────────
-  const valid = !!(data.firstName.trim() && data.lastName.trim() && data.email.trim() && data.phone.trim());
+  const valid = !!(data.firstName.trim() && data.email.trim() && data.phone.trim());
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -32,25 +32,23 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
     // Re-derive at submit time using current trimmed values (guards against
     // autofill populating DOM without triggering React onChange).
     const firstName = (e.currentTarget.querySelector<HTMLInputElement>('[name="firstName"]')?.value ?? data.firstName).trim();
-    const lastName  = (e.currentTarget.querySelector<HTMLInputElement>('[name="lastName"]')?.value  ?? data.lastName).trim();
     const email     = (e.currentTarget.querySelector<HTMLInputElement>('[name="email"]')?.value     ?? data.email).trim();
     const phone     = (e.currentTarget.querySelector<HTMLInputElement>('[name="phone"]')?.value     ?? data.phone).trim();
 
-    if (!firstName || !lastName || !email || !phone) {
+    if (!firstName || !email || !phone) {
       setError('Please fill in all required fields before submitting.');
-      console.warn('[Step6] Blocked submit — missing fields:', { firstName: !!firstName, lastName: !!lastName, email: !!email, phone: !!phone });
+      console.warn('[Step6] Blocked submit — missing fields:', { firstName: !!firstName, email: !!email, phone: !!phone });
       return;
     }
 
     // Sync DOM values into React state if autofill bypassed onChange
     if (firstName !== data.firstName) update({ firstName });
-    if (lastName  !== data.lastName)  update({ lastName });
     if (email     !== data.email)     update({ email });
     if (phone     !== data.phone)     update({ phone });
 
     setLoading(true);
     setError('');
-    console.log('[Step6] Submit clicked — payload preview:', { firstName, lastName, email, phone, moveType: data.moveType, homeSize: data.inventory.homeSize });
+    console.log('[Step6] Submit clicked — payload preview:', { firstName, email, phone, moveType: data.moveType, homeSize: data.inventory.homeSize });
 
     try {
       await onSubmit();
@@ -91,26 +89,15 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
 
       {/* Fields — name attribute required so DOM query in handleSubmit works */}
       <div className="space-y-4 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Input
-            name="firstName"
-            label="First Name *"
-            autoComplete="given-name"
-            inputMode="text"
-            required
-            value={data.firstName}
-            onChange={(e) => update({ firstName: e.target.value })}
-          />
-          <Input
-            name="lastName"
-            label="Last Name *"
-            autoComplete="family-name"
-            inputMode="text"
-            required
-            value={data.lastName}
-            onChange={(e) => update({ lastName: e.target.value })}
-          />
-        </div>
+        <Input
+          name="firstName"
+          label="Your Name *"
+          autoComplete="given-name"
+          inputMode="text"
+          required
+          value={data.firstName}
+          onChange={(e) => update({ firstName: e.target.value })}
+        />
         <Input
           name="email"
           label="Email Address *"

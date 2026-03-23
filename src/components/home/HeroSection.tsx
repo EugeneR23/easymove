@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import HeroCallbackForm from '@/components/home/HeroCallbackForm';
 import { ChevronDown, Shield, Star, Phone } from 'lucide-react';
 
 export default function HeroSection() {
@@ -8,7 +9,7 @@ export default function HeroSection() {
       {/* Background — local hero image, animates with Ken Burns slow zoom */}
       <div
         className="absolute inset-0 bg-cover bg-no-repeat animate-kenburns"
-        style={{ backgroundImage: "url('/images/Hero.png')", backgroundPosition: 'center 20%' }}
+        style={{ backgroundImage: "url('/images/Real/8.jpg')", backgroundPosition: 'center 40%' }}
       />
       {/* Base darkening layer */}
       <div className="absolute inset-0 bg-charcoal/65" />
@@ -59,7 +60,16 @@ export default function HeroSection() {
           </Link>
         </div>
 
-        <p className="text-white/35 text-xs mb-8 md:mb-12">No obligation &nbsp;·&nbsp; Fast response</p>
+        {/* Quick callback form */}
+        <div className="max-w-md mx-auto mb-5 w-full px-1">
+          <p className="text-white/35 text-[10px] uppercase tracking-[0.15em] mb-2.5 text-center">Or get a callback — just leave your number:</p>
+          <HeroCallbackForm />
+        </div>
+
+        <p className="text-white/50 text-xs mb-8 md:mb-12">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5 align-middle" />
+          Slots available this week &nbsp;·&nbsp; Responds within 2 hours
+        </p>
 
         {/* Trust row — with a subtle top separator */}
         <div className="border-t border-white/10 pt-8">
