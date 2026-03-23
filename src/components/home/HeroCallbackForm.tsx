@@ -48,7 +48,7 @@ export default function HeroCallbackForm() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           required
-          className="flex-1 bg-transparent text-white placeholder-white/35 text-sm py-3 outline-none min-w-0"
+          className="flex-1 bg-transparent text-white placeholder-white/35 py-3 outline-none min-w-0"
         />
       </div>
       <button
