@@ -47,7 +47,7 @@ export default function QuotePage() {
             Get a Fast Moving Estimate
           </h1>
           <p className="text-gray-400 max-w-lg mx-auto text-sm">
-            6 steps, under 2 minutes. A coordinator reviews your details and confirms a final price — no automated guesswork.
+            Under 2 minutes. A coordinator reviews your details and confirms a final price — no automated guesswork.
           </p>
         </div>
 

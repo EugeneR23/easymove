@@ -11,6 +11,7 @@ import ProcessSection from '@/components/home/ProcessSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import WorkGallery from '@/components/home/WorkGallery';
 import CTABanner from '@/components/home/CTABanner';
+import FAQSection from '@/components/home/FAQSection';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function HomePage() {
         <ServicesPreview />
         <ProcessSection />
         <TestimonialsSection />
+        <FAQSection />
         <CTABanner />
       </main>
       <Footer />

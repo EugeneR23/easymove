@@ -24,11 +24,11 @@ export default function CTABanner() {
         </div>
 
         <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
-          Ready to Plan<br className="hidden sm:block" /> Your Move?
+          Get a Written Quote<br className="hidden sm:block" /> in 2 Minutes
         </h2>
         <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed">
-          Get a detailed, written estimate in minutes. A coordinator — not an automated system —
-          reviews your move and confirms pricing within a few hours.
+          500+ moves completed across South Florida. A real coordinator — not an algorithm —
+          calls you back within 2 hours to confirm everything. Licensed, insured, no surprises.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

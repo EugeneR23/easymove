@@ -1,7 +1,7 @@
 const stats = [
   { value: '500+',      label: 'Moves Completed',        sub: 'Local, long-distance & packing' },
   { value: '4.9 ★',    label: 'Top-Rated',               sub: 'Across verified platforms' },
-  { value: 'Since 2021', label: 'Serving South Florida', sub: 'Miami-Dade · Broward · Palm Beach' },
+  { value: '< 2 hrs',   label: 'Response Time',         sub: 'Coordinator calls you back' },
   { value: '$0',        label: 'Hidden Fees',             sub: 'Final price confirmed in writing' },
 ];
 

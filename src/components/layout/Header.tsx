@@ -81,14 +81,27 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={cn('md:hidden p-2', onLight ? 'text-charcoal' : 'text-white')}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: phone + hamburger */}
+          <div className="md:hidden flex items-center gap-1">
+            <a
+              href="tel:7863051844"
+              aria-label="Call us"
+              className={cn(
+                'flex items-center gap-1.5 px-3 py-2 text-xs font-bold tracking-wide transition-colors',
+                onLight ? 'text-charcoal hover:text-gold' : 'text-white/90 hover:text-gold',
+              )}
+            >
+              <Phone size={15} className="text-gold" />
+              <span className="hidden xs:inline">786-305-1844</span>
+            </a>
+            <button
+              className={cn('p-2', onLight ? 'text-charcoal' : 'text-white')}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
