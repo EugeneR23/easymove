@@ -165,6 +165,19 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
         })}
       </ol>
 
+      {/* Social proof snippet */}
+      <div className="hidden lg:block mb-6 border border-white/8 bg-white/[0.03] p-4">
+        <div className="flex gap-0.5 mb-2">
+          {[1,2,3,4,5].map(i => (
+            <svg key={i} className="w-3 h-3 fill-gold text-gold" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          ))}
+        </div>
+        <p className="text-white/60 text-[11px] leading-relaxed italic">
+          &ldquo;Professional, on time, and no hidden fees. Exactly what I needed.&rdquo;
+        </p>
+        <p className="text-white/30 text-[10px] mt-1.5">— Maria S., Brickell · Feb 2025</p>
+      </div>
+
       {/* Live estimate panel */}
       <div className="hidden lg:block mb-6">
         {estimate ? (
@@ -279,6 +292,31 @@ export default function QuoteWizard() {
   } | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // ── Restore from sessionStorage on mount ──────────────────────────────────
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('quoteWizardData');
+      if (saved) {
+        const { data: savedData, step: savedStep } = JSON.parse(saved);
+        if (savedData && savedStep) {
+          setData({ ...DEFAULT_DATA, ...savedData });
+          setStep(savedStep);
+        }
+      }
+    } catch { /* ignore parse errors */ }
+  }, []);
+
+  // ── Persist to sessionStorage on every change ─────────────────────────────
+  useEffect(() => {
+    if (submittedQuote) {
+      sessionStorage.removeItem('quoteWizardData');
+      return;
+    }
+    try {
+      sessionStorage.setItem('quoteWizardData', JSON.stringify({ data, step }));
+    } catch { /* ignore quota errors */ }
+  }, [data, step, submittedQuote]);
 
   function scrollToWizard() {
     setTimeout(() => {
