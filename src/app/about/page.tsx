@@ -64,7 +64,7 @@ export default function AboutPage() {
         {/* Hero */}
         <section
           className="relative h-72 md:h-[420px] flex items-center justify-center overflow-hidden bg-charcoal"
-          style={{ backgroundImage: "url('/images/Hero.png')", backgroundSize: 'cover', backgroundPosition: 'center 30%' }}
+          style={{ backgroundImage: "url('/images/Real/8.jpg')", backgroundSize: 'cover', backgroundPosition: 'center 40%' }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/75 to-charcoal/95" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
