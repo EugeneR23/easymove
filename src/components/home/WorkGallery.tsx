@@ -1,10 +1,13 @@
 import Image from 'next/image';
 
 const photos = [
-  { src: '/images/Real/1.png', caption: 'Full-home packing · Miami-Dade' },
+  { src: '/images/Real/8.jpg', caption: 'Full move · South Florida community' },
   { src: '/images/Real/6.png', caption: 'Ready to load · South Florida' },
+  { src: '/images/Real/9.jpg', caption: 'High-rise move · furniture protection' },
+  { src: '/images/Real/1.png', caption: 'Full-home packing · Miami-Dade' },
   { src: '/images/Real/4.png', caption: 'Furniture wrap & protection' },
   { src: '/images/Real/2.png', caption: 'Truck loaded & secured' },
+  { src: '/images/Real/7.jpg', caption: 'Team on the job · loading day' },
   { src: '/images/Real/5.png', caption: 'Organized & labeled by room' },
   { src: '/images/Real/3.png', caption: 'Safe transport · every move' },
 ];
@@ -27,22 +30,16 @@ export default function WorkGallery() {
 
         {/* Grid — 3 cols desktop, 2 cols tablet, 1 col mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {photos.map((photo, i) => (
+          {photos.map((photo) => (
             <div
               key={photo.src}
-              className={`relative overflow-hidden group ${
-                // First photo is wider on desktop
-                i === 0 ? 'lg:col-span-2 aspect-[16/9]' : 'aspect-[4/3]'
-              }`}
+              className="relative overflow-hidden group aspect-[4/3]"
             >
               <Image
                 src={photo.src}
                 alt={photo.caption}
                 fill
-                sizes={i === 0
-                  ? '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw'
-                  : '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-                }
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
               {/* Caption overlay */}
