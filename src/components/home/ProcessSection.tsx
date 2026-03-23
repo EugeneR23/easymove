@@ -74,13 +74,19 @@ export default function ProcessSection() {
           })}
         </div>
 
-        <div className="text-center mt-10 md:mt-14">
+        <div className="text-center mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/quote"
-            className="inline-flex items-center gap-2 text-charcoal text-sm font-semibold uppercase tracking-wider border-b border-charcoal/40 pb-0.5 hover:text-gold hover:border-gold transition-colors duration-200"
+            className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-white text-sm font-bold px-8 py-4 transition-colors"
           >
-            Start with a free moving estimate <ArrowRight size={14} />
+            Get My Free Estimate <ArrowRight size={14} />
           </Link>
+          <a
+            href="tel:7863051844"
+            className="inline-flex items-center gap-2 border border-charcoal/30 text-charcoal text-sm font-semibold px-8 py-4 hover:border-gold hover:text-gold transition-colors"
+          >
+            Or call 786-305-1844
+          </a>
         </div>
       </div>
     </section>

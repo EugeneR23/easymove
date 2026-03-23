@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Building2, Truck, Palette, MapPin } from 'lucide-react';
 
 const FEATURED = {
@@ -60,12 +61,13 @@ export default function ServicesPreview() {
           <div className="flex flex-col lg:flex-row">
             {/* Image */}
             <div className="relative h-56 lg:h-auto lg:w-[45%] overflow-hidden shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={FEATURED.image}
                 alt={FEATURED.name}
-                className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                loading="lazy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                priority
               />
               <div className="absolute inset-0 bg-charcoal/30" />
               <div className="absolute top-4 left-4 bg-gold px-3 py-1 text-[10px] font-bold text-white uppercase tracking-[0.15em]">
@@ -117,12 +119,12 @@ export default function ServicesPreview() {
               >
                 {/* Image panel */}
                 <div className="relative h-52 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] group-hover:brightness-[1.04] transition-all duration-500 ease-out"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-[1.03] group-hover:brightness-[1.04] transition-all duration-500 ease-out"
                   />
                   <div className="absolute inset-0 bg-charcoal/18 group-hover:bg-charcoal/10 transition-colors duration-400" />
                   <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-charcoal/55 via-charcoal/20 to-transparent" />

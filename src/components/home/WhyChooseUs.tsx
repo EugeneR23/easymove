@@ -20,16 +20,22 @@ const reasons = [
     icon: Clock,
     title: 'Defined Arrival Windows',
     description: 'We give you a two-hour arrival window and call 30 minutes before we arrive. No all-day waiting. No vague "sometime in the morning."',
+    href: '/quote',
+    cta: 'Book a time slot',
   },
   {
     icon: Package,
     title: 'White-Glove Protection',
     description: 'Premium furniture blankets, floor runners, door jamb covers, and elevator pads used on every move. Your space leaves exactly as we found it.',
+    href: '/about',
+    cta: 'Our protection standards',
   },
   {
     icon: Headphones,
     title: 'Dedicated Coordinator',
     description: 'One person, one number. Your coordinator manages every detail from first contact through delivery — no call centers, no handoffs.',
+    href: '/contact',
+    cta: 'Talk to a coordinator',
   },
   {
     icon: FileText,

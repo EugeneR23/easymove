@@ -3,7 +3,17 @@ import Button from '@/components/ui/Button';
 import HeroCallbackForm from '@/components/home/HeroCallbackForm';
 import { ChevronDown, Shield, Star, Phone } from 'lucide-react';
 
+function getNextAvailableLabel(): string {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  const day = d.getDay();
+  if (day === 0) d.setDate(d.getDate() + 1); // Sunday → Monday
+  if (day === 6) d.setDate(d.getDate() + 2); // Saturday → Monday
+  return d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+}
+
 export default function HeroSection() {
+  const nextDate = getNextAvailableLabel();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal">
       {/* Background — local hero image, animates with Ken Burns slow zoom */}
@@ -67,8 +77,8 @@ export default function HeroSection() {
         </div>
 
         <p className="text-white/50 text-xs mb-8 md:mb-12">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5 align-middle" />
-          Slots available this week &nbsp;·&nbsp; Responds within 2 hours
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5 align-middle animate-pulse" />
+          Next available: <span className="text-white/70 font-semibold">{nextDate}</span> &nbsp;·&nbsp; Responds within 2 hours
         </p>
 
         {/* Trust row — with a subtle top separator */}

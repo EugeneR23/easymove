@@ -223,7 +223,7 @@ export function estimateDistance(fromState: string, toState: string): number {
     'FL-NC': 930,  'NC-FL': 930,
     'FL-DC': 1050, 'DC-FL': 1050,
   };
-  return pairs[`${fromState}-${toState}`] ?? Math.floor(Math.random() * 1200 + 300);
+  return pairs[`${fromState}-${toState}`] ?? 600; // unknown pair — conservative default
 }
 
 // ─── Starting price helpers (for homepage display) ────────────────────────────
