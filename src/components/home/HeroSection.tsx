@@ -11,14 +11,14 @@ export default function HeroSection() {
         className="absolute inset-0 bg-cover bg-no-repeat animate-kenburns"
         style={{ backgroundImage: "url('/images/Real/8.jpg')", backgroundPosition: 'center 40%' }}
       />
-      {/* Base darkening layer */}
-      <div className="absolute inset-0 bg-charcoal/65" />
-      {/* Gradient: heavy at bottom, moderate at top, clear in centre for text */}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/20 to-charcoal/55" />
-      {/* Radial vignette — darkens edges, keeps centre bright */}
+      {/* Base darkening layer — lightened so photo reads through */}
+      <div className="absolute inset-0 bg-charcoal/50" />
+      {/* Gradient: heavy at bottom for text legibility, light at top */}
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/10 to-charcoal/35" />
+      {/* Radial vignette — subtle */}
       <div
         className="absolute inset-0"
-        style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 30%, rgba(28,28,30,0.55) 100%)' }}
+        style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 45%, transparent 40%, rgba(28,28,30,0.35) 100%)' }}
       />
       {/* Film grain — cinematic depth */}
       <div className="absolute inset-0 grain-overlay z-[2]" />
