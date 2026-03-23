@@ -159,7 +159,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
         {/* Preload hero image — critical LCP resource */}
-        <link rel="preload" as="image" href="/images/Hero.png" />
+        <link rel="preload" as="image" href="/images/Real/8.jpg" />
+        {/* Tawk.to live chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with values from tawk.to dashboard */}
+        <Script
+          id="tawkto"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];s1.async=true;s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID';s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();`,
+          }}
+        />
         {/* Google Tag Manager */}
         <Script
           id="gtm-head"

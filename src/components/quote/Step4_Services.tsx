@@ -167,7 +167,13 @@ export default function Step4Services({ data, update, onNext, onBack }: Props) {
       <div className="flex justify-between items-center">
         <Button variant="ghost" onClick={onBack}>Back</Button>
         <div className="flex items-center gap-4">
-          <p className="text-gray-400 text-xs hidden sm:block">Almost done — 2 more steps</p>
+          <button
+            type="button"
+            onClick={onNext}
+            className="text-gray-400 text-xs hover:text-gray-600 transition-colors underline-offset-2 hover:underline"
+          >
+            Skip
+          </button>
           <Button onClick={onNext}>Continue</Button>
         </div>
       </div>

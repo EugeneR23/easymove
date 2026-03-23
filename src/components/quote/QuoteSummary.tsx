@@ -71,7 +71,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
   ].filter(Boolean) as { label: string; value: number }[];
 
   return (
-    <div className={embedded ? 'w-full bg-white overflow-hidden' : 'w-full bg-white border border-gray-100 shadow-card overflow-hidden'}>
+    <div className={embedded ? 'w-full max-w-full bg-white overflow-x-hidden' : 'w-full max-w-full bg-white border border-gray-100 shadow-card overflow-x-hidden'}>
 
       {/* ── Confirmation banner ──────────────────────────────────────────────── */}
       <div className="bg-charcoal px-5 sm:px-8 py-8 text-center relative overflow-hidden">
@@ -90,12 +90,12 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
       </div>
 
       {/* ── Body ─────────────────────────────────────────────────────────────── */}
-      <div className="p-5 sm:p-8 overflow-hidden">
+      <div className="p-5 sm:p-8 overflow-x-hidden w-full">
 
         {/* Price block — single-column on mobile */}
         <div className="bg-charcoal p-5 mb-6 overflow-hidden">
           <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
-          <p className="font-display text-4xl font-bold text-gold mb-1 break-all">
+          <p className="font-display text-4xl font-bold text-gold mb-1">
             {formatCurrency(pricing.total)}
           </p>
           {isLocal && pricing.estimatedHours > 0 && (
@@ -170,11 +170,11 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
         </div>
 
         {/* Navigation */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Link href="/" className="flex-1 min-w-0">
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <Link href="/" className="w-full sm:w-auto sm:flex-1">
             <Button variant="ghost" className="w-full">Back to Home</Button>
           </Link>
-          <Link href="/contact" className="flex-1 min-w-0">
+          <Link href="/contact" className="w-full sm:w-auto sm:flex-1">
             <Button variant="primary" className="w-full inline-flex items-center justify-center gap-2">
               Talk to a Coordinator <ArrowRight size={15} />
             </Button>
