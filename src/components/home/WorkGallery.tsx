@@ -7,7 +7,6 @@ const photos = [
   { src: '/images/Real/1.png', caption: 'Full-home packing · Miami-Dade' },
   { src: '/images/Real/4.png', caption: 'Furniture wrap & protection' },
   { src: '/images/Real/2.png', caption: 'Truck loaded & secured' },
-  { src: '/images/Real/7.jpg', caption: 'Team on the job · loading day' },
   { src: '/images/Real/5.png', caption: 'Organized & labeled by room' },
   { src: '/images/Real/3.png', caption: 'Safe transport · every move' },
 ];
