@@ -113,7 +113,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block text-charcoal font-medium py-2"
+                className={cn(
+                  'block font-medium py-2',
+                  pathname === link.href ? 'text-gold' : 'text-charcoal',
+                )}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}

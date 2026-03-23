@@ -63,10 +63,6 @@ export default function HomepageCalculator() {
   const [moveType, setMoveType] = useState<MoveType | null>(null);
   const [homeSize, setHomeSize] = useState<HomeSize | null>(null);
   const [crew, setCrew]         = useState<CrewSize>(2);
-  // Soft gate state
-  const [gateOpen, setGateOpen] = useState(false);
-  const [gateEmail, setGateEmail] = useState('');
-  const emailRef = useRef<HTMLInputElement>(null);
 
   const cardRef  = useRef<HTMLDivElement>(null);
   const isLocal    = moveType === 'local';
@@ -88,8 +84,8 @@ export default function HomepageCalculator() {
 
   function selectMoveType(t: MoveType) {
     setMoveType(t);
-    if (t === 'specialty') { setPhase(3); }
-    else                   { setPhase(2); }
+    if (t === 'specialty' || t === 'long-distance') { setPhase(3); }
+    else                                            { setPhase(2); }
     scrollToCard();
   }
 
@@ -109,22 +105,14 @@ export default function HomepageCalculator() {
 
   function reset() {
     setPhase(1); setMoveType(null); setHomeSize(null); setCrew(2);
-    setGateOpen(false); setGateEmail('');
-  }
-
-  // Open the soft gate instead of navigating directly
-  function openGate() {
-    setGateOpen(true);
-    setTimeout(() => emailRef.current?.focus(), 50);
   }
 
   // Build query params to pre-fill wizard
-  function getWizardHref(email = '') {
+  function getWizardHref() {
     const params = new URLSearchParams();
     if (moveType) params.set('type', moveType);
     if (homeSize) params.set('size', homeSize);
     params.set('crew', String(crew));
-    if (email) params.set('email', email);
     return `/quote?${params.toString()}`;
   }
 
