@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import HeroCallbackForm from '@/components/home/HeroCallbackForm';
 import { ChevronDown, Shield, Star, Phone } from 'lucide-react';
@@ -17,10 +18,16 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-charcoal">
       {/* Background — local hero image, animates with Ken Burns slow zoom */}
-      <div
-        className="absolute inset-0 bg-cover bg-no-repeat animate-kenburns"
-        style={{ backgroundImage: "url('/images/Real/8.jpg')", backgroundPosition: 'center 40%' }}
-      />
+      <div className="absolute inset-0 animate-kenburns">
+        <Image
+          src="/images/Real/8.jpg"
+          alt="EasyMove Elite crew during a residential move in South Florida"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_40%]"
+        />
+      </div>
       {/* Base darkening layer — lightened so photo reads through */}
       <div className="absolute inset-0 bg-charcoal/50" />
       {/* Gradient: heavy at bottom for text legibility, light at top */}

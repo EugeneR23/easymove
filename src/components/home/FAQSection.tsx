@@ -103,6 +103,22 @@ export default function FAQSection() {
                 </div>
               );
             })}
+
+            {/* Mobile CTA — shown only on mobile where sticky sidebar is hidden */}
+            <div className="lg:hidden pt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href="tel:7863051844"
+                className="flex-1 flex items-center justify-center gap-2 border border-charcoal/20 px-5 py-3 text-charcoal text-sm font-semibold hover:border-gold hover:text-gold transition-colors"
+              >
+                786-305-1844
+              </a>
+              <Link
+                href="/quote"
+                className="flex-1 flex items-center justify-center gap-2 bg-gold text-white text-sm font-bold px-5 py-3 hover:bg-gold/90 transition-colors"
+              >
+                Get a Written Estimate
+              </Link>
+            </div>
           </div>
         </div>
       </div>

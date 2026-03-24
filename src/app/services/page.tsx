@@ -1,153 +1,180 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
-import { readAllServices } from '@/lib/data/services';
-import { ArrowRight, Shield, Star, Building2 } from 'lucide-react';
-import { formatCurrency } from '@/lib/utils';
+import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Moving Services in South Florida — EasyMove Elite',
+  title: 'Moving Services — EasyMove Elite South Florida',
   description:
-    'Residential, high-rise, long-distance, international, office & fine art moving in Miami, Fort Lauderdale & Boca Raton. Fully insured, no surprise fees.',
-  alternates: {
-    canonical: 'https://www.easymoveelite.com/services',
-  },
+    'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Fully insured, transparent pricing.',
+  alternates: { canonical: 'https://www.easymoveelite.com/services' },
   openGraph: {
-    title: 'Moving Services in South Florida — EasyMove Elite',
-    description:
-      'White-glove moving services for every need — high-rise, long-distance, fine art, office & storage. Fully insured. Miami · Fort Lauderdale · Boca Raton.',
+    title: 'Moving Services — EasyMove Elite South Florida',
+    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $357, long-distance nationwide.',
     url: 'https://www.easymoveelite.com/services',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Moving Services in South Florida — EasyMove Elite',
-    description:
-      'High-rise, long-distance, fine art & office moving in Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led.',
   },
 };
 
-const trustBadges = [
-  { icon: Shield, label: 'Fully Insured · COI on Request' },
-  { icon: Star, label: 'Highly Rated on Google & Thumbtack' },
-  { icon: Building2, label: 'High-Rise & Condo Specialists' },
+const SERVICES = [
+  {
+    icon: MapPin,
+    name: 'Local Moving',
+    sub: 'Miami-Dade · Broward · Palm Beach',
+    description:
+      'Flat hourly rate, 3-hour minimum, truck always included. No hidden fuel surcharges. We protect floors, wrap every piece of furniture, and have you settled by end of day.',
+    highlights: ['$119/hr · 2-mover crew', '$169/hr · 3-mover crew', 'Truck & equipment included', 'Floor runners & furniture pads', 'Same-week availability'],
+    image: '/images/Real/8.jpg',
+    href: '/quote?type=local',
+    cta: 'Get a Local Move Quote',
+  },
+  {
+    icon: Building2,
+    name: 'High-Rise & Condo Moving',
+    sub: 'Brickell · Aventura · Sunny Isles · Boca',
+    description:
+      'South Florida\'s luxury towers require more than a regular crew. We manage elevator reservations, COI submissions, loading dock coordination, and building compliance — so you don\'t have to.',
+    highlights: ['COI issued within 24 hours', 'Elevator & dock coordination', 'Building-approved materials', 'Floor & wall protection', 'Experience in 100+ towers'],
+    image: '/images/Real/9.jpg',
+    href: '/quote?type=local',
+    cta: 'Book a High-Rise Move',
+  },
+  {
+    icon: Truck,
+    name: 'Long-Distance & Nationwide',
+    sub: 'From Miami to anywhere in the U.S.',
+    description:
+      'Dedicated truck, no shared loads, GPS tracking. A single coordinator manages your move from Miami pickup to final placement — wherever you\'re going.',
+    highlights: ['Dedicated truck (no shared loads)', 'GPS-tracked transport', 'Single point of contact', 'Full inventory before loading', 'Delivery window confirmed upfront'],
+    image: '/images/Long distance.png',
+    href: '/quote?type=long-distance',
+    cta: 'Get a Long-Distance Quote',
+  },
+  {
+    icon: Package,
+    name: 'Packing & Unpacking',
+    sub: 'We pack — you relax',
+    description:
+      'Professional packers wrap and box everything using premium materials. We label by room, protect fragile items individually, and can unpack and organize at your new home.',
+    highlights: ['$79/hr · 2-packer crew', '$119/hr · 3-packer crew', 'Premium boxes & materials', 'Fragile item wrapping', 'Unpack & organize available'],
+    image: '/images/Real/6.png',
+    href: '/quote?type=packing-only',
+    cta: 'Get a Packing Quote',
+  },
+  {
+    icon: Palette,
+    name: 'Fine Art & Specialty Items',
+    sub: 'Pianos · Art Collections · Wine Cellars',
+    description:
+      'Grand pianos, original art, wine cellars, and oversized safes require a different level of care. Custom crating, climate-controlled transport, and white-glove placement at destination.',
+    highlights: ['Custom wooden crating', 'Climate-controlled options', 'White-glove installation', 'Coordinated with building', 'Quoted individually'],
+    image: '/images/Real/10.png',
+    href: '/quote?type=specialty',
+    cta: 'Request a Specialty Quote',
+  },
+  {
+    icon: Shield,
+    name: 'Office & Commercial',
+    sub: 'Minimal downtime · Professional crew',
+    description:
+      'Office relocations planned around your schedule — evenings, weekends, or phased moves. We handle IT equipment, workstations, filing systems, and furniture with full inventory documentation.',
+    highlights: ['After-hours & weekend moves', 'IT equipment handling', 'Full inventory documentation', 'COI & building compliance', 'Quoted after site review'],
+    image: '/images/Real/4.png',
+    href: '/quote?type=specialty',
+    cta: 'Request an Office Quote',
+  },
 ];
 
-export default async function ServicesPage() {
-  const services = await readAllServices();
-
+export default function ServicesPage() {
   return (
     <>
       <Header />
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="bg-charcoal py-14 md:py-20 px-4 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
-          <div className="absolute bottom-0 left-0 right-0 h-px gold-separator" />
-          <div className="absolute inset-0 grain-overlay" />
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 60% 70% at 50% 100%, rgba(201,168,76,0.06), transparent 70%)' }}
-          />
-          <div className="relative">
-          <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">What We Offer</p>
-          <h1 className="font-display text-3xl md:text-6xl font-bold text-white mb-4">Moving Services in South Florida</h1>
-          <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-            From Brickell high-rises to Boca Raton estates — every service is built around one standard:
-            the same care and precision, regardless of move size or distance.
-          </p>
+      <main className="pb-16 lg:pb-0">
 
-          {/* Trust strip */}
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-10">
-            {trustBadges.map((b, i) => {
-              const Icon = b.icon;
-              return (
-                <div key={i} className="flex items-center gap-2 text-gray-400">
-                  <Icon size={14} className="text-gold shrink-0" />
-                  <span className="text-xs tracking-wide">{b.label}</span>
-                </div>
-              );
-            })}
+        {/* Hero */}
+        <section className="relative pt-32 pb-20 bg-charcoal overflow-hidden">
+          <div className="absolute inset-0">
+            <Image
+              src="/images/Real/8.jpg"
+              alt="South Florida movers"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[center_35%] opacity-30"
+            />
           </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 to-charcoal/95" />
+          <div className="relative container-max text-center">
+            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">What We Offer</p>
+            <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-5 leading-tight">
+              Moving Services<br />
+              <span className="text-gold">Built for South Florida</span>
+            </h1>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-8">
+              From Brickell high-rises to Boca Raton estates — local, long-distance, packing, and specialty moves
+              with transparent pricing and no surprises.
+            </p>
+            <Link
+              href="/quote"
+              className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-white font-bold px-8 py-4 transition-colors"
+            >
+              Get My Free Estimate <ArrowRight size={16} />
+            </Link>
           </div>
         </section>
 
-        {/* Grid */}
-        <section className="relative section-padding bg-cream overflow-hidden">
-          <div className="absolute inset-0 grain-overlay opacity-60" />
-          <div className="relative container-max">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service) => (
+        {/* Services list */}
+        <section className="section-padding bg-cream">
+          <div className="container-max space-y-20">
+            {SERVICES.map((s, i) => {
+              const Icon = s.icon;
+              const flip = i % 2 === 1;
+              return (
                 <div
-                  key={service.id}
-                  className="group flex flex-col overflow-hidden bg-white border border-black/[0.05] shadow-[0_1px_4px_rgba(0,0,0,0.04),_0_8px_24px_rgba(0,0,0,0.07)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.09),_0_24px_56px_rgba(0,0,0,0.13)] hover:-translate-y-1 transition-all duration-300 ease-out"
+                  key={s.name}
+                  className={`flex flex-col ${flip ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center`}
                 >
                   {/* Image */}
-                  <div className="h-52 overflow-hidden relative">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={service.imageUrl}
-                      alt={service.name}
-                      className="w-full h-full object-cover group-hover:scale-[1.03] group-hover:brightness-[1.04] transition-all duration-500 ease-out"
-                      loading="lazy"
+                  <div className="relative w-full lg:w-[45%] h-64 lg:h-80 overflow-hidden shrink-0">
+                    <Image
+                      src={s.image}
+                      alt={s.name}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 45vw"
+                      className="object-cover"
                     />
-                    {/* Base overlay — always present, subtle */}
-                    <div className="absolute inset-0 bg-charcoal/18 group-hover:bg-charcoal/10 transition-colors duration-400" />
-                    {/* Bottom depth gradient */}
-                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-charcoal/55 via-charcoal/20 to-transparent" />
-                    {/* Category badge — floated into image */}
-                    <div className="absolute top-4 left-4">
-                      <span className="text-[10px] font-semibold text-white/90 uppercase tracking-[0.15em] bg-black/30 backdrop-blur-[2px] border border-white/15 px-2.5 py-1">
-                        {service.category}
-                      </span>
-                    </div>
+                    <div className="absolute inset-0 bg-charcoal/15" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 flex flex-col flex-1 bg-gradient-to-b from-white to-[#FDFCF9]">
-                    <h3 className="font-display text-xl font-semibold text-charcoal mt-1 mb-3 leading-snug">
-                      {service.name}
-                    </h3>
-                    <p className="text-gray-500 text-sm leading-[1.75] mb-5 flex-1">{service.tagline}</p>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-black/[0.05]">
-                      <div>
-                        {service.pricingNote ? (
-                          <span className="text-[10px] text-gray-400 uppercase tracking-widest block mb-0.5">Custom quote</span>
-                        ) : (
-                          <>
-                            <span className="text-[10px] text-gray-400 uppercase tracking-widest block mb-0.5">From</span>
-                            <span className="text-charcoal font-bold text-base">
-                              {formatCurrency(service.startingPrice)}
-                              {service.priceUnit === 'per-hour' && (
-                                <span className="text-gray-400 font-normal text-xs ml-1">/hr</span>
-                              )}
-                              {service.priceUnit === 'per-month' && (
-                                <span className="text-gray-400 font-normal text-xs ml-1">/mo</span>
-                              )}
-                            </span>
-                          </>
-                        )}
-                      </div>
-                      <Link
-                        href={`/services/${service.slug}`}
-                        className="group/link inline-flex items-center gap-1.5 text-gold text-[11px] font-semibold uppercase tracking-[0.12em]"
-                      >
-                        <span className="border-b border-gold/40 pb-px group-hover/link:border-gold transition-colors duration-200">
-                          Details
-                        </span>
-                        <ArrowRight
-                          size={12}
-                          className="translate-x-0 group-hover/link:translate-x-[3px] transition-transform duration-200 ease-out"
-                        />
-                      </Link>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon size={15} className="text-gold" />
+                      <p className="text-gold text-[11px] font-bold uppercase tracking-[0.2em]">{s.sub}</p>
                     </div>
+                    <h2 className="font-display text-3xl font-bold text-charcoal mb-4">{s.name}</h2>
+                    <p className="text-gray-500 leading-relaxed mb-6">{s.description}</p>
+                    <ul className="space-y-2 mb-7">
+                      {s.highlights.map((h) => (
+                        <li key={h} className="flex items-center gap-2.5 text-sm text-charcoal">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={s.href}
+                      className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-white text-sm font-bold px-6 py-3.5 transition-colors"
+                    >
+                      {s.cta} <ArrowRight size={14} />
+                    </Link>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </section>
 
