@@ -8,7 +8,7 @@ const FEATURED = {
   tagline: 'The most common move done right. Flat hourly rate, 3-hour minimum, truck included. No surprise fees. We show up on time, wrap everything, and have you settled by end of day.',
   href: '/quote',
   cta: 'Get a local move estimate',
-  image: '/images/Real/8.jpg',
+  image: '/images/Real/4.png',
   highlights: ['$119/hr · 2 movers', 'Truck & equipment included', 'Floor & furniture protection', 'Same-week availability'],
 };
 
@@ -19,7 +19,7 @@ const PREVIEW = [
     tagline: 'Specialist crews trained for South Florida\'s luxury towers — elevator reservations, floor protection, and building compliance handled for you.',
     href: '/services/residential-moving',
     cta: 'Condo Moving Details',
-    image: '/images/Local%20distance.png',
+    image: '/images/Real/9.jpg',
   },
   {
     icon: Truck,

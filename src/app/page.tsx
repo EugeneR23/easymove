@@ -43,12 +43,12 @@ export default function HomePage() {
         <HeroSection />
         <StatsBar />
         <HomepageCalculator />
+        <TestimonialsSection />
         <WhyChooseUs />
+        <ServicesPreview />
         <FounderBlock />
         <WorkGallery />
-        <ServicesPreview />
         <ProcessSection />
-        <TestimonialsSection />
         <FAQSection />
         <CTABanner />
       </main>
