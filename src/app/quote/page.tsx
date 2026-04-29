@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description:
     'Get a free moving estimate in under 2 minutes. A real coordinator confirms your final price — no automated guesswork. Miami, Fort Lauderdale & Boca Raton.',
   alternates: {
-    canonical: 'https://www.easymoveelite.com/quote',
+    canonical: 'https://easy-move-florida.com/quote',
   },
   openGraph: {
     title: 'Get a Free Moving Estimate — EasyMove Elite',
     description:
       'Free written moving estimate in under 2 minutes. No obligation. A real coordinator reviews your details and confirms pricing.',
-    url: 'https://www.easymoveelite.com/quote',
+    url: 'https://easy-move-florida.com/quote',
   },
   twitter: {
     card: 'summary_large_image',

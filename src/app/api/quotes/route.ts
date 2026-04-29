@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
-import { calculatePricing, estimateDistance } from '@/lib/pricing';
+import { calculatePricing, estimateDistance, estimateLocalDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
@@ -56,10 +56,10 @@ export async function POST(req: NextRequest) {
     }));
 
     // ── 2. Build quote object ──────────────────────────────────────────────────
-    const estimatedDistance = estimateDistance(
-      body.fromState as string,
-      body.toState   as string,
-    );
+    // Use accurate city-to-city distance when both cities are provided (local moves)
+    const estimatedDistance = body.fromCity && body.toCity
+      ? estimateLocalDistance(body.fromCity as string, body.toCity as string)
+      : estimateDistance(body.fromState as string, body.toState as string);
     const moveType = parseMoveType(body.moveType);
     const pricing = calculatePricing({
       moveType,
@@ -215,7 +215,7 @@ export async function POST(req: NextRequest) {
           </table>
 
           <div style="background:#f5f5f5;border-left:4px solid #d4a017;padding:14px 16px;margin-top:20px">
-            <p style="margin:0;font-size:15px;font-weight:bold;color:#111">⚡ ACTION: Call immediately → <a href="tel:7863051844" style="color:#0066cc">786-305-1844</a></p>
+            <p style="margin:0;font-size:15px;font-weight:bold;color:#111">⚡ ACTION: Call immediately → <a href="tel:+17863051844" style="color:#0066cc">786-305-1844</a></p>
             <p style="margin:4px 0 0;font-size:12px;color:#666">Ref: ${quote.id} · Submitted: ${new Date(quote.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York' })}</p>
           </div>
         </div>
@@ -294,7 +294,7 @@ export async function POST(req: NextRequest) {
       sendTelegram(tg),
       sendSMS(
         quote.phone,
-        'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
+        `Hi ${quote.firstName || 'there'}! This is Eugene from EasyMove Elite. Thank you for your request — we're reviewing it now and will contact you shortly with your confirmed quote. Feel free to call or text me directly: 786-305-1844. Reply STOP to opt out.`,
       ),
       sendEmail(subject, html),
     ]);

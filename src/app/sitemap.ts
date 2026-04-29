@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { readAllServices } from '@/lib/data/services';
 
-const siteUrl = 'https://www.easymoveelite.com';
+const siteUrl = 'https://easy-move-florida.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const services = readAllServices();
@@ -53,5 +53,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/packing-services`,         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
   ];
 
-  return [...staticRoutes, ...cityRoutes, ...serviceRoutes];
+  const ruRoutes: MetadataRoute.Sitemap = [
+    { url: `${siteUrl}/ru`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+  ];
+
+  return [...staticRoutes, ...cityRoutes, ...serviceRoutes, ...ruRoutes];
 }

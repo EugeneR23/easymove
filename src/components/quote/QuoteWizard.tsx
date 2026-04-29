@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { MoveType, QuoteInventory, QuoteAddons } from '@/types';
@@ -10,6 +11,7 @@ import Step3Locations from './Step3_Locations';
 import Step4Services from './Step4_Services';
 import Step5Schedule from './Step5_Schedule';
 import Step6Contact from './Step6_Contact';
+import Step4Details from './Step4_Details';
 import StepPackingMaterials from './Step_PackingMaterials';
 import QuoteSummary from './QuoteSummary';
 import { Check, TrendingUp } from 'lucide-react';
@@ -60,12 +62,10 @@ const DEFAULT_DATA: WizardData = {
 };
 
 const DEFAULT_STEPS = [
-  { label: 'Move Type',  sub: 'Local, long-distance, specialty' },
-  { label: 'Home Size',  sub: 'Crew size & starting price'      },
-  { label: 'Locations',  sub: 'Pickup & delivery details'       },
-  { label: 'Add-ons',    sub: 'Packing, storage, and more'      },
-  { label: 'Date',       sub: 'Preferred move date'             },
-  { label: 'Contact',    sub: 'Name, email, phone'              },
+  { label: 'Move Type', sub: 'Local, long-distance, specialty' },
+  { label: 'Home Size', sub: 'Crew size & starting price'      },
+  { label: 'Contact',   sub: 'Name, email, phone'              },
+  { label: 'Details',   sub: 'Optional: locations, date, add-ons' },
 ];
 
 const PACKING_STEPS = [
@@ -80,10 +80,8 @@ const PACKING_STEPS = [
 const STEP_MICRO: Record<number, string> = {
   1: 'Takes less than 2 minutes',
   2: 'Your estimate is being calculated',
-  3: "Halfway there — keep going",
-  4: 'Almost done',
-  5: 'Just one more step',
-  6: "You're almost there",
+  3: 'Almost there — just one more step',
+  4: 'Optional details help us tailor your quote',
 };
 
 // ─── Live estimate from current data ──────────────────────────────────────────
@@ -297,12 +295,20 @@ export default function QuoteWizard() {
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem('quoteWizardData');
+      const callbackPhone = sessionStorage.getItem('callbackPhone') ?? '';
       if (saved) {
         const { data: savedData, step: savedStep } = JSON.parse(saved);
         if (savedData && savedStep) {
-          setData({ ...DEFAULT_DATA, ...savedData });
+          // Pre-fill phone from callback form if not already set in wizard
+          const phone = savedData.phone || callbackPhone;
+          setData({ ...DEFAULT_DATA, ...savedData, phone });
           setStep(savedStep);
+          return;
         }
+      }
+      // No saved wizard data — still pre-fill phone from callback if available
+      if (callbackPhone) {
+        setData((d) => ({ ...d, phone: callbackPhone }));
       }
     } catch { /* ignore parse errors */ }
   }, []);
@@ -311,6 +317,7 @@ export default function QuoteWizard() {
   useEffect(() => {
     if (submittedQuote) {
       sessionStorage.removeItem('quoteWizardData');
+      sessionStorage.removeItem('callbackPhone');
       return;
     }
     try {
@@ -334,8 +341,24 @@ export default function QuoteWizard() {
   }, [submittedQuote]);
 
   const isPacking  = data.moveType === 'packing-only';
-  const totalSteps = isPacking ? 5 : 6;
+  const totalSteps = isPacking ? 5 : 4;
   const activeSteps = isPacking ? PACKING_STEPS : DEFAULT_STEPS;
+
+  // ── Track funnel step views ────────────────────────────────────────────────
+  useEffect(() => {
+    try {
+      /* eslint-disable */
+      const w = window as unknown as Record<string, unknown>;
+      w['dataLayer'] = (w['dataLayer'] as unknown[]) || [];
+      (w['dataLayer'] as unknown[]).push({
+        event: 'quote_step_viewed',
+        step_number: step,
+        step_name: activeSteps[step - 1]?.label ?? '',
+        move_type: data.moveType,
+      });
+      /* eslint-enable */
+    } catch {}
+  }, [step, data.moveType]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const update = (patch: Partial<WizardData>) => setData((d) => ({ ...d, ...patch }));
   const next   = () => { setStep((s) => Math.min(s + 1, totalSteps)); scrollToWizard(); };
@@ -389,6 +412,17 @@ export default function QuoteWizard() {
       if (res.ok) {
         console.log(tag, 'SUCCESS — triggering QuoteSummary');
         setSubmittedQuote(payload);
+        try {
+          /* eslint-disable */
+          const w = window as unknown as Record<string, unknown>;
+          w['dataLayer'] = (w['dataLayer'] as unknown[]) || [];
+          (w['dataLayer'] as unknown[]).push({
+            event: 'quote_submitted',
+            move_type: data.moveType,
+            home_size: data.inventory.homeSize,
+          });
+          /* eslint-enable */
+        } catch {}
       } else {
         const msg = payload?.error ?? `Server error ${res.status}`;
         console.error(tag, 'Non-OK response:', res.status, msg);
@@ -415,18 +449,27 @@ export default function QuoteWizard() {
               <div className="lg:w-64 xl:w-72 shrink-0 hidden lg:block">
                 <SidebarSteps current={step} data={data} steps={activeSteps} />
               </div>
-              <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px]">
-                {step === 1 && <Step1MoveType {...stepProps} />}
-                {step === 2 && <Step2HomeSize {...stepProps} />}
-                {/* Packing-only flow: Materials → Schedule → Contact */}
-                {step === 3 && isPacking  && <StepPackingMaterials {...stepProps} />}
-                {step === 4 && isPacking  && <Step5Schedule {...stepProps} />}
-                {step === 5 && isPacking  && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
-                {/* Standard flow: Locations → Add-ons → Schedule → Contact */}
-                {step === 3 && !isPacking && <Step3Locations {...stepProps} />}
-                {step === 4 && !isPacking && <Step4Services {...stepProps} />}
-                {step === 5 && !isPacking && <Step5Schedule {...stepProps} />}
-                {step === 6 && !isPacking && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+              <div className="flex-1 bg-white p-6 md:p-10 min-h-[400px] sm:min-h-[520px] relative overflow-hidden">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={step}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -24 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    className="h-full"
+                  >
+                    {step === 1 && <Step1MoveType {...stepProps} />}
+                    {step === 2 && <Step2HomeSize {...stepProps} />}
+                    {/* Packing-only flow: Materials → Schedule → Contact */}
+                    {step === 3 && isPacking  && <StepPackingMaterials {...stepProps} />}
+                    {step === 4 && isPacking  && <Step5Schedule {...stepProps} />}
+                    {step === 5 && isPacking  && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+                    {/* Standard 4-step flow: Contact → Optional Details */}
+                    {step === 3 && !isPacking && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
+                    {step === 4 && !isPacking && <Step4Details {...stepProps} onSubmit={handleSubmit} />}
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </>

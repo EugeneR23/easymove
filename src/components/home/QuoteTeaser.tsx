@@ -54,13 +54,13 @@ export default function QuoteTeaser() {
               <div className="grid grid-cols-2 divide-x divide-gray-100 border-b border-gray-100">
                 <div className="px-5 py-4">
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">2 Movers</p>
-                  <p className="font-display text-xl font-bold text-charcoal">$119<span className="text-sm font-normal text-gray-400">/hr</span></p>
+                  <p className="font-display text-xl font-bold text-charcoal">$99<span className="text-sm font-normal text-gray-400">/hr</span></p>
                   <p className="text-xs text-gray-400 mt-0.5">+ $79 truck fee</p>
                 </div>
                 <div className="px-5 py-4">
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">3 Movers</p>
-                  <p className="font-display text-xl font-bold text-charcoal">$169<span className="text-sm font-normal text-gray-400">/hr</span></p>
-                  <p className="text-xs text-gray-400 mt-0.5">+ $99 truck fee</p>
+                  <p className="font-display text-xl font-bold text-charcoal">$139<span className="text-sm font-normal text-gray-400">/hr</span></p>
+                  <p className="text-xs text-gray-400 mt-0.5">+ $79 truck fee</p>
                 </div>
               </div>
 

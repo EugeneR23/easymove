@@ -1,6 +1,10 @@
 'use client';
-import { useState } from 'react';
-import { Star, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+
+import { useRef, useState } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { Star, ExternalLink, ChevronLeft, ChevronRight, ArrowRight, Phone } from 'lucide-react';
+import { easeLuxury } from '@/lib/motion';
 
 const testimonials = [
   {
@@ -47,6 +51,61 @@ const testimonials = [
     moveType: 'Residential',
     quote: 'Punctual, professional, and careful with everything they touched. They wrapped every piece of furniture, protected our floors, and cleaned up completely before leaving. Exactly what you want from a moving company.',
   },
+  {
+    id: '5',
+    name: 'Rachel M.',
+    city: 'Aventura, FL',
+    initials: 'RM',
+    color: '#E07B54',
+    date: 'February 2025',
+    rating: 5,
+    moveType: 'Packing & Unpacking',
+    quote: 'I hired them just for packing — best decision I made. Two packers did my entire 2-bedroom in under five hours. Every glass, every frame, every lamp was individually wrapped. When I unpacked at the new place, not a single thing was damaged.',
+  },
+  {
+    id: '6',
+    name: 'Mark S.',
+    city: 'Doral, FL',
+    initials: 'MS',
+    color: '#5B8FBF',
+    date: 'December 2024',
+    rating: 5,
+    moveType: 'Office Move',
+    quote: 'We relocated our 12-person office over a weekend — zero downtime on Monday. The crew labeled every cable, moved server racks with care, and even reassembled all the desks. Our IT guy was amazed nothing needed reconfiguring.',
+  },
+  {
+    id: '7',
+    name: 'Camila & Diego P.',
+    city: 'Hollywood, FL',
+    initials: 'CP',
+    color: '#9B6FB0',
+    date: 'October 2024',
+    rating: 5,
+    moveType: 'Local Move',
+    quote: 'Moved from Hollywood to Pembroke Pines with a toddler and a dog — absolute chaos on our end. The crew was calm, fast, and worked around the mess without missing a beat. Three hours, everything placed exactly where we wanted it. Worth every dollar.',
+  },
+  {
+    id: '8',
+    name: 'Andrew T.',
+    city: 'Weston, FL',
+    initials: 'AT',
+    color: '#3D8B6E',
+    date: 'August 2024',
+    rating: 5,
+    moveType: 'Storage & Move',
+    quote: 'I needed a month of storage between selling and closing on my new house. They picked everything up, stored it, then delivered on my exact date. Nothing was dusty, nothing was damaged. Seamless from start to finish.',
+  },
+  {
+    id: '9',
+    name: 'Lisa & Robert K.',
+    city: 'Brickell, FL',
+    initials: 'LK',
+    color: '#C2724F',
+    date: 'March 2025',
+    rating: 5,
+    moveType: 'Same-Week Move',
+    quote: "Our closing date moved up by a week and I panicked. Called EasyMove on Tuesday, they had a crew at our Brickell condo by Thursday. COI was ready overnight. I still don't know how they pulled it off that fast — but everything was perfect.",
+  },
 ];
 
 function Avatar({ initials, color }: { initials: string; color: string }) {
@@ -63,7 +122,6 @@ function Avatar({ initials, color }: { initials: string; color: string }) {
 function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
   return (
     <div className="flex flex-col h-full">
-      {/* Stars + badge */}
       <div className="flex items-center justify-between mb-5">
         <div className="flex gap-1">
           {Array.from({ length: t.rating }).map((_, i) => (
@@ -74,13 +132,9 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
           {t.moveType}
         </span>
       </div>
-
-      {/* Quote */}
       <blockquote className="font-display text-base md:text-lg text-white/80 italic leading-relaxed flex-1 mb-6">
         &ldquo;{t.quote}&rdquo;
       </blockquote>
-
-      {/* Attribution */}
       <div className="flex items-center gap-3 pt-5 border-t border-white/10">
         <Avatar initials={t.initials} color={t.color} />
         <div className="flex-1 min-w-0">
@@ -96,20 +150,66 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
   );
 }
 
-export default function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
-  const prev = () => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));
-  const next = () => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 300, damping: 30 });
 
-  // Desktop shows 2 at a time
-  const desktopPairs = [
-    [testimonials[0], testimonials[1]],
-    [testimonials[2], testimonials[3]],
-  ];
-  const [pairIdx, setPairIdx] = useState(0);
+  function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  }
+  function onMouseLeave() { x.set(0); y.set(0); }
 
   return (
-    <section className="relative section-padding bg-charcoal overflow-hidden">
+    <div className="perspective-1000">
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        className="border border-white/10 bg-white/[0.03] p-7 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4),_0_0_0_1px_rgba(201,168,76,0.12)] transition-shadow duration-300"
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
+
+export default function TestimonialsSection() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-15% 0px' });
+
+  const desktopPairs: (typeof testimonials[0])[][] = [];
+  for (let i = 0; i < testimonials.length; i += 2) {
+    const pair = [testimonials[i]];
+    if (testimonials[i + 1]) pair.push(testimonials[i + 1]);
+    desktopPairs.push(pair);
+  }
+  const [pairIdx, setPairIdx] = useState(0);
+
+  function prevPair() {
+    setDirection(-1);
+    setPairIdx((i) => (i === 0 ? desktopPairs.length - 1 : i - 1));
+  }
+  function nextPair() {
+    setDirection(1);
+    setPairIdx((i) => (i === desktopPairs.length - 1 ? 0 : i + 1));
+  }
+  function prevSingle() {
+    setDirection(-1);
+    setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));
+  }
+  function nextSingle() {
+    setDirection(1);
+    setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1));
+  }
+
+  return (
+    <section ref={sectionRef} className="relative section-padding bg-charcoal overflow-hidden">
       <div className="absolute inset-0 grain-overlay" />
       <div
         className="absolute inset-0 pointer-events-none"
@@ -118,8 +218,18 @@ export default function TestimonialsSection() {
 
       <div className="relative container-max">
         {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <div className="w-8 h-px bg-gold mx-auto mb-6" />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: easeLuxury }}
+          className="text-center mb-10 md:mb-14"
+        >
+          <motion.div
+            className="h-px bg-gold mx-auto mb-6"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 32 } : {}}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+          />
           <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Client Experiences</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
             Trusted by South Florida Residents
@@ -139,33 +249,52 @@ export default function TestimonialsSection() {
             <span className="text-white/60 text-xs group-hover:text-white transition-colors">View our Google Reviews</span>
             <ExternalLink size={10} className="text-white/30 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all duration-200" />
           </a>
-        </div>
+        </motion.div>
 
-        {/* Desktop: 2-up grid */}
+        {/* Desktop: 2-up grid with AnimatePresence slide */}
         <div className="hidden md:block">
-          <div className="grid grid-cols-2 gap-6 mb-8">
-            {desktopPairs[pairIdx].map((t) => (
-              <div key={t.id} className="border border-white/10 bg-white/[0.03] p-7">
-                <TestimonialCard t={t} />
-              </div>
-            ))}
+          <div className="relative overflow-hidden mb-8">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={pairIdx}
+                initial={{ opacity: 0, x: direction * 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -40 }}
+                transition={{ duration: 0.4, ease: easeLuxury }}
+                className="grid grid-cols-2 gap-6"
+              >
+                {desktopPairs[pairIdx].map((t) => (
+                  <TiltCard key={t.id}>
+                    <TestimonialCard t={t} />
+                  </TiltCard>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
           <div className="flex items-center justify-center gap-4">
             <button
-              onClick={() => setPairIdx((i) => (i === 0 ? desktopPairs.length - 1 : i - 1))}
+              onClick={prevPair}
               className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all duration-200"
             >
               <ChevronLeft size={15} />
             </button>
             {desktopPairs.map((_, i) => (
-              <button
+              <motion.button
                 key={i}
-                onClick={() => setPairIdx(i)}
-                className={`h-px transition-all duration-300 ${i === pairIdx ? 'bg-gold w-8' : 'bg-white/20 w-4'}`}
+                onClick={() => { setDirection(i > pairIdx ? 1 : -1); setPairIdx(i); }}
+                animate={{ width: i === pairIdx ? 32 : 16 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  height: 1,
+                  background: i === pairIdx ? '#C9A84C' : 'rgba(255,255,255,0.2)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
               />
             ))}
             <button
-              onClick={() => setPairIdx((i) => (i === desktopPairs.length - 1 ? 0 : i + 1))}
+              onClick={nextPair}
               className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all duration-200"
             >
               <ChevronRight size={15} />
@@ -173,23 +302,72 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Mobile: single carousel */}
+        {/* Mobile: single carousel with AnimatePresence */}
         <div className="md:hidden">
-          <div className="border border-white/10 bg-white/[0.03] p-6 mb-6">
-            <TestimonialCard t={testimonials[current]} />
+          <div className="relative overflow-hidden mb-6">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: direction * 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -30 }}
+                transition={{ duration: 0.35, ease: easeLuxury }}
+                className="border border-white/10 bg-white/[0.03] p-6"
+              >
+                <TestimonialCard t={testimonials[current]} />
+              </motion.div>
+            </AnimatePresence>
           </div>
           <div className="flex items-center justify-center gap-4">
-            <button onClick={prev} className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all duration-200">
+            <button onClick={prevSingle} className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all duration-200">
               <ChevronLeft size={15} />
             </button>
             {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setCurrent(i)} className={`h-px transition-all duration-300 ${i === current ? 'bg-gold w-8' : 'bg-white/20 w-4'}`} />
+              <motion.button
+                key={i}
+                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                animate={{ width: i === current ? 32 : 16 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  height: 1,
+                  background: i === current ? '#C9A84C' : 'rgba(255,255,255,0.2)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
+              />
             ))}
-            <button onClick={next} className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all duration-200">
+            <button onClick={nextSingle} className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all duration-200">
               <ChevronRight size={15} />
             </button>
           </div>
         </div>
+
+        {/* CTA after testimonials */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4, ease: 'easeOut' }}
+          className="mt-12 pt-10 border-t border-white/10 text-center"
+        >
+          <p className="text-white/50 text-sm mb-6">
+            Join 500+ South Florida families who trusted us with their move.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/quote">
+              <span className="inline-flex items-center gap-2 bg-gold hover:bg-gold/90 text-white text-sm font-bold px-8 py-4 transition-colors">
+                Get My FREE Estimate <ArrowRight size={14} />
+              </span>
+            </Link>
+            <a
+              href="tel:7863051844"
+              className="inline-flex items-center justify-center gap-2 border border-white/20 text-white text-sm font-semibold px-8 py-4 hover:border-gold hover:text-gold transition-all"
+            >
+              <Phone size={14} />
+              786-305-1844
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

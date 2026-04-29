@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
 const playfair = Playfair_Display({
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
@@ -12,13 +13,13 @@ const playfair = Playfair_Display({
 });
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
 });
 
-const siteUrl = 'https://www.easymoveelite.com';
+const siteUrl = 'https://easy-move-florida.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -79,6 +80,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    languages: {
+      'en': siteUrl,
+      'ru': `${siteUrl}/ru`,
+    },
   },
 };
 
@@ -94,10 +99,10 @@ const localBusinessSchema = {
   email: 'romanov@easy-move-florida.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Miami',
-    addressLocality: 'Miami',
+    streetAddress: '2130 Stirling Rd',
+    addressLocality: 'Hollywood',
     addressRegion: 'FL',
-    postalCode: '33101',
+    postalCode: '33020',
     addressCountry: 'US',
   },
   geo: {
@@ -159,7 +164,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
         {/* Preload hero image — critical LCP resource */}
-        <link rel="preload" as="image" href="/images/Real/8.jpg" />
+        <link rel="preload" as="image" href="/images/Hero.png" />
         {/* Tawk.to live chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with values from tawk.to dashboard */}
         <Script
           id="tawkto"
@@ -176,6 +181,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K7PHS2LP');`,
           }}
         />
+        {/* Microsoft Clarity — session recordings & heatmaps */}
+        {process.env.NEXT_PUBLIC_CLARITY_ID && (
+          <Script
+            id="microsoft-clarity"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_ID}");`,
+            }}
+          />
+        )}
       </head>
       <body className="font-body antialiased">
         {/* Google Tag Manager (noscript) */}
@@ -192,6 +207,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );

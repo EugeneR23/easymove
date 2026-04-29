@@ -1,5 +1,10 @@
+'use client';
+
+import { useRef } from 'react';
 import Link from 'next/link';
+import { motion, useInView } from 'motion/react';
 import { Shield, Building2, Clock, FileText, Package, Headphones, ArrowRight } from 'lucide-react';
+import { easeLuxury, containerVariants, wordVariants } from '@/lib/motion';
 
 const reasons = [
   {
@@ -42,24 +47,59 @@ const reasons = [
     title: 'Transparent Pricing',
     description: 'Detailed written estimates before any work begins. No surprise fees, no "fuel surcharges" discovered on moving day. What we quote is what you pay.',
     href: '/quote',
-    cta: 'Get a written estimate',
+    cta: 'Get a FREE estimate',
   },
 ];
 
 export default function WhyChooseUs() {
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, margin: '-10% 0px' });
+  const gridInView = useInView(gridRef, { once: true, margin: '-5% 0px' });
+
   return (
     <section className="section-padding bg-white border-t border-gray-100">
       <div className="container-max">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-10 lg:mb-16">
-          <div className="lg:col-span-1">
-            <div className="w-8 h-px bg-gold mb-6" />
-            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Why EasyMove Elite</p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight">
-              The Standard<br />Others Aspire To
-            </h2>
-          </div>
-          <div className="lg:col-span-2 flex flex-col justify-center gap-6">
+        <div ref={headerRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-10 lg:mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={headerInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, ease: easeLuxury }}
+            className="lg:col-span-1"
+          >
+            <motion.div
+              className="h-px bg-gold mb-6"
+              initial={{ width: 0 }}
+              animate={headerInView ? { width: 32 } : {}}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+            />
+            <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Why EasyMove Elite</p>
+            <motion.h2
+              variants={containerVariants(0.08, 0.2)}
+              initial="hidden"
+              animate={headerInView ? 'visible' : 'hidden'}
+              className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight"
+            >
+              {'The Standard'.split(' ').map((word, i) => (
+                <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+                  {word}
+                </motion.span>
+              ))}
+              <br />
+              {'Others Aspire To'.split(' ').map((word, i) => (
+                <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.25, ease: easeLuxury }}
+            className="lg:col-span-2 flex flex-col justify-center gap-6"
+          >
             <p className="text-gray-500 text-base md:text-lg leading-relaxed">
               From Brickell condos to Fort Lauderdale estates to Boca Raton high-rises — South Florida demands
               a moving company that understands building requirements, values discretion, and delivers without drama.
@@ -69,24 +109,27 @@ export default function WhyChooseUs() {
               href="/quote"
               className="group/link self-start inline-flex items-center gap-1.5 text-charcoal text-sm font-semibold uppercase tracking-wider border-b border-charcoal/30 pb-0.5 hover:text-gold hover:border-gold transition-colors duration-200"
             >
-              Check Starting Price
+              See FREE Starting Price
               <ArrowRight size={14} className="translate-x-0 group-hover/link:translate-x-[3px] transition-transform duration-200 ease-out" />
             </Link>
-          </div>
+          </motion.div>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
-          {reasons.map((r) => {
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
+          {reasons.map((r, i) => {
             const Icon = r.icon;
             return (
-              <div
+              <motion.div
                 key={r.title}
+                initial={{ opacity: 0, y: 32 }}
+                animate={gridInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: easeLuxury }}
                 className="relative bg-white p-8 group hover:bg-cream transition-all duration-300 overflow-hidden"
               >
-                {/* Gold left accent — slides in on hover */}
+                {/* Gold left accent */}
                 <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gold scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-400" />
-                <div className="w-10 h-10 bg-gold/[0.07] flex items-center justify-center mb-5 group-hover:bg-gold/[0.13] transition-colors duration-300">
+                <div className="w-10 h-10 bg-gold/[0.07] flex items-center justify-center mb-5 group-hover:bg-gold/[0.13] group-hover:rotate-3 group-hover:scale-110 transition-all duration-300">
                   <Icon className="text-gold" size={20} />
                 </div>
                 <h3 className="font-display text-lg font-semibold text-charcoal mb-3">{r.title}</h3>
@@ -100,7 +143,7 @@ export default function WhyChooseUs() {
                     <ArrowRight size={11} className="translate-x-0 group-hover/card-link:translate-x-[2px] transition-transform duration-200" />
                   </Link>
                 )}
-              </div>
+              </motion.div>
             );
           })}
         </div>

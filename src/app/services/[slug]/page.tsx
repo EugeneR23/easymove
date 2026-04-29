@@ -30,12 +30,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title,
     description,
     alternates: {
-      canonical: `https://www.easymoveelite.com/services/${service.slug}`,
+      canonical: `https://easy-move-florida.com/services/${service.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://www.easymoveelite.com/services/${service.slug}`,
+      url: `https://easy-move-florida.com/services/${service.slug}`,
       images: [{ url: service.imageUrl, alt: `${service.name} — EasyMove Elite South Florida` }],
     },
     twitter: {

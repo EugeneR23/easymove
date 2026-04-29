@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
+import AnimateIn from '@/components/ui/AnimateIn';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -10,19 +12,19 @@ export const metadata: Metadata = {
   description:
     'EasyMove Elite is a founder-led, fully insured moving company built in South Florida. Meet the crew behind every move in Miami, Fort Lauderdale & Boca Raton.',
   alternates: {
-    canonical: 'https://www.easymoveelite.com/about',
+    canonical: 'https://easy-move-florida.com/about',
   },
   openGraph: {
     title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
     description:
       'Founder-led and crew-driven. Built for South Florida. Meet Eugene Romanov and the team behind EasyMove Elite.',
-    url: 'https://www.easymoveelite.com/about',
+    url: 'https://easy-move-florida.com/about',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
     description:
-      'Meet the founder-led crew behind South Florida\'s premier white-glove moving company. Miami · Fort Lauderdale · Boca Raton.',
+      "Meet the founder-led crew behind South Florida's premier white-glove moving company. Miami · Fort Lauderdale · Boca Raton.",
   },
 };
 
@@ -51,8 +53,8 @@ const values = [
 
 const howWeWork = [
   { title: 'No subcontractors', description: 'Every move is handled by our own trained crew — not a third-party app crew hired for the day.' },
-  { title: 'Direct accountability', description: 'Eugene is the person you call if anything needs attention. Not a support line. Not a dispatcher.' },
-  { title: 'Quality control on every job', description: 'The same standards apply whether you\'re moving a studio or a full estate. No "easy" jobs treated carelessly.' },
+  { title: 'Direct accountability', description: "Eugene is the person you call if anything needs attention. Not a support line. Not a dispatcher." },
+  { title: 'Quality control on every job', description: "The same standards apply whether you're moving a studio or a full estate. No 'easy' jobs treated carelessly." },
   { title: 'Crew briefed before arrival', description: 'Building access, elevator windows, COI requirements — all confirmed before the crew ever shows up.' },
 ];
 
@@ -62,26 +64,31 @@ export default function AboutPage() {
       <Header />
       <main className="pt-20">
         {/* Hero */}
-        <section
-          className="relative h-72 md:h-[420px] flex items-center justify-center overflow-hidden bg-charcoal"
-          style={{ backgroundImage: "url('/images/Real/8.jpg')", backgroundSize: 'cover', backgroundPosition: 'center 40%' }}
-        >
+        <section className="relative h-72 md:h-[420px] flex items-center justify-center overflow-hidden bg-charcoal">
+          <Image
+            src="/images/Real/8.jpg"
+            alt="EasyMove Elite crew during a South Florida move"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_40%]"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/75 to-charcoal/95" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="absolute inset-0 grain-overlay" />
-          <div className="relative z-10 text-center px-4">
+          <AnimateIn className="relative z-10 text-center px-4">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Our Story</p>
             <h1 className="font-display text-3xl md:text-6xl font-bold text-white">About EasyMove Elite</h1>
             <p className="text-gray-400 mt-4 max-w-lg mx-auto">
               Founder-led. Crew-driven. Built for South Florida.
             </p>
-          </div>
+          </AnimateIn>
         </section>
 
         {/* Story */}
         <section className="section-padding bg-white">
           <div className="container-max grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div>
+            <AnimateIn direction="left">
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Founder-Led</p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal mb-6 leading-tight">
                 Built in South Florida.<br />Run by the Person You Call.
@@ -110,36 +117,41 @@ export default function AboutPage() {
                   </span>
                 ))}
               </div>
-            </div>
-            <div className="relative">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/about.png"
-                alt="EasyMove Elite premium moving crew, South Florida"
-                className="w-full h-56 sm:h-80 lg:h-[420px] object-cover object-center sm:object-top"
-              />
-            </div>
+            </AnimateIn>
+            <AnimateIn direction="right" delay={0.15}>
+              <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
+                <Image
+                  src="/images/about.png"
+                  alt="EasyMove Elite premium moving crew, South Florida"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center sm:object-top"
+                />
+              </div>
+            </AnimateIn>
           </div>
         </section>
 
         {/* Values */}
         <section className="section-padding bg-cream">
           <div className="container-max">
-            <div className="text-center mb-10 md:mb-14">
+            <AnimateIn className="text-center mb-10 md:mb-14">
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">What Drives Us</p>
               <h2 className="font-display text-2xl md:text-4xl font-bold text-charcoal">Our Commitments</h2>
-            </div>
+            </AnimateIn>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
-              {values.map((v) => {
+              {values.map((v, i) => {
                 const Icon = v.icon;
                 return (
-                  <div key={v.title} className="bg-cream p-6 sm:p-8">
-                    <div className="w-10 h-10 flex items-center justify-center mb-5">
-                      <Icon className="text-gold" size={22} />
+                  <AnimateIn key={v.title} delay={i * 0.1}>
+                    <div className="bg-cream p-6 sm:p-8 h-full">
+                      <div className="w-10 h-10 flex items-center justify-center mb-5">
+                        <Icon className="text-gold" size={22} />
+                      </div>
+                      <h3 className="font-display text-lg font-semibold text-charcoal mb-3">{v.title}</h3>
+                      <p className="text-gray-500 text-sm leading-relaxed">{v.description}</p>
                     </div>
-                    <h3 className="font-display text-lg font-semibold text-charcoal mb-3">{v.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{v.description}</p>
-                  </div>
+                  </AnimateIn>
                 );
               })}
             </div>
@@ -150,40 +162,42 @@ export default function AboutPage() {
         <section className="section-padding bg-white">
           <div className="container-max">
             <div className="max-w-3xl mx-auto">
-
-              {/* Founder card */}
-              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start bg-cream border border-gray-100 p-6 sm:p-8 mb-12">
-                <div className="shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/images/founder-2.png"
-                    alt="Eugene Romanov, Founder of EasyMove Elite"
-                    className="w-48 h-48 object-cover object-[center_20%] bg-gray-200"
-                  />
-                  <div className="mt-3 flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    <span className="text-xs text-gray-400">South Florida</span>
+              <AnimateIn>
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start bg-cream border border-gray-100 p-6 sm:p-8 mb-12">
+                  <div className="shrink-0">
+                    <div className="relative w-48 h-48 overflow-hidden bg-gray-200">
+                      <Image
+                        src="/images/founder-2.png"
+                        alt="Eugene Romanov, Founder of EasyMove Elite"
+                        fill
+                        sizes="192px"
+                        className="object-cover object-[center_20%]"
+                      />
+                    </div>
+                    <div className="mt-3 flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                      <span className="text-xs text-gray-400">South Florida</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-display font-semibold text-charcoal text-xl">Eugene Romanov</h3>
+                    <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Founder &amp; Owner</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Eugene built EasyMove Elite from the ground up after years of watching clients get let down
+                      by large, impersonal moving companies. His standard: you speak directly with the owner,
+                      the crew knows the building before they arrive, and every item is handled as if it belongs
+                      to family. He is present on every high-value and complex move.
+                    </p>
+                    <div className="flex flex-wrap gap-3 mt-5">
+                      {['Licensed & Insured', 'Hands-on leadership', 'Direct: 786-305-1844'].map((badge) => (
+                        <span key={badge} className="text-xs border border-gray-200 px-3 py-1 text-gray-500">{badge}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-display font-semibold text-charcoal text-xl">Eugene Romanov</h3>
-                  <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Founder &amp; Owner</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Eugene built EasyMove Elite from the ground up after years of watching clients get let down
-                    by large, impersonal moving companies. His standard: you speak directly with the owner,
-                    the crew knows the building before they arrive, and every item is handled as if it belongs
-                    to family. He is present on every high-value and complex move.
-                  </p>
-                  <div className="flex flex-wrap gap-3 mt-5">
-                    {['Licensed & Insured', 'Hands-on leadership', 'Direct: 786-305-1844'].map((badge) => (
-                      <span key={badge} className="text-xs border border-gray-200 px-3 py-1 text-gray-500">{badge}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              </AnimateIn>
 
-              {/* How we work */}
-              <div>
+              <AnimateIn delay={0.1}>
                 <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">How We Work</p>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-charcoal mb-3 leading-tight">
                   Your Move is Personally Managed
@@ -201,8 +215,7 @@ export default function AboutPage() {
                     </div>
                   ))}
                 </div>
-              </div>
-
+              </AnimateIn>
             </div>
           </div>
         </section>
@@ -213,7 +226,7 @@ export default function AboutPage() {
           <div className="absolute bottom-0 left-0 right-0 h-px gold-separator" />
           <div className="absolute inset-0 grain-overlay" />
           <div className="relative container-max">
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-center">
+            <AnimateIn className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-center">
               {[
                 { label: 'Fully Insured', sub: 'Every move we take on' },
                 { label: 'COI on Request', sub: 'For building & HOA management' },
@@ -225,7 +238,7 @@ export default function AboutPage() {
                   <p className="text-gray-500 text-xs leading-snug">{c.sub}</p>
                 </div>
               ))}
-            </div>
+            </AnimateIn>
           </div>
         </section>
 
