@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'EasyMove Elite terms of service — estimates and pricing, payment, customer responsibilities, liability, and cancellation policies.',
   robots: { index: false, follow: false },
   alternates: {
-    canonical: 'https://www.easymoveelite.com/terms',
+    canonical: 'https://easy-move-florida.com/terms',
   },
 };
 

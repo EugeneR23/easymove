@@ -12,6 +12,8 @@ export default function HeroCallbackForm() {
     const p = phone.trim();
     if (!p) return;
     setLoading(true);
+    // Save phone so QuoteWizard can pre-fill Step 6
+    try { sessionStorage.setItem('callbackPhone', p); } catch { /* ignore */ }
     try {
       await fetch('/api/callback', {
         method: 'POST',
@@ -19,6 +21,13 @@ export default function HeroCallbackForm() {
         body: JSON.stringify({ phone: p }),
       });
       setSent(true);
+      try {
+        /* eslint-disable */
+        const w = window as unknown as Record<string, unknown>;
+        w['dataLayer'] = (w['dataLayer'] as unknown[]) || [];
+        (w['dataLayer'] as unknown[]).push({ event: 'callback_submitted' });
+        /* eslint-enable */
+      } catch {}
     } catch {
       // fail silently — still show success to avoid user confusion
       setSent(true);

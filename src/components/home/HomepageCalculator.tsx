@@ -306,6 +306,14 @@ export default function HomepageCalculator() {
                             </div>
                           </div>
 
+                          {/* Scarcity — show after price reveal */}
+                          <div className="flex items-center gap-2 mt-3 mb-4">
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 shrink-0 animate-pulse" />
+                            <p className="text-white/50 text-xs">
+                              Spring season filling fast — same-week slots available now.
+                            </p>
+                          </div>
+
                           {/* CTA */}
                           <div className="border border-gold/20 bg-black/20 p-5 mb-4">
                             <p className="text-white font-display font-semibold text-lg mb-1">Book Your Packing Service</p>
@@ -315,7 +323,7 @@ export default function HomepageCalculator() {
                             <div className="flex flex-col sm:flex-row gap-3">
                               <Link href={getPackingWizardHref()} className="flex-1">
                                 <span className="flex items-center justify-center gap-2 bg-gold text-white px-6 py-3.5 text-sm font-semibold hover:bg-gold-dark transition-colors w-full">
-                                  Get My Quote <ArrowRight size={15} />
+                                  Get My FREE Quote <ArrowRight size={15} />
                                 </span>
                               </Link>
                               <a href="tel:7863051844" className="flex items-center justify-center gap-2 border border-white/20 text-white px-6 py-3.5 text-sm font-semibold hover:border-gold hover:text-gold transition-all">
@@ -381,6 +389,14 @@ export default function HomepageCalculator() {
                         </div>
                       )}
 
+                      {/* Scarcity — show after price reveal */}
+                      <div className="flex items-center gap-2 mt-3 mb-4">
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 shrink-0 animate-pulse" />
+                        <p className="text-white/50 text-xs">
+                          Spring season filling fast — same-week slots available now.
+                        </p>
+                      </div>
+
                       {/* CTA block */}
                       <div className="border border-gold/20 bg-black/20 p-5 mb-4">
                         <p className="text-white font-display font-semibold text-lg mb-1">
@@ -392,7 +408,7 @@ export default function HomepageCalculator() {
                         <div className="flex flex-col sm:flex-row gap-3">
                           <Link href={wizardHref} className="flex-1">
                             <span className="flex items-center justify-center gap-2 bg-gold text-white px-6 py-3.5 text-sm font-semibold hover:bg-gold-dark transition-colors w-full">
-                              Get My Quote <ArrowRight size={15} />
+                              Get My FREE Quote <ArrowRight size={15} />
                             </span>
                           </Link>
                           <a

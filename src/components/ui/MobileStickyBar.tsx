@@ -44,7 +44,7 @@ export default function MobileStickyBar({ onQuotePage = false }: Props) {
           href="/quote"
           className="flex items-center justify-center gap-2 py-4 bg-gold text-white text-sm font-bold flex-1"
         >
-          Get Quote <ArrowRight size={14} />
+          Get FREE Quote <ArrowRight size={14} />
         </Link>
       )}
     </div>

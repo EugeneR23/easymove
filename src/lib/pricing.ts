@@ -1,9 +1,10 @@
 import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 
 // ─── Rate Tables ──────────────────────────────────────────────────────────────
-const HOURLY_RATE: Record<CrewSize, number>         = { 2: 119, 3: 169 };
+const HOURLY_RATE: Record<CrewSize, number>         = { 2: 99, 3: 139 };
 const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119 };
-const TRUCK_FEE: Record<CrewSize, number>           = { 2: 79,  3: 99  };
+const TRUCK_BASE = 79;
+const TRUCK_MAX: Record<CrewSize, number>            = { 2: 99, 3: 139 };
 const MIN_HOURS = 3;
 
 // ─── South Florida city coordinates ──────────────────────────────────────────
@@ -99,6 +100,15 @@ const TRAVEL_SPEED_MPH = 28;
 // Trips under this distance are considered "included" — no surcharge
 const TRAVEL_FREE_MILES = 8;
 
+/** Truck fee scales with distance: $79 base → up to hourly rate for long trips */
+function getDistanceTruckFee(crew: CrewSize, miles: number): number {
+  if (miles <= TRAVEL_FREE_MILES) return TRUCK_BASE;
+  const extra = miles - TRAVEL_FREE_MILES;
+  const maxExtra = 22; // ~30 mi total ≈ Miami→Ft Lauderdale = max fee
+  const fee = TRUCK_BASE + Math.round(extra * (TRUCK_MAX[crew] - TRUCK_BASE) / maxExtra);
+  return Math.min(TRUCK_MAX[crew], fee);
+}
+
 interface PricingInput {
   moveType: MoveType;
   estimatedDistance: number;
@@ -126,26 +136,18 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     case 'local': {
       estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 3);
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
-      truckFee       = TRUCK_FEE[crew];
-      // Travel time surcharge based on actual city distance
+      // Distance-based truck fee: $79 base, scales up to hourly rate for longer trips
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      if (travelMiles >= TRAVEL_FREE_MILES) {
-        const travelHours = Math.round(travelMiles / TRAVEL_SPEED_MPH * 4) / 4; // nearest 0.25h
-        travelFee = Math.round(travelHours * HOURLY_RATE[crew]);
-      }
+      truckFee       = getDistanceTruckFee(crew, travelMiles);
       break;
     }
     case 'office': {
       estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 4);
-      laborRate      = Math.round(169 * estimatedHours);
-      truckFee       = 99;
+      laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      if (travelMiles >= TRAVEL_FREE_MILES) {
-        const travelHours = Math.round(travelMiles / TRAVEL_SPEED_MPH * 4) / 4;
-        travelFee = Math.round(travelHours * 169);
-      }
+      truckFee       = getDistanceTruckFee(crew, travelMiles);
       break;
     }
     case 'long-distance': {
@@ -229,5 +231,5 @@ export function estimateDistance(fromState: string, toState: string): number {
 // ─── Starting price helpers (for homepage display) ────────────────────────────
 export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
   const hours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size]);
-  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_FEE[crew]);
+  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_BASE);
 }

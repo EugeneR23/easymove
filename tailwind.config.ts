@@ -35,6 +35,16 @@ const config: Config = {
       backgroundImage: {
         'gradient-gold': 'linear-gradient(135deg, #C9A84C 0%, #E4C97E 50%, #9E7A2E 100%)',
       },
+      transitionTimingFunction: {
+        'luxury': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'bounce-soft': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      },
+      animation: {
+        'gold-pulse': 'gold-pulse 4s ease-in-out infinite',
+        'float-a': 'float-particle 6s ease-in-out infinite',
+        'float-b': 'float-particle 8s ease-in-out infinite 2s',
+        'float-c': 'float-particle 7s ease-in-out infinite 4s',
+      },
     },
   },
   plugins: [],

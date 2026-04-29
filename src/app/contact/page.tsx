@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
+import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
   description:
     'Contact EasyMove Elite in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
   alternates: {
-    canonical: 'https://www.easymoveelite.com/contact',
+    canonical: 'https://easy-move-florida.com/contact',
   },
   openGraph: {
     title: 'Contact EasyMove Elite — South Florida Moving Company',
     description:
       'A real coordinator responds within hours. No automated systems. Call 786-305-1844 or fill out the form.',
-    url: 'https://www.easymoveelite.com/contact',
+    url: 'https://easy-move-florida.com/contact',
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,7 +48,7 @@ export default function ContactPage() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'radial-gradient(ellipse 60% 70% at 50% 100%, rgba(201,168,76,0.06), transparent 70%)' }}
           />
-          <div className="relative">
+          <AnimateIn className="relative">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Get in Touch</p>
             <h1 className="font-display text-3xl md:text-6xl font-bold text-white mb-4">
               Let&rsquo;s Plan Your Move
@@ -56,7 +57,7 @@ export default function ContactPage() {
               A real coordinator responds within hours — not an automated system.
               Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.
             </p>
-          </div>
+          </AnimateIn>
         </section>
 
         {/* Main content */}
@@ -65,10 +66,9 @@ export default function ContactPage() {
           <div className="relative container-max">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 xl:gap-14 items-start">
 
-              {/* Form column — elevated card */}
-              <div className="lg:col-span-3">
+              {/* Form column */}
+              <AnimateIn className="lg:col-span-3" direction="left">
                 <div className="bg-white border border-black/[0.05] shadow-[0_1px_4px_rgba(0,0,0,0.04),_0_8px_32px_rgba(0,0,0,0.08)]">
-                  {/* Gold accent top bar */}
                   <div className="h-0.5 bg-gradient-gold" />
                   <div className="p-8 md:p-10">
                     <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-2">Send a Message</p>
@@ -81,12 +81,11 @@ export default function ContactPage() {
                     <ContactForm />
                   </div>
                 </div>
-              </div>
+              </AnimateIn>
 
               {/* Info sidebar */}
-              <div className="lg:col-span-2 space-y-3">
-
-                {/* Primary — phone (dark, prominent) */}
+              <AnimateIn className="lg:col-span-2 space-y-3" direction="right" delay={0.15}>
+                {/* Phone */}
                 <div className="bg-charcoal relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
                   <div className="absolute inset-0 grain-overlay" />
@@ -163,8 +162,7 @@ export default function ContactPage() {
                     COI available on request for building and HOA management.
                   </p>
                 </div>
-
-              </div>
+              </AnimateIn>
             </div>
           </div>
         </section>

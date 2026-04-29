@@ -5,6 +5,7 @@ export interface CityData {
   county: string;
   heroHeadline: string;
   heroSub: string;
+  heroImage: string;
   metaTitle: string;
   metaDescription: string;
   intro: string;
@@ -21,6 +22,7 @@ export const CITIES: CityData[] = [
     county: 'Miami-Dade',
     heroHeadline: "Miami's White-Glove Moving Company",
     heroSub: 'Brickell · Coral Gables · Miami Beach · Coconut Grove',
+    heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Movers — EasyMove Elite | White-Glove Moving in Miami, FL',
     metaDescription:
       'Licensed & insured movers in Miami, FL. High-rise specialists serving Brickell, Coral Gables, Miami Beach & Coconut Grove. Founder-led, COI available. Call 786-305-1844.',
@@ -71,9 +73,10 @@ export const CITIES: CityData[] = [
     county: 'Broward',
     heroHeadline: "Fort Lauderdale's Trusted Moving Company",
     heroSub: 'Las Olas · Victoria Park · Wilton Manors · Plantation',
+    heroImage: '/images/Real/Fort-Lauderdale.jpg',
     metaTitle: 'Fort Lauderdale Movers — EasyMove Elite | Licensed & Insured',
     metaDescription:
-      'Professional movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Fully insured, founder-led. Call 786-305-1844.',
+      'Licensed & insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
     intro:
       "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. EasyMove Elite has served Broward County clients across every neighborhood — from Las Olas Boulevard high-rises to Plantation family homes — with the same crew, the same standards, and direct access to the founder.",
     neighborhoods: [
@@ -121,6 +124,7 @@ export const CITIES: CityData[] = [
     county: 'Palm Beach',
     heroHeadline: 'Boca Raton\'s Luxury Moving Specialists',
     heroSub: 'East Boca · Mizner Park · Boca West · Delray Beach',
+    heroImage: '/images/Real/Boca-Raton.jpg',
     metaTitle: 'Boca Raton Movers — EasyMove Elite | Luxury Moving Services',
     metaDescription:
       'Premium movers in Boca Raton & Palm Beach County. Estate and gated community specialists serving Boca West, Mizner Park & Delray Beach. Fully insured. Call 786-305-1844.',

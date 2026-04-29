@@ -7,16 +7,27 @@ const city = getCityData('miami-movers')!;
 export const metadata: Metadata = {
   title: city.metaTitle,
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easymoveelite.com/miami-movers' },
+  alternates: { canonical: 'https://easy-move-florida.com/miami-movers' },
   openGraph: {
+    type: 'website',
+    siteName: 'EasyMove Elite',
     title: city.metaTitle,
     description: city.metaDescription,
-    url: 'https://www.easymoveelite.com/miami-movers',
+    url: 'https://easy-move-florida.com/miami-movers',
+    images: [
+      {
+        url: 'https://easy-move-florida.com/images/Real/Miami.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'EasyMove Elite — Premium Movers in Miami, FL',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: city.metaTitle,
     description: city.metaDescription,
+    images: ['https://easy-move-florida.com/images/Real/Miami.jpg'],
   },
 };
 

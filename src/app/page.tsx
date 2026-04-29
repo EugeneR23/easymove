@@ -3,7 +3,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
 import StatsBar from '@/components/home/StatsBar';
-import HomepageCalculator from '@/components/home/HomepageCalculator';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import FounderBlock from '@/components/home/FounderBlock';
 import ServicesPreview from '@/components/home/ServicesPreview';
@@ -19,13 +18,13 @@ export const metadata: Metadata = {
   description:
     'South Florida\'s premier white-glove movers. Residential, high-rise, long-distance & fine art moves in Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led.',
   alternates: {
-    canonical: 'https://www.easymoveelite.com',
+    canonical: 'https://easy-move-florida.com',
   },
   openGraph: {
     title: 'EasyMove Elite — Premium Moving Company in South Florida',
     description:
       'Founder-led, fully insured white-glove movers in Miami, Fort Lauderdale & Boca Raton. Transparent pricing, no surprises.',
-    url: 'https://www.easymoveelite.com',
+    url: 'https://easy-move-florida.com',
   },
   twitter: {
     card: 'summary_large_image',
@@ -42,7 +41,6 @@ export default function HomePage() {
       <main className="pb-16 lg:pb-0">
         <HeroSection />
         <StatsBar />
-        <HomepageCalculator />
         <TestimonialsSection />
         <WhyChooseUs />
         <ServicesPreview />
