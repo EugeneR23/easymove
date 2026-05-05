@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import GoogleMapEmbed from '@/components/contact/GoogleMapEmbed';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 
@@ -89,6 +90,13 @@ export default function RuContactPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Embedded Google Map */}
+        <section className="bg-white pb-12">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <GoogleMapEmbed />
           </div>
         </section>
 
