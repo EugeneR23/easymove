@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   title: { absolute: 'Moving Services — EasyMove Elite South Florida' },
   description:
     'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Fully insured, transparent pricing.',
-  alternates: { canonical: 'https://easy-move-florida.com/services' },
+  alternates: { canonical: 'https://www.easy-move-florida.com/services' },
   openGraph: {
     title: 'Moving Services — EasyMove Elite South Florida',
     description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $376, long-distance nationwide.',
-    url: 'https://easy-move-florida.com/services',
+    url: 'https://www.easy-move-florida.com/services',
     images: [
       {
-        url: 'https://easy-move-florida.com/images/Real/9.jpg',
+        url: 'https://www.easy-move-florida.com/images/Real/9.jpg',
         width: 1200,
         height: 630,
         alt: 'Professional moving services in Miami, Fort Lauderdale & Boca Raton',

@@ -6,7 +6,7 @@
 - Name: **EasyMove Elite** (или EasyMove Elite LLC где требуется юр. лицо)
 - Phone: **+1 786-305-1844**
 - Address: **2130 Stirling Rd, Hollywood, FL 33020**
-- Website: **https://easy-move-florida.com**
+- Website: **https://www.easy-move-florida.com**
 - Email: **romanov@easy-move-florida.com**
 - Service area: **Miami-Dade, Broward, Palm Beach Counties**
 - Hours: **Mon-Sat 8:00-19:00, Sun closed**
@@ -147,7 +147,7 @@ Premium white-glove moving company serving Miami-Dade, Broward, and Palm Beach C
 ## Booking link
 **Edit profile → Online appointments / Booking link** → добавь:
 ```
-https://easy-move-florida.com/quote
+https://www.easy-move-florida.com/quote
 ```
 
 ---
@@ -267,7 +267,7 @@ https://businessconnect.apple.com/
 - Hollywood, FL
 - Coral Gables, FL
 
-**Website:** https://easy-move-florida.com
+**Website:** https://www.easy-move-florida.com
 
 **Email:** romanov@easy-move-florida.com
 
@@ -313,7 +313,7 @@ https://www.bingplaces.com/
 
 **Email:** romanov@easy-move-florida.com
 
-**Website:** https://easy-move-florida.com
+**Website:** https://www.easy-move-florida.com
 
 **Service area business** → ✅ да
 
@@ -373,7 +373,7 @@ EasyMove Elite — премиальная мувинговая компания 
 
 **Телефон:** +1 786-305-1844
 
-**Сайт:** https://easy-move-florida.com
+**Сайт:** https://www.easy-move-florida.com
 
 **Email:** romanov@easy-move-florida.com
 

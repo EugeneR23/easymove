@@ -44,14 +44,14 @@ I'm requesting an update to the business name on my Google Business Profile.
 **Requested new business name:** EasyMove Elite
 
 **Reason for the change:**
-The legal name of my LLC is **EasyMove Elite LLC**, registered in Florida in 2021. The website (https://easy-move-florida.com), all marketing materials, schema markup, signage, invoices, contracts, and Florida Department of State LLC registration use "EasyMove Elite" as the brand name. The current GBP listing under "Easy Move Florida" creates inconsistency in NAP (Name-Address-Phone) signals across the web, which is harming local search visibility and confusing customers.
+The legal name of my LLC is **EasyMove Elite LLC**, registered in Florida in 2021. The website (https://www.easy-move-florida.com), all marketing materials, schema markup, signage, invoices, contracts, and Florida Department of State LLC registration use "EasyMove Elite" as the brand name. The current GBP listing under "Easy Move Florida" creates inconsistency in NAP (Name-Address-Phone) signals across the web, which is harming local search visibility and confusing customers.
 
 This is not a rebrand — the legal entity name has always been EasyMove Elite LLC. The GBP listing was created with a different variant and I'd like to align it with the actual business name.
 
 **Documentation available on request:**
 - Florida LLC registration certificate (EasyMove Elite LLC, est. 2021)
 - EIN confirmation letter from IRS
-- Business website at https://easy-move-florida.com (consistently uses "EasyMove Elite")
+- Business website at https://www.easy-move-florida.com (consistently uses "EasyMove Elite")
 - Insurance certificate listing EasyMove Elite LLC as the named insured
 - Domain registration WHOIS for easy-move-florida.com
 

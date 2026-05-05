@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   description:
     'South Florida\'s premier white-glove movers. Residential, high-rise, long-distance & fine art moves in Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led.',
   alternates: {
-    canonical: 'https://easy-move-florida.com',
+    canonical: 'https://www.easy-move-florida.com',
   },
   openGraph: {
     title: 'EasyMove Elite — Premium Moving Company in South Florida',
     description:
       'Founder-led, fully insured white-glove movers in Miami, Fort Lauderdale & Boca Raton. Transparent pricing, no surprises.',
-    url: 'https://easy-move-florida.com',
+    url: 'https://www.easy-move-florida.com',
   },
   twitter: {
     card: 'summary_large_image',

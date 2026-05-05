@@ -6,7 +6,7 @@ import Footer from '@/components/layout/Footer';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Award, Users, Shield, MapPin, Phone } from 'lucide-react';
 
-const siteUrl = 'https://easy-move-florida.com';
+const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: { absolute: 'О нас — EasyMove Elite | Переезды в Майами и Южной Флориде' },

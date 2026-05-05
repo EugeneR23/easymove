@@ -7,7 +7,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield, Phone } from 'lucide-react';
 
-const siteUrl = 'https://easy-move-florida.com';
+const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: { absolute: 'Услуги переезда — EasyMove Elite | Майами и Южная Флорида' },

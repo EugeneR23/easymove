@@ -96,8 +96,8 @@ Premium white-glove moving company serving Miami-Dade, Broward, and Palm Beach C
 
 **7. Контакты.**
 - Phone: +1 786-305-1844 ✅
-- Website: https://easy-move-florida.com/ ✅ (matches non-www canonical)
-- ➕ Добавить **booking link** прямо в GBP: https://easy-move-florida.com/quote
+- Website: https://www.easy-move-florida.com/ ✅ (matches non-www canonical)
+- ➕ Добавить **booking link** прямо в GBP: https://www.easy-move-florida.com/quote
 - ➕ Добавить **messaging** (chat) — клиенты пишут прямо из Google
 
 **8. Атрибуты (важно для Map Pack):**

@@ -6,7 +6,7 @@ import GoogleMapEmbed from '@/components/contact/GoogleMapEmbed';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 
-const siteUrl = 'https://easy-move-florida.com';
+const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: { absolute: 'Контакты — EasyMove Elite | Переезды в Майами и Южной Флориде' },

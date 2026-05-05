@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-const siteUrl = 'https://easy-move-florida.com';
+const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: {

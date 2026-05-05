@@ -7,16 +7,16 @@ const city = getCityData('coconut-grove-movers')!;
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://easy-move-florida.com/coconut-grove-movers' },
+  alternates: { canonical: 'https://www.easy-move-florida.com/coconut-grove-movers' },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',
     title: { absolute: city.metaTitle },
     description: city.metaDescription,
-    url: 'https://easy-move-florida.com/coconut-grove-movers',
+    url: 'https://www.easy-move-florida.com/coconut-grove-movers',
     images: [
       {
-        url: `https://easy-move-florida.com${city.heroImage}`,
+        url: `https://www.easy-move-florida.com${city.heroImage}`,
         width: 1200,
         height: 630,
         alt: 'EasyMove Elite — Premium Movers in Coconut Grove, FL',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: { absolute: city.metaTitle },
     description: city.metaDescription,
-    images: [`https://easy-move-florida.com${city.heroImage}`],
+    images: [`https://www.easy-move-florida.com${city.heroImage}`],
   },
 };
 

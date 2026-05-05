@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     'Contact EasyMove Elite in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
   alternates: {
-    canonical: 'https://easy-move-florida.com/contact',
+    canonical: 'https://www.easy-move-florida.com/contact',
   },
   openGraph: {
     title: 'Contact EasyMove Elite — South Florida Moving Company',
     description:
       'A real coordinator responds within hours. No automated systems. Call 786-305-1844 or fill out the form.',
-    url: 'https://easy-move-florida.com/contact',
+    url: 'https://www.easy-move-florida.com/contact',
   },
   twitter: {
     card: 'summary_large_image',

@@ -35,7 +35,7 @@ export default function CityMoversPage({ city }: Props) {
     '@type': 'MovingCompany',
     name: 'EasyMove Elite',
     description: city.metaDescription,
-    url: `https://easy-move-florida.com/${city.slug}`,
+    url: `https://www.easy-move-florida.com/${city.slug}`,
     telephone: '+17863051844',
     email: 'romanov@easy-move-florida.com',
     areaServed: {
@@ -68,9 +68,9 @@ export default function CityMoversPage({ city }: Props) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easy-move-florida.com' },
-      { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://easy-move-florida.com/services' },
-      { '@type': 'ListItem', position: 3, name: `${city.name} Movers`, item: `https://easy-move-florida.com/${city.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.easy-move-florida.com' },
+      { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://www.easy-move-florida.com/services' },
+      { '@type': 'ListItem', position: 3, name: `${city.name} Movers`, item: `https://www.easy-move-florida.com/${city.slug}` },
     ],
   });
 

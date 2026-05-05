@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     'moving packers Miami',
     'home packing service Miami',
   ],
-  alternates: { canonical: 'https://easy-move-florida.com/packing-services' },
+  alternates: { canonical: 'https://www.easy-move-florida.com/packing-services' },
   openGraph: {
     title: 'Packing Services Miami & South Florida — EasyMove Elite',
     description:
       'Professional packing company in Miami, Fort Lauderdale & Boca Raton. Fully insured, experienced packers. From $237.',
-    url: 'https://easy-move-florida.com/packing-services',
+    url: 'https://www.easy-move-florida.com/packing-services',
   },
 };
 
@@ -39,7 +39,7 @@ const schemaJson = JSON.stringify({
     '@type': 'LocalBusiness',
     name: 'EasyMove Elite',
     telephone: '+17863051844',
-    url: 'https://easy-move-florida.com',
+    url: 'https://www.easy-move-florida.com',
     areaServed: 'Miami-Dade, Broward, Palm Beach Counties, Florida',
   },
   description:

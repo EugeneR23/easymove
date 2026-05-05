@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     'How EasyMove Elite collects, uses, and protects your personal information when you request a moving estimate or contact us.',
   robots: { index: false, follow: false },
   alternates: {
-    canonical: 'https://easy-move-florida.com/privacy',
+    canonical: 'https://www.easy-move-florida.com/privacy',
   },
 };
 
