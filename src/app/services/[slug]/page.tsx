@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { readOneService, readAllServices } from '@/lib/data/services';
+import { getServiceContent } from '@/lib/data/serviceContent';
 import { formatCurrency } from '@/lib/utils';
 import Button from '@/components/ui/Button';
 import * as LucideIcons from 'lucide-react';
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const description = `${tagline} — Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led. Free written estimate.`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: `https://easy-move-florida.com/services/${service.slug}`,
@@ -56,9 +57,81 @@ function DynamicIcon({ name, ...props }: { name: string; size?: number; classNam
 export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
   const service = readOneService(params.slug);
   if (!service) notFound();
+  const content = getServiceContent(service.slug);
+
+  const breadcrumbJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easy-move-florida.com' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://easy-move-florida.com/services' },
+      { '@type': 'ListItem', position: 3, name: service.name, item: `https://easy-move-florida.com/services/${service.slug}` },
+    ],
+  });
+
+  const serviceJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    serviceType: service.name,
+    provider: {
+      '@type': 'MovingCompany',
+      name: 'EasyMove Elite',
+      telephone: '+17863051844',
+      url: 'https://easy-move-florida.com',
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Miami' },
+      { '@type': 'City', name: 'Fort Lauderdale' },
+      { '@type': 'City', name: 'Boca Raton' },
+      { '@type': 'City', name: 'Aventura' },
+      { '@type': 'City', name: 'Coral Gables' },
+      { '@type': 'City', name: 'Sunny Isles Beach' },
+      { '@type': 'City', name: 'Hollywood' },
+      { '@type': 'City', name: 'Coconut Grove' },
+    ],
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: service.startingPrice,
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'USD',
+        price: service.startingPrice,
+        unitText: service.priceUnit,
+      },
+    },
+  });
+
+  const faqJson = content
+    ? JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: content.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.q,
+          acceptedAnswer: { '@type': 'Answer', text: faq.a },
+        })),
+      })
+    : null;
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJson }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serviceJson }}
+      />
+      {faqJson && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: faqJson }}
+        />
+      )}
       <Header />
       <main className="pt-20">
         {/* Hero */}
@@ -96,12 +169,95 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 ))}
               </div>
 
+              {/* Long-form intro: unique per service, ~150-300 words */}
+              {content && (
+                <div className="mb-12 space-y-5">
+                  {content.longIntro.map((para, i) => (
+                    <p key={i} className="text-gray-700 text-base leading-relaxed">{para}</p>
+                  ))}
+                </div>
+              )}
+
+              {/* Why us — service-specific reasoning */}
+              {content && content.whyUs.length > 0 && (
+                <div className="mb-12">
+                  <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">
+                    Why EasyMove Elite for {service.name}
+                  </h3>
+                  <div className="space-y-5">
+                    {content.whyUs.map((item) => (
+                      <div key={item.title} className="bg-white border border-gray-100 p-5">
+                        <p className="font-semibold text-charcoal text-sm mb-2">{item.title}</p>
+                        <p className="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Process steps */}
+              {content && content.process.length > 0 && (
+                <div className="mb-12">
+                  <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">How It Works</h3>
+                  <ol className="space-y-5">
+                    {content.process.map((step) => (
+                      <li key={step.step} className="flex gap-4">
+                        <span className="shrink-0 w-9 h-9 flex items-center justify-center bg-gold/10 border border-gold/30 text-gold font-bold text-sm">
+                          {step.step}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-charcoal text-sm mb-1">{step.title}</p>
+                          <p className="text-gray-600 text-sm leading-relaxed">{step.body}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {/* Pricing breakdown */}
+              {content && content.pricingBreakdown.length > 0 && (
+                <div className="mb-12 bg-cream border border-gold/20 p-6">
+                  <h3 className="font-display text-xl font-semibold text-charcoal mb-4">Pricing Breakdown</h3>
+                  <ul className="space-y-2">
+                    {content.pricingBreakdown.map((line) => (
+                      <li key={line} className="flex items-start gap-2 text-sm text-charcoal">
+                        <CheckCircle size={14} className="text-gold shrink-0 mt-0.5" />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* FAQs */}
+              {content && content.faqs.length > 0 && (
+                <div className="mb-12">
+                  <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">Common Questions</h3>
+                  <div className="divide-y divide-gray-200">
+                    {content.faqs.map((faq, i) => (
+                      <div key={i} className="py-5">
+                        <p className="font-semibold text-charcoal text-sm mb-2">{faq.q}</p>
+                        <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Local context */}
+              {content && (
+                <div className="mb-12 border-l-2 border-gold pl-5 italic">
+                  <p className="text-gray-600 text-sm leading-relaxed">{content.localContext}</p>
+                </div>
+              )}
+
               {/* Trust signals */}
               <div className="bg-charcoal p-8">
                 <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-6">Our Guarantee</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {[
-                    { title: 'Fully Insured', desc: 'Every move is covered. COI available for building management on request.' },
+                    { title: 'Licensed & Fully Insured', desc: 'Every move is covered. COI available for building management within 24 hours.' },
                     { title: 'Arrival Windows', desc: 'Two-hour arrival window. We call 30 min before. No all-day waiting.' },
                     { title: 'Transparent Pricing', desc: 'Written estimate before any work begins. No surprise fees on moving day.' },
                   ].map((g) => (

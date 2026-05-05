@@ -7,7 +7,7 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact EasyMove Elite — South Florida Moving Company',
+  title: { absolute: 'Contact EasyMove Elite — South Florida Moving Company' },
   description:
     'Contact EasyMove Elite in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
   alternates: {

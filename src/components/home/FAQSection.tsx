@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence, useInView } from 'motion/react';
+import { motion, useInView } from 'motion/react';
 import { Plus } from 'lucide-react';
 import { easeLuxury } from '@/lib/motion';
 
@@ -114,25 +114,29 @@ export default function FAQSection() {
                       </motion.span>
                     </button>
 
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          key="content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{
-                            height: { duration: 0.3, ease: easeLuxury },
-                            opacity: { duration: 0.2 },
-                          }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pb-5 pr-6">
-                            <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {/*
+                      SEO/GEO: answer text is always rendered in the DOM so Googlebot
+                      and AI search crawlers (ChatGPT, Perplexity, Claude) can read it
+                      without executing JS. Visual collapse is handled via animated
+                      max-height + opacity, not conditional render.
+                    */}
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        maxHeight: isOpen ? 600 : 0,
+                        opacity: isOpen ? 1 : 0,
+                      }}
+                      transition={{
+                        maxHeight: { duration: 0.3, ease: easeLuxury },
+                        opacity: { duration: 0.2 },
+                      }}
+                      className="overflow-hidden"
+                      aria-hidden={!isOpen}
+                    >
+                      <div className="pb-5 pr-6">
+                        <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+                      </div>
+                    </motion.div>
                   </div>
                 );
               })}

@@ -5,7 +5,7 @@ import { getCityData } from '@/lib/data/cities';
 const city = getCityData('fort-lauderdale-movers')!;
 
 export const metadata: Metadata = {
-  title: city.metaTitle,
+  title: { absolute: city.metaTitle },
   description: city.metaDescription,
   alternates: { canonical: 'https://easy-move-florida.com/fort-lauderdale-movers' },
   openGraph: {

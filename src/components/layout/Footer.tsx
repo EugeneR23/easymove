@@ -15,8 +15,13 @@ export default function Footer() {
               Professional, reliable movers serving Miami-Dade,
               Broward, and Palm Beach Counties since 2021.
             </p>
-            <p className="mt-3 text-xs text-gray-600">
-              Licensed &amp; Insured · COI Available on Request
+            <div className="mt-4 inline-flex items-center gap-2 border border-gold/40 bg-gold/5 px-3 py-1.5">
+              <span className="text-gold text-[10px] font-bold tracking-[0.2em] uppercase">
+                Licensed &amp; Fully Insured
+              </span>
+            </div>
+            <p className="mt-2 text-xs text-gray-600">
+              COI Available on Request · Within 24 Hours
             </p>
           </div>
 
@@ -47,9 +52,15 @@ export default function Footer() {
                 { href: '/about', label: 'About Us' },
                 { href: '/quote', label: 'Get a Quote' },
                 { href: '/contact', label: 'Contact' },
+                { href: '/blog', label: 'Resources & Guides' },
                 { href: '/miami-movers', label: 'Miami Movers' },
                 { href: '/fort-lauderdale-movers', label: 'Fort Lauderdale Movers' },
                 { href: '/boca-raton-movers', label: 'Boca Raton Movers' },
+                { href: '/aventura-movers', label: 'Aventura Movers' },
+                { href: '/coral-gables-movers', label: 'Coral Gables Movers' },
+                { href: '/sunny-isles-movers', label: 'Sunny Isles Movers' },
+                { href: '/hollywood-movers', label: 'Hollywood Movers' },
+                { href: '/coconut-grove-movers', label: 'Coconut Grove Movers' },
                 { href: '/packing-services', label: 'Packing Services' },
               ].map((l) => (
                 <li key={l.href}>
@@ -106,6 +117,26 @@ export default function Footer() {
               <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
             </div>
           </div>
+          <p className="text-center text-[10px] text-gray-600 mt-5">
+            Design by{' '}
+            <a
+              href="https://oriumstudios.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-gold transition-colors"
+            >
+              Orium Studios LLC
+            </a>
+            {' '}— Want a site like this?{' '}
+            <a
+              href="https://oriumstudios.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold/70 hover:text-gold transition-colors"
+            >
+              oriumstudios.com
+            </a>
+          </p>
         </div>
       </div>
     </footer>

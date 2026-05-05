@@ -7,7 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Shield, Clock, Phone, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Get a Free Moving Estimate in South Florida — EasyMove Elite',
+  title: { absolute: 'Get a Free Moving Estimate in South Florida — EasyMove Elite' },
   description:
     'Get a free moving estimate in under 2 minutes. A real coordinator confirms your final price — no automated guesswork. Miami, Fort Lauderdale & Boca Raton.',
   alternates: {

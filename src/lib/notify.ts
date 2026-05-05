@@ -22,13 +22,18 @@ const TG_CHAT   = process.env.TELEGRAM_CHAT_ID;
 /**
  * Send an email via Resend.
  * Throws on failure so the caller can surface the error.
+ *
+ * `to` defaults to NOTIFY_EMAIL (the owner's inbox) for internal notifications.
+ * Pass an explicit address (e.g. customer email for review requests) to override.
  */
-export async function sendEmail(subject: string, html: string): Promise<void> {
+export async function sendEmail(subject: string, html: string, to?: string): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.warn('[notify] RESEND_API_KEY not set — email skipped');
     return;
   }
+
+  const recipient = to ?? TO_EMAIL;
 
   if (FROM_EMAIL === 'onboarding@resend.dev') {
     console.warn('[notify] RESEND_FROM is using the default onboarding@resend.dev sender. ' +
@@ -36,12 +41,12 @@ export async function sendEmail(subject: string, html: string): Promise<void> {
       'Set RESEND_FROM to a verified domain address (e.g. noreply@easy-move-florida.com).');
   }
 
-  console.log(`[notify] Sending email via Resend: to=${TO_EMAIL} from=${FROM_EMAIL} subject="${subject}"`);
+  console.log(`[notify] Sending email via Resend: to=${recipient} from=${FROM_EMAIL} subject="${subject}"`);
 
   const resend = new Resend(apiKey);
   const { data, error } = await resend.emails.send({
     from: `EasyMove Elite <${FROM_EMAIL}>`,
-    to:   TO_EMAIL,
+    to:   recipient,
     subject,
     html,
   });

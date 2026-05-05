@@ -5,7 +5,7 @@ import { getCityData } from '@/lib/data/cities';
 const city = getCityData('miami-movers')!;
 
 export const metadata: Metadata = {
-  title: city.metaTitle,
+  title: { absolute: city.metaTitle },
   description: city.metaDescription,
   alternates: { canonical: 'https://easy-move-florida.com/miami-movers' },
   openGraph: {
