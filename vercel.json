@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.easy-move-florida.com" }],
-      "destination": "https://easy-move-florida.com/$1",
+      "has": [{ "type": "host", "value": "easy-move-florida.com" }],
+      "destination": "https://www.easy-move-florida.com/$1",
       "permanent": true
     }
   ]
