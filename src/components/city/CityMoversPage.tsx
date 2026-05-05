@@ -178,30 +178,45 @@ export default function CityMoversPage({ city }: Props) {
           </div>
         </section>
 
-        {/* ── Services ──────────────────────────────────────────────────── */}
+        {/* ── Services — 2-col asymmetric zig-zag (replaces generic 3-col card grid) ─── */}
         <section className="section-padding bg-cream">
-          <div className="container-max">
-            <div className="text-center mb-10">
+          <div className="container-max max-w-5xl">
+            <div className="mb-12 md:mb-16">
               <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">What We Offer</p>
-              <h2 className="font-display text-2xl md:text-4xl font-bold text-charcoal">
-                Moving Services in {city.name}
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal max-w-2xl leading-tight">
+                Every move in {city.name} we handle
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {SERVICES.map((s) => (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="group flex items-start gap-4 bg-white p-6 border border-gray-100 hover:border-gold/40 hover:shadow-card transition-all duration-200"
-                >
-                  <div className="w-1 h-1 rounded-full bg-gold mt-2.5 shrink-0 group-hover:scale-150 transition-transform" />
-                  <div>
-                    <p className="font-semibold text-charcoal text-sm mb-1 group-hover:text-gold transition-colors">{s.label}</p>
-                    <p className="text-gray-400 text-xs leading-snug">{s.desc}</p>
-                  </div>
-                  <ArrowRight size={13} className="text-gold/0 group-hover:text-gold/60 ml-auto shrink-0 mt-0.5 transition-colors" />
-                </Link>
-              ))}
+            {/*
+              Asymmetric 2-col zig-zag: even items align left, odd align right with a top
+              offset for visual rhythm. Avoids the "3 equal cards" AI-tell while still
+              showcasing all 6 services. On mobile collapses to single column with no offset.
+            */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16 gap-y-8 md:gap-y-12">
+              {SERVICES.map((s, i) => {
+                const offsetTop = i % 2 === 1 ? 'md:mt-16 lg:mt-24' : '';
+                return (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    className={`group block border-l-2 border-gold/30 hover:border-gold pl-6 md:pl-8 py-2 transition-all duration-300 ${offsetTop}`}
+                  >
+                    <p className="text-gold text-[10px] font-bold tracking-[0.25em] uppercase mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                      0{i + 1}
+                    </p>
+                    <h3 className="font-display text-2xl md:text-3xl font-bold text-charcoal mb-3 leading-tight group-hover:text-gold transition-colors duration-300">
+                      {s.label}
+                    </h3>
+                    <p className="text-gray-500 text-base leading-relaxed mb-4 max-w-md">
+                      {s.desc}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 text-charcoal text-xs font-semibold tracking-widest uppercase border-b border-charcoal/30 group-hover:border-gold group-hover:text-gold transition-colors duration-200 pb-0.5">
+                      Learn More
+                      <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>

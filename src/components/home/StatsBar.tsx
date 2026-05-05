@@ -19,14 +19,22 @@ function CountUp({ target, suffix = '', prefix = '', decimal = false }: {
   target: number; suffix?: string; prefix?: string; decimal?: boolean;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-20% 0px' });
+  // `margin: '0px'` so the trigger only fires when the element scrolls into the
+  // viewport for real, not on initial mount when above-fold sections are already
+  // technically "in view". This prevents the user seeing a flash of "0+" while
+  // the count animation runs. SSR fallback below also shows the real number.
+  const inView = useInView(ref, { once: true, margin: '0px' });
+  const formatted = prefix + (decimal ? target.toFixed(1) : target) + suffix;
 
   useEffect(() => {
     if (!inView) return;
     const node = ref.current;
     if (!node) return;
+    // Reset to 0 then animate up to target — only runs when the element
+    // genuinely enters the viewport via scroll, not on initial paint.
+    node.textContent = prefix + (decimal ? '0.0' : '0') + suffix;
     const controls = animate(0, target, {
-      duration: 2,
+      duration: 1.4,
       ease: [0.16, 1, 0.3, 1],
       onUpdate(v) {
         node.textContent = prefix + (decimal ? v.toFixed(1) : Math.round(v)) + suffix;
@@ -35,7 +43,9 @@ function CountUp({ target, suffix = '', prefix = '', decimal = false }: {
     return controls.stop;
   }, [inView, target, suffix, prefix, decimal]);
 
-  return <span ref={ref}>{prefix}0{suffix}</span>;
+  // Initial SSR + first-paint render shows the real target value, not "0".
+  // No-JS users see correct numbers; JS users see the count animation when scrolled into view.
+  return <span ref={ref}>{formatted}</span>;
 }
 
 export default function StatsBar() {
