@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { readAllServices } from '@/lib/data/services';
 import { getAllBlogPosts } from '@/lib/data/blog';
 
-const siteUrl = 'https://easy-move-florida.com';
+const siteUrl = 'https://www.easy-move-florida.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const services = readAllServices();

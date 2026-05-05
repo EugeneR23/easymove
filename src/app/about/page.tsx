@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description:
     'EasyMove Elite is a founder-led, fully insured moving company built in South Florida. Meet the crew behind every move in Miami, Fort Lauderdale & Boca Raton.',
   alternates: {
-    canonical: 'https://easy-move-florida.com/about',
+    canonical: 'https://www.easy-move-florida.com/about',
   },
   openGraph: {
     title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
     description:
       'Founder-led and crew-driven. Built for South Florida. Meet Eugene Romanov and the team behind EasyMove Elite.',
-    url: 'https://easy-move-florida.com/about',
+    url: 'https://www.easy-move-florida.com/about',
   },
   twitter: {
     card: 'summary_large_image',

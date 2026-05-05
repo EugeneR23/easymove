@@ -31,12 +31,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: { absolute: title },
     description,
     alternates: {
-      canonical: `https://easy-move-florida.com/services/${service.slug}`,
+      canonical: `https://www.easy-move-florida.com/services/${service.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://easy-move-florida.com/services/${service.slug}`,
+      url: `https://www.easy-move-florida.com/services/${service.slug}`,
       images: [{ url: service.imageUrl, alt: `${service.name} — EasyMove Elite South Florida` }],
     },
     twitter: {
@@ -63,9 +63,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easy-move-florida.com' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://easy-move-florida.com/services' },
-      { '@type': 'ListItem', position: 3, name: service.name, item: `https://easy-move-florida.com/services/${service.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.easy-move-florida.com' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.easy-move-florida.com/services' },
+      { '@type': 'ListItem', position: 3, name: service.name, item: `https://www.easy-move-florida.com/services/${service.slug}` },
     ],
   });
 
@@ -79,7 +79,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       '@type': 'MovingCompany',
       name: 'EasyMove Elite',
       telephone: '+17863051844',
-      url: 'https://easy-move-florida.com',
+      url: 'https://www.easy-move-florida.com',
     },
     areaServed: [
       { '@type': 'City', name: 'Miami' },

@@ -10,13 +10,13 @@ import { getAllBlogPosts } from '@/lib/data/blog';
 export const metadata: Metadata = {
   title: { absolute: 'Moving Resources & Guides — South Florida | EasyMove Elite' },
   description: 'Practical moving guides from a working South Florida mover: Brickell condo checklists, Miami pricing, COI requirements, and more. No fluff.',
-  alternates: { canonical: 'https://easy-move-florida.com/blog' },
+  alternates: { canonical: 'https://www.easy-move-florida.com/blog' },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',
     title: 'Moving Resources & Guides — South Florida | EasyMove Elite',
     description: 'Practical moving guides from a working South Florida mover.',
-    url: 'https://easy-move-florida.com/blog',
+    url: 'https://www.easy-move-florida.com/blog',
   },
 };
 
