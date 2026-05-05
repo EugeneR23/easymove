@@ -3,7 +3,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — EasyMove Elite',
+  title: { absolute: 'Terms of Service — EasyMove Elite' },
   description:
     'EasyMove Elite terms of service — estimates and pricing, payment, customer responsibilities, liability, and cancellation policies.',
   robots: { index: false, follow: false },

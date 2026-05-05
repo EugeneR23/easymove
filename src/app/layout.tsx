@@ -4,17 +4,18 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
+// SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
+// Headings use 400/600/700, body uses 400/500/700. Italics + extra weights dropped.
 const playfair = Playfair_Display({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400', '600', '700'],
   variable: '--font-playfair',
   display: 'swap',
 });
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '700'],
   variable: '--font-inter',
   display: 'swap',
 });
@@ -62,21 +63,12 @@ export const metadata: Metadata = {
     title: 'EasyMove Elite — Premium Movers in Miami, Fort Lauderdale & Boca Raton',
     description:
       'White-glove moving services across South Florida. Founder-led, fully insured, no surprise fees. Serving Miami-Dade, Broward, and Palm Beach Counties.',
-    images: [
-      {
-        url: '/images/Hero.png',
-        width: 1200,
-        height: 630,
-        alt: 'EasyMove Elite — Premium White-Glove Movers in South Florida',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'EasyMove Elite — Premium Movers in Miami & South Florida',
     description:
       'White-glove moving services across South Florida. Founder-led, fully insured, transparent pricing.',
-    images: ['/images/Hero.png'],
   },
   alternates: {
     canonical: siteUrl,
@@ -157,12 +149,98 @@ const localBusinessSchema = {
     name: 'Eugene Romanov',
     jobTitle: 'Founder & Owner',
   },
+  sameAs: [
+    'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
+    'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '22',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Moving Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Local Residential Moving',
+          description: '2-mover crew at $99/hr, 3-mover crew at $139/hr, 3-hour minimum. Truck fee from $79.',
+          areaServed: 'South Florida',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'High-Rise & Condo Moving',
+          description: 'COI within 24 hours, elevator reservation coordination, loading dock scheduling, building rules compliance.',
+          areaServed: ['Miami', 'Brickell', 'Aventura', 'Sunny Isles Beach', 'Fort Lauderdale'],
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Long-Distance Moving',
+          description: 'Nationwide moves from South Florida. Minimum $1,200. Dedicated truck and crew.',
+          areaServed: 'United States',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Fine Art & Specialty Moving',
+          description: 'Custom crating, climate-controlled transport, white-glove handling for art, antiques, and high-value items.',
+          areaServed: 'South Florida',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Office & Commercial Moving',
+          description: 'After-hours and weekend moves to minimize business downtime.',
+          areaServed: 'South Florida',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Packing Services',
+          description: 'Full-service or partial packing with quality materials. Materials included in estimate.',
+          areaServed: 'South Florida',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Storage Coordination',
+          description: 'Premium climate-controlled storage solutions across South Florida.',
+          areaServed: 'South Florida',
+        },
+      },
+    ],
+  },
+  knowsLanguage: ['en', 'ru'],
+  slogan: 'Premium White-Glove Moving in South Florida',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
+        {/* Hreflang — explicit tags (Next.js metadata API does not emit them reliably in this version) */}
+        <link rel="alternate" hrefLang="en" href={siteUrl} />
+        <link rel="alternate" hrefLang="ru" href={`${siteUrl}/ru`} />
+        <link rel="alternate" hrefLang="x-default" href={siteUrl} />
         {/* Preload hero image — critical LCP resource */}
         <link rel="preload" as="image" href="/images/Hero.png" />
         {/* Tawk.to live chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with values from tawk.to dashboard */}

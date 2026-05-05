@@ -16,9 +16,9 @@ const NAV_LINKS_EN = [
 
 const NAV_LINKS_RU = [
   { href: '/ru', label: 'Главная' },
-  { href: '/about', label: 'О нас' },
-  { href: '/services', label: 'Услуги' },
-  { href: '/contact', label: 'Контакты' },
+  { href: '/ru/about', label: 'О нас' },
+  { href: '/ru/services', label: 'Услуги' },
+  { href: '/ru/contact', label: 'Контакты' },
 ];
 
 export default function Header() {

@@ -12,12 +12,9 @@ export default function MobileStickyBar({ onQuotePage = false }: Props) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const threshold = onQuotePage ? 100 : 300;
-    const onScroll = () => setVisible(window.scrollY > threshold);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    // Check immediately in case page loaded scrolled
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    // Always visible on mobile — phone CTA is the #1 conversion path for movers.
+    // Local Pack data: 60%+ of "movers near me" searches convert via call, not form.
+    setVisible(true);
   }, [onQuotePage]);
 
   if (!visible) return null;

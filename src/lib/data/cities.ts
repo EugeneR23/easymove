@@ -168,6 +168,281 @@ export const CITIES: CityData[] = [
       },
     ],
   },
+  {
+    slug: 'aventura-movers',
+    name: 'Aventura',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: "Aventura's Premium Moving Company",
+    heroSub: 'Williams Island · Porto Vita · Turnberry · Hidden Bay',
+    heroImage: '/images/Real/4.png',
+    metaTitle: 'Aventura Movers — EasyMove Elite | High-Rise & Condo Moving',
+    metaDescription:
+      "Licensed & insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
+    intro:
+      "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. EasyMove Elite was built for buildings like Williams Island, Porto Vita, Turnberry Isle, and Hidden Bay — we know the dock managers by name and we issue building-compliant Certificates of Insurance within 24 hours. We also speak Russian, which matters in Aventura.",
+    neighborhoods: [
+      'Williams Island', 'Porto Vita', 'Turnberry Isle', 'Hidden Bay',
+      'Aventura Lakes', 'The Point', 'Hamptons South', 'Mystic Pointe',
+      'Marina Tower', 'Atlantic III', 'Bella Vista', 'Coronado',
+    ],
+    localFacts: [
+      {
+        title: 'Williams Island & Porto Vita Specialists',
+        body: "Williams Island and Porto Vita are our two most-served Aventura properties. We know the gate-house registration process, the loading dock locations behind each tower, and the building-specific COI templates. Your crew arrives knowing the building — not learning it on your time.",
+      },
+      {
+        title: 'Russian & English Crew',
+        body: "Aventura, Sunny Isles, and Bal Harbour have one of the largest Russian-speaking populations in South Florida. Our coordinator and most of our crew speak Russian fluently. If your building staff or HOA board prefers Russian — мы говорим по-русски.",
+      },
+      {
+        title: 'COI for Aventura Towers',
+        body: "Every Aventura high-rise has its own COI requirements — Williams Island wants $2M general liability, Porto Vita requires the building specifically named as additional insured, Turnberry has its own format. We've handled them all and we issue within 24 hours of confirmed booking.",
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move into and out of Williams Island?',
+        a: "Yes. Williams Island is one of our most common service locations. We're registered with the gate house and familiar with the loading dock, COI requirements ($2M general liability minimum), and elevator reservation process for all five towers.",
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes — наш координатор и большая часть бригады свободно говорит по-русски. Если вам или управлению здания удобнее по-русски — без проблем.',
+      },
+      {
+        q: 'How do you handle Aventura building elevator reservations?',
+        a: "Once your move date is confirmed, we contact your building management directly to reserve the freight elevator and loading dock window. We arrive within the reserved window — no late arrivals that would push you outside the building's permitted hours.",
+      },
+      {
+        q: 'Do you serve Bal Harbour and Bay Harbor Islands?',
+        a: 'Yes. Bal Harbour, Bay Harbor Islands, Surfside, and Sunny Isles Beach are all within our daily service area — same crew, same standards.',
+      },
+      {
+        q: 'Can you store items between move-out and move-in?',
+        a: "Yes. We coordinate climate-controlled storage when there's a gap between your move-out and move-in dates — common in Aventura when buildings have specific move-in days.",
+      },
+    ],
+  },
+  {
+    slug: 'coral-gables-movers',
+    name: 'Coral Gables',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: "Coral Gables's Trusted Moving Company",
+    heroSub: 'Gables Estates · Old Cutler · Cocoplum · Granada',
+    heroImage: '/images/Real/5.png',
+    metaTitle: 'Coral Gables Movers — EasyMove Elite | Estate & Historic Home Moving',
+    metaDescription:
+      'Licensed & insured movers in Coral Gables, FL. Specialists in historic homes, gated estates, and HOA-compliant moves. Serving Gables Estates, Cocoplum, Old Cutler. Call 786-305-1844.',
+    intro:
+      "Moving in Coral Gables is not the same as moving in Brickell. The streets are narrow, the trees are protected, the historic-preservation rules are real, and the HOAs in Cocoplum, Gables Estates, and Old Cutler are some of the strictest in South Florida. Most moving companies don't know what a Mediterranean Bonus is or why the Garden Club cares about your moving truck idling on Granada Boulevard. We do. EasyMove Elite handles Coral Gables estates, historic single-family homes, and Miracle Mile condos with the patience and protocol they require.",
+    neighborhoods: [
+      'Gables Estates', 'Cocoplum', 'Old Cutler', 'Granada',
+      'Hammock Lakes', 'Riviera', 'High Pines', 'Snapper Creek',
+      'Coral Gables Country Club', 'Coral Bay', 'Old Spanish Village', 'Miracle Mile',
+    ],
+    localFacts: [
+      {
+        title: 'Gated Estate Communities',
+        body: "Gables Estates, Cocoplum, Hammock Lakes, and Snapper Creek all require advance vehicle registration, certificate of insurance with the community named, and crew identification at the gate. We submit everything 48 hours before your move so there's no holdup at the gate house.",
+      },
+      {
+        title: 'Historic Home Specialists',
+        body: "Coral Gables's historic Mediterranean and Spanish-Colonial homes have narrow doorways, original tile floors, and built-in furniture that wasn't designed to be moved. We pad door frames, lay floor runners, and handle antique pieces with the protocol they deserve.",
+      },
+      {
+        title: 'HOA & Permit Compliance',
+        body: "Many Coral Gables neighborhoods restrict moving truck parking, idle times, and weekend hours. Our coordinator confirms restrictions for your address before scheduling and arranges any required permits — you don't need to navigate City Hall yourself.",
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move into Gables Estates and Cocoplum?',
+        a: "Yes. We're familiar with both communities — the gate procedures, COI requirements (typically $1M-$2M with the association named as additional insured), and approved move-in windows. We submit paperwork in advance so the gate clears your crew on arrival.",
+      },
+      {
+        q: 'Can you handle a historic Coral Gables home with original tile?',
+        a: "Yes. We protect original tile, terrazzo, and wood floors with breathable padding and runners, pad all door frames, and brief the crew specifically on the home's preservation requirements. We move museum-grade pieces — your antique pieces are in safe hands.",
+      },
+      {
+        q: 'Do you handle Coral Gables permit requirements for moving trucks?',
+        a: "Yes. Some Coral Gables streets restrict truck parking and require a permit from the City. We confirm requirements for your specific address and arrange permits in advance when needed.",
+      },
+      {
+        q: 'Do you serve Old Cutler and Pinecrest as well?',
+        a: 'Yes. Old Cutler, Pinecrest, Palmetto Bay, and South Miami are all within our daily service area.',
+      },
+      {
+        q: 'How do you protect a Steinway or other piano?',
+        a: 'Pianos are wrapped in moving blankets, secured to a piano dolly, and transported on a truck with air-ride suspension. Our crew is trained on upright, baby grand, and concert grand transport. We also coordinate with piano tuners post-move when requested.',
+      },
+    ],
+  },
+  {
+    slug: 'sunny-isles-movers',
+    name: 'Sunny Isles Beach',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: "Sunny Isles Beach's High-Rise Moving Specialists",
+    heroSub: 'Trump Towers · Acqualina · Jade Beach · Porsche Design Tower',
+    heroImage: '/images/Real/6.png',
+    metaTitle: 'Sunny Isles Movers — EasyMove Elite | Luxury High-Rise Moving',
+    metaDescription:
+      'Licensed & insured movers in Sunny Isles Beach. Trump Towers, Acqualina, Jade Beach & Porsche Design Tower specialists. Russian-speaking crew. COI within 24 hours. Call 786-305-1844.',
+    intro:
+      "Sunny Isles Beach is Miami's vertical city — a strip of oceanfront luxury towers where every move happens through a freight elevator on a fixed time window with a dock manager watching the clock. Trump Tower I, II, and III, Acqualina, Mansions at Acqualina, Jade Beach, Jade Ocean, Porsche Design Tower, Chateau Beach — we've worked them all. We know which buildings allow weekend moves, which require a $5M COI, and which want the crew in branded uniforms. We also speak Russian, which matters in this neighborhood.",
+    neighborhoods: [
+      'Trump Tower I', 'Trump Tower II', 'Trump Tower III', 'Acqualina',
+      'Mansions at Acqualina', 'Jade Beach', 'Jade Ocean', 'Porsche Design Tower',
+      'Chateau Beach', 'Regalia', 'Muse Sunny Isles', 'Estates at Acqualina',
+    ],
+    localFacts: [
+      {
+        title: 'Tower-Specific Move Protocols',
+        body: "Every oceanfront tower in Sunny Isles has its own protocol. Trump Towers require detailed advance scheduling and crew lists. Acqualina mandates specific COI language and insurance limits. Porsche Design Tower has a vehicle elevator that needs its own coordination. Our coordinator knows each building's process by heart.",
+      },
+      {
+        title: 'Russian-Speaking Coordination',
+        body: 'Sunny Isles has the largest concentration of Russian-speaking residents in South Florida. Our coordinator and crew speak Russian — мы спокойно работаем с русскоязычными клиентами и зданиями где удобнее общаться по-русски.',
+      },
+      {
+        title: 'White-Glove Standard',
+        body: "Sunny Isles residents expect — and pay for — white-glove service. Floor protection in every common area, padded blankets on every piece, photo inventory before transport, full insurance documentation. That's our default, not an upgrade.",
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move into Trump Tower I, II, or III?',
+        a: "Yes. All three Trump Towers are part of our regular service. We know the dock procedures, security check-in, COI templates, and elevator reservation process for each tower.",
+      },
+      {
+        q: 'Do you handle Acqualina and Mansions at Acqualina moves?',
+        a: "Yes. Both properties are familiar to our crew. Acqualina requires specific insurance limits and COI language addressed to the association — we handle the paperwork before your move date.",
+      },
+      {
+        q: 'Вы работаете на русском?',
+        a: 'Да. Координатор и большая часть бригады свободно говорят по-русски. Если вам или управлению здания удобнее общаться по-русски — без проблем.',
+      },
+      {
+        q: 'Can you move oversized items like artwork or sculpture?',
+        a: 'Yes. Fine art, sculpture, large mirrors, and oversized installations are handled as a dedicated service — custom crating, climate-controlled transport when needed, and specialized rigging for items that require it.',
+      },
+      {
+        q: 'Do you serve Bal Harbour and Surfside?',
+        a: 'Yes. Bal Harbour, Bay Harbor Islands, Surfside, and Indian Creek are all within our daily service area.',
+      },
+    ],
+  },
+  {
+    slug: 'hollywood-movers',
+    name: 'Hollywood',
+    state: 'FL',
+    county: 'Broward',
+    heroHeadline: "Hollywood's Trusted Local Moving Company",
+    heroSub: 'Hollywood Beach · Emerald Hills · Hillcrest · Lakes',
+    heroImage: '/images/Real/9.jpg',
+    metaTitle: 'Hollywood FL Movers — EasyMove Elite | Local & Long-Distance',
+    metaDescription:
+      'Licensed & insured movers in Hollywood, FL. Local & long-distance specialists serving Hollywood Beach, Emerald Hills, Hillcrest & all of Hollywood. Call 786-305-1844.',
+    intro:
+      "Hollywood, Florida sits between Fort Lauderdale and Miami — close enough to both that most moves here are short hops, but with its own neighborhoods, building rules, and traffic quirks. Whether you're moving to Hollywood Beach, Emerald Hills, the Lakes, or one of the historic single-family neighborhoods west of US-1, EasyMove Elite handles your move with the same standards we apply in Brickell and Aventura. We're based in Hollywood — this is our home.",
+    neighborhoods: [
+      'Hollywood Beach', 'Emerald Hills', 'Hillcrest', 'Hollywood Lakes',
+      'Oakwood Hills', 'Beverly Park', 'Park East', 'Park Side',
+      'Driftwood', 'Boulevard Heights', 'Royal Poinciana', 'Stirling',
+    ],
+    localFacts: [
+      {
+        title: 'Locally Based',
+        body: "EasyMove Elite is based in Hollywood. Our crews start their day here, our trucks are stored here, and many of our clients are our neighbors. That means faster response times, lower travel surcharges, and a real local presence — not a Miami company that sometimes drives north.",
+      },
+      {
+        title: 'Hollywood Beach Condo Experience',
+        body: "Hollywood Beach has dozens of condo buildings — from older oceanfront walk-ups to modern high-rises. We know the loading-dock-vs-front-entrance rules, COI requirements, and weekend move restrictions for most properties along the Boardwalk and A1A.",
+      },
+      {
+        title: 'Single-Family Home Moves',
+        body: "Emerald Hills, the Lakes, and Hollywood's historic neighborhoods have driveways, garages, and yard layouts that make full-house moves efficient. Our crew handles disassembly, padded loading, and reassembly — bed frames, dining tables, and entertainment units are put back together at destination.",
+      },
+    ],
+    faqs: [
+      {
+        q: 'How long does a Hollywood-to-Miami move take?',
+        a: 'A standard local move from Hollywood to Miami takes 4-6 hours total including loading, transport, and unloading. From Hollywood to Fort Lauderdale or Aventura is typically 3-5 hours. Our quote includes a written time estimate based on your specific addresses.',
+      },
+      {
+        q: 'Do you move on Hollywood Beach?',
+        a: 'Yes. Hollywood Beach is part of our daily service area. We coordinate parking and elevator access with your building management and arrive within the approved window.',
+      },
+      {
+        q: 'How much does a local move in Hollywood cost?',
+        a: "Local moves are billed hourly: $99/hr for 2 movers or $139/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $79. A typical 1-bedroom move in Hollywood runs $396-$496 total. You'll see the exact estimate before booking — no surprise fees on move day.",
+      },
+      {
+        q: 'Do you provide a COI for Hollywood condo buildings?',
+        a: 'Yes. We issue Certificates of Insurance within 24 hours of your confirmed move date — addressed to your building management exactly as required. Most Hollywood Beach buildings require $1M general liability minimum.',
+      },
+      {
+        q: 'Do you serve Hallandale Beach and Dania Beach?',
+        a: 'Yes. Hallandale Beach, Dania Beach, Davie, and Pembroke Pines are all within our regular service area.',
+      },
+    ],
+  },
+  {
+    slug: 'coconut-grove-movers',
+    name: 'Coconut Grove',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: "Coconut Grove's Local Moving Company",
+    heroSub: 'Center Grove · South Grove · Northeast Grove · Camp Biscayne',
+    heroImage: '/images/Real/10.png',
+    metaTitle: 'Coconut Grove Movers — EasyMove Elite | Historic Homes & High-Rises',
+    metaDescription:
+      'Licensed & insured movers in Coconut Grove, FL. Specialists in historic Grove homes, Park Grove, Grove at Grand Bay & all Coconut Grove buildings. Call 786-305-1844.',
+    intro:
+      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means knowing both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. EasyMove Elite handles both with the same standard.",
+    neighborhoods: [
+      'Center Grove', 'South Grove', 'Northeast Grove', 'Camp Biscayne',
+      'Park Grove', 'Grove at Grand Bay', 'One Park Grove', 'Grovenor House',
+      'CocoPlum (Grove)', 'Silver Bluff', 'The Moorings', 'Fair Isle',
+    ],
+    localFacts: [
+      {
+        title: 'Historic Grove Homes',
+        body: "Many Coconut Grove homes are original 1920s construction with narrow doorways, wood floors, and built-in features. We pad doorframes, lay floor runners on every walking surface, and brief the crew on protecting historic finishes. We also know which streets in Center Grove restrict moving truck access during certain hours.",
+      },
+      {
+        title: 'Park Grove & Bay Tower Specialists',
+        body: "Park Grove, One Park Grove, and Grove at Grand Bay all have specific COI requirements, freight elevator reservations, and loading dock windows. Our coordinator handles building paperwork before your move date so the crew arrives ready to work.",
+      },
+      {
+        title: 'Tree Canopy & Street Permit',
+        body: "Coconut Grove has strict tree-canopy protections — large trucks can't park under low branches in many residential blocks. We scout the address before scheduling, choose appropriate truck sizes, and arrange street permits when needed.",
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move into Park Grove and Grove at Grand Bay?',
+        a: "Yes. Both properties are part of our regular service. We know the COI requirements, freight elevator process, and dock manager preferences for both buildings.",
+      },
+      {
+        q: 'Can you handle a 1920s Coconut Grove home with narrow doorways?',
+        a: "Yes. We measure doorways and stairwells in advance, pre-disassemble large pieces that won't clear, and use floor protection on original wood and tile. We've moved into and out of historic Grove homes for years.",
+      },
+      {
+        q: 'Do Coconut Grove streets allow large moving trucks?',
+        a: "Some don't — particularly in Center Grove and Camp Biscayne where tree canopy is low and streets are narrow. We confirm truck size suitability for your specific address before scheduling and arrange a smaller shuttle vehicle if your block requires it.",
+      },
+      {
+        q: 'How does pricing work for a Coconut Grove move?',
+        a: "Local moves are hourly: $99/hr for 2 movers, $139/hr for 3 movers, 3-hour minimum, plus $79 truck fee. A typical 2-bedroom Grove home runs $625-$825. Estate-sized moves get a custom flat-rate estimate. No surprise fees.",
+      },
+      {
+        q: 'Do you serve Coral Gables and Brickell as well?',
+        a: 'Yes. Coral Gables, Brickell, Downtown Miami, and Key Biscayne are all within our daily service area.',
+      },
+    ],
+  },
 ];
 
 export function getCityData(slug: string): CityData | undefined {

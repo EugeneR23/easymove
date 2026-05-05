@@ -8,7 +8,7 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
+  title: { absolute: 'About EasyMove Elite — Founder-Led Movers in South Florida' },
   description:
     'EasyMove Elite is a founder-led, fully insured moving company built in South Florida. Meet the crew behind every move in Miami, Fort Lauderdale & Boca Raton.',
   alternates: {
@@ -228,8 +228,8 @@ export default function AboutPage() {
           <div className="relative container-max">
             <AnimateIn className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-center">
               {[
-                { label: 'Fully Insured', sub: 'Every move we take on' },
-                { label: 'COI on Request', sub: 'For building & HOA management' },
+                { label: 'Licensed & Fully Insured', sub: 'General liability & cargo insurance' },
+                { label: 'COI on Request', sub: 'Issued within 24 hours' },
                 { label: 'Experienced with High-Rises', sub: 'Condos, elevators & loading docks' },
                 { label: 'Founder-Led', sub: 'Eugene is involved in every move' },
               ].map((c) => (

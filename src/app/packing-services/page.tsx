@@ -7,7 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Packing Services Miami & South Florida — EasyMove Elite',
+  title: { absolute: 'Packing Services Miami & South Florida — EasyMove Elite' },
   description:
     'Professional packing company in Miami, Fort Lauderdale & Boca Raton. We pack your entire home or just the fragile items. Fully insured, experienced packers. From $237. Call 786-305-1844.',
   keywords: [

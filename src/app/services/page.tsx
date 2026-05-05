@@ -10,7 +10,7 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Moving Services — EasyMove Elite South Florida',
+  title: { absolute: 'Moving Services — EasyMove Elite South Florida' },
   description:
     'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Fully insured, transparent pricing.',
   alternates: { canonical: 'https://easy-move-florida.com/services' },

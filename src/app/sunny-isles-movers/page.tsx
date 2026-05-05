@@ -2,35 +2,35 @@ import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
 
-const city = getCityData('boca-raton-movers')!;
+const city = getCityData('sunny-isles-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://easy-move-florida.com/boca-raton-movers' },
+  alternates: { canonical: 'https://easy-move-florida.com/sunny-isles-movers' },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',
-    title: city.metaTitle,
+    title: { absolute: city.metaTitle },
     description: city.metaDescription,
-    url: 'https://easy-move-florida.com/boca-raton-movers',
+    url: 'https://easy-move-florida.com/sunny-isles-movers',
     images: [
       {
-        url: 'https://easy-move-florida.com/images/Real/Boca-Raton.jpg',
+        url: `https://easy-move-florida.com${city.heroImage}`,
         width: 1200,
         height: 630,
-        alt: 'EasyMove Elite — Luxury Movers in Boca Raton, FL',
+        alt: 'EasyMove Elite — Premium Movers in Sunny Isles Beach, FL',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: city.metaTitle,
+    title: { absolute: city.metaTitle },
     description: city.metaDescription,
-    images: ['https://easy-move-florida.com/images/Real/Boca-Raton.jpg'],
+    images: [`https://easy-move-florida.com${city.heroImage}`],
   },
 };
 
-export default function BocaRatonMoversPage() {
+export default function SunnyIslesMoversPage() {
   return <CityMoversPage city={city} />;
 }

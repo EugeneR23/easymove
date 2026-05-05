@@ -14,7 +14,7 @@ import FAQSection from '@/components/home/FAQSection';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 
 export const metadata: Metadata = {
-  title: 'EasyMove Elite — Premium Moving Company in South Florida',
+  title: { absolute: 'EasyMove Elite — Premium Moving Company in South Florida' },
   description:
     'South Florida\'s premier white-glove movers. Residential, high-rise, long-distance & fine art moves in Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led.',
   alternates: {

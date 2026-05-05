@@ -64,6 +64,16 @@ export default function CityMoversPage({ city }: Props) {
     })),
   });
 
+  const breadcrumbJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easy-move-florida.com' },
+      { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://easy-move-florida.com/services' },
+      { '@type': 'ListItem', position: 3, name: `${city.name} Movers`, item: `https://easy-move-florida.com/${city.slug}` },
+    ],
+  });
+
   return (
     <>
       <script
@@ -73,6 +83,10 @@ export default function CityMoversPage({ city }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqSchemaJson }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: breadcrumbJson }}
       />
       <Header />
       <main className="pt-20 pb-16 lg:pb-0">
