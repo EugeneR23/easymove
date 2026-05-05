@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
+import GoogleMapEmbed from '@/components/contact/GoogleMapEmbed';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
@@ -164,6 +165,15 @@ export default function ContactPage() {
                 </div>
               </AnimateIn>
             </div>
+          </div>
+        </section>
+
+        {/* Embedded Google Map — Local SEO signal + lets users open route to GBP */}
+        <section className="bg-cream pb-16 md:pb-20">
+          <div className="container-max">
+            <AnimateIn>
+              <GoogleMapEmbed />
+            </AnimateIn>
           </div>
         </section>
 
