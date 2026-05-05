@@ -10,8 +10,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', loading, className, children, disabled, ...props }, ref) => {
+    // `active:scale-[0.98]` provides tactile press feedback — physical-feeling
+    // micro-interaction that confirms the click registered (per Taste skill rule
+    // "On :active use scale-[0.98] to simulate a physical push").
     const base =
-      'relative overflow-hidden inline-flex items-center justify-center font-semibold rounded-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide uppercase text-xs';
+      'relative overflow-hidden inline-flex items-center justify-center font-semibold rounded-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide uppercase text-xs active:scale-[0.98] motion-reduce:active:scale-100';
 
     const variants = {
       primary:

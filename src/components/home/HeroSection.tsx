@@ -52,8 +52,10 @@ export default function HeroSection() {
 
   const quoteHref = `/quote${moveType ? `?type=${moveType}` : ''}${homeSize ? `&size=${homeSize}` : ''}${crew ? `&crew=${crew}` : ''}`;
 
+  // min-h-[100dvh] (not min-h-screen) prevents iOS Safari layout jump
+  // when the URL bar shows/hides. Critical for mobile hero sections.
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-charcoal">
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-charcoal">
       {/* Background */}
       <div className="absolute inset-0 animate-kenburns">
         <Image
