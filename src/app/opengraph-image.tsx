@@ -64,7 +64,7 @@ export default async function OpengraphImage() {
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px)',
+              'linear-gradient(to bottom, rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
             display: 'flex',
           }}
