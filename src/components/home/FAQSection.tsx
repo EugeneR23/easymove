@@ -8,36 +8,44 @@ import { easeLuxury } from '@/lib/motion';
 
 const FAQS = [
   {
-    q: 'How much does a local move cost in South Florida?',
-    a: "Local moves are billed hourly. Our rate is $99/hr for a 2-mover crew or $139/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $79 and varies by distance. A studio typically runs $376–$496; a 2-bedroom $525–$705 depending on access and distance. You'll see your exact estimate before booking.",
+    q: "What's actually included in the hourly rate?",
+    a: '2 movers (or 3) plus the truck, furniture pads, stretch wrap, and basic disassembly and reassembly. No fuel surcharge, no stairs fee, no heavy item fee unless explicitly quoted upfront for piano-style items.',
   },
   {
-    q: 'What areas do you serve?',
-    a: 'We serve all of Miami-Dade, Broward, and Palm Beach Counties — including Miami, Coral Gables, Brickell, Coconut Grove, Aventura, Sunny Isles Beach, Hollywood, Fort Lauderdale, Pompano Beach, Boca Raton, Delray Beach, Boynton Beach, and West Palm Beach. We also handle long-distance moves nationwide.',
+    q: 'What if the move runs longer than the estimate?',
+    a: 'Same hourly rate continues. No panic markup. If we see risk of going over while we are working, we tell you upfront so you can decide.',
   },
   {
-    q: 'Are you licensed and insured?',
-    a: 'Yes. EasyMove Elite is fully licensed and insured for every move we take on. We carry general liability and cargo insurance. A Certificate of Insurance (COI) naming your building or HOA is available on request — typically issued within 24 hours.',
+    q: 'COI for my building?',
+    a: 'Yes. Send us the building name and management contact. We send the Certificate of Insurance naming the building as additional insured 24 hours before move-day. No charge.',
   },
   {
-    q: 'Do you provide a COI for my condo building?',
-    a: 'Absolutely. Most South Florida condo buildings require a COI before allowing any moving company to operate in the building. We issue COIs within 24 hours of your request, with the building named as additional insured. Just let your coordinator know the building requirements.',
+    q: 'Insurance for damage?',
+    a: 'Standard coverage is included. Upgraded coverage is available for high-value items (art, antiques, electronics) and is disclosed upfront in the estimate.',
   },
   {
-    q: 'How far in advance do I need to book?',
-    a: "We recommend booking 5–10 days in advance for weekend moves, and 2–5 days for weekday moves. That said, we often have same-week availability — call or get a quote online and we'll let you know what's open. Last-minute moves are handled when scheduling allows.",
+    q: 'Last-minute booking?',
+    a: 'Often yes. Send us what and when via WhatsApp — we check availability and reply within 30 minutes during business hours.',
   },
   {
-    q: 'What if something gets damaged during my move?',
-    a: 'We handle everything with care — every item is wrapped, padded, and secured. In the rare event of damage, we are fully insured and will make it right. Our coordinator documents the move and is reachable throughout the entire process. We have completed 500+ moves with an exceptional damage-free record.',
+    q: 'Russian-speaking crew?',
+    a: 'Yes. Crew leader or dispatcher communicates in Russian. If you need a fully Russian-speaking crew, ask and we confirm availability for your specific date.',
   },
   {
-    q: 'Do you disassemble and reassemble furniture?',
-    a: "Yes. Basic disassembly and reassembly (bed frames, desks, dining tables) is included at no extra charge. For complex items — murphy beds, modular wall units, heavy safes — we'll note it in your estimate. You won't have a truck full of parts and no help putting things back together.",
+    q: 'Long-distance moves?',
+    a: 'Custom estimate based on miles, weight, and complexity. Send origin, destination, and inventory list. Written estimate back to you within 24 hours.',
   },
   {
-    q: 'What is your cancellation policy?',
-    a: "We understand plans change. Cancellations made more than 48 hours before your scheduled move are always free. Last-minute cancellations are handled case by case — just call us and we'll work something out. We don't charge deposits, so there's nothing at risk when you get a quote.",
+    q: 'Handyman work alongside the move?',
+    a: 'Yes — TV mounting, furniture assembly, picture hanging, small fixes. Bundle with a move and the handyman portion is discounted. We do not do licensed plumbing or electrical.',
+  },
+  {
+    q: 'Tip expected?',
+    a: 'Optional. 15–20% is standard if you are happy with the service. Not required.',
+  },
+  {
+    q: 'Cancellation policy?',
+    a: 'Free cancellation 48+ hours ahead. Inside 48 hours, depends on already-allocated crew time — we work with you on a case-by-case basis. No deposits.',
   },
 ];
 
@@ -79,7 +87,7 @@ export default function FAQSection() {
                     href="/quote"
                     className="text-gold text-sm font-semibold underline-offset-2 hover:underline"
                   >
-                    Or get a FREE estimate →
+                    Or calculate my move →
                   </Link>
                 </div>
               </div>
@@ -153,7 +161,7 @@ export default function FAQSection() {
                   href="/quote"
                   className="flex-1 flex items-center justify-center gap-2 bg-gold text-white text-sm font-bold px-5 py-3 hover:bg-gold/90 transition-colors"
                 >
-                  Get a FREE Estimate
+                  Calculate My Move
                 </Link>
               </div>
             </motion.div>

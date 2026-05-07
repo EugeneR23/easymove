@@ -4,8 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import { whatsappUrl } from '@/lib/utils';
 
 const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
@@ -53,7 +54,7 @@ export default function Header() {
           {/* Logo */}
           <Link href={isRu ? '/ru' : '/'} className="flex items-center gap-2">
             <span className={cn('font-display text-2xl font-bold tracking-tight transition-colors', textColor)}>
-              EasyMove<span className="text-gold">Elite</span>
+              Easy Move <span className="text-gold">Florida</span>
             </span>
           </Link>
 
@@ -82,6 +83,18 @@ export default function Header() {
               {langSwitch.label}
             </Link>
 
+            {/* WhatsApp */}
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-1.5 text-sm text-white/70 hover:text-gold transition-colors"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle size={13} className="text-gold" />
+              WhatsApp
+            </a>
+
             {/* Phone */}
             <a
               href="tel:+17863051844"
@@ -93,7 +106,7 @@ export default function Header() {
 
             <Link href="/quote">
               <Button size="sm" variant="primary">
-                {isRu ? 'Расчёт' : 'Get a FREE Quote'}
+                {isRu ? 'Рассчитать' : 'Calculate My Move'}
               </Button>
             </Link>
           </nav>
@@ -149,12 +162,15 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
+              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 py-2" onClick={() => setMenuOpen(false)}>
+                <MessageCircle size={14} className="text-gold" /> WhatsApp Us
+              </a>
               <a href="tel:+17863051844" className="flex items-center gap-2 text-white/80 py-2" onClick={() => setMenuOpen(false)}>
                 <Phone size={14} className="text-gold" /> 786-305-1844
               </a>
               <Link href="/quote" onClick={() => setMenuOpen(false)}>
                 <Button size="md" variant="primary" className="w-full mt-2">
-                  {isRu ? 'Бесплатный расчёт' : 'Get a FREE Quote'}
+                  {isRu ? 'Рассчитать переезд' : 'Calculate My Move'}
                 </Button>
               </Link>
             </div>

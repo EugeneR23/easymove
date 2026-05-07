@@ -2,35 +2,35 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/home/HeroSection';
-import StatsBar from '@/components/home/StatsBar';
-import WhyChooseUs from '@/components/home/WhyChooseUs';
-import FounderBlock from '@/components/home/FounderBlock';
+import PricingTransparency from '@/components/home/PricingTransparency';
 import ServicesPreview from '@/components/home/ServicesPreview';
-import ProcessSection from '@/components/home/ProcessSection';
+import WhyChooseUs from '@/components/home/WhyChooseUs';
+import BuildingHOASection from '@/components/home/BuildingHOASection';
+import ServiceAreasSection from '@/components/home/ServiceAreasSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
-import WorkGallery from '@/components/home/WorkGallery';
-import CTABanner from '@/components/home/CTABanner';
 import FAQSection from '@/components/home/FAQSection';
+import FounderBlock from '@/components/home/FounderBlock';
+import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 
 export const metadata: Metadata = {
-  title: { absolute: 'EasyMove Elite — Premium Moving Company in South Florida' },
+  title: { absolute: 'Easy Move Florida — Local Moving & Small Handyman in South Florida' },
   description:
-    'South Florida\'s premier white-glove movers. Residential, high-rise, long-distance & fine art moves in Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led.',
+    'Local moving and small handyman across Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, and Miami. From $99/hr with 3-hour minimum. Owner-led, transparent pricing, building/HOA fluent. Russian + English.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com',
   },
   openGraph: {
-    title: 'EasyMove Elite — Premium Moving Company in South Florida',
+    title: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
     description:
-      'Founder-led, fully insured white-glove movers in Miami, Fort Lauderdale & Boca Raton. Transparent pricing, no surprises.',
+      'Owner-led local movers in South Florida. Transparent hourly pricing from $99/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
     url: 'https://www.easy-move-florida.com',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EasyMove Elite — Premium Moving Company in South Florida',
+    title: 'Easy Move Florida — Local Moving & Small Handyman',
     description:
-      'White-glove movers in Miami, Fort Lauderdale & Boca Raton. Founder-led, fully insured, no surprise fees.',
+      'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
   },
 };
 
@@ -40,14 +40,14 @@ export default function HomePage() {
       <Header />
       <main className="pb-16 lg:pb-0">
         <HeroSection />
-        <StatsBar />
-        <TestimonialsSection />
-        <WhyChooseUs />
+        <PricingTransparency />
         <ServicesPreview />
-        <FounderBlock />
-        <WorkGallery />
-        <ProcessSection />
+        <WhyChooseUs />
+        <BuildingHOASection />
+        <ServiceAreasSection />
+        <TestimonialsSection />
         <FAQSection />
+        <FounderBlock />
         <CTABanner />
       </main>
       <Footer />

@@ -25,31 +25,30 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'EasyMove Elite — Premium Movers in Miami, Fort Lauderdale & Boca Raton',
-    template: '%s | EasyMove Elite',
+    default: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
+    template: '%s | Easy Move Florida',
   },
   description:
-    'Premium white-glove movers in Miami, Fort Lauderdale & Boca Raton. Founder-led, fully insured, no surprise fees. Residential, high-rise, long-distance & specialty moves.',
+    'Local moving and small handyman across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. From $99/hr with 3-hour minimum. Owner-led, transparent pricing, building/HOA fluent. Russian + English.',
   keywords: [
-    'movers Miami',
-    'moving company Miami',
-    'white glove movers South Florida',
-    'luxury moving company Miami',
-    'high-rise movers Miami',
-    'condo movers Miami',
-    'long distance movers Florida',
+    'movers Hollywood FL',
+    'moving company South Florida',
+    'Aventura movers',
+    'Sunny Isles movers',
+    'Hallandale movers',
     'Fort Lauderdale movers',
+    'Miami movers',
     'Boca Raton movers',
-    'Broward County moving company',
-    'Palm Beach County movers',
-    'premium moving company South Florida',
-    'fine art movers Miami',
-    'office movers Miami',
-    'fully insured movers Florida',
+    'Russian movers Miami',
+    'small handyman South Florida',
+    'TV mounting Hollywood FL',
+    'apartment movers South Florida',
+    'COI movers Miami',
+    'hourly movers Florida',
   ],
-  authors: [{ name: 'EasyMove Elite' }],
-  creator: 'EasyMove Elite',
-  publisher: 'EasyMove Elite',
+  authors: [{ name: 'Easy Move Florida' }],
+  creator: 'Easy Move Florida',
+  publisher: 'Easy Move Florida',
   robots: {
     index: true,
     follow: true,
@@ -58,17 +57,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'EasyMove Elite',
+    siteName: 'Easy Move Florida',
     url: siteUrl,
-    title: 'EasyMove Elite — Premium Movers in Miami, Fort Lauderdale & Boca Raton',
+    title: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
     description:
-      'White-glove moving services across South Florida. Founder-led, fully insured, no surprise fees. Serving Miami-Dade, Broward, and Palm Beach Counties.',
+      'Owner-led local movers across South Florida. Transparent hourly pricing from $99/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EasyMove Elite — Premium Movers in Miami & South Florida',
+    title: 'Easy Move Florida — Local Moving & Small Handyman',
     description:
-      'White-glove moving services across South Florida. Founder-led, fully insured, transparent pricing.',
+      'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
   },
   alternates: {
     canonical: siteUrl,
@@ -82,11 +81,11 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['MovingCompany', 'LocalBusiness'],
-  name: 'EasyMove Elite',
+  name: 'Easy Move Florida',
   url: siteUrl,
   image: `${siteUrl}/images/Hero.png`,
   description:
-    'Premium white-glove moving company serving Miami-Dade, Broward, and Palm Beach Counties. Residential, high-rise, long-distance, fine art, office, and storage services.',
+    'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, building/HOA fluent.',
   telephone: '+17863051844',
   email: 'romanov@easy-move-florida.com',
   address: {
@@ -133,20 +132,21 @@ const localBusinessSchema = {
     contactOption: 'TollFree',
   },
   serviceType: [
-    'Residential Moving',
-    'High-Rise Moving',
-    'Condo Moving',
+    'Local Residential Moving',
+    'Apartment Moving',
+    'House Moving',
+    'Office Moving (Small)',
     'Long-Distance Moving',
-    'International Moving',
-    'Office Moving',
-    'Fine Art Moving',
-    'Storage Coordination',
+    'Packing Services',
+    'Furniture Disassembly and Reassembly',
+    'Heavy Item Handling',
+    'Small Handyman Services',
   ],
-  priceRange: '$$$',
+  priceRange: '$$',
   foundingDate: '2021',
   founder: {
     '@type': 'Person',
-    name: 'Eugene Romanov',
+    name: 'Evgenii Romanov',
     jobTitle: 'Founder & Owner',
   },
   sameAs: [
@@ -155,21 +155,21 @@ const localBusinessSchema = {
   ],
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '22',
+    ratingValue: '5.0',
+    reviewCount: '32',
     bestRating: '5',
     worstRating: '1',
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Moving Services',
+    name: 'Moving and Handyman Services',
     itemListElement: [
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
           name: 'Local Residential Moving',
-          description: '2-mover crew at $99/hr, 3-mover crew at $139/hr, 3-hour minimum. Truck fee from $79.',
+          description: '2-mover crew from $99/hr, 3-mover crew from $139/hr, 3-hour minimum. Truck fee from $79. Furniture pads, stretch wrap, and basic disassembly included.',
           areaServed: 'South Florida',
         },
       },
@@ -177,9 +177,9 @@ const localBusinessSchema = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'High-Rise & Condo Moving',
-          description: 'COI within 24 hours, elevator reservation coordination, loading dock scheduling, building rules compliance.',
-          areaServed: ['Miami', 'Brickell', 'Aventura', 'Sunny Isles Beach', 'Fort Lauderdale'],
+          name: 'Building / HOA / COI coordination',
+          description: 'Certificate of Insurance within 24 hours, elevator reservations, parking permits, freight elevator scheduling.',
+          areaServed: ['Hollywood', 'Aventura', 'Sunny Isles Beach', 'Hallandale', 'Fort Lauderdale', 'Miami'],
         },
       },
       {
@@ -187,7 +187,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Long-Distance Moving',
-          description: 'Nationwide moves from South Florida. Minimum $1,200. Dedicated truck and crew.',
+          description: 'Custom estimate based on miles, weight, and complexity. Written estimate within 24 hours.',
           areaServed: 'United States',
         },
       },
@@ -195,26 +195,8 @@ const localBusinessSchema = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Fine Art & Specialty Moving',
-          description: 'Custom crating, climate-controlled transport, white-glove handling for art, antiques, and high-value items.',
-          areaServed: 'South Florida',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Office & Commercial Moving',
-          description: 'After-hours and weekend moves to minimize business downtime.',
-          areaServed: 'South Florida',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
           name: 'Packing Services',
-          description: 'Full-service or partial packing with quality materials. Materials included in estimate.',
+          description: 'Full or partial packing, materials supplied, unpack at destination.',
           areaServed: 'South Florida',
         },
       },
@@ -222,15 +204,15 @@ const localBusinessSchema = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Storage Coordination',
-          description: 'Premium climate-controlled storage solutions across South Florida.',
+          name: 'Small Handyman Services',
+          description: 'TV mounting, picture hanging, IKEA furniture assembly, curtain rods, shelving, small fixes. Bundle with a move and the handyman portion is discounted. Not licensed plumbing or electrical.',
           areaServed: 'South Florida',
         },
       },
     ],
   },
   knowsLanguage: ['en', 'ru'],
-  slogan: 'Premium White-Glove Moving in South Florida',
+  slogan: 'Local moving and small handyman in South Florida',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
