@@ -1,11 +1,11 @@
 import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 
 // ─── Rate Tables ──────────────────────────────────────────────────────────────
-const HOURLY_RATE: Record<CrewSize, number>         = { 2: 99, 3: 139 };
+export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 99, 3: 139 };
+export const MIN_HOURS = 3;
 const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119 };
 const TRUCK_BASE = 79;
 const TRUCK_MAX: Record<CrewSize, number>            = { 2: 99, 3: 139 };
-const MIN_HOURS = 3;
 
 // ─── South Florida city coordinates ──────────────────────────────────────────
 // [miles_north, miles_east] from a reference point near Homestead

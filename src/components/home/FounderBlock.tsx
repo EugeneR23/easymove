@@ -8,10 +8,10 @@ import { ArrowRight, Phone } from 'lucide-react';
 import { easeLuxury, containerVariants, wordVariants } from '@/lib/motion';
 
 const commitments = [
-  'No subcontractors — same trained crew, start to finish',
-  'COI issued within 24 hours of your request',
-  'Every crew briefed on your building before arrival',
-  'Founder reachable by phone throughout your move',
+  'Honest hourly pricing — no surprise charges on move day',
+  'COI sent 24 hours before move day, no charge',
+  'Russian and English — your choice of language',
+  'WhatsApp goes to me directly when you ask for the owner',
 ];
 
 export default function FounderBlock() {
@@ -35,7 +35,7 @@ export default function FounderBlock() {
             <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-gold/30">
               <Image
                 src="/images/founder.jpg"
-                alt="Eugene Romanov, Founder of EasyMove Elite"
+                alt="Evgenii Romanov, founder of Easy Move Florida"
                 fill
                 sizes="80px"
                 className="object-cover object-[center_20%]"
@@ -61,7 +61,7 @@ export default function FounderBlock() {
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
             className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4"
           >
-            Founder&apos;s Commitment
+            Who&rsquo;s running this
           </motion.p>
 
           {/* Quote — word reveal */}
@@ -71,9 +71,9 @@ export default function FounderBlock() {
             animate={inView ? 'visible' : 'hidden'}
             className="font-display text-2xl md:text-3xl font-bold text-white leading-tight mb-5"
           >
-            {['&ldquo;We', 'stay', 'small', 'so', 'your', 'move', 'stays', 'right.&rdquo;'].map((word, i) => (
+            {['Hi,', "I'm", 'Evgenii', 'Romanov.'].map((word, i) => (
               <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
-                {word === '&ldquo;We' ? '“We' : word === 'right.&rdquo;' ? 'right.”' : word}
+                {word}
               </motion.span>
             ))}
           </motion.h2>
@@ -84,9 +84,10 @@ export default function FounderBlock() {
             transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
             className="text-gray-400 text-sm leading-relaxed mb-8 max-w-xl mx-auto"
           >
-            Most moving companies grow by taking more jobs and sending whoever is available.
-            We grow by doing fewer moves exceptionally well. Every client gets a coordinator.
-            Every crew knows the building. Every move is one we&rsquo;re willing to put our name on.
+            I run Easy Move Florida out of Hollywood. I started this because I kept seeing the same problems —
+            late crews, surprise charges, broken items, language mismatches with building managers. Built it to fix that.
+            Crew is small and accountable. Pricing is honest. WhatsApp goes to me directly when you ask for the owner.
+            Russian + English. Hollywood-based, working all of South Florida.
           </motion.p>
 
           {/* Commitments grid */}
@@ -112,7 +113,7 @@ export default function FounderBlock() {
             transition={{ duration: 0.5, delay: 1.0, ease: 'easeOut' }}
           >
             <p className="text-gold/60 text-sm font-semibold mb-5">
-              &mdash; Eugene Romanov, Founder &amp; Owner
+              Evgenii Romanov &middot; Founder &amp; Owner &middot; Hollywood, FL
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/about">

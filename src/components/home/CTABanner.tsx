@@ -4,8 +4,9 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { motion, useInView } from 'motion/react';
-import { Phone } from 'lucide-react';
+import { Phone, MessageCircle } from 'lucide-react';
 import { easeLuxury } from '@/lib/motion';
+import { whatsappUrl } from '@/lib/utils';
 
 export default function CTABanner() {
   const ref = useRef(null);
@@ -59,7 +60,7 @@ export default function CTABanner() {
           transition={{ duration: 0.6, delay: 0.2, ease: easeLuxury }}
           className="font-display text-3xl md:text-5xl font-bold text-white mb-5 leading-tight"
         >
-          Get a FREE Written Quote<br className="hidden sm:block" /> in 2 Minutes
+          Ready to move?
         </motion.h2>
 
         <motion.p
@@ -68,8 +69,7 @@ export default function CTABanner() {
           transition={{ duration: 0.5, delay: 0.35, ease: 'easeOut' }}
           className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed"
         >
-          500+ moves completed across South Florida. A real coordinator — not an algorithm —
-          calls you back within 2 hours to confirm everything. Licensed, insured, no surprises.
+          Send photos via WhatsApp, get an estimate in 5 minutes, book same week. Or run the calculator now and lock your rate.
         </motion.p>
 
         <motion.div
@@ -81,12 +81,23 @@ export default function CTABanner() {
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
             <Link href="/quote">
               <Button size="lg" variant="primary" className="w-full sm:w-auto min-w-[220px] shadow-[0_0_32px_rgba(201,168,76,0.2)] hover:shadow-[0_0_48px_rgba(201,168,76,0.3)]">
-                Get My FREE Estimate
+                Calculate My Move
               </Button>
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
-            <Link href="tel:7863051844">
+            <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                className="border border-white/20 bg-transparent text-white hover:bg-white/[0.06] hover:border-white/35 w-full sm:w-auto min-w-[220px] inline-flex items-center gap-2 justify-center transition-all duration-200"
+              >
+                <MessageCircle size={16} />
+                WhatsApp Us
+              </Button>
+            </a>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
+            <a href="tel:+17863051844">
               <Button
                 size="lg"
                 className="border border-white/20 bg-transparent text-white hover:bg-white/[0.06] hover:border-white/35 w-full sm:w-auto min-w-[220px] inline-flex items-center gap-2 justify-center transition-all duration-200"
@@ -94,7 +105,7 @@ export default function CTABanner() {
                 <Phone size={16} />
                 786-305-1844
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </motion.div>
 
@@ -104,13 +115,13 @@ export default function CTABanner() {
           transition={{ duration: 0.5, delay: 0.7, ease: 'easeOut' }}
           className="flex items-center justify-center gap-4 mt-8 flex-wrap"
         >
-          <span className="text-white/45 text-xs">No obligation</span>
+          <span className="text-white/45 text-xs">Owner-led</span>
           <span className="w-px h-3 bg-white/15" />
-          <span className="text-white/45 text-xs">Fully insured</span>
+          <span className="text-white/45 text-xs">COI on request</span>
           <span className="w-px h-3 bg-white/15" />
-          <span className="text-white/45 text-xs">COI available</span>
+          <span className="text-white/45 text-xs">Russian + English</span>
           <span className="w-px h-3 bg-white/15" />
-          <span className="text-white/45 text-xs">South Florida team</span>
+          <span className="text-white/45 text-xs">Hollywood-based</span>
         </motion.div>
       </div>
     </section>

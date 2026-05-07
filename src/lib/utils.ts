@@ -33,3 +33,11 @@ export function formatDateShort(iso: string): string {
 export function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2);
 }
+
+export const PHONE_E164 = '+17863051844';
+export const PHONE_DISPLAY = '786-305-1844';
+export const WHATSAPP_NUMBER = '17863051844';
+
+export function whatsappUrl(message = "Hi, I'd like a moving quote"): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}

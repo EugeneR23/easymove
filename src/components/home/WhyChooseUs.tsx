@@ -3,51 +3,51 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'motion/react';
-import { Shield, Building2, Clock, FileText, Package, Headphones, ArrowRight } from 'lucide-react';
+import { Clock, Package, DollarSign, ShieldCheck, Building2, Languages, MessageCircle, UserCircle2, ArrowRight } from 'lucide-react';
 import { easeLuxury, containerVariants, wordVariants } from '@/lib/motion';
 
 const reasons = [
   {
-    icon: Building2,
-    title: 'High-Rise Expertise',
-    description: 'We manage elevator reservations, COI submissions, loading dock coordination, and floor/wall protection — everything your condo association requires.',
-    href: '/services/residential-moving',
-    cta: 'High-rise & condo moving',
-  },
-  {
-    icon: Shield,
-    title: 'Fully Licensed & Insured',
-    description: 'Fully insured for every move we take on. Certificate of Insurance available on request — standard for condo and HOA buildings across South Florida.',
-    href: '/about',
-    cta: 'About our credentials',
-  },
-  {
     icon: Clock,
-    title: 'Defined Arrival Windows',
-    description: 'We give you a two-hour arrival window and call 30 minutes before we arrive. No all-day waiting. No vague "sometime in the morning."',
-    href: '/quote',
-    cta: 'Book a time slot',
+    title: 'Punctual',
+    description: 'Crew arrives within a 15-minute window of your confirmed time. No "sometime in the morning." We message you when we are on the way.',
   },
   {
     icon: Package,
-    title: 'White-Glove Protection',
-    description: 'Premium furniture blankets, floor runners, door jamb covers, and elevator pads used on every move. Your space leaves exactly as we found it.',
-    href: '/about',
-    cta: 'Our protection standards',
+    title: 'Careful with belongings',
+    description: 'Furniture pads, stretch wrap, mattress bags, basic disassembly — included in the hourly rate, not upsold on move day.',
   },
   {
-    icon: Headphones,
-    title: 'Dedicated Coordinator',
-    description: 'One person, one number. Your coordinator manages every detail from first contact through delivery — no call centers, no handoffs.',
-    href: '/contact',
-    cta: 'Talk to a coordinator',
+    icon: DollarSign,
+    title: 'Transparent pricing',
+    description: 'Hourly rate locked before we start. From $99/hr for 2 movers, $139/hr for 3, with a 3-hour minimum. No fuel surcharges, no stairs fees.',
   },
   {
-    icon: FileText,
-    title: 'Transparent Pricing',
-    description: 'Detailed written estimates before any work begins. No surprise fees, no "fuel surcharges" discovered on moving day. What we quote is what you pay.',
-    href: '/quote',
-    cta: 'Get a FREE estimate',
+    icon: ShieldCheck,
+    title: 'No surprise charges',
+    description: 'Same hourly rate if the job runs longer than estimated. We tell you upfront if there is risk of going over.',
+    href: '#pricing',
+    cta: 'See pricing',
+  },
+  {
+    icon: Building2,
+    title: 'Building / HOA fluent',
+    description: 'COI within 24 hours, elevator reservations, parking permits, freight elevator hours — we know what most South Florida buildings ask for.',
+  },
+  {
+    icon: Languages,
+    title: 'Russian + English',
+    description: 'Crew leader or dispatcher communicates in either language. Big advantage in Sunny Isles, Aventura, and Hollywood.',
+  },
+  {
+    icon: MessageCircle,
+    title: 'WhatsApp + Telegram',
+    description: 'Send photos and addresses on the channel you already use. Estimate back in 5 minutes during business hours.',
+  },
+  {
+    icon: UserCircle2,
+    title: 'Owner-led',
+    description: 'Evgenii Romanov runs Easy Move Florida personally. WhatsApp goes to the owner when you ask for the owner — real accountability.',
   },
 ];
 
@@ -74,20 +74,20 @@ export default function WhyChooseUs() {
               animate={headerInView ? { width: 32 } : {}}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
             />
-            <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Why EasyMove Elite</p>
+            <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Why Easy Move Florida</p>
             <motion.h2
               variants={containerVariants(0.08, 0.2)}
               initial="hidden"
               animate={headerInView ? 'visible' : 'hidden'}
               className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight"
             >
-              {'The Standard'.split(' ').map((word, i) => (
+              {'Why customers'.split(' ').map((word, i) => (
                 <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
                   {word}
                 </motion.span>
               ))}
               <br />
-              {'Others Aspire To'.split(' ').map((word, i) => (
+              {'pick us.'.split(' ').map((word, i) => (
                 <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
                   {word}
                 </motion.span>
@@ -101,22 +101,22 @@ export default function WhyChooseUs() {
             className="lg:col-span-2 flex flex-col justify-center gap-6"
           >
             <p className="text-gray-500 text-base md:text-lg leading-relaxed">
-              From Brickell condos to Fort Lauderdale estates to Boca Raton high-rises — South Florida demands
-              a moving company that understands building requirements, values discretion, and delivers without drama.
-              That is what we do — every move, every time.
+              Eight things that make a real difference on move day. No marketing fluff,
+              no fake awards — just the operational habits we keep so you do not get
+              the typical mover experience.
             </p>
             <Link
               href="/quote"
               className="group/link self-start inline-flex items-center gap-1.5 text-charcoal text-sm font-semibold uppercase tracking-wider border-b border-charcoal/30 pb-0.5 hover:text-gold hover:border-gold transition-colors duration-200"
             >
-              See FREE Starting Price
+              Calculate My Move
               <ArrowRight size={14} className="translate-x-0 group-hover/link:translate-x-[3px] transition-transform duration-200 ease-out" />
             </Link>
           </motion.div>
         </div>
 
         {/* Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100">
           {reasons.map((r, i) => {
             const Icon = r.icon;
             return (

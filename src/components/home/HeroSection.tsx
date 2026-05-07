@@ -5,9 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import Button from '@/components/ui/Button';
-import { Phone, Shield, Star, ArrowRight, CheckCircle } from 'lucide-react';
+import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
 import { localStartingPrice } from '@/lib/pricing';
-import { formatCurrency } from '@/lib/utils';
+import { formatCurrency, whatsappUrl } from '@/lib/utils';
 import { containerVariants, wordVariants, easeLuxury } from '@/lib/motion';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
@@ -60,7 +60,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 animate-kenburns">
         <Image
           src="/images/Hero.png"
-          alt="EasyMove Elite crew during a residential move in South Florida"
+          alt="Easy Move Florida crew during a local residential move in South Florida"
           fill
           priority
           sizes="100vw"
@@ -105,13 +105,31 @@ export default function HeroSection() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-              className="inline-flex items-center gap-2 border border-gold/40 bg-black/20 backdrop-blur-[2px] px-4 py-1.5 mb-6"
+              className="inline-flex items-center gap-2 border border-gold/40 bg-black/20 backdrop-blur-[2px] px-4 py-1.5 mb-3"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block shrink-0" />
               <span className="text-gold text-xs font-semibold tracking-[0.08em] sm:tracking-[0.2em] uppercase">
-                Miami · Fort Lauderdale · Boca Raton
+                Hollywood · Aventura · Sunny Isles · Fort Lauderdale · Miami
               </span>
             </motion.div>
+
+            {/* Real Thumbtack rating ribbon */}
+            <motion.a
+              href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
+              className="inline-flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity"
+            >
+              <span className="flex items-center gap-0.5">
+                {[1, 2, 3, 4, 5].map(i => <Star key={i} size={12} className="fill-gold text-gold" />)}
+              </span>
+              <span className="text-white/80 text-xs font-semibold">
+                5.0 · 32 reviews on Thumbtack
+              </span>
+            </motion.a>
 
             {/* Word-by-word headline reveal */}
             <motion.h1
@@ -120,14 +138,14 @@ export default function HeroSection() {
               animate="visible"
               className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-5 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]"
             >
-              {'South Florida Moving'.split(' ').map((word, i) => (
+              {'South Florida movers'.split(' ').map((word, i) => (
                 <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
                   {word}
                 </motion.span>
               ))}
               <br />
               <span className="gold-text">
-                {'You Can Count On'.split(' ').map((word, i) => (
+                {'you can trust.'.split(' ').map((word, i) => (
                   <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
                     {word}
                   </motion.span>
@@ -142,16 +160,16 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.85, ease: easeLuxury }}
               className="text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed"
             >
-              500+ completed moves. Licensed &amp; insured. No hidden fees —
-              just a crew that shows up on time and handles your home with care.
+              From $99/hour with 3-hour minimum. Russian + English. WhatsApp + Telegram.
+              Owner-led crew, transparent pricing, careful handling.
             </motion.p>
 
             {/* Key selling points */}
             <div className="space-y-2.5 mb-8 hidden lg:block">
               {[
-                'Transparent pricing — see your cost before you call',
-                'Founder-led crew, no subcontractors',
-                'COI issued within 24 hours',
+                'Hourly rate locked — same rate if the job runs longer',
+                'Building / HOA / COI fluent — paperwork handled',
+                'Owner-led by Evgenii — direct WhatsApp anytime',
               ].map((item, i) => (
                 <motion.div
                   key={item}
@@ -181,10 +199,15 @@ export default function HeroSection() {
                 786-305-1844
               </a>
               <span className="text-white/20">|</span>
-              <p className="text-white/40 text-xs">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5 align-middle animate-pulse" />
-                Responds within 2 hours
-              </p>
+              <a
+                href={whatsappUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-white/70 text-sm font-semibold hover:text-gold transition-colors"
+              >
+                <MessageCircle size={13} className="text-gold" />
+                WhatsApp
+              </a>
             </motion.div>
           </div>
 
@@ -199,12 +222,7 @@ export default function HeroSection() {
 
               {/* Card header — dark with rates */}
               <div className="bg-charcoal px-5 sm:px-6 py-4">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-white font-display text-base font-bold">Instant Price Calculator</p>
-                  <div className="flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="fill-gold text-gold" />)}
-                  </div>
-                </div>
+                <p className="text-white font-display text-base font-bold mb-2">Calculate My Move</p>
                 <div className="flex items-center gap-3 text-gray-400 text-[11px]">
                   <span><span className="text-gold font-semibold">$99</span>/hr · 2 movers</span>
                   <span className="text-white/20">|</span>
@@ -332,17 +350,27 @@ export default function HeroSection() {
                 {/* CTA */}
                 <Link href={quoteHref} className="block">
                   <Button variant="primary" size="lg" className="w-full gap-2 shadow-[0_0_24px_rgba(201,168,76,0.3)]">
-                    Get My FREE Estimate <ArrowRight size={15} />
+                    Calculate My Move <ArrowRight size={15} />
                   </Button>
                 </Link>
+
+                {/* WhatsApp secondary */}
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 flex items-center justify-center gap-2 w-full border border-charcoal/15 text-charcoal text-sm font-semibold py-3 hover:border-gold hover:text-gold transition-colors"
+                >
+                  <MessageCircle size={15} /> WhatsApp Us
+                </a>
 
                 {/* Microcopy */}
                 <div className="flex items-center justify-center gap-3 mt-3 text-gray-400 text-[10px]">
                   <span>No obligation</span>
                   <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
-                  <span>Fast response</span>
+                  <span>Owner-led</span>
                   <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
-                  <span>Fully insured</span>
+                  <span>COI on request</span>
                 </div>
               </div>
             </div>
@@ -358,15 +386,16 @@ export default function HeroSection() {
           className="flex flex-wrap items-center justify-center gap-4 mt-8 lg:hidden"
         >
           <div className="flex items-center gap-2 text-white/60">
-            <Shield size={13} className="text-gold shrink-0" />
-            <span className="text-[11px] tracking-wider uppercase">Licensed &amp; Insured</span>
-          </div>
-          <div className="flex items-center gap-1 text-white/60">
-            {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="fill-gold text-gold" />)}
-            <span className="text-[11px] tracking-wider uppercase ml-1">Top-rated</span>
+            <CheckCircle size={13} className="text-gold shrink-0" />
+            <span className="text-[11px] tracking-wider uppercase">Owner-Led</span>
           </div>
           <div className="flex items-center gap-2 text-white/60">
-            <span className="text-[11px] tracking-wider uppercase">Founder-Led</span>
+            <CheckCircle size={13} className="text-gold shrink-0" />
+            <span className="text-[11px] tracking-wider uppercase">COI on Request</span>
+          </div>
+          <div className="flex items-center gap-2 text-white/60">
+            <CheckCircle size={13} className="text-gold shrink-0" />
+            <span className="text-[11px] tracking-wider uppercase">RU + EN</span>
           </div>
         </motion.div>
       </div>
