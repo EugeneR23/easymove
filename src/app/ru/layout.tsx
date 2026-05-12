@@ -4,8 +4,8 @@ const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: {
-    default: 'EasyMove Elite — Переезды в Майами, Форт-Лодердейл и Бока-Ратон',
-    template: '%s | EasyMove Elite',
+    default: 'Переезды Майами | Easy Move Florida',
+    template: '%s | Easy Move Florida',
   },
   description:
     'Переезды в Южной Флориде — Майами, Холливуд, Sunny Isles, Aventura. От $99/час, минимум 3 часа. Полная страховка, COI за 24 часа. 786-305-1844.',

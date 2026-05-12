@@ -23,7 +23,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Miami's White-Glove Moving Company",
     heroSub: 'Brickell · Coral Gables · Miami Beach · Coconut Grove',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Miami Movers — EasyMove Elite | White-Glove Moving in Miami, FL',
+    metaTitle: 'Miami Movers, FL | Easy Move Florida',
     metaDescription:
       'Licensed Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $99/hr. Call 786-305-1844.',
     intro:
@@ -98,7 +98,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Fort Lauderdale's Trusted Moving Company",
     heroSub: 'Las Olas · Victoria Park · Wilton Manors · Plantation',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Fort Lauderdale Movers — EasyMove Elite | Licensed & Insured',
+    metaTitle: 'Fort Lauderdale Movers | Easy Move Florida',
     metaDescription:
       'Licensed & insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
     intro:
@@ -149,7 +149,7 @@ export const CITIES: CityData[] = [
     heroHeadline: 'Boca Raton\'s Luxury Moving Specialists',
     heroSub: 'East Boca · Mizner Park · Boca West · Delray Beach',
     heroImage: '/images/Real/Boca-Raton.jpg',
-    metaTitle: 'Boca Raton Movers — EasyMove Elite | Luxury Moving Services',
+    metaTitle: 'Boca Raton Movers, FL | Easy Move Florida',
     metaDescription:
       'Boca Raton movers — Boca West, Mizner Park, Delray Beach estate and gated community specialists. Fully insured, COI in 24h. Call 786-305-1844.',
     intro:
@@ -200,7 +200,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Aventura's Premium Moving Company",
     heroSub: 'Williams Island · Porto Vita · Turnberry · Hidden Bay',
     heroImage: '/images/Real/4.png',
-    metaTitle: 'Aventura Movers — EasyMove Elite | High-Rise & Condo Moving',
+    metaTitle: 'Aventura Movers — High-Rise & Condo | Easy Move Florida',
     metaDescription:
       "Licensed & insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
     intro:
@@ -255,7 +255,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Coral Gables's Trusted Moving Company",
     heroSub: 'Gables Estates · Old Cutler · Cocoplum · Granada',
     heroImage: '/images/Real/5.png',
-    metaTitle: 'Coral Gables Movers — EasyMove Elite | Estate & Historic Home Moving',
+    metaTitle: 'Coral Gables Movers, FL | Easy Move Florida',
     metaDescription:
       'Coral Gables movers — historic homes & gated estates. Gables Estates, Cocoplum, Old Cutler. HOA-compliant, fully insured. Call 786-305-1844.',
     intro:
@@ -310,7 +310,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Sunny Isles Beach's High-Rise Moving Specialists",
     heroSub: 'Trump Towers · Acqualina · Jade Beach · Porsche Design Tower',
     heroImage: '/images/Real/6.png',
-    metaTitle: 'Sunny Isles Movers — EasyMove Elite | Luxury High-Rise Moving',
+    metaTitle: 'Sunny Isles Movers, FL | Easy Move Florida',
     metaDescription:
       'Sunny Isles movers — Acqualina, Trump Towers, Jade Beach, Porsche Design specialists. Russian-speaking crew. COI in 24h. Call 786-305-1844.',
     intro:
@@ -365,7 +365,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Hollywood's Trusted Local Moving Company",
     heroSub: 'Hollywood Beach · Emerald Hills · Hillcrest · Lakes',
     heroImage: '/images/Real/9.jpg',
-    metaTitle: 'Hollywood FL Movers — EasyMove Elite | Local & Long-Distance',
+    metaTitle: 'Hollywood FL Movers | Easy Move Florida',
     metaDescription:
       'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. Local & long-distance, fully insured, COI in 24h. From $99/hr. Call 786-305-1844.',
     intro:
@@ -420,7 +420,7 @@ export const CITIES: CityData[] = [
     heroHeadline: "Coconut Grove's Local Moving Company",
     heroSub: 'Center Grove · South Grove · Northeast Grove · Camp Biscayne',
     heroImage: '/images/Real/10.png',
-    metaTitle: 'Coconut Grove Movers — EasyMove Elite | Historic Homes & High-Rises',
+    metaTitle: 'Coconut Grove Movers, FL | Easy Move Florida',
     metaDescription:
       'Coconut Grove movers — historic Grove homes, Park Grove, Grove at Grand Bay specialists. Fully insured, COI in 24h. Call 786-305-1844.',
     intro:

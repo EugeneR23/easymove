@@ -7,9 +7,9 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Packing Services Miami & South Florida — EasyMove Elite' },
+  title: { absolute: 'Packing Services Miami | Easy Move Florida' },
   description:
-    'Professional packing company in Miami, Fort Lauderdale & Boca Raton. We pack your entire home or just the fragile items. Fully insured, experienced packers. From $237. Call 786-305-1844.',
+    'Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack, fragile-only, fully insured. From $237. Call 786-305-1844.',
   keywords: [
     'packing company Miami',
     'packing services Miami',
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://www.easy-move-florida.com/packing-services' },
   openGraph: {
-    title: 'Packing Services Miami & South Florida — EasyMove Elite',
+    title: 'Packing Services Miami | Easy Move Florida',
     description:
-      'Professional packing company in Miami, Fort Lauderdale & Boca Raton. Fully insured, experienced packers. From $237.',
+      'Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack, fully insured. From $237.',
     url: 'https://www.easy-move-florida.com/packing-services',
   },
 };
