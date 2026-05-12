@@ -19,6 +19,19 @@ const nextConfig = {
         destination: 'https://www.easy-move-florida.com/:path*',
         permanent: true,
       },
+
+      // Legacy Wix URLs from the previous site. Bing & Google indexed these
+      // before migration; 301 → closest current equivalent so we keep any
+      // link equity and stop serving 404s in SERPs.
+      { source: '/services-1',     destination: '/services',         permanent: true },
+      { source: '/plans-pricing',  destination: '/pricing',          permanent: true },
+      { source: '/book-online',    destination: '/quote',            permanent: true },
+      { source: '/privacy-terms',  destination: '/privacy',          permanent: true },
+      { source: '/faq',            destination: '/#faq',             permanent: true },
+      // Wix sometimes prefixed pages with /post or /blog-1. Catch-alls.
+      { source: '/blog-1/:slug*',  destination: '/blog/:slug*',      permanent: true },
+      { source: '/post/:slug*',    destination: '/blog/:slug*',      permanent: true },
+      { source: '/copy-of-:slug*', destination: '/',                 permanent: true },
     ];
   },
 
