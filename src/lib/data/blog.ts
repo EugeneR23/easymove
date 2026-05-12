@@ -40,7 +40,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'brickell-condo-move-checklist',
     title: 'The Complete Brickell Condo Move Checklist (2026)',
-    metaTitle: 'Brickell Condo Move Checklist 2026 — COI, Elevator, Loading Dock | EasyMove Elite',
+    metaTitle: 'Brickell Condo Move Checklist 2026 — COI & Elevator | EasyMove Elite',
     metaDescription: 'Step-by-step Brickell condo move checklist: COI requirements, elevator reservations, loading dock windows, building management contacts. From a Miami mover.',
     excerpt: 'Moving into a Brickell high-rise involves more than packing boxes. Here\'s every requirement, deadline, and document you need — building by building.',
     publishedAt: '2026-04-22',
@@ -106,7 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'miami-moving-cost-2026',
     title: 'How Much Does a Move in Miami Cost in 2026? (Real Pricing Breakdown)',
-    metaTitle: 'Miami Moving Cost 2026 — Real Prices for Local & Long-Distance | EasyMove Elite',
+    metaTitle: 'Miami Moving Cost 2026 — Local & Long-Distance Prices | EasyMove Elite',
     metaDescription: 'Real Miami moving costs in 2026: hourly rates, studio to 4-bedroom prices, long-distance, high-rise add-ons. From a Miami mover, no fluff.',
     excerpt: 'What does a move actually cost in Miami in 2026? Here are the real numbers for studios, 1-bedrooms, 2-bedrooms, high-rises, and long-distance — straight from a working mover.',
     publishedAt: '2026-04-12',
@@ -187,7 +187,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'what-is-coi-condo-move',
     title: 'What is a COI and Why Your Miami Condo Building Requires One',
-    metaTitle: 'COI for Condo Moves Miami — What It Is & How to Get One | EasyMove Elite',
+    metaTitle: 'COI for Miami Condo Moves — Quick Guide | EasyMove Elite',
     metaDescription: 'COI explained: what a Certificate of Insurance is, why Miami condo buildings require it, what it should include, and how to get one within 24 hours.',
     excerpt: 'Your Miami condo building wants a COI from your mover. What is it, what should it include, and how do you make sure you have it on time?',
     publishedAt: '2026-04-02',
@@ -242,7 +242,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-choose-moving-company-miami',
     title: 'How to Choose a Moving Company in Miami (Without Getting Burned)',
-    metaTitle: 'How to Choose a Moving Company in Miami 2026 — Red Flags & What to Ask | EasyMove Elite',
+    metaTitle: 'How to Choose a Miami Moving Company 2026 — Red Flags | EasyMove Elite',
     metaDescription: 'How to vet a Miami moving company: licenses to verify, red flags to spot, 7 questions every legitimate mover answers. From a working mover.',
     excerpt: 'Some Miami movers add hundreds in surprise fees on move day. Some don\'t exist next month. Here\'s how to tell who\'s real before you book.',
     publishedAt: '2026-04-30',
@@ -336,7 +336,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'moving-from-new-york-to-miami-guide',
     title: 'Moving from New York to Miami: The Complete 2026 Guide',
-    metaTitle: 'Moving from NY to Miami 2026 — Cost, Timeline, What to Know | EasyMove Elite',
+    metaTitle: 'Moving from NY to Miami 2026 — Cost & Timeline | EasyMove Elite',
     metaDescription: 'Complete guide to moving from New York to Miami in 2026: real costs, transit times, neighborhoods, climate prep, what to ship vs sell. From a Miami-based mover.',
     excerpt: 'Real costs ($3,600-$9,500 typical), realistic transit times, what survives the trip and what doesn\'t, and how to pick a Miami neighborhood that fits your life.',
     publishedAt: '2026-04-18',
@@ -444,7 +444,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'pereezd-aventura-sunny-isles-russkogovoryashchih',
     title: 'Переезд в Авентуру и Санни-Айлс: руководство для русскоязычных жителей',
-    metaTitle: 'Переезд в Авентуру и Санни-Айлс — руководство 2026 | EasyMove Elite',
+    metaTitle: 'Переезд в Авентуру и Санни-Айлс 2026 | EasyMove Elite',
     metaDescription: 'Полное руководство по переезду в высотки Авентуры и Санни-Айлс для русскоязычных жителей: COI, бронирование лифтов, цены, советы по зданиям. Говорим по-русски.',
     excerpt: 'Williams Island, Acqualina, Trump Tower — что нужно знать о переезде в самые востребованные русскоязычные высотки Южной Флориды.',
     publishedAt: '2026-04-25',
@@ -547,7 +547,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'south-florida-pre-move-checklist',
     title: 'The 4-Week South Florida Pre-Move Checklist',
-    metaTitle: 'Pre-Move Checklist 4 Weeks Out — South Florida Moving Timeline | EasyMove Elite',
+    metaTitle: 'Pre-Move Checklist 4 Weeks Out — South Florida | EasyMove Elite',
     metaDescription: 'Week-by-week checklist for a smooth South Florida move: 4 weeks out to move day. Building paperwork, packing timeline, utilities, address changes.',
     excerpt: 'A move that goes smoothly looks effortless on the day. The work to make it look that way starts 4 weeks earlier. Here\'s the schedule.',
     publishedAt: '2026-04-08',
@@ -655,7 +655,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-pack-fine-art-antiques-miami-move',
     title: 'How to Pack Fine Art and Antiques for a Miami Move',
-    metaTitle: 'Packing Fine Art & Antiques for Miami Moves — Crating, Climate, Insurance | EasyMove Elite',
+    metaTitle: 'Packing Fine Art for Miami Moves — Crating & Climate | EasyMove Elite',
     metaDescription: 'Professional guide to packing fine art and antiques for South Florida moves: custom crating, climate considerations, insurance, what to DIY vs hire out.',
     excerpt: 'Miami heat, humidity, and freight handling can damage art and antiques in ways most people don\'t anticipate. Here\'s what actually protects them.',
     publishedAt: '2026-03-28',

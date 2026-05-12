@@ -9,9 +9,9 @@ import { Award, Users, Shield, MapPin, Phone } from 'lucide-react';
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
-  title: { absolute: 'О нас — EasyMove Elite | Переезды в Майами и Южной Флориде' },
+  title: { absolute: 'О нас — EasyMove Elite | Переезды в Южной Флориде' },
   description:
-    'EasyMove Elite — полностью застрахованная мувинговая компания в Южной Флориде, основанная Евгением Романовым. Переезды по Майами, Форт-Лодердейл, Бока-Ратон. Говорим по-русски.',
+    'EasyMove Elite — застрахованная мувинговая компания в Южной Флориде. Майами, Форт-Лодердейл, Бока-Ратон. Основатель Евгений Романов. Говорим по-русски.',
   alternates: {
     canonical: `${siteUrl}/ru/about`,
     languages: {

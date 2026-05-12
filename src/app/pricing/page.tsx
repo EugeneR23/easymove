@@ -11,7 +11,7 @@ import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Moving Costs in South Florida — Transparent Pricing | Easy Move Florida' },
+  title: { absolute: 'South Florida Moving Costs & Hourly Rates | Easy Move Florida' },
   description:
     'Hourly moving rates in South Florida: $99/hr (2 movers) or $139/hr (3 movers), 3-hour minimum. Truck fee from $79. See typical totals by apartment size, what is included, and what is not. No hidden fees.',
   alternates: {

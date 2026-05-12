@@ -11,7 +11,7 @@ import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Сколько стоит переезд в Южной Флориде — Прозрачные цены | Easy Move Florida' },
+  title: { absolute: 'Сколько стоит переезд в Южной Флориде | Easy Move Florida' },
   description:
     'Почасовые ставки переезда в Южной Флориде: $99/час (2 грузчика) или $139/час (3 грузчика), минимум 3 часа. Грузовик от $79. Реальные суммы по размерам квартиры, что входит и что нет. Без скрытых сборов.',
   alternates: {
