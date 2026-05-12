@@ -20,6 +20,7 @@ const NAV_LINKS_RU = [
   { href: '/ru', label: 'Главная' },
   { href: '/ru/about', label: 'О нас' },
   { href: '/ru/services', label: 'Услуги' },
+  { href: '/ru/pricing', label: 'Цены' },
   { href: '/ru/contact', label: 'Контакты' },
 ];
 
