@@ -19,18 +19,36 @@ export const metadata: Metadata = {
     'Local moving and small handyman across Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, and Miami. From $99/hr with 3-hour minimum. Owner-led, transparent pricing, building/HOA fluent. Russian + English.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com',
+    languages: {
+      en: 'https://www.easy-move-florida.com',
+      ru: 'https://www.easy-move-florida.com/ru',
+      'x-default': 'https://www.easy-move-florida.com',
+    },
   },
   openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    alternateLocale: ['ru_RU'],
+    siteName: 'Easy Move Florida',
     title: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
     description:
       'Owner-led local movers in South Florida. Transparent hourly pricing from $99/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
     url: 'https://www.easy-move-florida.com',
+    images: [
+      {
+        url: 'https://www.easy-move-florida.com/images/Hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'Easy Move Florida — local moving crew in South Florida',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Easy Move Florida — Local Moving & Small Handyman',
     description:
       'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
+    images: ['https://www.easy-move-florida.com/images/Hero.png'],
   },
 };
 
