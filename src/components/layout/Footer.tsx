@@ -50,6 +50,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               {[
                 { href: '/about', label: 'About Evgenii' },
+                { href: '/pricing', label: 'Pricing & Costs' },
                 { href: '/quote', label: 'Calculate My Move' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/blog', label: 'Resources & Guides' },

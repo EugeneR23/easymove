@@ -46,6 +46,18 @@ export const CITIES: CityData[] = [
         title: 'Coral Gables & Grove HOAs',
         body: 'Historic neighborhoods come with strict move-in windows and permit requirements. Our coordinator handles all paperwork and arrival coordination before your move day.',
       },
+      {
+        title: 'Wynwood Loft Logistics',
+        body: 'Wynwood\'s converted warehouse lofts come with their own quirks — freight elevators that share with neighboring tenants, narrow alleys, and no dedicated loading zones on NW 2nd Ave during Art Walk weekends. We schedule around the district\'s busy windows and bring smaller trucks when access requires it.',
+      },
+      {
+        title: 'Coconut Grove Gated Communities',
+        body: 'Cloisters, The Grove at Grand Bay, and Grove Isle each have their own gate-access procedures and curfew rules for service vehicles. We submit vehicle and crew names ahead of time so your guard list is set before move morning — no idling at the gate while paperwork gets sorted.',
+      },
+      {
+        title: 'Miami Beach Parking Permits',
+        body: 'South Beach and Mid-Beach moves usually require a temporary loading-zone permit from the City of Miami Beach. We pull these permits 48–72 hours in advance and post them on move day, which avoids meter maids and prevents the crew from having to carry boxes an extra block.',
+      },
     ],
     faqs: [
       {
@@ -63,6 +75,18 @@ export const CITIES: CityData[] = [
       {
         q: 'What areas of Miami-Dade do you serve?',
         a: 'All of Miami-Dade County — from Aventura in the north to Homestead in the south, and everywhere in between including Coral Gables, Coconut Grove, Wynwood, Doral, and Kendall.',
+      },
+      {
+        q: 'How long does a typical move from Brickell to Coconut Grove take?',
+        a: 'A standard 1- or 2-bedroom move from Brickell to Coconut Grove takes 3–5 hours total — about 25 minutes of driving plus loading, unloading, and the building-access steps on both sides. Late-afternoon moves can add 15–20 minutes due to US-1 traffic.',
+      },
+      {
+        q: 'Can you move during hurricane season?',
+        a: 'Yes. June through November we monitor NHC updates and reach out 72 hours before any move with a named storm in the cone. If we reschedule for safety, there is no fee — and we hold your original slot at the same rate.',
+      },
+      {
+        q: 'Do you handle moves out of Wynwood live-work lofts?',
+        a: 'Often. Most of these buildings have shared freight elevators with hour-window reservations. We book the elevator window before the job and bring a 16-foot truck instead of a 26-footer when alley access is tight.',
       },
     ],
   },
