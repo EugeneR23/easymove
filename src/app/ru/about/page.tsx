@@ -9,7 +9,7 @@ import { Award, Users, Shield, MapPin, Phone } from 'lucide-react';
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
-  title: { absolute: 'О нас — EasyMove Elite | Переезды в Южной Флориде' },
+  title: { absolute: 'О компании | Easy Move Florida' },
   description:
     'EasyMove Elite — застрахованная мувинговая компания в Южной Флориде. Майами, Форт-Лодердейл, Бока-Ратон. Основатель Евгений Романов. Говорим по-русски.',
   alternates: {
