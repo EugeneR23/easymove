@@ -9,7 +9,7 @@ import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Контакты — EasyMove Elite | Переезды в Майами и Южной Флориде' },
+  title: { absolute: 'Контакты — EasyMove Elite | Майами и Южная Флорида' },
   description:
     'Свяжитесь с EasyMove Elite в Майами, Форт-Лодердейле и Бока-Ратоне. Реальный координатор отвечает в течение нескольких часов. Звоните 786-305-1844 или напишите.',
   alternates: {

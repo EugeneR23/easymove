@@ -10,7 +10,7 @@ import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield, Phone }
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Услуги переезда — EasyMove Elite | Майами и Южная Флорида' },
+  title: { absolute: 'Услуги переезда — EasyMove Elite | Южная Флорида' },
   description:
     'Локальные, дальние, в высотках, упаковка, специальные предметы — все услуги переезда в Майами, Форт-Лодердейле и Бока-Ратоне. Полная страховка, прозрачные цены.',
   alternates: {
