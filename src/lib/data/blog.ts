@@ -243,7 +243,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'how-to-choose-moving-company-miami',
     title: 'How to Choose a Moving Company in Miami (Without Getting Burned)',
     metaTitle: 'How to Choose a Moving Company in Miami 2026 — Red Flags & What to Ask | EasyMove Elite',
-    metaDescription: 'How to vet a Miami moving company: licenses to verify, red flags to spot, the 7 questions every legitimate mover answers without hesitation. From a working mover.',
+    metaDescription: 'How to vet a Miami moving company: licenses to verify, red flags to spot, 7 questions every legitimate mover answers. From a working mover.',
     excerpt: 'Some Miami movers add hundreds in surprise fees on move day. Some don\'t exist next month. Here\'s how to tell who\'s real before you book.',
     publishedAt: '2026-04-30',
     updatedAt: '2026-05-05',
