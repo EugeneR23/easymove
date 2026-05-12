@@ -12,6 +12,7 @@ const RU_PAIRED: Record<string, string> = {
   '/about': '/ru/about',
   '/services': '/ru/services',
   '/contact': '/ru/contact',
+  '/pricing': '/ru/pricing',
 };
 
 function withAlternates(path: string): MetadataRoute.Sitemap[number]['alternates'] | undefined {
@@ -69,6 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
+      alternates: withAlternates('/pricing'),
     },
   ];
 
@@ -95,6 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/ru`,          lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.9, alternates: withAlternates('/') },
     { url: `${siteUrl}/ru/about`,    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7, alternates: withAlternates('/about') },
     { url: `${siteUrl}/ru/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/services') },
+    { url: `${siteUrl}/ru/pricing`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/pricing') },
     { url: `${siteUrl}/ru/contact`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/contact') },
   ];
 
