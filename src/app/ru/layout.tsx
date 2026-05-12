@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
+    alternateLocale: ['en_US'],
     siteName: 'EasyMove Elite',
     url: `${siteUrl}/ru`,
     title: 'EasyMove Elite — Переезды в Южной Флориде',
@@ -23,12 +24,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'EasyMove Elite — Переезды в Южной Флориде',
     description: 'Профессиональные переезды в Майами. Полная страховка, прозрачные цены, без скрытых платежей.',
+    images: [`${siteUrl}/images/Hero.png`],
   },
   alternates: {
     canonical: `${siteUrl}/ru`,
     languages: {
       'en': siteUrl,
       'ru': `${siteUrl}/ru`,
+      'x-default': siteUrl,
     },
   },
 };

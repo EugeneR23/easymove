@@ -4,6 +4,28 @@ import { getAllBlogPosts } from '@/lib/data/blog';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
+// Pages that have a Russian translation today. Used to emit xhtml:link
+// alternates inside the sitemap so Google understands the EN ↔ RU mapping
+// without depending on per-page <link rel="alternate"> tags.
+const RU_PAIRED: Record<string, string> = {
+  '/': '/ru',
+  '/about': '/ru/about',
+  '/services': '/ru/services',
+  '/contact': '/ru/contact',
+};
+
+function withAlternates(path: string): MetadataRoute.Sitemap[number]['alternates'] | undefined {
+  const ruPath = RU_PAIRED[path];
+  if (!ruPath) return undefined;
+  return {
+    languages: {
+      en: `${siteUrl}${path === '/' ? '' : path}`,
+      ru: `${siteUrl}${ruPath}`,
+      'x-default': `${siteUrl}${path === '/' ? '' : path}`,
+    },
+  };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const services = readAllServices();
 
@@ -13,24 +35,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
+      alternates: withAlternates('/'),
     },
     {
       url: `${siteUrl}/services`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
+      alternates: withAlternates('/services'),
     },
     {
       url: `${siteUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
+      alternates: withAlternates('/about'),
     },
     {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+      alternates: withAlternates('/contact'),
     },
     {
       url: `${siteUrl}/quote`,
@@ -60,10 +86,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const ruRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/ru`,         lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${siteUrl}/ru/about`,   lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${siteUrl}/ru/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${siteUrl}/ru/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/ru`,          lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.9, alternates: withAlternates('/') },
+    { url: `${siteUrl}/ru/about`,    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7, alternates: withAlternates('/about') },
+    { url: `${siteUrl}/ru/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/services') },
+    { url: `${siteUrl}/ru/contact`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/contact') },
   ];
 
   const blogRoutes: MetadataRoute.Sitemap = [
