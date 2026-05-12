@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: '%s | Easy Move Florida',
   },
   description:
-    'Local moving and small handyman across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. From $99/hr with 3-hour minimum. Owner-led, transparent pricing, building/HOA fluent. Russian + English.',
+    'Owner-led local movers across South Florida — Hollywood, Aventura, Miami, Fort Lauderdale. From $99/hr, 3-hour minimum. COI in 24h. Russian + English.',
   keywords: [
     'movers Hollywood FL',
     'moving company South Florida',

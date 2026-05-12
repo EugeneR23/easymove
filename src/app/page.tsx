@@ -16,7 +16,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 export const metadata: Metadata = {
   title: { absolute: 'Easy Move Florida — Local Moving & Small Handyman in South Florida' },
   description:
-    'Local moving and small handyman across Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, and Miami. From $99/hr with 3-hour minimum. Owner-led, transparent pricing, building/HOA fluent. Russian + English.',
+    'Owner-led local movers across South Florida — Hollywood, Aventura, Miami, Fort Lauderdale. From $99/hr, 3-hour minimum. COI in 24h. Russian + English.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com',
     languages: {
