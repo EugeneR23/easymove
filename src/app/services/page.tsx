@@ -36,7 +36,7 @@ const SERVICES = [
     sub: 'Miami-Dade · Broward · Palm Beach',
     description:
       'Flat hourly rate, 3-hour minimum, truck always included. No hidden fuel surcharges. We protect floors, wrap every piece of furniture, and have you settled by end of day.',
-    highlights: ['$99/hr · 2-mover crew', '$139/hr · 3-mover crew', 'Truck & equipment included', 'Floor runners & furniture pads', 'Same-week availability'],
+    highlights: ['$129/hr · 2-mover crew', '$179/hr · 3-mover crew', 'Truck & equipment included', 'Floor runners & furniture pads', 'Same-week availability'],
     image: '/images/Real/8.jpg',
     href: '/quote?type=local',
     cta: 'Get a FREE Local Move Quote',

@@ -29,7 +29,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'residential-moving': {
     longIntro: [
       "Residential and high-rise moving in South Florida is its own discipline. A move from a Brickell tower has nothing in common with a move from a Coral Gables single-family home — different access, different paperwork, different timing rules. EasyMove Elite handles both with the same standard: the crew arrives knowing the building, the floor protection goes down before any furniture moves, and the coordinator stays reachable from the moment you book until the last item is placed.",
-      "We move clients into and out of every type of South Florida residence: 50-story oceanfront condos, gated estate communities, historic Coral Gables and Coconut Grove homes, and standard single-family neighborhoods across Miami-Dade, Broward, and Palm Beach counties. Every move is hourly-billed at $99/hour for two movers or $139/hour for three, with a transparent written estimate before booking. No deposit. No surprise fees on move day.",
+      "We move clients into and out of every type of South Florida residence: 50-story oceanfront condos, gated estate communities, historic Coral Gables and Coconut Grove homes, and standard single-family neighborhoods across Miami-Dade, Broward, and Palm Beach counties. Every move is hourly-billed at $129/hour for two movers or $179/hour for three, with a transparent written estimate before booking. No deposit. No surprise fees on move day.",
     ],
     whyUs: [
       {
@@ -57,9 +57,9 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { step: 5, title: 'Reassembly and walk-through', body: 'Furniture reassembled, items placed where you want them. Final walk-through with you. Payment processed only after you confirm everything is in order.' },
     ],
     pricingBreakdown: [
-      '2-mover crew: $99/hour, 3-hour minimum',
-      '3-mover crew: $139/hour, 3-hour minimum',
-      'Truck fee: from $79 (varies by distance and truck size)',
+      '2-mover crew: $129/hour, 3-hour minimum',
+      '3-mover crew: $179/hour, 3-hour minimum',
+      'Truck fee: from $90 (varies by distance and truck size)',
       'Studio apartment (typical): $376–$496 total',
       '1-bedroom (typical): $396–$576 total',
       '2-bedroom (typical): $525–$705 total',
@@ -69,7 +69,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Quality moving blankets and floor protection: included',
     ],
     faqs: [
-      { q: 'How much does a high-rise move cost in Brickell or Aventura?', a: "A typical 1-bedroom high-rise move in Brickell or Aventura runs $450-$700 total. The base is hourly ($99/hr for 2 movers, 3-hour minimum, plus $79 truck fee). Add 30-60 minutes for elevator wait time on busier buildings. Your written estimate accounts for this — no surprise fees on move day." },
+      { q: 'How much does a high-rise move cost in Brickell or Aventura?', a: "A typical 1-bedroom high-rise move in Brickell or Aventura runs $450-$700 total. The base is hourly ($129/hr for 2 movers, 3-hour minimum, plus $90 truck fee). Add 30-60 minutes for elevator wait time on busier buildings. Your written estimate accounts for this — no surprise fees on move day." },
       { q: 'Do you provide a Certificate of Insurance for my building?', a: "Yes — within 24 hours of your confirmed booking, free of charge. Send us your building's COI requirements (named insured, specific limits, additional insured language) and we issue it directly to building management." },
       { q: 'Can you move on weekends?', a: 'Yes. Saturday is a regular operating day, billed at the same hourly rate. Sundays are case-by-case for buildings that allow Sunday moves (most Brickell and Aventura towers do not).' },
       { q: 'Do you handle gated communities like Cocoplum or Williams Island?', a: 'Yes. We submit gate paperwork (COI with community named, vehicle registration, crew identification) 48 hours in advance so the gate clears your crew on arrival.' },
@@ -317,7 +317,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       '1-bedroom worth: typical $275–$425/month',
       '2-bedroom worth: typical $425–$675/month',
       '3-bedroom worth: typical $625–$975/month',
-      'Pickup labor: hourly at our standard rates ($99/hr 2 movers)',
+      'Pickup labor: hourly at our standard rates ($129/hr 2 movers)',
       'Redelivery labor: hourly at our standard rates',
       'Storage insurance: optional, ~$15-50/month based on declared value',
       'Climate-controlled (standard): included',

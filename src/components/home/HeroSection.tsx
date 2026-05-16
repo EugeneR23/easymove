@@ -20,7 +20,7 @@ const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
   { value: 'office', label: 'Office', hrs: 5 },
 ];
 
-const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119 };
+const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119, 4: 159 };
 
 function packingPrice(size: HomeSize, crew: CrewSize): number {
   const hrs = Math.max(3, SIZES.find(s => s.value === size)?.hrs ?? 3);
@@ -160,7 +160,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.85, ease: easeLuxury }}
               className="text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed"
             >
-              From $99/hour with 3-hour minimum. Russian + English. WhatsApp + Telegram.
+              From $129/hour with 3-hour minimum. Russian + English. WhatsApp + Telegram.
               Owner-led crew, transparent pricing, careful handling.
             </motion.p>
 
@@ -224,9 +224,9 @@ export default function HeroSection() {
               <div className="bg-charcoal px-5 sm:px-6 py-4">
                 <p className="text-white font-display text-base font-bold mb-2">Calculate My Move</p>
                 <div className="flex items-center gap-3 text-gray-400 text-[11px]">
-                  <span><span className="text-gold font-semibold">$99</span>/hr · 2 movers</span>
+                  <span><span className="text-gold font-semibold">$129</span>/hr · 2 movers</span>
                   <span className="text-white/20">|</span>
-                  <span><span className="text-gold font-semibold">$139</span>/hr · 3 movers</span>
+                  <span><span className="text-gold font-semibold">$179</span>/hr · 3 movers</span>
                   <span className="text-white/20">|</span>
                   <span>3-hr min</span>
                 </div>
@@ -292,8 +292,8 @@ export default function HeroSection() {
 
                 {/* Crew toggle */}
                 {homeSize && showSizeGrid && (
-                  <div className="grid grid-cols-2 gap-1.5 mb-5">
-                    {([2, 3] as CrewSize[]).map(c => {
+                  <div className="grid grid-cols-3 gap-1.5 mb-5">
+                    {([2, 3, 4] as CrewSize[]).map(c => {
                       const isActive = crew === c;
                       const crewPrice = moveType === 'local'
                         ? localStartingPrice(homeSize, c)
@@ -312,7 +312,7 @@ export default function HeroSection() {
                             {c} {moveType === 'packing-only' ? 'Packers' : 'Movers'}
                           </span>
                           <span className="block text-[10px] text-gray-400 mt-0.5">
-                            ${moveType === 'packing-only' ? (c === 2 ? 79 : 119) : (c === 2 ? 99 : 139)}/hr · {formatCurrency(crewPrice)}
+                            ${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : (c === 2 ? 129 : c === 3 ? 179 : 229)}/hr · {formatCurrency(crewPrice)}
                           </span>
                         </button>
                       );

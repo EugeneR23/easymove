@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: '%s | Easy Move Florida',
   },
   description:
-    'Переезды в Южной Флориде — Майами, Холливуд, Sunny Isles, Aventura. От $99/час, минимум 3 часа. Полная страховка, COI за 24 часа. 786-305-1844.',
+    'Переезды в Южной Флориде — Майами, Холливуд, Sunny Isles, Aventura. От $129/час, минимум 3 часа. Полная страховка, COI за 24 часа. 786-305-1844.',
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

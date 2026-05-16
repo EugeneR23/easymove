@@ -147,14 +147,14 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
           <p className="text-sm font-semibold text-charcoal mb-1">Crew size</p>
           <p className="text-xs text-gray-400 mb-4">
             {isPacking
-              ? '2 packers handle most homes. 3 packers are faster for larger spaces or tight timelines.'
-              : '2 movers handle most homes. 3 movers are recommended for 3+ bedrooms, heavy items, or tight timelines.'}
+              ? '2 packers handle most homes. 3–4 packers are faster for larger spaces or tight timelines.'
+              : '2 movers handle most homes. 3 movers are recommended for 3+ bedrooms or heavy items. 4 movers for 4+ bedroom houses or tight elevator windows.'}
           </p>
-          <div className="grid grid-cols-2 gap-3">
-            {([2, 3] as CrewSize[]).map((crew) => {
+          <div className="grid grid-cols-3 gap-3">
+            {([2, 3, 4] as CrewSize[]).map((crew) => {
               const selected    = (inv.crewSize ?? 2) === crew;
-              const packingRate = crew === 2 ? 79 : 119;
-              const localRate   = crew === 2 ? 119 : 169;
+              const packingRate = crew === 2 ? 79 : crew === 3 ? 119 : 159;
+              const localRate   = crew === 2 ? 129 : crew === 3 ? 179 : 229;
               const localPrice  = localStartingPrice(inv.homeSize ?? '2br', crew);
               const packingMin  = packingRate * 3;
               return (
@@ -173,7 +173,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
                   <p className="text-gray-400 text-xs mb-2">
                     {isPacking
                       ? `$${packingRate}/hr · 3-hr minimum`
-                      : `$${localRate}/hr · from $79 truck fee`}
+                      : `$${localRate}/hr · from $90 truck fee`}
                   </p>
                   <p className={cn('text-xs font-semibold', selected ? 'text-gold' : 'text-gray-400')}>
                     {inv.homeSize

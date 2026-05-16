@@ -22,7 +22,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-2 text-xs text-gray-600">
-              From $99/hr &middot; 3-hour minimum
+              From $129/hr &middot; 3-hour minimum
             </p>
           </div>
 

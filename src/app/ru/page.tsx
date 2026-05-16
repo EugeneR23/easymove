@@ -26,7 +26,7 @@ const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
   { value: 'office', label: 'Офис', hrs: 5 },
 ];
 
-const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119 };
+const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119, 4: 159 };
 function packingPrice(size: HomeSize, crew: CrewSize): number {
   const hrs = Math.max(3, SIZES.find(s => s.value === size)?.hrs ?? 3);
   return Math.round(PACKING_RATE[crew] * hrs);
@@ -70,7 +70,7 @@ const SERVICES = [
 const FAQS = [
   {
     q: 'Сколько стоит локальный переезд?',
-    a: 'Локальные переезды оплачиваются почасово: $99/час за 2 муверов или $139/час за 3, минимум 3 часа. Трак от $79 в зависимости от расстояния. Студия от $376, 2-комнатная от $525.',
+    a: 'Локальные переезды оплачиваются почасово: $129/час за 2 муверов, $179/час за 3, $229/час за 4, минимум 3 часа. Грузовик от $90 в зависимости от расстояния. Студия от $477, 2-комнатная от $671. Выходные +10%, пиковый сезон (май–сентябрь) +5%.',
   },
   {
     q: 'Вы работаете с высотками в Brickell и Sunny Isles?',
@@ -181,9 +181,9 @@ export default function RuHomePage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3 text-gray-400 text-[11px]">
-                      <span><span className="text-gold font-semibold">$99</span>/час · 2 мувера</span>
+                      <span><span className="text-gold font-semibold">$129</span>/час · 2 мувера</span>
                       <span className="text-white/20">|</span>
-                      <span><span className="text-gold font-semibold">$139</span>/час · 3 мувера</span>
+                      <span><span className="text-gold font-semibold">$179</span>/час · 3 мувера</span>
                       <span className="text-white/20">|</span>
                       <span>мин. 3 часа</span>
                     </div>
@@ -225,14 +225,14 @@ export default function RuHomePage() {
 
                     {homeSize && showSizeGrid && (
                       <div className="grid grid-cols-2 gap-1.5 mb-5">
-                        {([2, 3] as CrewSize[]).map(c => {
+                        {([2, 3, 4] as CrewSize[]).map(c => {
                           const cp = moveType === 'local' ? localStartingPrice(homeSize, c) : packingPrice(homeSize, c);
                           return (
                             <button key={c} onClick={() => setCrew(c)}
                               className={`py-3 text-center border transition-all duration-150 ${crew === c ? 'border-gold bg-gold/10' : 'border-gray-200 hover:border-gold/40'}`}
                             >
                               <span className="block text-xs font-bold text-charcoal">{c} {moveType === 'packing-only' ? 'упаковщика' : 'мувера'}</span>
-                              <span className="block text-[10px] text-gray-400 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : 119) : (c === 2 ? 99 : 139)}/час · {formatCurrency(cp)}</span>
+                              <span className="block text-[10px] text-gray-400 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : (c === 2 ? 129 : c === 3 ? 179 : 229)}/час · {formatCurrency(cp)}</span>
                             </button>
                           );
                         })}

@@ -1,7 +1,7 @@
 // ─── Move Types ──────────────────────────────────────────────────────────────
 export type MoveType = 'local' | 'long-distance' | 'international' | 'office' | 'specialty' | 'packing-only';
 export type HomeSize = 'studio' | '1br' | '2br' | '3br' | '4br+' | 'office';
-export type CrewSize = 2 | 3;
+export type CrewSize = 2 | 3 | 4;
 export type QuoteStatus = 'pending' | 'reviewed' | 'sent' | 'accepted' | 'declined';
 export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'converted' | 'lost';
 export type LeadSource = 'contact-form' | 'quote-wizard' | 'phone' | 'referral';
