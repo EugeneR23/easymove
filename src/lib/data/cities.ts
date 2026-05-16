@@ -25,7 +25,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Movers, FL | Easy Move Florida',
     metaDescription:
-      'Licensed Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $99/hr. Call 786-305-1844.',
+      'Licensed Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $129/hr. Call 786-305-1844.',
     intro:
       "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. EasyMove Elite was built in Miami-Dade and every crew we send is briefed on your building before they arrive.",
     neighborhoods: [
@@ -367,7 +367,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/9.jpg',
     metaTitle: 'Hollywood FL Movers | Easy Move Florida',
     metaDescription:
-      'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. Local & long-distance, fully insured, COI in 24h. From $99/hr. Call 786-305-1844.',
+      'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. Local & long-distance, fully insured, COI in 24h. From $129/hr. Call 786-305-1844.',
     intro:
       "Hollywood, Florida sits between Fort Lauderdale and Miami — close enough to both that most moves here are short hops, but with its own neighborhoods, building rules, and traffic quirks. Whether you're moving to Hollywood Beach, Emerald Hills, the Lakes, or one of the historic single-family neighborhoods west of US-1, EasyMove Elite handles your move with the same standards we apply in Brickell and Aventura. We're based in Hollywood — this is our home.",
     neighborhoods: [
@@ -400,7 +400,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How much does a local move in Hollywood cost?',
-        a: "Local moves are billed hourly: $99/hr for 2 movers or $139/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $79. A typical 1-bedroom move in Hollywood runs $396-$496 total. You'll see the exact estimate before booking — no surprise fees on move day.",
+        a: "Local moves are billed hourly: $129/hr for 2 movers or $179/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $90. A typical 1-bedroom move in Hollywood runs $477–$671 total. Weekend +10%, peak season (May–September) +5% — all disclosed in your written estimate before booking — no surprise fees on move day.",
       },
       {
         q: 'Do you provide a COI for Hollywood condo buildings?',
@@ -459,7 +459,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Coconut Grove move?',
-        a: "Local moves are hourly: $99/hr for 2 movers, $139/hr for 3 movers, 3-hour minimum, plus $79 truck fee. A typical 2-bedroom Grove home runs $625-$825. Estate-sized moves get a custom flat-rate estimate. No surprise fees.",
+        a: "Local moves are hourly: $129/hr for 2 movers, $179/hr for 3 movers, 3-hour minimum, plus $90 truck fee. A typical 2-bedroom Grove home runs $625-$825. Estate-sized moves get a custom flat-rate estimate. No surprise fees.",
       },
       {
         q: 'Do you serve Coral Gables and Brickell as well?',

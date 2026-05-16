@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: '%s | Easy Move Florida',
   },
   description:
-    'Owner-led local movers across South Florida — Hollywood, Aventura, Miami, Fort Lauderdale. From $99/hr, 3-hour minimum. COI in 24h. Russian + English.',
+    'Owner-led local movers across South Florida — Hollywood, Aventura, Miami, Fort Lauderdale. From $129/hr, 3-hour minimum. COI in 24h. Russian + English.',
   keywords: [
     'movers Hollywood FL',
     'moving company South Florida',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
     description:
-      'Owner-led local movers across South Florida. Transparent hourly pricing from $99/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
+      'Owner-led local movers across South Florida. Transparent hourly pricing from $129/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
     images: [
       {
         url: `${siteUrl}/images/Hero.png`,
@@ -191,7 +191,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Local Residential Moving',
-          description: '2-mover crew from $99/hr, 3-mover crew from $139/hr, 3-hour minimum. Truck fee from $79. Furniture pads, stretch wrap, and basic disassembly included.',
+          description: '2-mover crew from $129/hr, 3-mover crew from $179/hr, 4-mover crew from $229/hr, 3-hour minimum. Truck fee from $90. Weekend +10%, peak season (May–September) +5% — disclosed in the written estimate. Furniture pads, stretch wrap, and basic disassembly included.',
           areaServed: 'South Florida',
         },
       },

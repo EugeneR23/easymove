@@ -20,7 +20,7 @@ const reasons = [
   {
     icon: DollarSign,
     title: 'Transparent pricing',
-    description: 'Hourly rate locked before we start. From $99/hr for 2 movers, $139/hr for 3, with a 3-hour minimum. No fuel surcharges, no stairs fees.',
+    description: 'Hourly rate locked before we start. From $129/hr for 2 movers, $179/hr for 3, with a 3-hour minimum. No fuel surcharges, no stairs fees.',
   },
   {
     icon: ShieldCheck,

@@ -19,7 +19,7 @@ const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
 const PACKING_HOURS: Record<HomeSize, number> = {
   studio: 3, '1br': 3, '2br': 4.5, '3br': 6, '4br+': 8, office: 5,
 };
-const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119 };
+const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119, 4: 159 };
 
 function packingStartingPrice(size: HomeSize, crew: CrewSize): number {
   return Math.round(PACKING_RATE[crew] * Math.max(3, PACKING_HOURS[size]));
@@ -264,8 +264,8 @@ export default function HomepageCalculator() {
                       {isPacking && homeSize ? (
                         <>
                           {/* Crew toggle — packing */}
-                          <div className="grid grid-cols-2 gap-3 mb-6">
-                            {([2, 3] as CrewSize[]).map((c) => {
+                          <div className="grid grid-cols-3 gap-3 mb-6">
+                            {([2, 3, 4] as CrewSize[]).map((c) => {
                               const p = packingStartingPrice(homeSize, c);
                               const sel = crew === c;
                               return (
@@ -282,7 +282,7 @@ export default function HomepageCalculator() {
                                     {c} Packers
                                   </p>
                                   <p className="text-white/40 text-xs mb-2">
-                                    ${c === 2 ? '79' : '119'}/hr · 3-hr minimum
+                                    ${c === 2 ? '79' : c === 3 ? '119' : '159'}/hr · 3-hr minimum
                                   </p>
                                   <p className={cn('font-bold text-lg', sel ? 'text-gold' : 'text-white/50')}>
                                     {formatCurrency(p)}
@@ -338,8 +338,8 @@ export default function HomepageCalculator() {
                       ) : isLocal && homeSize ? (
                         <>
                           {/* Crew toggle */}
-                          <div className="grid grid-cols-2 gap-3 mb-6">
-                            {([2, 3] as CrewSize[]).map((c) => {
+                          <div className="grid grid-cols-3 gap-3 mb-6">
+                            {([2, 3, 4] as CrewSize[]).map((c) => {
                               const p = localStartingPrice(homeSize, c);
                               const sel = crew === c;
                               return (
@@ -356,7 +356,7 @@ export default function HomepageCalculator() {
                                     {c} Movers
                                   </p>
                                   <p className="text-white/40 text-xs mb-2">
-                                    ${c === 2 ? '119' : '169'}/hr · ${c === 2 ? '79' : '99'} truck
+                                    ${c === 2 ? '129' : c === 3 ? '179' : '229'}/hr · $90 truck
                                   </p>
                                   <p className={cn('font-bold text-lg', sel ? 'text-gold' : 'text-white/50')}>
                                     {formatCurrency(p)}

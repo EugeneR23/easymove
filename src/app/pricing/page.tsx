@@ -13,7 +13,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'South Florida Moving Costs & Hourly Rates | Easy Move Florida' },
   description:
-    'Hourly moving rates in South Florida: $99/hr (2 movers) or $139/hr (3 movers), 3-hour minimum. Truck fee from $79. See typical totals by apartment size, what is included, and what is not. No hidden fees.',
+    'Hourly moving rates in South Florida: $129/hr (2 movers) or $179/hr (3 movers), 3-hour minimum. Truck fee from $90. See typical totals by apartment size, what is included, and what is not. No hidden fees.',
   alternates: {
     canonical: `${siteUrl}/pricing`,
     languages: { en: `${siteUrl}/pricing`, 'x-default': `${siteUrl}/pricing` },
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     siteName: 'Easy Move Florida',
     title: 'How much does a move cost in South Florida? | Easy Move Florida',
     description:
-      'Real moving prices in South Florida: studio $376–$496, 1BR $450–$594, 2BR $525–$705, 3BR $750–$990. Everything included in the hourly rate.',
+      'Real moving prices in South Florida: studio $477–$606, 1BR $477–$671, 2BR $671–$864, 3BR $985–$1,343. Everything included in the hourly rate.',
     url: `${siteUrl}/pricing`,
     images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — transparent moving prices' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Moving Costs in South Florida — Transparent Pricing',
-    description: 'From $99/hr with a 3-hour minimum. No fuel surcharge, no stairs fee, no surprise charges.',
+    description: 'From $129/hr with a 3-hour minimum. No fuel surcharge, no stairs fee, no surprise charges.',
     images: [`${siteUrl}/images/Hero.png`],
   },
 };
@@ -39,12 +39,12 @@ export const metadata: Metadata = {
 // Typical totals — derived from HOURLY_RATE × hours band + truck fee.
 // These match the ranges already published in llms.txt and the homepage calculator.
 const APARTMENT_TOTALS = [
-  { size: 'Studio',          hours: '3–4 hours', crew: '2 movers', range: '$376–$496',  details: 'Bed, sofa, dresser, ~15 boxes' },
-  { size: '1-bedroom',       hours: '3–4.5 hours', crew: '2 movers', range: '$450–$594', details: 'Bed, sofa, dresser, dining table, ~25 boxes' },
-  { size: '2-bedroom',       hours: '4.5–6 hours', crew: '2 movers', range: '$525–$705', details: 'Two bedroom sets, sofa, dining, ~40 boxes' },
-  { size: '3-bedroom',       hours: '5–7 hours',   crew: '3 movers', range: '$750–$990', details: 'Three bedrooms, living, dining, ~60 boxes' },
-  { size: '4+ bedroom / house', hours: '7–10 hours', crew: '3 movers', range: '$990–$1,400+', details: 'Full house — recommend an in-person walkthrough' },
-  { size: 'Office (≤20 ppl)',   hours: '6–9 hours', crew: '3 movers', range: '$890–$1,300', details: 'Desks, chairs, electronics, file storage' },
+  { size: 'Studio',          hours: '3–4 hours', crew: '2 movers', range: '$477–$606',  details: 'Bed, sofa, dresser, ~15 boxes' },
+  { size: '1-bedroom',       hours: '3–4.5 hours', crew: '2 movers', range: '$477–$671', details: 'Bed, sofa, dresser, dining table, ~25 boxes' },
+  { size: '2-bedroom',       hours: '4.5–6 hours', crew: '2 movers', range: '$671–$864', details: 'Two bedroom sets, sofa, dining, ~40 boxes' },
+  { size: '3-bedroom',       hours: '5–7 hours',   crew: '3 movers', range: '$985–$1,343', details: 'Three bedrooms, living, dining, ~60 boxes' },
+  { size: '4+ bedroom / house', hours: '7–10 hours', crew: '3–4 movers', range: '$1,343–$2,380+', details: 'Full house — recommend an in-person walkthrough' },
+  { size: 'Office (≤20 ppl)',   hours: '6–9 hours', crew: '3 movers', range: '$1,164–$1,701', details: 'Desks, chairs, electronics, file storage' },
 ];
 
 const INCLUDED = [
@@ -73,7 +73,7 @@ const FACTORS = [
   },
   {
     title: 'Crew size',
-    body: 'Two movers ($99/hr) is the right call for most studios and 1-bedrooms. Three movers ($139/hr) finishes a 2-bedroom roughly 30% faster, so the total often comes out similar.',
+    body: 'Two movers ($129/hr) is the right call for most studios and 1-bedrooms. Three movers ($179/hr) finishes a 2-bedroom roughly 30% faster, so the total often comes out similar. Four movers ($229/hr) is reserved for 4+ bedroom houses or tight elevator windows.',
   },
   {
     title: 'Building access',
@@ -124,7 +124,15 @@ const PRICING_FAQS = [
   },
   {
     q: 'Do you charge extra for moving on a weekend?',
-    a: 'Same hourly rate on Saturdays. Sundays and major holidays are only available for pre-booked corporate moves and may carry a separate rate disclosed upfront.',
+    a: 'Saturday and Sunday moves carry a 10% surcharge over the weekday hourly rate, disclosed in your written estimate (not added later). Sundays and major holidays have limited capacity and should be booked in advance.',
+  },
+  {
+    q: 'Is there a peak-season surcharge?',
+    a: 'Yes. May through September (Florida\'s peak moving window) carries a 5% seasonal surcharge over the standard hourly rate. It is disclosed in writing before booking and stacks with the weekend surcharge for Saturday or Sunday moves in that window.',
+  },
+  {
+    q: 'I got a quote before May 15, 2026 — am I locked into the old rate?',
+    a: 'Yes. Customers who received a written estimate at the prior rates ($99/hr for 2 movers, $139/hr for 3 movers, $79 truck fee) before May 15, 2026 keep that pricing for any move booked on or before June 15, 2026. Bring the original written estimate.',
   },
   {
     q: 'Does the price include tip?',
@@ -165,7 +173,8 @@ const offerJson = JSON.stringify({
     '@type': 'AggregateOffer',
     priceCurrency: 'USD',
     lowPrice: HOURLY_RATE[2],
-    highPrice: HOURLY_RATE[3],
+    highPrice: HOURLY_RATE[4],
+    offerCount: 3,
     priceSpecification: [
       {
         '@type': 'UnitPriceSpecification',
@@ -181,6 +190,14 @@ const offerJson = JSON.stringify({
         priceCurrency: 'USD',
         unitText: 'HUR',
         name: '3 movers + truck',
+        eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
+      },
+      {
+        '@type': 'UnitPriceSpecification',
+        price: HOURLY_RATE[4],
+        priceCurrency: 'USD',
+        unitText: 'HUR',
+        name: '4 movers + truck',
         eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
       },
     ],
@@ -265,7 +282,7 @@ export default function PricingPage() {
             </div>
 
             <p className="text-center text-gray-400 text-xs mt-6">
-              Truck fee from $79 may apply on the first hour. Disclosed in your written estimate, not at the end.
+              Truck fee from $90 may apply on the first hour. Weekend +10%. Peak season (May–September) +5%. All disclosed in your written estimate, not at the end.
             </p>
           </div>
         </section>

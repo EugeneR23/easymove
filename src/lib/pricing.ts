@@ -1,11 +1,17 @@
 import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 
 // ─── Rate Tables ──────────────────────────────────────────────────────────────
-export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 99, 3: 139 };
+// Updated 2026-05-15. Grandfather period: customers who booked before 2026-06-15
+// at the prior rates ($99 / $139 / truck $79) keep their original written estimate.
+export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 229 };
 export const MIN_HOURS = 3;
-const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119 };
-const TRUCK_BASE = 79;
-const TRUCK_MAX: Record<CrewSize, number>            = { 2: 99, 3: 139 };
+const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
+export const TRUCK_BASE = 90;
+const TRUCK_MAX: Record<CrewSize, number>            = { 2: 129, 3: 179, 4: 229 };
+// Disclosed surcharges (applied at booking, shown in written estimate)
+export const WEEKEND_SURCHARGE_PCT = 10;     // Saturday/Sunday +10%
+export const PEAK_SEASON_SURCHARGE_PCT = 5;  // May–September +5%
+export const GRANDFATHER_UNTIL = '2026-06-15';
 
 // ─── South Florida city coordinates ──────────────────────────────────────────
 // [miles_north, miles_east] from a reference point near Homestead
@@ -100,7 +106,7 @@ const TRAVEL_SPEED_MPH = 28;
 // Trips under this distance are considered "included" — no surcharge
 const TRAVEL_FREE_MILES = 8;
 
-/** Truck fee scales with distance: $79 base → up to hourly rate for long trips */
+/** Truck fee scales with distance: $90 base → up to hourly rate for long trips */
 function getDistanceTruckFee(crew: CrewSize, miles: number): number {
   if (miles <= TRAVEL_FREE_MILES) return TRUCK_BASE;
   const extra = miles - TRAVEL_FREE_MILES;
@@ -136,7 +142,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     case 'local': {
       estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 3);
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
-      // Distance-based truck fee: $79 base, scales up to hourly rate for longer trips
+      // Distance-based truck fee: $90 base, scales up to hourly rate for longer trips
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
       truckFee       = getDistanceTruckFee(crew, travelMiles);
@@ -160,7 +166,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       break;
     }
     case 'packing-only': {
-      // $79/hr for 2 packers, $119/hr for 3 packers — 3-hour minimum
+      // $79/hr for 2 packers, $119/hr for 3 packers, $159/hr for 4 packers — 3-hour minimum
       estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 3);
       laborRate      = Math.round(PACKING_HOURLY_RATE[crew] * estimatedHours);
       truckFee       = 0;
