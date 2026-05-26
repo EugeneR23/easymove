@@ -8,44 +8,44 @@ import { easeLuxury } from '@/lib/motion';
 
 const FAQS = [
   {
-    q: "What's actually included in the hourly rate?",
-    a: '2 movers (or 3) plus the truck, furniture pads, stretch wrap, and basic disassembly and reassembly. No fuel surcharge, no stairs fee, no heavy item fee unless explicitly quoted upfront for piano-style items.',
+    q: "What's actually included in the hourly rate at Easy Move Florida?",
+    a: 'Every hourly booking includes two or three movers for the full duration of the job, a box truck with fuel and tolls covered, furniture pads to blanket-wrap dressers and sofas, stretch wrap for upholstered pieces, and basic disassembly and reassembly of standard items like bed frames, dining tables, and sectional sofas. There is no fuel surcharge, no stairs fee, and no heavy-item fee — unless a specialty item like a grand piano or marble slab was explicitly discussed before booking, in which case it is quoted in writing upfront. Many Miami moving companies routinely add these fees on move day; our policy is that the hourly rate you see on the pricing page is the rate that appears on the invoice. For a typical 2-bedroom apartment in Brickell or Aventura, most customers pay between $671 and $864 total with a two-person crew.',
   },
   {
     q: 'What if the move runs longer than the estimate?',
-    a: 'Same hourly rate continues. No panic markup. If we see risk of going over while we are working, we tell you upfront so you can decide.',
+    a: 'The same hourly rate continues — there is no panic markup, no surge pricing, no penalty for going over the written estimate. Estimates are calibrated from the inventory and building details you share before move day, but real homes have surprises: an extra closet of boxes, a building with a single freight elevator that needs to be shared, a piece of furniture that has to be partially disassembled to clear a door frame. When our crew leader sees risk of going over the estimate while the job is in progress, you are told immediately, given the current hour count, and asked whether to keep going or to pause and reschedule the remainder. We bill in 15-minute increments after the 3-hour minimum, not full-hour rounding, so the final invoice reflects actual time worked. Most jobs in South Florida finish within 30 minutes of the original estimate.',
   },
   {
-    q: 'COI for my building?',
-    a: 'Yes. Send us the building name and management contact. We send the Certificate of Insurance naming the building as additional insured 24 hours before move-day. No charge.',
+    q: 'Do you issue a COI (Certificate of Insurance) for my condo or high-rise building?',
+    a: 'Yes — a Certificate of Insurance is a one-page document proving the moving company carries general liability and cargo insurance, and most Miami condominiums, Aventura towers, Sunny Isles beachfront buildings, and high-rises in Brickell or Fort Lauderdale require one before allowing a moving crew into the building. The management office needs to confirm the mover is insured and lists the building as an additional insured party, protecting the HOA if a mover damages a lobby, elevator, or common area. Without a valid COI, buildings will refuse elevator access or turn the crew away at the loading dock. Easy Move Florida issues COIs within 24 hours of booking confirmation at no additional cost. To request one, send the building name, management company name, and any specific insurance minimums the building requires. The certificate is emailed directly to building management and to you before move day.',
   },
   {
-    q: 'Insurance for damage?',
-    a: 'Standard coverage is included. Upgraded coverage is available for high-value items (art, antiques, electronics) and is disclosed upfront in the estimate.',
+    q: 'What insurance coverage applies if something gets damaged during the move?',
+    a: 'Standard cargo and general liability coverage is included with every Easy Move Florida booking at no additional cost — this covers accidental damage to furniture and household goods during loading, transport, and unloading, plus damage to the building itself such as scratched walls, damaged door frames, or scuffed elevator interiors. For high-value items like fine art, antiques, electronics, designer furniture, or musical instruments, upgraded valuation coverage is available and is always disclosed in the written estimate before the move. The upgraded coverage is priced based on declared replacement value, not the standard per-pound federal default that most national van lines use. Damage claims are handled directly by our team and resolved within 14 business days, not routed through a third-party claims processor. We carry both general liability and cargo insurance year-round; COI proof is available on request from any client.',
   },
   {
-    q: 'Last-minute booking?',
-    a: 'Often yes. Send us what and when via WhatsApp — we check availability and reply within 30 minutes during business hours.',
+    q: 'Can you handle a last-minute or same-week move?',
+    a: 'Often yes — same-week availability is one of the practical advantages of running an owner-led local moving company instead of a national franchise with a centralized dispatch queue. Easy Move Florida holds back roughly 15–20% of weekly crew capacity for short-notice bookings, especially for clients with building elevator slots that opened up unexpectedly or for relocations driven by job starts, lease changes, or closing dates that moved. To check availability, send the move date, the origin and destination addresses, an approximate inventory (number of bedrooms, any specialty items), and any building requirements such as COI deadlines or elevator reservation windows via WhatsApp at +1 786-305-1844. The dispatcher replies within 30 minutes during business hours (Monday through Saturday, 8 AM to 7 PM EST) with a written quote and a confirmed crew assignment.',
   },
   {
-    q: 'Russian-speaking crew?',
-    a: 'Yes. Crew leader or dispatcher communicates in Russian. If you need a fully Russian-speaking crew, ask and we confirm availability for your specific date.',
+    q: 'Is the moving crew Russian-speaking?',
+    a: 'Yes — the founder, the dispatch coordinator, and most of the crew at Easy Move Florida speak Russian fluently, which makes the company a practical choice for the Russian-speaking communities concentrated in Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood, North Miami Beach, and parts of Miami Beach. Quotes can be issued in Russian or English, the on-site walkthrough on move day can be conducted in Russian, and any sensitive logistics conversations — about pricing, valuation, or building access — can be handled in whichever language the client prefers. The website is published in both English and Russian (`/ru/`). For clients who specifically need a fully Russian-speaking crew rather than just a Russian-speaking crew leader, ask when booking and the dispatcher will confirm availability for the requested date; this is usually available with 5+ days of notice.',
   },
   {
-    q: 'Long-distance moves?',
-    a: 'Custom estimate based on miles, weight, and complexity. Send origin, destination, and inventory list. Written estimate back to you within 24 hours.',
+    q: 'How does Easy Move Florida price long-distance and out-of-state moves?',
+    a: 'Long-distance moves from South Florida are priced as a flat-rate dedicated-truck service, not as an hourly local move and not as a shared-load brokerage arrangement. Pricing depends on three inputs: total mileage from origin to destination, the weight or cubic feet of the household inventory, and complexity factors like stair carries, long carries from the truck to the door, packing services, and any specialty items requiring custom crating. To get a written long-distance estimate, send the origin and destination addresses, a room-by-room inventory list (or photos of each room), the target move date window, and any building access constraints at either end. A written estimate is returned within 24 hours. Long-distance pricing starts at $1,200 for small moves on a dedicated truck — your belongings are not consolidated with anyone else’s shipment.',
   },
   {
-    q: 'Handyman work alongside the move?',
-    a: 'Yes — TV mounting, furniture assembly, picture hanging, small fixes. Bundle with a move and the handyman portion is discounted. We do not do licensed plumbing or electrical.',
+    q: 'Can you do small handyman work alongside the move?',
+    a: 'Yes — Easy Move Florida bundles small handyman services with moves so you do not have to coordinate a second visit after the truck leaves. Common requests include TV mounting (single or multi-screen, including soundbar wiring), wall-anchor picture and mirror hanging, IKEA or Wayfair furniture assembly, curtain rod installation, floating shelf installation, baby gates, and minor furniture repairs from transit. When handyman work is bundled with a same-day move, the handyman portion is discounted versus standalone pricing and is billed in the same continuous hourly window, not as a separate trip. Easy Move Florida does NOT perform licensed plumbing or electrical work, gas line installation, HVAC, or anything requiring a permit pull — for those, we refer to vetted local licensed trades. Mention any handyman needs at quote time so the right tools and anchors are loaded on the truck.',
   },
   {
-    q: 'Tip expected?',
-    a: 'Optional. 15–20% is standard if you are happy with the service. Not required.',
+    q: 'Is a tip expected for the moving crew?',
+    a: 'Tips are optional and never expected as a condition of service — the hourly rate is already structured to pay the crew a competitive South Florida wage without relying on customer gratuities. If you choose to tip, the local standard for a residential move that went well is 15–20% of the labor portion of the bill, divided across the crew. For an average $700 two-bedroom move, that works out to roughly $50–$70 per mover for a typical two-to-three person crew. Tips can be added to the credit card charge at the end of the job, paid in cash directly to the crew, or sent via Zelle to the crew leader after the move; the company does not take any cut of crew tips. If the move had problems, withholding a tip is an appropriate signal — and the company asks that you also call the founder directly at +1 786-305-1844 so the issue can be addressed.',
   },
   {
-    q: 'Cancellation policy?',
-    a: 'Free cancellation 48+ hours ahead. Inside 48 hours, depends on already-allocated crew time — we work with you on a case-by-case basis. No deposits.',
+    q: "What's the cancellation and rescheduling policy?",
+    a: 'Cancellations made more than 48 hours before the scheduled move start time are always free of charge and Easy Move Florida does not require any deposit at booking — this is deliberate, since deposit-required policies are one of the most common red flags for moving company scams in South Florida. Reschedules made more than 48 hours ahead are also free and applied to the next mutually available date, including peak-season Saturdays subject to crew availability. For cancellations or reschedules made inside the 48-hour window, the situation is handled case-by-case based on how much crew time has already been allocated and whether the slot can be backfilled with another booking — a partial fee may apply if the crew was already committed and another job had to be declined. Same-day cancellations after the crew has been dispatched are billed at the 3-hour minimum.',
   },
 ];
 
@@ -131,7 +131,7 @@ export default function FAQSection() {
                     <motion.div
                       initial={false}
                       animate={{
-                        maxHeight: isOpen ? 600 : 0,
+                        maxHeight: isOpen ? 1400 : 0,
                         opacity: isOpen ? 1 : 0,
                       }}
                       transition={{
