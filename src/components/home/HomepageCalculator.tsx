@@ -384,7 +384,7 @@ export default function HomepageCalculator() {
                         /* Long distance */
                         <div className="bg-black/30 border border-gold/20 p-6 mb-6 text-center">
                           <p className="text-white/50 text-xs uppercase tracking-wider mb-1">Starting from</p>
-                          <p className="font-display text-4xl font-bold text-gold mb-1">$1,200+</p>
+                          <p className="font-display text-4xl font-bold text-gold mb-1">$1,500+</p>
                           <p className="text-white/40 text-xs">Based on distance, home size &amp; access — confirmed after review</p>
                         </div>
                       )}

@@ -120,7 +120,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'How much does long-distance moving cost?',
-    a: 'Long-distance is a flat rate per job, not hourly. It starts at $1,200 and depends on miles, weight, and complexity. We send a written estimate within 24 hours of receiving your inventory.',
+    a: 'Long-distance is a flat rate per job, not hourly. It starts at $1,500 and depends on miles, weight, and complexity. We send a written estimate within 24 hours of receiving your inventory.',
   },
   {
     q: 'Do you charge extra for moving on a weekend?',
@@ -274,7 +274,7 @@ export default function PricingPage() {
               <div className="border border-gray-200 bg-white p-7">
                 <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">Long Distance</p>
                 <div className="mb-2">
-                  <span className="font-display text-3xl font-bold text-charcoal">From $1,200</span>
+                  <span className="font-display text-3xl font-bold text-charcoal">From $1,500</span>
                 </div>
                 <p className="text-gold text-xs font-semibold mb-4">Flat rate per job</p>
                 <p className="text-gray-500 text-sm leading-relaxed">Dedicated truck, no shared loads. Custom estimate within 24 hours of receiving your inventory.</p>

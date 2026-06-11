@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { MoveType, QuoteInventory, QuoteAddons } from '@/types';
-import { calculatePricing, estimateDistance } from '@/lib/pricing';
+import { calculatePricing, estimateLongDistance } from '@/lib/pricing';
 import Step1MoveType from './Step1_MoveType';
 import Step2HomeSize from './Step2_HomeSize';
 import Step3Locations from './Step3_Locations';
@@ -94,7 +94,7 @@ function getLiveEstimate(data: WizardData) {
   // No travel surcharge until cities are entered in step 3 — keeps sidebar estimate consistent with homepage calculator
   const distance  = data.moveType === 'local'
     ? 0
-    : estimateDistance(fromState, toState);
+    : estimateLongDistance(data.fromCity, fromState, data.toCity, toState);
 
   return calculatePricing({
     moveType: data.moveType,
