@@ -123,7 +123,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Сколько стоит дальний переезд?',
-    a: 'Дальний переезд — фиксированная сумма за весь груз, а не почасово. Начинается от $1,200 и зависит от миль, веса и сложности. Письменная смета приходит в течение 24 часов после получения инвентаря.',
+    a: 'Дальний переезд — фиксированная сумма за весь груз, а не почасово. Начинается от $1,500 и зависит от миль, веса и сложности. Письменная смета приходит в течение 24 часов после получения инвентаря.',
   },
   {
     q: 'Берёте ли вы дополнительно за переезд в выходные?',
@@ -275,7 +275,7 @@ export default function PricingRuPage() {
               <div className="border border-gray-200 bg-white p-7">
                 <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">Дальние переезды</p>
                 <div className="mb-2">
-                  <span className="font-display text-3xl font-bold text-charcoal">От $1,200</span>
+                  <span className="font-display text-3xl font-bold text-charcoal">От $1,500</span>
                 </div>
                 <p className="text-gold text-xs font-semibold mb-4">Фиксированная сумма</p>
                 <p className="text-gray-500 text-sm leading-relaxed">Выделенный грузовик, без объединённых грузов. Письменная смета в течение 24 часов после получения инвентаря.</p>

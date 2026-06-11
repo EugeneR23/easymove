@@ -39,7 +39,9 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
     ? `Packing — ${pricing.crewSize} packers × ${pricing.estimatedHours}h`
     : isLocal
       ? `Labour — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`
-      : 'Base rate';
+      : pricing.isLongDistance && pricing.estimatedHours > 0
+        ? `Loading & unloading — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`
+        : 'Base rate';
 
   // ── Access fee label ───────────────────────────────────────────────────────
   const accessLabel = (() => {
@@ -63,7 +65,12 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
 
   const lineItems = [
     pricing.laborRate > 0 ? { label: laborLabel, value: pricing.laborRate } : null,
-    pricing.truckFee  > 0 ? { label: 'Truck fee', value: pricing.truckFee } : null,
+    pricing.truckFee  > 0 ? {
+      label: pricing.isLongDistance
+        ? `Long-distance transport${pricing.travelMiles > 0 ? ` — ~${pricing.travelMiles} mi` : ''}`
+        : 'Truck fee',
+      value: pricing.truckFee,
+    } : null,
     pricing.travelFee > 0 ? { label: travelLabel, value: pricing.travelFee } : null,
     pricing.accessFee > 0 ? { label: accessLabel, value: pricing.accessFee } : null,
     ...addonLines,

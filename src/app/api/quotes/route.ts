@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
-import { calculatePricing, estimateDistance, estimateLocalDistance } from '@/lib/pricing';
+import { calculatePricing, estimateDistance, estimateLocalDistance, estimateLongDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
@@ -56,11 +56,20 @@ export async function POST(req: NextRequest) {
     }));
 
     // ── 2. Build quote object ──────────────────────────────────────────────────
-    // Use accurate city-to-city distance when both cities are provided (local moves)
-    const estimatedDistance = body.fromCity && body.toCity
-      ? estimateLocalDistance(body.fromCity as string, body.toCity as string)
-      : estimateDistance(body.fromState as string, body.toState as string);
+    // Distance source depends on move type: the South-Florida city table is ONLY
+    // valid for local/office moves — long-distance must use the US-wide estimator.
     const moveType = parseMoveType(body.moveType);
+    const isLongMove = moveType === 'long-distance' || moveType === 'international';
+    const estimatedDistance = isLongMove
+      ? estimateLongDistance(
+          (body.fromCity  as string) ?? '',
+          (body.fromState as string) ?? '',
+          (body.toCity    as string) ?? '',
+          (body.toState   as string) ?? '',
+        )
+      : body.fromCity && body.toCity
+        ? estimateLocalDistance(body.fromCity as string, body.toCity as string)
+        : estimateDistance(body.fromState as string, body.toState as string);
     const pricing = calculatePricing({
       moveType,
       estimatedDistance,
@@ -205,7 +214,7 @@ export async function POST(req: NextRequest) {
           <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">💰 Estimated Price</p>
           <table style="border-collapse:collapse;font-size:14px;width:100%">
             ${row('Labor', `$${quote.pricing.laborRate}`)}
-            ${quote.pricing.truckFee > 0 ? row('Truck fee', `$${quote.pricing.truckFee}`) : ''}
+            ${quote.pricing.truckFee > 0 ? row(quote.pricing.isLongDistance ? 'Linehaul (truck · fuel · driver)' : 'Truck fee', `$${quote.pricing.truckFee}`) : ''}
             ${quote.pricing.travelFee > 0 ? row('Travel time', `$${quote.pricing.travelFee} (~${quote.pricing.travelMiles} mi · ~${quote.pricing.travelMinutes} min)`) : ''}
             ${quote.pricing.accessFee > 0 ? row('Access fee', `$${quote.pricing.accessFee}`) : ''}
             ${quote.pricing.addonsFee > 0 ? row('Add-ons fee', `$${quote.pricing.addonsFee}`) : ''}

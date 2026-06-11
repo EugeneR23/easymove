@@ -81,7 +81,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'long-distance-moving': {
     longIntro: [
       "Long-distance moves out of South Florida are different from local work in three ways: distance pricing, dedicated truck logistics, and delivery window honesty. Most national van lines quote a low price, then load your goods on a truck shared with three other families, then deliver in a 2-week window that stretches to 4. EasyMove Elite doesn't operate that way. Your goods travel on a dedicated truck that's loaded, driven, and unloaded by the same crew. We give you a delivery window before we commit, and we hit it.",
-      "We've moved clients from South Florida to the Northeast (NY, NJ, MA, CT), the mid-Atlantic (DC, MD, VA, PA), the Southeast (GA, NC, SC, TN), and the Midwest (IL, OH, MI). Long-distance pricing starts at $1,200 minimum for short interstate hauls and scales with distance, volume, and access at both ends. Every long-distance quote is custom — no online calculator estimates that change on move day.",
+      "We've moved clients from South Florida to the Northeast (NY, NJ, MA, CT), the mid-Atlantic (DC, MD, VA, PA), the Southeast (GA, NC, SC, TN), and the Midwest (IL, OH, MI). Long-distance pricing starts at $1,500 minimum for short interstate hauls and scales with distance, volume, and access at both ends. Every long-distance quote is custom — no online calculator estimates that change on move day.",
     ],
     whyUs: [
       {
@@ -110,7 +110,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { step: 6, title: 'Delivery', body: 'Crew arrives at destination within the committed window. Inventory check against load list. Unloading. Furniture placement. Reassembly of disassembled items. Final walk-through and payment.' },
     ],
     pricingBreakdown: [
-      'Minimum charge: $1,200 (short interstate, e.g., FL → GA studio)',
+      'Minimum charge: $1,500 (short interstate, e.g., FL → GA studio)',
       'Studio, FL → NY: typical range $2,800–$3,800',
       '1-bedroom, FL → NY: typical range $3,600–$4,800',
       '2-bedroom, FL → NY: typical range $4,800–$6,500',

@@ -77,7 +77,7 @@ function getSeedServices(): Service[] {
         { icon: 'Package', label: 'Professional packing available' },
         { icon: 'MapPin', label: 'Quoted individually per move' },
       ],
-      startingPrice: 1200, priceUnit: 'flat-rate',
+      startingPrice: 1500, priceUnit: 'flat-rate',
       imageUrl: '/images/Long%20distance.png',
       isActive: true,
     },
