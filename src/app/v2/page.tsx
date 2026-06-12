@@ -3,6 +3,7 @@ import V2Header from '@/components/v2/V2Header';
 import ClockStoryHero from '@/components/v2/ClockStoryHero';
 import V2Calculator from '@/components/v2/V2Calculator';
 import V2CTA from '@/components/v2/V2CTA';
+import V2WallflowWidget from '@/components/v2/V2WallflowWidget';
 import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function V2Page() {
       <V2Header />
       <ClockStoryHero />
       <V2Calculator />
+      <V2WallflowWidget />
       <V2CTA />
       <Footer />
     </main>
