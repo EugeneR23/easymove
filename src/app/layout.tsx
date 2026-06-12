@@ -120,8 +120,8 @@ const localBusinessSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 25.7617,
-    longitude: -80.1918,
+    latitude: 26.0038,
+    longitude: -80.158,
   },
   areaServed: [
     { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
@@ -156,7 +156,6 @@ const localBusinessSchema = {
     contactType: 'customer service',
     areaServed: 'US',
     availableLanguage: ['English', 'Russian'],
-    contactOption: 'TollFree',
   },
   serviceType: [
     'Local Residential Moving',
@@ -177,13 +176,14 @@ const localBusinessSchema = {
     jobTitle: 'Founder & Owner',
   },
   sameAs: [
+    'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
     'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
     'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
   ],
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '5.0',
-    reviewCount: '32',
+    reviewCount: '6',
     bestRating: '5',
     worstRating: '1',
   },
@@ -272,6 +272,7 @@ const organizationSchema = {
     },
   ],
   sameAs: [
+    'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
     'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
     'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
   ],
