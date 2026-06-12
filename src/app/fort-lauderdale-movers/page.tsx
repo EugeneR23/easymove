@@ -7,7 +7,14 @@ const city = getCityData('fort-lauderdale-movers')!;
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easy-move-florida.com/fort-lauderdale-movers' },
+  alternates: {
+    canonical: 'https://www.easy-move-florida.com/fort-lauderdale-movers',
+    languages: {
+      en: 'https://www.easy-move-florida.com/fort-lauderdale-movers',
+      ru: 'https://www.easy-move-florida.com/ru/fort-lauderdale-movers',
+      'x-default': 'https://www.easy-move-florida.com/fort-lauderdale-movers',
+    },
+  },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',
