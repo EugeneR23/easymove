@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import V2Header from '@/components/v2/V2Header';
 import ClockStoryHero from '@/components/v2/ClockStoryHero';
+import V2Calculator from '@/components/v2/V2Calculator';
 import V2CTA from '@/components/v2/V2CTA';
 import Footer from '@/components/layout/Footer';
 
@@ -16,6 +17,7 @@ export default function V2Page() {
     <main className="bg-[#060608]">
       <V2Header />
       <ClockStoryHero />
+      <V2Calculator />
       <V2CTA />
       <Footer />
     </main>

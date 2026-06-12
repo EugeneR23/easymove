@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from 'motion/react';
 
 // ── Scenes of moving day ───────────────────────────────────────────────────────
@@ -148,9 +147,9 @@ function Scene({ scene, index, progress }: {
         <p className="text-white/55 text-sm sm:text-base leading-relaxed mt-6 max-w-md">{scene.sub}</p>
         {'cta' in scene && scene.cta && (
           <div className="mt-8 flex flex-wrap gap-4 pointer-events-auto">
-            <Link href="/quote" className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 transition-colors">
-              Plan My Day
-            </Link>
+            <a href="#estimate" className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 transition-colors">
+              See My Price
+            </a>
             <a href="tel:7863051844" className="border border-white/25 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 transition-all">
               786-305-1844
             </a>
