@@ -7,7 +7,14 @@ const city = getCityData('sunny-isles-movers')!;
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easy-move-florida.com/sunny-isles-movers' },
+  alternates: {
+    canonical: 'https://www.easy-move-florida.com/sunny-isles-movers',
+    languages: {
+      en: 'https://www.easy-move-florida.com/sunny-isles-movers',
+      ru: 'https://www.easy-move-florida.com/ru/sunny-isles-movers',
+      'x-default': 'https://www.easy-move-florida.com/sunny-isles-movers',
+    },
+  },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',

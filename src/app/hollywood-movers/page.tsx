@@ -7,7 +7,14 @@ const city = getCityData('hollywood-movers')!;
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easy-move-florida.com/hollywood-movers' },
+  alternates: {
+    canonical: 'https://www.easy-move-florida.com/hollywood-movers',
+    languages: {
+      en: 'https://www.easy-move-florida.com/hollywood-movers',
+      ru: 'https://www.easy-move-florida.com/ru/hollywood-movers',
+      'x-default': 'https://www.easy-move-florida.com/hollywood-movers',
+    },
+  },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',

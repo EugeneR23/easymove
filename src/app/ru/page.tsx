@@ -421,6 +421,35 @@ export default function RuHomePage() {
           </div>
         </section>
 
+        {/* ══════════════════════ Города ══════════════════════ */}
+        <section className="section-padding bg-cream">
+          <div className="container-max max-w-4xl mx-auto text-center">
+            <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Где мы работаем</p>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-charcoal mb-3">Русскоязычные грузчики в вашем городе</h2>
+            <p className="text-gray-500 text-sm max-w-xl mx-auto mb-8">
+              Отдельные страницы для городов с большой русскоязычной общиной — цены, здания, частые вопросы.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {[
+                { href: '/ru/miami-movers', label: 'Майами' },
+                { href: '/ru/sunny-isles-movers', label: 'Санни-Айлс-Бич' },
+                { href: '/ru/aventura-movers', label: 'Авентура' },
+                { href: '/ru/hallandale-beach-movers', label: 'Халландейл-Бич' },
+                { href: '/ru/hollywood-movers', label: 'Голливуд' },
+                { href: '/ru/fort-lauderdale-movers', label: 'Форт-Лодердейл' },
+              ].map((c) => (
+                <Link
+                  key={c.href}
+                  href={c.href}
+                  className="text-sm border border-gray-200 text-gray-600 px-5 py-2.5 hover:border-gold hover:text-charcoal transition-colors duration-150"
+                >
+                  {c.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ══════════════════════ CTA ══════════════════════ */}
         <section className="relative bg-charcoal py-16 overflow-hidden">
           <div className="absolute inset-0 grain-overlay" />

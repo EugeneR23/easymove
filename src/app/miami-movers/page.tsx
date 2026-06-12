@@ -7,7 +7,14 @@ const city = getCityData('miami-movers')!;
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easy-move-florida.com/miami-movers' },
+  alternates: {
+    canonical: 'https://www.easy-move-florida.com/miami-movers',
+    languages: {
+      en: 'https://www.easy-move-florida.com/miami-movers',
+      ru: 'https://www.easy-move-florida.com/ru/miami-movers',
+      'x-default': 'https://www.easy-move-florida.com/miami-movers',
+    },
+  },
   openGraph: {
     type: 'website',
     siteName: 'EasyMove Elite',
