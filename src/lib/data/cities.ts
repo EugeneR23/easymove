@@ -467,6 +467,160 @@ export const CITIES: CityData[] = [
       },
     ],
   },
+  {
+    slug: 'doral-movers',
+    name: 'Doral',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: "Doral's Corporate & Residential Moving Company",
+    heroSub: 'Doral Isles · Vintage Estates · Doral Park · Trump National',
+    heroImage: '/images/Real/2.png',
+    metaTitle: 'Doral Movers, FL | Easy Move Florida',
+    metaDescription:
+      'Doral movers — Doral Isles, Vintage Estates, Trump National. Corporate relocations, MIA-adjacent logistics, trilingual EN/RU/Spanish crew. COI in 24h. Call 786-305-1844.',
+    intro:
+      "Doral is unlike any other city in Miami-Dade. It's part residential boomtown, part Latin American corporate headquarters, and part industrial logistics corridor — all wedged between Miami International Airport and the Everglades. Moving here means juggling three very different jobs at once: corporate relocations into Trump National Doral and Costa Del Sol townhouses, family moves into Doral Isles and Vintage Estates, and warehouse-to-warehouse business moves along NW 36th Street and the airport industrial belt. Our crew speaks English, Russian, and Spanish — which matters more in Doral than anywhere else in Miami-Dade, because the building managers, gate guards, and HOA boards here often default to Spanish. We handle the COI paperwork, the gate clearances, and the cross-border corporate paperwork that comes with relocating an executive from Caracas, Bogotá, or São Paulo into a Doral home.",
+    neighborhoods: [
+      'Doral Isles', 'Vintage Estates', 'Doral Park', 'Trump National Doral',
+      'Costa Del Sol', 'Grand Bay', 'Doral Cay', 'Islands at Doral',
+      'Doral Estates', 'Downtown Doral', 'CityPlace Doral', 'Doral Meadow Park',
+    ],
+    localFacts: [
+      {
+        title: 'Corporate & Executive Relocations',
+        body: "Doral hosts the Latin American headquarters of dozens of multinationals — Univision, Carnival, Ryder, Perry Ellis, and most major Latin American bank branches. We handle inbound executive relocations weekly: Caracas, Bogotá, Mexico City, São Paulo executives moving into Doral Isles and Trump National. We coordinate with relocation managers, issue corporate COIs naming the employer, and provide itemized inventory for expense reimbursement.",
+      },
+      {
+        title: 'Trilingual Crew — English, Spanish, Russian',
+        body: "Doral is roughly 80% Latino, and most gate guards, HOA boards, and building managers operate in Spanish by default. Our coordinator and lead crew members are fluent in Spanish — hablamos español con su HOA, los guardias de la garita, y la administración del edificio. We also handle Russian-speaking clients (мы говорим по-русски) and of course English. No interpreter needed, no message lost in translation.",
+      },
+      {
+        title: 'MIA Airport-Adjacent Logistics',
+        body: "Doral sits directly north of Miami International Airport, which makes it the natural staging point for international relocations. We coordinate Miami-side handling for clients shipping in from Latin America, the Caribbean, and Europe — receiving containers at the freight forwarder, last-mile delivery into your Doral home, and unpacking on arrival. International inbound moves are a weekly occurrence here, not a special event.",
+      },
+      {
+        title: 'Gated Community Protocols',
+        body: "Doral Isles, Vintage Estates, Costa Del Sol, and Trump National all have full gate-house registration, vehicle/crew name submission requirements, and approved move-in windows. Our coordinator submits all paperwork 48 hours in advance — vehicle plates, crew IDs, COI in the format the community requires — so your crew clears the gate without a 20-minute wait that eats your hourly billing.",
+      },
+      {
+        title: 'Doral Industrial & Warehouse Corridor',
+        body: "Doral's northwest quadrant — along NW 36th, NW 41st, and the airport industrial belt — is one of the largest light-industrial corridors in Florida. We handle small-office and warehouse relocations within Doral, coordinating with loading dock managers, freight elevator schedules, and after-hours building access. Most commercial moves here happen overnight or on weekends to avoid disrupting business operations.",
+      },
+      {
+        title: 'Downtown Doral & CityPlace Tower Moves',
+        body: "Downtown Doral and CityPlace Doral have brought a new wave of mid-rise residential towers to a city that was historically single-family. These newer buildings — 5500 University, Doral View, Park Square — have COI requirements ($1M-$2M general liability), freight elevator reservations, and specific move-in/move-out windows. We've handled most of them and know each building's quirks.",
+      },
+    ],
+    faqs: [
+      {
+        q: '¿Hablan español? Do you have Spanish-speaking movers?',
+        a: 'Sí, claro. Nuestro coordinador y la mayoría del equipo hablan español con fluidez — coordinamos con el HOA, la administración del edificio, y los guardias de la garita sin problema. We coordinate the entire move in Spanish if that\'s your preference, including the written estimate, COI request, and on-site direction with the crew.',
+      },
+      {
+        q: 'Do you handle corporate relocations into Doral?',
+        a: 'Yes — corporate and executive relocations are one of our most common Doral jobs. We work with HR departments, global mobility teams, and relocation management companies. Corporate COIs (naming the employer as additional insured), itemized inventory for expense reports, and white-glove handling are standard. We\'ve relocated executives into Trump National Doral, Doral Isles, Costa Del Sol, and Grand Bay from Caracas, Bogotá, Mexico City, and São Paulo.',
+      },
+      {
+        q: 'Do you move into Trump National Doral residences?',
+        a: 'Yes. Trump National Doral residences have gate-house registration, advance vehicle clearance, and specific COI requirements. We submit all paperwork 48 hours before your move so the crew clears security without delay.',
+      },
+      {
+        q: 'Can you handle an international inbound move from Latin America into Doral?',
+        a: 'Yes — this is one of our specialties. We coordinate with your overseas freight forwarder, receive your container at the Miami port or airport, handle Miami-side customs paperwork coordination, and deliver and unpack at your Doral home. Common inbound origins: Caracas, Bogotá, Mexico City, São Paulo, Buenos Aires, Lima, Santiago, Madrid.',
+      },
+      {
+        q: 'How does pricing work for a Doral move?',
+        a: 'Local moves are billed hourly: $129/hour for 2 movers, $179/hour for 3 movers, $229/hour for 4 movers, with a 3-hour minimum plus a truck fee from $90. Weekend +10%, peak season (May–September) +5%. A typical 2-bedroom Doral Isles townhouse runs $700-$950 all-in. Corporate relocations get an itemized written estimate with line items suitable for HR reimbursement.',
+      },
+      {
+        q: 'Do you serve Doral Isles and Vintage Estates?',
+        a: 'Yes — both are part of our regular Doral service. We know the gate-house registration process for each community, the COI formats their HOAs require, and the approved move-in windows. Same-day crew availability is often possible — call 786-305-1844 to check.',
+      },
+      {
+        q: 'Do you handle small-office and warehouse moves in the Doral industrial corridor?',
+        a: 'Yes. We handle commercial moves along NW 36th, NW 41st, and the airport industrial belt — after-hours and weekend windows are common to avoid disrupting business operations. We coordinate loading dock access, freight elevator reservations, and crew scheduling around your building manager\'s requirements.',
+      },
+    ],
+  },
+  {
+    slug: 'hallandale-beach-movers',
+    name: 'Hallandale Beach',
+    state: 'FL',
+    county: 'Broward',
+    heroHeadline: "Hallandale Beach's Oceanfront Moving Specialists",
+    heroSub: 'Diplomat · Beach Club · Hyde Resort · Hemispheres · Olympus',
+    heroImage: '/images/Real/6.png',
+    metaTitle: 'Hallandale Beach Movers, FL | Easy Move Florida',
+    metaDescription:
+      'Hallandale Beach movers — Diplomat, Beach Club Towers, Hyde Resort, Hemispheres. Oceanfront tower COI specialists, Russian-speaking crew. Call 786-305-1844.',
+    intro:
+      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north, which makes us the most efficient mover for Hallandale work: no I-95 surcharge, same-day crew availability, and we know the dock manager at the Diplomat by name. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years — мы говорим по-русски и работаем с русскоязычной аудиторией постоянно.",
+    neighborhoods: [
+      'Diplomat Beach Resort', 'Beach Club Towers', 'Hyde Resort & Residences',
+      'Hemispheres', 'Olympus', 'Three Islands', 'The Plaza',
+      'Parc Central', 'Beach Walk', 'Eastside', 'Golden Isles', 'Gulfstream Park',
+    ],
+    localFacts: [
+      {
+        title: 'Oceanfront Tower COI Specialists',
+        body: "Hallandale Beach's oceanfront towers carry the strictest COI requirements in Broward County. Beach Club Towers requires $2M general liability with the association named exactly as written in their bylaws. The Diplomat residences and Hyde Resort each require their own format — $1M-$2M general liability, additional insured language, and waiver of subrogation. We've issued COIs for every major oceanfront building in Hallandale and we turn them around within 24 hours of your confirmed booking.",
+      },
+      {
+        title: 'A1A & Hallandale Beach Blvd Parking Permits',
+        body: "Parking a moving truck on A1A or Hallandale Beach Boulevard requires a temporary loading-zone permit from the city — meter maids are aggressive here, especially in the November-April high season. We pull permits 48-72 hours in advance and post them on the truck the morning of your move. That avoids the $50-150 ticket and prevents the crew from having to carry boxes an extra block in the heat.",
+      },
+      {
+        title: 'Snowbird Season Specialists (October–March)',
+        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March we run weekly inbound moves from New York, New Jersey, Massachusetts, Quebec, and Ontario into Hemispheres, Olympus, Three Islands, and the Beach Club. Return-trip storage between seasons, climate-controlled storage for snowbird furniture, and partial-pack services for the items that stay behind are all part of the package.",
+      },
+      {
+        title: 'Russian-Speaking Crew',
+        body: 'Sunny Isles, Aventura, and Hallandale Beach form the largest Russian-speaking corridor in South Florida — and the Russian community has been spilling north into Hallandale\'s oceanfront towers and the Three Islands condos for a decade. Наш координатор и большая часть бригады свободно говорят по-русски. Если вам или управлению здания удобнее по-русски — без проблем.',
+      },
+      {
+        title: 'Hollywood-Based — No I-95 Surcharge',
+        body: "We're based ten minutes north in Hollywood, which makes us the most efficient mover for Hallandale Beach jobs. No travel surcharge from Miami, same-day crew availability, and our trucks are already on this side of the county line. Most Miami-based movers add a travel charge for Broward jobs — we don't, because this is our backyard.",
+      },
+      {
+        title: 'Gulfstream Park & West-Side Buildings',
+        body: "The west side of Hallandale — Gulfstream Park, Three Islands, the Hemispheres complex — has its own logistics. Three Islands is a sprawling four-tower property with shared dock access and a strict elevator reservation system. We know which tower entrance to use, the dock window for each building, and the security desk's preferred check-in process.",
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move into the Diplomat Beach Resort residences?',
+        a: "Yes. The Diplomat residences are part of our regular service. We know the loading dock location, the security check-in process, the COI format the building requires, and the freight elevator reservation window. The Diplomat is also a working hotel — we coordinate with hotel operations to avoid the bell-staff loading zone during peak check-in hours.",
+      },
+      {
+        q: 'Do you handle Beach Club Towers and Hyde Resort moves?',
+        a: 'Yes. Both buildings are familiar to our crew. Beach Club Towers requires a $2M general liability COI with very specific additional-insured language; Hyde Resort has its own format and freight elevator reservation system. We submit COI paperwork within 24 hours of booking and reserve the elevator window before your move date.',
+      },
+      {
+        q: 'Do you handle snowbird seasonal moves?',
+        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We coordinate long-distance pickup at your northern home, transport to your Hallandale residence, and unpacking on arrival. We also offer climate-controlled storage for off-season items and partial-pack service for clients who keep some belongings in their northern home.',
+      },
+      {
+        q: 'Вы работаете на русском?',
+        a: 'Да, конечно. Координатор и большая часть бригады свободно говорят по-русски. Холлендейл-Бич, Авентура, Санни-Айлс — для русскоязычных клиентов это привычные для нас районы. Можем общаться с управлением здания по-английски, а с вами по-русски — без проблем.',
+      },
+      {
+        q: 'Do you pull parking permits for A1A and Hallandale Beach Blvd?',
+        a: 'Yes. Parking on A1A or Hallandale Beach Boulevard requires a temporary loading-zone permit from the city — we pull it 48-72 hours in advance and post it on the truck the morning of your move. The permit is included in the truck fee for residential moves on those streets.',
+      },
+      {
+        q: 'How does pricing work for a Hallandale Beach move?',
+        a: 'Local moves are billed hourly: $129/hour for 2 movers, $179/hour for 3 movers, $229/hour for 4 movers, with a 3-hour minimum plus a truck fee from $90. Weekend +10%, peak season (May–September) +5%. A typical 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) runs $580-$780 all-in. Snowbird long-distance inbound moves are quoted separately based on origin city and inventory.',
+      },
+      {
+        q: 'Do you serve Three Islands, Hemispheres, and Olympus?',
+        a: "Yes — all three are part of our regular service. We know the dock access, security desk procedures, and elevator reservation systems for each. Three Islands in particular has multiple towers sharing dock infrastructure, and we know which tower entrance and window to use for each address.",
+      },
+      {
+        q: 'Do you serve Hollywood, Aventura, and Sunny Isles as well?',
+        a: 'Yes. Hollywood (where we\'re based), Aventura, Sunny Isles Beach, Bal Harbour, and the rest of north Miami-Dade and south Broward are all part of our daily service area — same crew, same standards, no travel surcharge.',
+      },
+    ],
+  },
 ];
 
 export function getCityData(slug: string): CityData | undefined {

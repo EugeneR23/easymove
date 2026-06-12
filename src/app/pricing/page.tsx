@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
-import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
+import { CheckCircle, X, Phone, Shield, Clock, AlertCircle, Truck } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -35,6 +35,20 @@ export const metadata: Metadata = {
     images: [`${siteUrl}/images/Hero.png`],
   },
 };
+
+// Long-distance route price bands (dedicated truck, no shared loads).
+// Ranges reflect typical inventory at each apartment size, en-route fuel/tolls,
+// and standard access at both ends. Final number locked after walkthrough.
+const DISTANCE_ROUTES = [
+  { route: 'Miami → Orlando',       studio: '$1,400–$1,800', oneBr: '$1,600–$2,200', twoBr: '$2,200–$2,900', threeBr: '$3,000–$4,200' },
+  { route: 'Miami → Tampa',         studio: '$1,300–$1,700', oneBr: '$1,500–$2,100', twoBr: '$2,100–$2,800', threeBr: '$2,800–$4,000' },
+  { route: 'Miami → Jacksonville',  studio: '$1,600–$2,200', oneBr: '$1,900–$2,600', twoBr: '$2,600–$3,500', threeBr: '$3,500–$5,000' },
+  { route: 'Miami → Atlanta',       studio: '$2,200–$3,000', oneBr: '$2,800–$3,800', twoBr: '$3,800–$5,200', threeBr: '$5,200–$7,500' },
+  { route: 'Miami → New York',      studio: '$2,800–$3,800', oneBr: '$3,600–$4,800', twoBr: '$4,800–$6,500', threeBr: '$6,500–$9,500' },
+  { route: 'Miami → Boston',        studio: '$3,000–$4,000', oneBr: '$3,800–$5,100', twoBr: '$5,100–$6,900', threeBr: '$6,900–$10,000' },
+  { route: 'Miami → Washington DC', studio: '$2,500–$3,400', oneBr: '$3,100–$4,200', twoBr: '$4,200–$5,700', threeBr: '$5,700–$8,300' },
+  { route: 'Hollywood → Charlotte', studio: '$2,000–$2,700', oneBr: '$2,500–$3,400', twoBr: '$3,400–$4,600', threeBr: '$4,600–$6,700' },
+];
 
 // Typical totals — derived from HOURLY_RATE × hours band + truck fee.
 // These match the ranges already published in llms.txt and the homepage calculator.
@@ -121,6 +135,14 @@ const PRICING_FAQS = [
   {
     q: 'How much does long-distance moving cost?',
     a: 'Long-distance is a flat rate per job, not hourly. It starts at $1,500 and depends on miles, weight, and complexity. We send a written estimate within 24 hours of receiving your inventory.',
+  },
+  {
+    q: 'How much does it cost to move from Miami to Orlando?',
+    a: 'A Miami → Orlando move typically runs $1,400–$1,800 for a studio, $1,600–$2,200 for a 1-bedroom, $2,200–$2,900 for a 2-bedroom, and $3,000–$4,200 for a 3-bedroom. Dedicated truck, no shared loads. Written estimate within 24 hours.',
+  },
+  {
+    q: 'How much does it cost to move from Miami to New York?',
+    a: 'A Miami → NYC move typically runs $2,800–$3,800 for a studio, $3,600–$4,800 for a 1-bedroom, $4,800–$6,500 for a 2-bedroom, and $6,500–$9,500 for a 3-bedroom. Dedicated truck, white-glove handling, en-route updates.',
   },
   {
     q: 'Do you charge extra for moving on a weekend?',
@@ -395,6 +417,55 @@ export default function PricingPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Long-Distance Pricing */}
+        <section className="section-padding bg-white">
+          <div className="container-max max-w-6xl">
+            <div className="mb-10 max-w-2xl">
+              <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Long-Distance Pricing</p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal leading-tight mb-3">
+                Routes from South Florida
+              </h2>
+              <p className="text-gray-500 leading-relaxed">
+                Flat-rate, dedicated truck moves out of Miami-Dade and Broward. Ranges below cover the typical inventory for each apartment size on each route. Heavy specialty pieces or 4+ bedroom houses are quoted on top.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-100 overflow-x-auto">
+              <table className="w-full text-left min-w-[640px]">
+                <thead>
+                  <tr className="bg-charcoal text-white text-xs font-semibold tracking-[0.2em] uppercase">
+                    <th className="px-6 py-4 font-semibold">Route</th>
+                    <th className="px-6 py-4 font-semibold">Studio</th>
+                    <th className="px-6 py-4 font-semibold">1BR</th>
+                    <th className="px-6 py-4 font-semibold">2BR</th>
+                    <th className="px-6 py-4 font-semibold">3BR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {DISTANCE_ROUTES.map((r) => (
+                    <tr key={r.route} className="border-b border-gray-100 last:border-b-0">
+                      <td className="px-6 py-5">
+                        <div className="flex items-center gap-2 font-semibold text-charcoal text-sm md:text-base">
+                          <Truck size={14} className="text-gold shrink-0" />
+                          <span>{r.route}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.studio}</td>
+                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.oneBr}</td>
+                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.twoBr}</td>
+                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.threeBr}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-gray-500 text-sm leading-relaxed mt-6 max-w-3xl">
+              Dedicated truck, no shared loads. Written estimate within 24 hours. Final price depends on exact inventory, distance, and access at both ends.
+            </p>
           </div>
         </section>
 
