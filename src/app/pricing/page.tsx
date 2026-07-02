@@ -356,7 +356,8 @@ export default function PricingPage() {
             <div className="mt-6 flex items-start gap-3 text-xs text-gray-500 max-w-3xl">
               <AlertCircle size={14} className="text-gold shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                These are field-tested ranges from real South Florida moves — not internet averages. Buildings with strict elevator windows, 4th-floor walk-ups, or heavy specialty pieces will push the upper end of the band. We disclose all of that in your written estimate before booking.
+                These are field-tested ranges from real South Florida moves — not internet averages. Buildings with strict elevator windows, 4th-floor walk-ups, or heavy specialty pieces will push the upper end of the band. We disclose all of that in your written estimate before booking. Moving within Miami? See the full{' '}
+                <Link href="/moving-cost-miami" className="text-gold underline underline-offset-2">Miami moving cost guide (2026)</Link>.
               </p>
             </div>
           </div>
