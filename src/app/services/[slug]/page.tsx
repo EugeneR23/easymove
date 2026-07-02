@@ -258,8 +258,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {[
                     { title: 'Licensed & Fully Insured', desc: 'Every move is covered. COI available for building management within 24 hours.' },
-                    { title: 'Arrival Windows', desc: 'Two-hour arrival window. We call 30 min before. No all-day waiting.' },
-                    { title: 'Transparent Pricing', desc: 'Written estimate before any work begins. No surprise fees on moving day.' },
+                    { title: 'On Time or 10% Off', desc: '15-minute arrival window. Late by 30+ minutes: 10% off. No all-day waiting.' },
+                    { title: 'Transparent Pricing', desc: 'Written estimate with a hard cap before any work begins: the final bill will not exceed it by more than 15%.' },
                   ].map((g) => (
                     <div key={g.title}>
                       <div className="w-0.5 h-6 bg-gold mb-4" />

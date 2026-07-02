@@ -13,7 +13,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'South Florida Moving Costs & Hourly Rates | Easy Move Florida' },
   description:
-    'Hourly moving rates in South Florida: $129/hr (2 movers) or $179/hr (3 movers), 3-hour minimum. Truck fee from $90. See typical totals by apartment size, what is included, and what is not. No hidden fees.',
+    'Hourly moving rates in South Florida: $129/hr (2 movers) or $179/hr (3 movers), 3-hour minimum. Written estimate with a hard cap: your final bill cannot exceed it by more than 15%.',
   alternates: {
     canonical: `${siteUrl}/pricing`,
     languages: { en: `${siteUrl}/pricing`, 'x-default': `${siteUrl}/pricing` },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Moving Costs in South Florida — Transparent Pricing',
-    description: 'From $129/hr with a 3-hour minimum. No fuel surcharge, no stairs fee, no surprise charges.',
+    description: 'From $129/hr with a 3-hour minimum. Written estimate with a 15% hard cap. No fuel surcharge, no stairs fee, no surprise charges.',
     images: [`${siteUrl}/images/Hero.png`],
   },
 };
@@ -64,12 +64,12 @@ const APARTMENT_TOTALS = [
 const INCLUDED = [
   'Two movers (or three) for the entire job',
   'Box truck with fuel and tolls',
-  `Furniture pads, stretch wrap, and basic shrink-wrap`,
+  `Furniture pads, stretch wrap, and mattress bags`,
   'Standard disassembly and reassembly (beds, tables, basic IKEA)',
   'Standard liability coverage on every move',
-  'Certificate of Insurance (COI) for buildings — issued within 24h, no charge',
-  'A two-hour arrival window with a 30-minute heads-up call',
-  'Written estimate before any work begins',
+  'Certificate of Insurance (COI) to your building 24 hours ahead, no charge',
+  '15-minute arrival window or 10% off',
+  'Written estimate with a hard cap before any work begins',
 ];
 
 const NOT_INCLUDED = [
@@ -110,7 +110,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Will the price change on move day?',
-    a: 'Only if the inventory or access changes from what you described. Same rate continues if the work runs longer than estimated — no panic markup. If we see risk of going over while working, we tell you so you can decide.',
+    a: 'Your written estimate comes with a hard cap: the final bill will not exceed the estimate by more than 15%, period. Same rate continues if the work runs longer than estimated - no panic markup. If we see risk of going over while working, we tell you so you can decide.',
   },
   {
     q: 'Do you charge a deposit?',
@@ -153,8 +153,8 @@ const PRICING_FAQS = [
     a: 'Yes. May through September (Florida\'s peak moving window) carries a 5% seasonal surcharge over the standard hourly rate. It is disclosed in writing before booking and stacks with the weekend surcharge for Saturday or Sunday moves in that window.',
   },
   {
-    q: 'I got a quote before May 15, 2026 — am I locked into the old rate?',
-    a: 'Yes. Customers who received a written estimate at the prior rates ($99/hr for 2 movers, $139/hr for 3 movers, $79 truck fee) before May 15, 2026 keep that pricing for any move booked on or before June 15, 2026. Bring the original written estimate.',
+    q: 'What happens if the crew is late or something gets damaged?',
+    a: 'Late by 30+ minutes: 10% off. Something breaks: we make it right before we cash the check. Both promises are part of every written estimate.',
   },
   {
     q: 'Does the price include tip?',
@@ -238,12 +238,12 @@ export default function PricingPage() {
         <section className="relative bg-charcoal py-20 md:py-28 overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Pricing</p>
+            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">The No-Surprise Move</p>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-5">
               How much does a move cost in <span className="gold-text">South Florida</span>?
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              Hourly rates locked before we start. Same rate if the job runs longer than estimated. No fuel surcharge, no stairs fee, no surprise charges on move day.
+              Written estimate with a hard cap: your final bill will not exceed the estimate by more than 15%, period. No fuel surcharge, no stairs fee, no surprise charges on move day.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/quote">
@@ -255,6 +255,9 @@ export default function PricingPage() {
                 </Button>
               </a>
             </div>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto mt-6">
+              Late by 30+ minutes: 10% off. Something breaks: we make it right before we cash the check.
+            </p>
           </div>
         </section>
 
@@ -268,6 +271,9 @@ export default function PricingPage() {
               </h2>
               <p className="text-gray-500 leading-relaxed">
                 These are the published rates for every local job in South Florida. Long-distance and specialty jobs are quoted separately — see below.
+              </p>
+              <p className="text-charcoal leading-relaxed mt-4 font-medium">
+                $129 an hour, everything included: pads, wrap, disassembly, COI to your building. The $89 guys get to $140+ by the time they add the fees.
               </p>
             </div>
 
@@ -304,7 +310,7 @@ export default function PricingPage() {
             </div>
 
             <p className="text-center text-gray-400 text-xs mt-6">
-              Truck fee from $90 may apply on the first hour. Weekend +10%. Peak season (May–September) +5%. All disclosed in your written estimate, not at the end.
+              Truck fee from $90 may apply on the first hour. 3-hour minimum on every job. Weekend +10%. Peak season (May–September) +5%. All disclosed in your written estimate, not at the end.
             </p>
           </div>
         </section>
@@ -318,7 +324,7 @@ export default function PricingPage() {
                 What you actually pay, by apartment size
               </h2>
               <p className="text-gray-500 leading-relaxed max-w-2xl">
-                Ranges below reflect the bottom and top of a normal move for each size — easy access, standard inventory, no specialty items. Send photos via WhatsApp for a tighter estimate.
+                Ranges below reflect the bottom and top of a normal move for each size — easy access, standard inventory, no specialty items. Send 5 photos on WhatsApp, get a written estimate in 30 minutes - and your final bill cannot exceed it by more than 15%. In writing.
               </p>
             </div>
 
@@ -472,15 +478,15 @@ export default function PricingPage() {
         {/* Trust band */}
         <section className="bg-charcoal py-16">
           <div className="container-max max-w-4xl text-center">
-            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Our guarantee</p>
+            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">The No-Surprise Move guarantee</p>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-8 leading-tight">
-              Written estimate first. Locked rate. No surprises.
+              Written estimate with a hard cap: your final bill will not exceed the estimate by more than 15%, period.
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {[
-                { title: 'Licensed & Fully Insured', desc: 'Standard coverage on every move. COI to your building within 24 hours.' },
-                { title: 'Same Rate Promise', desc: 'If the job runs longer than estimated, the hourly rate does not change.' },
-                { title: 'Free Cancellation', desc: 'More than 48 hours out — cancel or reschedule at no charge, no questions.' },
+                { title: '15% Hard Cap, In Writing', desc: 'The estimate you approve is the ceiling. The final bill cannot exceed it by more than 15%.' },
+                { title: 'On Time or 10% Off', desc: 'Late by 30+ minutes: 10% off. 15-minute arrival window on every job.' },
+                { title: 'We Make It Right', desc: 'Something breaks: we make it right before we cash the check. COI to your building 24 hours ahead.' },
               ].map((g) => (
                 <div key={g.title}>
                   <Shield size={18} className="text-gold mx-auto mb-3" />
