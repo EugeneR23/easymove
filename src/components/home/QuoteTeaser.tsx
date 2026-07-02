@@ -30,8 +30,8 @@ export default function QuoteTeaser() {
               preliminary estimate in under two minutes.
             </p>
             <p className="text-xs text-gray-400 mb-8 border-l-2 border-gold/30 pl-4">
-              All estimates are preliminary. Final price is confirmed after we review
-              your specific move — access, inventory, and any special requirements.
+              Send 5 photos on WhatsApp, get a written estimate in 30 minutes - and your
+              final bill cannot exceed it by more than 15%. In writing.
             </p>
             <Link href="/quote">
               <Button size="lg" variant="primary" className="inline-flex items-center gap-2">

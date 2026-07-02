@@ -29,7 +29,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'residential-moving': {
     longIntro: [
       "Residential and high-rise moving in South Florida is its own discipline. A move from a Brickell tower has nothing in common with a move from a Coral Gables single-family home — different access, different paperwork, different timing rules. EasyMove Elite handles both with the same standard: the crew arrives knowing the building, the floor protection goes down before any furniture moves, and the coordinator stays reachable from the moment you book until the last item is placed.",
-      "We move clients into and out of every type of South Florida residence: 50-story oceanfront condos, gated estate communities, historic Coral Gables and Coconut Grove homes, and standard single-family neighborhoods across Miami-Dade, Broward, and Palm Beach counties. Every move is hourly-billed at $129/hour for two movers or $179/hour for three, with a transparent written estimate before booking. No deposit. No surprise fees on move day.",
+      "We move clients into and out of every type of South Florida residence: 50-story oceanfront condos, gated estate communities, historic Coral Gables and Coconut Grove homes, and standard single-family neighborhoods across Miami-Dade, Broward, and Palm Beach counties. Every move is hourly-billed at $129/hour for two movers or $179/hour for three, with a transparent written estimate before booking. The estimate has a hard cap: the final bill will not exceed it by more than 15%. No deposit. No surprise fees on move day.",
     ],
     whyUs: [
       {
@@ -53,17 +53,18 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { step: 1, title: 'Free written estimate', body: 'Tell us your origin, destination, building details, and inventory. We send a written estimate the same day with hourly rate, expected duration, truck fee, and any building-specific costs (parking permit, COI fee waiver). No deposit required.' },
       { step: 2, title: 'Building coordination', body: 'After booking, we contact your building management directly to reserve the freight elevator, schedule the loading dock window, and submit the COI. You confirm the move date — we handle the rest.' },
       { step: 3, title: 'Pre-move call', body: '24-48 hours before move day, your coordinator confirms timing, walks through any last-minute changes, and confirms crew size. Crew receives building briefing before departure.' },
-      { step: 4, title: 'Move day', body: 'Crew arrives within a 2-hour window with a 30-minute heads-up call. Floor protection laid first. Inventory walk-through with you. Loading begins. Transport. Unloading with placement guidance from you.' },
+      { step: 4, title: 'Move day', body: 'Crew arrives within a 15-minute arrival window (late by 30+ minutes: 10% off) with a 30-minute heads-up call. Floor protection laid first. Inventory walk-through with you. Loading begins. Transport. Unloading with placement guidance from you.' },
       { step: 5, title: 'Reassembly and walk-through', body: 'Furniture reassembled, items placed where you want them. Final walk-through with you. Payment processed only after you confirm everything is in order.' },
     ],
     pricingBreakdown: [
       '2-mover crew: $129/hour, 3-hour minimum',
       '3-mover crew: $179/hour, 3-hour minimum',
       'Truck fee: from $90 (varies by distance and truck size)',
-      'Studio apartment (typical): $376–$496 total',
-      '1-bedroom (typical): $396–$576 total',
-      '2-bedroom (typical): $525–$705 total',
-      '3-bedroom (typical): $725–$1,095 total',
+      'Weekend (Saturday and Sunday): +10%',
+      'Studio apartment (typical): $477–$606 total',
+      '1-bedroom (typical): $477–$671 total',
+      '2-bedroom (typical): $671–$864 total',
+      '3-bedroom (typical): $985–$1,343 total',
       'COI for building management: included free',
       'Disassembly and reassembly of standard furniture: included',
       'Quality moving blankets and floor protection: included',
@@ -71,7 +72,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     faqs: [
       { q: 'How much does a high-rise move cost in Brickell or Aventura?', a: "A typical 1-bedroom high-rise move in Brickell or Aventura runs $450-$700 total. The base is hourly ($129/hr for 2 movers, 3-hour minimum, plus $90 truck fee). Add 30-60 minutes for elevator wait time on busier buildings. Your written estimate accounts for this — no surprise fees on move day." },
       { q: 'Do you provide a Certificate of Insurance for my building?', a: "Yes — within 24 hours of your confirmed booking, free of charge. Send us your building's COI requirements (named insured, specific limits, additional insured language) and we issue it directly to building management." },
-      { q: 'Can you move on weekends?', a: 'Yes. Saturday is a regular operating day, billed at the same hourly rate. Sundays are case-by-case for buildings that allow Sunday moves (most Brickell and Aventura towers do not).' },
+      { q: 'Can you move on weekends?', a: 'Yes. Saturday and Sunday moves carry a 10% weekend surcharge, disclosed in your written estimate. Sundays are case-by-case for buildings that allow Sunday moves (most Brickell and Aventura towers do not).' },
       { q: 'Do you handle gated communities like Cocoplum or Williams Island?', a: 'Yes. We submit gate paperwork (COI with community named, vehicle registration, crew identification) 48 hours in advance so the gate clears your crew on arrival.' },
       { q: 'What if my move takes longer than estimated?', a: "You're billed only for actual time worked, in 30-minute increments past the 3-hour minimum. We commit to realistic estimates — most moves come in within 15-30 minutes of estimate. If we underestimated significantly, we discuss it with you before continuing." },
     ],

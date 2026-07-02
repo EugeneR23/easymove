@@ -107,7 +107,7 @@ const localBusinessSchema = {
   url: siteUrl,
   image: `${siteUrl}/images/Hero.png`,
   description:
-    'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, building/HOA fluent.',
+    'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing ($129/hr for 2 movers, $179/hr for 3, 3-hour minimum), building/HOA fluent. The No-Surprise Move: written estimate with a hard cap, the final bill will not exceed the estimate by more than 15%. Late by 30+ minutes: 10% off. Damage is made right before payment.',
   telephone: '+17863051844',
   email: 'romanov@easy-move-florida.com',
   address: {
@@ -155,7 +155,7 @@ const localBusinessSchema = {
     telephone: '+17863051844',
     contactType: 'customer service',
     areaServed: 'US',
-    availableLanguage: ['English', 'Russian'],
+    availableLanguage: ['en', 'ru'],
   },
   serviceType: [
     'Local Residential Moving',
@@ -168,7 +168,7 @@ const localBusinessSchema = {
     'Heavy Item Handling',
     'Small Handyman Services',
   ],
-  priceRange: '$$',
+  priceRange: '$129-$229/hr',
   foundingDate: '2021',
   founder: {
     '@type': 'Person',
@@ -196,7 +196,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Local Residential Moving',
-          description: '2-mover crew from $129/hr, 3-mover crew from $179/hr, 4-mover crew from $229/hr, 3-hour minimum. Truck fee from $90. Weekend +10%, peak season (May–September) +5% — disclosed in the written estimate. Furniture pads, stretch wrap, and basic disassembly included.',
+          description: '2-mover crew $129/hr, 3-mover crew $179/hr, 4-mover crew $229/hr, 3-hour minimum. Truck fee from $90. Weekend +10%, peak season (May–September) +5% — disclosed in the written estimate. Written estimate with a hard cap: the final bill will not exceed the estimate by more than 15%. Furniture pads, stretch wrap, mattress bags, and basic disassembly/reassembly included. COI to the building 24 hours ahead.',
           areaServed: 'South Florida',
         },
       },
