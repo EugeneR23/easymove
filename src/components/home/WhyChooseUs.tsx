@@ -25,7 +25,7 @@ const reasons = [
   {
     icon: ShieldCheck,
     title: 'No surprise charges',
-    description: 'Same hourly rate if the job runs longer than estimated. We tell you upfront if there is risk of going over.',
+    description: 'Written estimate with a hard cap: your final bill will not exceed the estimate by more than 15%, period.',
     href: '#pricing',
     cta: 'See pricing',
   },

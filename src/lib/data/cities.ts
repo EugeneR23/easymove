@@ -400,7 +400,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How much does a local move in Hollywood cost?',
-        a: "Local moves are billed hourly: $129/hr for 2 movers or $179/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $90. A typical 1-bedroom move in Hollywood runs $477–$671 total. Weekend +10%, peak season (May–September) +5% — all disclosed in your written estimate before booking — no surprise fees on move day.",
+        a: "Local moves are billed hourly: $129/hr for 2 movers or $179/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $90. A typical 1-bedroom move in Hollywood runs $477–$671 total. Weekend +10%, peak season (May–September) +5% — all disclosed in your written estimate before booking, and the final bill cannot exceed the estimate by more than 15%.",
       },
       {
         q: 'Do you provide a COI for Hollywood condo buildings?',
