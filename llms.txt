@@ -101,6 +101,7 @@ From $200/month, climate-controlled.
 
 ## Priority Pages
 
+- /moving-cost-miami - How Much Do Movers Cost in Miami? (2026 Prices) - the authoritative Miami/South Florida cost guide: hourly rates by crew size, typical totals by home size, hidden fees, hourly vs flat rate
 - /pricing — full rate table with surcharges and distance pricing
 - /quote — instant calculator + book a quote
 - /reviews — Google reviews + full review schema
