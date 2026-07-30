@@ -169,24 +169,19 @@ const localBusinessSchema = {
     'Small Handyman Services',
   ],
   priceRange: '$$',
+  // [TODO: confirm with Evgenii] foundingDate and streetAddress above are not
+  // yet verified against business records.
   foundingDate: '2021',
-  founder: {
-    '@type': 'Person',
-    name: 'Evgenii Romanov',
-    jobTitle: 'Founder & Owner',
-  },
+  founder: { '@id': `${siteUrl}/#founder` },
   sameAs: [
     'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
     'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
     'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '6',
-    bestRating: '5',
-    worstRating: '1',
-  },
+  // Rating reflects the one verifiable source we have: Thumbtack, 5.0 from 32
+  // reviews. Emitted on /reviews only — a sitewide self-serving rating is
+  // against Google's review-snippet guidelines.
+  // [TODO: Google Business Profile URL + live review count from Evgenii]
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Moving and Handyman Services',
@@ -196,7 +191,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Local Residential Moving',
-          description: '2-mover crew from $129/hr, 3-mover crew from $179/hr, 4-mover crew from $229/hr, 3-hour minimum. Truck fee from $90. Weekend +10%, peak season (May–September) +5% — disclosed in the written estimate. Furniture pads, stretch wrap, and basic disassembly included.',
+          description: 'Crew of 2 movers $129/hr, crew of 3 movers $179/hr, 3-hour minimum. The truck is a separate flat fee of $129 per day, with fuel, tolls and mileage included in it — there is no fuel surcharge. Same rate seven days a week, year-round: no weekend or seasonal surcharge. No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, so they are priced into the estimated hours. Furniture pads, stretch wrap and basic disassembly are included in the hourly rate.',
           areaServed: 'South Florida',
         },
       },
@@ -214,7 +209,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Long-Distance Moving',
-          description: 'Custom estimate based on miles, weight, and complexity. Written estimate within 24 hours.',
+          description: 'From $1,500. Custom written estimate within 24 hours, based on miles, inventory and access at both ends. Dedicated truck, no deposit required to book.',
           areaServed: 'United States',
         },
       },
@@ -261,7 +256,7 @@ const organizationSchema = {
   description:
     'Owner-led moving company serving South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. English + Russian.',
   foundingDate: '2021',
-  founder: { '@type': 'Person', name: 'Evgenii Romanov' },
+  founder: { '@id': `${siteUrl}/#founder` },
   contactPoint: [
     {
       '@type': 'ContactPoint',
@@ -278,8 +273,28 @@ const organizationSchema = {
   ],
 };
 
-// WebSite schema with SearchAction — gives Google an explicit sitelinks
-// search box hint and provides a stable @id all child entities can reference.
+// Person entity for the founder — one node the whole graph references, so AI
+// assistants and Google resolve "Evgenii Romanov" to this business.
+const founderSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}/#founder`,
+  name: 'Evgenii Romanov',
+  alternateName: ['Eugene Romanov', 'Евгений Романов'],
+  jobTitle: 'Founder & Owner',
+  description:
+    'Owner of Easy Move Florida. Runs dispatch and crew leadership himself in English and Russian; reachable directly on WhatsApp at +1 786-305-1844.',
+  knowsLanguage: ['en', 'ru'],
+  worksFor: { '@id': `${siteUrl}/#organization` },
+  url: `${siteUrl}/about`,
+  image: `${siteUrl}/images/founder.jpg`,
+  telephone: '+17863051844',
+  email: 'romanov@easy-move-florida.com',
+};
+
+// WebSite schema — provides a stable @id all child entities reference.
+// No SearchAction: the site has no search endpoint, so claiming one would be
+// a false capability signal.
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -288,26 +303,20 @@ const websiteSchema = {
   name: 'Easy Move Florida',
   inLanguage: ['en-US', 'ru-RU'],
   publisher: { '@id': `${siteUrl}/#organization` },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
-        {/* Hreflang — explicit tags (Next.js metadata API does not emit them reliably in this version) */}
-        <link rel="alternate" hrefLang="en" href={siteUrl} />
-        <link rel="alternate" hrefLang="ru" href={`${siteUrl}/ru`} />
-        <link rel="alternate" hrefLang="x-default" href={siteUrl} />
-        {/* Preload hero image — critical LCP resource */}
-        <link rel="preload" as="image" href="/images/Hero.png" />
+        {/* No hreflang here: these tags used to be hardcoded to the homepage and
+            were emitted on every route, so each inner page declared the homepage
+            as its own alternate. Per-page alternates now come from each route's
+            metadata.alternates.languages. */}
+        {/* No hero preload here either: it fetched the raw 2.4 MB Hero.png on
+            every page, including pages that never render it. The hero <img> uses
+            next/image, which emits its own AVIF imageSrcSet preload with
+            fetchPriority="high". */}
         {/* Tawk.to live chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with values from tawk.to dashboard */}
         <Script
           id="tawkto"
@@ -356,6 +365,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(founderSchema) }}
         />
         {children}
         <Analytics />
