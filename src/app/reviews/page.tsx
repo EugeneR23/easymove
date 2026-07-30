@@ -81,15 +81,17 @@ const aggregateRatingJson = JSON.stringify({
   name: 'Easy Move Florida',
   url: siteUrl,
   telephone: '+17863051844',
+  // Google is the primary rating (it feeds Maps and AI Overviews); Thumbtack is
+  // shown alongside it in the copy but only one AggregateRating may be emitted.
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: THUMBTACK_RATING,
+    ratingValue: GOOGLE_BUSINESS.rating ?? THUMBTACK_RATING,
     bestRating: '5',
     worstRating: '1',
-    reviewCount: THUMBTACK_REVIEW_COUNT,
+    reviewCount: GOOGLE_BUSINESS.reviewCount ?? THUMBTACK_REVIEW_COUNT,
     itemReviewed: { '@id': `${siteUrl}/#organization` },
   },
-  sameAs: [THUMBTACK_URL],
+  sameAs: [GOOGLE_BUSINESS.profileUrl, THUMBTACK_URL].filter(Boolean),
 });
 
 // Only emitted when REVIEWS holds real, verbatim reviews. An empty array emits
@@ -140,10 +142,10 @@ export default function ReviewsPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Client Reviews</p>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-5">
-              {THUMBTACK_RATING} <span className="gold-text">from {THUMBTACK_REVIEW_COUNT} verified reviews</span>
+              {THUMBTACK_RATING} <span className="gold-text">from {(GOOGLE_BUSINESS.reviewCount ?? 0) + THUMBTACK_REVIEW_COUNT} verified reviews</span>
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              Every one of those {THUMBTACK_REVIEW_COUNT} reviews is a Thumbtack-verified job — Thumbtack confirms the customer hired us before it accepts a review. Read the full history below.
+              {GOOGLE_BUSINESS.rating} on Google across {GOOGLE_BUSINESS.reviewCount} reviews and {THUMBTACK_RATING} on Thumbtack across {THUMBTACK_REVIEW_COUNT}. Both platforms verify the customer hired us before they accept a review — neither lets us filter what gets published.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={THUMBTACK_URL} target="_blank" rel="noopener noreferrer">
@@ -165,9 +167,9 @@ export default function ReviewsPage() {
           <div className="container-max">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200">
               {[
+                { value: `${GOOGLE_BUSINESS.rating ?? THUMBTACK_RATING} ★`, label: 'Google rating' },
                 { value: `${THUMBTACK_RATING} ★`, label: 'Thumbtack rating' },
-                { value: String(THUMBTACK_REVIEW_COUNT), label: 'Verified reviews' },
-                { value: 'Owner-led', label: 'Every job' },
+                { value: `${(GOOGLE_BUSINESS.reviewCount ?? 0) + THUMBTACK_REVIEW_COUNT}`, label: 'Verified reviews' },
                 { value: 'EN · RU', label: 'Crew languages' },
               ].map((s) => (
                 <div key={s.label} className="bg-cream p-6 md:p-8 text-center">

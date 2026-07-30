@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
 import './globals.css';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
@@ -178,10 +179,16 @@ const localBusinessSchema = {
     'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
     'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
   ],
-  // Rating reflects the one verifiable source we have: Thumbtack, 5.0 from 32
-  // reviews. Emitted on /reviews only — a sitewide self-serving rating is
-  // against Google's review-snippet guidelines.
-  // [TODO: Google Business Profile URL + live review count from Evgenii]
+  // Verified against the live Google Business Profile (place_id
+  // ChIJJcPs4dykvagR_uQxPaSlY_8): 5.0 from 6 reviews. Keep these two numbers in
+  // step with the profile — a stale rating in schema is worse than none.
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: GOOGLE_BUSINESS.rating,
+    reviewCount: GOOGLE_BUSINESS.reviewCount,
+    bestRating: '5',
+    worstRating: '1',
+  },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Moving and Handyman Services',
