@@ -142,14 +142,15 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
       '@type': 'AdministrativeArea',
       name: `${city.name}, ${city.state}`,
     },
-    // Service-area business — no street address published. See layout.tsx.
     address: {
       '@type': 'PostalAddress',
+      streetAddress: '2130 Stirling Rd',
       addressLocality: 'Hollywood',
       addressRegion: 'FL',
+      postalCode: '33020',
       addressCountry: 'US',
     },
-    priceRange: '$$',
+    priceRange: '$$$',
     openingHours: 'Mo-Sa 08:00-19:00',
     knowsLanguage: ['en', 'ru'],
     inLanguage: locale,
