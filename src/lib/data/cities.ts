@@ -81,8 +81,9 @@ export const CITIES: CityData[] = [
         a: 'A standard 1- or 2-bedroom move from Brickell to Coconut Grove takes 3–5 hours total — about 25 minutes of driving plus loading, unloading, and the building-access steps on both sides. Late-afternoon moves can add 15–20 minutes due to US-1 traffic.',
       },
       {
+        // [TODO: confirm exact named-storm reschedule policy with Evgenii]
         q: 'Can you move during hurricane season?',
-        a: 'Yes. June through November we monitor NHC updates and reach out 72 hours before any move with a named storm in the cone. If we reschedule for safety, there is no fee — and we hold your original slot at the same rate.',
+        a: 'Yes. June through November we monitor NHC updates and reach out 72 hours before any move with a named storm in the cone. Named-storm reschedules are handled without penalty — call us and we work out a new date at your locked rate.',
       },
       {
         q: 'Do you handle moves out of Wynwood live-work lofts?',
@@ -108,10 +109,19 @@ export const CITIES: CityData[] = [
       'Hollywood', 'Hallandale Beach', 'Deerfield Beach', 'Pompano Beach',
       'Plantation', 'Davie', 'Weston', 'Cooper City', 'Miramar',
     ],
+    // [TODO: Evgenii — real FTL/Boca building specifics: named Las Olas towers we regularly serve, actual dock/elevator quirks]
     localFacts: [
       {
-        title: 'Waterfront & Marina Properties',
-        body: "Fort Lauderdale's waterfront homes and condos often require specialized equipment and routing. We're experienced with dock access, narrow drives, and the building requirements common to Las Olas-area high-rises.",
+        title: 'Two Kinds of Fort Lauderdale Moves',
+        body: "Most Fort Lauderdale work falls into two patterns: waterfront single-family homes along the canals (Rio Vista, Las Olas Isles, Coral Ridge, Seven Isles) and condo moves in the towers on and around Las Olas Boulevard. The homes need truck-access planning — narrow drives, low tree canopy, sometimes a smaller shuttle truck. The condos need paperwork — COI, freight elevator reservation, dock window. We plan for the right one before move day, not on it.",
+      },
+      {
+        title: 'Waterfront & Canal Homes — Check Access First',
+        body: "Canal-front streets in Rio Vista and Las Olas Isles often can't take a 26-foot truck to the door. Before we schedule, we review your street and driveway by map and video; if access is tight we bring a 16-footer or plan a short shuttle. If any items arrive or leave by boat dock, tell us in advance — dock rules vary by property, and we confirm access with your HOA or management before move day.",
+      },
+      {
+        title: 'Las Olas Condo Paperwork',
+        body: "Las Olas-area towers require a COI and a reserved freight elevator window before a crew is allowed in. Building rules vary — we confirm your building's exact COI format, elevator schedule, and dock location with management before move day, and we issue the COI within 24 hours of your confirmed booking.",
       },
       {
         title: 'Broward HOA Compliance',
@@ -124,12 +134,24 @@ export const CITIES: CityData[] = [
     ],
     faqs: [
       {
+        q: 'How much does a move in Fort Lauderdale cost?',
+        a: 'Local moves are hourly: $129/hr for 2 movers or $179/hr for 3, with a 3-hour minimum, plus a $129 flat per-day truck fee as a separate line on your estimate (fuel, tolls, and mileage are inside it — no fuel surcharge). A 1-bedroom Las Olas condo typically takes 3–5 hours: $516–$774 all-in. A 2-bedroom runs 4–6 hours with 2–3 movers: $645–$1,203. A 3-bedroom canal-front home usually takes 6–8 hours with 3 movers: $1,203–$1,561. The rate is locked — it does not go up for weekends or if the job runs long.',
+      },
+      {
+        q: 'How long does a waterfront home move in Fort Lauderdale take?',
+        a: "A 3-bedroom single-family home in Rio Vista or Coral Ridge usually takes 6–8 hours with a 3-mover crew — about $1,203–$1,561 at $179/hr plus the $129 truck line. Tight canal-street access can add time (a shuttle truck or longer carry is priced as hours, not fees), which is why we check your street before scheduling and put a realistic range in your written estimate.",
+      },
+      {
         q: 'Do you serve all of Broward County?',
         a: 'Yes — from Hollywood and Hallandale Beach in the south to Deerfield Beach and Pompano Beach in the north, and inland through Plantation, Davie, Weston, and Cooper City.',
       },
       {
         q: 'Can you handle waterfront property moves in Fort Lauderdale?',
-        a: "Yes. We're experienced with the logistics of waterfront and marina-adjacent properties, including limited dock access, narrow drives, and building requirements specific to Las Olas-area towers.",
+        a: "Yes. We work waterfront and marina-adjacent properties regularly — limited dock access, narrow drives, and the requirements common to Las Olas-area towers. Building and dock rules vary, so we confirm specifics with your HOA or management before move day.",
+      },
+      {
+        q: 'What should I check with my building or HOA before a Fort Lauderdale move?',
+        a: "Three things: your building's COI requirements (send them to us — we issue within 24 hours of booking), the freight elevator reservation window, and any move-in day or hour restrictions. For gated or waterfront communities, ask whether service vehicles need advance registration. We handle all of this paperwork for you once you share your management contact.",
       },
       {
         q: 'Do you offer storage near Fort Lauderdale?',
@@ -159,14 +181,19 @@ export const CITIES: CityData[] = [
       'Broken Sound', 'Delray Beach', 'Boynton Beach', 'Lake Worth',
       'Wellington', 'Palm Beach Gardens', 'West Palm Beach',
     ],
+    // [TODO: Evgenii — real FTL/Boca building specifics: which gated communities we've actually worked, their registration lead times]
     localFacts: [
       {
-        title: 'Estate & Luxury Home Specialists',
-        body: "Boca Raton's estates often contain fine art, antiques, custom furniture, and high-value collections. Every item is inventoried, wrapped to our standard, and handled by experienced movers — not day laborers.",
+        title: 'Gated Communities Drive the Schedule',
+        body: "The typical Boca move happens inside a gated community — Boca West, Broken Sound, Royal Palm, Woodfield, St. Andrews. These communities require advance vehicle registration, crew ID lists, and approved move windows, and each sets its own rules — we confirm the exact requirements with your HOA or management before move day, so the gate clears your crew instead of stalling it.",
       },
       {
-        title: 'Gated Community Expertise',
-        body: 'Communities like Boca West, Broken Sound, and Royal Palm require advance vehicle registration, crew ID verification, and strict move windows. We manage all of this before your crew arrives.',
+        title: 'Estate & Luxury Home Moves',
+        body: "Boca Raton's estates often contain fine art, antiques, custom furniture, and high-value collections. Every item is inventoried, wrapped to our standard, and handled by experienced movers — not day laborers. Larger estates get a video or in-person walkthrough first, so the written estimate reflects the real scope, including garage, patio, and storage rooms.",
+      },
+      {
+        title: 'What to Check Before Move Day',
+        body: "Before booking, ask your HOA three questions: does the community require vehicle/crew registration and how far in advance; what are the permitted move days and hours; and does the association require a COI naming it. Community rules vary — we confirm the answers with your HOA or management directly once you share the contact, and we issue the COI within 24 hours of booking.",
       },
       {
         title: 'Discretion & Privacy',
@@ -175,8 +202,20 @@ export const CITIES: CityData[] = [
     ],
     faqs: [
       {
+        q: 'How much does a move in Boca Raton cost?',
+        a: 'Hourly, like all our local work: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum, plus a $129 flat per-day truck fee shown as its own line on the estimate — fuel, tolls, and mileage are inside it. Typical totals: a 1-bedroom condo takes 3–5 hours ($516–$774), a 2-bedroom takes 4–6 hours with 2–3 movers ($645–$1,203), and a 3-bedroom home in a gated community takes 6–8 hours with 3 movers ($1,203–$1,561). Larger estates get a custom written estimate after a walkthrough. No weekend or peak-season surcharges — the rate is locked.',
+      },
+      {
         q: 'Do you move within gated communities in Boca Raton?',
-        a: 'Yes — Boca West, Broken Sound, Royal Palm, and similar communities are familiar to us. We register vehicles and crew in advance, provide required insurance certificates, and work within your community\'s move windows.',
+        a: 'Yes — Boca West, Broken Sound, Royal Palm, and similar communities are part of our service area. We register vehicles and crew in advance, provide required insurance certificates, and work within your community\'s move windows. Rules differ by community, so we confirm the specifics with your HOA before move day.',
+      },
+      {
+        q: 'How long does a Boca Raton estate move take?',
+        a: "A 3-bedroom single-family home typically takes 6–8 hours with a 3-mover crew — $1,203–$1,561 at $179/hr plus the $129 truck line. Larger estates with fine art or a pre-pack day are scoped individually: some are one day, others two. We give a realistic timeline in the written estimate rather than rushing the job to fit a number.",
+      },
+      {
+        q: 'What does my HOA need from you before the move?',
+        a: "Usually three things: a COI naming the association (we issue it within 24 hours of booking), the truck plate and crew names for the gate list, and confirmation that the move falls inside approved hours. Requirements vary by community — we contact your HOA or management directly and handle the paperwork before move day.",
       },
       {
         q: 'Do you handle fine art and antiques?',
@@ -213,21 +252,23 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Williams Island & Porto Vita Specialists',
-        body: "Williams Island and Porto Vita are our two most-served Aventura properties. We know the gate-house registration process, the loading dock locations behind each tower, and the building-specific COI templates. Your crew arrives knowing the building — not learning it on your time.",
+        body: "We work in Williams Island and Porto Vita regularly — gate-house registration, the loading dock locations behind each tower, and building-specific COI paperwork are part of the standard prep. Your crew arrives knowing the process — not learning it on your time.",
       },
       {
         title: 'Russian & English Crew',
         body: "Aventura, Sunny Isles, and Bal Harbour have one of the largest Russian-speaking populations in South Florida. Our coordinator and most of our crew speak Russian fluently. If your building staff or HOA board prefers Russian — мы говорим по-русски.",
       },
       {
+        // [TODO: confirm exact building COI limits with Evgenii]
         title: 'COI for Aventura Towers',
-        body: "Every Aventura high-rise has its own COI requirements — Williams Island wants $2M general liability, Porto Vita requires the building specifically named as additional insured, Turnberry has its own format. We've handled them all and we issue within 24 hours of confirmed booking.",
+        body: "Every Aventura high-rise has its own COI requirements — many buildings here require limits in the $1M–$2M range, and some want the association specifically named as additional insured. We confirm your building's exact requirements before move day and issue the COI within 24 hours of confirmed booking.",
       },
     ],
     faqs: [
       {
+        // [TODO: confirm exact building COI limits with Evgenii]
         q: 'Do you move into and out of Williams Island?',
-        a: "Yes. Williams Island is one of our most common service locations. We're registered with the gate house and familiar with the loading dock, COI requirements ($2M general liability minimum), and elevator reservation process for all five towers.",
+        a: "Yes. Williams Island is one of our most common service locations. We handle the gate-house registration, loading dock coordination, and elevator reservation process. Many buildings here require COI limits in the $1M–$2M range — we confirm your building's exact requirements before move day.",
       },
       {
         q: 'Do you speak Russian?',
@@ -281,8 +322,9 @@ export const CITIES: CityData[] = [
     ],
     faqs: [
       {
+        // [TODO: confirm exact building COI limits with Evgenii]
         q: 'Do you move into Gables Estates and Cocoplum?',
-        a: "Yes. We're familiar with both communities — the gate procedures, COI requirements (typically $1M-$2M with the association named as additional insured), and approved move-in windows. We submit paperwork in advance so the gate clears your crew on arrival.",
+        a: "Yes. We work in both communities — gate procedures, COI paperwork, and approved move-in windows. Many communities here require COI limits in the $1M–$2M range with the association named as additional insured — we confirm your community's exact requirements before move day and submit paperwork in advance so the gate clears your crew on arrival.",
       },
       {
         q: 'Can you handle a historic Coral Gables home with original tile?',
@@ -313,8 +355,9 @@ export const CITIES: CityData[] = [
     metaTitle: 'Sunny Isles Movers, FL | Easy Move Florida',
     metaDescription:
       'Sunny Isles movers — Acqualina, Trump Towers, Jade Beach, Porsche Design specialists. Russian-speaking crew. COI in 24h. Call 786-305-1844.',
+    // [TODO: confirm exact building COI limits with Evgenii]
     intro:
-      "Sunny Isles Beach is Miami's vertical city — a strip of oceanfront luxury towers where every move happens through a freight elevator on a fixed time window with a dock manager watching the clock. Trump Tower I, II, and III, Acqualina, Mansions at Acqualina, Jade Beach, Jade Ocean, Porsche Design Tower, Chateau Beach — we've worked them all. We know which buildings allow weekend moves, which require a $5M COI, and which want the crew in branded uniforms. We also speak Russian, which matters in this neighborhood.",
+      "Sunny Isles Beach is Miami's vertical city — a strip of oceanfront luxury towers where every move happens through a freight elevator on a fixed time window with a dock manager watching the clock. Trump Tower I, II, and III, Acqualina, Mansions at Acqualina, Jade Beach, Jade Ocean, Porsche Design Tower, Chateau Beach — we work in these buildings. Each tower sets its own rules on weekend moves, COI limits (many here require $1M–$2M coverage — we confirm your building's exact requirements before move day), and crew presentation. We also speak Russian, which matters in this neighborhood.",
     neighborhoods: [
       'Trump Tower I', 'Trump Tower II', 'Trump Tower III', 'Acqualina',
       'Mansions at Acqualina', 'Jade Beach', 'Jade Ocean', 'Porsche Design Tower',
@@ -400,11 +443,12 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How much does a local move in Hollywood cost?',
-        a: "Local moves are billed hourly: $129/hr for 2 movers or $179/hr for 3 movers, with a 3-hour minimum. Truck fee starts at $90. A typical 1-bedroom move in Hollywood runs $477–$671 total. Weekend +10%, peak season (May–September) +5% — all disclosed in your written estimate before booking — no surprise fees on move day.",
+        a: "A typical 1-bedroom move in Hollywood runs $516–$774 all-in. Here's the math: $129/hr for 2 movers (or $179/hr for 3), 3-hour minimum, plus a $129 flat per-day truck fee as a separate line on your estimate — fuel, tolls, and mileage are inside it, no fuel surcharge. A 2-bedroom takes 4–6 hours with 2–3 movers ($645–$1,203); a 3-bedroom home runs 6–8 hours with 3 movers ($1,203–$1,561). The rate is locked — it doesn't go up for weekends or long jobs.",
       },
       {
+        // [TODO: confirm exact building COI limits with Evgenii]
         q: 'Do you provide a COI for Hollywood condo buildings?',
-        a: 'Yes. We issue Certificates of Insurance within 24 hours of your confirmed move date — addressed to your building management exactly as required. Most Hollywood Beach buildings require $1M general liability minimum.',
+        a: "Yes. We issue Certificates of Insurance within 24 hours of your confirmed move date — addressed to your building management exactly as required. Many buildings here require COI limits in the $1M–$2M range — we confirm your building's exact requirements before move day.",
       },
       {
         q: 'Do you serve Hallandale Beach and Dania Beach?',
@@ -451,7 +495,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you handle a 1920s Coconut Grove home with narrow doorways?',
-        a: "Yes. We measure doorways and stairwells in advance, pre-disassemble large pieces that won't clear, and use floor protection on original wood and tile. We've moved into and out of historic Grove homes for years.",
+        a: "Yes. We measure doorways and stairwells in advance, pre-disassemble large pieces that won't clear, and use floor protection on original wood and tile. Historic Grove homes are a regular part of our work.",
       },
       {
         q: 'Do Coconut Grove streets allow large moving trucks?',
@@ -459,7 +503,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Coconut Grove move?',
-        a: "Local moves are hourly: $129/hr for 2 movers, $179/hr for 3 movers, 3-hour minimum, plus $90 truck fee. A typical 2-bedroom Grove home runs $625-$825. Estate-sized moves get a custom flat-rate estimate. No surprise fees.",
+        a: "Expect $645–$1,203 all-in for a typical 2-bedroom Grove home — that's 4–6 hours at $129/hr (2 movers) or $179/hr (3 movers), 3-hour minimum, plus the truck at a flat $129 per day on its own estimate line (fuel, tolls, and mileage included in it). A 1-bedroom runs 3–5 hours: $516–$774. Stairs, long carries from narrow streets, and elevator waits cost time, not fees — they're priced into the hours we estimate. Estate-sized moves get a custom written estimate.",
       },
       {
         q: 'Do you serve Coral Gables and Brickell as well?',
@@ -488,7 +532,7 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Corporate & Executive Relocations',
-        body: "Doral hosts the Latin American headquarters of dozens of multinationals — Univision, Carnival, Ryder, Perry Ellis, and most major Latin American bank branches. We handle inbound executive relocations weekly: Caracas, Bogotá, Mexico City, São Paulo executives moving into Doral Isles and Trump National. We coordinate with relocation managers, issue corporate COIs naming the employer, and provide itemized inventory for expense reimbursement.",
+        body: "Doral hosts the Latin American headquarters of dozens of multinationals — Univision, Carnival, Ryder, Perry Ellis, and most major Latin American bank branches. We handle inbound executive relocations from Caracas, Bogotá, Mexico City, and São Paulo into Doral Isles and Trump National. We coordinate with relocation managers, issue corporate COIs naming the employer, and provide itemized inventory for expense reimbursement.",
       },
       {
         title: 'Trilingual Crew — English, Spanish, Russian',
@@ -496,7 +540,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'MIA Airport-Adjacent Logistics',
-        body: "Doral sits directly north of Miami International Airport, which makes it the natural staging point for international relocations. We coordinate Miami-side handling for clients shipping in from Latin America, the Caribbean, and Europe — receiving containers at the freight forwarder, last-mile delivery into your Doral home, and unpacking on arrival. International inbound moves are a weekly occurrence here, not a special event.",
+        body: "Doral sits directly north of Miami International Airport, which makes it the natural staging point for international relocations. We coordinate Miami-side handling for clients shipping in from Latin America, the Caribbean, and Europe — receiving containers at the freight forwarder, last-mile delivery into your Doral home, and unpacking on arrival. International inbound moves are part of our regular Doral work.",
       },
       {
         title: 'Gated Community Protocols',
@@ -530,7 +574,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Doral move?',
-        a: 'Local moves are billed hourly: $129/hour for 2 movers, $179/hour for 3 movers, $229/hour for 4 movers, with a 3-hour minimum plus a truck fee from $90. Weekend +10%, peak season (May–September) +5%. A typical 2-bedroom Doral Isles townhouse runs $700-$950 all-in. Corporate relocations get an itemized written estimate with line items suitable for HR reimbursement.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a flat $129 per-day truck fee as its own line on the estimate — fuel, tolls and mileage are inside it. A typical 2-bedroom Doral Isles townhouse takes 4–6 hours with 2–3 movers: $645–$1,203 all-in. The rate is the same seven days a week. Corporate relocations get an itemized written estimate with line items suitable for HR reimbursement.',
       },
       {
         q: 'Do you serve Doral Isles and Vintage Estates?',
@@ -609,7 +653,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Hallandale Beach move?',
-        a: 'Local moves are billed hourly: $129/hour for 2 movers, $179/hour for 3 movers, $229/hour for 4 movers, with a 3-hour minimum plus a truck fee from $90. Weekend +10%, peak season (May–September) +5%. A typical 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) runs $580-$780 all-in. Snowbird long-distance inbound moves are quoted separately based on origin city and inventory.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a flat $129 per-day truck fee shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked. Snowbird inbound long-distance moves start at $1,500 and are quoted in writing within 24 hours.',
       },
       {
         q: 'Do you serve Three Islands, Hemispheres, and Olympus?',

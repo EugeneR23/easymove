@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize } from '@/types';
-import { localStartingPrice } from '@/lib/pricing';
+import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
@@ -173,7 +173,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
                   <p className="text-gray-400 text-xs mb-2">
                     {isPacking
                       ? `$${packingRate}/hr · 3-hr minimum`
-                      : `$${localRate}/hr · from $90 truck fee`}
+                      : `$${localRate}/hr · + $${TRUCK_FEE}/day truck`}
                   </p>
                   <p className={cn('text-xs font-semibold', selected ? 'text-gold' : 'text-gray-400')}>
                     {inv.homeSize
