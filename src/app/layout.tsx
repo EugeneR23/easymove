@@ -110,25 +110,18 @@ const localBusinessSchema = {
     'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, building/HOA fluent.',
   telephone: '+17863051844',
   email: 'romanov@easy-move-florida.com',
-  // Service-area business: customers are served at their own address, never at
-  // ours, so no streetAddress is published. Google's guidance for SABs is
-  // explicit that an address you do not serve customers from should not appear
-  // on the profile, and NAP has to match across the site, GBP, Yelp and BBB.
   address: {
     '@type': 'PostalAddress',
+    streetAddress: '2130 Stirling Rd',
     addressLocality: 'Hollywood',
     addressRegion: 'FL',
+    postalCode: '33020',
     addressCountry: 'US',
   },
   geo: {
     '@type': 'GeoCoordinates',
     latitude: 26.0038,
     longitude: -80.158,
-  },
-  serviceArea: {
-    '@type': 'GeoCircle',
-    geoMidpoint: { '@type': 'GeoCoordinates', latitude: 26.0038, longitude: -80.158 },
-    geoRadius: '80000',
   },
   areaServed: [
     { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
@@ -176,8 +169,8 @@ const localBusinessSchema = {
     'Small Handyman Services',
   ],
   priceRange: '$$',
-  // [TODO: confirm with Evgenii] foundingDate is not yet verified against
-  // business records.
+  // [TODO: confirm with Evgenii] foundingDate and streetAddress above are not
+  // yet verified against business records.
   foundingDate: '2021',
   founder: { '@id': `${siteUrl}/#founder` },
   sameAs: [
