@@ -1,17 +1,19 @@
 import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 
 // ─── Rate Tables ──────────────────────────────────────────────────────────────
-// Updated 2026-05-15. Grandfather period: customers who booked before 2026-06-15
-// at the prior rates ($99 / $139 / truck $79) keep their original written estimate.
+// Updated 2026-07-30 per owner's source of truth:
+//   - Truck: $99 flat per day, always a separate line item. Fuel, tolls and
+//     mileage are inside the $99. Never scaled by distance, never "included".
+//   - No weekend or seasonal surcharges: the hourly rate is locked.
+//   - Stairs/long carries cost TIME (extra estimated hours), never a fee.
+// [TODO: confirm with Evgenii] the 4-mover $229/hr rate — not in the verified
+// rate card ($129 / $179 only); kept because the wizard offers a 4-mover crew.
 export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 229 };
 export const MIN_HOURS = 3;
 const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
-export const TRUCK_BASE = 90;
-const TRUCK_MAX: Record<CrewSize, number>            = { 2: 129, 3: 179, 4: 229 };
-// Disclosed surcharges (applied at booking, shown in written estimate)
-export const WEEKEND_SURCHARGE_PCT = 10;     // Saturday/Sunday +10%
-export const PEAK_SEASON_SURCHARGE_PCT = 5;  // May–September +5%
-export const GRANDFATHER_UNTIL = '2026-06-15';
+export const TRUCK_FEE = 99; // flat per day — fuel, tolls, mileage included
+// Stairs are billed as time, not a fee: each flight adds carry time per crew day
+export const STAIRS_EXTRA_HOURS_PER_FLIGHT = 0.5;
 
 // ─── South Florida city coordinates ──────────────────────────────────────────
 // [miles_north, miles_east] from a reference point near Homestead
@@ -255,17 +257,6 @@ export function estimateLongDistance(fromCity: string, fromState: string, toCity
 // ─── Main calculator ──────────────────────────────────────────────────────────
 // Average South Florida city driving speed (mph) — accounts for traffic + stops
 const TRAVEL_SPEED_MPH = 28;
-// Trips under this distance are considered "included" — no surcharge
-const TRAVEL_FREE_MILES = 8;
-
-/** Truck fee scales with distance: $90 base → up to hourly rate for long trips */
-function getDistanceTruckFee(crew: CrewSize, miles: number): number {
-  if (miles <= TRAVEL_FREE_MILES) return TRUCK_BASE;
-  const extra = miles - TRAVEL_FREE_MILES;
-  const maxExtra = 22; // ~30 mi total ≈ Miami→Ft Lauderdale = max fee
-  const fee = TRUCK_BASE + Math.round(extra * (TRUCK_MAX[crew] - TRUCK_BASE) / maxExtra);
-  return Math.min(TRUCK_MAX[crew], fee);
-}
 
 interface PricingInput {
   moveType: MoveType;
@@ -290,22 +281,26 @@ export function calculatePricing(input: PricingInput): QuotePricing {
   let travelMiles    = 0;
   let travelMinutes  = 0;
 
+  // Stairs cost time, not a fee — extra carry hours added to the labour estimate
+  const stairsHours = inventory.hasStairs
+    ? (inventory.stairsFlights ?? 1) * STAIRS_EXTRA_HOURS_PER_FLIGHT
+    : 0;
+
   switch (moveType) {
     case 'local': {
-      estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 3);
+      estimatedHours = Math.max(MIN_HOURS, (HOME_SIZE_HOURS[size] ?? 3) + stairsHours);
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
-      // Distance-based truck fee: $90 base, scales up to hourly rate for longer trips
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = getDistanceTruckFee(crew, travelMiles);
+      truckFee       = TRUCK_FEE; // $99 flat per day, separate line item
       break;
     }
     case 'office': {
-      estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 4);
+      estimatedHours = Math.max(MIN_HOURS, (HOME_SIZE_HOURS[size] ?? 4) + stairsHours);
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = getDistanceTruckFee(crew, travelMiles);
+      truckFee       = TRUCK_FEE; // $99 flat per day, separate line item
       break;
     }
     case 'long-distance': {
@@ -313,7 +308,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       travelMiles   = miles;
       travelMinutes = Math.round((miles / LD_AVG_SPEED_MPH) * 60);
       // 1) Crew labour at both ends — loading + unloading at standard hourly rates
-      const loadHours   = HOME_SIZE_HOURS[size] ?? 4.5;
+      const loadHours   = (HOME_SIZE_HOURS[size] ?? 4.5) + stairsHours;
       const unloadHours = Math.round(loadHours * LD_UNLOAD_FACTOR * 2) / 2;
       estimatedHours    = loadHours + unloadHours;
       laborRate         = Math.round(HOURLY_RATE[crew] * estimatedHours);
@@ -332,6 +327,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     }
     case 'packing-only': {
       // $79/hr for 2 packers, $119/hr for 3 packers, $159/hr for 4 packers — 3-hour minimum
+      // [TODO: confirm with Evgenii] packing hourly rates are not in the verified rate card
       estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 3);
       laborRate      = Math.round(PACKING_HOURLY_RATE[crew] * estimatedHours);
       truckFee       = 0;
@@ -344,9 +340,10 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     }
   }
 
-  // ── 2. Access fees ────────────────────────────────────────────────────────
-  let accessFee = 0;
-  if (inventory.hasStairs) accessFee += (inventory.stairsFlights ?? 1) * 50;
+  // ── 2. Access ─────────────────────────────────────────────────────────────
+  // No stairs fee, no elevator fee, no long-carry fee — access conditions are
+  // already priced into estimatedHours above. accessFee stays for type compat.
+  const accessFee = 0;
 
   // ── 3. Add-ons ────────────────────────────────────────────────────────────
   let addonsFee = 0;
@@ -402,5 +399,5 @@ export function estimateDistance(fromState: string, toState: string): number {
 // ─── Starting price helpers (for homepage display) ────────────────────────────
 export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
   const hours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size]);
-  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_BASE);
+  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_FEE);
 }

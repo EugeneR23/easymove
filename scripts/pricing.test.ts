@@ -65,14 +65,31 @@ const degenerate = calculatePricing({
 });
 check('LD never prices below $1500 floor', degenerate.total >= 1500, degenerate.total);
 
-// ── 4. Local pricing unchanged (regression guard) ──────────────────────────────
+// ── 4. Local pricing (regression guard) ────────────────────────────────────────
+// 2br = 4.5h × $129 = $581 labour + $99 flat truck = $680.
 console.log('\n[4] Local move regression');
 const local = calculatePricing({
   moveType: 'local', estimatedDistance: 0,
   fromCity: 'Miami', toCity: 'Fort Lauderdale', inventory, addons,
 });
-check('local 2br/2 movers Miami→FtL total unchanged ($706)', local.total === 706, local.total);
+check('local 2br/2 movers Miami→FtL total ($680)', local.total === 680, local.total);
 check('local distance table still works (28 mi)', estimateLocalDistance('Miami', 'Fort Lauderdale') === 28, estimateLocalDistance('Miami', 'Fort Lauderdale'));
+
+// ── 5. Truck fee is $99 flat per day — never scaled by distance ───────────────
+console.log('\n[5] Truck fee model');
+const nearMove = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Hollywood', toCity: 'Hollywood', inventory, addons });
+const farMove  = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Boca Raton', inventory, addons });
+check('truck fee $99 on short trip', nearMove.truckFee === 99, nearMove.truckFee);
+check('truck fee $99 on long local trip (no distance scaling)', farMove.truckFee === 99, farMove.truckFee);
+
+// ── 6. Stairs cost time, not a fee ────────────────────────────────────────────
+console.log('\n[6] Stairs = hours, never a fee');
+const stairsInv: QuoteInventory = { ...inventory, hasStairs: true, stairsFlights: 2 };
+const stairsMove = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Miami', inventory: stairsInv, addons });
+const flatMove   = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Miami', inventory, addons });
+check('no access fee for stairs', stairsMove.accessFee === 0, stairsMove.accessFee);
+check('stairs add estimated hours (+1h for 2 flights)', stairsMove.estimatedHours === flatMove.estimatedHours + 1, stairsMove.estimatedHours);
+check('stairs raise labour, not fees', stairsMove.laborRate > flatMove.laborRate, stairsMove.laborRate);
 
 console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);
 process.exit(failed === 0 ? 0 : 1);
