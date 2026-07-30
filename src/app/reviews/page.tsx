@@ -6,18 +6,18 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Star, ExternalLink, MessageSquare, Award } from 'lucide-react';
+import { THUMBTACK, GOOGLE_BUSINESS } from '@/lib/data/credentials';
 
 const siteUrl = 'https://www.easy-move-florida.com';
-const THUMBTACK_URL = 'https://www.thumbtack.com/profile/services/474342774303219734/reviews';
-// [TODO: Evgenii] Google Business Profile: paste the public profile URL and the
-// g.page/r/<id>/review "leave a review" link here, then re-enable the Google
-// blocks below. Until then the page cites Thumbtack only, because that is the
-// figure we can evidence (5.0 from 32 verified reviews).
-const GOOGLE_PROFILE_URL: string | null = null;
-const GOOGLE_LEAVE_REVIEW_URL: string | null = null;
 
-const THUMBTACK_RATING = '5.0';
-const THUMBTACK_REVIEW_COUNT = 32;
+// Google blocks light up on their own once GOOGLE_BUSINESS is filled in at
+// src/lib/data/credentials.ts. Until then the page cites Thumbtack only,
+// because that is the figure we can evidence.
+const THUMBTACK_URL = THUMBTACK.url;
+const THUMBTACK_RATING = THUMBTACK.rating;
+const THUMBTACK_REVIEW_COUNT = THUMBTACK.reviewCount;
+const GOOGLE_PROFILE_URL = GOOGLE_BUSINESS.profileUrl;
+const GOOGLE_LEAVE_REVIEW_URL = GOOGLE_BUSINESS.reviewUrl;
 
 export const metadata: Metadata = {
   title: { absolute: 'Client Reviews — 5.0 from 32 Verified Reviews | Easy Move Florida' },
