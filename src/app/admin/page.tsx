@@ -1,3 +1,4 @@
+import { requireSession } from '@/lib/auth';
 import { readAllQuotes } from '@/lib/data/quotes';
 import { readAllLeads } from '@/lib/data/leads';
 import { formatCurrency, formatDateShort } from '@/lib/utils';
@@ -16,6 +17,7 @@ function StatCard({ label, value, sub, color }: { label: string; value: string |
 }
 
 export default function AdminDashboard() {
+  requireSession();
   const quotes = readAllQuotes();
   const leads = readAllLeads();
 

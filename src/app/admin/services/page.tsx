@@ -1,8 +1,10 @@
+import { requireSession } from '@/lib/auth';
 import { readAllServicesAdmin } from '@/lib/data/services';
 import { formatCurrency } from '@/lib/utils';
 import Badge from '@/components/ui/Badge';
 
 export default function AdminServicesPage() {
+  requireSession();
   const services = readAllServicesAdmin();
 
   return (
