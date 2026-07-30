@@ -18,6 +18,8 @@ const AI_BOTS = [
   'PerplexityBot',
   'Perplexity-User',
   'Google-Extended',
+  'GoogleOther',
+  'DuckAssistBot',
   'Applebot-Extended',
   'Meta-ExternalAgent',
   'Meta-ExternalFetcher',
