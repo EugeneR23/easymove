@@ -17,10 +17,13 @@
  *   4. Replace the iframe src below with the `pb=...` URL Google provides
  */
 export default function GoogleMapEmbed() {
-  // Address-based embed — works without API key. Shows pin at our location.
-  // For the richer GBP-card embed, follow the upgrade steps in the comment above.
+  // Service area, not a street pin. We are a service-area business: customers
+  // are served at their own address and nobody visits ours, so the map centres
+  // on Hollywood rather than dropping a pin on the yard. Publishing a street
+  // address we do not receive customers at is the classic GBP suspension
+  // trigger and would break NAP consistency with the profile.
   const mapSrc =
-    'https://maps.google.com/maps?q=2130+Stirling+Rd,+Hollywood,+FL+33020&t=&z=11&ie=UTF8&iwloc=&output=embed';
+    'https://maps.google.com/maps?q=Hollywood,+FL&t=&z=10&ie=UTF8&iwloc=&output=embed';
 
   return (
     <div className="relative w-full overflow-hidden border border-gold/20 bg-charcoal">
