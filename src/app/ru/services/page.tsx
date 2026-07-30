@@ -12,19 +12,20 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'Услуги переезда | Easy Move Florida' },
   description:
-    'Локальные, дальние, в высотках, упаковка, специальные предметы — все услуги переезда в Майами, Форт-Лодердейле и Бока-Ратоне. Полная страховка, прозрачные цены.',
+    'Локальные, дальние, в высотках, упаковка, специальные предметы — все услуги переезда в Майами, Форт-Лодердейле и Бока-Ратоне. COI за 24 часа, прозрачные цены.',
   alternates: {
     canonical: `${siteUrl}/ru/services`,
     languages: {
       'en': `${siteUrl}/services`,
       'ru': `${siteUrl}/ru/services`,
+      'x-default': `${siteUrl}/services`,
     },
   },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'EasyMove Elite',
-    title: 'Услуги — EasyMove Elite',
+    siteName: 'Easy Move Florida',
+    title: 'Услуги — Easy Move Florida',
     description: 'Все услуги переезда премиум-класса в Южной Флориде.',
     url: `${siteUrl}/ru/services`,
   },
@@ -34,7 +35,7 @@ const SERVICES = [
   {
     icon: Building2,
     title: 'Жильё и высотки',
-    desc: 'Кондо, апартаменты, дома любого размера. Координация лифтов и погрузочных доков, страховка для управляющей компании за 24 часа.',
+    desc: 'Кондо, апартаменты, дома любого размера. Координация лифтов и погрузочных доков, сертификат COI для управляющей компании за 24 часа.',
     price: 'от $129/час',
     href: '/services/residential-moving',
   },

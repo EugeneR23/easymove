@@ -28,20 +28,44 @@ const SERVICES = {
   ],
 } as const;
 
+// [TODO: Evgenii] add the FDACS IM# here once you send it — a published Florida
+// mover registration number is the strongest trust signal on a city page.
 const TRUST = {
   en: [
-    { icon: Shield, label: 'Fully Owner-led' },
-    { icon: Award,  label: 'Founder-Led — No Subcontractors' },
-    { icon: CheckCircle, label: 'COI Issued Within 24 Hours' },
-    { icon: MapPin, label: 'South Florida Team' },
+    { icon: Shield, label: '$129/hr · 2 movers · 3-hr minimum' },
+    { icon: Award,  label: 'Owner-led — the WhatsApp number reaches Evgenii' },
+    { icon: CheckCircle, label: 'COI issued within 24 hours, no charge' },
+    { icon: MapPin, label: 'Based in Hollywood · Russian & English' },
   ],
   ru: [
-    { icon: Shield, label: 'Лицензия и страховка' },
-    { icon: Award,  label: 'Работает владелец — без субподрядчиков' },
-    { icon: CheckCircle, label: 'COI для здания за 24 часа' },
-    { icon: MapPin, label: 'Русскоязычная команда в Южной Флориде' },
+    { icon: Shield, label: 'От $129/час · 2 грузчика · минимум 3 часа' },
+    { icon: Award,  label: 'Владелец на связи — WhatsApp 786-305-1844' },
+    { icon: CheckCircle, label: 'COI для здания за 24 часа, бесплатно' },
+    { icon: MapPin, label: 'База в Голливуде · русский и английский' },
   ],
 } as const;
+
+// Nearby city pages, so each city page has lateral links instead of being a
+// dead end. Ordered by geography; the current city is filtered out at render.
+const NEARBY: { slug: string; en: string; ru: string }[] = [
+  { slug: 'miami-movers',            en: 'Miami',            ru: 'Майами' },
+  { slug: 'coral-gables-movers',     en: 'Coral Gables',     ru: 'Корал-Гейблс' },
+  { slug: 'coconut-grove-movers',    en: 'Coconut Grove',    ru: 'Коконат-Гроув' },
+  { slug: 'doral-movers',            en: 'Doral',            ru: 'Дорал' },
+  { slug: 'aventura-movers',         en: 'Aventura',         ru: 'Авентура' },
+  { slug: 'sunny-isles-movers',      en: 'Sunny Isles Beach', ru: 'Санни-Айлс-Бич' },
+  { slug: 'hallandale-beach-movers', en: 'Hallandale Beach', ru: 'Халландейл-Бич' },
+  { slug: 'hollywood-movers',        en: 'Hollywood',        ru: 'Голливуд' },
+  { slug: 'fort-lauderdale-movers',  en: 'Fort Lauderdale',  ru: 'Форт-Лодердейл' },
+  { slug: 'boca-raton-movers',       en: 'Boca Raton',       ru: 'Бока-Ратон' },
+];
+
+// RU pages exist only for these cities; RU visitors get RU links where they
+// exist and are not sent to an English page mid-journey otherwise.
+const RU_CITY_SLUGS = new Set([
+  'miami-movers', 'fort-lauderdale-movers', 'sunny-isles-movers',
+  'aventura-movers', 'hollywood-movers', 'hallandale-beach-movers',
+]);
 
 const UI = {
   en: {
@@ -105,6 +129,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const t = UI[locale];
   const services = SERVICES[locale];
   const trust = TRUST[locale];
+  const isRu = locale === 'ru';
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
@@ -358,6 +383,30 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── Nearby cities ─────────────────────────────────────────────── */}
+        <section className="section-padding bg-white border-t border-gray-100">
+          <div className="container-max max-w-4xl mx-auto text-center">
+            <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-4">
+              {isRu ? 'Другие города' : 'We also move in'}
+            </p>
+            <ul className="flex flex-wrap justify-center gap-2">
+              {NEARBY.filter((n) => !city.slug.endsWith(n.slug)).map((n) => {
+                const href = isRu && RU_CITY_SLUGS.has(n.slug) ? `/ru/${n.slug}` : `/${n.slug}`;
+                return (
+                  <li key={n.slug}>
+                    <Link
+                      href={href}
+                      className="inline-block text-sm border border-gray-200 text-gray-600 px-4 py-2 hover:border-gold/40 hover:text-charcoal transition-colors duration-150"
+                    >
+                      {isRu ? n.ru : n.en}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </section>
 

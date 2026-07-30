@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     'Easy Move Florida is owner-led: Evgenii Romanov runs dispatch and crew leadership himself, in English and Russian. Hollywood-based, serving Miami, Fort Lauderdale and Boca Raton.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com/about',
+    languages: {
+      en: 'https://www.easy-move-florida.com/about',
+      ru: 'https://www.easy-move-florida.com/ru/about',
+      'x-default': 'https://www.easy-move-florida.com/about',
+    },
   },
   openGraph: {
     title: 'About Easy Move Florida — Founder-Led Movers in South Florida',
@@ -22,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Easy Move Florida — Founder-Led Movers in South Florida',
+    title: 'About Easy Move Florida — Owner-Operated Movers in South Florida',
     description:
-      "Meet the founder-led crew behind South Florida's premier white-glove moving company. Miami · Fort Lauderdale · Boca Raton.",
+      'Evgenii Romanov owns the company, runs dispatch and answers the phone. Hollywood, FL. Russian and English. 5.0 from 32 Thumbtack reviews.',
   },
 };
 

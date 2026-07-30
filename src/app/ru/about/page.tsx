@@ -11,19 +11,20 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'О компании | Easy Move Florida' },
   description:
-    'EasyMove Elite — застрахованная мувинговая компания в Южной Флориде. Майами, Форт-Лодердейл, Бока-Ратон. Основатель Евгений Романов. Говорим по-русски.',
+    'Easy Move Florida — мувинговая компания с личным участием владельца в Южной Флориде. Майами, Форт-Лодердейл, Бока-Ратон. Основатель Евгений Романов. Говорим по-русски.',
   alternates: {
     canonical: `${siteUrl}/ru/about`,
     languages: {
       'en': `${siteUrl}/about`,
       'ru': `${siteUrl}/ru/about`,
+      'x-default': `${siteUrl}/about`,
     },
   },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'EasyMove Elite',
-    title: 'О нас — EasyMove Elite | Переезды в Майами',
+    siteName: 'Easy Move Florida',
+    title: 'О нас — Easy Move Florida | Переезды в Майами',
     description: 'Основатель сам отвечает на ваш звонок. Бригада знает ваше здание до приезда. Сертификат страхования за 24 часа.',
     url: `${siteUrl}/ru/about`,
   },
@@ -38,7 +39,7 @@ const VALUES = [
   {
     icon: Shield,
     title: 'Ответственность',
-    body: 'Лицензированы, застрахованы, прозрачны. Письменная смета, окно прибытия соблюдаем, без сюрпризов в день переезда.',
+    body: 'В счёте только те строки, что были в смете. Ни топливного сбора, ни платы за лестницы, лифт или длинный пронос. Ничего не начисляется, пока вы это не одобрили.',
   },
   {
     icon: Users,
@@ -68,7 +69,7 @@ export default function RuAboutPage() {
         <section className="relative h-72 md:h-[420px] flex items-center justify-center overflow-hidden bg-charcoal">
           <Image
             src="/images/Real/8.jpg"
-            alt="Бригада EasyMove Elite во время переезда в Южной Флориде"
+            alt="Бригада Easy Move Florida во время переезда в Южной Флориде"
             fill
             priority
             sizes="100vw"
@@ -79,7 +80,7 @@ export default function RuAboutPage() {
           <div className="absolute inset-0 grain-overlay" />
           <div className="relative z-10 text-center px-4">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Наша история</p>
-            <h1 className="font-display text-3xl md:text-6xl font-bold text-white">О EasyMove Elite</h1>
+            <h1 className="font-display text-3xl md:text-6xl font-bold text-white">О Easy Move Florida</h1>
             <p className="text-gray-400 mt-4 max-w-lg mx-auto">
               Основатель лично контролирует. Бригада обучена. Создано для Южной Флориды.
             </p>
@@ -95,7 +96,7 @@ export default function RuAboutPage() {
                 Создано в Южной Флориде.<br />Управляется человеком, которому вы звоните.
               </h2>
               <p className="text-gray-600 leading-relaxed mb-5">
-                Я основал EasyMove Elite потому, что не мог найти мувинговую компанию, которой бы доверил свои собственные вещи.
+                Я основал Easy Move Florida потому, что не мог найти мувинговую компанию, которой бы доверил свои собственные вещи.
                 Слишком много бригад, отправленных диспетчером, который никогда не был в здании. Слишком много смет, которые
                 раздувались в день переезда. Слишком мало ответственности, когда что-то шло не так.
               </p>
@@ -121,7 +122,7 @@ export default function RuAboutPage() {
               <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
                 <Image
                   src="/images/about.png"
-                  alt="EasyMove Elite — премиум-бригада переездов в Южной Флориде"
+                  alt="Easy Move Florida — премиум-бригада переездов в Южной Флориде"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center sm:object-top"
@@ -164,7 +165,7 @@ export default function RuAboutPage() {
                   <div className="relative w-48 h-48 overflow-hidden bg-gray-200">
                     <Image
                       src="/images/founder-2.png"
-                      alt="Евгений Романов, основатель EasyMove Elite"
+                      alt="Евгений Романов, основатель Easy Move Florida"
                       fill
                       sizes="192px"
                       className="object-cover object-[center_20%]"
@@ -179,13 +180,13 @@ export default function RuAboutPage() {
                   <h3 className="font-display font-semibold text-charcoal text-xl">Евгений Романов</h3>
                   <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Основатель и владелец</p>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Евгений построил EasyMove Elite с нуля после многих лет, наблюдая, как клиентов разочаровывают крупные
+                    Евгений построил Easy Move Florida с нуля после многих лет, наблюдая, как клиентов разочаровывают крупные
                     обезличенные мувинговые компании. Его стандарт: вы говорите напрямую с владельцем, бригада знает здание
                     до приезда, и каждая вещь обрабатывается так, как если бы принадлежала семье. Он лично присутствует на
                     каждом дорогом и сложном переезде.
                   </p>
                   <div className="flex flex-wrap gap-3 mt-5">
-                    {['Лицензировано и застраховано', 'Личное руководство', 'Прямая линия: 786-305-1844'].map((badge) => (
+                    {['Владелец и диспетчер', 'Русский и английский', 'WhatsApp: 786-305-1844'].map((badge) => (
                       <span key={badge} className="text-xs border border-gray-200 px-3 py-1 text-gray-500">{badge}</span>
                     ))}
                   </div>
@@ -197,7 +198,7 @@ export default function RuAboutPage() {
                 Ваш переезд под личным контролем
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                Когда вы бронируете у EasyMove Elite, вы не работаете с диспетчером или колл-центром. Евгений лично
+                Когда вы бронируете у Easy Move Florida, вы не работаете с диспетчером или колл-центром. Евгений лично
                 принимает ваш звонок, координирует бригаду и остаётся на связи на протяжении всего переезда. Без субподрядчиков.
                 Без посторонних людей, отправленных через приложение.
               </p>
@@ -221,7 +222,7 @@ export default function RuAboutPage() {
           <div className="relative container-max">
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-center">
               {[
-                { label: 'Лицензировано и полностью застраховано', sub: 'Общая ответственность и страхование груза' },
+                { label: '5.0 · 32 отзыва', sub: 'Проверено на Thumbtack' },
                 { label: 'COI по запросу', sub: 'Готов в течение 24 часов' },
                 { label: 'Опыт работы с высотками', sub: 'Кондо, лифты, погрузочные доки' },
                 { label: 'Лидер компании на месте', sub: 'Евгений участвует в каждом переезде' },
