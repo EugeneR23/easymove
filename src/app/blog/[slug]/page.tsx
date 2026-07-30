@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = getBlogPost(params.slug);
-  if (!post) return { title: { absolute: 'Post not found | EasyMove Elite' } };
+  if (!post) return { title: { absolute: 'Post not found | Easy Move Florida' } };
 
   return {
     title: { absolute: post.metaTitle },
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     alternates: { canonical: `https://www.easy-move-florida.com/blog/${post.slug}` },
     openGraph: {
       type: 'article',
-      siteName: 'EasyMove Elite',
+      siteName: 'Easy Move Florida',
       title: post.metaTitle,
       description: post.metaDescription,
       url: `https://www.easy-move-florida.com/blog/${post.slug}`,
@@ -93,7 +93,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     author: { '@type': 'Person', name: post.author, url: 'https://www.easy-move-florida.com/about' },
     publisher: {
       '@type': 'Organization',
-      name: 'EasyMove Elite',
+      name: 'Easy Move Florida',
       logo: { '@type': 'ImageObject', url: 'https://www.easy-move-florida.com/images/Hero.png' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.easy-move-florida.com/blog/${post.slug}` },

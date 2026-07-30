@@ -3,9 +3,9 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Privacy Policy — EasyMove Elite' },
+  title: { absolute: 'Privacy Policy — Easy Move Florida' },
   description:
-    'How EasyMove Elite collects, uses, and protects your personal information when you request a moving estimate or contact us.',
+    'How Easy Move Florida collects, uses, and protects your personal information when you request a moving estimate or contact us.',
   robots: { index: false, follow: false },
   alternates: {
     canonical: 'https://www.easy-move-florida.com/privacy',
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
           <div className="prose-legal">
 
             <p className="text-gray-600 text-sm leading-relaxed mb-10">
-              EasyMove Elite (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) respects your privacy and is
+              Easy Move Florida (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) respects your privacy and is
               committed to protecting your personal information. This policy explains how we collect,
               use, and safeguard the data you provide when using our services.
             </p>

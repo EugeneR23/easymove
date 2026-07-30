@@ -7,21 +7,21 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Shield, Clock, Phone, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Get a Free Moving Estimate in South Florida — EasyMove Elite' },
+  title: { absolute: 'Get a Free Moving Estimate in South Florida — Easy Move Florida' },
   description:
     'Get a free moving estimate in under 2 minutes. A real coordinator confirms your final price — no automated guesswork. Miami, Fort Lauderdale & Boca Raton.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com/quote',
   },
   openGraph: {
-    title: 'Get a Free Moving Estimate — EasyMove Elite',
+    title: 'Get a Free Moving Estimate — Easy Move Florida',
     description:
       'Free written moving estimate in under 2 minutes. No obligation. A real coordinator reviews your details and confirms pricing.',
     url: 'https://www.easy-move-florida.com/quote',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Get a Free Moving Estimate — EasyMove Elite',
+    title: 'Get a Free Moving Estimate — Easy Move Florida',
     description:
       'Under 2 minutes. A real coordinator confirms your final price. No obligation. Serving Miami, Fort Lauderdale & Boca Raton.',
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const TRUST_POINTS = [
   { icon: Shield, text: 'No hidden fees' },
-  { icon: Star,   text: 'Fully insured' },
+  { icon: Star,   text: '5.0 from 32 verified Thumbtack reviews' },
   { icon: Phone,  text: 'Direct communication — speak with the person handling your move' },
   { icon: Clock,  text: 'Fast scheduling · Call or text: 786-305-1844' },
 ];

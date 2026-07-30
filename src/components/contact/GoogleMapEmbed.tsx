@@ -1,5 +1,5 @@
 /**
- * Embedded Google Map showing EasyMove Elite's GBP location.
+ * Embedded Google Map showing Easy Move Florida's GBP location.
  *
  * Local SEO signal: an embedded map of your own GBP (linked by place_id) on
  * your site is a strong NAP-consistency signal that Google uses when ranking
@@ -12,7 +12,7 @@
  * To upgrade to the official GBP-pinned embed (shows business card popup with
  * rating/photo on hover):
  *   1. Open https://www.google.com/maps
- *   2. Search "EasyMove Elite Hollywood FL" — find your verified profile
+ *   2. Search "Easy Move Florida Hollywood FL" — find your verified profile
  *   3. Click Share → Embed a map → Copy HTML
  *   4. Replace the iframe src below with the `pb=...` URL Google provides
  */
@@ -40,7 +40,7 @@ export default function GoogleMapEmbed() {
       </div>
       <iframe
         src={mapSrc}
-        title="EasyMove Elite — South Florida service area map"
+        title="Easy Move Florida — South Florida service area map"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-72 md:h-80 border-0 grayscale-[15%]"

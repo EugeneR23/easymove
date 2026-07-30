@@ -3,9 +3,9 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Terms of Service — EasyMove Elite' },
+  title: { absolute: 'Terms of Service — Easy Move Florida' },
   description:
-    'EasyMove Elite terms of service — estimates and pricing, payment, customer responsibilities, liability, and cancellation policies.',
+    'Easy Move Florida terms of service — estimates and pricing, payment, customer responsibilities, liability, and cancellation policies.',
   robots: { index: false, follow: false },
   alternates: {
     canonical: 'https://www.easy-move-florida.com/terms',
@@ -33,7 +33,7 @@ export default function TermsPage() {
           <div>
 
             <p className="text-gray-600 text-sm leading-relaxed mb-10">
-              By using EasyMove Elite services — including our website, quote form, and moving
+              By using Easy Move Florida services — including our website, quote form, and moving
               services — you agree to the following terms and conditions. Please read them carefully.
             </p>
 
@@ -81,7 +81,7 @@ export default function TermsPage() {
             </Section>
 
             <Section title="5. Liability">
-              <p>EasyMove Elite is not liable for:</p>
+              <p>Easy Move Florida is not liable for:</p>
               <ul>
                 <li>Items packed by the customer</li>
                 <li>Pre-existing damage to furniture or property</li>

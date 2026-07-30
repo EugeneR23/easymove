@@ -116,7 +116,7 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
       {/* Brand mark */}
       <div className="mb-10 hidden lg:block">
         <div className="h-px bg-gradient-gold mb-6" />
-        <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-1">EasyMove Elite</p>
+        <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-1">Easy Move Florida</p>
         <p className="text-white/40 text-xs">Preliminary Estimate</p>
       </div>
 

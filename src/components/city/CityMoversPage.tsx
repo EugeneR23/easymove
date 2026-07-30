@@ -30,7 +30,7 @@ const SERVICES = {
 
 const TRUST = {
   en: [
-    { icon: Shield, label: 'Fully Licensed & Insured' },
+    { icon: Shield, label: 'Fully Owner-led' },
     { icon: Award,  label: 'Founder-Led — No Subcontractors' },
     { icon: CheckCircle, label: 'COI Issued Within 24 Hours' },
     { icon: MapPin, label: 'South Florida Team' },
@@ -45,7 +45,7 @@ const TRUST = {
 
 const UI = {
   en: {
-    heroAlt: (c: CityData) => `Professional movers in ${c.name}, ${c.state} — EasyMove Elite`,
+    heroAlt: (c: CityData) => `Professional movers in ${c.name}, ${c.state} — Easy Move Florida`,
     countyLine: (c: CityData) => `${c.county} County · ${c.state}`,
     ctaEstimate: 'Get a FREE Estimate',
     localExpertise: 'Local Expertise',
@@ -69,7 +69,7 @@ const UI = {
     breadcrumbCity: (c: CityData) => `${c.name} Movers`,
   },
   ru: {
-    heroAlt: (c: CityData) => `Профессиональные грузчики и переезды в ${c.name} — EasyMove Elite`,
+    heroAlt: (c: CityData) => `Профессиональные грузчики и переезды в ${c.name} — Easy Move Florida`,
     countyLine: (c: CityData) => `Округ ${c.county} · ${c.state}`,
     ctaEstimate: 'Бесплатный расчёт',
     localExpertise: 'Знаем район',
@@ -108,7 +108,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
-    name: 'EasyMove Elite',
+    name: 'Easy Move Florida',
     description: city.metaDescription,
     url: `https://www.easy-move-florida.com/${city.slug}`,
     telephone: '+17863051844',

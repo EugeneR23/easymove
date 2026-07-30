@@ -8,21 +8,21 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Contact EasyMove Elite — South Florida Moving Company' },
+  title: { absolute: 'Contact Easy Move Florida — South Florida Moving Company' },
   description:
-    'Contact EasyMove Elite in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
+    'Contact Easy Move Florida in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com/contact',
   },
   openGraph: {
-    title: 'Contact EasyMove Elite — South Florida Moving Company',
+    title: 'Contact Easy Move Florida — South Florida Moving Company',
     description:
       'A real coordinator responds within hours. No automated systems. Call 786-305-1844 or fill out the form.',
     url: 'https://www.easy-move-florida.com/contact',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact EasyMove Elite — South Florida Moving Company',
+    title: 'Contact Easy Move Florida — South Florida Moving Company',
     description:
       'Reach a real coordinator within hours. Call 786-305-1844 or send a message. Serving Miami, Fort Lauderdale & Boca Raton.',
   },
@@ -159,8 +159,8 @@ export default function ContactPage() {
                 <div className="flex items-center gap-3 px-5 py-4 border border-gold/15 bg-white/60">
                   <Shield size={14} className="text-gold shrink-0" />
                   <p className="text-gray-500 text-xs leading-snug">
-                    <span className="text-charcoal font-semibold">Fully licensed &amp; insured.</span>{' '}
-                    COI available on request for building and HOA management.
+                    <span className="text-charcoal font-semibold">COI within 24 hours of booking, no charge.</span>{' '}
+                    Issued straight to your building or HOA management, in their required format.
                   </p>
                 </div>
               </AnimateIn>

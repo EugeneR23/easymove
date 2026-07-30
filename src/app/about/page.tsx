@@ -8,21 +8,21 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'About EasyMove Elite — Founder-Led Movers in South Florida' },
+  title: { absolute: 'About Easy Move Florida — Founder-Led Movers in South Florida' },
   description:
-    'EasyMove Elite is a founder-led, fully insured moving company built in South Florida. Meet the crew behind every move in Miami, Fort Lauderdale & Boca Raton.',
+    'Easy Move Florida is owner-led: Evgenii Romanov runs dispatch and crew leadership himself, in English and Russian. Hollywood-based, serving Miami, Fort Lauderdale and Boca Raton.',
   alternates: {
     canonical: 'https://www.easy-move-florida.com/about',
   },
   openGraph: {
-    title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
+    title: 'About Easy Move Florida — Founder-Led Movers in South Florida',
     description:
-      'Founder-led and crew-driven. Built for South Florida. Meet Eugene Romanov and the team behind EasyMove Elite.',
+      'Owner-operated from Hollywood, FL. Meet Evgenii Romanov, who writes the estimates, calls your building and answers the phone himself.',
     url: 'https://www.easy-move-florida.com/about',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About EasyMove Elite — Founder-Led Movers in South Florida',
+    title: 'About Easy Move Florida — Founder-Led Movers in South Florida',
     description:
       "Meet the founder-led crew behind South Florida's premier white-glove moving company. Miami · Fort Lauderdale · Boca Raton.",
   },
@@ -31,31 +31,31 @@ export const metadata: Metadata = {
 const values = [
   {
     icon: Award,
-    title: 'Craftsmanship',
-    description: 'Every carry, every wrap, every placement is treated as a reflection of who we are. We hold ourselves to a standard our clients never have to ask for.',
+    title: 'The rate never moves',
+    description: '$129/hour for two movers, $179 for three, plus $129 a day for the truck. It does not go up for a weekend, a long job, or a hard one. You pay for hours worked, in 15-minute increments after the 3-hour minimum.',
   },
   {
     icon: Shield,
-    title: 'Accountability',
-    description: 'Licensed, insured, and fully transparent. Detailed estimates in writing. Arrival windows honored. No surprises on moving day.',
+    title: 'Nothing on the bill you did not approve',
+    description: 'No fuel surcharge, no stairs fee, no elevator fee, no long carry fee. If something turns up that is not on the estimate, we stop and get your yes before we continue.',
   },
   {
     icon: Users,
-    title: 'Discretion',
-    description: 'Our clients include executives, athletes, collectors, and families who value privacy. We operate with the professionalism and confidentiality that requires.',
+    title: 'You can do the whole move in Russian',
+    description: 'The crew leader and the dispatcher both work in Russian and English — estimate, contract, move day. That matters in Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood.',
   },
   {
     icon: MapPin,
-    title: 'Local Depth',
-    description: 'We know South Florida — its buildings, its HOA requirements, its traffic, its heat. That local expertise translates into smoother moves.',
+    title: 'We know the buildings, not just the roads',
+    description: 'Freight elevator reservations, loading dock windows, elevator padding rules, COI formats, parking and loading zone rules across the Sunny Isles, Aventura, Miami Beach and Hollywood towers.',
   },
 ];
 
 const howWeWork = [
-  { title: 'No subcontractors', description: 'Every move is handled by our own trained crew — not a third-party app crew hired for the day.' },
-  { title: 'Direct accountability', description: "Eugene is the person you call if anything needs attention. Not a support line. Not a dispatcher." },
-  { title: 'Quality control on every job', description: "The same standards apply whether you're moving a studio or a full estate. No 'easy' jobs treated carelessly." },
-  { title: 'Crew briefed before arrival', description: 'Building access, elevator windows, COI requirements — all confirmed before the crew ever shows up.' },
+  { title: 'The owner is on the phone', description: 'The WhatsApp number reaches Evgenii, not a call centre. If something needs attention on move day, you are talking to the person who can decide.' },
+  { title: 'COI within 24 hours, free', description: 'Send your building name, management company and their coverage requirements. The certificate goes to management in their format, at no charge.' },
+  { title: 'No deposit to book', description: 'Nothing is charged to hold a date, and cancelling or rescheduling more than 48 hours out is free.' },
+  { title: 'Crew briefed before arrival', description: 'Building access, elevator windows and COI requirements are confirmed before the crew leaves the yard, so the clock starts on your furniture rather than on paperwork.' },
 ];
 
 export default function AboutPage() {
@@ -67,7 +67,7 @@ export default function AboutPage() {
         <section className="relative h-72 md:h-[420px] flex items-center justify-center overflow-hidden bg-charcoal">
           <Image
             src="/images/Real/8.jpg"
-            alt="EasyMove Elite crew during a South Florida move"
+            alt="Easy Move Florida crew during a South Florida move"
             fill
             priority
             sizes="100vw"
@@ -78,9 +78,9 @@ export default function AboutPage() {
           <div className="absolute inset-0 grain-overlay" />
           <AnimateIn className="relative z-10 text-center px-4">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Our Story</p>
-            <h1 className="font-display text-3xl md:text-6xl font-bold text-white">About EasyMove Elite</h1>
+            <h1 className="font-display text-3xl md:text-6xl font-bold text-white">About Easy Move Florida</h1>
             <p className="text-gray-400 mt-4 max-w-lg mx-auto">
-              Founder-led. Crew-driven. Built for South Florida.
+              Owner-operated from Hollywood, FL. The number on this site reaches Evgenii Romanov directly.
             </p>
           </AnimateIn>
         </section>
@@ -94,24 +94,32 @@ export default function AboutPage() {
                 Built in South Florida.<br />Run by the Person You Call.
               </h2>
               <p className="text-gray-600 leading-relaxed mb-5">
-                I started EasyMove Elite because I couldn&rsquo;t find a moving company I would trust with
-                my own things. Too many crews sent by a dispatcher who&rsquo;d never visited the building.
-                Too many quotes that ballooned on moving day. Too little accountability when something went wrong.
+                My name is Evgenii Romanov. I own Easy Move Florida, I run dispatch, and the number on
+                this website rings my phone — not a call centre and not a lead broker who sells your
+                details to three other movers.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
-                So I built the company I wished existed. One where the person you talk to on the phone
-                is the same person responsible for your move. Where the crew arrives knowing the building,
-                the timeline, and exactly what needs protecting. Where a COI isn&rsquo;t an afterthought —
-                it&rsquo;s ready before you ask.
+                I started the company because the quotes I was getting as a customer were fiction. The
+                rate quoted on the phone was not the rate on the invoice, the truck fee appeared at the
+                end, and nobody had called the building to find out that the freight elevator was booked
+                until Thursday. So the way we price is deliberately boring: $129 an hour for two movers,
+                $179 for three, $129 a day for the truck with fuel and tolls inside it, and a 3-hour
+                minimum. That rate does not change because it is Saturday or because the job ran long.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-5">
+                Most of what makes a South Florida move go badly is not the furniture — it is the
+                building. Freight elevator windows, loading dock schedules, COI formats, elevator
+                padding rules, which streets you can actually park a 26-footer on. That is the part I
+                handle before your move day, in English or in Russian, whichever you prefer.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                We work with homeowners, renters, collectors, and small businesses across Miami-Dade,
-                Broward, and Palm Beach County. Some moves are straightforward. Some aren&rsquo;t. The
-                standard of care is the same for both.
+                We work with homeowners, renters and small businesses across Miami-Dade, Broward and
+                Palm Beach County. If something goes wrong on your move, call 786-305-1844 and you are
+                talking to the person who can fix it.
               </p>
-              <p className="text-gold text-sm font-semibold mt-6">— Eugene Romanov, Founder</p>
+              <p className="text-gold text-sm font-semibold mt-6">— Evgenii Romanov, Owner</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {['Owner-led', 'Present on every complex move', 'Direct: 786-305-1844'].map((tag) => (
+                {['Owner-operated', 'Russian & English', '5.0 · 32 Thumbtack reviews', 'Direct: 786-305-1844'].map((tag) => (
                   <span key={tag} className="text-[11px] border border-gold/25 text-gold/75 px-3 py-1 tracking-wide">
                     {tag}
                   </span>
@@ -122,7 +130,7 @@ export default function AboutPage() {
               <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
                 <Image
                   src="/images/about.png"
-                  alt="EasyMove Elite premium moving crew, South Florida"
+                  alt="Easy Move Florida premium moving crew, South Florida"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center sm:object-top"
@@ -168,7 +176,7 @@ export default function AboutPage() {
                     <div className="relative w-48 h-48 overflow-hidden bg-gray-200">
                       <Image
                         src="/images/founder-2.png"
-                        alt="Eugene Romanov, Founder of EasyMove Elite"
+                        alt="Evgenii Romanov, owner of Easy Move Florida, in Hollywood FL"
                         fill
                         sizes="192px"
                         className="object-cover object-[center_20%]"
@@ -180,16 +188,16 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-charcoal text-xl">Eugene Romanov</h3>
-                    <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Founder &amp; Owner</p>
+                    <h3 className="font-display font-semibold text-charcoal text-xl">Evgenii Romanov</h3>
+                    <p className="text-gold text-xs uppercase tracking-widest mt-1 mb-4">Owner &amp; Dispatcher</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      Eugene built EasyMove Elite from the ground up after years of watching clients get let down
-                      by large, impersonal moving companies. His standard: you speak directly with the owner,
-                      the crew knows the building before they arrive, and every item is handled as if it belongs
-                      to family. He is present on every high-value and complex move.
+                      Evgenii owns the company and runs dispatch himself from Hollywood, FL. He writes the
+                      estimates, calls your building about the freight elevator and the COI, and answers the
+                      WhatsApp number on this site personally, in Russian or English. Also spelled Eugene
+                      Romanov — same person.
                     </p>
                     <div className="flex flex-wrap gap-3 mt-5">
-                      {['Licensed & Insured', 'Hands-on leadership', 'Direct: 786-305-1844'].map((badge) => (
+                      {['Owner & dispatcher', 'Russian & English', 'WhatsApp: 786-305-1844'].map((badge) => (
                         <span key={badge} className="text-xs border border-gray-200 px-3 py-1 text-gray-500">{badge}</span>
                       ))}
                     </div>
@@ -203,9 +211,8 @@ export default function AboutPage() {
                   Your Move is Personally Managed
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                  When you book with EasyMove Elite, you&rsquo;re not working with a dispatcher or a call center.
-                  Eugene takes your call, coordinates the crew, and is reachable throughout your move.
-                  No subcontractors. No strangers sent by an app.
+                  Four things you can hold us to, because they are entirely inside our control — unlike a
+                  guaranteed final total on an hourly job, which no honest mover can promise.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-100">
                   {howWeWork.map((item) => (
@@ -227,11 +234,14 @@ export default function AboutPage() {
           <div className="absolute inset-0 grain-overlay" />
           <div className="relative container-max">
             <AnimateIn className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-center">
+              {/* [TODO: Evgenii] add an FDACS IM# card here once you send the
+                  registration number — Florida Chapter 507 registration is the
+                  strongest trust signal we can publish, and competitors show theirs. */}
               {[
-                { label: 'Licensed & Fully Insured', sub: 'General liability & cargo insurance' },
-                { label: 'COI on Request', sub: 'Issued within 24 hours' },
-                { label: 'Experienced with High-Rises', sub: 'Condos, elevators & loading docks' },
-                { label: 'Founder-Led', sub: 'Eugene is involved in every move' },
+                { label: '5.0 · 32 reviews', sub: 'Verified on Thumbtack' },
+                { label: 'COI in 24 hours', sub: 'To your building, no charge' },
+                { label: 'High-rise competent', sub: 'Freight elevators, docks, move windows' },
+                { label: 'Russian & English', sub: 'Crew leader and dispatcher both' },
               ].map((c) => (
                 <div key={c.label} className="max-w-[160px]">
                   <p className="text-white text-sm font-semibold mb-1">{c.label}</p>

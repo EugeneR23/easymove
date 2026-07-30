@@ -166,7 +166,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
         <div className="flex items-start gap-2 mb-5">
           <Shield size={12} className="text-gold shrink-0 mt-0.5" />
           <p className="text-xs text-gray-400 min-w-0 leading-relaxed">
-            Fully insured · COI available · Local South Florida team · No hidden fees
+            Owner-led · COI to your building in 24h · Rate locked before we start
           </p>
         </div>
 

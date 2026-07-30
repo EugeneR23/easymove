@@ -24,7 +24,7 @@ export default function V2CTA() {
           </a>
         </div>
         <p className="text-white/25 text-xs mt-10 tracking-wide">
-          Fully insured · COI within 24h · Owner-led crews · Miami-Dade — Broward — Palm Beach
+          COI within 24h · Owner-led crews · Miami-Dade — Broward — Palm Beach
         </p>
       </div>
     </section>
