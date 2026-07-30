@@ -9,7 +9,7 @@ import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lu
 export const metadata: Metadata = {
   title: { absolute: 'Packing Services Miami | Easy Move Florida' },
   description:
-    'Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack, fragile-only, fully insured. From $237. Call 786-305-1844.',
+    'Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack or fragile-only. Owner-led crews, from $237. Call 786-305-1844. Call 786-305-1844.',
   keywords: [
     'packing company Miami',
     'packing services Miami',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Packing Services Miami | Easy Move Florida',
     description:
-      'Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack, fully insured. From $237.',
+      'Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack. Owner-led crews, from $237.',
     url: 'https://www.easy-move-florida.com/packing-services',
   },
 };
@@ -37,13 +37,13 @@ const schemaJson = JSON.stringify({
   name: 'Professional Packing Services',
   provider: {
     '@type': 'LocalBusiness',
-    name: 'EasyMove Elite',
+    name: 'Easy Move Florida',
     telephone: '+17863051844',
     url: 'https://www.easy-move-florida.com',
     areaServed: 'Miami-Dade, Broward, Palm Beach Counties, Florida',
   },
   description:
-    'Full-home and partial packing services in Miami, Fort Lauderdale, and Boca Raton. Experienced packers, quality materials, fully insured.',
+    'Full-home and partial packing services in Miami, Fort Lauderdale, and Boca Raton. Experienced packers, quality materials, COI to your building within 24 hours.',
   serviceType: 'Packing Service',
   areaServed: 'South Florida',
   offers: {
@@ -63,6 +63,8 @@ const WHAT_WE_PACK = [
   { label: 'Garage & Storage Areas', desc: 'Tools, sports equipment, and bulk items efficiently sorted and boxed.' },
 ];
 
+// [TODO: confirm with Evgenii] packing hourly rates ($79 / $119) and these
+// package totals are not part of the verified rate card.
 const PRICING = [
   { size: 'Studio', packers: 2, hours: 3, price: 237, note: '2 packers · 3-hr min' },
   { size: '1 Bedroom', packers: 2, hours: 4, price: 316, note: '2 packers · ~4 hrs' },
@@ -90,7 +92,7 @@ const FAQS = [
   },
   {
     q: 'Are your packers insured?',
-    a: 'Yes — all packing work is covered under our full liability policy. COI is available within 24 hours for buildings that require it.',
+    a: 'Packing work is covered by our standard liability terms, and we issue a COI to your building within 24 hours of booking at no charge. Ask us for the current certificate before move day.',
   },
   {
     q: 'Do you serve Fort Lauderdale and Boca Raton?',
@@ -124,7 +126,7 @@ export default function PackingServicesPage() {
               Professional Packing Services in South Florida
             </h1>
             <p className="text-gray-300 text-lg mb-8 max-w-xl">
-              We pack your home so you don&rsquo;t have to. Experienced packers, quality materials, fully insured.
+              We pack your home so you don&rsquo;t have to. Experienced packers, quality materials, COI to your building within 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
@@ -148,8 +150,8 @@ export default function PackingServicesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
               {[
-                { icon: Shield, label: 'Fully Licensed & Insured' },
-                { icon: Star, label: '4.9★ Top-Rated' },
+                { icon: Shield, label: 'Owner-led crews' },
+                { icon: Star, label: '5.0★ on Thumbtack (32 reviews)' },
                 { icon: Clock, label: 'Same-Week Availability' },
                 { icon: CheckCircle, label: '$0 Hidden Fees' },
               ].map(({ icon: Icon, label }) => (
