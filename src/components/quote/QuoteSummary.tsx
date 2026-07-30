@@ -35,21 +35,16 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
   const size      = data.inventory.homeSize ?? '2br';
 
   // ── Labor label ────────────────────────────────────────────────────────────
+  // Stairs are billed as time, never a fee — when present, the extra carry
+  // hours are already inside estimatedHours, so the label says so.
+  const stairsNote = data.inventory.hasStairs ? ' (incl. stairs time)' : '';
   const laborLabel = isPacking
     ? `Packing — ${pricing.crewSize} packers × ${pricing.estimatedHours}h`
     : isLocal
-      ? `Labour — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`
+      ? `Labour — ${pricing.crewSize} movers × ${pricing.estimatedHours}h${stairsNote}`
       : pricing.isLongDistance && pricing.estimatedHours > 0
-        ? `Loading & unloading — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`
+        ? `Loading & unloading — ${pricing.crewSize} movers × ${pricing.estimatedHours}h${stairsNote}`
         : 'Base rate';
-
-  // ── Access fee label ───────────────────────────────────────────────────────
-  const accessLabel = (() => {
-    const flights = data.inventory.stairsFlights ?? 1;
-    const floor   = flights + 1;
-    const ordinal = floor === 2 ? '2nd' : floor === 3 ? '3rd' : `${floor}th`;
-    return `Stairs — ${ordinal} floor ($${flights * 50} per flight)`;
-  })();
 
   // ── Addon line items (one per service) ────────────────────────────────────
   const addonLines: { label: string; value: number }[] = [];
@@ -68,11 +63,10 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
     pricing.truckFee  > 0 ? {
       label: pricing.isLongDistance
         ? `Long-distance transport${pricing.travelMiles > 0 ? ` — ~${pricing.travelMiles} mi` : ''}`
-        : 'Truck fee',
+        : 'Truck — flat per day (fuel, tolls & mileage included)',
       value: pricing.truckFee,
     } : null,
     pricing.travelFee > 0 ? { label: travelLabel, value: pricing.travelFee } : null,
-    pricing.accessFee > 0 ? { label: accessLabel, value: pricing.accessFee } : null,
     ...addonLines,
     pricing.discount  > 0 ? { label: 'Discount', value: -pricing.discount } : null,
   ].filter(Boolean) as { label: string; value: number }[];
