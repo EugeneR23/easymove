@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'EasyMove Elite — Premium White-Glove Movers in South Florida';
+export const alt = 'Easy Move Florida — Premium White-Glove Movers in South Florida';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -103,7 +103,7 @@ export default async function OpengraphImage() {
                 fontFamily: 'sans-serif',
               }}
             >
-              EasyMove Elite
+              Easy Move Florida
             </span>
           </div>
 

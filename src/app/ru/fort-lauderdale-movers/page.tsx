@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'EasyMove Elite',
+    siteName: 'Easy Move Florida',
     title: { absolute: city.metaTitle },
     description: city.metaDescription,
     url: `${siteUrl}/ru/fort-lauderdale-movers`,
-    images: [{ url: `${siteUrl}${city.heroImage}`, width: 1200, height: 630, alt: 'Русскоязычные грузчики в Форт-Лодердейле — EasyMove Elite' }],
+    images: [{ url: `${siteUrl}${city.heroImage}`, width: 1200, height: 630, alt: 'Русскоязычные грузчики в Форт-Лодердейле — Easy Move Florida' }],
   },
 };
 

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.easy-move-florida.com/boca-raton-movers' },
   openGraph: {
     type: 'website',
-    siteName: 'EasyMove Elite',
+    siteName: 'Easy Move Florida',
     title: city.metaTitle,
     description: city.metaDescription,
     url: 'https://www.easy-move-florida.com/boca-raton-movers',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: 'https://www.easy-move-florida.com/images/Real/Boca-Raton.jpg',
         width: 1200,
         height: 630,
-        alt: 'EasyMove Elite — Luxury Movers in Boca Raton, FL',
+        alt: 'Easy Move Florida — Luxury Movers in Boca Raton, FL',
       },
     ],
   },

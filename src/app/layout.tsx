@@ -252,7 +252,10 @@ const organizationSchema = {
   '@type': 'Organization',
   '@id': `${siteUrl}/#organization`,
   name: 'Easy Move Florida',
-  alternateName: ['EasyMove Elite', 'Easy Move FL'],
+  // "EasyMove Elite" removed: it named an entity that does not exist in the
+  // Florida Division of Corporations register, and asserting it as an alternate
+  // name works against resolving this business to the right entity.
+  alternateName: ['Easy Move FL'],
   url: siteUrl,
   logo: {
     '@type': 'ImageObject',
