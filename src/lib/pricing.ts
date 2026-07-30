@@ -1,9 +1,10 @@
 import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 
 // ─── Rate Tables ──────────────────────────────────────────────────────────────
-// Updated 2026-07-30 per owner's source of truth:
-//   - Truck: $99 flat per day, always a separate line item. Fuel, tolls and
-//     mileage are inside the $99. Never scaled by distance, never "included".
+// Updated 2026-07-30 per owner's source of truth (truck fee set to $129 by
+// Evgenii on 2026-07-30, superseding the earlier $99 figure):
+//   - Truck: $129 flat per day, always a separate line item. Fuel, tolls and
+//     mileage are inside the $129. Never scaled by distance, never "included".
 //   - No weekend or seasonal surcharges: the hourly rate is locked.
 //   - Stairs/long carries cost TIME (extra estimated hours), never a fee.
 // [TODO: confirm with Evgenii] the 4-mover $229/hr rate — not in the verified
@@ -11,7 +12,7 @@ import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePr
 export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 229 };
 export const MIN_HOURS = 3;
 const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
-export const TRUCK_FEE = 99; // flat per day — fuel, tolls, mileage included
+export const TRUCK_FEE = 129; // flat per day — fuel, tolls, mileage included
 // Stairs are billed as time, not a fee: each flight adds carry time per crew day
 export const STAIRS_EXTRA_HOURS_PER_FLIGHT = 0.5;
 
