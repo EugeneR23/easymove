@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { licenceLine } from '@/lib/data/credentials';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/utils';
 
@@ -136,6 +137,11 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <p>&copy; {new Date().getFullYear()} Easy Move Florida. All rights reserved.</p>
+              {/* Appears automatically once FDACS_NUMBER / USDOT_NUMBER are set
+                  in src/lib/data/credentials.ts */}
+              {licenceLine() && (
+                <p className="text-gray-500">{licenceLine()}</p>
+              )}
               <a
                 href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
                 target="_blank"
