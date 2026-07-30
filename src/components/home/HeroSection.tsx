@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
-import { localStartingPrice } from '@/lib/pricing';
+import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
 import { formatCurrency, whatsappUrl } from '@/lib/utils';
 import { containerVariants, wordVariants, easeLuxury } from '@/lib/motion';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
@@ -329,7 +329,7 @@ export default function HeroSection() {
                       <p className="font-display text-4xl font-bold text-white mb-1">{formatCurrency(price)}</p>
                       <p className="text-gray-400 text-xs">
                         {sizeData?.hrs} hrs · {crew} {moveType === 'packing-only' ? 'packers' : 'movers'}
-                        {moveType === 'local' ? ' · truck included' : ''}
+                        {moveType === 'local' ? ` · incl. $${TRUCK_FEE} truck` : ''}
                       </p>
                     </div>
                   </div>

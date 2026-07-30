@@ -2,28 +2,28 @@
 
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM } from '@/lib/pricing';
 import { whatsappUrl } from '@/lib/utils';
 
 const TIERS = [
   {
-    label: '2 Movers + Truck',
+    label: 'Crew of 2',
     price: HOURLY_RATE[2],
-    note: `${MIN_HOURS}-hour minimum`,
-    body: 'Furniture pads, stretch wrap, basic disassembly — included. Best for studios and 1BR apartments.',
+    note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE}/day truck`,
+    body: 'Furniture pads, stretch wrap and basic disassembly are in the rate. Best for studios and 1BR apartments.',
   },
   {
-    label: '3 Movers + Truck',
+    label: 'Crew of 3',
     price: HOURLY_RATE[3],
-    note: `${MIN_HOURS}-hour minimum`,
+    note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE}/day truck`,
     body: 'Same inclusions, faster crew. Best for 2BR+, walk-ups, and larger inventory.',
     highlight: true,
   },
   {
     label: 'Long Distance',
     price: null,
-    note: 'Custom estimate per job',
-    body: 'Based on miles, weight, and complexity. Send origin, destination, and inventory — written estimate within 24 hours.',
+    note: `From $${LD_MINIMUM.toLocaleString('en-US')} per job`,
+    body: 'Based on miles, inventory and access at both ends. Send origin, destination and inventory — written estimate within 24 hours, no deposit to book.',
   },
 ];
 
@@ -35,10 +35,10 @@ export default function PricingTransparency() {
           <div className="w-8 h-px bg-gold mx-auto mb-6" />
           <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Pricing</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight mb-4">
-            Honest hourly pricing. <span className="gold-text">No hidden fees.</span>
+            ${HOURLY_RATE[2]}/hr for two movers. <span className="gold-text">${HOURLY_RATE[3]}/hr for three.</span>
           </h2>
           <p className="text-gray-500 leading-relaxed">
-            Hourly rate locked before we start. Same rate if the job runs longer than estimated. No fuel surcharges, no stairs fees, no surprise charges on move day.
+            Three-hour minimum, plus a flat ${TRUCK_FEE}/day for the truck as its own line on the estimate — fuel, tolls and mileage are inside it. The rate is locked before we start and does not change on move day.
           </p>
         </div>
 
@@ -92,7 +92,7 @@ export default function PricingTransparency() {
           </a>
         </div>
         <p className="text-center text-gray-400 text-xs mt-4 max-w-lg mx-auto">
-          Send photos via WhatsApp for a tighter estimate — usually back to you in 5 minutes during business hours.
+          Send photos via WhatsApp for a tighter estimate — we reply during business hours, Monday to Saturday, 8:00 AM to 7:00 PM.
         </p>
       </div>
     </section>

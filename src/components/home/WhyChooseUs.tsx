@@ -10,7 +10,7 @@ const reasons = [
   {
     icon: Clock,
     title: 'Punctual',
-    description: 'Crew arrives within a 15-minute window of your confirmed time. No "sometime in the morning." We message you when we are on the way.',
+    description: 'You get a two-hour arrival window and a call 30 minutes before the crew reaches you — not "sometime in the morning."',
   },
   {
     icon: Package,
