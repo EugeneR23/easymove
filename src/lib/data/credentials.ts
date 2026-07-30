@@ -35,14 +35,19 @@ export const USDOT_NUMBER: string | null = null;
  */
 export const GOOGLE_BUSINESS: {
   profileUrl: string | null;
+  placeId: string | null;
   reviewUrl: string | null;
   rating: string | null;
   reviewCount: number | null;
 } = {
-  profileUrl: null,
+  profileUrl: 'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
+  placeId: 'ChIJJcPs4dykvagR_uQxPaSlY_8',
+  // [TODO: Evgenii] the g.page/r/<id>/review "leave a review" short link — it is
+  // in the GBP dashboard under "Ask for reviews". Until it is here the CTA falls
+  // back to Thumbtack.
   reviewUrl: null,
-  rating: null,
-  reviewCount: null,
+  rating: '5.0',
+  reviewCount: 6,
 };
 
 /**
