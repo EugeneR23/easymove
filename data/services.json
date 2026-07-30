@@ -7,7 +7,7 @@
     "category": "residential",
     "name": "Residential & High-Rise Moving",
     "sortOrder": 1,
-    "tagline": "White-glove moving for South Florida's luxury condos, high-rises, and single-family estates.",
+    "tagline": "Careful, well-organized moving for South Florida's luxury condos, high-rises, and single-family estates.",
     "description": "South Florida's premier residential buildings have strict requirements — elevator reservations, loading dock windows, COIs, and floor protection mandates. Our crews are trained for exactly this environment. We handle building compliance paperwork, protect every surface from lobby to unit, and deliver with the precision that Brickell, Aventura, and Sunny Isles properties demand. Whether you're moving from a waterfront penthouse or a Coral Gables estate, the standard never changes.",
     "features": [
       {
@@ -20,11 +20,11 @@
       },
       {
         "icon": "Shield",
-        "label": "Full insurance coverage"
+        "label": "Owner-led crews"
       },
       {
         "icon": "Package",
-        "label": "Premium packing materials included"
+        "label": "Pads & stretch wrap included as loaners"
       },
       {
         "icon": "Clock",
@@ -48,35 +48,35 @@
     "category": "residential",
     "name": "Long-Distance Moving",
     "sortOrder": 2,
-    "tagline": "Dedicated truck, GPS tracking, one coordinator — from South Florida to anywhere in the country.",
-    "description": "Long-distance moves demand a level of logistics discipline that most companies don't provide. We assign a dedicated truck to your move — no shared loads, no depot stops — and give you one coordinator from Miami pickup through final delivery. Real-time GPS tracking, daily status updates, and a defined delivery window keep you informed at every stage. We regularly move clients from South Florida to New York, Chicago, Los Angeles, and points beyond.",
+    "tagline": "Dedicated truck, one coordinator, delivery window in writing — from South Florida to anywhere in the country.",
+    "description": "Long-distance moves demand a level of logistics discipline that most companies don't provide. We assign a dedicated truck to your move — no shared loads, no depot stops — and give you one coordinator from Miami pickup through final delivery. Regular check-ins en route and a delivery window confirmed in writing keep you informed at every stage. Every long-distance move starts from $1,500 with a custom written estimate within 24 hours — no deposit to book.",
     "features": [
       {
         "icon": "Truck",
         "label": "Dedicated truck — no shared loads"
       },
       {
-        "icon": "MapPin",
-        "label": "Real-time GPS tracking"
+        "icon": "FileText",
+        "label": "Written estimate within 24 hours"
       },
       {
         "icon": "Phone",
-        "label": "Daily status updates"
+        "label": "Regular check-ins en route"
       },
       {
         "icon": "CheckCircle",
-        "label": "Defined delivery window"
+        "label": "Delivery window confirmed in writing"
       },
       {
         "icon": "Shield",
-        "label": "Full transit insurance"
+        "label": "No deposit to book"
       },
       {
         "icon": "Package",
         "label": "Professional packing available"
       }
     ],
-    "startingPrice": 1200,
+    "startingPrice": 1500,
     "priceUnit": "flat-rate",
     "imageUrl": "/images/Long%20distance.png",
     "isActive": true
@@ -89,35 +89,35 @@
     "category": "specialty",
     "name": "International Moving",
     "sortOrder": 3,
-    "tagline": "Global relocations handled with the same precision as a local move — from Miami to anywhere.",
-    "description": "International moves require customs expertise, vetted global freight partners, and documentation that most movers get wrong. Our team manages every element: export permits, customs declarations, destination customs clearance, sea or air freight selection, and final-mile delivery. We regularly relocate South Florida clients to Europe, Latin America, and beyond. You have one contact for the entire process — from your Miami-Dade address to wherever you land.",
+    "tagline": "We handle the Miami end — packing, loading, and coordination with an FMC-licensed freight forwarder.",
+    "description": "If you're relocating internationally, we handle the Miami side: professional packing to international shipping standards, container or LCL loading, and complete inventory documentation for your customs paperwork. Ocean or air transport, customs clearance, and destination delivery are handled by an FMC-licensed freight forwarder — we coordinate the handoff and can recommend vetted partners. You have one contact on the Miami end from first call through handoff.",
     "features": [
       {
         "icon": "Globe",
-        "label": "Customs clearance management"
+        "label": "FMC-licensed freight forwarder coordination"
       },
       {
         "icon": "FileText",
-        "label": "Complete export documentation"
+        "label": "Inventory & packing-list documentation"
       },
       {
         "icon": "Anchor",
-        "label": "Sea & air freight options"
+        "label": "Container & LCL loading"
       },
       {
-        "icon": "Home",
-        "label": "Destination delivery & placement"
+        "icon": "Package",
+        "label": "International-standard packing"
       },
       {
         "icon": "Shield",
-        "label": "International cargo insurance"
+        "label": "COI to your building within 24 hours"
       },
       {
         "icon": "Headphones",
-        "label": "Single point of contact throughout"
+        "label": "Single contact on the Miami end"
       }
     ],
-    "startingPrice": 2500,
+    "startingPrice": 4500,
     "priceUnit": "flat-rate",
     "imageUrl": "/images/International.png",
     "isActive": true
@@ -172,8 +172,8 @@
     "category": "specialty",
     "name": "Fine Art & Specialty Items",
     "sortOrder": 5,
-    "tagline": "Custom crating, climate-controlled transport, and white-glove installation for irreplaceable pieces.",
-    "description": "South Florida's art collectors, estate owners, and luxury residents trust us with pieces that have no replacement value. Grand pianos, museum-quality paintings, antique furniture, wine collections, and curated sculptures require specialist handling that goes beyond standard moving. Our trained art handlers use custom crating built to piece dimensions, climate-controlled vehicles, and white-glove installation with gallery-level precision. Every specialty move includes full documentation and photographic inventory.",
+    "tagline": "Custom crating, climate-aware transport, and careful placement for irreplaceable pieces.",
+    "description": "South Florida's art collectors, estate owners, and luxury residents trust us with pieces that have no replacement value. Grand pianos, museum-quality paintings, antique furniture, wine collections, and curated sculptures require specialist handling that goes beyond standard moving. We use custom crating built to piece dimensions, climate-aware loading and transport, and slow, deliberate placement at the destination. Every specialty move includes full documentation and photographic inventory.",
     "features": [
       {
         "icon": "Palette",
@@ -197,7 +197,7 @@
       },
       {
         "icon": "Star",
-        "label": "Gallery-standard installation"
+        "label": "Careful placement at destination"
       }
     ],
     "startingPrice": 800,

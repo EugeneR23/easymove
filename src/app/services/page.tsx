@@ -10,13 +10,21 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Moving Services — EasyMove Elite South Florida' },
+  // [TODO: FDACS IM# + insurance details from Evgenii]
+  title: { absolute: 'Moving Services in South Florida | Easy Move Florida' },
   description:
-    'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Fully insured, transparent pricing.',
-  alternates: { canonical: 'https://www.easy-move-florida.com/services' },
+    'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Owner-led, COI in 24 hours, transparent pricing.',
+  alternates: {
+    canonical: 'https://www.easy-move-florida.com/services',
+    languages: {
+      en: 'https://www.easy-move-florida.com/services',
+      ru: 'https://www.easy-move-florida.com/ru/services',
+      'x-default': 'https://www.easy-move-florida.com/services',
+    },
+  },
   openGraph: {
-    title: 'Moving Services — EasyMove Elite South Florida',
-    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $376, long-distance nationwide.',
+    title: 'Moving Services in South Florida | Easy Move Florida',
+    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $486, long-distance nationwide.',
     url: 'https://www.easy-move-florida.com/services',
     images: [
       {
@@ -35,8 +43,8 @@ const SERVICES = [
     name: 'Local Moving',
     sub: 'Miami-Dade · Broward · Palm Beach',
     description:
-      'Flat hourly rate, 3-hour minimum, truck always included. No hidden fuel surcharges. We protect floors, wrap every piece of furniture, and have you settled by end of day.',
-    highlights: ['$129/hr · 2-mover crew', '$179/hr · 3-mover crew', 'Truck & equipment included', 'Floor runners & furniture pads', 'Same-week availability'],
+      'Flat hourly rate, 3-hour minimum, plus a flat $99/day truck fee as its own line — no fuel surcharge. We protect floors, wrap every piece of furniture, and have you settled by end of day.',
+    highlights: ['$129/hr · 2-mover crew', '$179/hr · 3-mover crew', 'Truck $99/day flat · pads & wrap included', 'Floor runners & furniture pads', 'Same-week availability'],
     image: '/images/Real/8.jpg',
     href: '/quote?type=local',
     cta: 'Get a FREE Local Move Quote',
@@ -47,7 +55,7 @@ const SERVICES = [
     sub: 'Brickell · Aventura · Sunny Isles · Boca',
     description:
       "South Florida's luxury towers require more than a regular crew. We manage elevator reservations, COI submissions, loading dock coordination, and building compliance — so you don't have to.",
-    highlights: ['COI issued within 24 hours', 'Elevator & dock coordination', 'Building-approved materials', 'Floor & wall protection', 'Experience in 100+ towers'],
+    highlights: ['COI issued within 24 hours', 'Elevator & dock coordination', 'Building-approved materials', 'Floor & wall protection', 'High-rise moves across Sunny Isles, Aventura, Miami Beach and Hollywood towers'],
     image: '/images/Real/9.jpg',
     href: '/quote?type=local',
     cta: 'Get a FREE High-Rise Quote',
@@ -57,8 +65,8 @@ const SERVICES = [
     name: 'Long-Distance & Nationwide',
     sub: 'From Miami to anywhere in the U.S.',
     description:
-      "Dedicated truck, no shared loads, GPS tracking. A single coordinator manages your move from Miami pickup to final placement — wherever you're going.",
-    highlights: ['Dedicated truck (no shared loads)', 'GPS-tracked transport', 'Single point of contact', 'Full inventory before loading', 'Delivery window confirmed upfront'],
+      "Dedicated truck, no shared loads, delivery window confirmed in writing. A single coordinator manages your move from Miami pickup to final placement — wherever you're going.",
+    highlights: ['Dedicated truck (no shared loads)', 'Regular check-ins en route', 'Single point of contact', 'Full inventory before loading', 'Delivery window confirmed in writing'],
     image: '/images/Long distance.png',
     href: '/quote?type=long-distance',
     cta: 'Get a FREE Long-Distance Quote',
