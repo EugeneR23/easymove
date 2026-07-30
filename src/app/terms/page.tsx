@@ -128,8 +128,13 @@ export default function TermsPage() {
             {/* Contact block */}
             <div className="mt-12 border border-gold/20 bg-white px-6 py-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-3">Contact Us</p>
+              {/* No legal entity is named here. The LLC previously printed in this
+                  block does not exist in the Florida Division of Corporations
+                  register, so these terms named a party that is not a legal person.
+                  Put the registered entity name back once the new LLC is filed. */}
               <p className="text-sm text-gray-600">
-                EasyMove Elite LLC<br />
+                Easy Move Florida — Evgenii Romanov, owner<br />
+                Hollywood, Florida<br />
                 <a href="tel:7863051844" className="hover:text-gold transition-colors">786-305-1844</a>
                 <br />
                 <a href="mailto:romanov@easy-move-florida.com" className="hover:text-gold transition-colors">

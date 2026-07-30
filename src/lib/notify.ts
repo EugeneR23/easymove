@@ -45,7 +45,7 @@ export async function sendEmail(subject: string, html: string, to?: string): Pro
 
   const resend = new Resend(apiKey);
   const { data, error } = await resend.emails.send({
-    from: `EasyMove Elite <${FROM_EMAIL}>`,
+    from: `Easy Move Florida <${FROM_EMAIL}>`,
     to:   recipient,
     subject,
     html,

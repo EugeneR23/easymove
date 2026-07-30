@@ -70,7 +70,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: STD_DISALLOW,
       })),
 
-      // AI assistants & generative engines — keeps EasyMove Elite citable across
+      // AI assistants & generative engines — keeps Easy Move Florida citable across
       // ChatGPT search, Claude, Perplexity, Copilot, Google AI Overviews, Meta AI.
       // AI-помощники / Asistentes de IA generativa
       ...AI_BOTS.map((userAgent) => ({

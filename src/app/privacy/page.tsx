@@ -125,8 +125,11 @@ export default function PrivacyPage() {
             {/* Contact block */}
             <div className="mt-12 border border-gold/20 bg-white px-6 py-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-3">Contact Us</p>
+              {/* See the note in terms/page.tsx — no legal entity is named until the
+                  new LLC is registered with the Florida Division of Corporations. */}
               <p className="text-sm text-gray-600">
-                EasyMove Elite LLC<br />
+                Easy Move Florida — Evgenii Romanov, owner<br />
+                Hollywood, Florida<br />
                 <a href="tel:7863051844" className="hover:text-gold transition-colors">786-305-1844</a>
                 <br />
                 <a href="mailto:romanov@easy-move-florida.com" className="hover:text-gold transition-colors">

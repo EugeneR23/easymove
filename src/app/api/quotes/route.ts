@@ -303,7 +303,7 @@ export async function POST(req: NextRequest) {
       sendTelegram(tg),
       sendSMS(
         quote.phone,
-        `Hi ${quote.firstName || 'there'}! This is Eugene from EasyMove Elite. Thank you for your request — we're reviewing it now and will contact you shortly with your confirmed quote. Feel free to call or text me directly: 786-305-1844. Reply STOP to opt out.`,
+        `Hi ${quote.firstName || 'there'}! This is Evgenii from Easy Move Florida. Thank you for your request — we're reviewing it now and will contact you shortly with your confirmed quote. Feel free to call or text me directly: 786-305-1844. Reply STOP to opt out.`,
       ),
       sendEmail(subject, html),
     ]);

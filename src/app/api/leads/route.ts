@@ -167,7 +167,7 @@ export async function POST(req: NextRequest) {
       sendTelegram(tg),
       sendSMS(
         lead.phone,
-        'Thanks for contacting EasyMove Elite. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
+        'Thanks for contacting Easy Move Florida. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
       ),
       sendEmail(subject, html),
     ]);

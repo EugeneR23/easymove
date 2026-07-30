@@ -7,7 +7,7 @@ import V2WallflowWidget from '@/components/v2/V2WallflowWidget';
 import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: { absolute: 'EasyMove Elite — One Day. Zero Chaos.' },
+  title: { absolute: 'Easy Move Florida — One Day. Zero Chaos.' },
   description:
     'Your entire move — planned, executed and finished between sunrise and sunset. Miami’s private moving atelier.',
   robots: { index: false, follow: false },

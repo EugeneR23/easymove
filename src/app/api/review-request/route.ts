@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       const smsBody =
         `Hi ${firstName}! It was a pleasure handling${moveContext}. ` +
         `If you have 30 seconds, an honest Google review means everything to a small business like ours:\n${REVIEW_URL}\n` +
-        `— Eugene, EasyMove Elite\nReply STOP to opt out.`;
+        `— Evgenii, Easy Move Florida\nReply STOP to opt out.`;
       try {
         await sendSMS(body.phone, smsBody);
         results.sms = true;
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     }
 
     if ((channel === 'email' || channel === 'both') && body.email) {
-      const subject = `Quick favor, ${firstName}? — A Google review for EasyMove Elite`;
+      const subject = `Quick favor, ${firstName}? — A Google review for Easy Move Florida`;
       const html = `
         <div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:540px;margin:0 auto;color:#1C1C1E;">
           <p>Hi ${firstName},</p>
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
           </p>
           <p>Even one or two sentences is more than enough.</p>
           <p>If anything didn't meet your expectations, please reply to this email first — I'd rather hear from you directly and make it right.</p>
-          <p>— Eugene Romanov<br/>Founder, EasyMove Elite<br/>786-305-1844</p>
+          <p>— Evgenii Romanov<br/>Owner, Easy Move Florida<br/>786-305-1844</p>
         </div>
       `;
       try {

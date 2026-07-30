@@ -1,5 +1,5 @@
 /**
- * Airtable CRM helper — EasyMove Elite
+ * Airtable CRM helper — Easy Move Florida
  *
  * Required environment variables (set in Vercel → Project → Settings → Environment Variables):
  *   AIRTABLE_API_KEY        Personal Access Token from airtable.com/create/tokens

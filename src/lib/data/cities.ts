@@ -27,7 +27,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Licensed Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $129/hr. Call 786-305-1844.',
     intro:
-      "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. EasyMove Elite was built in Miami-Dade and every crew we send is briefed on your building before they arrive.",
+      "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. Easy Move Florida was built in Miami-Dade and every crew we send is briefed on your building before they arrive.",
     neighborhoods: [
       'Brickell', 'Coral Gables', 'Coconut Grove', 'Miami Beach', 'South Beach',
       'Wynwood', 'Edgewater', 'Midtown', 'Downtown Miami', 'Aventura',
@@ -103,7 +103,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Licensed & insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
     intro:
-      "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. EasyMove Elite has served Broward County clients across every neighborhood — from Las Olas Boulevard high-rises to Plantation family homes — with the same crew, the same standards, and direct access to the founder.",
+      "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. Easy Move Florida has served Broward County clients across every neighborhood — from Las Olas Boulevard high-rises to Plantation family homes — with the same crew, the same standards, and direct access to the founder.",
     neighborhoods: [
       'Las Olas', 'Victoria Park', 'Wilton Manors', 'Lauderdale-by-the-Sea',
       'Hollywood', 'Hallandale Beach', 'Deerfield Beach', 'Pompano Beach',
@@ -175,7 +175,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Boca Raton movers — Boca West, Mizner Park, Delray Beach estate and gated community specialists. Fully insured, COI in 24h. Call 786-305-1844.',
     intro:
-      "Boca Raton's gated communities, estate homes, and luxury condos demand a level of care that most moving companies simply cannot provide. EasyMove Elite specializes in high-value residential moves throughout Palm Beach County — with crews trained in fine art handling, furniture protection, and the discretion that Boca Raton clients expect.",
+      "Boca Raton's gated communities, estate homes, and luxury condos demand a level of care that most moving companies simply cannot provide. Easy Move Florida specializes in high-value residential moves throughout Palm Beach County — with crews trained in fine art handling, furniture protection, and the discretion that Boca Raton clients expect.",
     neighborhoods: [
       'East Boca Raton', 'Mizner Park', 'Royal Palm Yacht & Country Club', 'Boca West',
       'Broken Sound', 'Delray Beach', 'Boynton Beach', 'Lake Worth',
@@ -243,7 +243,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       "Licensed & insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
     intro:
-      "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. EasyMove Elite was built for buildings like Williams Island, Porto Vita, Turnberry Isle, and Hidden Bay — we know the dock managers by name and we issue building-compliant Certificates of Insurance within 24 hours. We also speak Russian, which matters in Aventura.",
+      "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. Easy Move Florida was built for buildings like Williams Island, Porto Vita, Turnberry Isle, and Hidden Bay — we know the dock managers by name and we issue building-compliant Certificates of Insurance within 24 hours. We also speak Russian, which matters in Aventura.",
     neighborhoods: [
       'Williams Island', 'Porto Vita', 'Turnberry Isle', 'Hidden Bay',
       'Aventura Lakes', 'The Point', 'Hamptons South', 'Mystic Pointe',
@@ -300,7 +300,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Coral Gables movers — historic homes & gated estates. Gables Estates, Cocoplum, Old Cutler. HOA-compliant, fully insured. Call 786-305-1844.',
     intro:
-      "Moving in Coral Gables is not the same as moving in Brickell. The streets are narrow, the trees are protected, the historic-preservation rules are real, and the HOAs in Cocoplum, Gables Estates, and Old Cutler are some of the strictest in South Florida. Most moving companies don't know what a Mediterranean Bonus is or why the Garden Club cares about your moving truck idling on Granada Boulevard. We do. EasyMove Elite handles Coral Gables estates, historic single-family homes, and Miracle Mile condos with the patience and protocol they require.",
+      "Moving in Coral Gables is not the same as moving in Brickell. The streets are narrow, the trees are protected, the historic-preservation rules are real, and the HOAs in Cocoplum, Gables Estates, and Old Cutler are some of the strictest in South Florida. Most moving companies don't know what a Mediterranean Bonus is or why the Garden Club cares about your moving truck idling on Granada Boulevard. We do. Easy Move Florida handles Coral Gables estates, historic single-family homes, and Miracle Mile condos with the patience and protocol they require.",
     neighborhoods: [
       'Gables Estates', 'Cocoplum', 'Old Cutler', 'Granada',
       'Hammock Lakes', 'Riviera', 'High Pines', 'Snapper Creek',
@@ -412,7 +412,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. Local & long-distance, fully insured, COI in 24h. From $129/hr. Call 786-305-1844.',
     intro:
-      "Hollywood, Florida sits between Fort Lauderdale and Miami — close enough to both that most moves here are short hops, but with its own neighborhoods, building rules, and traffic quirks. Whether you're moving to Hollywood Beach, Emerald Hills, the Lakes, or one of the historic single-family neighborhoods west of US-1, EasyMove Elite handles your move with the same standards we apply in Brickell and Aventura. We're based in Hollywood — this is our home.",
+      "Hollywood, Florida sits between Fort Lauderdale and Miami — close enough to both that most moves here are short hops, but with its own neighborhoods, building rules, and traffic quirks. Whether you're moving to Hollywood Beach, Emerald Hills, the Lakes, or one of the historic single-family neighborhoods west of US-1, Easy Move Florida handles your move with the same standards we apply in Brickell and Aventura. We're based in Hollywood — this is our home.",
     neighborhoods: [
       'Hollywood Beach', 'Emerald Hills', 'Hillcrest', 'Hollywood Lakes',
       'Oakwood Hills', 'Beverly Park', 'Park East', 'Park Side',
@@ -421,7 +421,7 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Locally Based',
-        body: "EasyMove Elite is based in Hollywood. Our crews start their day here, our trucks are stored here, and many of our clients are our neighbors. That means faster response times, lower travel surcharges, and a real local presence — not a Miami company that sometimes drives north.",
+        body: "Easy Move Florida is based in Hollywood. Our crews start their day here, our trucks are stored here, and many of our clients are our neighbors. That means faster response times, lower travel surcharges, and a real local presence — not a Miami company that sometimes drives north.",
       },
       {
         title: 'Hollywood Beach Condo Experience',
@@ -468,7 +468,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Coconut Grove movers — historic Grove homes, Park Grove, Grove at Grand Bay specialists. Fully insured, COI in 24h. Call 786-305-1844.',
     intro:
-      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means knowing both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. EasyMove Elite handles both with the same standard.",
+      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means knowing both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. Easy Move Florida handles both with the same standard.",
     neighborhoods: [
       'Center Grove', 'South Grove', 'Northeast Grove', 'Camp Biscayne',
       'Park Grove', 'Grove at Grand Bay', 'One Park Grove', 'Grovenor House',

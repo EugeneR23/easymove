@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    siteName: 'EasyMove Elite',
+    siteName: 'Easy Move Florida',
     title: city.metaTitle,
     description: city.metaDescription,
     url: 'https://www.easy-move-florida.com/fort-lauderdale-movers',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         url: 'https://www.easy-move-florida.com/images/Real/Fort-Lauderdale.jpg',
         width: 1200,
         height: 630,
-        alt: 'EasyMove Elite — Professional Movers in Fort Lauderdale, FL',
+        alt: 'Easy Move Florida — Professional Movers in Fort Lauderdale, FL',
       },
     ],
   },

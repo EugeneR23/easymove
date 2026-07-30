@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    siteName: 'EasyMove Elite',
+    siteName: 'Easy Move Florida',
     title: { absolute: city.metaTitle },
     description: city.metaDescription,
     url: 'https://www.easy-move-florida.com/hollywood-movers',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         url: `https://www.easy-move-florida.com${city.heroImage}`,
         width: 1200,
         height: 630,
-        alt: 'EasyMove Elite — Premium Movers in Hollywood, FL',
+        alt: 'Easy Move Florida — Premium Movers in Hollywood, FL',
       },
     ],
   },

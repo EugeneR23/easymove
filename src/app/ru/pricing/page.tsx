@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     alternateLocale: ['en_US'],
-    siteName: 'EasyMove Elite',
-    title: 'Сколько стоит переезд в Майами? | EasyMove Elite',
+    siteName: 'Easy Move Florida',
+    title: 'Сколько стоит переезд в Майами? | Easy Move Florida',
     description:
       'Реальные цены: студия $516–$645, 1 комн. $516–$774, 2 комн. $645–$1,203, 3 комн. $1,203–$1,561. Ставка зафиксирована, трак — отдельная строка $129 в день.',
     url: `${siteUrl}/ru/pricing`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'EasyMove Elite — прозрачные цены на переезд' }],
+    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — прозрачные цены на переезд' }],
   },
   twitter: {
     card: 'summary_large_image',

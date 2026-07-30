@@ -1,5 +1,5 @@
 /**
- * Blog content for EasyMove Elite.
+ * Blog content for Easy Move Florida.
  *
  * SEO/GEO foundation: long-tail informational queries that prospects search
  * BEFORE booking a mover. Each post targets a specific question + city
@@ -96,7 +96,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'After your move, your building manager typically does a walk-through to check for damage to common areas (lobby floors, elevator pads, hallways). A good moving company will be there for this walk-through, not gone the moment the truck leaves.' },
 
       { type: 'h2', text: 'Buildings we work in regularly' },
-      { type: 'p', text: 'EasyMove Elite regularly serves most major Brickell buildings, including Brickell City Centre (Reach, Rise), SLS Lux Brickell, ICON Brickell, 1010 Brickell, Brickell Heights, Echo Brickell, MyBrickell, and many older condos. We work with each building\'s COI templates, dock procedures, and elevator reservation processes.' },
+      { type: 'p', text: 'Easy Move Florida regularly serves most major Brickell buildings, including Brickell City Centre (Reach, Rise), SLS Lux Brickell, ICON Brickell, 1010 Brickell, Brickell Heights, Echo Brickell, MyBrickell, and many older condos. We work with each building\'s COI templates, dock procedures, and elevator reservation processes.' },
 
       { type: 'callout', title: 'Need a quote for your Brickell move?', text: 'Call 786-305-1844 or get a free written estimate online. We\'ll handle the COI, elevator reservation, and loading dock coordination so you don\'t have to.' },
     ],
@@ -180,7 +180,7 @@ export const BLOG_POSTS: BlogPost[] = [
         '"Volume-based" pricing without a specific cubic foot estimate',
       ]},
 
-      { type: 'callout', title: 'Get a real Miami moving estimate', text: 'EasyMove Elite gives written estimates, no deposit required. Call 786-305-1844 or fill out the online quote form for a same-day estimate.' },
+      { type: 'callout', title: 'Get a real Miami moving estimate', text: 'Easy Move Florida gives written estimates, no deposit required. Call 786-305-1844 or fill out the online quote form for a same-day estimate.' },
     ],
     related: ['brickell-condo-move-checklist', 'what-is-coi-condo-move'],
   },
@@ -234,7 +234,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'h2', text: 'When to request your COI' },
       { type: 'p', text: 'Best practice: forward building requirements to your mover the day you book. Confirm with your building 5-7 days before move date. Some buildings\' approval processes can take 3-5 business days, so don\'t wait until the week of your move.' },
 
-      { type: 'callout', title: 'Need a COI for your condo move?', text: 'EasyMove Elite issues COI within 24 hours of confirmed booking, free, addressed exactly to your building\'s requirements. Call 786-305-1844 to get started.' },
+      { type: 'callout', title: 'Need a COI for your condo move?', text: 'Easy Move Florida issues COI within 24 hours of confirmed booking, free, addressed exactly to your building\'s requirements. Call 786-305-1844 to get started.' },
     ],
     related: ['brickell-condo-move-checklist', 'miami-moving-cost-2026'],
   },
@@ -329,7 +329,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'If any of these break down, keep looking.' },
 
       // [TODO: FDACS IM# — add license number here once confirmed]
-      { type: 'callout', title: 'Talk to a real coordinator', text: 'EasyMove Elite is owner-led — Eugene answers the phone himself. Written estimates standard, no deposits required, COI issued to your building within 24 hours of booking. Call 786-305-1844.' },
+      { type: 'callout', title: 'Talk to a real coordinator', text: 'Easy Move Florida is owner-led — Eugene answers the phone himself. Written estimates standard, no deposits required, COI issued to your building within 24 hours of booking. Call 786-305-1844.' },
     ],
     related: ['miami-moving-cost-2026', 'what-is-coi-condo-move'],
   },
@@ -437,7 +437,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'Update address with bank, employer, IRS, voter registration',
       ]},
 
-      { type: 'callout', title: 'Get a quote for your NY → Miami move', text: 'EasyMove Elite handles NY-to-Miami long-distance with dedicated trucks (no shared loads). Written estimate, real delivery window, en-route updates. Call 786-305-1844 or get a quote online.' },
+      { type: 'callout', title: 'Get a quote for your NY → Miami move', text: 'Easy Move Florida handles NY-to-Miami long-distance with dedicated trucks (no shared loads). Written estimate, real delivery window, en-route updates. Call 786-305-1844 or get a quote online.' },
     ],
     related: ['miami-moving-cost-2026', 'how-to-choose-moving-company-miami'],
   },
@@ -778,7 +778,7 @@ export const BLOG_POSTS: BlogPost[] = [
       ]},
       { type: 'p', text: 'Reputable Miami fine art handlers include Cooke\'s Crating, US Art, and Atelier Art Services. We\'re happy to refer when a piece is beyond what we should handle — and we\'ll tell you upfront, not take the job and figure it out later.' },
 
-      { type: 'callout', title: 'Specialty move? Talk to us.', text: 'EasyMove Elite handles fine art and antique moves as a dedicated service — quoted individually because every collection is different. Call 786-305-1844 for an in-person consultation.' },
+      { type: 'callout', title: 'Specialty move? Talk to us.', text: 'Easy Move Florida handles fine art and antique moves as a dedicated service — quoted individually because every collection is different. Call 786-305-1844 for an in-person consultation.' },
     ],
     related: ['miami-moving-cost-2026', 'how-to-choose-moving-company-miami'],
   },
@@ -888,7 +888,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'Update voter registration and insurance addresses',
       ]},
 
-      { type: 'callout', title: 'Get a written estimate for your Miami → Orlando move', text: 'EasyMove Elite gives flat-rate written estimates for the Miami → Orlando route — dedicated truck, no shared loads, no surprise charges. Call 786-305-1844 or get a same-day quote online at /quote.' },
+      { type: 'callout', title: 'Get a written estimate for your Miami → Orlando move', text: 'Easy Move Florida gives flat-rate written estimates for the Miami → Orlando route — dedicated truck, no shared loads, no surprise charges. Call 786-305-1844 or get a same-day quote online at /quote.' },
     ],
     related: ['miami-moving-cost-2026', 'moving-from-new-york-to-miami-guide'],
   },
@@ -915,7 +915,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'ul', items: [
         'We call you directly — not text, not email. A real call.',
         'We discuss reschedule options. First available open slot, locked at your original rate.',
-        'No reschedule fee, ever, for a named storm. This is in writing in our terms.',
+        'No reschedule fee for a named storm — we move the date and hold your original rate.',
         'If your origin or destination falls inside an evacuation zone, we postpone — no exceptions',
         'We confirm in writing the new date and that pricing is unchanged',
       ]},
@@ -1005,7 +1005,7 @@ export const BLOG_POSTS: BlogPost[] = [
       ]},
       { type: 'p', text: 'You don\'t have to chase us for updates. If you booked with us and a storm enters the picture, we\'ll be the ones calling you.' },
 
-      { type: 'callout', title: 'Booking inside hurricane season?', text: 'EasyMove Elite has a written no-fee storm rescheduling policy. Call 786-305-1844 to talk through your timeline — or get a same-day written estimate at /quote with our hurricane policy in writing.' },
+      { type: 'callout', title: 'Booking inside hurricane season?', text: 'Easy Move Florida reschedules named-storm moves without a fee and holds your original rate. Call 786-305-1844 to talk through your timeline — or get a same-day written estimate at /quote with our hurricane policy in writing.' },
     ],
     related: ['south-florida-pre-move-checklist', 'miami-moving-cost-2026'],
   },

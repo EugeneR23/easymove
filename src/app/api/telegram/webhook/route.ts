@@ -1,5 +1,5 @@
 /**
- * Telegram Webhook — EasyMove Elite
+ * Telegram Webhook — Easy Move Florida
  *
  * Handles incoming Telegram bot messages and supports the /nextjob command,
  * which reads the next upcoming job from Airtable.
@@ -149,7 +149,7 @@ export async function POST(req: NextRequest) {
   // ── Unknown command ───────────────────────────────────────────────────────────
   if (text.startsWith('/')) {
     console.log(`[telegram/webhook] Unknown command: "${text}"`);
-    await reply(chatId, '🤖 <b>EasyMove Elite Bot</b>\n\nAvailable commands:\n/nextjob — Show the next upcoming job');
+    await reply(chatId, '🤖 <b>Easy Move Florida Bot</b>\n\nAvailable commands:\n/nextjob — Show the next upcoming job');
   } else if (text) {
     console.log(`[telegram/webhook] Plain text message, no action taken: "${text.slice(0, 80)}"`);
   }
