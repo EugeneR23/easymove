@@ -9,7 +9,7 @@ import { easeLuxury, containerVariants, wordVariants } from '@/lib/motion';
 
 const commitments = [
   'Honest hourly pricing — no surprise charges on move day',
-  'COI sent 24 hours before move day, no charge',
+  'COI issued to your building within 24 hours of booking, no charge',
   'Russian and English — your choice of language',
   'WhatsApp goes to me directly when you ask for the owner',
 ];
