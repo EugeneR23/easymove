@@ -109,7 +109,7 @@ export default function ContactForm() {
       <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-4 border-t border-gray-100">
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
           <Shield size={11} className="text-gold shrink-0" />
-          Fully insured
+          COI in 24h
         </div>
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
           <Clock size={11} className="text-gold shrink-0" />

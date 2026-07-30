@@ -348,7 +348,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
       <div className="flex justify-between items-center">
         <Button variant="ghost" onClick={onBack}>Back</Button>
         <div className="flex items-center gap-4">
-          <p className="text-gray-400 text-xs hidden sm:block">Fully insured · Handled with care</p>
+          <p className="text-gray-400 text-xs hidden sm:block">Owner-led crews · Handled with care</p>
           <Button onClick={onNext} disabled={!valid}>Continue</Button>
         </div>
       </div>

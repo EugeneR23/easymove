@@ -20,12 +20,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const service = readOneService(params.slug);
-  if (!service) return { title: 'Service | EasyMove Elite' };
+  if (!service) return { title: 'Service | Easy Move Florida' };
 
-  const title = `${service.name} in South Florida | EasyMove Elite`;
+  const title = `${service.name} in South Florida | Easy Move Florida`;
   // Trim tagline at sentence boundary and append a short, keyword-rich suffix (~155 chars total)
   const tagline = service.tagline.replace(/\.$/, '');
-  const description = `${tagline} — Miami, Fort Lauderdale & Boca Raton. Fully insured, founder-led. Free written estimate.`;
+  const description = `${tagline} — Miami, Fort Lauderdale & Boca Raton. Owner-led, COI in 24 hours. Free written estimate.`;
 
   return {
     title: { absolute: title },
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title,
       description,
       url: `https://www.easy-move-florida.com/services/${service.slug}`,
-      images: [{ url: service.imageUrl, alt: `${service.name} — EasyMove Elite South Florida` }],
+      images: [{ url: service.imageUrl, alt: `${service.name} — Easy Move Florida South Florida` }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -77,7 +77,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     serviceType: service.name,
     provider: {
       '@type': 'MovingCompany',
-      name: 'EasyMove Elite',
+      name: 'Easy Move Florida',
       telephone: '+17863051844',
       url: 'https://www.easy-move-florida.com',
     },
@@ -137,7 +137,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         {/* Hero */}
         <section className="relative h-80 md:h-[440px] flex items-end overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={service.imageUrl} alt={`${service.name} — EasyMove Elite South Florida`} className="absolute inset-0 w-full h-full object-cover" />
+          <img src={service.imageUrl} alt={`${service.name} — Easy Move Florida South Florida`} className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 w-full">
@@ -182,7 +182,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               {content && content.whyUs.length > 0 && (
                 <div className="mb-12">
                   <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">
-                    Why EasyMove Elite for {service.name}
+                    Why Easy Move Florida for {service.name}
                   </h3>
                   <div className="space-y-5">
                     {content.whyUs.map((item) => (
@@ -257,7 +257,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-6">Our Guarantee</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {[
-                    { title: 'Licensed & Fully Insured', desc: 'Every move is covered. COI available for building management within 24 hours.' },
+                    { title: 'Owner-led on every job', desc: 'Every move is covered. COI available for building management within 24 hours.' },
                     { title: 'Arrival Windows', desc: 'Two-hour arrival window. We call 30 min before. No all-day waiting.' },
                     { title: 'Transparent Pricing', desc: 'Written estimate before any work begins. No surprise fees on moving day.' },
                   ].map((g) => (
@@ -312,7 +312,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     'No commitment to get a quote',
                     'Written estimate provided',
                     'COI available on request',
-                    'Fully insured for every move',
+                    'Owner-led on every move',
                   ].map((line) => (
                     <div key={line} className="flex items-center gap-2">
                       <Shield size={12} className="text-gold shrink-0" />
