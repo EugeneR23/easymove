@@ -52,6 +52,7 @@ export default function Footer() {
                 { href: '/about', label: 'About Evgenii' },
                 { href: '/pricing', label: 'Pricing & Costs' },
                 { href: '/quote', label: 'Calculate My Move' },
+                { href: '/reviews', label: 'Reviews' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/blog', label: 'Resources & Guides' },
                 { href: '/miami-movers', label: 'Miami Movers' },
@@ -61,7 +62,9 @@ export default function Footer() {
                 { href: '/coral-gables-movers', label: 'Coral Gables Movers' },
                 { href: '/sunny-isles-movers', label: 'Sunny Isles Movers' },
                 { href: '/hollywood-movers', label: 'Hollywood Movers' },
+                { href: '/hallandale-beach-movers', label: 'Hallandale Beach Movers' },
                 { href: '/coconut-grove-movers', label: 'Coconut Grove Movers' },
+                { href: '/doral-movers', label: 'Doral Movers' },
                 { href: '/packing-services', label: 'Packing Services' },
               ].map((l) => (
                 <li key={l.href}>
@@ -98,8 +101,33 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Russian pages — these were reachable only from the sitemap before,
+            which starved the highest-converting pages we have (the Aventura RU
+            page ranks #1 for "russian speaking movers aventura"). */}
+        <div className="border-t border-white/5 mt-12 pt-8" lang="ru">
+          <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-3">
+            Мы говорим по-русски
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs mb-2">
+            {[
+              { href: '/ru', label: 'Главная' },
+              { href: '/ru/pricing', label: 'Цены' },
+              { href: '/ru/miami-movers', label: 'Майами' },
+              { href: '/ru/sunny-isles-movers', label: 'Санни-Айлс' },
+              { href: '/ru/aventura-movers', label: 'Авентура' },
+              { href: '/ru/hallandale-beach-movers', label: 'Халландейл' },
+              { href: '/ru/hollywood-movers', label: 'Голливуд' },
+              { href: '/ru/fort-lauderdale-movers', label: 'Форт-Лодердейл' },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* Service area */}
-        <div className="border-t border-white/5 mt-12 pt-8">
+        <div className="border-t border-white/5 mt-8 pt-8">
           <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-2">Moving Company Service Areas</p>
           <p className="text-xs text-gray-600 text-center mb-6">
             Miami · Coral Gables · Coconut Grove · Brickell · Aventura · Sunny Isles Beach ·

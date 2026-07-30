@@ -11,19 +11,20 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'Контакты | Easy Move Florida' },
   description:
-    'Свяжитесь с EasyMove Elite в Майами, Форт-Лодердейле и Бока-Ратоне. Реальный координатор отвечает в течение нескольких часов. Звоните 786-305-1844 или напишите.',
+    'Свяжитесь с Easy Move Florida в Майами, Форт-Лодердейле и Бока-Ратоне. Реальный координатор отвечает в течение нескольких часов. Звоните 786-305-1844 или напишите.',
   alternates: {
     canonical: `${siteUrl}/ru/contact`,
     languages: {
       'en': `${siteUrl}/contact`,
       'ru': `${siteUrl}/ru/contact`,
+      'x-default': `${siteUrl}/contact`,
     },
   },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'EasyMove Elite',
-    title: 'Контакты — EasyMove Elite',
+    siteName: 'Easy Move Florida',
+    title: 'Контакты — Easy Move Florida',
     description: 'Связаться с координатором, который лично контролирует ваш переезд.',
     url: `${siteUrl}/ru/contact`,
   },

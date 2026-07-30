@@ -70,7 +70,7 @@ const SERVICES = [
 const FAQS = [
   {
     q: 'Сколько стоит локальный переезд?',
-    a: 'Локальные переезды оплачиваются почасово: $129/час за 2 муверов, $179/час за 3, $229/час за 4, минимум 3 часа. Грузовик от $90 в зависимости от расстояния. Студия от $477, 2-комнатная от $671. Выходные +10%, пиковый сезон (май–сентябрь) +5%.',
+    a: 'Локальные переезды оплачиваются почасово: $129/час за 2 грузчиков или $179/час за 3, минимум 3 часа, плюс $129 за трак в день отдельной строкой — топливо, платные дороги и пробег внутри. Минимальный счёт — $516. Студия $516–$645, 2-комнатная $645–$1,203. Надбавок за выходные и сезон нет: ставка зафиксирована.',
   },
   {
     q: 'Вы работаете с высотками в Brickell и Sunny Isles?',
@@ -114,7 +114,7 @@ export default function RuHomePage() {
         {/* ══════════════════════ HERO + CALCULATOR ══════════════════════ */}
         <section className="relative min-h-screen flex items-center overflow-hidden bg-charcoal">
           <div className="absolute inset-0 animate-kenburns">
-            <Image src="/images/Hero.png" alt="Профессиональные муверы EasyMove Elite в Южной Флориде" fill priority sizes="100vw" className="object-cover object-[center_40%]" />
+            <Image src="/images/Hero.png" alt="Профессиональные муверы Easy Move Florida в Южной Флориде" fill priority sizes="100vw" className="object-cover object-[center_40%]" />
           </div>
           <div className="absolute inset-0 bg-charcoal/50" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/10 to-charcoal/35" />
@@ -141,7 +141,7 @@ export default function RuHomePage() {
                 </h1>
 
                 <p className="text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed">
-                  500+ успешных переездов. Полная страховка. Без скрытых платежей —
+                  Рейтинг 5.0 по 32 проверенным отзывам на Thumbtack. Без скрытых платежей —
                   надёжная команда, которая приезжает вовремя и бережно обращается с вашими вещами.
                 </p>
 
@@ -269,7 +269,7 @@ export default function RuHomePage() {
                       <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
                       <span>Быстрый ответ</span>
                       <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
-                      <span>Полная страховка</span>
+                      <span>COI за 24 часа</span>
                     </div>
                   </div>
                 </div>
@@ -301,8 +301,8 @@ export default function RuHomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 relative">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
               {[
-                { val: '500+', label: 'Переездов', sub: 'Локальные и дальние' },
-                { val: '4.9 ★', label: 'Рейтинг', sub: 'На проверенных площадках' },
+                { val: '32', label: 'Отзыва', sub: 'Проверенные на Thumbtack' },
+                { val: '5.0 ★', label: 'Рейтинг', sub: 'Thumbtack, 32 отзыва' },
                 { val: '< 2 ч', label: 'Ответ', sub: 'Координатор перезвонит' },
                 { val: '$0', label: 'Скрытых платежей', sub: 'Цена подтверждена письменно' },
               ].map((s, i) => (
@@ -381,7 +381,7 @@ export default function RuHomePage() {
           <div className="container-max relative">
             <div className="max-w-3xl mx-auto text-center">
               <div className="relative w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden border-2 border-gold/30">
-                <Image src="/images/founder.jpg" alt="Евгений Романов, основатель EasyMove Elite" fill sizes="80px" className="object-cover object-[center_20%]" />
+                <Image src="/images/founder.jpg" alt="Евгений Романов, основатель Easy Move Florida" fill sizes="80px" className="object-cover object-[center_20%]" />
               </div>
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Слово основателя</p>
               <h2 className="font-display text-2xl md:text-3xl font-bold text-white leading-tight mb-5">

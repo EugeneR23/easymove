@@ -38,9 +38,22 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  const langSwitch = isRu
-    ? { href: '/', label: 'EN' }
-    : { href: '/ru', label: 'RU' };
+  // Pages that exist in both languages — switch to the counterpart rather than
+  // dumping the visitor on the homepage and losing their place.
+  const PAIRED_PATHS = [
+    'about', 'services', 'pricing', 'contact',
+    'miami-movers', 'fort-lauderdale-movers', 'sunny-isles-movers',
+    'aventura-movers', 'hollywood-movers', 'hallandale-beach-movers',
+  ];
+
+  const langSwitch = (() => {
+    if (isRu) {
+      const rest = pathname.replace(/^\/ru\/?/, '');
+      return { href: rest && PAIRED_PATHS.includes(rest) ? `/${rest}` : '/', label: 'EN' };
+    }
+    const rest = pathname.replace(/^\//, '');
+    return { href: rest && PAIRED_PATHS.includes(rest) ? `/ru/${rest}` : '/ru', label: 'RU' };
+  })();
 
   const textColor = scrolled || !isHome ? 'text-white' : 'text-white';
 
