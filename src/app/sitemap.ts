@@ -4,6 +4,47 @@ import { getAllBlogPosts } from '@/lib/data/blog';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
+// Real content-change dates, not build time. `new Date()` on every route made
+// every lastmod identical to the build timestamp, which Google learns to ignore.
+// Update the entry when you materially change that page's content.
+const LASTMOD: Record<string, string> = {
+  '/': '2026-07-30',
+  '/pricing': '2026-07-30',
+  '/services': '2026-07-30',
+  '/about': '2026-07-30',
+  '/reviews': '2026-07-30',
+  '/contact': '2026-07-30',
+  '/quote': '2026-07-30',
+  '/packing-services': '2026-07-30',
+  '/blog': '2026-07-30',
+  // City pages — all rewritten in the 2026-07-30 commercial-facts pass
+  '/miami-movers': '2026-07-30',
+  '/fort-lauderdale-movers': '2026-07-30',
+  '/boca-raton-movers': '2026-07-30',
+  '/aventura-movers': '2026-07-30',
+  '/coral-gables-movers': '2026-07-30',
+  '/sunny-isles-movers': '2026-07-30',
+  '/hollywood-movers': '2026-07-30',
+  '/coconut-grove-movers': '2026-07-30',
+  '/doral-movers': '2026-07-30',
+  '/hallandale-beach-movers': '2026-07-30',
+  '/ru': '2026-07-30',
+  '/ru/about': '2026-07-30',
+  '/ru/services': '2026-07-30',
+  '/ru/pricing': '2026-07-30',
+  '/ru/contact': '2026-07-30',
+  '/ru/miami-movers': '2026-07-30',
+  '/ru/fort-lauderdale-movers': '2026-07-30',
+  '/ru/sunny-isles-movers': '2026-07-30',
+  '/ru/aventura-movers': '2026-07-30',
+  '/ru/hollywood-movers': '2026-07-30',
+  '/ru/hallandale-beach-movers': '2026-07-30',
+};
+
+function lastmod(path: string): Date {
+  return new Date(LASTMOD[path] ?? '2026-07-30');
+}
+
 // Pages that have a Russian translation today. Used to emit xhtml:link
 // alternates inside the sitemap so Google understands the EN ↔ RU mapping
 // without depending on per-page <link rel="alternate"> tags.
@@ -39,48 +80,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: new Date(),
+      lastModified: lastmod('/'),
       changeFrequency: 'weekly',
       priority: 1.0,
       alternates: withAlternates('/'),
     },
     {
       url: `${siteUrl}/services`,
-      lastModified: new Date(),
+      lastModified: lastmod('/services'),
       changeFrequency: 'weekly',
       priority: 0.9,
       alternates: withAlternates('/services'),
     },
     {
       url: `${siteUrl}/about`,
-      lastModified: new Date(),
+      lastModified: lastmod('/about'),
       changeFrequency: 'monthly',
       priority: 0.7,
       alternates: withAlternates('/about'),
     },
     {
       url: `${siteUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: lastmod('/contact'),
       changeFrequency: 'monthly',
       priority: 0.8,
       alternates: withAlternates('/contact'),
     },
     {
       url: `${siteUrl}/quote`,
-      lastModified: new Date(),
+      lastModified: lastmod('/quote'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${siteUrl}/pricing`,
-      lastModified: new Date(),
+      lastModified: lastmod('/pricing'),
       changeFrequency: 'monthly',
       priority: 0.9,
       alternates: withAlternates('/pricing'),
     },
     {
       url: `${siteUrl}/reviews`,
-      lastModified: new Date(),
+      lastModified: lastmod('/reviews'),
       changeFrequency: 'monthly',
       priority: 0.85,
     },
@@ -94,36 +135,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const cityRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/miami-movers`,            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miami-movers') },
-    { url: `${siteUrl}/fort-lauderdale-movers`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/fort-lauderdale-movers') },
-    { url: `${siteUrl}/boca-raton-movers`,       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/aventura-movers`,         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/aventura-movers') },
-    { url: `${siteUrl}/coral-gables-movers`,     lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/sunny-isles-movers`,      lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/sunny-isles-movers') },
-    { url: `${siteUrl}/hollywood-movers`,        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hollywood-movers') },
-    { url: `${siteUrl}/coconut-grove-movers`,    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/doral-movers`,            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/hallandale-beach-movers`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
-    { url: `${siteUrl}/packing-services`,        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/miami-movers`,            lastModified: lastmod('/miami-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miami-movers') },
+    { url: `${siteUrl}/fort-lauderdale-movers`,  lastModified: lastmod('/fort-lauderdale-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/fort-lauderdale-movers') },
+    { url: `${siteUrl}/boca-raton-movers`,       lastModified: lastmod('/boca-raton-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/aventura-movers`,         lastModified: lastmod('/aventura-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/aventura-movers') },
+    { url: `${siteUrl}/coral-gables-movers`,     lastModified: lastmod('/coral-gables-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/sunny-isles-movers`,      lastModified: lastmod('/sunny-isles-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/sunny-isles-movers') },
+    { url: `${siteUrl}/hollywood-movers`,        lastModified: lastmod('/hollywood-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hollywood-movers') },
+    { url: `${siteUrl}/coconut-grove-movers`,    lastModified: lastmod('/coconut-grove-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/doral-movers`,            lastModified: lastmod('/doral-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/hallandale-beach-movers`, lastModified: lastmod('/hallandale-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
+    { url: `${siteUrl}/packing-services`,        lastModified: lastmod('/packing-services'), changeFrequency: 'monthly', priority: 0.9 },
   ];
 
   const ruRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/ru`,          lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.9, alternates: withAlternates('/') },
-    { url: `${siteUrl}/ru/about`,    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7, alternates: withAlternates('/about') },
-    { url: `${siteUrl}/ru/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/services') },
-    { url: `${siteUrl}/ru/pricing`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/pricing') },
-    { url: `${siteUrl}/ru/contact`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/contact') },
+    { url: `${siteUrl}/ru`,          lastModified: lastmod('/ru'), changeFrequency: 'weekly',  priority: 0.9, alternates: withAlternates('/') },
+    { url: `${siteUrl}/ru/about`,    lastModified: lastmod('/ru/about'), changeFrequency: 'monthly', priority: 0.7, alternates: withAlternates('/about') },
+    { url: `${siteUrl}/ru/services`, lastModified: lastmod('/ru/services'), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/services') },
+    { url: `${siteUrl}/ru/pricing`,  lastModified: lastmod('/ru/pricing'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/pricing') },
+    { url: `${siteUrl}/ru/contact`,  lastModified: lastmod('/ru/contact'), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/contact') },
     // Русские страницы городов — города с крупной русскоязычной общиной
-    { url: `${siteUrl}/ru/miami-movers`,            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miami-movers') },
-    { url: `${siteUrl}/ru/fort-lauderdale-movers`,  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/fort-lauderdale-movers') },
-    { url: `${siteUrl}/ru/sunny-isles-movers`,      lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/sunny-isles-movers') },
-    { url: `${siteUrl}/ru/aventura-movers`,         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/aventura-movers') },
-    { url: `${siteUrl}/ru/hollywood-movers`,        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hollywood-movers') },
-    { url: `${siteUrl}/ru/hallandale-beach-movers`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
+    { url: `${siteUrl}/ru/miami-movers`,            lastModified: lastmod('/ru/miami-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miami-movers') },
+    { url: `${siteUrl}/ru/fort-lauderdale-movers`,  lastModified: lastmod('/ru/fort-lauderdale-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/fort-lauderdale-movers') },
+    { url: `${siteUrl}/ru/sunny-isles-movers`,      lastModified: lastmod('/ru/sunny-isles-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/sunny-isles-movers') },
+    { url: `${siteUrl}/ru/aventura-movers`,         lastModified: lastmod('/ru/aventura-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/aventura-movers') },
+    { url: `${siteUrl}/ru/hollywood-movers`,        lastModified: lastmod('/ru/hollywood-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hollywood-movers') },
+    { url: `${siteUrl}/ru/hallandale-beach-movers`, lastModified: lastmod('/ru/hallandale-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
   ];
 
   const blogRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${siteUrl}/blog`, lastModified: lastmod('/blog'), changeFrequency: 'weekly', priority: 0.7 },
     ...getAllBlogPosts().map((p) => ({
       url: `${siteUrl}/blog/${p.slug}`,
       lastModified: new Date(p.updatedAt),

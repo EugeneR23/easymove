@@ -61,9 +61,9 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
-      // robots.txt and sitemap.xml — short cache, must revalidate
+      // robots.txt, sitemap.xml and the llms files — short cache, must revalidate
       {
-        source: '/(robots.txt|sitemap.xml|llms.txt)',
+        source: '/(robots.txt|sitemap.xml|llms.txt|llms-full.txt)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=3600, must-revalidate' },
         ],
