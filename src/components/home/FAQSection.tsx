@@ -9,7 +9,7 @@ import { easeLuxury } from '@/lib/motion';
 const FAQS = [
   {
     q: 'How much does a local move cost with Easy Move Florida?',
-    a: 'A crew of two movers is $129/hour and a crew of three is $179/hour, with a three-hour minimum, plus a flat $129 per day for the truck. Fuel, tolls and mileage are inside that $129 — there is no separate fuel surcharge. The smallest possible invoice is therefore $516: three hours with two movers plus the truck. A typical 1-bedroom runs $516–$774 all-in, a 2-bedroom $645–$1,203, and a 3-bedroom $1,203–$1,561. The rate is the same seven days a week, year-round: it does not go up for weekends or peak season.',
+    a: 'A crew of two movers is $129/hour and a crew of three is $179/hour, with a three-hour minimum, plus a truck fee per day charged at the same figure as the crew rate — $129 with two movers, $179 with three. Fuel, tolls and mileage are inside it; there is no separate fuel surcharge. The smallest possible invoice is therefore $516: three hours with two movers plus the truck. A typical 1-bedroom runs $516–$774 all-in, a 2-bedroom $645–$1,253, and a 3-bedroom $1,253–$1,611. The rate is the same seven days a week, year-round: it does not go up for weekends or peak season.',
   },
   {
     q: 'What is included in the hourly rate, and what is billed separately?',

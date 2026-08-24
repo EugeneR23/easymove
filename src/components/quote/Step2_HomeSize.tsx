@@ -173,7 +173,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
                   <p className="text-gray-400 text-xs mb-2">
                     {isPacking
                       ? `$${packingRate}/hr · 3-hr minimum`
-                      : `$${localRate}/hr · + $${TRUCK_FEE}/day truck`}
+                      : `$${localRate}/hr · + $${TRUCK_FEE[crew]}/day truck`}
                   </p>
                   <p className={cn('text-xs font-semibold', selected ? 'text-gold' : 'text-gray-400')}>
                     {inv.homeSize
