@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
+import { MARKET, SITE_URL } from '@/config/market';
 
-const siteUrl = 'https://www.easy-move-florida.com';
+const siteUrl = SITE_URL;
 
 // Standard disallow list shared across most agents
 const STD_DISALLOW = ['/admin/', '/api/'];
@@ -47,9 +48,10 @@ const SEARCH_BOTS = [
 // Aggressive SEO scrapers — block (consume bandwidth, no benefit)
 const BLOCKED_SCRAPERS = ['AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot', 'BLEXBot', 'PetalBot'];
 
-// Language paths that actually exist. One source, so a bot rule can never allow
-// a path we never shipped.
-const ALLOW_PATHS = ['/', '/ru/'];
+// Language paths this deployment actually ships. Derived from the market's
+// locales, so a bot rule can never advertise a path we never built — Sacramento
+// launches English-only and must not claim /ru/.
+const ALLOW_PATHS = ['/', ...MARKET.locales.filter((l) => l !== 'en').map((l) => `/${l}/`)];
 
 export default function robots(): MetadataRoute.Robots {
   return {
