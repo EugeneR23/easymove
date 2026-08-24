@@ -12,9 +12,10 @@
  * Run it after a deploy that changed page content.
  */
 import { pingIndexNow } from '../src/lib/indexnow';
+import { MARKET } from '../src/config/market';
 
-const SITE = 'https://www.easy-move-florida.com';
-const KEY_FILE = '186c8626cf8c502a9b50e971fb27fbb6d324e5b44bd9956592991349c64013cc.txt';
+const SITE = MARKET.siteUrl;
+const KEY_FILE = MARKET.indexNow?.keyFile ?? null;
 
 async function urlsFromSitemap(): Promise<string[]> {
   const res = await fetch(`${SITE}/sitemap.xml`);
@@ -29,11 +30,11 @@ async function urlsFromSitemap(): Promise<string[]> {
 }
 
 /** IndexNow silently ignores a submission whose key file it cannot read. */
-async function assertKeyFileReachable(): Promise<void> {
-  const res = await fetch(`${SITE}/${KEY_FILE}`);
-  if (!res.ok) throw new Error(`key file unreachable: HTTP ${res.status} at ${SITE}/${KEY_FILE}`);
+async function assertKeyFileReachable(keyFile: string): Promise<void> {
+  const res = await fetch(`${SITE}/${keyFile}`);
+  if (!res.ok) throw new Error(`key file unreachable: HTTP ${res.status} at ${SITE}/${keyFile}`);
   const body = (await res.text()).trim();
-  const expected = KEY_FILE.replace('.txt', '');
+  const expected = keyFile.replace('.txt', '');
   if (body !== expected) throw new Error(`key file content mismatch: got "${body.slice(0, 32)}…"`);
 }
 
@@ -42,7 +43,14 @@ async function main() {
   const dryRun = args.includes('--dry-run');
   const paths = args.filter((a) => !a.startsWith('--'));
 
-  await assertKeyFileReachable();
+  if (!KEY_FILE) {
+    throw new Error(
+      `market "${MARKET.id}" has no IndexNow key. Generate one at https://www.bing.com/indexnow, ` +
+        `serve it from public/<key>.txt on ${MARKET.domain}, then set indexNow in its market config.`,
+    );
+  }
+  await assertKeyFileReachable(KEY_FILE);
+  console.log(`market: ${MARKET.id} (${SITE})`);
   console.log(`key file OK at ${SITE}/${KEY_FILE}`);
 
   const urls = paths.length > 0 ? paths.map((p) => new URL(p, SITE).toString()) : await urlsFromSitemap();
