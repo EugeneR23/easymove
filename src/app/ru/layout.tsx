@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: '%s | Easy Move Florida',
   },
   description:
-    'Переезды в Южной Флориде — Майами, Холливуд, Sunny Isles, Aventura. От $129/час за 2 грузчиков плюс $129 за трак в день, минимум 3 часа. COI за 24 часа. 786-305-1844.',
+    'Переезды в Южной Флориде — Майами, Холливуд, Sunny Isles, Aventura. От $129/час за 2 грузчиков плюс трак в день по ставке бригады, минимум 3 часа. COI за 24 часа. 786-305-1844.',
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Easy Move Florida — Переезды в Южной Флориде',
-    description: 'Переезды в Майами. От $129/час + $129 за трак в день. Ставка зафиксирована, скрытых сборов нет.',
+    description: 'Переезды в Майами. От $129/час плюс трак в день по ставке бригады. Ставка зафиксирована, скрытых сборов нет.',
     images: [`${siteUrl}/images/Hero.png`],
   },
   alternates: {

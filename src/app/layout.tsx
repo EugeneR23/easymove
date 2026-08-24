@@ -203,7 +203,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Local Residential Moving',
-          description: 'Crew of 2 movers $129/hr, crew of 3 movers $179/hr, 3-hour minimum. The truck is a separate flat fee of $129 per day, with fuel, tolls and mileage included in it — there is no fuel surcharge. Same rate seven days a week, year-round: no weekend or seasonal surcharge. No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, so they are priced into the estimated hours. Furniture pads, stretch wrap and basic disassembly are included in the hourly rate.',
+          description: 'Crew of 2 movers $129/hr, crew of 3 movers $179/hr, crew of 4 movers $219/hr, 3-hour minimum. The truck is a separate line charged per day at the same figure as the crew rate ($129, $179 or $219), with fuel, tolls and mileage included in it — there is no fuel surcharge. Same rate seven days a week, year-round: no weekend or seasonal surcharge. No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, so they are priced into the estimated hours. Furniture pads, stretch wrap and basic disassembly are included in the hourly rate.',
           areaServed: 'South Florida',
         },
       },

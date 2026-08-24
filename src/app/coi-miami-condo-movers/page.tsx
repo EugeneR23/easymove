@@ -6,7 +6,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, CheckCircle, X } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
 };
 
-const MIN_INVOICE = MIN_HOURS * HOURLY_RATE[2] + TRUCK_FEE;
+const MIN_INVOICE = minInvoice(2);
 
 // Generic across buildings. Deliberately no per-building figures.
 const COI_CONTENTS = [
@@ -153,7 +153,7 @@ const FAQS = [
   },
   {
     q: 'Does handling the building paperwork cost extra on the move?',
-    a: `No. Local moves are billed hourly — $${HOURLY_RATE[2]}/hour for two movers, $${HOURLY_RATE[3]}/hour for three, a ${MIN_HOURS}-hour minimum and a flat $${TRUCK_FEE} truck fee for the day. The smallest possible invoice is $${MIN_INVOICE}. Building coordination is part of the service, not a line item.`,
+    a: `No. Local moves are billed hourly — ${HOURLY_RATE[2]}/hour for two movers, ${HOURLY_RATE[3]}/hour for three, a ${MIN_HOURS}-hour minimum, plus a truck fee for the day charged at the same figure as the crew rate (${TRUCK_FEE[2]} with two, ${TRUCK_FEE[3]} with three). The smallest possible invoice is ${MIN_INVOICE}. Building coordination is part of the service, not a line item.`,
   },
   {
     q: 'Can you do the same at both ends of the move?',
@@ -206,7 +206,7 @@ const serviceJson = JSON.stringify({
   offers: {
     '@type': 'Offer',
     priceCurrency: 'USD',
-    description: `Certificate of Insurance issued free of charge. Local moving billed hourly from $${HOURLY_RATE[2]} per hour for two movers with a ${MIN_HOURS}-hour minimum and a flat $${TRUCK_FEE} per day truck fee.`,
+    description: `Certificate of Insurance issued free of charge. Local moving billed hourly from $${HOURLY_RATE[2]} per hour for two movers with a ${MIN_HOURS}-hour minimum and a truck fee per day charged at the same figure as the crew rate ($${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three).`,
   },
 });
 
@@ -346,8 +346,9 @@ export default function CoiMiamiCondoMoversPage() {
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">
               Nothing. The move itself is billed hourly — ${HOURLY_RATE[2]}/hour for two movers,{' '}
-              ${HOURLY_RATE[3]}/hour for three, a {MIN_HOURS}-hour minimum and a flat ${TRUCK_FEE}{' '}
-              truck fee for the day, which puts the smallest possible invoice at ${MIN_INVOICE}.
+              ${HOURLY_RATE[3]}/hour for three, a {MIN_HOURS}-hour minimum, plus a truck fee for the day
+              charged at the crew rate (${TRUCK_FEE[2]} with two, ${TRUCK_FEE[3]} with three), which puts the
+              smallest possible invoice at ${MIN_INVOICE}.
             </p>
             <ul className="divide-y divide-gray-100 border-y border-gray-100">
               {NO_FEES.map((f) => (

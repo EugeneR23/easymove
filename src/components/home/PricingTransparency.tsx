@@ -9,13 +9,13 @@ const TIERS = [
   {
     label: 'Crew of 2',
     price: HOURLY_RATE[2],
-    note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE}/day truck`,
+    note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE[2]}/day truck`,
     body: 'Furniture pads, stretch wrap and basic disassembly are in the rate. Best for studios and 1BR apartments.',
   },
   {
     label: 'Crew of 3',
     price: HOURLY_RATE[3],
-    note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE}/day truck`,
+    note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE[3]}/day truck`,
     body: 'Same inclusions, faster crew. Best for 2BR+, walk-ups, and larger inventory.',
     highlight: true,
   },
@@ -38,7 +38,7 @@ export default function PricingTransparency() {
             ${HOURLY_RATE[2]}/hr for two movers. <span className="gold-text">${HOURLY_RATE[3]}/hr for three.</span>
           </h2>
           <p className="text-gray-500 leading-relaxed">
-            Three-hour minimum, plus a flat ${TRUCK_FEE}/day for the truck as its own line on the estimate — fuel, tolls and mileage are inside it. The rate is locked before we start and does not change on move day.
+            Three-hour minimum, plus the truck as its own line on the estimate — charged per day at the crew rate, ${TRUCK_FEE[2]} with two movers and ${TRUCK_FEE[3]} with three, with fuel, tolls and mileage inside it. The rate is locked before we start and does not change on move day.
           </p>
         </div>
 
