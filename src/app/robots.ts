@@ -47,14 +47,18 @@ const SEARCH_BOTS = [
 // Aggressive SEO scrapers — block (consume bandwidth, no benefit)
 const BLOCKED_SCRAPERS = ['AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot', 'BLEXBot', 'PetalBot'];
 
+// Language paths that actually exist. One source, so a bot rule can never allow
+// a path we never shipped.
+const ALLOW_PATHS = ['/', '/ru/'];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // Default rule — applies to any UA not explicitly listed below.
-      // EN (default) at /, RU at /ru/, ES at /es/ (planned). All language paths allowed.
+      // EN (default) at /, RU at /ru/. Add a language path here when it ships.
       {
         userAgent: '*',
-        allow: ['/', '/ru/', '/es/'],
+        allow: ALLOW_PATHS,
         disallow: [
           ...STD_DISALLOW,
           '/*?*utm_',
@@ -68,7 +72,7 @@ export default function robots(): MetadataRoute.Robots {
       // Поисковые системы — Buscadores
       ...SEARCH_BOTS.map((userAgent) => ({
         userAgent,
-        allow: ['/', '/ru/', '/es/'],
+        allow: ALLOW_PATHS,
         disallow: STD_DISALLOW,
       })),
 
@@ -77,7 +81,7 @@ export default function robots(): MetadataRoute.Robots {
       // AI-помощники / Asistentes de IA generativa
       ...AI_BOTS.map((userAgent) => ({
         userAgent,
-        allow: ['/', '/ru/', '/es/'],
+        allow: ALLOW_PATHS,
         disallow: STD_DISALLOW,
       })),
 

@@ -104,6 +104,11 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['MovingCompany', 'LocalBusiness'],
+  // Same @id as organizationSchema on purpose: MovingCompany is a subclass of
+  // Organization, so consumers merge both nodes into one entity instead of
+  // reading two businesses at one address. This node carries the rating —
+  // no other page may emit a second AggregateRating.
+  '@id': `${siteUrl}/#organization`,
   name: 'Easy Move Florida',
   url: siteUrl,
   image: `${siteUrl}/images/Hero.png`,
