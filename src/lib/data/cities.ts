@@ -552,7 +552,8 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Downtown Doral & CityPlace Tower Moves',
-        body: "Downtown Doral and CityPlace Doral have brought a new wave of mid-rise residential towers to a city that was historically single-family. These newer buildings — 5500 University, Doral View, Park Square — have COI requirements ($1M-$2M general liability), freight elevator reservations, and specific move-in/move-out windows. We've handled most of them and know each building's quirks.",
+        // [TODO: confirm exact building COI limits with Evgenii]
+        body: "Downtown Doral and CityPlace Doral have brought a new wave of mid-rise residential towers to a city that was historically single-family. These newer buildings — 5500 University, Doral View, Park Square — come with COI requirements (many in the $1M–$2M range), freight elevator reservations, and specific move-in/move-out windows. We confirm your building's exact requirements before move day.",
       },
     ],
     faqs: [
@@ -606,8 +607,9 @@ export const CITIES: CityData[] = [
     ],
     localFacts: [
       {
-        title: 'Oceanfront Tower COI Specialists',
-        body: "Hallandale Beach's oceanfront towers carry the strictest COI requirements in Broward County. Beach Club Towers requires $2M general liability with the association named exactly as written in their bylaws. The Diplomat residences and Hyde Resort each require their own format — $1M-$2M general liability, additional insured language, and waiver of subrogation. We've issued COIs for every major oceanfront building in Hallandale and we turn them around within 24 hours of your confirmed booking.",
+        // [TODO: confirm exact building COI limits with Evgenii]
+        title: 'Oceanfront Tower COI Requirements',
+        body: "Hallandale Beach's oceanfront towers set some of the strictest COI requirements in Broward County. Beach Club Towers, the Diplomat residences and Hyde Resort each specify their own format — many buildings here require limits in the $1M–$2M range, and some ask for the association named exactly as written in their bylaws plus a waiver of subrogation. We confirm your building's exact requirements before move day and issue the COI within 24 hours of your confirmed booking.",
       },
       {
         title: 'A1A & Hallandale Beach Blvd Parking Permits',
@@ -637,7 +639,8 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle Beach Club Towers and Hyde Resort moves?',
-        a: 'Yes. Both buildings are familiar to our crew. Beach Club Towers requires a $2M general liability COI with very specific additional-insured language; Hyde Resort has its own format and freight elevator reservation system. We submit COI paperwork within 24 hours of booking and reserve the elevator window before your move date.',
+        // [TODO: confirm exact building COI limits with Evgenii]
+        a: 'Yes — both buildings are in our service area. Each has its own COI format, additional-insured language and freight elevator reservation system; many buildings here require limits in the $1M–$2M range. We confirm your building\'s exact requirements before move day, submit the COI within 24 hours of booking, and reserve the elevator window ahead of your move date.',
       },
       {
         q: 'Do you handle snowbird seasonal moves?',

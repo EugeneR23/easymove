@@ -17,6 +17,7 @@ const LASTMOD: Record<string, string> = {
   '/quote': '2026-07-30',
   '/packing-services': '2026-07-30',
   '/moving-cost-miami': '2026-07-30',
+  '/coi-miami-condo-movers': '2026-08-24',
   '/blog': '2026-07-30',
   // City pages — all rewritten in the 2026-07-30 commercial-facts pass
   '/miami-movers': '2026-07-30',
@@ -148,6 +149,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/hallandale-beach-movers`, lastModified: lastmod('/hallandale-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
     { url: `${siteUrl}/packing-services`,        lastModified: lastmod('/packing-services'), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/moving-cost-miami`,       lastModified: lastmod('/moving-cost-miami'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/coi-miami-condo-movers`,  lastModified: lastmod('/coi-miami-condo-movers'), changeFrequency: 'monthly', priority: 0.9 },
   ];
 
   const ruRoutes: MetadataRoute.Sitemap = [

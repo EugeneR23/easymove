@@ -57,7 +57,8 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Every Brickell condo building requires a Certificate of Insurance (COI) from your moving company before allowing the move. The COI must name your building (or building management company) as additional insured, with specific liability limits.' },
       { type: 'p', text: 'Common Brickell COI requirements:' },
       { type: 'ul', items: [
-        'General liability: $1M minimum, often $2M for newer towers (Brickell City Centre, SLS Lux Brickell, 1010 Brickell)',
+        // [TODO: confirm exact building COI limits with Evgenii]
+        'General liability: commonly $1M, with newer towers (Brickell City Centre, SLS Lux Brickell, 1010 Brickell) often asking for $2M — confirm your building\'s figure in writing',
         'Workers compensation coverage included',
         'Auto liability for moving truck',
         'Building management named as "additional insured" with exact spelling',
@@ -467,14 +468,17 @@ export const BLOG_POSTS: BlogPost[] = [
         'Содержать конкретные даты переезда',
         'Соответствовать минимальным лимитам страхования вашего здания (обычно $1M, для премиум-зданий $2M)',
       ]},
-      { type: 'p', text: 'Типичные требования по основным зданиям Авентуры и Санни-Айлс:' },
+      // [TODO: confirm exact building COI limits with Evgenii] — per-building
+      // limits and naming strings are not verified; described as the pattern
+      // across these towers rather than as a rule for any named building.
+      { type: 'p', text: 'Что обычно требуют башни Авентуры и Санни-Айлс — Williams Island, Porto Vita, Turnberry Isle, Trump Tower I/II/III, Acqualina и Mansions at Acqualina:' },
       { type: 'ul', items: [
-        'Williams Island: $2M general liability, building name строго как "Williams Island Property Owners Association"',
-        'Porto Vita: $2M, building specifically named as additional insured',
-        'Turnberry Isle: $1M минимум, отдельные требования по auto liability',
-        'Trump Tower I/II/III: $2M, специфический формат COI',
-        'Acqualina и Mansions at Acqualina: $2M, требуется именно "association" wording',
+        'Лимиты general liability чаще всего в диапазоне $1–2 млн, у премиум-зданий — по верхней границе',
+        'Ассоциация здания указана как additional insured, причём название пишется строго так, как оно записано в уставе',
+        'У части зданий — отдельные требования по auto liability и workers compensation',
+        'Свой формат сертификата: одна и та же страховка, оформленная не по форме здания, разворачивается на въезде',
       ]},
+      { type: 'p', text: 'Точные лимиты и формулировки различаются от здания к зданию и меняются со временем. Мы запрашиваем требования у вашей управляющей компании до дня переезда и оформляем COI по её форме.' },
       { type: 'callout', title: 'Совет', text: 'Запросите требования к COI у вашего building manager письменно (по email). Перешлите эту информацию мувинговой компании. Качественный мувер выпустит COI в течение 24 часов после подтверждения брони — бесплатно.' },
 
       { type: 'h2', text: 'Бронирование лифта и погрузочного дока' },
