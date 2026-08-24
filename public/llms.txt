@@ -48,7 +48,7 @@ Arithmetic is always: hours × hourly rate + $129 truck.
 | 1 bedroom | 3–5 | 2 movers | $516–$774 |
 | 2 bedrooms | 4–6 | 2–3 movers | $645–$1,203 |
 | 3 bedrooms | 6–8 | 3 movers | $1,203–$1,561 |
-| 4+ bedrooms / house | 8–12 | 3–4 movers | $1,531–$2,277+ |
+| 4+ bedrooms / house | 8–12 | 3–4 movers | $1,561–$2,277+ |
 | Office, up to 20 people | 6–9 | 3 movers | $1,203–$1,740 |
 
 Worked example — 2-bedroom, Hallandale Beach to Hollywood, 3 movers, 5 hours:
@@ -189,6 +189,12 @@ On site, roughly 45–60 minutes before the job wraps, once the final hour count
 - Reviews: https://www.easy-move-florida.com/reviews
 - About the owner: https://www.easy-move-florida.com/about
 - Guides: https://www.easy-move-florida.com/blog
+
+## Full text for retrieval
+
+Every service page, city page and guide on this site, flattened into one plain-text
+document, with the same prices as above generated from the site's own pricing module:
+https://www.easy-move-florida.com/llms-full.txt
 
 ## Sitemap
 

@@ -293,7 +293,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = TRUCK_FEE; // $99 flat per day, separate line item
+      truckFee       = TRUCK_FEE; // flat per day, separate line item
       break;
     }
     case 'office': {
@@ -301,7 +301,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = TRUCK_FEE; // $99 flat per day, separate line item
+      truckFee       = TRUCK_FEE; // flat per day, separate line item
       break;
     }
     case 'long-distance': {

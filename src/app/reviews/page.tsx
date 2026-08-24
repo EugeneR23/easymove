@@ -72,27 +72,9 @@ const breadcrumbJson = JSON.stringify({
   ],
 });
 
-// AggregateRating is tied to the one source we can evidence: the public
-// Thumbtack profile. This is the only page on the site that emits a rating.
-const aggregateRatingJson = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'MovingCompany',
-  '@id': `${siteUrl}/#organization`,
-  name: 'Easy Move Florida',
-  url: siteUrl,
-  telephone: '+17863051844',
-  // Google is the primary rating (it feeds Maps and AI Overviews); Thumbtack is
-  // shown alongside it in the copy but only one AggregateRating may be emitted.
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: GOOGLE_BUSINESS.rating ?? THUMBTACK_RATING,
-    bestRating: '5',
-    worstRating: '1',
-    reviewCount: GOOGLE_BUSINESS.reviewCount ?? THUMBTACK_REVIEW_COUNT,
-    itemReviewed: { '@id': `${siteUrl}/#organization` },
-  },
-  sameAs: [GOOGLE_BUSINESS.profileUrl, THUMBTACK_URL].filter(Boolean),
-});
+// No AggregateRating here. The root layout emits one on ${siteUrl}/#organization
+// for every page, this one included; a second node would put two ratings on the
+// same entity. Change the rating in src/lib/data/credentials.ts, not here.
 
 // Only emitted when REVIEWS holds real, verbatim reviews. An empty array emits
 // nothing — placeholder Review markup is worse than no Review markup.
@@ -130,7 +112,6 @@ export default function ReviewsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumbJson }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: aggregateRatingJson }} />
       {reviewArrayJson && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: reviewArrayJson }} />
       )}
