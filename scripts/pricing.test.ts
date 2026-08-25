@@ -18,6 +18,7 @@ import {
   PACKING_HOURLY_RATE,
   LD_MINIMUM,
 } from '../src/lib/pricing';
+import { readFileSync } from 'node:fs';
 import type { QuoteInventory, QuoteAddons, CrewSize } from '../src/types';
 
 let failed = 0;
@@ -192,6 +193,28 @@ check('LD floor still holds after the local change',
 check('long distance bills no local drive time (fuel + miles are in the linehaul)',
   (calculatePricing({ moveType: 'long-distance', estimatedDistance: 753, fromCity: 'Venice', toCity: 'Cary', inventory, addons }).travelHours ?? 0) === 0,
   calculatePricing({ moveType: 'long-distance', estimatedDistance: 753, fromCity: 'Venice', toCity: 'Cary', inventory, addons }).travelHours);
+
+// ── 11. The drive-time examples printed on /pricing must be the engine's ─────
+// Written after shipping "about an hour and three quarters" for a route the
+// engine bills as 2h: 107 minutes rounds UP to the next quarter-hour. A number
+// in prose is still a number, and it drifts silently.
+console.log('\n[11] /pricing drive-time copy matches the engine');
+{
+  const src = readFileSync(new URL('../src/app/pricing/page.tsx', import.meta.url), 'utf8');
+  const minutesFor = (f: string, t: string) => Math.round(estimateLocalDistance(f, t) / 28 * 60);
+  const spoken: Record<number, string> = {
+    0.25: 'a quarter of an hour', 0.5: 'half an hour', 0.75: 'three quarters of an hour',
+    1: 'an hour', 1.5: 'an hour and a half', 2: 'two hours', 3: 'three hours',
+  };
+  const hollywood = travelHoursFor(minutesFor('Hollywood', 'Hollywood'), true);
+  const boca      = travelHoursFor(minutesFor('Miami', 'Boca Raton'), true);
+  check('the copy exists to check at all', src.includes('The drive between your two addresses is on the clock'), src.length);
+  check(`Hollywood example says "${spoken[hollywood]}" (engine: ${hollywood}h)`,
+    src.includes(`across Hollywood adds ${spoken[hollywood]}`), spoken[hollywood]);
+  check(`Boca Raton example says "${spoken[boca]}" (engine: ${boca}h)`,
+    src.includes(`Miami to Boca Raton ${spoken[boca]}`), spoken[boca]);
+  check('the retired "one-time travel-time fee" promise is gone', !src.includes('one-time travel-time fee'), src.includes('one-time travel-time fee'));
+}
 
 console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);
 process.exit(failed === 0 ? 0 : 1);

@@ -91,7 +91,7 @@ const NOT_INCLUDED = [
 const FACTORS = [
   {
     title: 'Distance between pickup and drop-off',
-    body: 'The drive between your two addresses is on the clock at the same hourly rate — there is no separate travel fee and no per-mile charge. It shows on your estimate as hours, not as a line you find later: a move across Hollywood adds about a quarter of an hour, Miami to Boca Raton about an hour and three quarters. The rate itself never changes with distance.',
+    body: 'The drive between your two addresses is on the clock at the same hourly rate — there is no separate travel fee and no per-mile charge. It shows on your estimate as hours, not as a line you find later: a move across Hollywood adds a quarter of an hour, Miami to Boca Raton two hours. Drive time is rounded the same way the rest of the job is, in 15-minute increments. The rate itself never changes with distance.',
   },
   {
     title: 'Crew size',
