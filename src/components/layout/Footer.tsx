@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { licenceLine } from '@/lib/data/credentials';
+import { CITIES } from '@/lib/data/cities';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/utils';
 
@@ -56,16 +57,9 @@ export default function Footer() {
                 { href: '/reviews', label: 'Reviews' },
                 { href: '/contact', label: 'Contact' },
                 { href: '/blog', label: 'Resources & Guides' },
-                { href: '/miami-movers', label: 'Miami Movers' },
-                { href: '/fort-lauderdale-movers', label: 'Fort Lauderdale Movers' },
-                { href: '/boca-raton-movers', label: 'Boca Raton Movers' },
-                { href: '/aventura-movers', label: 'Aventura Movers' },
-                { href: '/coral-gables-movers', label: 'Coral Gables Movers' },
-                { href: '/sunny-isles-movers', label: 'Sunny Isles Movers' },
-                { href: '/hollywood-movers', label: 'Hollywood Movers' },
-                { href: '/hallandale-beach-movers', label: 'Hallandale Beach Movers' },
-                { href: '/coconut-grove-movers', label: 'Coconut Grove Movers' },
-                { href: '/doral-movers', label: 'Doral Movers' },
+                // Every city page, read from the data. The hand-kept list that used
+                // to sit here went stale the moment nine new city pages shipped.
+                ...CITIES.map((c) => ({ href: `/${c.slug}`, label: `${c.name} Movers` })),
                 { href: '/packing-services', label: 'Packing Services' },
               ].map((l) => (
                 <li key={l.href}>
@@ -131,8 +125,7 @@ export default function Footer() {
         <div className="border-t border-white/5 mt-8 pt-8">
           <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-2">Moving Company Service Areas</p>
           <p className="text-xs text-gray-600 text-center mb-6">
-            Miami · Coral Gables · Coconut Grove · Brickell · Aventura · Sunny Isles Beach ·
-            Hollywood · Fort Lauderdale · Pompano Beach · Boca Raton · Delray Beach · Palm Beach
+            {CITIES.map((c) => c.name).join(' · ')}
           </p>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
             <div className="flex flex-col sm:flex-row items-center gap-3">
