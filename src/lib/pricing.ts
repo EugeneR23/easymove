@@ -13,7 +13,21 @@ import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePr
 // (extra estimated hours), never a fee.
 export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 219 };
 export const MIN_HOURS = 3;
-const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
+/** Packing-only hourly rate per crew size. Exported so no component retypes it. */
+export const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
+/** The only crew sizes that have a rate. Anything else is corrupt input, not a price. */
+export const CREW_SIZES = [2, 3, 4] as const satisfies readonly CrewSize[];
+/**
+ * Coerce whatever arrived from a form, a stale sessionStorage blob or a raw POST
+ * into a crew size that HOURLY_RATE and TRUCK_FEE can actually answer for.
+ * Without this, crewSize 5 makes `HOURLY_RATE[5] * hours` NaN, and NaN survives
+ * all the way out: "$NaN" on screen, `null` after JSON.stringify, into Telegram
+ * and Airtable as a lead with no price.
+ */
+export function normalizeCrewSize(raw: unknown): CrewSize {
+  const n = Number(raw);
+  return (CREW_SIZES as readonly number[]).includes(n) ? (n as CrewSize) : 2;
+}
 /** Truck, per day, per crew size. Keyed so a caller cannot forget the crew. */
 export const TRUCK_FEE: Record<CrewSize, number> = { 2: 129, 3: 179, 4: 219 };
 /** Smallest possible invoice for a crew: the 3-hour minimum plus that crew's truck. */
@@ -57,15 +71,28 @@ const CITY_COORDS: Record<string, [number, number]> = {
   'jupiter': [110, 2],
 };
 
-/** Estimate driving distance (miles) between two South Florida cities */
-export function estimateLocalDistance(fromCity: string, toCity: string): number {
+/**
+ * Driving distance (miles) between two South Florida cities, plus whether both
+ * ends were actually found in CITY_COORDS.
+ *
+ * `confirmed` matters now that drive time is billed: an unrecognised city (a
+ * typo, an address outside the service area, a real Florida city missing from
+ * the table) falls back to 15 miles, and 15 unverified miles must never turn
+ * into billable hours on a client's estimate.
+ */
+export function resolveLocalDistance(fromCity: string, toCity: string): { miles: number; confirmed: boolean } {
   const norm = (c: string) => c.toLowerCase().trim().replace(/\s+/g, ' ').replace(/,.*$/, '');
   const a = CITY_COORDS[norm(fromCity)];
   const b = CITY_COORDS[norm(toCity)];
-  if (!a || !b) return 15;                              // unknown — assume 15 mi
-  if (norm(fromCity) === norm(toCity)) return 5;        // same city
+  if (!a || !b) return { miles: 15, confirmed: false };            // unknown — assume 15 mi
+  if (norm(fromCity) === norm(toCity)) return { miles: 5, confirmed: true }; // same city
   const dx = a[0] - b[0], dy = a[1] - b[1];
-  return Math.round(Math.sqrt(dx * dx + dy * dy) * 1.15); // 1.15 road routing factor
+  return { miles: Math.round(Math.sqrt(dx * dx + dy * dy) * 1.15), confirmed: true }; // 1.15 road routing factor
+}
+
+/** Estimate driving distance (miles) between two South Florida cities */
+export function estimateLocalDistance(fromCity: string, toCity: string): number {
+  return resolveLocalDistance(fromCity, toCity).miles;
 }
 
 /** Estimated labour hours by home size */
@@ -245,8 +272,57 @@ function resolveLdPoint(city: string, state: string): [number, number] | null {
 }
 
 /**
+ * Cities whose name appears under exactly one state in LD_CITY_COORDS.
+ * "new york" → NY. "portland" → nothing, it is both OR and ME.
+ * Built once from the table itself; no second list to keep in sync.
+ */
+const LD_CITY_UNIQUE_STATE: Record<string, [number, number]> = (() => {
+  const seen: Record<string, Set<string>> = {};
+  const coords: Record<string, [number, number]> = {};
+  for (const key of Object.keys(LD_CITY_COORDS)) {
+    const cut = key.lastIndexOf(' ');
+    if (cut < 1) continue;
+    const city = key.slice(0, cut), st = key.slice(cut + 1);
+    (seen[city] ??= new Set()).add(st);
+    coords[city] = LD_CITY_COORDS[key];
+  }
+  const out: Record<string, [number, number]> = {};
+  for (const city of Object.keys(seen)) if (seen[city].size === 1) out[city] = coords[city];
+  return out;
+})();
+
+/**
+ * Resolve the destination end of a long-distance move.
+ *
+ * The wizard used to pre-select FL as the destination state and never clear it,
+ * so "New York" + the untouched default resolved to the Florida state centroid:
+ * 199 mi and a $1,629 quote for a move that is 1,289 mi and $5,399. Same class
+ * as the Dmitry lead (mq9keymqq4hr00tv2l).
+ *
+ * Order: exact "city st" → the city's own state when its name is unambiguous in
+ * the table → the given state's centroid → null (caller uses LD_DEFAULT_MILES).
+ * A city name that is ambiguous, or absent from the table, is left to the state
+ * centroid exactly as before — this narrows a wrong answer, it does not guess.
+ */
+function resolveLdDestination(city: string, state: string): [number, number] | null {
+  const c = normLdCity(city);
+  const st = state.trim().toUpperCase();
+  if (c) {
+    const exact = st ? LD_CITY_COORDS[`${c} ${st.toLowerCase()}`] : undefined;
+    if (exact) return exact;
+    const unambiguous = LD_CITY_UNIQUE_STATE[c];
+    if (unambiguous) return unambiguous;
+  }
+  return STATE_CENTROIDS[st] ?? null;
+}
+
+/**
  * Estimate driving miles for a long-distance move from city/state pairs.
- * City lookup → state centroid fallback → legacy state-pair table → 600 mi default.
+ * City lookup → the city's own state when unambiguous → state centroid → 600 mi.
+ *
+ * Never falls through to estimateDistance(): that table is keyed on state pairs
+ * and answers 30 for a blank destination state, which the LD floor then turned
+ * into 100 mi and a flat $1,500 quote to anywhere.
  */
 export function estimateLongDistance(fromCity: string, fromState: string, toCity: string, toState: string): number {
   const fromSt = (fromState || 'FL').trim().toUpperCase();
@@ -254,8 +330,8 @@ export function estimateLongDistance(fromCity: string, fromState: string, toCity
   // Destination not provided — conservative default, coordinator confirms
   if (!normLdCity(toCity) && (!toSt || toSt === fromSt)) return LD_DEFAULT_MILES;
   const from = resolveLdPoint(fromCity, fromSt) ?? STATE_CENTROIDS['FL'];
-  const to   = resolveLdPoint(toCity, toSt);
-  if (!to) return estimateDistance(fromSt, toSt);
+  const to   = resolveLdDestination(toCity, toSt);
+  if (!to) return LD_DEFAULT_MILES;
   const miles = Math.round(haversineMiles(from, to) * LD_ROAD_FACTOR);
   return Math.max(miles, 100); // long-distance implies a meaningful linehaul
 }
@@ -263,6 +339,22 @@ export function estimateLongDistance(fromCity: string, fromState: string, toCity
 // ─── Main calculator ──────────────────────────────────────────────────────────
 // Average South Florida city driving speed (mph) — accounts for traffic + stops
 const TRAVEL_SPEED_MPH = 28;
+
+// Drive time between pickup and drop-off is billable on an hourly job: the crew
+// is on the clock for it (confirmed by Evgenii, 2026-08-24). It is charged as
+// TIME at the crew's own rate, never as a separate fee, and rounded the same way
+// the rest of the invoice is — 15-minute increments, the rule already published
+// on /pricing, /moving-cost-miami, /about and in llms.txt.
+//
+// Only the loaded pickup → drop-off leg is billed. The drive from the yard to
+// the first address is not in the estimate and is not charged.
+const BILLING_INCREMENT_HOURS = 0.25;
+
+/** Billable drive-time hours for a local/office job, rounded up to the increment. */
+export function travelHoursFor(travelMinutes: number, confirmed: boolean): number {
+  if (!confirmed || travelMinutes <= 0) return 0;
+  return Math.ceil(travelMinutes / 60 / BILLING_INCREMENT_HOURS) * BILLING_INCREMENT_HOURS;
+}
 
 interface PricingInput {
   moveType: MoveType;
@@ -275,7 +367,7 @@ interface PricingInput {
 
 export function calculatePricing(input: PricingInput): QuotePricing {
   const { moveType, estimatedDistance, fromCity, toCity, inventory, addons } = input;
-  const crew   = (inventory.crewSize ?? 2) as CrewSize;
+  const crew   = normalizeCrewSize(inventory.crewSize);
   const size   = inventory.homeSize ?? '2br';
   const isLong = moveType === 'long-distance' || moveType === 'international';
 
@@ -286,6 +378,10 @@ export function calculatePricing(input: PricingInput): QuotePricing {
   let travelFee      = 0;
   let travelMiles    = 0;
   let travelMinutes  = 0;
+  let travelHours    = 0;
+  // False when a city could not be resolved, so the mileage is a guess. The
+  // coordinator is told; the guess is never billed.
+  let distanceConfirmed = true;
 
   // Stairs cost time, not a fee — extra carry hours added to the labour estimate
   const stairsHours = inventory.hasStairs
@@ -293,19 +389,23 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     : 0;
 
   switch (moveType) {
-    case 'local': {
-      estimatedHours = Math.max(MIN_HOURS, (HOME_SIZE_HOURS[size] ?? 3) + stairsHours);
-      laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
-      travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
-      travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = TRUCK_FEE[crew]; // per day, matches the crew's rate
-      break;
-    }
+    case 'local':
     case 'office': {
-      estimatedHours = Math.max(MIN_HOURS, (HOME_SIZE_HOURS[size] ?? 4) + stairsHours);
-      laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
-      travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
+      // Distance first — the drive is billable time, so it has to be known
+      // before the hours are totalled.
+      if (fromCity && toCity) {
+        const resolved   = resolveLocalDistance(fromCity, toCity);
+        travelMiles      = resolved.miles;
+        distanceConfirmed = resolved.confirmed;
+      } else {
+        travelMiles      = estimatedDistance;
+        distanceConfirmed = false; // no cities given — nothing to verify against
+      }
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
+      travelHours    = travelHoursFor(travelMinutes, distanceConfirmed);
+      const baseHours = HOME_SIZE_HOURS[size] ?? (moveType === 'office' ? 4 : 3);
+      estimatedHours = Math.max(MIN_HOURS, baseHours + stairsHours + travelHours);
+      laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       truckFee       = TRUCK_FEE[crew]; // per day, matches the crew's rate
       break;
     }
@@ -374,6 +474,8 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     travelFee,
     travelMiles,
     travelMinutes,
+    travelHours,
+    distanceConfirmed,
     // legacy fields for admin dashboard
     baseRate:     laborRate,
     distanceFee:  isLong ? Math.round(estimatedDistance * 0.1) : 0,
@@ -389,7 +491,11 @@ export function calculatePricing(input: PricingInput): QuotePricing {
 
 // ─── Distance estimator ───────────────────────────────────────────────────────
 export function estimateDistance(fromState: string, toState: string): number {
-  if (!fromState || !toState || fromState === toState) return 30;
+  // Keys below are upper-case. Without normalising, ('fl','ny') missed the table
+  // and answered 600 while ('FL','NY') answered 1280 — the same pair, two prices.
+  const from = (fromState ?? '').trim().toUpperCase();
+  const to   = (toState   ?? '').trim().toUpperCase();
+  if (!from || !to || from === to) return 30;
   const pairs: Record<string, number> = {
     'FL-NY': 1280, 'NY-FL': 1280,
     'FL-TX': 1100, 'TX-FL': 1100,
@@ -399,7 +505,7 @@ export function estimateDistance(fromState: string, toState: string): number {
     'FL-NC': 930,  'NC-FL': 930,
     'FL-DC': 1050, 'DC-FL': 1050,
   };
-  return pairs[`${fromState}-${toState}`] ?? 600; // unknown pair — conservative default
+  return pairs[`${from}-${to}`] ?? 600; // unknown pair — conservative default
 }
 
 // ─── Starting price helpers (for homepage display) ────────────────────────────

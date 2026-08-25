@@ -4,24 +4,12 @@ import { formatCurrency } from '@/lib/utils';
 import { PACKING_COST } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
-
-interface Pricing {
-  total: number;
-  laborRate: number;
-  truckFee: number;
-  accessFee: number;
-  addonsFee: number;
-  travelFee: number;
-  travelMiles: number;
-  travelMinutes: number;
-  discount: number;
-  estimatedHours: number;
-  crewSize: number;
-  isLongDistance: boolean;
-}
+// The shape used to be retyped here and again in QuoteWizard, so a field added
+// to the engine reached neither. One source: QuotePricing.
+import type { QuotePricing } from '@/types';
 
 interface Props {
-  quote: { id: string; pricing: Pricing };
+  quote: { id: string; pricing: QuotePricing };
   data: WizardData;
   embedded?: boolean;
 }
@@ -37,7 +25,15 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
   // ── Labor label ────────────────────────────────────────────────────────────
   // Stairs are billed as time, never a fee — when present, the extra carry
   // hours are already inside estimatedHours, so the label says so.
-  const stairsNote = data.inventory.hasStairs ? ' (incl. stairs time)' : '';
+  // Drive time between the two addresses is billable on an hourly job, so it is
+  // inside estimatedHours too. Naming both keeps the label honest about what the
+  // hours are made of.
+  const travelHours = pricing.travelHours ?? 0;
+  const inclusions = [
+    data.inventory.hasStairs ? 'stairs' : null,
+    travelHours > 0 ? `${travelHours}h drive` : null,
+  ].filter(Boolean);
+  const stairsNote = inclusions.length > 0 ? ` (incl. ${inclusions.join(' + ')} time)` : '';
   const laborLabel = isPacking
     ? `Packing — ${pricing.crewSize} packers × ${pricing.estimatedHours}h`
     : isLocal
@@ -57,6 +53,12 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
   const travelLabel = pricing.travelMiles > 0
     ? `Travel — ~${pricing.travelMiles} mi · ~${pricing.travelMinutes} min est.`
     : 'Travel time';
+
+  // The route line is informational — the drive is already paid for inside the
+  // labour hours above, so it carries no amount of its own.
+  const routeNote = isLocal && pricing.travelMiles > 0 && pricing.distanceConfirmed !== false
+    ? `Route — ~${pricing.travelMiles} mi · ~${pricing.travelMinutes} min, billed as ${travelHours}h inside the hours above`
+    : null;
 
   const lineItems = [
     pricing.laborRate > 0 ? { label: laborLabel, value: pricing.laborRate } : null,
@@ -118,6 +120,9 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
                   </span>
                 </div>
               ))}
+              {routeNote && (
+                <p className="text-xs text-gray-500 pt-1 leading-relaxed break-words">{routeNote}</p>
+              )}
             </div>
           )}
         </div>
