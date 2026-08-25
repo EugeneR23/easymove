@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <h1 className="font-display text-3xl font-bold text-white">
-            EasyMove<span className="text-gold">Elite</span>
+            Easy Move<span className="text-gold"> Florida</span>
           </h1>
           <p className="text-gray-400 text-sm mt-2">Admin Portal</p>
         </div>
@@ -47,7 +47,7 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@easymove.com"
+              placeholder="you@easy-move-florida.com"
             />
             <Input
               label="Password"
@@ -62,9 +62,6 @@ export default function AdminLoginPage() {
               Sign In
             </Button>
           </form>
-          <div className="mt-6 p-3 bg-gray-50 rounded text-xs text-gray-500 text-center">
-            Demo: <strong>admin@easymove.com</strong> / <strong>luxury2024</strong>
-          </div>
         </div>
       </div>
     </div>

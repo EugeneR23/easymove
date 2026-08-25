@@ -109,9 +109,62 @@ Gold `#C9A84C`, ink `#1C1C1E`, Playfair headings, Inter body. All URLs unchanged
 
 ---
 
+## Round 2 — 2026-08-24
+
+Item 1 below is **resolved**: production now serves this repo. Verified against the
+live site — `public/llms.txt` is byte-identical to `main`, `/pricing` mentions the
+15% cap zero times (was 23), truck fee reads $129 in all 44 places, `/llms-full.txt`
+returns HTTP 200 at 173 KB, and `/moving-cost-miami` is live and in the sitemap.
+
+What this round fixed on top of that:
+
+- **IndexNow was dead in two ways.** `HOST` was the apex `easy-move-florida.com`
+  while every URL the site emits is `www`, so the filter in `pingIndexNow` dropped
+  100% of real URLs and returned `false` without ever calling the endpoint — and the
+  payload's `host` would have disagreed with its own `urlList` anyway. On top of that
+  the function had **no callers at all**. `HOST` is now the canonical www host, input
+  URLs are normalised rather than silently dropped, and the return type says *why* it
+  failed instead of a bare `false` (`no-valid-urls` / `rejected` / `network`), so
+  "nothing to send" and "the endpoint refused us" can never print the same sentence.
+  Wired up via [scripts/indexnow-ping.ts](../scripts/indexnow-ping.ts), which checks
+  the key file is readable before submitting. **First real submission: 48 URLs, HTTP
+  202.** This is the Bing Copilot and Yandex channel; it had never once fired.
+- **One entity, one rating.** `localBusinessSchema` in [src/app/layout.tsx](../src/app/layout.tsx)
+  carried the sitewide `AggregateRating` but had no `@id`, so it floated as a second
+  business; `/reviews` then emitted a *third* node claiming `#organization` with its
+  own `AggregateRating`. The layout node now shares `@id: {siteUrl}/#organization`
+  with the Organization node (MovingCompany is a subclass of Organization, so
+  consumers merge them), and `/reviews` no longer emits a rating at all. Verified on a
+  built server: exactly one `AggregateRating` on `/` and on `/reviews`, where there
+  were two.
+- **`public/llms.txt` 4+ bedroom row said $1,531.** That is 8 × $179 + **$99** — a
+  survivor of the old truck fee. The file's own stated rule (`hours × rate + $129`)
+  and `/moving-cost-miami` both give **$1,561**. Corrected; all other cells check out.
+- **`/llms-full.txt` was unreachable by discovery** — not linked from `llms.txt`,
+  robots or the sitemap, so nothing would find it. Now linked from `llms.txt`.
+- **robots allowed `/es/`** in all three rule sets for a locale that does not exist.
+  Removed; the allow-list is now one `ALLOW_PATHS` constant so a bot rule cannot
+  advertise a path we never shipped.
+- **Brand leaked in three rendered surfaces** that a `"EasyMove Elite"` grep missed
+  because the name is split across JSX spans: `V2Header` (public `/v2`), `AdminSidebar`,
+  and the admin login heading. All now read "Easy Move Florida". The admin login also
+  stopped printing `Demo: admin@easymove.com / luxury2024` on screen.
+- Stale `// $99 flat per day` comments in [src/lib/pricing.ts](../src/lib/pricing.ts)
+  (the value is 129).
+- **The GBP docs were actively dangerous.** `GBP_RENAME_REQUEST.md` instructed renaming
+  the profile *to* "EasyMove Elite" — an entity `f4d8bef` established does not exist in
+  the Florida register, which is grounds for profile suspension — and `GBP_COPY_PASTE_PACKAGE.md`
+  held ready-to-paste text with $99/$139 rates, "from $376", a $79 truck fee and
+  "Licensed and fully insured". Pasting those into Google would have published prices
+  we do not charge and a licence claim we cannot evidence. The rename request is now a
+  withdrawal notice; both other docs carry a stop banner with the current figures.
+
+---
+
 ## Required before this reaches customers
 
-1. **Resolve the deploy pipeline (P0 from the audit, still open).** Production was last published ~2026-07-02 by a manual `npx vercel --prod` from a tree that is neither this repo nor `origin/main`, and it still serves the 15% cap 23 times on /pricing plus inside JSON-LD. **None of the work above is live.** Pull the deployed build's source, diff it against this repo, fold in anything July-2-only, then deploy from here. Local build gotcha: `next build` fails on /icon and /twitter-image (Cyrillic path + @vercel/og) — move those three files aside, build, restore.
+1. ~~**Resolve the deploy pipeline (P0 from the audit, still open).**~~ **Done** — see Round 2 above.
+   Original note kept for context: Production was last published ~2026-07-02 by a manual `npx vercel --prod` from a tree that is neither this repo nor `origin/main`, and it still serves the 15% cap 23 times on /pricing plus inside JSON-LD. **None of the work above is live.** Pull the deployed build's source, diff it against this repo, fold in anything July-2-only, then deploy from here. Local build gotcha: `next build` fails on /icon and /twitter-image (Cyrillic path + @vercel/og) — move those three files aside, build, restore.
 2. **Rotate the admin password** and set `ADMIN_EMAIL` / `ADMIN_PASSWORD` in Vercel. The old password is in git history.
 3. **Send the TODO inputs.** Grep for `[TODO:` in `src/` — each marks a claim that is currently softened or omitted because it is unverified:
    - FDACS mover registration number (Florida Chapter 507). Competitors publish theirs; this is the cheapest trust gain available.

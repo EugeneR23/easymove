@@ -28,7 +28,7 @@ export default function V2Header() {
       <motion.div style={{ opacity: borderOpacity }} className="absolute bottom-0 left-0 right-0 h-px bg-gold/25" />
       <div className="flex items-center justify-between px-5 sm:px-10 h-16">
         <Link href="/" className="text-white font-display font-bold tracking-[0.25em] text-sm">
-          EASYMOVE <span className="text-gold">ELITE</span>
+          EASY MOVE <span className="text-gold">FLORIDA</span>
         </Link>
         <div className="hidden md:flex items-baseline gap-2 select-none" aria-hidden="true">
           <span className="text-white/30 text-[10px] tracking-[0.35em] uppercase">Miami</span>

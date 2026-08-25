@@ -24,7 +24,7 @@ export default function AdminSidebar() {
     <aside className="w-64 min-h-screen bg-charcoal flex flex-col shrink-0">
       <div className="p-6 border-b border-charcoal-light">
         <Link href="/" className="font-display text-xl font-bold text-white">
-          EasyMove<span className="text-gold">Elite</span>
+          Easy Move<span className="text-gold"> Florida</span>
         </Link>
         <p className="text-gray-500 text-xs mt-1 uppercase tracking-wider">Admin Portal</p>
       </div>

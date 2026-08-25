@@ -50,7 +50,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
     ],
     process: [
-      { step: 1, title: 'Free written estimate', body: 'Tell us your origin, destination, building details, and inventory. We send a written estimate the same day with the hourly rate, expected duration, and the flat $129/day truck fee as its own line. COI goes to your building management within 24 hours of booking, free. No deposit required.' },
+      { step: 1, title: 'Free written estimate', body: 'Tell us your origin, destination, building details, and inventory. We send a written estimate the same day with the hourly rate, expected duration, and the truck fee — charged per day at the crew rate — as its own line. COI goes to your building management within 24 hours of booking, free. No deposit required.' },
       { step: 2, title: 'Building coordination', body: 'After booking, we contact your building management directly to reserve the freight elevator, schedule the loading dock window, and submit the COI. You confirm the move date — we handle the rest.' },
       { step: 3, title: 'Pre-move call', body: '24-48 hours before move day, your coordinator confirms timing, walks through any last-minute changes, and confirms crew size. Crew receives building briefing before departure.' },
       { step: 4, title: 'Move day', body: 'Crew arrives within a 2-hour window with a 30-minute heads-up call. Floor protection laid first. Inventory walk-through with you. Loading begins. Transport. Unloading with placement guidance from you.' },
@@ -59,17 +59,17 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     pricingBreakdown: [
       '2-mover crew: $129/hour, 3-hour minimum',
       '3-mover crew: $179/hour, 3-hour minimum',
-      'Truck: $129 flat per day, always a separate line item — fuel, tolls and mileage included',
+      'Truck: charged per day at the crew rate ($129 with 2 movers, $179 with 3, $219 with 4), always a separate line item — fuel, tolls and mileage included',
       'Studio (3-hour minimum, 2 movers): from $516 all-in',
       '1-bedroom (3–5 hours, 2 movers): $516–$774 all-in',
-      '2-bedroom (4–6 hours, 2–3 movers): $645–$1,203 all-in',
-      '3-bedroom (6–8 hours, 3 movers): $1,203–$1,561 all-in',
+      '2-bedroom (4–6 hours, 2–3 movers): $645–$1,253 all-in',
+      '3-bedroom (6–8 hours, 3 movers): $1,253–$1,611 all-in',
       'COI for building management: free, issued within 24 hours of booking',
       'Disassembly and reassembly of standard furniture: included',
       'Quality moving blankets and floor protection: included as loaners',
     ],
     faqs: [
-      { q: 'How much does a high-rise move cost in Brickell or Aventura?', a: "A typical 1-bedroom high-rise move in Brickell or Aventura runs $516–$774 all-in. The base is hourly ($129/hr for 2 movers, 3-hour minimum) plus the flat $129/day truck fee — a separate line on your estimate that covers fuel, tolls, and mileage. Add 30-60 minutes for elevator wait time on busier buildings. Your written estimate accounts for this — no surprise fees on move day." },
+      { q: 'How much does a high-rise move cost in Brickell or Aventura?', a: "A typical 1-bedroom high-rise move in Brickell or Aventura runs $516–$774 all-in. The base is hourly ($129/hr for 2 movers, 3-hour minimum) plus a truck fee per day at that same crew rate — a separate line on your estimate that covers fuel, tolls, and mileage. Add 30-60 minutes for elevator wait time on busier buildings. Your written estimate accounts for this — no surprise fees on move day." },
       { q: 'Do you provide a Certificate of Insurance for my building?', a: "Yes — within 24 hours of your confirmed booking, free of charge. Send us your building's COI requirements (named insured, specific limits, additional insured language) and we issue it directly to building management." },
       { q: 'Can you move on weekends?', a: 'Yes. Saturday is a regular operating day, billed at the same hourly rate. Sundays are case-by-case for buildings that allow Sunday moves (most Brickell and Aventura towers do not).' },
       { q: 'Do you handle gated communities like Cocoplum or Williams Island?', a: 'Yes. We submit gate paperwork (COI with community named, vehicle registration, crew identification) 48 hours in advance so the gate clears your crew on arrival.' },
@@ -232,7 +232,8 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { q: 'Can you move our office over a weekend so we don\'t lose a workday?', a: "Yes — most of our office moves happen Friday evening through Sunday for exactly that reason. After-hours premium applies, but the productivity savings typically pay for it many times over." },
       { q: 'Do you handle IT equipment?', a: 'Yes — monitors, computers, AV gear, and basic disconnect/reconnect coordination. For complex server racks, network closets, or specialized equipment, we coordinate with your IT person or recommend a partner.' },
       { q: 'What about modular furniture like Steelcase or Herman Miller?', a: "Yes. We disassemble with hardware tracking, transport carefully, and reassemble per your reassembly plan. Most major systems (Steelcase, Herman Miller, Knoll, Teknion) are familiar to us." },
-      { q: 'Can you provide a Certificate of Insurance for our building?', a: "Yes — within 24 hours of booking, addressed to your building management. Most commercial buildings require $2M general liability minimum, often with the building specifically named as additional insured. We handle it." },
+      // [TODO: confirm exact building COI limits with Evgenii]
+      { q: 'Can you provide a Certificate of Insurance for our building?', a: "Yes — within 24 hours of booking, addressed to your building management. Commercial buildings commonly ask for limits in the $1M–$2M range, often with the building specifically named as additional insured. We confirm your building's exact requirements before move day and handle the paperwork." },
       { q: 'How far in advance should we book an office move?', a: 'Small offices (under 10 workstations): 2-3 weeks. Mid-size: 4-6 weeks. Large (40+): 6-8 weeks. The longer lead time is mostly about coordinating building access at both ends, not crew availability.' },
     ],
     // [TODO: confirm with Evgenii] — per-building office-move history is unverified; phrased below as buildings we work in (service area), not claimed history.

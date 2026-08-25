@@ -43,8 +43,8 @@ const SERVICES = [
     name: 'Local Moving',
     sub: 'Miami-Dade · Broward · Palm Beach',
     description:
-      'Flat hourly rate, 3-hour minimum, plus a flat $129/day truck fee as its own line — no fuel surcharge. We protect floors, wrap every piece of furniture, and have you settled by end of day.',
-    highlights: ['$129/hr · 2-mover crew', '$179/hr · 3-mover crew', 'Truck $129/day flat · pads & wrap included', 'Floor runners & furniture pads', 'Same-week availability'],
+      'Flat hourly rate, 3-hour minimum, plus a truck fee per day charged at the crew rate as its own line — no fuel surcharge. We protect floors, wrap every piece of furniture, and have you settled by end of day.',
+    highlights: ['$129/hr · 2-mover crew', '$179/hr · 3-mover crew', 'Truck at the crew rate per day · pads & wrap included', 'Floor runners & furniture pads', 'Same-week availability'],
     image: '/images/Real/8.jpg',
     href: '/quote?type=local',
     cta: 'Get a FREE Local Move Quote',

@@ -135,11 +135,11 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'How much does a move in Fort Lauderdale cost?',
-        a: 'Local moves are hourly: $129/hr for 2 movers or $179/hr for 3, with a 3-hour minimum, plus a $129 flat per-day truck fee as a separate line on your estimate (fuel, tolls, and mileage are inside it — no fuel surcharge). A 1-bedroom Las Olas condo typically takes 3–5 hours: $516–$774 all-in. A 2-bedroom runs 4–6 hours with 2–3 movers: $645–$1,203. A 3-bedroom canal-front home usually takes 6–8 hours with 3 movers: $1,203–$1,561. The rate is locked — it does not go up for weekends or if the job runs long.',
+        a: 'Local moves are hourly: $129/hr for 2 movers or $179/hr for 3, with a 3-hour minimum, plus a truck fee per day charged at the crew rate ($129 with two movers, $179 with three), a separate line on your estimate (fuel, tolls, and mileage are inside it — no fuel surcharge). A 1-bedroom Las Olas condo typically takes 3–5 hours: $516–$774 all-in. A 2-bedroom runs 4–6 hours with 2–3 movers: $645–$1,253. A 3-bedroom canal-front home usually takes 6–8 hours with 3 movers: $1,253–$1,611. The rate is locked — it does not go up for weekends or if the job runs long.',
       },
       {
         q: 'How long does a waterfront home move in Fort Lauderdale take?',
-        a: "A 3-bedroom single-family home in Rio Vista or Coral Ridge usually takes 6–8 hours with a 3-mover crew — about $1,203–$1,561 at $179/hr plus the $129 truck line. Tight canal-street access can add time (a shuttle truck or longer carry is priced as hours, not fees), which is why we check your street before scheduling and put a realistic range in your written estimate.",
+        a: "A 3-bedroom single-family home in Rio Vista or Coral Ridge usually takes 6–8 hours with a 3-mover crew — about $1,253–$1,611 at $179/hr plus the $179 truck line. Tight canal-street access can add time (a shuttle truck or longer carry is priced as hours, not fees), which is why we check your street before scheduling and put a realistic range in your written estimate.",
       },
       {
         q: 'Do you serve all of Broward County?',
@@ -203,7 +203,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'How much does a move in Boca Raton cost?',
-        a: 'Hourly, like all our local work: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum, plus a $129 flat per-day truck fee shown as its own line on the estimate — fuel, tolls, and mileage are inside it. Typical totals: a 1-bedroom condo takes 3–5 hours ($516–$774), a 2-bedroom takes 4–6 hours with 2–3 movers ($645–$1,203), and a 3-bedroom home in a gated community takes 6–8 hours with 3 movers ($1,203–$1,561). Larger estates get a custom written estimate after a walkthrough. No weekend or peak-season surcharges — the rate is locked.',
+        a: 'Hourly, like all our local work: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three), shown as its own line on the estimate — fuel, tolls, and mileage are inside it. Typical totals: a 1-bedroom condo takes 3–5 hours ($516–$774), a 2-bedroom takes 4–6 hours with 2–3 movers ($645–$1,253), and a 3-bedroom home in a gated community takes 6–8 hours with 3 movers ($1,253–$1,611). Larger estates get a custom written estimate after a walkthrough. No weekend or peak-season surcharges — the rate is locked.',
       },
       {
         q: 'Do you move within gated communities in Boca Raton?',
@@ -211,7 +211,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How long does a Boca Raton estate move take?',
-        a: "A 3-bedroom single-family home typically takes 6–8 hours with a 3-mover crew — $1,203–$1,561 at $179/hr plus the $129 truck line. Larger estates with fine art or a pre-pack day are scoped individually: some are one day, others two. We give a realistic timeline in the written estimate rather than rushing the job to fit a number.",
+        a: "A 3-bedroom single-family home typically takes 6–8 hours with a 3-mover crew — $1,253–$1,611 at $179/hr plus the $179 truck line. Larger estates with fine art or a pre-pack day are scoped individually: some are one day, others two. We give a realistic timeline in the written estimate rather than rushing the job to fit a number.",
       },
       {
         q: 'What does my HOA need from you before the move?',
@@ -443,7 +443,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How much does a local move in Hollywood cost?',
-        a: "A typical 1-bedroom move in Hollywood runs $516–$774 all-in. Here's the math: $129/hr for 2 movers (or $179/hr for 3), 3-hour minimum, plus a $129 flat per-day truck fee as a separate line on your estimate — fuel, tolls, and mileage are inside it, no fuel surcharge. A 2-bedroom takes 4–6 hours with 2–3 movers ($645–$1,203); a 3-bedroom home runs 6–8 hours with 3 movers ($1,203–$1,561). The rate is locked — it doesn't go up for weekends or long jobs.",
+        a: "A typical 1-bedroom move in Hollywood runs $516–$774 all-in. Here's the math: $129/hr for 2 movers (or $179/hr for 3), 3-hour minimum, plus a truck fee per day charged at the crew rate ($129 with two movers, $179 with three), a separate line on your estimate — fuel, tolls, and mileage are inside it, no fuel surcharge. A 2-bedroom takes 4–6 hours with 2–3 movers ($645–$1,253); a 3-bedroom home runs 6–8 hours with 3 movers ($1,253–$1,611). The rate is locked — it doesn't go up for weekends or long jobs.",
       },
       {
         // [TODO: confirm exact building COI limits with Evgenii]
@@ -503,7 +503,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Coconut Grove move?',
-        a: "Expect $645–$1,203 all-in for a typical 2-bedroom Grove home — that's 4–6 hours at $129/hr (2 movers) or $179/hr (3 movers), 3-hour minimum, plus the truck at a flat $129 per day on its own estimate line (fuel, tolls, and mileage included in it). A 1-bedroom runs 3–5 hours: $516–$774. Stairs, long carries from narrow streets, and elevator waits cost time, not fees — they're priced into the hours we estimate. Estate-sized moves get a custom written estimate.",
+        a: "Expect $645–$1,253 all-in for a typical 2-bedroom Grove home — that's 4–6 hours at $129/hr (2 movers) or $179/hr (3 movers), 3-hour minimum, plus the truck on its own estimate line, charged per day at that crew's rate ($129 with two movers, $179 with three) (fuel, tolls, and mileage included in it). A 1-bedroom runs 3–5 hours: $516–$774. Stairs, long carries from narrow streets, and elevator waits cost time, not fees — they're priced into the hours we estimate. Estate-sized moves get a custom written estimate.",
       },
       {
         q: 'Do you serve Coral Gables and Brickell as well?',
@@ -552,7 +552,8 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Downtown Doral & CityPlace Tower Moves',
-        body: "Downtown Doral and CityPlace Doral have brought a new wave of mid-rise residential towers to a city that was historically single-family. These newer buildings — 5500 University, Doral View, Park Square — have COI requirements ($1M-$2M general liability), freight elevator reservations, and specific move-in/move-out windows. We've handled most of them and know each building's quirks.",
+        // [TODO: confirm exact building COI limits with Evgenii]
+        body: "Downtown Doral and CityPlace Doral have brought a new wave of mid-rise residential towers to a city that was historically single-family. These newer buildings — 5500 University, Doral View, Park Square — come with COI requirements (many in the $1M–$2M range), freight elevator reservations, and specific move-in/move-out windows. We confirm your building's exact requirements before move day.",
       },
     ],
     faqs: [
@@ -574,7 +575,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Doral move?',
-        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a flat $129 per-day truck fee as its own line on the estimate — fuel, tolls and mileage are inside it. A typical 2-bedroom Doral Isles townhouse takes 4–6 hours with 2–3 movers: $645–$1,203 all-in. The rate is the same seven days a week. Corporate relocations get an itemized written estimate with line items suitable for HR reimbursement.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three) as its own line on the estimate — fuel, tolls and mileage are inside it. A typical 2-bedroom Doral Isles townhouse takes 4–6 hours with 2–3 movers: $645–$1,253 all-in. The rate is the same seven days a week. Corporate relocations get an itemized written estimate with line items suitable for HR reimbursement.',
       },
       {
         q: 'Do you serve Doral Isles and Vintage Estates?',
@@ -606,8 +607,9 @@ export const CITIES: CityData[] = [
     ],
     localFacts: [
       {
-        title: 'Oceanfront Tower COI Specialists',
-        body: "Hallandale Beach's oceanfront towers carry the strictest COI requirements in Broward County. Beach Club Towers requires $2M general liability with the association named exactly as written in their bylaws. The Diplomat residences and Hyde Resort each require their own format — $1M-$2M general liability, additional insured language, and waiver of subrogation. We've issued COIs for every major oceanfront building in Hallandale and we turn them around within 24 hours of your confirmed booking.",
+        // [TODO: confirm exact building COI limits with Evgenii]
+        title: 'Oceanfront Tower COI Requirements',
+        body: "Hallandale Beach's oceanfront towers set some of the strictest COI requirements in Broward County. Beach Club Towers, the Diplomat residences and Hyde Resort each specify their own format — many buildings here require limits in the $1M–$2M range, and some ask for the association named exactly as written in their bylaws plus a waiver of subrogation. We confirm your building's exact requirements before move day and issue the COI within 24 hours of your confirmed booking.",
       },
       {
         title: 'A1A & Hallandale Beach Blvd Parking Permits',
@@ -637,7 +639,8 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle Beach Club Towers and Hyde Resort moves?',
-        a: 'Yes. Both buildings are familiar to our crew. Beach Club Towers requires a $2M general liability COI with very specific additional-insured language; Hyde Resort has its own format and freight elevator reservation system. We submit COI paperwork within 24 hours of booking and reserve the elevator window before your move date.',
+        // [TODO: confirm exact building COI limits with Evgenii]
+        a: 'Yes — both buildings are in our service area. Each has its own COI format, additional-insured language and freight elevator reservation system; many buildings here require limits in the $1M–$2M range. We confirm your building\'s exact requirements before move day, submit the COI within 24 hours of booking, and reserve the elevator window ahead of your move date.',
       },
       {
         q: 'Do you handle snowbird seasonal moves?',
@@ -653,7 +656,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Hallandale Beach move?',
-        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a flat $129 per-day truck fee shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked. Snowbird inbound long-distance moves start at $1,500 and are quoted in writing within 24 hours.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three), shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked. Snowbird inbound long-distance moves start at $1,500 and are quoted in writing within 24 hours.',
       },
       {
         q: 'Do you serve Three Islands, Hemispheres, and Olympus?',
