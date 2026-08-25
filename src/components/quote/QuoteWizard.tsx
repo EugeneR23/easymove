@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
-import type { MoveType, QuoteInventory, QuoteAddons } from '@/types';
+import type { MoveType, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 import { calculatePricing, estimateLongDistance } from '@/lib/pricing';
 import Step1MoveType from './Step1_MoveType';
 import Step2HomeSize from './Step2_HomeSize';
@@ -31,7 +31,12 @@ export interface WizardData {
 const DEFAULT_DATA: WizardData = {
   moveType: 'local',
   fromAddress: '', fromCity: '', fromState: 'FL', fromZip: '',
-  toAddress:   '', toCity:   '', toState:   'FL', toZip:   '',
+  // toState starts blank on purpose. It used to start at 'FL', and the
+  // long-distance destination select never cleared it, so a client who typed
+  // "New York" and left the pre-selected state was priced against the Florida
+  // centroid — 199 mi instead of 1,289. The local city selects still set 'FL'
+  // themselves; long distance now requires a deliberate choice.
+  toAddress:   '', toCity:   '', toState:   '', toZip:   '',
   inventory: {
     homeSize: 'studio',
     crewSize: 2,
@@ -90,7 +95,10 @@ function getLiveEstimate(data: WizardData) {
   if (data.moveType === 'specialty') return null;
 
   const fromState = data.fromState || 'FL';
-  const toState   = data.toState   || (data.moveType === 'local' ? 'FL' : 'NY');
+  // Blank stays blank. Substituting 'NY' invented a destination the client never
+  // gave; estimateLongDistance answers LD_DEFAULT_MILES for an unknown one, which
+  // is the conservative number the coordinator confirms.
+  const toState   = data.toState || (data.moveType === 'local' ? 'FL' : '');
   // No travel surcharge until cities are entered in step 3 — keeps sidebar estimate consistent with homepage calculator
   const distance  = data.moveType === 'local'
     ? 0
@@ -286,7 +294,7 @@ export default function QuoteWizard() {
   const [data, setData] = useState<WizardData>(DEFAULT_DATA);
   const [submittedQuote, setSubmittedQuote] = useState<{
     id: string;
-    pricing: { total: number; laborRate: number; truckFee: number; accessFee: number; addonsFee: number; travelFee: number; travelMiles: number; travelMinutes: number; discount: number; estimatedHours: number; crewSize: number; isLongDistance: boolean };
+    pricing: QuotePricing;
   } | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);

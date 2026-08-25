@@ -39,12 +39,14 @@ export interface QuoteAddons {
 
 export interface QuotePricing {
   laborRate: number;       // hourly rate × hours
-  truckFee: number;        // flat truck/travel fee
+  truckFee: number;        // truck per day (local) / linehaul (long distance)
   accessFee: number;       // stairs/elevator/high-rise fees
   addonsFee: number;       // packing, specialty, etc.
-  travelFee: number;       // travel time surcharge for long local trips
+  travelFee: number;       // unused: local drive time is billed as hours, not a fee
   travelMiles: number;     // estimated driving distance (local moves)
   travelMinutes: number;   // estimated travel time (local moves)
+  travelHours?: number;    // billable drive time already inside estimatedHours
+  distanceConfirmed?: boolean; // false when a city was not recognised — mileage is a guess
   // legacy fields (kept for admin dashboard compatibility)
   baseRate: number;
   distanceFee: number;
