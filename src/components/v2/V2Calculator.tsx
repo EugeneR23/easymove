@@ -2,16 +2,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { cn, formatCurrency } from '@/lib/utils';
-import { localStartingPrice, LD_MINIMUM, MIN_HOURS } from '@/lib/pricing';
+import { localStartingPrice, LD_MINIMUM, MIN_HOURS, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
-// Same rates the homepage calculator uses (PACKING_HOURLY_RATE is not exported from pricing)
 const PACKING_HOURS: Record<HomeSize, number> = {
   studio: 3, '1br': 3, '2br': 4.5, '3br': 6, '4br+': 8, office: 5,
 };
-const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119, 4: 159 };
 const packingStartingPrice = (size: HomeSize, crew: CrewSize) =>
-  Math.round(PACKING_RATE[crew] * Math.max(MIN_HOURS, PACKING_HOURS[size]));
+  Math.round(PACKING_HOURLY_RATE[crew] * Math.max(MIN_HOURS, PACKING_HOURS[size]));
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
   { value: 'local',         label: 'Local',         sub: 'Within South Florida' },

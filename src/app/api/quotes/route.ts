@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
-import { calculatePricing, estimateDistance, estimateLocalDistance, estimateLongDistance } from '@/lib/pricing';
+import { calculatePricing, estimateLocalDistance, estimateLongDistance } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
@@ -69,7 +69,12 @@ export async function POST(req: NextRequest) {
         )
       : body.fromCity && body.toCity
         ? estimateLocalDistance(body.fromCity as string, body.toCity as string)
-        : estimateDistance(body.fromState as string, body.toState as string);
+        // No cities on a local move: there is no route to measure. This used to
+        // call estimateDistance(fromState, toState), which answers 30 for any
+        // same-state pair — a mileage nobody supplied, shown to the coordinator
+        // as if it were real. Zero is the honest answer; calculatePricing marks
+        // the estimate unconfirmed and bills no drive time.
+        : 0;
     const pricing = calculatePricing({
       moveType,
       estimatedDistance,
@@ -215,7 +220,8 @@ export async function POST(req: NextRequest) {
           <table style="border-collapse:collapse;font-size:14px;width:100%">
             ${row('Labor', `$${quote.pricing.laborRate}`)}
             ${quote.pricing.truckFee > 0 ? row(quote.pricing.isLongDistance ? 'Linehaul (truck · fuel · driver)' : 'Truck fee', `$${quote.pricing.truckFee}`) : ''}
-            ${quote.pricing.travelFee > 0 ? row('Travel time', `$${quote.pricing.travelFee} (~${quote.pricing.travelMiles} mi · ~${quote.pricing.travelMinutes} min)`) : ''}
+            ${(quote.pricing.travelHours ?? 0) > 0 ? row('Drive time (inside labour)', `${quote.pricing.travelHours}h — ~${quote.pricing.travelMiles} mi · ~${quote.pricing.travelMinutes} min`) : ''}
+            ${quote.pricing.distanceConfirmed === false && !quote.pricing.isLongDistance ? row('⚠ Distance', 'City not recognised — mileage NOT verified and NOT billed. Confirm the route before quoting.') : ''}
             ${quote.pricing.accessFee > 0 ? row('Access fee', `$${quote.pricing.accessFee}`) : ''}
             ${quote.pricing.addonsFee > 0 ? row('Add-ons fee', `$${quote.pricing.addonsFee}`) : ''}
             ${quote.pricing.discount > 0 ? row('Discount', `-$${quote.pricing.discount}`) : ''}
@@ -241,11 +247,14 @@ export async function POST(req: NextRequest) {
       `🚚 <b>${tgEscape(quote.moveType)}</b> · ${tgEscape(quote.inventory.homeSize)}${quote.inventory.bedrooms > 0 ? ` · ${quote.inventory.bedrooms} bed` : ''}`,
       `📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}`,
       `📅 ${tgEscape(quote.preferredDate) || 'Flexible'}`,
-      `💰 <b>~$${quote.pricing.total}</b> · ${quote.pricing.crewSize} movers · est. ${quote.pricing.estimatedHours}h${quote.pricing.travelFee > 0 ? ` · 🛣 ~${quote.pricing.travelMiles}mi ~${quote.pricing.travelMinutes}min` : ''}`,
+      `💰 <b>~$${quote.pricing.total}</b> · ${quote.pricing.crewSize} movers · est. ${quote.pricing.estimatedHours}h${quote.pricing.travelMiles > 0 ? ` · 🛣 ~${quote.pricing.travelMiles}mi ~${quote.pricing.travelMinutes}min` : ''}${(quote.pricing.travelHours ?? 0) > 0 ? ` (${quote.pricing.travelHours}h drive billed)` : ''}`,
       ``,
       `🏠 ${tgEscape(propertyType)}`,
     ];
 
+    if (quote.pricing.distanceConfirmed === false && !quote.pricing.isLongDistance) {
+      tgLines.push(`⚠️ <b>City not recognised</b> — mileage not verified, drive time NOT billed. Confirm the route.`);
+    }
     if (quote.inventory.hasStairs && quote.inventory.stairsFlights > 0) {
       const floor = quote.inventory.stairsFlights + 1;
       const ord = floor === 2 ? '2nd' : floor === 3 ? '3rd' : `${floor}th`;

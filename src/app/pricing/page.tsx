@@ -91,7 +91,7 @@ const NOT_INCLUDED = [
 const FACTORS = [
   {
     title: 'Distance between pickup and drop-off',
-    body: 'Inside Miami-Dade or Broward: usually no impact on rate, just adds travel time inside the hourly clock. Cross-county or to Palm Beach: a one-time travel-time fee may apply, disclosed before booking.',
+    body: 'The drive between your two addresses is on the clock at the same hourly rate — there is no separate travel fee and no per-mile charge. It shows on your estimate as hours, not as a line you find later: a move across Hollywood adds about a quarter of an hour, Miami to Boca Raton about an hour and three quarters. The rate itself never changes with distance.',
   },
   {
     title: 'Crew size',

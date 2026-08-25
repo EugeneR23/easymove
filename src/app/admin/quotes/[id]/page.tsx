@@ -79,10 +79,19 @@ export default function QuoteDetailPage() {
   if (!quote) return <div className="p-8 text-gray-500">Loading...</div>;
 
   const { pricing } = quote;
+  // These must sum to pricing.total. They did not: truckFee — the largest line on
+  // a long-distance quote — was missing, while distanceFee (a legacy field that
+  // is not in the subtotal at all) was shown as if it were charged.
   const lineItems = [
-    { label: 'Base Rate', value: pricing.baseRate },
-    { label: 'Distance Fee', value: pricing.distanceFee },
-    { label: 'Inventory Fee', value: pricing.inventoryFee },
+    {
+      label: pricing.isLongDistance
+        ? `Loading & unloading — ${pricing.crewSize} movers × ${pricing.estimatedHours}h`
+        : `Labour — ${pricing.crewSize} movers × ${pricing.estimatedHours}h${(pricing.travelHours ?? 0) > 0 ? ` (incl. ${pricing.travelHours}h drive)` : ''}`,
+      value: pricing.laborRate,
+    },
+    { label: pricing.isLongDistance ? 'Linehaul (truck · fuel · driver)' : 'Truck — per day', value: pricing.truckFee },
+    { label: 'Access', value: pricing.accessFee },
+    { label: 'Travel fee', value: pricing.travelFee },
     { label: 'Add-ons', value: pricing.addonsFee },
     ...(pricing.discount > 0 ? [{ label: 'Discount', value: -pricing.discount }] : []),
   ].filter((i) => i.value !== 0);
