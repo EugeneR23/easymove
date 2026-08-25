@@ -41,6 +41,16 @@ const LASTMOD: Record<string, string> = {
   '/ru/aventura-movers': '2026-07-30',
   '/ru/hollywood-movers': '2026-07-30',
   '/ru/hallandale-beach-movers': '2026-07-30',
+  '/ru/miami-beach-movers': '2026-08-24',
+  '/ru/bal-harbour-movers': '2026-08-24',
+  '/ru/north-miami-beach-movers': '2026-08-24',
+  '/ru/boca-raton-movers': '2026-08-24',
+  '/ru/delray-beach-movers': '2026-08-24',
+  '/ru/pembroke-pines-movers': '2026-08-24',
+  '/ru/weston-movers': '2026-08-24',
+  '/ru/coral-springs-movers': '2026-08-24',
+  '/ru/sunrise-movers': '2026-08-24',
+  '/ru/boynton-beach-movers': '2026-08-24',
 };
 
 function lastmod(path: string): Date {
@@ -62,6 +72,7 @@ const RU_PAIRED: Record<string, string> = {
   '/aventura-movers': '/ru/aventura-movers',
   '/hollywood-movers': '/ru/hollywood-movers',
   '/hallandale-beach-movers': '/ru/hallandale-beach-movers',
+  '/boca-raton-movers': '/ru/boca-raton-movers',
 };
 
 function withAlternates(path: string): MetadataRoute.Sitemap[number]['alternates'] | undefined {
@@ -165,6 +176,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/ru/aventura-movers`,         lastModified: lastmod('/ru/aventura-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/aventura-movers') },
     { url: `${siteUrl}/ru/hollywood-movers`,        lastModified: lastmod('/ru/hollywood-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hollywood-movers') },
     { url: `${siteUrl}/ru/hallandale-beach-movers`, lastModified: lastmod('/ru/hallandale-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
+    { url: `${siteUrl}/ru/miami-beach-movers`, lastModified: lastmod('/ru/miami-beach-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/bal-harbour-movers`, lastModified: lastmod('/ru/bal-harbour-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/north-miami-beach-movers`, lastModified: lastmod('/ru/north-miami-beach-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/boca-raton-movers`, lastModified: lastmod('/ru/boca-raton-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/boca-raton-movers') },
+    { url: `${siteUrl}/ru/delray-beach-movers`, lastModified: lastmod('/ru/delray-beach-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/pembroke-pines-movers`, lastModified: lastmod('/ru/pembroke-pines-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/weston-movers`, lastModified: lastmod('/ru/weston-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/coral-springs-movers`, lastModified: lastmod('/ru/coral-springs-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/sunrise-movers`, lastModified: lastmod('/ru/sunrise-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/boynton-beach-movers`, lastModified: lastmod('/ru/boynton-beach-movers'), changeFrequency: 'monthly', priority: 0.9 },
   ];
 
   const blogRoutes: MetadataRoute.Sitemap = [
