@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize } from '@/types';
-import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
+import { localStartingPrice, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
@@ -153,8 +153,11 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
           <div className="grid grid-cols-3 gap-3">
             {([2, 3, 4] as CrewSize[]).map((crew) => {
               const selected    = (inv.crewSize ?? 2) === crew;
-              const packingRate = crew === 2 ? 79 : crew === 3 ? 119 : 159;
-              const localRate   = crew === 2 ? 129 : crew === 3 ? 179 : 229;
+              // Both rates come from the rate card, never retyped here. This card
+              // used to print $229/hr for four movers next to a "from" price that
+              // was already computed at $219 — the retired rate, on the same tile.
+              const packingRate = PACKING_HOURLY_RATE[crew];
+              const localRate   = HOURLY_RATE[crew];
               const localPrice  = localStartingPrice(inv.homeSize ?? '2br', crew);
               const packingMin  = packingRate * 3;
               return (
