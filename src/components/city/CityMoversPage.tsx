@@ -7,7 +7,9 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-react';
-import type { CityData } from '@/lib/data/cities';
+import { CITIES, type CityData } from '@/lib/data/cities';
+import { CITIES_RU } from '@/lib/data/citiesRu';
+
 
 const SERVICES = {
   en: [
@@ -47,25 +49,92 @@ const TRUST = {
 
 // Nearby city pages, so each city page has lateral links instead of being a
 // dead end. Ordered by geography; the current city is filtered out at render.
-const NEARBY: { slug: string; en: string; ru: string }[] = [
-  { slug: 'miami-movers',            en: 'Miami',            ru: 'Майами' },
-  { slug: 'coral-gables-movers',     en: 'Coral Gables',     ru: 'Корал-Гейблс' },
-  { slug: 'coconut-grove-movers',    en: 'Coconut Grove',    ru: 'Коконат-Гроув' },
-  { slug: 'doral-movers',            en: 'Doral',            ru: 'Дорал' },
-  { slug: 'aventura-movers',         en: 'Aventura',         ru: 'Авентура' },
-  { slug: 'sunny-isles-movers',      en: 'Sunny Isles Beach', ru: 'Санни-Айлс-Бич' },
-  { slug: 'hallandale-beach-movers', en: 'Hallandale Beach', ru: 'Халландейл-Бич' },
-  { slug: 'hollywood-movers',        en: 'Hollywood',        ru: 'Голливуд' },
-  { slug: 'fort-lauderdale-movers',  en: 'Fort Lauderdale',  ru: 'Форт-Лодердейл' },
-  { slug: 'boca-raton-movers',       en: 'Boca Raton',       ru: 'Бока-Ратон' },
+// Russian display names. Only a label map — the list of cities that actually
+// gets linked is derived from the data below, so a new city page can never be
+// missing from the internal links just because someone forgot this file.
+const RU_NAMES: Record<string, string> = {
+  'miami-movers': 'Майами',
+  'miami-beach-movers': 'Майами-Бич',
+  'coral-gables-movers': 'Корал-Гейблс',
+  'coconut-grove-movers': 'Коконат-Гроув',
+  'doral-movers': 'Дорал',
+  'aventura-movers': 'Авентура',
+  'sunny-isles-movers': 'Санни-Айлс-Бич',
+  'bal-harbour-movers': 'Бал-Харбор',
+  'north-miami-beach-movers': 'Норт-Майами-Бич',
+  'hallandale-beach-movers': 'Халландейл-Бич',
+  'hollywood-movers': 'Голливуд',
+  'fort-lauderdale-movers': 'Форт-Лодердейл',
+  'pembroke-pines-movers': 'Пемброк-Пайнс',
+  'weston-movers': 'Уэстон',
+  'coral-springs-movers': 'Корал-Спрингс',
+  'sunrise-movers': 'Санрайз',
+  'boca-raton-movers': 'Бока-Ратон',
+  'delray-beach-movers': 'Делрей-Бич',
+  'boynton-beach-movers': 'Бойнтон-Бич',
+};
+
+// Which cities have a Russian page — read from the Russian data itself rather
+// than kept as a second hand-maintained list that drifts out of step with it.
+const RU_CITY_SLUGS = new Set(CITIES_RU.map((c) => c.slug.replace(/^ru\//, '')));
+
+/**
+ * The cities we serve, ordered roughly south to north.
+ *
+ * South Florida is a coastal strip, so a single ordinal is enough to say which
+ * cities sit next to which. This is deliberately NOT the pricing module's
+ * CITY_COORDS table: that one silently returns 15 miles for any city it does
+ * not know, which put Boynton Beach's "nearby" links in Coral Gables, forty
+ * miles away. Ordering has no business depending on a lookup that fails quietly.
+ */
+const SOUTH_TO_NORTH = [
+  'coconut-grove-movers',
+  'coral-gables-movers',
+  'miami-movers',
+  'miami-beach-movers',
+  'doral-movers',
+  'north-miami-beach-movers',
+  'bal-harbour-movers',
+  'sunny-isles-movers',
+  'aventura-movers',
+  'hallandale-beach-movers',
+  'hollywood-movers',
+  'pembroke-pines-movers',
+  'weston-movers',
+  'fort-lauderdale-movers',
+  'sunrise-movers',
+  'coral-springs-movers',
+  'boca-raton-movers',
+  'delray-beach-movers',
+  'boynton-beach-movers',
 ];
 
-// RU pages exist only for these cities; RU visitors get RU links where they
-// exist and are not sent to an English page mid-journey otherwise.
-const RU_CITY_SLUGS = new Set([
-  'miami-movers', 'fort-lauderdale-movers', 'sunny-isles-movers',
-  'aventura-movers', 'hollywood-movers', 'hallandale-beach-movers',
-]);
+/**
+ * The nearest other cities we serve, closest first.
+ *
+ * With nineteen city pages, listing every one of them on every page is a link
+ * dump that helps nobody. A reader on the Boynton Beach page is shown Delray
+ * and Boca, not Coconut Grove.
+ */
+function nearbyCities(current: CityData, limit = 8) {
+  const currentSlug = current.slug.replace(/^ru\//, '');
+  const here = SOUTH_TO_NORTH.indexOf(currentSlug);
+  const rank = (slug: string) => {
+    const i = SOUTH_TO_NORTH.indexOf(slug);
+    // A city missing from the order sorts last rather than pretending to be adjacent.
+    if (i < 0 || here < 0) return Number.MAX_SAFE_INTEGER;
+    return Math.abs(i - here);
+  };
+  return CITIES.filter((c) => c.slug !== currentSlug)
+    .map((c) => ({ city: c, d: rank(c.slug) }))
+    .sort((a, b) => a.d - b.d)
+    .slice(0, limit)
+    .map(({ city }) => ({
+      slug: city.slug,
+      en: city.name,
+      ru: RU_NAMES[city.slug] ?? city.name,
+    }));
+}
 
 const UI = {
   en: {
@@ -393,7 +462,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
               {isRu ? 'Другие города' : 'We also move in'}
             </p>
             <ul className="flex flex-wrap justify-center gap-2">
-              {NEARBY.filter((n) => !city.slug.endsWith(n.slug)).map((n) => {
+              {nearbyCities(city).map((n) => {
                 const href = isRu && RU_CITY_SLUGS.has(n.slug) ? `/ru/${n.slug}` : `/${n.slug}`;
                 return (
                   <li key={n.slug}>
