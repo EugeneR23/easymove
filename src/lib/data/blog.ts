@@ -57,7 +57,8 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Every Brickell condo building requires a Certificate of Insurance (COI) from your moving company before allowing the move. The COI must name your building (or building management company) as additional insured, with specific liability limits.' },
       { type: 'p', text: 'Common Brickell COI requirements:' },
       { type: 'ul', items: [
-        'General liability: $1M minimum, often $2M for newer towers (Brickell City Centre, SLS Lux Brickell, 1010 Brickell)',
+        // [TODO: confirm exact building COI limits with Evgenii]
+        'General liability: commonly $1M, with newer towers (Brickell City Centre, SLS Lux Brickell, 1010 Brickell) often asking for $2M — confirm your building\'s figure in writing',
         'Workers compensation coverage included',
         'Auto liability for moving truck',
         'Building management named as "additional insured" with exact spelling',
@@ -130,20 +131,20 @@ export const BLOG_POSTS: BlogPost[] = [
         'Truck fee: $79–$179 per move (one-time, varies by truck size)',
         'Materials: $30–$200+ depending on what you need',
       ]},
-      { type: 'p', text: 'For comparison: Easy Move Florida charges $129/hour for 2 movers, $179/hour for 3, and a $129 flat truck fee per day as a separate line item — fuel, tolls, and mileage are included, with no fuel surcharge.' },
+      { type: 'p', text: 'For comparison: Easy Move Florida charges $129/hour for 2 movers, $179/hour for 3, and a truck fee per day charged at the crew rate ($129 with 2 movers, $179 with 3) as a separate line item — fuel, tolls, and mileage are included, with no fuel surcharge.' },
 
       { type: 'h2', text: 'Real Miami move totals by home size' },
       { type: 'p', text: 'These are realistic ranges based on actual Miami moves — assuming a 5-15 mile distance, easy access, and standard furniture.' },
       { type: 'h3', text: 'Studio apartment' },
-      { type: 'p', text: 'Range: $516–$645 all-in (hours × rate + $129 truck). Typical: 3-4 hours, 2 movers, basic furniture (bed, dresser, sofa, dining set, ~10-20 boxes).' },
+      { type: 'p', text: 'Range: $516–$645 all-in (hours × rate, plus the truck at that same crew rate). Typical: 3-4 hours, 2 movers, basic furniture (bed, dresser, sofa, dining set, ~10-20 boxes).' },
       { type: 'h3', text: '1-bedroom apartment' },
       { type: 'p', text: 'Range: $516–$774. Typical: 3-5 hours, 2 movers, standard furniture, ~25-40 boxes.' },
       { type: 'h3', text: '2-bedroom apartment or condo' },
-      { type: 'p', text: 'Range: $645–$1,203. Typical: 4-6 hours, 2-3 movers, ~50-80 boxes.' },
+      { type: 'p', text: 'Range: $645–$1,253. Typical: 4-6 hours, 2-3 movers, ~50-80 boxes.' },
       { type: 'h3', text: '3-bedroom home or condo' },
-      { type: 'p', text: 'Range: $1,203–$1,561. Typical: 6-8 hours, 3 movers, ~80-130 boxes.' },
+      { type: 'p', text: 'Range: $1,253–$1,611. Typical: 6-8 hours, 3 movers, ~80-130 boxes.' },
       { type: 'h3', text: '4-bedroom home' },
-      { type: 'p', text: 'Range: $1,561–$2,250+. Typical: 8-12 hours, 3-4 movers, often spans 2 days for larger homes.' },
+      { type: 'p', text: 'Range: $1,611–$2,327+. Typical: 8-12 hours, 3-4 movers, often spans 2 days for larger homes.' },
 
       { type: 'h2', text: 'Add-ons that change the price' },
       { type: 'p', text: 'The base hourly rate is the floor. Several factors increase the total:' },
@@ -467,14 +468,17 @@ export const BLOG_POSTS: BlogPost[] = [
         'Содержать конкретные даты переезда',
         'Соответствовать минимальным лимитам страхования вашего здания (обычно $1M, для премиум-зданий $2M)',
       ]},
-      { type: 'p', text: 'Типичные требования по основным зданиям Авентуры и Санни-Айлс:' },
+      // [TODO: confirm exact building COI limits with Evgenii] — per-building
+      // limits and naming strings are not verified; described as the pattern
+      // across these towers rather than as a rule for any named building.
+      { type: 'p', text: 'Что обычно требуют башни Авентуры и Санни-Айлс — Williams Island, Porto Vita, Turnberry Isle, Trump Tower I/II/III, Acqualina и Mansions at Acqualina:' },
       { type: 'ul', items: [
-        'Williams Island: $2M general liability, building name строго как "Williams Island Property Owners Association"',
-        'Porto Vita: $2M, building specifically named as additional insured',
-        'Turnberry Isle: $1M минимум, отдельные требования по auto liability',
-        'Trump Tower I/II/III: $2M, специфический формат COI',
-        'Acqualina и Mansions at Acqualina: $2M, требуется именно "association" wording',
+        'Лимиты general liability чаще всего в диапазоне $1–2 млн, у премиум-зданий — по верхней границе',
+        'Ассоциация здания указана как additional insured, причём название пишется строго так, как оно записано в уставе',
+        'У части зданий — отдельные требования по auto liability и workers compensation',
+        'Свой формат сертификата: одна и та же страховка, оформленная не по форме здания, разворачивается на въезде',
       ]},
+      { type: 'p', text: 'Точные лимиты и формулировки различаются от здания к зданию и меняются со временем. Мы запрашиваем требования у вашей управляющей компании до дня переезда и оформляем COI по её форме.' },
       { type: 'callout', title: 'Совет', text: 'Запросите требования к COI у вашего building manager письменно (по email). Перешлите эту информацию мувинговой компании. Качественный мувер выпустит COI в течение 24 часов после подтверждения брони — бесплатно.' },
 
       { type: 'h2', text: 'Бронирование лифта и погрузочного дока' },
@@ -493,8 +497,8 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'ul', items: [
         'Студия: $516-$645 всё включено (3-4 часа, 2 грузчика + грузовик)',
         '1-комнатная: $516-$774 (3-5 часов, 2 грузчика)',
-        '2-комнатная: $645-$1,203 (4-6 часов, 2-3 грузчика)',
-        '3-комнатная: $1,203-$1,561 (6-8 часов, 3 грузчика)',
+        '2-комнатная: $645-$1,253 (4-6 часов, 2-3 грузчика)',
+        '3-комнатная: $1,253-$1,611 (6-8 часов, 3 грузчика)',
         'Премиум-кондо в Trump/Acqualina/Williams Island: добавьте 30-60 минут на ожидание лифта',
       ]},
       { type: 'p', text: 'Базовая ставка: $129/час за 2 грузчика, $179/час за 3, минимум 3 часа. Грузовик — $129 фиксированно за день, отдельной строкой в смете; топливо, платные дороги и мили уже включены, никаких топливных надбавок. Надбавок за выходные и сезон у нас нет — ставка фиксируется при бронировании. Все цены прозрачны: вы получаете письменную смету до бронирования. Никаких сюрпризов в день переезда.' },

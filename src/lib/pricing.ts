@@ -1,18 +1,23 @@
 import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 
 // ─── Rate Tables ──────────────────────────────────────────────────────────────
-// Updated 2026-07-30 per owner's source of truth (truck fee set to $129 by
-// Evgenii on 2026-07-30, superseding the earlier $99 figure):
-//   - Truck: $129 flat per day, always a separate line item. Fuel, tolls and
-//     mileage are inside the $129. Never scaled by distance, never "included".
-//   - No weekend or seasonal surcharges: the hourly rate is locked.
-//   - Stairs/long carries cost TIME (extra estimated hours), never a fee.
-// [TODO: confirm with Evgenii] the 4-mover $229/hr rate — not in the verified
-// rate card ($129 / $179 only); kept because the wizard offers a 4-mover crew.
-export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 229 };
+// Updated 2026-08-24 per Evgenii's rate card. Two changes from 2026-07-30:
+//   - The 4-mover rate is $219, not $229. This closes the open TODO that kept
+//     $229 only because the wizard offered a 4-mover crew.
+//   - The truck fee is NO LONGER a flat $129. It is charged per day at the same
+//     figure as the crew's hourly rate — a bigger crew brings a bigger truck.
+//     2 movers → $129, 3 → $179, 4 → $219.
+// Unchanged: still a separate line item on every estimate, with fuel, tolls and
+// mileage inside it; never scaled by distance and never folded into the hourly
+// rate. No weekend or seasonal surcharge. Stairs and long carries cost TIME
+// (extra estimated hours), never a fee.
+export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 219 };
 export const MIN_HOURS = 3;
 const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
-export const TRUCK_FEE = 129; // flat per day — fuel, tolls, mileage included
+/** Truck, per day, per crew size. Keyed so a caller cannot forget the crew. */
+export const TRUCK_FEE: Record<CrewSize, number> = { 2: 129, 3: 179, 4: 219 };
+/** Smallest possible invoice for a crew: the 3-hour minimum plus that crew's truck. */
+export const minInvoice = (crew: CrewSize): number => MIN_HOURS * HOURLY_RATE[crew] + TRUCK_FEE[crew];
 // Stairs are billed as time, not a fee: each flight adds carry time per crew day
 export const STAIRS_EXTRA_HOURS_PER_FLIGHT = 0.5;
 
@@ -293,7 +298,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = TRUCK_FEE; // $99 flat per day, separate line item
+      truckFee       = TRUCK_FEE[crew]; // per day, matches the crew's rate
       break;
     }
     case 'office': {
@@ -301,7 +306,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       laborRate      = Math.round(HOURLY_RATE[crew] * estimatedHours);
       travelMiles   = fromCity && toCity ? estimateLocalDistance(fromCity, toCity) : estimatedDistance;
       travelMinutes  = Math.round(travelMiles / TRAVEL_SPEED_MPH * 60);
-      truckFee       = TRUCK_FEE; // $99 flat per day, separate line item
+      truckFee       = TRUCK_FEE[crew]; // per day, matches the crew's rate
       break;
     }
     case 'long-distance': {
@@ -400,5 +405,5 @@ export function estimateDistance(fromState: string, toState: string): number {
 // ─── Starting price helpers (for homepage display) ────────────────────────────
 export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
   const hours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size]);
-  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_FEE);
+  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_FEE[crew]);
 }

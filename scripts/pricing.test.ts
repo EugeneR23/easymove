@@ -9,6 +9,8 @@ import {
   calculatePricing,
   estimateLocalDistance,
   estimateLongDistance,
+  minInvoice,
+  HOURLY_RATE,
 } from '../src/lib/pricing';
 import type { QuoteInventory, QuoteAddons } from '../src/types';
 
@@ -79,8 +81,24 @@ check('local distance table still works (28 mi)', estimateLocalDistance('Miami',
 console.log('\n[5] Truck fee model');
 const nearMove = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Hollywood', toCity: 'Hollywood', inventory, addons });
 const farMove  = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Boca Raton', inventory, addons });
-check('truck fee $129 on short trip', nearMove.truckFee === 129, nearMove.truckFee);
-check('truck fee $129 on long local trip (no distance scaling)', farMove.truckFee === 129, farMove.truckFee);
+check('truck fee $129 with 2 movers, short trip', nearMove.truckFee === 129, nearMove.truckFee);
+check('truck fee $129 with 2 movers, long local trip (no distance scaling)', farMove.truckFee === 129, farMove.truckFee);
+
+// The truck is charged at the crew's hourly rate (2026-08-24 rate card), so it
+// is NOT flat. These three are the cases that a flat-$129 model gets wrong —
+// without them the suite passes on either model and proves nothing.
+const crew3 = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Miami', inventory: { ...inventory, crewSize: 3 }, addons });
+const crew4 = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Miami', inventory: { ...inventory, crewSize: 4 }, addons });
+check('truck fee $179 with 3 movers', crew3.truckFee === 179, crew3.truckFee);
+check('truck fee $219 with 4 movers', crew4.truckFee === 219, crew4.truckFee);
+check('truck fee scales with crew, never flat', crew3.truckFee !== nearMove.truckFee && crew4.truckFee !== crew3.truckFee, `${nearMove.truckFee}/${crew3.truckFee}/${crew4.truckFee}`);
+check('truck fee equals that crew\'s hourly rate', crew3.truckFee === HOURLY_RATE[3] && crew4.truckFee === HOURLY_RATE[4], `${crew3.truckFee} vs ${HOURLY_RATE[3]}`);
+check('4-mover rate is $219, not the retired $229', HOURLY_RATE[4] === 219, HOURLY_RATE[4]);
+
+// Smallest invoice per crew: 3h × rate + that crew's truck.
+check('minimum invoice $516 / $716 / $876 by crew',
+  minInvoice(2) === 516 && minInvoice(3) === 716 && minInvoice(4) === 876,
+  `${minInvoice(2)}/${minInvoice(3)}/${minInvoice(4)}`);
 
 // ── 6. Stairs cost time, not a fee ────────────────────────────────────────────
 console.log('\n[6] Stairs = hours, never a fee');

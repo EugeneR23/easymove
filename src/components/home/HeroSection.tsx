@@ -329,7 +329,7 @@ export default function HeroSection() {
                       <p className="font-display text-4xl font-bold text-white mb-1">{formatCurrency(price)}</p>
                       <p className="text-gray-400 text-xs">
                         {sizeData?.hrs} hrs · {crew} {moveType === 'packing-only' ? 'packers' : 'movers'}
-                        {moveType === 'local' ? ` · incl. $${TRUCK_FEE} truck` : ''}
+                        {moveType === 'local' ? ` · incl. $${TRUCK_FEE[crew]} truck` : ''}
                       </p>
                     </div>
                   </div>

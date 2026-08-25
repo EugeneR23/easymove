@@ -6,14 +6,14 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle, Truck } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: { absolute: 'South Florida Moving Costs & Hourly Rates | Easy Move Florida' },
   description:
-    'Moving in South Florida costs $129/hr for 2 movers or $179/hr for 3, plus a $129/day truck fee. 3-hour minimum. See typical totals by home size and a worked example.',
+    'Moving in South Florida costs $129/hr for 2 movers or $179/hr for 3, plus a truck fee per day that matches the crew rate. 3-hour minimum. See typical totals by home size and a worked example.',
   alternates: {
     canonical: `${siteUrl}/pricing`,
     languages: {
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     siteName: 'Easy Move Florida',
     title: 'How much does a move cost in South Florida? | Easy Move Florida',
     description:
-      'Local moves: $129/hr (2 movers) or $179/hr (3 movers) + $129/day truck, 3-hour minimum. Typical 1BR total $516–$774, 2BR $645–$1,203. Long distance from $1,500.',
+      'Local moves: $129/hr (2 movers) or $179/hr (3 movers) plus a matching truck fee per day, 3-hour minimum. Typical 1BR total $516–$774, 2BR $645–$1,253. Long distance from $1,500.',
     url: `${siteUrl}/pricing`,
     images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — transparent moving prices' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Moving Costs in South Florida — Transparent Pricing',
-    description: 'From $129/hr with a 3-hour minimum plus a flat $129/day truck fee. No fuel surcharge, no stairs fee.',
+    description: 'From $129/hr with a 3-hour minimum plus a matching truck fee per day. No fuel surcharge, no stairs fee.',
     images: [`${siteUrl}/images/Hero.png`],
   },
 };
@@ -54,17 +54,19 @@ const DISTANCE_ROUTES = [
   { route: 'Hollywood → Charlotte', studio: '$2,000–$2,700', oneBr: '$2,500–$3,400', twoBr: '$3,400–$4,600', threeBr: '$4,600–$6,700' },
 ];
 
-// Typical totals — hours band × hourly rate + $129 flat truck fee.
+// Typical totals — hours band × hourly rate + that crew's truck fee. The truck
+// is charged at the crew rate: 2 movers $129, 3 movers $179, 4 movers $219.
 // Math: studio 3–4h × $129 + $129 = $516–$645; 1BR 3–5h × $129 + $129 = $516–$774;
-// 2BR low 4h × $129 + $129 = $645, high 6h × $179 + $129 = $1,203;
-// 3BR 6–8h × $179 + $129 = $1,203–$1,561; 4BR+ 8–12h × $179 + $129 = $1,561–$2,277.
+// 2BR low 4h × $129 + $129 = $645, high 6h × $179 + $179 = $1,253;
+// 3BR 6–8h × $179 + $179 = $1,253–$1,611; 4BR+ 8–12h × $179 + $179 = $1,611–$2,327;
+// office 6–9h × $179 + $179 = $1,253–$1,790.
 const APARTMENT_TOTALS = [
   { size: 'Studio',          hours: '3–4 hours',  crew: '2 movers',   range: '$516–$645',      details: 'Bed, sofa, dresser, ~15 boxes' },
   { size: '1-bedroom',       hours: '3–5 hours',  crew: '2 movers',   range: '$516–$774',      details: 'Bed, sofa, dresser, dining table, ~25 boxes' },
-  { size: '2-bedroom',       hours: '4–6 hours',  crew: '2–3 movers', range: '$645–$1,203',    details: 'Two bedroom sets, sofa, dining, ~40 boxes' },
-  { size: '3-bedroom',       hours: '6–8 hours',  crew: '3 movers',   range: '$1,203–$1,561',  details: 'Three bedrooms, living, dining, ~60 boxes' },
-  { size: '4+ bedroom / house', hours: '8–12 hours', crew: '3–4 movers', range: '$1,561–$2,277+', details: 'Full house — recommend an in-person walkthrough' },
-  { size: 'Office (≤20 ppl)',   hours: '6–9 hours', crew: '3 movers',  range: '$1,203–$1,740',  details: 'Desks, chairs, electronics, file storage' },
+  { size: '2-bedroom',       hours: '4–6 hours',  crew: '2–3 movers', range: '$645–$1,253',    details: 'Two bedroom sets, sofa, dining, ~40 boxes' },
+  { size: '3-bedroom',       hours: '6–8 hours',  crew: '3 movers',   range: '$1,253–$1,611',  details: 'Three bedrooms, living, dining, ~60 boxes' },
+  { size: '4+ bedroom / house', hours: '8–12 hours', crew: '3–4 movers', range: '$1,611–$2,327+', details: 'Full house — recommend an in-person walkthrough' },
+  { size: 'Office (≤20 ppl)',   hours: '6–9 hours', crew: '3 movers',  range: '$1,253–$1,790',  details: 'Desks, chairs, electronics, file storage' },
 ];
 
 const INCLUDED = [
@@ -79,7 +81,7 @@ const INCLUDED = [
 
 // Every one of these appears on the estimate as its own line before you book.
 const NOT_INCLUDED = [
-  'The truck: $129 flat per day. Fuel, tolls and mileage are inside the $129 — there is no fuel surcharge.',
+  `The truck: $${TRUCK_FEE[2]} per day with two movers, $${TRUCK_FEE[3]} with three, $${TRUCK_FEE[4]} with four — it matches the crew rate. Fuel, tolls and mileage are inside it; there is no fuel surcharge.`,
   'Packing materials (boxes, TV cartons, mattress bags you keep, corner protectors) — billed as flat packages, not per-item markups',
   'Specialty items: piano, safe, marble slab — a flat line on the estimate, never a surprise fee',
   'Storage between move-out and move-in — coordinated with our storage partner; blankets left in storage are billed',
@@ -93,7 +95,7 @@ const FACTORS = [
   },
   {
     title: 'Crew size',
-    body: 'Two movers ($129/hr) is the right call for most studios and 1-bedrooms. Three movers ($179/hr) finishes a 2-bedroom roughly 30% faster, so the total often comes out similar. For 4+ bedroom houses or tight elevator windows we scope a larger crew when quoting.',
+    body: `Two movers ($${HOURLY_RATE[2]}/hr) is the right call for most studios and 1-bedrooms. Three movers ($${HOURLY_RATE[3]}/hr) finishes a 2-bedroom roughly 30% faster, so the total often comes out similar once the extra hour is saved — note the truck line rises with the crew too. For 4+ bedroom houses or tight elevator windows we scope a larger crew when quoting.`,
   },
   {
     title: 'Building access',
@@ -112,15 +114,15 @@ const FACTORS = [
 const PRICING_FAQS = [
   {
     q: 'How much does a local move cost in South Florida?',
-    a: 'Two movers with a truck cost $129/hour, three movers $179/hour, with a 3-hour minimum. The truck is a separate $129 flat fee per day — fuel, tolls and mileage are inside it. A typical 1-bedroom runs $516–$774 all-in; a 2-bedroom $645–$1,203.',
+    a: `Two movers with a truck cost $${HOURLY_RATE[2]}/hour, three movers $${HOURLY_RATE[3]}/hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line per day charged at the same figure as the crew rate — $${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three — and fuel, tolls and mileage are inside it. A typical 1-bedroom runs $516–$774 all-in; a 2-bedroom $645–$1,253.`,
   },
   {
     q: 'What does the truck fee cover?',
-    a: 'The $129 per day covers the truck itself, fuel, tolls and mileage. It appears as its own line on every estimate before you book. There is no separate fuel surcharge and the fee does not grow with distance on local moves.',
+    a: `The truck fee covers the truck itself, fuel, tolls and mileage. It is charged per day at the crew rate — $${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three, $${TRUCK_FEE[4]} with four — because a bigger crew brings a bigger truck. It appears as its own line on every estimate before you book. There is no separate fuel surcharge and it does not grow with distance on local moves.`,
   },
   {
     q: 'Is the 3-hour minimum charged even if the move is faster?',
-    a: 'Yes — 3 hours of labour is the smallest booking we take, so the smallest possible invoice is 3 hours × your rate + the $129 truck fee ($516 with 2 movers). Past the minimum you pay for hours actually worked.',
+    a: `Yes — ${MIN_HOURS} hours of labour is the smallest booking we take, so the smallest possible invoice is ${MIN_HOURS} hours × your rate + that crew's truck fee: $${minInvoice(2)} with two movers, $${minInvoice(3)} with three. Past the minimum you pay for hours actually worked.`,
   },
   {
     q: 'Will the price change on move day?',
@@ -226,7 +228,7 @@ const offerJson = JSON.stringify({
       },
       {
         '@type': 'UnitPriceSpecification',
-        price: TRUCK_FEE,
+        price: TRUCK_FEE[2],
         priceCurrency: 'USD',
         unitText: 'DAY',
         name: 'Truck fee — flat per day, separate line item; fuel, tolls and mileage included',
@@ -252,7 +254,7 @@ export default function PricingPage() {
               How much does a move cost in <span className="gold-text">South Florida</span>?
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto mb-4">
-              ${HOURLY_RATE[2]}/hour for 2 movers or ${HOURLY_RATE[3]}/hour for 3, with a 3-hour minimum, plus a flat ${TRUCK_FEE}/day truck fee. A typical 1-bedroom runs $516–$774 all-in. Long distance from $1,500.
+              ${HOURLY_RATE[2]}/hour for 2 movers or ${HOURLY_RATE[3]}/hour for 3, with a 3-hour minimum, plus a truck fee per day at the same figure as the crew rate. A typical 1-bedroom runs $516–$774 all-in. Long distance from $1,500.
             </p>
             <p className="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto mb-8">
               The rate is locked before we start and never changes on move day. No fuel surcharge, no stairs fee, nothing on the invoice you didn&rsquo;t approve first.
@@ -291,8 +293,8 @@ export default function PricingPage() {
                   <span className="font-display text-5xl font-bold text-charcoal">${HOURLY_RATE[2]}</span>
                   <span className="text-gray-400 text-sm ml-1">/hr</span>
                 </div>
-                <p className="text-gold text-xs font-semibold mb-4">{MIN_HOURS}-hour minimum + ${TRUCK_FEE}/day truck</p>
-                <p className="text-gray-500 text-sm leading-relaxed">Best for studios and 1-bedroom apartments. Pads, wrap and basic disassembly included in the rate; the truck is its own ${TRUCK_FEE} line.</p>
+                <p className="text-gold text-xs font-semibold mb-4">{MIN_HOURS}-hour minimum + ${TRUCK_FEE[2]}/day truck</p>
+                <p className="text-gray-500 text-sm leading-relaxed">Best for studios and 1-bedroom apartments. Pads, wrap and basic disassembly included in the rate; the truck is its own ${TRUCK_FEE[2]} line.</p>
               </div>
               <div className="relative border border-gold bg-cream p-7">
                 <div className="absolute -top-3 left-7 bg-gold px-3 py-1 text-[10px] font-bold text-white uppercase tracking-[0.15em]">Most common</div>
@@ -302,7 +304,7 @@ export default function PricingPage() {
                   <span className="font-display text-5xl font-bold text-charcoal">${HOURLY_RATE[3]}</span>
                   <span className="text-gray-400 text-sm ml-1">/hr</span>
                 </div>
-                <p className="text-gold text-xs font-semibold mb-4">{MIN_HOURS}-hour minimum + ${TRUCK_FEE}/day truck</p>
+                <p className="text-gold text-xs font-semibold mb-4">{MIN_HOURS}-hour minimum + ${TRUCK_FEE[3]}/day truck</p>
                 <p className="text-gray-500 text-sm leading-relaxed">Best for 2BR+, walk-ups, and larger inventory. Often the same total cost as 2 movers because the job finishes faster.</p>
               </div>
               <div className="border border-gray-200 bg-white p-7">
@@ -316,7 +318,7 @@ export default function PricingPage() {
             </div>
 
             <p className="text-center text-gray-400 text-xs mt-6">
-              The truck is ${TRUCK_FEE} flat per day — its own line on every estimate. Fuel, tolls and mileage are inside that ${TRUCK_FEE}. Same rate seven days a week, year-round. Rates verified July 30, 2026.
+              The truck is its own line on every estimate, charged per day at the crew rate — ${TRUCK_FEE[2]} with two movers, ${TRUCK_FEE[3]} with three, ${TRUCK_FEE[4]} with four. Fuel, tolls and mileage are inside it. Same rate seven days a week, year-round. Rates verified August 24, 2026.
             </p>
           </div>
         </section>
@@ -362,7 +364,7 @@ export default function PricingPage() {
             <div className="mt-6 flex items-start gap-3 text-xs text-gray-500 max-w-3xl">
               <AlertCircle size={14} className="text-gold shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                Every range is the same arithmetic: hours × hourly rate + the $129 truck fee. Buildings with strict elevator windows, 4th-floor walk-ups, or heavy specialty pieces add hours and push the upper end of the band. We put those hours in your written estimate before booking.
+                Every range is the same arithmetic: hours × hourly rate, plus the truck at that same crew rate. Buildings with strict elevator windows, 4th-floor walk-ups, or heavy specialty pieces add hours and push the upper end of the band. We put those hours in your written estimate before booking.
               </p>
             </div>
           </div>
@@ -388,18 +390,18 @@ export default function PricingPage() {
                     <td className="px-6 py-4 text-right font-semibold text-charcoal whitespace-nowrap">$895</td>
                   </tr>
                   <tr className="border-b border-gray-200">
-                    <td className="px-6 py-4 text-charcoal">Truck — flat per day (fuel, tolls, mileage included)</td>
-                    <td className="px-6 py-4 text-right font-semibold text-charcoal whitespace-nowrap">${TRUCK_FEE}</td>
+                    <td className="px-6 py-4 text-charcoal">Truck — per day at the crew rate (fuel, tolls, mileage included)</td>
+                    <td className="px-6 py-4 text-right font-semibold text-charcoal whitespace-nowrap">${TRUCK_FEE[3]}</td>
                   </tr>
                   <tr className="bg-charcoal">
                     <td className="px-6 py-4 font-semibold text-white">Total</td>
-                    <td className="px-6 py-4 text-right font-bold text-gold whitespace-nowrap">$1,024</td>
+                    <td className="px-6 py-4 text-right font-bold text-gold whitespace-nowrap">$1,074</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed mt-5">
-              Those two lines are the whole invoice. If the crew finishes in 4.5 hours instead of 5, the labour line drops to $805.50 and the total is $934.50 — you pay for hours worked, not for the estimate. If the job needs something that is not on the estimate, work pauses until you approve the revised number.
+              Those two lines are the whole invoice. If the crew finishes in 4.5 hours instead of 5, the labour line drops to $805.50 and the total is $984.50 — you pay for hours worked, not for the estimate. If the job needs something that is not on the estimate, work pauses until you approve the revised number.
             </p>
           </div>
         </section>
