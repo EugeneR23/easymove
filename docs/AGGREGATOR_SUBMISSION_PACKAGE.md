@@ -1,0 +1,108 @@
+# Пакет подачи на площадки и агрегаторы
+
+Составлен 2026-08-25. Причина: разбор выдачи ChatGPT показал, что все четыре
+рекомендованных конкурента выигрывают не техникой (ни у одного нет llms.txt),
+а присутствием на сторонних площадках и текстом отзывов. Из восьми верхних
+источников по нашим запросам семь — агрегаторы, нас нет ни в одном, кроме
+Thumbtack.
+
+## Ответ на вопрос «что нужно — лицензия и иншура?»
+
+Коротко: **для Yelp и карт — ничего. Для мувинг-агрегаторов — да, FDACS
+IM-номер, и это же требование закона для работы внутри Флориды.**
+
+| Площадка | Лицензия | Страховка | Что ещё |
+|---|---|---|---|
+| Yelp | не нужна | не нужна | только подтверждение по телефону |
+| Bing Places / Apple Maps / Nextdoor | не нужна | не нужна | импорт из GBP / подтверждение адреса |
+| moveBuddha | **проверяют** (DOT/FMCSA-записи, для intrastate — государственную регистрацию) | **COI, ежеквартально** для Verified-бейджа | аудит: сметы, BoL, тарифная таблица, записи звонков |
+| GreatGuysMoving | проверяют лицензию | спрашивают | форма подачи на сайте |
+| HireAHelper | для labor-only не требуется carrier authority | базовая | можно зайти как «loading/unloading help» |
+| Thumbtack | уже есть профиль 5.0/32 | — | поддерживать актуальным |
+
+### Про FDACS IM-номер — главное
+
+Глава 507 законов Флориды требует регистрацию **каждого** intrastate-мувера в
+FDACS: $300/год, оплата $600 сразу за двухлетний период. Проверка и подача:
+https://www.fdacs.gov/Business-Services/Moving-Companies
+
+Состояние в коде: `src/lib/data/credentials.ts` → `FDACS_NUMBER: null`. Сайт
+сознательно не публикует номер, потому что его никто не дал. Два сценария:
+
+- **Номер есть, просто не прислан.** Тогда это самое дешёвое действие из всех:
+  одно значение в `credentials.ts` — и бейдж, schema-свойство и строка в
+  llms.txt появляются автоматически по всему сайту. Конкурент, который
+  обходит нас по «movers sunny isles beach», публикует IM 4191 и выигрывает
+  этим доверие и у Google, и у AI.
+- **Номера нет.** Тогда это блокер не только для агрегаторов — это требование
+  закона для интрастейт-перевозок, и получить его надо до подачи куда-либо.
+  Для регистрации FDACS понадобится и действующий полис (proof of insurance).
+
+USDOT нужен только если возить между штатами под своей authority — для
+дальних маршрутов, которые сайт уже продаёт от $1,500. Если они едут под
+чужой authority или через партнёра, на страницах это лучше не уточнять, но и
+USDOT тогда не заявлять.
+
+## Порядок подачи (по соотношению эффект/усилие)
+
+1. **Yelp** (~30 минут, ничего не нужно). Создать: https://business.yelp.com
+   Даёт сразу две площадки: Yahoo Local синдицируется с Yelp — а именно
+   Yahoo Local был источником в выдаче ChatGPT по Surf Moving.
+2. **Bing Places** (~15 минут): https://www.bingplaces.com — импорт из GBP в
+   один клик. ChatGPT-поиск работает поверх индекса Bing; наша карточка там
+   должна существовать.
+3. **Apple Maps** (~15 минут): https://register.apple.com/placesonmaps
+4. **Nextdoor Business** (~20 минут): https://business.nextdoor.com — для
+   Hollywood/Hallandale это локальная сарафанка в чистом виде.
+5. **HireAHelper** — если IM-номера пока нет, зайти как labor-only.
+6. **moveBuddha + GreatGuysMoving** — после появления IM-номера. Подача:
+   https://www.movebuddha.com/movebuddha-verified/ и форма листинга на
+   greatguysmoving.com.
+
+## Копипаст NAP — везде одинаково, символ в символ
+
+```
+Business name: Easy Move Florida
+Phone:         (786) 305-1844
+Address:       2130 Stirling Rd, Hollywood, FL 33020
+Website:       https://www.easy-move-florida.com
+Email:         romanov@easy-move-florida.com
+Hours:         Mon–Sat 8:00 AM – 7:00 PM
+Categories:    Movers / Moving Company / Piano Movers / Packing Services
+```
+
+Не «EasyMove Elite», не «Easy Move FL» — любое расхождение имени размывает
+сущность, и мы уже делим выдачу с чужой компанией «Easy Florida Moving»
+(Hallandale, 88 отзывов на Yelp). Единообразный NAP — единственная защита от
+склейки с ними.
+
+## Описание для площадок (EN, копипаст)
+
+> Owner-operated moving company based in Hollywood, FL, serving Miami-Dade,
+> Broward and Palm Beach counties. Crews work in English and Russian. Local
+> moves are billed hourly — $129/hr for 2 movers, $179/hr for 3 — with a
+> 3-hour minimum and the truck as its own line at the crew rate. No weekend,
+> fuel or stairs fees: access costs time, not surcharges. Free COI issued to
+> building management within 24 hours of booking. High-rise and condo
+> specialists: freight elevator reservations, loading dock scheduling,
+> gate-community paperwork. Long-distance moves from $1,500 flat with a
+> dedicated truck. No deposit.
+
+Короткая версия (до 250 знаков):
+
+> Owner-led movers in Hollywood, FL. English & Russian crews. $129/hr for 2
+> movers + truck at the crew rate, 3-hr minimum. Free COI in 24h. High-rise
+> specialists. Long distance from $1,500. No deposit, no hidden fees.
+> (786) 305-1844
+
+## Отзывы — что уже сделано в коде
+
+`/api/review-request` теперь добавляет в SMS и письмо одну строку: если
+русскоязычная бригада была важна — упомяните это в отзыве. Ровно эта фраза в
+чужом отзыве («very pleasant Russian speaking service») сделала Surf Moving
+первым в рекомендации ChatGPT. Подсказать тему отзыва политика Google
+разрешает; диктовать текст или предлагать что-то за отзыв — нет, поэтому
+строка остаётся мягкой и выключается флагом `russianSpeaking: false`.
+
+Цель: 6 → 30 отзывов Google. Темп: просить каждого клиента в течение трёх
+дней после переезда (кнопка уже есть в админке на карточке лида и квоты).

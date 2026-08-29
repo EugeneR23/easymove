@@ -1,0 +1,898 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<title>deFLORA · Города у порога</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F7F8F5; --card:#FFFFFF;
+  --ink:#161A17; --ink-soft:#474E46; --ink-faint:#787F76;
+  --rule:#DCE0D8; --rule-soft:#EAEDE7;
+  --stem:#2C5545; --stem-soft:#E7EFEA;
+  --bloom:#A83A57; --bloom-soft:#F7E8EC;
+  --amber:#8C6118; --amber-soft:#F6EEDE;
+  --shadow:0 1px 2px rgba(22,26,23,.05), 0 8px 24px -12px rgba(22,26,23,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101310; --card:#171B17;
+    --ink:#EDF0EA; --ink-soft:#B3BBB0; --ink-faint:#858E83;
+    --rule:#2A302A; --rule-soft:#212721;
+    --stem:#7FB79C; --stem-soft:#1B2620;
+    --bloom:#E88AA2; --bloom-soft:#2A1B20;
+    --amber:#D2A65C; --amber-soft:#26200F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101310; --card:#171B17;
+  --ink:#EDF0EA; --ink-soft:#B3BBB0; --ink-faint:#858E83;
+  --rule:#2A302A; --rule-soft:#212721;
+  --stem:#7FB79C; --stem-soft:#1B2620;
+  --bloom:#E88AA2; --bloom-soft:#2A1B20;
+  --amber:#D2A65C; --amber-soft:#26200F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:Archivo,'Helvetica Neue',Arial,sans-serif;
+  font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+p{margin:0 0 16px} p:last-child{margin-bottom:0}
+code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.88em;background:var(--rule-soft);padding:1px 5px;border-radius:2px}
+
+.masthead{border-bottom:1px solid var(--rule);padding:56px 0 40px;margin-bottom:52px}
+.eyebrow{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:28px;
+}
+h1{
+  font-family:'Bodoni Moda',Georgia,serif;font-weight:700;
+  font-size:clamp(36px,6.6vw,58px);line-height:1.06;letter-spacing:-.015em;margin-bottom:22px;
+}
+h1 em{font-style:italic;color:var(--bloom)}
+.standfirst{font-size:clamp(17px,2.1vw,19px);color:var(--ink-soft);max-width:62ch;margin-bottom:30px}
+.byline{
+  display:flex;flex-wrap:wrap;gap:10px 28px;font-size:13.5px;color:var(--ink-faint);
+  padding-top:22px;border-top:1px solid var(--rule-soft);
+}
+.byline b{color:var(--ink);font-weight:600}
+
+section{margin-bottom:60px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bloom);flex-shrink:0;padding-top:6px}
+h2{font-family:'Bodoni Moda',Georgia,serif;font-weight:700;font-size:clamp(24px,3.4vw,33px);line-height:1.16;letter-spacing:-.01em}
+.sec-intro{color:var(--ink-soft);max-width:64ch;margin:14px 0 28px}
+h4{font-size:15px;font-weight:700;margin:28px 0 12px;letter-spacing:-.005em}
+
+.plain{background:var(--stem-soft);border-left:3px solid var(--stem);padding:20px 24px;font-size:15px;color:var(--ink-soft)}
+.plain b{color:var(--ink)}
+
+/* scorecard */
+.score{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.score-col{background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:24px;box-shadow:var(--shadow)}
+.score-col.bad{border-left:3px solid var(--bloom)}
+.score-col.good{border-left:3px solid var(--stem)}
+.score-h{font-family:Archivo,sans-serif;font-size:16px;font-weight:700;margin-bottom:4px}
+.score-sub{font-size:13px;color:var(--ink-faint);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--rule-soft)}
+.score-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:14.5px;line-height:1.5}
+.score-col li{padding-left:20px;position:relative;color:var(--ink-soft)}
+.score-col.good li::before{content:"✓";position:absolute;left:0;color:var(--stem);font-weight:700}
+.score-col.bad li::before{content:"×";position:absolute;left:1px;color:var(--bloom);font-weight:700;font-size:16px}
+.score-col li b{color:var(--ink);font-weight:600}
+
+/* finding */
+.findings{display:flex;flex-direction:column;gap:20px}
+.finding{background:var(--card);border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);overflow:hidden}
+.f-top{padding:22px 26px 0;display:flex;align-items:flex-start;gap:14px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:2px;flex-shrink:0;margin-top:3px;font-weight:500}
+.chip.crit{background:var(--bloom-soft);color:var(--bloom)}
+.chip.warn{background:var(--amber-soft);color:var(--amber)}
+.chip.ok{background:var(--stem-soft);color:var(--stem)}
+h3{font-family:Archivo,sans-serif;font-weight:700;font-size:18.5px;line-height:1.35}
+.f-body{padding:14px 26px 24px;color:var(--ink-soft);font-size:15.5px}
+.f-body p{margin-bottom:12px}
+.f-body strong{color:var(--ink);font-weight:600}
+.evidence{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.75;
+  background:var(--rule-soft);border-top:1px solid var(--rule);color:var(--ink-soft);
+  padding:16px 26px;overflow-x:auto;white-space:pre;
+}
+.evidence .lbl{color:var(--ink-faint)}
+.evidence .bad{color:var(--bloom)}
+.evidence .good{color:var(--stem)}
+
+/* cities */
+.cities{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+.city-col{background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:22px 24px;box-shadow:var(--shadow)}
+.city-col.gap{border-color:var(--bloom);border-width:1px 1px 1px 3px}
+.city-h{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--rule-soft);display:flex;justify-content:space-between;gap:12px}
+.city-h b{color:var(--ink);font-size:15px;letter-spacing:0;font-family:Archivo,sans-serif}
+.city-list{list-style:none;margin:0;padding:0;font-size:14.5px;line-height:1.9}
+.city-list li{color:var(--ink-soft)}
+.city-col.gap .city-list li{color:var(--ink)}
+.city-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule-soft);font-size:13.5px;color:var(--ink-faint)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:2px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:540px}
+th,td{text-align:left;padding:14px 20px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);font-weight:500;background:var(--rule-soft)}
+tr:last-child td{border-bottom:none}
+td b{font-weight:600}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* слои внедрения */
+.layers{display:flex;flex-direction:column;gap:20px}
+.layer{background:var(--card);border:1px solid var(--rule);border-radius:2px;box-shadow:var(--shadow);overflow:hidden}
+.layer-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:baseline;justify-content:space-between;padding:24px 26px 0}
+.layer-tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--stem);margin-bottom:6px;width:100%}
+.layer-name{font-family:'Bodoni Moda',Georgia,serif;font-size:25px;font-weight:700;line-height:1.15;flex:1;min-width:14ch}
+.layer-price{font-family:'Bodoni Moda',Georgia,serif;font-size:29px;font-weight:700;color:var(--bloom);font-variant-numeric:tabular-nums;white-space:nowrap}
+.layer-body{padding:12px 26px 24px;color:var(--ink-soft);font-size:15.3px}
+.layer-body p{margin-bottom:14px}
+.layer-body strong{color:var(--ink);font-weight:600}
+.layer-body ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14.8px}
+.layer-body li{padding-left:18px;position:relative}
+.layer-body li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--stem)}
+.layer-foot{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-faint);padding:12px 26px;background:var(--rule-soft);border-top:1px solid var(--rule)}
+
+.bundle{margin-top:20px;background:var(--stem);color:#F2F6F1;border-radius:2px;padding:26px 28px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:center;justify-content:space-between}
+.bundle-t{font-family:'Bodoni Moda',Georgia,serif;font-size:22px;font-weight:700;margin:0 0 4px}
+.bundle-s{font-size:14.5px;color:rgba(242,246,241,.78);margin:0;max-width:46ch}
+.bundle-p{font-family:'Bodoni Moda',Georgia,serif;font-size:38px;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.bundle-p small{display:block;font-family:Archivo,sans-serif;font-size:12.5px;font-weight:400;color:rgba(242,246,241,.7);margin-top:2px;text-align:right}
+
+/* окупаемость */
+.roi{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--stem);border-radius:2px;padding:24px 26px;box-shadow:var(--shadow)}
+.roi-h{font-size:16px;font-weight:700;margin-bottom:6px}
+.roi-sub{font-size:14.8px;color:var(--ink-soft);margin-bottom:16px}
+.roi-sub b{color:var(--ink)}
+.roi-row{display:flex;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule-soft);font-size:15px}
+.roi-row:last-of-type{border-bottom:none}
+.roi-what{flex:1;color:var(--ink-soft)}
+.roi-what b{color:var(--ink);font-weight:600}
+.roi-n{font-family:'Bodoni Moda',Georgia,serif;font-size:25px;font-weight:700;color:var(--bloom);font-variant-numeric:tabular-nums;white-space:nowrap}
+.roi-n small{font-family:Archivo,sans-serif;font-size:13px;font-weight:400;color:var(--ink-soft);margin-left:6px}
+.roi-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule-soft);font-size:13.5px;color:var(--ink-faint)}
+
+.caveat{background:var(--bloom-soft);border-left:3px solid var(--bloom);padding:22px 26px;font-size:15.5px;color:var(--ink-soft)}
+.caveat b{color:var(--ink)}
+
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:16px 0 16px 38px;border-bottom:1px solid var(--rule-soft);font-size:15.5px;color:var(--ink-soft)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:19px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bloom)}
+.steps b{color:var(--ink);font-weight:600}
+
+/* подпись */
+.signoff{margin-bottom:44px}
+.sign-card{background:var(--stem);color:#F4F7F2;border-radius:2px;padding:34px 36px;display:flex;flex-wrap:wrap;gap:26px 40px;align-items:flex-end;justify-content:space-between}
+.sign-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(244,247,242,.62);margin:0 0 14px}
+.sign-name{font-family:'Bodoni Moda',Georgia,serif;font-size:31px;font-weight:700;line-height:1.1;margin:0 0 4px}
+.sign-role{font-size:14.5px;color:rgba(244,247,242,.72);margin:0}
+.sign-right{text-align:right}
+.sign-phone{font-family:'Bodoni Moda',Georgia,serif;font-size:33px;font-weight:700;color:#F4F7F2;text-decoration:none;letter-spacing:.01em;font-variant-numeric:tabular-nums;border-bottom:2px solid rgba(244,247,242,.35);padding-bottom:2px}
+.sign-note{font-size:13px;color:rgba(244,247,242,.62);margin:12px 0 0}
+
+footer{border-top:1px solid var(--rule);padding:32px 0 64px;font-size:13.5px;color:var(--ink-faint);display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+
+@media (max-width:760px){
+  .cities,.score{grid-template-columns:1fr}
+  .sign-right{text-align:left}
+  .sign-phone{font-size:28px}
+  .bundle-p{font-size:32px}
+}
+:focus-visible{outline:2px solid var(--stem);outline-offset:2px}
+</style>
+
+<style>
+@page { size: A4; margin: 15mm 0 16mm; }
+@page :first { margin: 0; }
+
+/* Печать всегда в светлой теме: тёмные токены на бумаге нечитаемы. */
+:root, :root[data-theme="dark"]{
+  --paper:#FFFFFF; --card:#FFFFFF;
+  --ink:#161A17; --ink-soft:#41483F; --ink-faint:#6E756C;
+  --rule:#D3D8CE; --rule-soft:#EDF0EA;
+  --stem:#2C5545; --stem-soft:#EBF2ED;
+  --bloom:#9B3350; --bloom-soft:#F9EAEE;
+  --amber:#7E560F; --amber-soft:#F7F0E1;
+  --shadow:none;
+}
+*{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+
+html,body{ background:#fff !important; }
+body{ font-size:9.6pt; line-height:1.5; }
+.wrap{ max-width:none; padding:0 17mm; }
+
+/* Обложка — на всю страницу, без полей */
+.cover{
+  width:210mm; height:297mm; background:var(--stem); color:#F2F6F1;
+  padding:26mm 22mm; display:flex; flex-direction:column; justify-content:space-between;
+  break-after:page; position:relative; overflow:hidden;
+}
+.cover-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16mm; }
+.cover-mark{
+  font-family:'JetBrains Mono',monospace; font-size:9.5pt; letter-spacing:.22em;
+  text-transform:uppercase; color:rgba(242,246,241,.72);
+}
+.cover-date{ font-family:'JetBrains Mono',monospace; font-size:9.5pt; color:rgba(242,246,241,.6); letter-spacing:.08em; }
+.cover-mid h1{
+  font-family:'Bodoni Moda',Georgia,serif; font-weight:700; font-size:40pt; line-height:1.08;
+  letter-spacing:-.01em; color:#F2F6F1; margin:0 0 10mm; max-width:none;
+}
+.cover-mid h1 em{ font-style:italic; color:#F0B9C6; }
+.cover-lede{ font-size:12pt; line-height:1.6; color:rgba(242,246,241,.86); max-width:46ch; margin:0; }
+.cover-rule{ height:1px; background:rgba(242,246,241,.28); margin:9mm 0; }
+.cover-grid{ display:flex; gap:9mm; }
+.cover-cell{ flex:1 1 0; min-width:0; }
+.cover-cell .k{
+  font-family:'JetBrains Mono',monospace; font-size:8pt; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(242,246,241,.55); display:block; margin-bottom:3mm;
+}
+.cover-cell .v{ font-size:11.5pt; color:#F2F6F1; line-height:1.4; }
+.cover-cell .v b{ font-weight:700; }
+.cover-phone{ font-family:'Bodoni Moda',Georgia,serif; font-size:19pt; font-weight:700; letter-spacing:.01em; }
+
+/* ── Разрывы страниц ───────────────────────────────────────────────────────
+   Документ верстается ПОД СТРАНИЦЫ, а не течёт как веб-страница.
+
+   Правило первое: карточка никогда не режется пополам. Разрезанная карточка
+   без нижней рамки, продолжающаяся списком без заголовка на следующей
+   странице, выглядит как брак — хуже любой пустоты.
+
+   Правило второе: разделы, которые начинаются с крупной сетки карточек,
+   открывают новую страницу. Тогда карточки гарантированно помещаются целиком,
+   а поле внизу предыдущей страницы читается как поле, а не как дыра.
+
+   Исключение — таблица: она длиннее страницы по своей природе, поэтому ей
+   ломаться можно, а шапка повторяется. */
+.layer,.bundle,.plain,.caveat,.sign-card,.evidence,
+.score-col,.city-col,.stance-col,.roi,.steps{ break-inside:avoid; }
+
+/* Находок много и они крупные (290–400px). Держать их коробками означало
+   листы, занятые одной карточкой. Поэтому в печати находка — не коробка,
+   а блок с боковой линейкой: тогда перенос между рассуждением и его
+   доказательством выглядит как продолжение текста, а не как разорванная
+   рамка. Сами рассуждение и доказательство внутри себя неделимы. */
+.finding{
+  break-inside:auto; overflow:visible;
+  border:none; border-left:2px solid var(--rule); border-radius:0;
+  background:transparent; box-shadow:none;
+}
+.f-top,.f-body{ break-inside:avoid; }
+.f-top{ break-after:avoid; padding-left:6mm; }
+.f-body{ padding-left:6mm; }
+.evidence{ border-top:none; margin-left:6mm; }
+/* Таблица «Сам сайт» — 775px, а весь её раздел 852px, то есть помещается на
+   страницу целиком. Рвать её незачем: разрыв оставлял на следующей странице
+   две строки и лист пустоты. Даём разделу свою страницу и держим таблицу
+   монолитом. Шапка всё равно объявлена повторяемой — на случай, если таблица
+   когда-нибудь вырастет. */
+.tbl-wrap,table{ break-inside:avoid; }
+thead{ display:table-header-group; }
+tr,li{ break-inside:avoid; }
+p{ orphans:3; widows:3; }
+h2,h3,h4,.sec-head,.sec-intro,.roi-h,.roi-sub{ break-after:avoid; }
+
+/* Замеренные высоты разделов (при странице 1005px):
+     01 645 · 02 706 · 03 273 · 04 1306 · 05 1175 · 06 721 · 07 852
+     08 1378 · 09 533 · 10 468 · 11 385 · 12 378 · подпись 307
+   Разделы 04 и 08 открываются крупной сеткой карточек и целиком в страницу не
+   влезают: если они начнутся с середины, сетка уедет целиком и оставит дыру.
+   Поэтому им — и только им — чистая страница. Остальное укладывается потоком:
+   02+03 = 979px и дают почти идеальную страницу. */
+section:nth-of-type(8){ break-before:page; }
+
+h2,h3,h4,.sec-head{ break-after:avoid; }
+section{ margin-bottom:6.5mm; }
+.masthead{ display:none; }           /* заменена обложкой */
+.sec-head{ margin-bottom:2px; }
+.sec-intro{ margin:6px 0 11px; }
+.plain{ padding:4mm 6mm; font-size:9.4pt; }
+
+/* Плотнее под формат листа */
+.findings{ gap:5mm; }
+.f-top{ padding:4mm 7mm 0; }
+.f-body{ padding:2.5mm 7mm 4mm; font-size:9.5pt; }
+.evidence{ padding:3mm 7mm; font-size:8pt; line-height:1.5; white-space:pre-wrap; }
+.score,.cities,.stance{ gap:5mm; }
+.score-col,.city-col{ padding:4.5mm; }
+.score-col ul{ gap:1.9mm; font-size:8.9pt; }
+.city-list{ font-size:9.1pt; line-height:1.6; }
+.layers{ gap:5mm; }
+.layer-head{ padding:4.5mm 7mm 0; }
+.layer-name{ font-size:16pt; }
+.layer-price{ font-size:19pt; }
+.layer-body{ padding:2.5mm 7mm 4.5mm; font-size:9.5pt; }
+.layer-body ul{ font-size:9.1pt; gap:1.9mm; }
+.layer-foot{ padding:2.4mm 7mm; font-size:8pt; }
+.bundle{ padding:7mm 8mm; }
+.bundle-t{ font-size:15pt; }
+.bundle-s{ font-size:9.8pt; }
+.bundle-p{ font-size:26pt; }
+.roi{ padding:5mm 7mm; }
+.roi-row{ padding:1.8mm 0; font-size:9.5pt; }
+.roi-n{ font-size:17pt; }
+th,td{ padding:2.1mm 4.5mm; font-size:9.1pt; }
+/* padding-left трогать нельзя — на нём держится колонка с номером */
+.steps li{ padding-top:2.6mm; padding-bottom:2.6mm; font-size:9.5pt; }
+.steps li::before{ top:3.9mm; }
+.sign-card{ padding:7mm 9mm; }
+.sign-name{ font-size:19pt; }
+.sign-phone{ font-size:20pt; }
+a{ text-decoration:none; }
+/* Подвал в печати не нужен: ровно тот же текст уже стоит колонтитулом на
+   каждой странице. Оставленный, он утаскивал за собой целый пустой лист. */
+footer{ display:none; }
+
+/* Неделимый вводный абзац пробовали — стало хуже: он сам начал расталкивать
+   страницы и добавил три дыры. Висячую строку ловим мягко, через widows. */
+.sec-intro{ widows:2; orphans:2; }
+.signoff{ break-after:avoid; }
+</style>
+
+
+<style>
+.layers{ gap:3mm; }
+.sec-intro{ margin:4px 0 8px; }
+.layer-head{ padding:3mm 6mm 0; }
+.layer-name{ font-size:14pt; }
+.layer-price{ font-size:17pt; }
+.layer-body{ padding:2mm 6mm 3mm; font-size:9pt; }
+.layer-body p{ margin-bottom:2.4mm; }
+.layer-body ul{ font-size:8.6pt; gap:1.5mm; }
+.layer-foot{ padding:1.5mm 6mm; font-size:7.6pt; }
+.bundle{ margin-top:3mm; }
+.bundle{ padding:5mm 7mm; }
+.bundle-t{ font-size:13pt; }
+.bundle-s{ font-size:9pt; }
+.bundle-p{ font-size:23pt; }
+</style>
+</head><body>
+
+<div class="cover">
+  <div class="cover-top">
+    <span class="cover-mark">Orium Studios · внедрение ИИ в бизнес</span>
+    <span class="cover-date">26 августа 2026</span>
+  </div>
+  <div class="cover-mid">
+    <h1>Авентура — ваш<br>ближайший район.<br>Для ИИ вас там<br><em>не существует</em>.</h1>
+    <p class="cover-lede">
+      Разбор deflorashop.com глазами машины и предложение построить три слоя: бизнес,
+      который ИИ умеет прочитать; агент, который принимает заказ; система, которая
+      помнит клиента и возвращает его.
+    </p>
+  </div>
+  <div>
+    <div class="cover-rule"></div>
+    <div class="cover-grid">
+      <div class="cover-cell">
+        <span class="k">Кому</span>
+        <span class="v"><b>deFLORA Shop</b><br>Flowers and Gifts</span>
+      </div>
+      <div class="cover-cell">
+        <span class="k">От кого</span>
+        <span class="v"><b>Евгений Романов</b><br>CEO, Orium Studios</span>
+      </div>
+      <div class="cover-cell">
+        <span class="k">Связь</span>
+        <span class="v cover-phone">786-305-1844</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">
+    <span>Orium Studios</span><span>Внедрение ИИ в бизнес</span><span>26 августа 2026</span>
+  </div>
+  <h1>Авентура — ваш ближайший район.<br>Для ИИ вас там <em>не существует</em>.</h1>
+  <p class="standfirst">
+    Orium Studios занимается тем, чего на рынке пока почти никто не делает: органическим
+    продвижением в ИИ. Мы делаем бизнес таким, чтобы ChatGPT и ИИ-ответы Google находили его
+    и рекомендовали, ставим агента, который принимает заказ, и связываем всё так, чтобы клиент
+    возвращался сам. Прежде чем что-то предлагать, мы разобрали ваш сайт глазами машины.
+  </p>
+  <div class="byline">
+    <span><b>Кому:</b> deFLORA Shop Flowers and Gifts</span>
+    <span><b>От:</b> Евгений Романов, Orium Studios</span>
+    <span><b>Проверено:</b> 26.08.2026</span>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Кто мы</h2></div>
+  <p class="sec-intro">
+    <b>Мы не просто ещё одна компания, которая ведёт рекламу.</b> Рекламу ведут все. Мы одни
+    из немногих, кто сейчас занимается органическим продвижением в ИИ: делает бизнес таким,
+    чтобы ChatGPT, Perplexity и ИИ-ответы Google отвечали о нём точно и рекомендовали его.
+    Сверху ставим агентов, которые принимают заказ, и системы, которые помнят клиента.
+    Три такие системы у нас сейчас в работе, все живые, с реальными клиентами внутри.
+  </p>
+  <div class="plain">
+    <p>Почему «одни из немногих»: продвижению в ИИ пара лет, и рынок про него ещё не знает.
+    Проверить легко. Спросите у любого агентства, что такое llms.txt.</p>
+    <p style="margin-bottom:0">Рекламу мы тоже ведём. Но после того, как есть куда вести трафик
+    и чем его считать: платить за клики на страницу, которой нет, смысла нет.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Если совсем коротко, что мы нашли</h2></div>
+  <p class="sec-intro">
+    Сайт у вас крепкий. Это не тот случай, когда всё надо сносить — большая часть технической
+    базы в порядке, и это честно приятно видеть. Проблема в другом: машина не может ни найти
+    вас там, где вас ищут соседи, ни рассказать о вас, когда её спрашивают.
+  </p>
+
+  <div class="score">
+    <div class="score-col good">
+      <div class="score-h">Что уже сделано хорошо</div>
+      <div class="score-sub">Это трогать не надо</div>
+      <ul>
+        <li><b>102 отзыва со средней 4,74</b> — и правильно размечены, поэтому звёздочки видны в Google</li>
+        <li><b>Карточки товаров образцовые:</b> цена, наличие, доставка, возврат — всё машиночитаемо</li>
+        <li><b>Ссылка на букет красиво разворачивается</b> в WhatsApp и Instagram</li>
+        <li><b>Роботы ИИ пущены на сайт</b> явным разрешением. Половина магазинов случайно закрыта и не знает</li>
+        <li><b>Адреса работают правильно:</b> с www и без, http и https — всё сводится в один</li>
+        <li><b>220 товаров и 53 категории</b> — каталог живой</li>
+      </ul>
+    </div>
+    <div class="score-col bad">
+      <div class="score-h">Что стоит вам заказов</div>
+      <div class="score-sub">По убыванию важности</div>
+      <ul>
+        <li><b>22 соседних района без единой страницы</b> — включая ближайшую к вам Авентуру</li>
+        <li><b>8 мест, куда вы официально возите,</b> не имеют на сайте ни одной страницы</li>
+        <li><b>Нет визитки для ИИ</b> — ChatGPT собирает факты о вас наугад</li>
+        <li><b>Страница города с опечаткой</b> — клиент видит «Pembroke Pnes»</li>
+        <li><b>Страницы городов на 90% одинаковые</b> — Google считает такое пустышкой</li>
+        <li><b>Заказ принимает только человек</b> — ночные и выходные заявки теряются</li>
+        <li><b>Система не помнит даты клиентов</b> — каждый повторный заказ добывается заново</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>Как мы это проверяли</h2></div>
+  <div class="plain">
+    <p><b>Своими глазами, а не по ощущениям.</b> Мы запрашивали ваши страницы так, как это делают
+    роботы Google, ChatGPT и Perplexity, и смотрели, что именно они получают в ответ. Всё, что
+    написано ниже — это то, что нам ответил ваш сайт 26 августа.</p>
+    <p style="margin-bottom:0"><b>Одну вещь мы не измерили и не будем выдумывать:</b> точную скорость загрузки — инструмент замера был недоступен. Балл назовём после настоящего замера.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>Главная потеря: соседи, которые вас не находят</h2></div>
+  <p class="sec-intro">
+    Человек в Санни-Айлс не пишет «цветы». Он пишет «доставка цветов Санни-Айлс» — или
+    спрашивает ChatGPT, кто возит в Санни-Айлс сегодня. И там, и там ответ строится из страницы,
+    посвящённой именно этому району. У вас её нет.
+  </p>
+
+  <div class="cities">
+    <div class="city-col">
+      <div class="city-h"><b>Страницы есть</b><span>14 городов</span></div>
+      <ul class="city-list">
+        <li>Doral</li><li>Sunrise</li><li>Plantation</li><li>Coral Springs</li>
+        <li>Pembroke Pines</li><li>Davie</li><li>Oakland Park</li><li>Olympia Heights</li>
+        <li>Miami Gardens</li><li>North Miami</li><li>North Miami Beach</li><li>Miami Shores</li>
+        <li>South Miami</li><li>Coral Gables</li>
+      </ul>
+      <p class="city-note">Плюс дубль Пемброк-Пайнс с опечаткой и 4 страницы не на город,
+      а на адрес: больница, отель и два кладбища. Почти всё это — запад округа.</p>
+    </div>
+    <div class="city-col gap">
+      <div class="city-h"><b>Страниц нет</b><span>22 района</span></div>
+      <ul class="city-list">
+        <li>Aventura — ближайший к вам район</li><li>Sunny Isles Beach</li><li>Bal Harbour</li>
+        <li>Surfside</li><li>Bay Harbor Islands</li><li>Golden Beach</li>
+        <li>Hallandale Beach</li><li>Hollywood</li><li>Miami Beach</li><li>South Beach</li>
+        <li>Brickell</li><li>Key Biscayne</li><li>Coconut Grove</li><li>Wynwood</li>
+        <li>Edgewater</li><li>Pinecrest</li><li>Kendall</li><li>Hialeah</li>
+        <li>Fort Lauderdale</li><li>Boca Raton</li><li>Weston</li><li>Miramar</li>
+      </ul>
+      <p class="city-note">Это прибрежная полоса рядом с вами — там, где живёт покупатель
+      букета за 350 долларов.</p>
+    </div>
+  </div>
+
+  <h4>Отдельно: вы уже сказали машине, что туда возите</h4>
+  <p style="color:var(--ink-soft)">
+    В технических данных сайта перечислена ваша зона доставки. Сам Майами покрыт главной
+    страницей, у Miami Gardens есть своя. Остальные восемь мест не покрыты ничем: роботу вы
+    говорите «мы возим в Халландейл», а показать по этому запросу нечего.
+  </p>
+
+  <div class="finding">
+    <div class="evidence"><span class="lbl">зона доставки, указанная в данных сайта</span>
+Dania Beach · Golden Isles · Hallandale Beach · Hialeah
+Hialeah Gardens · Hialeah Lakes · Miami Lakes · Pembroke Park
+                                <span class="bad">ни одной страницы</span>
+Miami Gardens                   <span class="good">страница есть</span>
+Miami                           <span class="good">покрыт главной</span>
+
+без страницы: <span class="bad">8 из 10</span></div>
+  </div>
+
+  <h4>И то, что лежит на поверхности: Shabbat Flowers</h4>
+  <p style="color:var(--ink-soft);margin-bottom:0">
+    У вас в каталоге есть букеты на Шаббат. Крупная религиозная община живёт как раз в
+    Сёрфсайде, Бал-Харбор, Бэй-Харбор и Авентуре — и именно для этих районов у вас нет ни одной
+    страницы. Товар есть, покупатель рядом, а связи между ними нет.
+  </p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>Что не так со страницами, которые есть</h2></div>
+  <p class="sec-intro">
+    Четырнадцать страниц городов существуют, но внутри у них один и тот же текст с подставленным
+    названием. Google такое распознаёт и почти не показывает, а ИИ-сервисы не цитируют:
+    цитировать нечего.
+  </p>
+
+  <div class="findings">
+
+    <div class="finding">
+      <div class="f-top"><span class="chip crit">Чинить первым</span>
+        <h3>Целый город с опечаткой в названии</h3></div>
+      <div class="f-body">
+        <p>На сайте две страницы Пемброк-Пайнс: правильная и с опечаткой — <strong>Pembroke
+        Pnes</strong>. Ошибка не в служебном адресе, а в заголовке, в шапке и в тексте, который
+        читает клиент. И на неё ведёт ссылка с вашей же страницы «Where We Deliver».</p>
+        <p style="margin-bottom:0">Две страницы конкурируют за один город, и часть людей попадает
+        на ту, где название их города написано с ошибкой. Это про доверие, а не только про позиции.</p>
+      </div>
+      <div class="evidence"><span class="lbl">что видит клиент на /nearby/pembroke-pnes/</span>
+заголовок вкладки  <span class="bad">Pembroke Pnes Florist | Flower Delivery…</span>
+шапка страницы     <span class="bad">Flower Delivery in Pembroke Pnes</span>
+ссылка ведёт с     /where-we-deliver/</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="chip crit">Чинить первым</span>
+        <h3>Девять слов из десяти одинаковы на всех городах</h3></div>
+      <div class="f-body">
+        <p>Мы взяли текст пяти городов, убрали названия и сравнили. Из примерно 1 650 значимых
+        слов <strong>1 508 совпадают у всех пяти сразу</strong>. Отличается название города и одна
+        вступительная фраза в духе «добро пожаловать в яркое сообщество такого-то».</p>
+        <p style="margin-bottom:0">Блок «Best Sellers» на каждом городе — одни и те же четыре
+        букета по одним и тем же ценам. Ни времени доставки по району, ни знания местных зданий
+        и консьержей, ни одного факта, который отличал бы Корал-Гейблс от Санрайза.</p>
+      </div>
+      <div class="evidence"><span class="lbl">совпадающих слов у 5 городов из ~1650</span>
+<span class="bad">1508</span>   <span class="lbl">≈ 90% текста идентично</span>
+
+<span class="lbl">«Best Sellers» — одинаково на каждом городе:</span>
+Sweet Serenity $119    Pink Euphoria $357
+Pastel Poésie  $349    Orchid Bliss  $159</div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="chip crit">Чинить первым</span>
+        <h3>Подпись в поиске одна на все города — и без города</h3></div>
+      <div class="f-body">
+        <p style="margin-bottom:0">Под ссылкой в Google человек читает короткое описание и по нему
+        решает, кликать или нет. У всех ваших страниц городов оно <strong>одно и то же, ни разу не
+        называет город</strong> и звучит как каталог чужих флористов, а не как ваш магазин.</p>
+      </div>
+      <div class="evidence"><span class="lbl">описание, дословно, на всех пяти проверенных</span>
+Doral         <span class="bad">Order fresh flowers online … Find local flower shops…</span>
+Sunrise       <span class="bad">Order fresh flowers online … Find local flower shops…</span>
+Coral Gables  <span class="bad">Order fresh flowers online … Find local flower shops…</span>
+North Miami   <span class="bad">Order fresh flowers online … Find local flower shops…</span>
+Plantation    <span class="bad">Order fresh flowers online … Find local flower shops…</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>ИИ-поиск: дверь открыта, а внутри пусто</h2></div>
+  <p class="sec-intro">
+    Всё больше людей спрашивают не Google, а ChatGPT: «посоветуй флориста в Авентуре с доставкой
+    сегодня». Ответ собирается из того, что модель смогла прочитать. Хорошая новость: к вам её
+    пускают. Плохая: читать нечего.
+  </p>
+
+  <div class="findings">
+    <div class="finding">
+      <div class="f-top"><span class="chip ok">Уже хорошо</span>
+        <h3>Роботы ИИ на сайт допущены</h3></div>
+      <div class="f-body">
+        <p style="margin-bottom:0">В настройках явно разрешены GPTBot (это ChatGPT), ClaudeBot и
+        ещё двенадцать похожих. Очень многие магазины здесь случайно закрыты и годами не понимают,
+        почему их нет в ответах. У вас это правильно — ломать не надо.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="f-top"><span class="chip crit">Чинить первым</span>
+        <h3>Нет визитки, из которой ИИ берёт факты</h3></div>
+      <div class="f-body">
+        <p>Есть простой файл — <code>llms.txt</code>. В нём по-человечески написано: кто вы, где
+        стоите, в какие районы возите, до какого часа принимаете заказ на сегодня, сколько стоит
+        доставка, что делаете на Шаббат и на еврейские праздники, как заказать корпоративную
+        подписку.</p>
+        <p style="margin-bottom:0">Модель берёт факты оттуда готовыми. Без файла она выковыривает
+        их из вёрстки — ошибается в часах и ценах или просто предпочитает конкурента, у которого
+        файл есть. Мы проверили три возможных адреса: <strong>ни одного не существует</strong>.</p>
+      </div>
+      <div class="evidence"><span class="lbl">проверка</span>
+/llms.txt        <span class="bad">нет</span>
+/llms-full.txt   <span class="bad">нет</span>
+/ai.txt          <span class="bad">нет</span>
+
+<span class="lbl">при этом на сайт допущены:</span>
+GPTBot · ClaudeBot · CCBot · Amazonbot · DeepSeekBot · +9   <span class="good">разрешены</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>Сам сайт: остальное, что мы нашли</h2></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Что</th><th>В чём дело простыми словами</th><th>Насколько важно</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Нет русской версии</b></td>
+          <td>Ни одной страницы по-русски. В Санни-Айлс, Авентуре и Голливуде это ваш прямой
+          покупатель, и ищет он по-русски. Конкуренции в русскоязычном поиске там заметно меньше.</td>
+          <td>Большая упущенная выручка</td>
+        </tr>
+        <tr>
+          <td><b>Главная «прыгает» при загрузке</b></td>
+          <td>У картинок на главной не заданы размеры и не включена отложенная загрузка. На
+          телефоне человек целится в кнопку, картинка догружается, всё съезжает, палец попадает
+          не туда. На карточках товаров, кстати, сделано правильно.</td>
+          <td>Заметно</td>
+        </tr>
+        <tr>
+          <td><b>Главная не разворачивается в мессенджере</b></td>
+          <td>Ссылка на букет приходит красивой карточкой с фото. Ссылка на сам сайт или на
+          город — голой строкой. Для бизнеса, где ссылками делятся постоянно, это обидно.</td>
+          <td>Заметно</td>
+        </tr>
+        <tr>
+          <td><b>Страница «Вопросы и ответы»</b></td>
+          <td>Носит тот же заголовок, что и главная — они мешают друг другу в поиске. И размечен
+          в ней всего один вопрос вместо всех.</td>
+          <td>Быстро чинится</td>
+        </tr>
+        <tr>
+          <td><b>Ни одной статьи</b></td>
+          <td>220 товаров и ноль текстов. Сезонный спрос — День матери, Валентин, свадьбы,
+          выпускные, Шаббат и еврейские праздники — это люди, которые сначала читают, а потом
+          покупают. Сейчас они читают у кого-то другого. Мы это закрываем, см. «Сопровождение».</td>
+          <td>Упущенная выручка</td>
+        </tr>
+        <tr>
+          <td><b>Сайт закрыт защитой от ботов</b></td>
+          <td>Обычному браузеру сайт иногда отвечает пустой страницей. Поисковых роботов защита
+          пропускает — мы проверили. Но за настройкой стоит следить: если что-то поменяется,
+          вы пропадёте из ИИ и поиска молча.</td>
+          <td>Держать в поле зрения</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">08</span><h2>Что мы предлагаем построить</h2></div>
+  <p class="sec-intro">
+    Три слоя. Первый приводит людей, второй не даёт им уйти, третий возвращает снова.
+    Брать можно по одному и в любом порядке.
+  </p>
+
+  <div class="layers">
+
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-tag">Слой 1 · с него начинают</span>
+        <span class="layer-name">Бизнес, который машина умеет прочитать</span>
+        <span class="layer-price">$2 900</span>
+      </div>
+      <div class="layer-body">
+        <p>Чтобы и Google, и ChatGPT знали, что вы возите в Авентуру к вечеру, и могли это
+        сказать человеку, который спрашивает. Сегодня они этого не знают.</p>
+        <ul>
+          <li><strong>Визитка для ИИ</strong> — llms.txt и подробная версия: зона доставки,
+          сроки, цены, часы, Шаббат, корпоративные заказы</li>
+          <li><strong>20 страниц районов</strong> с настоящим локальным текстом: Авентура и
+          прибрежная полоса, плюс все города из вашей зоны доставки</li>
+          <li>Машиночитаемая разметка на каждой странице района</li>
+          <li>Чиним существующее: город с опечаткой, заголовки и подписи 14 страниц,
+          картинки главной, разворачивание ссылок в мессенджерах</li>
+        </ul>
+      </div>
+      <div class="layer-foot">4–5 недель · дальше работает без доплат</div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-tag">Слой 2</span>
+        <span class="layer-name">Агент, который принимает заказ</span>
+        <span class="layer-price">$2 400</span>
+      </div>
+      <div class="layer-body">
+        <p>Отвечает в WhatsApp и на сайте круглосуточно, по-русски и по-английски. Подбирает
+        букет по поводу и бюджету, проверяет адрес по зоне доставки и успеваете ли вы сегодня,
+        предлагает открытку или шары, доводит до оплаты.</p>
+        <p style="margin-bottom:0">Ночные и выходные заявки перестают теряться. Сложное всегда
+        передаёт живому человеку — <strong>он не притворяется вами</strong>.</p>
+      </div>
+      <div class="layer-foot">3–4 недели · далее сопровождение</div>
+    </div>
+
+    <div class="layer">
+      <div class="layer-head">
+        <span class="layer-tag">Слой 3</span>
+        <span class="layer-name">Система, которая помнит клиента</span>
+        <span class="layer-price">$2 200</span>
+      </div>
+      <div class="layer-body">
+        <p>Человек заказал букет жене на день рождения 14 марта. Через год, 7 марта, ему сам
+        приходит вопрос: «повторяем? в прошлый раз были пионы». Это не рассылка — это его
+        собственная дата.</p>
+        <p style="margin-bottom:0">У цветочного бизнеса даты повторяются каждый год. Это самый
+        дешёвый повторный заказ, который вообще бывает, и сейчас вы его не собираете. Сюда же —
+        фото доставленного букета заказчику и автоматическая просьба об отзыве через день.</p>
+      </div>
+      <div class="layer-foot">3–4 недели · собираем базу дат из уже сделанных заказов</div>
+    </div>
+
+  </div>
+
+  <div class="bundle">
+    <div>
+      <p class="bundle-t">Все три слоя вместе</p>
+      <p class="bundle-s">Имеет смысл брать целиком: агент опирается на зону доставки из первого
+      слоя, а память о клиенте — на заказы, которые проводит агент.</p>
+    </div>
+    <div class="bundle-p">$6 900<small>вместо $7 500</small></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">09</span><h2>Когда это окупается</h2></div>
+  <div class="roi">
+    <p class="roi-h">Считаем по вашим же ценам</p>
+    <p class="roi-sub">
+      Четыре букета, которые сейчас показаны на каждой странице города — $119, $357, $349 и
+      $159 — это в среднем <b>$246 за заказ</b>.
+    </p>
+    <div class="roi-row">
+      <span class="roi-what"><b>Слой 1</b> — $2 900</span>
+      <span class="roi-n">12<small>заказов</small></span>
+    </div>
+    <div class="roi-row">
+      <span class="roi-what"><b>Слой 2</b> — $2 400</span>
+      <span class="roi-n">10<small>заказов</small></span>
+    </div>
+    <div class="roi-row">
+      <span class="roi-what"><b>Слой 3</b> — $2 200</span>
+      <span class="roi-n">9<small>заказов</small></span>
+    </div>
+    <div class="roi-row">
+      <span class="roi-what"><b>Все три вместе</b> — $6 900, один раз</span>
+      <span class="roi-n">28<small>заказов</small></span>
+    </div>
+    <p class="roi-note">
+      Это порог по выручке, а не по прибыли — вашу маржу знаете только вы, подставьте свою и
+      цифры сдвинутся. И главное отличие от рекламы: двадцать две страницы районов и работающий
+      агент делаются один раз и продолжают приводить людей, когда бюджет уже потрачен.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">10</span><h2>Сопровождение</h2></div>
+  <p class="sec-intro">
+    Построенное надо поддерживать: следить, что агент отвечает правильно, добавлять районы по
+    мере расширения доставки, проверять, что именно ИИ рассказывает о вас. Без долгого
+    контракта — останавливается в любой месяц.
+  </p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Формат</th><th>Что входит</th><th class="num">Цена</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Наблюдение</b></td>
+          <td>Проверяем, что отвечают о вас ChatGPT, Perplexity и ИИ-ответы Google, следим за
+          позициями по районам, чиним поломки. Отчёт человеческим языком раз в месяц.</td>
+          <td class="num"><b>$600</b>/мес</td>
+        </tr>
+        <tr>
+          <td><b>Развитие</b><br><span style="color:var(--stem);font-size:13.5px">рекомендуем</span></td>
+          <td>Всё из «Наблюдения» плюс работа с агентом — разбираем реальные диалоги и делаем его
+          точнее, — два новых района в месяц и подготовка к пикам (Валентин, День матери)
+          заранее, а не в последнюю неделю.</td>
+          <td class="num"><b>$1 200</b>/мес</td>
+        </tr>
+        <tr>
+          <td><b>Сезонный контент</b><br><span style="color:var(--ink-faint);font-size:13.5px">отдельно</span></td>
+          <td>Четыре текста в месяц под ближайшие поводы плюс описания к карточкам. С местной
+          конкретикой: что заказывают в Сёрфсайде на Шаббат, что берут на quinceañera, что успеваем
+          довезти в Авентуру к вечеру. Иначе выйдет то же, за что мы ругаем ваши страницы городов.</td>
+          <td class="num"><b>$400</b>/мес</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--ink-faint);font-size:14px;margin-top:16px">
+    Проблем на сайте мы нашли больше, чем вынесли в это предложение. Главная — органика,
+    с неё и предлагаем начать. Остальное — русская версия, скорость, описания к товарам,
+    корпоративные подписки для отелей и ресторанов, платное привлечение, полноценная CRM —
+    быстрее обсудить голосом за двадцать минут, чем расписывать здесь.
+  </p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">11</span><h2>Одна вещь, которую надо проверить до старта</h2></div>
+  <div class="caveat">
+    <p><b>Сайт работает на платформе BloomNation.</b> Это готовая платформа для флористов, и часть
+    первого слоя зависит от того, какой доступ она вам даёт: можно ли положить визитку для ИИ в
+    корень сайта, редактируются ли настройки роботов, можно ли добавлять свои блоки и заводить
+    новые страницы районов.</p>
+    <p style="margin-bottom:0">Судя по вашим существующим страницам, часть доступа точно есть.
+    Но прежде чем подписывать смету, мы <b>за свой счёт</b> уточним объём доступа — один разговор
+    с их поддержкой. Если чего-то платформа не позволит, мы уберём это из сметы и снизим цену,
+    а не будем делать вид, что сделали. Второй и третий слои от платформы не зависят вовсе.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">12</span><h2>Как начинаем</h2></div>
+  <ol class="steps">
+    <li><b>Разговор на 20 минут.</b> Куда реально возите и до какого часа, какие районы дают
+    лучший чек, что заказывают чаще всего, как сейчас принимаются заказы и что теряется. Без
+    этого ни локальный текст, ни агента не сделать.</li>
+    <li><b>Проверяем доступ к платформе.</b> За наш счёт, до сметы.</li>
+    <li><b>Фиксируем слои и сроки.</b> Половина в начале, половина по сдаче.</li>
+    <li><b>Первой делаем Авентуру и прибрежную полосу.</b> Ближе всего, дороже чек, быстрее
+    виден результат.</li>
+    <li><b>Через месяц смотрим на цифры</b> и решаем, идём ли во второй слой.</li>
+  </ol>
+</section>
+
+<section class="signoff">
+  <div class="sign-card">
+    <div class="sign-left">
+      <p class="sign-label">Готов ответить на любой вопрос по этому документу</p>
+      <p class="sign-name">Евгений Романов</p>
+      <p class="sign-role">CEO, Orium Studios</p>
+    </div>
+    <div class="sign-right">
+      <a class="sign-phone" href="tel:+17863051844">786-305-1844</a>
+      <p class="sign-note">Звоните или пишите в WhatsApp — по-русски или по-английски</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Orium Studios · Евгений Романов · 786-305-1844</span>
+  <span>Все данные проверены на живом сайте 26 августа 2026</span>
+</footer>
+
+</div>
+
+</body></html>
