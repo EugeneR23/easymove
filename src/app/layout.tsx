@@ -246,9 +246,10 @@ const localBusinessSchema = {
       },
     ],
   },
-  // Spoken languages only. The site also publishes Ukrainian pages, but no one
-  // here speaks Ukrainian, so 'uk' does not belong in a spoken-language claim.
-  knowsLanguage: ['en', 'ru'],
+  // Spoken languages. Roughly a third of the crew speaks Ukrainian, so 'uk'
+  // belongs here; the contactPoint below stays English/Russian because dispatch
+  // and written estimates are handled in those two.
+  knowsLanguage: ['en', 'ru', 'uk'],
   slogan: 'Local moving and small handyman in South Florida',
 };
 
