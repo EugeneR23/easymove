@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { whatsappUrl } from '@/lib/utils';
+import { RU_PAIRED_PATHS, UA_PAIRED_PATHS } from '@/lib/data/localePairs';
 
 const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
@@ -29,7 +30,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isRu = pathname.startsWith('/ru');
-  const isHome = pathname === '/' || pathname === '/ru';
+  const isUa = pathname.startsWith('/ua');
+  const isHome = pathname === '/' || pathname === '/ru' || pathname === '/ua';
   const NAV_LINKS = isRu ? NAV_LINKS_RU : NAV_LINKS_EN;
 
   useEffect(() => {
@@ -38,21 +40,29 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  // Pages that exist in both languages — switch to the counterpart rather than
-  // dumping the visitor on the homepage and losing their place.
-  const PAIRED_PATHS = [
-    'about', 'services', 'pricing', 'contact',
-    'miami-movers', 'fort-lauderdale-movers', 'sunny-isles-movers',
-    'aventura-movers', 'hollywood-movers', 'hallandale-beach-movers',
-  ];
+  // Which counterparts exist is read from lib/data/localePairs, so the switch
+  // cannot drift from the pages that actually exist — scripts/links.test.ts
+  // fails when it does. The hand-kept list this replaced had already gone
+  // stale: nine dual-language cities shipped while it still knew six, and every
+  // one of them dropped the visitor on the homepage instead of the counterpart.
+  const bare = pathname.replace(/^\/(ru|ua)\/?/, '').replace(/^\//, '');
 
-  const langSwitch = (() => {
-    if (isRu) {
-      const rest = pathname.replace(/^\/ru\/?/, '');
-      return { href: rest && PAIRED_PATHS.includes(rest) ? `/${rest}` : '/', label: 'EN' };
-    }
-    const rest = pathname.replace(/^\//, '');
-    return { href: rest && PAIRED_PATHS.includes(rest) ? `/ru/${rest}` : '/ru', label: 'RU' };
+  /** The other locales this path exists in. The current one is filtered out. */
+  const langLinks = (() => {
+    const en = { href: bare ? `/${bare}` : '/', label: 'EN', hl: 'en', active: !isRu && !isUa };
+    const ru = {
+      href: bare && RU_PAIRED_PATHS.includes(bare) ? `/ru/${bare}` : '/ru',
+      label: 'RU',
+      hl: 'ru',
+      active: isRu,
+    };
+    const ua = {
+      href: bare && UA_PAIRED_PATHS.includes(bare) ? `/ua/${bare}` : '/ua',
+      label: 'UA',
+      hl: 'uk',
+      active: isUa,
+    };
+    return [en, ru, ua].filter((l) => !l.active);
   })();
 
   const textColor = scrolled || !isHome ? 'text-white' : 'text-white';
@@ -90,13 +100,19 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Language switcher */}
-            <Link
-              href={langSwitch.href}
-              className="text-[11px] font-bold tracking-wider border border-white/30 text-white/60 px-2.5 py-1 hover:border-gold hover:text-gold transition-all duration-200"
-            >
-              {langSwitch.label}
-            </Link>
+            {/* Language switcher — the two locales you are not currently in */}
+            <div className="flex items-center gap-1">
+              {langLinks.map((l) => (
+                <Link
+                  key={l.label}
+                  href={l.href}
+                  hrefLang={l.hl}
+                  className="text-[11px] font-bold tracking-wider border border-white/30 text-white/60 px-2.5 py-1 hover:border-gold hover:text-gold transition-all duration-200"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
 
             {/* WhatsApp */}
             <a
@@ -128,12 +144,16 @@ export default function Header() {
 
           {/* Mobile: lang + phone + hamburger */}
           <div className="md:hidden flex items-center gap-1">
-            <Link
-              href={langSwitch.href}
-              className="text-[10px] font-bold tracking-wider border border-white/30 text-white/60 px-2 py-0.5"
-            >
-              {langSwitch.label}
-            </Link>
+            {langLinks.map((l) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                hrefLang={l.hl}
+                className="text-[10px] font-bold tracking-wider border border-white/30 text-white/60 px-2 py-0.5"
+              >
+                {l.label}
+              </Link>
+            ))}
             <a
               href="tel:+17863051844"
               aria-label="Call us"
