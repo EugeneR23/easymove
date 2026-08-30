@@ -10,6 +10,7 @@ import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-re
 import { CITIES, type CityData } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
+import { COST_PAGES } from '@/lib/data/costPages';
 
 
 const SERVICES = {
@@ -267,6 +268,9 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const trust = TRUST[locale];
   const isRu = locale === 'ru';
   const isUa = locale === 'ua';
+  // The cost page for this city, when one has been written.
+  const citySlugBare = city.slug.replace(/^(ru|ua)\//, '');
+  const costPage = COST_PAGES.find((c) => c.citySlug === citySlugBare);
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
@@ -526,6 +530,17 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
         {/* ── Nearby cities ─────────────────────────────────────────────── */}
         <section className="section-padding bg-white border-t border-gray-100">
           <div className="container-max max-w-4xl mx-auto text-center">
+            {costPage && (
+              <p className="text-gray-500 text-sm mb-8">
+                <Link href={`/${costPage.slug}`} className="text-gold hover:underline">
+                  {isRu
+                    ? `Сколько стоит переезд в ${city.name} — цены 2026`
+                    : isUa
+                      ? `Скільки коштує переїзд у ${city.name} — ціни 2026`
+                      : `How much do movers cost in ${city.name}? 2026 prices`}
+                </Link>
+              </p>
+            )}
             <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-4">
               {isRu ? 'Другие города' : isUa ? 'Інші міста' : 'We also move in'}
             </p>

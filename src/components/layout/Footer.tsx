@@ -119,6 +119,35 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+          <p className="text-center text-xs">
+            <Link href="/russian-speaking-movers-miami" className="text-gray-500 hover:text-gold transition-colors" hrefLang="en">
+              Russian-speaking movers in Miami — in English
+            </Link>
+          </p>
+        </div>
+
+        {/* Ukrainian pages. Same reasoning as the Russian block above: without a
+            link here the whole locale is reachable only from the header switch
+            and the sitemap, which is how twenty-five pages shipped orphaned. */}
+        <div className="border-t border-white/5 mt-8 pt-8" lang="uk">
+          <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-3">
+            Говоримо українською
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs">
+            {[
+              { href: '/ua', label: 'Головна' },
+              { href: '/ua/miami-movers', label: 'Маямі' },
+              { href: '/ua/sunny-isles-movers', label: 'Санні-Айлс' },
+              { href: '/ua/aventura-movers', label: 'Авентура' },
+              { href: '/ua/hallandale-beach-movers', label: 'Галландейл' },
+              { href: '/ua/hollywood-movers', label: 'Голлівуд' },
+              { href: '/ua/fort-lauderdale-movers', label: 'Форт-Лодердейл' },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Service area */}
