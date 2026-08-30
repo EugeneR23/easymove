@@ -65,7 +65,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
     pricing.truckFee  > 0 ? {
       label: pricing.isLongDistance
         ? `Long-distance transport${pricing.travelMiles > 0 ? ` — ~${pricing.travelMiles} mi` : ''}`
-        : 'Truck — flat per day (fuel, tolls & mileage included)',
+        : 'Truck — per day at the crew rate (fuel, tolls & mileage included)',
       value: pricing.truckFee,
     } : null,
     pricing.travelFee > 0 ? { label: travelLabel, value: pricing.travelFee } : null,

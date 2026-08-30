@@ -218,7 +218,7 @@ const offerJson = JSON.stringify({
         price: TRUCK_FEE[2],
         priceCurrency: 'USD',
         unitText: 'DAY',
-        name: 'Truck fee — flat per day, separate line item; fuel, tolls and mileage included',
+        name: 'Truck fee — per day at the crew rate, separate line item; fuel, tolls and mileage included',
       },
     ],
   },

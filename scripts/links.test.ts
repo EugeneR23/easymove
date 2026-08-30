@@ -14,8 +14,8 @@ import { join } from 'node:path';
 import { CITIES } from '../src/lib/data/cities';
 import { CITIES_RU } from '../src/lib/data/citiesRu';
 import { CITIES_UA } from '../src/lib/data/citiesUa';
-import { COST_PAGES } from '../src/lib/data/costPages';
-import { ROUTE_PAGES } from '../src/lib/data/routePages';
+import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '../src/lib/data/costPages';
+import { ROUTE_PAGES, ROUTE_PAGES_RU } from '../src/lib/data/routePages';
 import { PAIRED_SLUGS } from '../src/lib/data/localePairs';
 
 let failed = 0;
@@ -93,7 +93,33 @@ check('Ukrainian section is reachable from outside /ua', uaInbound.length > 0, u
 const rsInbound = inboundLinks('russian-speaking-movers-miami');
 check('russian-speaking page has an inbound internal link', rsInbound.length > 0, rsInbound);
 
-console.log('\n[2] Locale switch pairs match the data');
+// The localised cost and route pages carry the same orphan risk the English
+// ones did — they ship unreachable unless something points at them.
+const costRuLinked =
+  COST_PAGES_RU.some((c) => inboundLinks(c.slug).length > 0) || dataDrivenLinkExists('COST_PAGES_RU');
+check('Russian cost pages have an inbound internal link', costRuLinked, costRuLinked);
+
+const costUaLinked =
+  COST_PAGES_UA.some((c) => inboundLinks(c.slug).length > 0) || dataDrivenLinkExists('COST_PAGES_UA');
+check('Ukrainian cost pages have an inbound internal link', costUaLinked, costUaLinked);
+
+const routeRuLinked =
+  ROUTE_PAGES_RU.some((r) => inboundLinks(r.slug).length > 0) || dataDrivenLinkExists('ROUTE_PAGES_RU');
+check('Russian route pages have an inbound internal link', routeRuLinked, routeRuLinked);
+
+console.log('\n[2] Localised pages agree with the shared data');
+// A localised route must never claim a band the English table does not publish.
+const enRouteSlugs = new Set(ROUTE_PAGES.map((r) => r.slug));
+const orphanBand = ROUTE_PAGES_RU.filter((r) => r.hasBand && !enRouteSlugs.has(r.slug.replace(/^ru\//, '')));
+check('every banded RU route has an English counterpart band', orphanBand.length === 0, orphanBand.map((r) => r.slug));
+
+const ruCityLinks = COST_PAGES_RU.filter((c) => !c.citySlug.startsWith('ru/')).map((c) => c.slug);
+check('RU cost pages link to RU city pages', ruCityLinks.length === 0, ruCityLinks);
+
+const uaCityLinks = COST_PAGES_UA.filter((c) => !c.citySlug.startsWith('ua/')).map((c) => c.slug);
+check('UA cost pages link to UA city pages', uaCityLinks.length === 0, uaCityLinks);
+
+console.log('\n[3] Locale switch pairs match the data');
 const ruSlugs = Array.from(new Set(CITIES_RU.map((c) => c.slug.replace(/^ru\//, ''))));
 const uaSlugs = Array.from(new Set(CITIES_UA.map((c) => c.slug.replace(/^ua\//, ''))));
 const enSlugs = new Set(CITIES.map((c) => c.slug));
@@ -112,7 +138,7 @@ check('no RU pair points at a missing English page', ruWithoutEn.length === 0, r
 const uaWithoutEn = uaPairs.filter((s) => !enSlugs.has(s));
 check('no UA pair points at a missing English page', uaWithoutEn.length === 0, uaWithoutEn);
 
-console.log('\n[3] Cost pages reference real city pages');
+console.log('\n[4] Cost pages reference real city pages');
 const badCitySlug = COST_PAGES.filter((c) => !enSlugs.has(c.citySlug)).map((c) => c.slug);
 check('every cost page citySlug resolves', badCitySlug.length === 0, badCitySlug);
 
