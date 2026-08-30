@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     description:
       'Owner-operated from Hollywood, FL. Meet Evgenii Romanov, who writes the estimates, calls your building and answers the phone himself.',
     url: 'https://www.easy-move-florida.com/about',
+    images: [{ url: 'https://www.easy-move-florida.com/images/Hero.png', width: 1200, height: 630, alt: 'Easy Move Florida — movers in South Florida' }],
   },
   twitter: {
     card: 'summary_large_image',

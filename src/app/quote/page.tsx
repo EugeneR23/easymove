@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     description:
       'Free written moving estimate in under 2 minutes. No obligation. A real coordinator reviews your details and confirms pricing.',
     url: 'https://www.easy-move-florida.com/quote',
+    images: [{ url: 'https://www.easy-move-florida.com/images/Hero.png', width: 1200, height: 630, alt: 'Easy Move Florida — movers in South Florida' }],
   },
   twitter: {
     card: 'summary_large_image',

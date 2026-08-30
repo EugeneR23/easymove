@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     description:
       'Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack. Owner-led crews, from $237.',
     url: 'https://www.easy-move-florida.com/packing-services',
+    images: [{ url: 'https://www.easy-move-florida.com/images/Hero.png', width: 1200, height: 630, alt: 'Easy Move Florida — movers in South Florida' }],
   },
 };
 

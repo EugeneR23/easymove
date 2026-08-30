@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: 'Moving Resources & Guides — South Florida | Easy Move Florida',
     description: 'Practical moving guides from a working South Florida mover.',
     url: 'https://www.easy-move-florida.com/blog',
+    images: [{ url: 'https://www.easy-move-florida.com/images/Hero.png', width: 1200, height: 630, alt: 'Easy Move Florida — movers in South Florida' }],
   },
 };
 
