@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle, Truck } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { DISTANCE_ROUTES } from '@/lib/data/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -39,20 +40,6 @@ export const metadata: Metadata = {
     images: [`${siteUrl}/images/Hero.png`],
   },
 };
-
-// Long-distance route price bands (dedicated truck, no shared loads).
-// Every job starts at the $1,500 interstate minimum — no cell may sit below it.
-// [TODO: confirm with Evgenii] these route ranges are estimates, not booked-job data.
-const DISTANCE_ROUTES = [
-  { route: 'Miami → Orlando',       studio: '$1,500–$1,800', oneBr: '$1,600–$2,200', twoBr: '$2,200–$2,900', threeBr: '$3,000–$4,200' },
-  { route: 'Miami → Tampa',         studio: '$1,500–$1,700', oneBr: '$1,500–$2,100', twoBr: '$2,100–$2,800', threeBr: '$2,800–$4,000' },
-  { route: 'Miami → Jacksonville',  studio: '$1,600–$2,200', oneBr: '$1,900–$2,600', twoBr: '$2,600–$3,500', threeBr: '$3,500–$5,000' },
-  { route: 'Miami → Atlanta',       studio: '$2,200–$3,000', oneBr: '$2,800–$3,800', twoBr: '$3,800–$5,200', threeBr: '$5,200–$7,500' },
-  { route: 'Miami → New York',      studio: '$2,800–$3,800', oneBr: '$3,600–$4,800', twoBr: '$4,800–$6,500', threeBr: '$6,500–$9,500' },
-  { route: 'Miami → Boston',        studio: '$3,000–$4,000', oneBr: '$3,800–$5,100', twoBr: '$5,100–$6,900', threeBr: '$6,900–$10,000' },
-  { route: 'Miami → Washington DC', studio: '$2,500–$3,400', oneBr: '$3,100–$4,200', twoBr: '$4,200–$5,700', threeBr: '$5,700–$8,300' },
-  { route: 'Hollywood → Charlotte', studio: '$2,000–$2,700', oneBr: '$2,500–$3,400', twoBr: '$3,400–$4,600', threeBr: '$4,600–$6,700' },
-];
 
 // Typical totals — hours band × hourly rate + that crew's truck fee. The truck
 // is charged at the crew rate: 2 movers $129, 3 movers $179, 4 movers $219.
@@ -500,7 +487,7 @@ export default function PricingPage() {
                       <td className="px-6 py-5">
                         <div className="flex items-center gap-2 font-semibold text-charcoal text-sm md:text-base">
                           <Truck size={14} className="text-gold shrink-0" />
-                          <span>{r.route}</span>
+                          <Link href={`/${r.slug}`} className="hover:text-gold transition-colors">{r.route}</Link>
                         </div>
                       </td>
                       <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.studio}</td>
