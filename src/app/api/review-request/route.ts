@@ -20,6 +20,18 @@ export async function POST(req: NextRequest) {
       channel?: 'sms' | 'email' | 'both';
       moveCity?: string;
       moveType?: string;
+      /**
+       * Adds one sentence suggesting the reviewer mention the Russian-speaking
+       * service — in English. A ChatGPT recommendation of a competitor traced
+       * to a single Google review containing the words "Russian speaking
+       * service": AI assistants treat our own site as claims and review text
+       * as evidence, so those words are worth more in a review than anywhere
+       * on the site. Suggesting a topic is within Google's review policy;
+       * scripting the text or offering anything for it is not, so the line
+       * stays an optional hint. Defaults on; pass false for clients where the
+       * language angle is irrelevant.
+       */
+      russianSpeaking?: boolean;
     };
 
     const channel = body.channel ?? (body.email && body.phone ? 'both' : body.email ? 'email' : 'sms');
@@ -36,6 +48,7 @@ export async function POST(req: NextRequest) {
     const moveContext = body.moveCity
       ? ` your move${body.moveType ? ` (${body.moveType})` : ''} in ${body.moveCity}`
       : ' your move';
+    const mentionRussian = body.russianSpeaking !== false;
 
     const results: Record<string, boolean | string> = {};
 
@@ -43,6 +56,9 @@ export async function POST(req: NextRequest) {
       const smsBody =
         `Hi ${firstName}! It was a pleasure handling${moveContext}. ` +
         `If you have 30 seconds, an honest Google review means everything to a small business like ours:\n${REVIEW_URL}\n` +
+        (mentionRussian
+          ? `If our Russian-speaking crew made a difference for you, mentioning that helps other families find us.\n`
+          : '') +
         `— Evgenii, Easy Move Florida\nReply STOP to opt out.`;
       try {
         await sendSMS(body.phone, smsBody);
@@ -64,7 +80,9 @@ export async function POST(req: NextRequest) {
               Leave a Google Review
             </a>
           </p>
-          <p>Even one or two sentences is more than enough.</p>
+          <p>Even one or two sentences is more than enough.${mentionRussian
+            ? ' And if our Russian-speaking crew made a difference for you, mentioning that in your review helps other families find us — it is the first thing many of them search for.'
+            : ''}</p>
           <p>If anything didn't meet your expectations, please reply to this email first — I'd rather hear from you directly and make it right.</p>
           <p>— Evgenii Romanov<br/>Owner, Easy Move Florida<br/>786-305-1844</p>
         </div>
