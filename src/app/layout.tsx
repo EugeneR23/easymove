@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: ['ru_RU'],
+    alternateLocale: ['ru_RU', 'uk_UA'],
     siteName: 'Easy Move Florida',
     url: siteUrl,
     title: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
@@ -85,6 +85,7 @@ export const metadata: Metadata = {
     languages: {
       'en': siteUrl,
       'ru': `${siteUrl}/ru`,
+      'uk': `${siteUrl}/ua`,
       'x-default': siteUrl,
     },
   },
@@ -245,6 +246,8 @@ const localBusinessSchema = {
       },
     ],
   },
+  // Spoken languages only. The site also publishes Ukrainian pages, but no one
+  // here speaks Ukrainian, so 'uk' does not belong in a spoken-language claim.
   knowsLanguage: ['en', 'ru'],
   slogan: 'Local moving and small handyman in South Florida',
 };

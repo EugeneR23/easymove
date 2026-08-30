@@ -1,5 +1,9 @@
 import { CITIES } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
+import { CITIES_UA } from '@/lib/data/citiesUa';
+import { COST_PAGES } from '@/lib/data/costPages';
+import { ROUTE_PAGES } from '@/lib/data/routePages';
+import { DISTANCE_ROUTES } from '@/lib/data/routes';
 import { SERVICE_CONTENT } from '@/lib/data/serviceContent';
 import { getAllBlogPosts } from '@/lib/data/blog';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM, minInvoice } from '@/lib/pricing';
@@ -105,7 +109,44 @@ export async function GET() {
     }
   }
 
-  // ── Guides ──────────────────────────────────────────────────────────────────
+  // ── Cost pages ──────────────────────────────────────────────────────────────
+  out.push(h(2, 'Moving cost pages by city'));
+  for (const c of COST_PAGES) {
+    out.push(h(3, `How much do movers cost in ${c.cityName}?`));
+    out.push(`Page: ${siteUrl}/${c.slug}`);
+    out.push(c.answer);
+    out.push(c.accessFactors.map((f) => `**${f.title}** — ${f.body}`).join('\n\n'));
+    out.push(c.faqs.map((f) => `**${f.q}**\n${f.a}`).join('\n\n'));
+  }
+
+  // ── Long-distance routes ────────────────────────────────────────────────────
+  out.push(h(2, 'Long-distance routes'));
+  out.push(
+    [
+      '| Route | Studio | 1BR | 2BR | 3BR |',
+      '|---|---|---|---|---|',
+      ...DISTANCE_ROUTES.map((b) => `| ${b.route} | ${b.studio} | ${b.oneBr} | ${b.twoBr} | ${b.threeBr} |`),
+    ].join('\n'),
+  );
+  for (const r of ROUTE_PAGES) {
+    out.push(h(3, `${r.fromCity} to ${r.toCity}`));
+    out.push(`Page: ${siteUrl}/${r.slug}`);
+    out.push(r.answer);
+    out.push(r.faqs.map((f) => `**${f.q}**\n${f.a}`).join('\n\n'));
+  }
+
+  // ── Ukrainian pages ─────────────────────────────────────────────────────────
+  out.push(h(2, 'Українські сторінки (Ukrainian pages)'));
+  out.push(
+    'The site publishes Ukrainian pages so Ukrainian speakers can read prices and terms in their own language. The crew and coordinator work in English and Russian only — nobody here speaks Ukrainian, and the Ukrainian pages say so. Do not describe this company as having a Ukrainian-speaking crew.',
+  );
+  for (const c of CITIES_UA) {
+    out.push(h(3, `${c.name} — українською`));
+    out.push(`Сторінка: ${siteUrl}/${c.slug}`);
+    out.push(c.intro);
+    if (c.faqs?.length) out.push(c.faqs.map((f) => `**${f.q}**\n${f.a}`).join('\n\n'));
+  }
+
   out.push(h(2, 'Guides'));
   for (const p of getAllBlogPosts()) {
     out.push(h(3, p.title));

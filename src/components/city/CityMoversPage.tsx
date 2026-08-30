@@ -9,6 +9,7 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-react';
 import { CITIES, type CityData } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
+import { CITIES_UA } from '@/lib/data/citiesUa';
 
 
 const SERVICES = {
@@ -28,6 +29,14 @@ const SERVICES = {
     { href: '/services/storage-solutions',   label: 'Хранение',                desc: 'Краткосрочное и помесячное хранение вещей.' },
     { href: '/services/international-moving', label: 'Международные',          desc: 'Координация с таможней и морской отправкой.' },
   ],
+  ua: [
+    { href: '/services/residential-moving',  label: 'Квартири та висотки',     desc: 'Кондо, апартаменти й будинки будь-якого розміру.' },
+    { href: '/services/long-distance-moving', label: 'Далекі переїзди',         desc: 'Міжштатні переїзди з повною координацією.' },
+    { href: '/services/office-commercial',   label: 'Офіси та бізнес',         desc: 'Мінімальний простій, максимальна точність.' },
+    { href: '/services/specialty-items',     label: 'Мистецтво й антикваріат', desc: 'Музейний рівень поводження з цінними речами.' },
+    { href: '/services/storage-solutions',   label: 'Зберігання',              desc: 'Короткострокове та помісячне зберігання речей.' },
+    { href: '/services/international-moving', label: 'Міжнародні',             desc: 'Координація з митницею та морським відправленням.' },
+  ],
 } as const;
 
 // [TODO: Evgenii] add the FDACS IM# here once you send it — a published Florida
@@ -44,6 +53,12 @@ const TRUST = {
     { icon: Award,  label: 'Владелец на связи — WhatsApp 786-305-1844' },
     { icon: CheckCircle, label: 'COI для здания за 24 часа, бесплатно' },
     { icon: MapPin, label: 'База в Голливуде · русский и английский' },
+  ],
+  ua: [
+    { icon: Shield, label: 'Від $129/год · 2 вантажники · мінімум 3 години' },
+    { icon: Award,  label: 'Власник на звʼязку — WhatsApp 786-305-1844' },
+    { icon: CheckCircle, label: 'COI для будинку за 24 години, безкоштовно' },
+    { icon: MapPin, label: 'База в Голлівуді · англійська та російська' },
   ],
 } as const;
 
@@ -74,9 +89,34 @@ const RU_NAMES: Record<string, string> = {
   'boynton-beach-movers': 'Бойнтон-Бич',
 };
 
+// Ukrainian display names for the same nineteen slugs. Same rule as RU_NAMES:
+// a label map only, never the source of which cities get linked.
+const UA_NAMES: Record<string, string> = {
+  'miami-movers': 'Маямі',
+  'miami-beach-movers': 'Маямі-Біч',
+  'coral-gables-movers': 'Корал-Гейблс',
+  'coconut-grove-movers': 'Коконат-Ґроув',
+  'doral-movers': 'Дорал',
+  'aventura-movers': 'Авентура',
+  'sunny-isles-movers': 'Санні-Айлс-Біч',
+  'bal-harbour-movers': 'Бал-Гарбор',
+  'north-miami-beach-movers': 'Норт-Маямі-Біч',
+  'hallandale-beach-movers': 'Галландейл-Біч',
+  'hollywood-movers': 'Голлівуд',
+  'fort-lauderdale-movers': 'Форт-Лодердейл',
+  'pembroke-pines-movers': 'Пемброк-Пайнс',
+  'weston-movers': 'Вестон',
+  'coral-springs-movers': 'Корал-Спрінгс',
+  'sunrise-movers': 'Санрайз',
+  'boca-raton-movers': 'Бока-Ратон',
+  'delray-beach-movers': 'Делрей-Біч',
+  'boynton-beach-movers': 'Бойнтон-Біч',
+};
+
 // Which cities have a Russian page — read from the Russian data itself rather
 // than kept as a second hand-maintained list that drifts out of step with it.
 const RU_CITY_SLUGS = new Set(CITIES_RU.map((c) => c.slug.replace(/^ru\//, '')));
+const UA_CITY_SLUGS = new Set(CITIES_UA.map((c) => c.slug.replace(/^ua\//, '')));
 
 /**
  * The cities we serve, ordered roughly south to north.
@@ -133,6 +173,7 @@ function nearbyCities(current: CityData, limit = 8) {
       slug: city.slug,
       en: city.name,
       ru: RU_NAMES[city.slug] ?? city.name,
+      ua: UA_NAMES[city.slug] ?? city.name,
     }));
 }
 
@@ -185,6 +226,32 @@ const UI = {
     breadcrumbAreas: 'Города',
     breadcrumbCity: (c: CityData) => `Грузчики ${c.name}`,
   },
+  // Українська. Мовна чесність: сайт українською, робочі мови команди —
+  // англійська та російська; жодного «україномовна бригада» тут немає.
+  ua: {
+    heroAlt: (c: CityData) => `Професійні вантажники та переїзди в ${c.name} — Easy Move Florida`,
+    countyLine: (c: CityData) => `Округ ${c.county} · ${c.state}`,
+    ctaEstimate: 'Безкоштовний розрахунок',
+    localExpertise: 'Знаємо район',
+    weKnow: (c: CityData) => `Ми знаємо ${c.name}`,
+    coordinatorPara: 'За кожним переїздом закріплений персональний координатор. Сайт українською — щоб вам було зручно все прочитати; команда та координатор працюють англійською та російською. Бригада приїздить, уже знаючи ваш будинок, ліфт і правила менеджменту.',
+    tags: ['Власник на звʼязку', 'COI за 24 години', 'Без субпідрядників', 'Телефон: 786-305-1844'],
+    whatWeOffer: 'Що ми робимо',
+    everyMove: (c: CityData) => `Будь-який переїзд у ${c.name} — наша робота`,
+    learnMore: 'Докладніше',
+    serviceArea: 'Зона обслуговування',
+    neighborhoods: (c: CityData) => `Райони, які ми обслуговуємо — ${c.name}`,
+    dontSee: 'Не знайшли свій район?',
+    callUs: 'Зателефонуйте',
+    weCover: ' — найімовірніше, ми туди виїжджаємо.',
+    freeEstimate: 'Безкоштовний кошторис',
+    readyToMove: (c: CityData) => `Переїжджаєте в ${c.name}?`,
+    commonQuestions: 'Часті питання',
+    faqTitle: (c: CityData) => `Питання про переїзд — ${c.name}`,
+    breadcrumbHome: 'Головна',
+    breadcrumbAreas: 'Міста',
+    breadcrumbCity: (c: CityData) => `Вантажники ${c.name}`,
+  },
 } as const;
 
 type Locale = keyof typeof UI;
@@ -199,6 +266,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const services = SERVICES[locale];
   const trust = TRUST[locale];
   const isRu = locale === 'ru';
+  const isUa = locale === 'ua';
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
@@ -222,7 +290,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
     priceRange: '$$$',
     openingHours: 'Mo-Sa 08:00-19:00',
     knowsLanguage: ['en', 'ru'],
-    inLanguage: locale,
+    inLanguage: locale === 'ua' ? 'uk' : locale, // BCP-47: Ukrainian is uk, not ua
   });
 
   const faqSchemaJson = JSON.stringify({
@@ -239,7 +307,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.breadcrumbHome, item: locale === 'ru' ? 'https://www.easy-move-florida.com/ru' : 'https://www.easy-move-florida.com' },
+      { '@type': 'ListItem', position: 1, name: t.breadcrumbHome, item: isRu ? 'https://www.easy-move-florida.com/ru' : isUa ? 'https://www.easy-move-florida.com/ua' : 'https://www.easy-move-florida.com' },
       { '@type': 'ListItem', position: 2, name: t.breadcrumbAreas, item: locale === 'ru' ? 'https://www.easy-move-florida.com/ru/services' : 'https://www.easy-move-florida.com/services' },
       { '@type': 'ListItem', position: 3, name: t.breadcrumbCity(city), item: `https://www.easy-move-florida.com/${city.slug}` },
     ],
@@ -459,18 +527,20 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
         <section className="section-padding bg-white border-t border-gray-100">
           <div className="container-max max-w-4xl mx-auto text-center">
             <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-4">
-              {isRu ? 'Другие города' : 'We also move in'}
+              {isRu ? 'Другие города' : isUa ? 'Інші міста' : 'We also move in'}
             </p>
             <ul className="flex flex-wrap justify-center gap-2">
               {nearbyCities(city).map((n) => {
-                const href = isRu && RU_CITY_SLUGS.has(n.slug) ? `/ru/${n.slug}` : `/${n.slug}`;
+                const href = isRu && RU_CITY_SLUGS.has(n.slug) ? `/ru/${n.slug}`
+                  : isUa && UA_CITY_SLUGS.has(n.slug) ? `/ua/${n.slug}`
+                  : `/${n.slug}`;
                 return (
                   <li key={n.slug}>
                     <Link
                       href={href}
                       className="inline-block text-sm border border-gray-200 text-gray-600 px-4 py-2 hover:border-gold/40 hover:text-charcoal transition-colors duration-150"
                     >
-                      {isRu ? n.ru : n.en}
+                      {isRu ? n.ru : isUa ? n.ua : n.en}
                     </Link>
                   </li>
                 );

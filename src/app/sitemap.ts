@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { readAllServices } from '@/lib/data/services';
 import { getAllBlogPosts } from '@/lib/data/blog';
+import { COST_PAGES } from '@/lib/data/costPages';
+import { ROUTE_PAGES } from '@/lib/data/routePages';
+import { CITIES_UA } from '@/lib/data/citiesUa';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -17,6 +20,7 @@ const LASTMOD: Record<string, string> = {
   '/quote': '2026-07-30',
   '/packing-services': '2026-07-30',
   '/moving-cost-miami': '2026-07-30',
+  '/russian-speaking-movers-miami': '2026-08-25',
   '/coi-miami-condo-movers': '2026-08-24',
   '/blog': '2026-07-30',
   // City pages — all rewritten in the 2026-07-30 commercial-facts pass
@@ -187,6 +191,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/boynton-beach-movers`, lastModified: lastmod('/boynton-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/boynton-beach-movers') },
     { url: `${siteUrl}/packing-services`,        lastModified: lastmod('/packing-services'), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/moving-cost-miami`,       lastModified: lastmod('/moving-cost-miami'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/russian-speaking-movers-miami`, lastModified: lastmod('/russian-speaking-movers-miami'), changeFrequency: 'monthly', priority: 0.9 },
     { url: `${siteUrl}/coi-miami-condo-movers`,  lastModified: lastmod('/coi-miami-condo-movers'), changeFrequency: 'monthly', priority: 0.9 },
   ];
 
@@ -215,6 +220,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/ru/boynton-beach-movers`, lastModified: lastmod('/ru/boynton-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/boynton-beach-movers') },
   ];
 
+  // Cost, route and Ukrainian pages are derived from their data files, so a new
+  // entry there appears here without a second list to remember.
+  const costRoutes: MetadataRoute.Sitemap = COST_PAGES.map((c) => ({
+    url: `${siteUrl}/${c.slug}`,
+    lastModified: new Date('2026-08-25'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.9,
+  }));
+
+  const routeRoutes: MetadataRoute.Sitemap = ROUTE_PAGES.map((r) => ({
+    url: `${siteUrl}/${r.slug}`,
+    lastModified: new Date('2026-08-25'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  // Every Ukrainian city page has an English and a Russian counterpart, so all
+  // three languages cross-reference each other.
+  const uaRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${siteUrl}/ua`,
+      lastModified: new Date('2026-08-25'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+      alternates: { languages: { en: siteUrl, ru: `${siteUrl}/ru`, uk: `${siteUrl}/ua`, 'x-default': siteUrl } },
+    },
+    ...CITIES_UA.map((c) => {
+      const short = c.slug.replace('ua/', '');
+      return {
+        url: `${siteUrl}/${c.slug}`,
+        lastModified: new Date('2026-08-25'),
+        changeFrequency: 'monthly' as const,
+        priority: 0.9,
+        alternates: {
+          languages: {
+            en: `${siteUrl}/${short}`,
+            ru: `${siteUrl}/ru/${short}`,
+            uk: `${siteUrl}/ua/${short}`,
+            'x-default': `${siteUrl}/${short}`,
+          },
+        },
+      };
+    }),
+  ];
+
   const blogRoutes: MetadataRoute.Sitemap = [
     { url: `${siteUrl}/blog`, lastModified: lastmod('/blog'), changeFrequency: 'weekly', priority: 0.7 },
     ...getAllBlogPosts().map((p) => ({
@@ -225,5 +275,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [...staticRoutes, ...cityRoutes, ...serviceRoutes, ...blogRoutes, ...ruRoutes];
+  return [...staticRoutes, ...cityRoutes, ...costRoutes, ...routeRoutes, ...serviceRoutes, ...blogRoutes, ...ruRoutes, ...uaRoutes];
 }
