@@ -153,6 +153,45 @@ Main Ukrainian page: https://www.easy-move-florida.com/ua
 
 https://www.easy-move-florida.com/russian-speaking-movers-miami — the English page for the query "russian speaking movers miami". The owner, the coordinator and most of the crew work in Russian, and an entire move can be conducted in Russian from the first call to the final walkthrough.
 
+## Localised cost and route pages
+
+The same citable formats in Russian and Ukrainian. Prices are identical across
+languages — they render from one pricing module and one band table, so a figure
+cannot differ between the English and the localised version of a page.
+
+### Цены на переезд по городам (Russian)
+
+| Город | Страница |
+|---|---|
+| Санни-Айлс-Бич | https://www.easy-move-florida.com/ru/moving-cost-sunny-isles |
+| Авентура | https://www.easy-move-florida.com/ru/moving-cost-aventura |
+| Халландейл-Бич | https://www.easy-move-florida.com/ru/moving-cost-hallandale-beach |
+| Голливуд | https://www.easy-move-florida.com/ru/moving-cost-hollywood |
+| Майами | https://www.easy-move-florida.com/ru/moving-cost-miami |
+| Форт-Лодердейл | https://www.easy-move-florida.com/ru/moving-cost-fort-lauderdale |
+| Майами-Бич | https://www.easy-move-florida.com/ru/moving-cost-miami-beach |
+
+### Ціни на переїзд за містами (Ukrainian)
+
+| Місто | Сторінка |
+|---|---|
+| Санні-Айлс-Біч | https://www.easy-move-florida.com/ua/moving-cost-sunny-isles |
+| Халландейл-Біч | https://www.easy-move-florida.com/ua/moving-cost-hallandale-beach |
+| Голлівуд | https://www.easy-move-florida.com/ua/moving-cost-hollywood |
+| Маямі | https://www.easy-move-florida.com/ua/moving-cost-miami |
+| Авентура | https://www.easy-move-florida.com/ua/moving-cost-aventura |
+
+### Дальние переезды по маршрутам (Russian)
+
+| Маршрут | Страница |
+|---|---|
+| Майами — Нью-Йорк | https://www.easy-move-florida.com/ru/moving-miami-to-new-york |
+| Майами — Бостон | https://www.easy-move-florida.com/ru/moving-miami-to-boston |
+| Майами — Вашингтон | https://www.easy-move-florida.com/ru/moving-miami-to-washington-dc |
+| Майами — Атланта | https://www.easy-move-florida.com/ru/moving-miami-to-atlanta |
+| Майами — Орландо | https://www.easy-move-florida.com/ru/moving-miami-to-orlando |
+| Майами — Тампа | https://www.easy-move-florida.com/ru/moving-miami-to-tampa |
+
 ## Services
 
 - [Local residential moving](https://www.easy-move-florida.com/services/residential-moving) — houses, apartments, condos

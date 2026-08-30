@@ -10,7 +10,7 @@ import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-re
 import { CITIES, type CityData } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
-import { COST_PAGES } from '@/lib/data/costPages';
+import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
 
 
 const SERVICES = {
@@ -268,9 +268,12 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const trust = TRUST[locale];
   const isRu = locale === 'ru';
   const isUa = locale === 'ua';
-  // The cost page for this city, when one has been written.
-  const citySlugBare = city.slug.replace(/^(ru|ua)\//, '');
-  const costPage = COST_PAGES.find((c) => c.citySlug === citySlugBare);
+  // The cost page for this city in the same language as this page. A Russian
+  // city page must link to the Russian cost page rather than send the reader
+  // into English mid-journey; where no localised cost page exists yet, the
+  // lookup simply finds nothing and the link is not rendered.
+  const costSource = isRu ? COST_PAGES_RU : isUa ? COST_PAGES_UA : COST_PAGES;
+  const costPage = costSource.find((c) => c.citySlug === city.slug);
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
@@ -533,10 +536,12 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
             {costPage && (
               <p className="text-gray-500 text-sm mb-8">
                 <Link href={`/${costPage.slug}`} className="text-gold hover:underline">
+                  {/* The cost page carries the city name in its own language;
+                      city.name is the Latin form and would read wrong here. */}
                   {isRu
-                    ? `Сколько стоит переезд в ${city.name} — цены 2026`
+                    ? `Сколько стоит переезд в ${costPage.cityNameRu ?? city.name} — цены 2026`
                     : isUa
-                      ? `Скільки коштує переїзд у ${city.name} — ціни 2026`
+                      ? `Скільки коштує переїзд у ${costPage.cityNameUa ?? city.name} — ціни 2026`
                       : `How much do movers cost in ${city.name}? 2026 prices`}
                 </Link>
               </p>

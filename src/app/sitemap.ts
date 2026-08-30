@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { readAllServices } from '@/lib/data/services';
 import { getAllBlogPosts } from '@/lib/data/blog';
-import { COST_PAGES } from '@/lib/data/costPages';
-import { ROUTE_PAGES } from '@/lib/data/routePages';
+import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
+import { ROUTE_PAGES, ROUTE_PAGES_RU } from '@/lib/data/routePages';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -265,6 +265,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   ];
 
+
+  // Localised cost and route pages. Derived like the English ones, so a new
+  // entry in the data file is in the sitemap without a second list.
+  const localisedRoutes: MetadataRoute.Sitemap = [
+    ...COST_PAGES_RU, ...COST_PAGES_UA,
+  ].map((c) => ({
+    url: `${siteUrl}/${c.slug}`,
+    lastModified: new Date('2026-08-30'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.9,
+  })).concat(
+    ROUTE_PAGES_RU.map((r) => ({
+      url: `${siteUrl}/${r.slug}`,
+      lastModified: new Date('2026-08-30'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+  );
+
   const blogRoutes: MetadataRoute.Sitemap = [
     { url: `${siteUrl}/blog`, lastModified: lastmod('/blog'), changeFrequency: 'weekly', priority: 0.7 },
     ...getAllBlogPosts().map((p) => ({
@@ -275,5 +294,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [...staticRoutes, ...cityRoutes, ...costRoutes, ...routeRoutes, ...serviceRoutes, ...blogRoutes, ...ruRoutes, ...uaRoutes];
+  return [...staticRoutes, ...cityRoutes, ...costRoutes, ...routeRoutes, ...serviceRoutes, ...blogRoutes, ...ruRoutes, ...uaRoutes, ...localisedRoutes];
 }

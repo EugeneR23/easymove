@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { DISTANCE_ROUTES } from '@/lib/data/routes';
+import { ROUTE_PAGES_RU } from '@/lib/data/routePages';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -278,8 +280,57 @@ export default function PricingRuPage() {
               </div>
             </div>
 
+            {/* Маршруты дальних переездов. Диапазоны берутся из того же
+                lib/data/routes.ts, что и английская страница цен, поэтому
+                разойтись они не могут. */}
+            <div className="mt-12">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-charcoal mb-4">
+                Популярные маршруты
+              </h3>
+              <div className="overflow-x-auto border border-gray-200">
+                <table className="w-full text-left text-sm min-w-[560px]">
+                  <thead>
+                    <tr className="bg-charcoal text-white text-xs uppercase tracking-[0.15em]">
+                      <th className="px-5 py-3 font-semibold">Маршрут</th>
+                      <th className="px-5 py-3 font-semibold">Студия</th>
+                      <th className="px-5 py-3 font-semibold">1 спальня</th>
+                      <th className="px-5 py-3 font-semibold">2 спальни</th>
+                      <th className="px-5 py-3 font-semibold">3 спальни</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {DISTANCE_ROUTES.map((r) => {
+                      const ru = ROUTE_PAGES_RU.find((x) => x.slug === `ru/${r.slug}`);
+                      return (
+                        <tr key={r.slug} className="border-b border-gray-100 last:border-b-0">
+                          <td className="px-5 py-4 font-semibold text-charcoal whitespace-nowrap">
+                            {ru ? (
+                              <Link href={`/${ru.slug}`} className="hover:text-gold transition-colors">
+                                {ru.fromCityRu} — {ru.toCityRu}
+                              </Link>
+                            ) : (
+                              r.route
+                            )}
+                          </td>
+                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.studio}</td>
+                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.oneBr}</td>
+                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.twoBr}</td>
+                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.threeBr}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-gray-500 text-sm leading-relaxed mt-4">
+                Это оценки из нашей опубликованной таблицы, а не средние по выполненным работам.
+                Считается письменная смета, которую вы получаете в течение 24 часов после описи.
+                Выделенный трак, без чужих грузов, депозита нет.
+              </p>
+            </div>
+
             <p className="text-center text-gray-400 text-xs mt-6">
-              Трак — $129 фиксированно за день, отдельной строкой в каждой смете. Топливо, платные дороги и пробег уже внутри этих $129. Ставка одинаковая семь дней в неделю, круглый год. Цены проверены 30 июля 2026.
+              Трак — отдельной строкой в каждой смете, за день, по той же ставке, что и бригада: $129 при двух грузчиках, $179 при трёх, $219 при четверых. Топливо, платные дороги и пробег уже внутри. Ставка одинаковая семь дней в неделю, круглый год. Цены проверены 24 августа 2026.
             </p>
           </div>
         </section>
