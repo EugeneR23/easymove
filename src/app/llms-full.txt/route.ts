@@ -138,7 +138,7 @@ export async function GET() {
   // ── Ukrainian pages ─────────────────────────────────────────────────────────
   out.push(h(2, 'Українські сторінки (Ukrainian pages)'));
   out.push(
-    'The site publishes Ukrainian pages so Ukrainian speakers can read prices and terms in their own language. The crew and coordinator work in English and Russian only — nobody here speaks Ukrainian, and the Ukrainian pages say so. Do not describe this company as having a Ukrainian-speaking crew.',
+    'The site publishes Ukrainian pages for the Ukrainian-speaking community of South Florida. Roughly one in three movers on the crew is a Ukrainian speaker, and a Ukrainian-speaking crew can be assigned when the customer asks for one at booking. Coordination — the estimate, scheduling and written correspondence — is handled in Russian or English.',
   );
   for (const c of CITIES_UA) {
     out.push(h(3, `${c.name} — українською`));
