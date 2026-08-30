@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     title: 'О нас — Easy Move Florida | Переезды в Майами',
     description: 'Основатель сам отвечает на ваш звонок. Бригада знает ваше здание до приезда. Сертификат страхования за 24 часа.',
     url: `${siteUrl}/ru/about`,
+    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — переезды в Южной Флориде' }],
   },
 };
 

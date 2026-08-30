@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     title: 'Услуги — Easy Move Florida',
     description: 'Все услуги переезда премиум-класса в Южной Флориде.',
     url: `${siteUrl}/ru/services`,
+    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — переезды в Южной Флориде' }],
   },
 };
 
