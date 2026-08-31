@@ -46,10 +46,10 @@
     "createdAt": "2026-03-19T01:16:37.554Z",
     "updatedAt": "2026-03-19T01:16:37.554Z",
     "category": "residential",
-    "name": "Long-Distance Moving",
+    "name": "Long-Distance Moving — Not Offered",
     "sortOrder": 2,
-    "tagline": "Dedicated truck, one coordinator, delivery window in writing — from South Florida to anywhere in the country.",
-    "description": "Long-distance moves demand a level of logistics discipline that most companies don't provide. We assign a dedicated truck to your move — no shared loads, no depot stops — and give you one coordinator from Miami pickup through final delivery. Regular check-ins en route and a delivery window confirmed in writing keep you informed at every stage. Every long-distance move starts from $1,500 with a custom written estimate within 24 hours — no deposit to book.",
+    "tagline": "We are a local mover. Interstate moves need federal authority we do not hold, so we do not take them.",
+    "description": "Easy Move Florida does not perform long-distance or interstate moves. We are a local company working inside Miami-Dade, Broward and Palm Beach counties, and moving household goods across state lines requires operating authority from the federal regulator that we do not hold. We would rather tell you that on this page than take a booking we cannot honour. If you are moving out of state, call us anyway on 786-305-1844 — we will happily point you toward a licensed carrier, and we can still handle the packing or the local leg on the Florida side.",
     "features": [
       {
         "icon": "Truck",

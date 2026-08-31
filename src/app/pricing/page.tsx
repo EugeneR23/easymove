@@ -5,9 +5,8 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
-import { CheckCircle, X, Phone, Shield, Clock, AlertCircle, Truck } from 'lucide-react';
+import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
-import { DISTANCE_ROUTES } from '@/lib/data/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Easy Move Florida',
     title: 'How much does a move cost in South Florida? | Easy Move Florida',
     description:
-      'Local moves: $129/hr (2 movers) or $179/hr (3 movers) plus a matching truck fee per day, 3-hour minimum. Typical 1BR total $516–$774, 2BR $645–$1,253. Long distance from $1,500.',
+      'Local moves: $129/hr (2 movers) or $179/hr (3 movers) plus a matching truck fee per day, 3-hour minimum. Typical 1BR total $516–$774, 2BR $645–$1,253.',
     url: `${siteUrl}/pricing`,
     images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — transparent moving prices' }],
   },
@@ -117,7 +116,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Do you charge a deposit?',
-    a: 'No. No deposit on any move, local or long-distance. You can cancel or reschedule free of charge more than 48 hours before the move.',
+    a: 'No. No deposit on any move. You can cancel or reschedule free of charge more than 48 hours before the move.',
   },
   {
     q: 'How do you bill — by the minute, quarter-hour, or hour?',
@@ -136,16 +135,8 @@ const PRICING_FAQS = [
     a: 'Yes — free cancellation or reschedule when made more than 48 hours before the move. Inside 48 hours, we ask for a partial reschedule fee only if we cannot fill the slot.',
   },
   {
-    q: 'How much does long-distance moving cost?',
-    a: 'Long-distance is a flat rate per job, not hourly, starting at $1,500. It depends on miles, inventory, and access at both ends. We send a custom written estimate within 24 hours of receiving your inventory — no deposit required to book.',
-  },
-  {
-    q: 'How much does it cost to move from Miami to Orlando?',
-    a: 'A Miami → Orlando move typically runs $1,500–$1,800 for a studio, $1,600–$2,200 for a 1-bedroom, $2,200–$2,900 for a 2-bedroom, and $3,000–$4,200 for a 3-bedroom. Dedicated truck, no shared loads. Written estimate within 24 hours.',
-  },
-  {
-    q: 'How much does it cost to move from Miami to New York?',
-    a: 'A Miami → NYC move typically runs $2,800–$3,800 for a studio, $3,600–$4,800 for a 1-bedroom, $4,800–$6,500 for a 2-bedroom, and $6,500–$9,500 for a 3-bedroom. Dedicated truck and en-route updates.',
+    q: 'Do you do long-distance or out-of-state moves?',
+    a: 'No. We are a local company and work inside Miami-Dade, Broward and Palm Beach. Interstate household moves require federal operating authority we do not hold, so we neither quote nor take them. If you are moving out of state and ask, we will gladly point you toward a licensed carrier — we are simply not the ones doing the driving.',
   },
   {
     q: 'Do you charge extra for moving on a weekend?',
@@ -241,7 +232,7 @@ export default function PricingPage() {
               How much does a move cost in <span className="gold-text">South Florida</span>?
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto mb-4">
-              ${HOURLY_RATE[2]}/hour for 2 movers or ${HOURLY_RATE[3]}/hour for 3, with a 3-hour minimum, plus a truck fee per day at the same figure as the crew rate. A typical 1-bedroom runs $516–$774 all-in. Long distance from $1,500.
+              ${HOURLY_RATE[2]}/hour for 2 movers or ${HOURLY_RATE[3]}/hour for 3, with a 3-hour minimum, plus a truck fee per day at the same figure as the crew rate. A typical 1-bedroom runs $516–$774 all-in.
             </p>
             <p className="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto mb-8">
               The rate is locked before we start and never changes on move day. No fuel surcharge, no stairs fee, nothing on the invoice you didn&rsquo;t approve first.
@@ -293,14 +284,6 @@ export default function PricingPage() {
                 </div>
                 <p className="text-gold text-xs font-semibold mb-4">{MIN_HOURS}-hour minimum + ${TRUCK_FEE[3]}/day truck</p>
                 <p className="text-gray-500 text-sm leading-relaxed">Best for 2BR+, walk-ups, and larger inventory. Often the same total cost as 2 movers because the job finishes faster.</p>
-              </div>
-              <div className="border border-gray-200 bg-white p-7">
-                <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">Long Distance</p>
-                <div className="mb-2">
-                  <span className="font-display text-3xl font-bold text-charcoal">From $1,500</span>
-                </div>
-                <p className="text-gold text-xs font-semibold mb-4">Flat rate per job</p>
-                <p className="text-gray-500 text-sm leading-relaxed">Dedicated truck, no shared loads. Custom estimate within 24 hours of receiving your inventory.</p>
               </div>
             </div>
 
@@ -457,54 +440,6 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Long-Distance Pricing */}
-        <section className="section-padding bg-white">
-          <div className="container-max max-w-6xl">
-            <div className="mb-10 max-w-2xl">
-              <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Long-Distance Pricing</p>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal leading-tight mb-3">
-                Routes from South Florida
-              </h2>
-              <p className="text-gray-500 leading-relaxed">
-                Flat-rate, dedicated truck moves out of Miami-Dade and Broward. Ranges below cover the typical inventory for each apartment size on each route. Heavy specialty pieces or 4+ bedroom houses are quoted on top.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-100 overflow-x-auto">
-              <table className="w-full text-left min-w-[640px]">
-                <thead>
-                  <tr className="bg-charcoal text-white text-xs font-semibold tracking-[0.2em] uppercase">
-                    <th className="px-6 py-4 font-semibold">Route</th>
-                    <th className="px-6 py-4 font-semibold">Studio</th>
-                    <th className="px-6 py-4 font-semibold">1BR</th>
-                    <th className="px-6 py-4 font-semibold">2BR</th>
-                    <th className="px-6 py-4 font-semibold">3BR</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {DISTANCE_ROUTES.map((r) => (
-                    <tr key={r.route} className="border-b border-gray-100 last:border-b-0">
-                      <td className="px-6 py-5">
-                        <div className="flex items-center gap-2 font-semibold text-charcoal text-sm md:text-base">
-                          <Truck size={14} className="text-gold shrink-0" />
-                          <Link href={`/${r.slug}`} className="hover:text-gold transition-colors">{r.route}</Link>
-                        </div>
-                      </td>
-                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.studio}</td>
-                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.oneBr}</td>
-                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.twoBr}</td>
-                      <td className="px-6 py-5 text-gold font-semibold text-sm md:text-base whitespace-nowrap">{r.threeBr}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p className="text-gray-500 text-sm leading-relaxed mt-6 max-w-3xl">
-              Dedicated truck, no shared loads. Written estimate within 24 hours. Final price depends on exact inventory, distance, and access at both ends.
-            </p>
-          </div>
-        </section>
 
         {/* Guarantee — four promises the business fully controls */}
         <section className="bg-charcoal py-16 md:py-20">

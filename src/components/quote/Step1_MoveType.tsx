@@ -1,12 +1,11 @@
 import { cn } from '@/lib/utils';
 import type { MoveType } from '@/types';
-import { Truck, MapPin, Star, Package } from 'lucide-react';
+import { Truck, Star, Package } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string; icon: React.ElementType }[] = [
   { value: 'local',         label: 'Local Move',           sub: 'Same city or within South Florida',      icon: Truck   },
-  { value: 'long-distance', label: 'Long-Distance',        sub: 'Out of state or out of region',          icon: MapPin  },
   { value: 'packing-only',  label: 'Packing Only',         sub: 'We pack your home — you handle the move', icon: Package },
   { value: 'specialty',     label: 'Specialty / Fine Art', sub: 'Piano, art, wine, custom items',         icon: Star    },
 ];
