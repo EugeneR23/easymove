@@ -15,7 +15,6 @@ import { CITIES } from '../src/lib/data/cities';
 import { CITIES_RU } from '../src/lib/data/citiesRu';
 import { CITIES_UA } from '../src/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '../src/lib/data/costPages';
-import { ROUTE_PAGES, ROUTE_PAGES_RU } from '../src/lib/data/routePages';
 import { PAIRED_SLUGS } from '../src/lib/data/localePairs';
 
 let failed = 0;
@@ -81,10 +80,6 @@ const costLinked =
   COST_PAGES.some((c) => inboundLinks(c.slug).length > 0) || dataDrivenLinkExists('COST_PAGES');
 check('cost pages have an inbound internal link', costLinked, costLinked);
 
-const routeLinked =
-  ROUTE_PAGES.some((r) => inboundLinks(r.slug).length > 0) || dataDrivenLinkExists('DISTANCE_ROUTES');
-check('route pages have an inbound internal link', routeLinked, routeLinked);
-
 // A link from inside /ua does not make /ua reachable — the visitor is already
 // there. The inbound link has to come from outside the locale section.
 const uaInbound = inboundLinks('ua').filter((f) => !f.includes('src/app/ua/'));
@@ -103,16 +98,7 @@ const costUaLinked =
   COST_PAGES_UA.some((c) => inboundLinks(c.slug).length > 0) || dataDrivenLinkExists('COST_PAGES_UA');
 check('Ukrainian cost pages have an inbound internal link', costUaLinked, costUaLinked);
 
-const routeRuLinked =
-  ROUTE_PAGES_RU.some((r) => inboundLinks(r.slug).length > 0) || dataDrivenLinkExists('ROUTE_PAGES_RU');
-check('Russian route pages have an inbound internal link', routeRuLinked, routeRuLinked);
-
 console.log('\n[2] Localised pages agree with the shared data');
-// A localised route must never claim a band the English table does not publish.
-const enRouteSlugs = new Set(ROUTE_PAGES.map((r) => r.slug));
-const orphanBand = ROUTE_PAGES_RU.filter((r) => r.hasBand && !enRouteSlugs.has(r.slug.replace(/^ru\//, '')));
-check('every banded RU route has an English counterpart band', orphanBand.length === 0, orphanBand.map((r) => r.slug));
-
 const ruCityLinks = COST_PAGES_RU.filter((c) => !c.citySlug.startsWith('ru/')).map((c) => c.slug);
 check('RU cost pages link to RU city pages', ruCityLinks.length === 0, ruCityLinks);
 

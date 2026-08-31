@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import { DISTANCE_ROUTES } from '@/lib/data/routes';
-import { ROUTE_PAGES_RU } from '@/lib/data/routePages';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -105,7 +103,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Берёте ли вы депозит?',
-    a: 'Нет. Депозита нет ни на локальные, ни на дальние переезды. Отмена или перенос бесплатны, если больше чем за 48 часов до переезда.',
+    a: 'Нет. Депозита нет ни на один переезд. Отмена или перенос бесплатны, если больше чем за 48 часов до переезда.',
   },
   {
     q: 'Как вы считаете — поминутно, по четверти часа или по часу?',
@@ -125,7 +123,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Сколько стоит дальний переезд?',
-    a: 'Дальний переезд — фиксированная сумма за весь груз, а не почасово. Начинается от $1,500 и зависит от миль, веса и сложности. Письменная смета приходит в течение 24 часов после получения инвентаря.',
+    a: 'Мы дальние переезды не делаем. Easy Move Florida — локальная компания, работаем в Miami-Dade, Broward и Palm Beach. Перевозка через границу штата требует федерального разрешения, которого у нас нет. Позвоните на 786-305-1844 — подскажем лицензированного перевозчика, а упаковку и локальную часть на флоридской стороне сделаем сами.',
   },
   {
     q: 'Берёте ли вы дополнительно за переезд в выходные?',
@@ -248,7 +246,7 @@ export default function PricingRuPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
               <div className="border border-gray-200 bg-white p-7">
                 <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">2 грузчика + грузовик</p>
                 <div className="mb-2">
@@ -270,63 +268,6 @@ export default function PricingRuPage() {
                 <p className="text-gold text-xs font-semibold mb-4">минимум {MIN_HOURS} часа</p>
                 <p className="text-gray-500 text-sm leading-relaxed">Для 2+ комнат, домов без лифта, большого инвентаря. Итог часто такой же, как с 2 грузчиками — за счёт скорости.</p>
               </div>
-              <div className="border border-gray-200 bg-white p-7">
-                <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">Дальние переезды</p>
-                <div className="mb-2">
-                  <span className="font-display text-3xl font-bold text-charcoal">От $1,500</span>
-                </div>
-                <p className="text-gold text-xs font-semibold mb-4">Фиксированная сумма</p>
-                <p className="text-gray-500 text-sm leading-relaxed">Выделенный грузовик, без объединённых грузов. Письменная смета в течение 24 часов после получения инвентаря.</p>
-              </div>
-            </div>
-
-            {/* Маршруты дальних переездов. Диапазоны берутся из того же
-                lib/data/routes.ts, что и английская страница цен, поэтому
-                разойтись они не могут. */}
-            <div className="mt-12">
-              <h3 className="font-display text-xl md:text-2xl font-bold text-charcoal mb-4">
-                Популярные маршруты
-              </h3>
-              <div className="overflow-x-auto border border-gray-200">
-                <table className="w-full text-left text-sm min-w-[560px]">
-                  <thead>
-                    <tr className="bg-charcoal text-white text-xs uppercase tracking-[0.15em]">
-                      <th className="px-5 py-3 font-semibold">Маршрут</th>
-                      <th className="px-5 py-3 font-semibold">Студия</th>
-                      <th className="px-5 py-3 font-semibold">1 спальня</th>
-                      <th className="px-5 py-3 font-semibold">2 спальни</th>
-                      <th className="px-5 py-3 font-semibold">3 спальни</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {DISTANCE_ROUTES.map((r) => {
-                      const ru = ROUTE_PAGES_RU.find((x) => x.slug === `ru/${r.slug}`);
-                      return (
-                        <tr key={r.slug} className="border-b border-gray-100 last:border-b-0">
-                          <td className="px-5 py-4 font-semibold text-charcoal whitespace-nowrap">
-                            {ru ? (
-                              <Link href={`/${ru.slug}`} className="hover:text-gold transition-colors">
-                                {ru.fromCityRu} — {ru.toCityRu}
-                              </Link>
-                            ) : (
-                              r.route
-                            )}
-                          </td>
-                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.studio}</td>
-                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.oneBr}</td>
-                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.twoBr}</td>
-                          <td className="px-5 py-4 text-gold font-semibold whitespace-nowrap">{r.threeBr}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-gray-500 text-sm leading-relaxed mt-4">
-                Это оценки из нашей опубликованной таблицы, а не средние по выполненным работам.
-                Считается письменная смета, которую вы получаете в течение 24 часов после описи.
-                Выделенный трак, без чужих грузов, депозита нет.
-              </p>
             </div>
 
             <p className="text-center text-gray-400 text-xs mt-6">

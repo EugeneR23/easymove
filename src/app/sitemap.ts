@@ -2,7 +2,6 @@ import type { MetadataRoute } from 'next';
 import { readAllServices } from '@/lib/data/services';
 import { getAllBlogPosts } from '@/lib/data/blog';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
-import { ROUTE_PAGES, ROUTE_PAGES_RU } from '@/lib/data/routePages';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -229,12 +228,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const routeRoutes: MetadataRoute.Sitemap = ROUTE_PAGES.map((r) => ({
-    url: `${siteUrl}/${r.slug}`,
-    lastModified: new Date('2026-08-25'),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
 
   // Every Ukrainian city page has an English and a Russian counterpart, so all
   // three languages cross-reference each other.
@@ -275,14 +268,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date('2026-08-30'),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
-  })).concat(
-    ROUTE_PAGES_RU.map((r) => ({
-      url: `${siteUrl}/${r.slug}`,
-      lastModified: new Date('2026-08-30'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
-  );
+  }));
 
   const blogRoutes: MetadataRoute.Sitemap = [
     { url: `${siteUrl}/blog`, lastModified: lastmod('/blog'), changeFrequency: 'weekly', priority: 0.7 },
@@ -294,5 +280,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [...staticRoutes, ...cityRoutes, ...costRoutes, ...routeRoutes, ...serviceRoutes, ...blogRoutes, ...ruRoutes, ...uaRoutes, ...localisedRoutes];
+  return [...staticRoutes, ...cityRoutes, ...costRoutes, ...serviceRoutes, ...blogRoutes, ...ruRoutes, ...uaRoutes, ...localisedRoutes];
 }

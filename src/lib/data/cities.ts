@@ -129,7 +129,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Convenient Staging for Long-Distance',
-        body: "Fort Lauderdale is a common staging point for moves up I-95 or across the state. We coordinate temporary storage and schedule long-distance pickups efficiently from Broward County.",
+        body: "Fort Lauderdale is a common staging point for moves up I-95 or across the state.",
       },
     ],
     faqs: [
@@ -410,7 +410,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/9.jpg',
     metaTitle: 'Hollywood FL Movers | Easy Move Florida',
     metaDescription:
-      'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. Local & long-distance, fully insured, COI in 24h. From $129/hr. Call 786-305-1844.',
+      'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. From $129/hr. Call 786-305-1844.',
     intro:
       "Hollywood, Florida sits between Fort Lauderdale and Miami — close enough to both that most moves here are short hops, but with its own neighborhoods, building rules, and traffic quirks. Whether you're moving to Hollywood Beach, Emerald Hills, the Lakes, or one of the historic single-family neighborhoods west of US-1, Easy Move Florida handles your move with the same standards we apply in Brickell and Aventura. We're based in Hollywood — this is our home.",
     neighborhoods: [
@@ -644,7 +644,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle snowbird seasonal moves?',
-        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We coordinate long-distance pickup at your northern home, transport to your Hallandale residence, and unpacking on arrival. We also offer climate-controlled storage for off-season items and partial-pack service for clients who keep some belongings in their northern home.',
+        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We also offer climate-controlled storage for off-season items and partial-pack service for clients who keep some belongings in their northern home.',
       },
       {
         q: 'Вы работаете на русском?',
@@ -656,7 +656,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How does pricing work for a Hallandale Beach move?',
-        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three), shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked. Snowbird inbound long-distance moves start at $1,500 and are quoted in writing within 24 hours.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three), shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked.',
       },
       {
         q: 'Do you serve Three Islands, Hemispheres, and Olympus?',
@@ -736,7 +736,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move between Miami Beach and other states?',
-        a: 'Yes. Long-distance moves start at $1,500 flat with a dedicated truck, meaning your belongings are the only load on it. You get a written estimate within 24 hours of the survey and there is no deposit. Miami Beach to New York, Chicago, Texas and the Carolinas are routes we run regularly. The written figure is the figure - we do not reweigh at the far end and hand you a different number.',
+        a: 'Yes. You get a written estimate within 24 hours of the survey and there is no deposit. Miami Beach to New York, Chicago, Texas and the Carolinas are routes we run regularly. The written figure is the figure - we do not reweigh at the far end and hand you a different number.',
       },
       {
         q: 'Do you speak Russian?',
@@ -813,7 +813,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move to Bal Harbour from out of state?',
-        a: 'Yes. Long-distance moves start at $1,500 flat on a dedicated truck carrying only your shipment, with a written estimate within 24 hours and no deposit. Inbound moves into buildings here need the same COI and elevator booking as a local one, and we handle that paperwork from our end while the truck is still on the road so nothing waits at the gate.',
+        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
       },
       {
         q: 'Is anyone on the crew Russian-speaking?',
@@ -882,7 +882,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move from North Miami Beach to another state?',
-        a: 'Yes. Long distance starts at $1,500 flat with a dedicated truck for your shipment alone, a written estimate within 24 hours of the survey, and no deposit. Because it is dedicated rather than consolidated, your delivery window is measured in days, not weeks, and nothing gets cross-docked into someone else warehouse along the way. The written price is the price at delivery.',
+        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
       },
       {
         q: 'Can you help with packing and boxes?',
@@ -1054,7 +1054,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'We are moving out of Weston to another state. How does that work?',
-        a: 'Long distance starts at $1,500 flat with a dedicated truck, meaning your household travels alone rather than sharing a trailer with other people’s shipments. You get a written estimate within 24 hours and pay no deposit to hold the date. The same association requirements still apply on the Weston end, so we handle the certificate and gate list exactly as we would for a local job, then confirm delivery timing with you once the truck is loaded.',
+        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
       },
       {
         q: 'Can you pack the house as well as move it?',
@@ -1148,7 +1148,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Who runs the company, and do the movers speak Russian?',
-        a: 'Easy Move Florida is owner-led by Evgenii Romanov, also spelled Eugene, working out of Hollywood in south Broward. He handles the estimates and the schedule directly. Crews work in English and Russian, and there is a Russian version of this page if that is easier for someone in your household. Phone or WhatsApp 786-305-1844 for either language; written estimates go out within 24 hours for long-distance jobs and the same day for most local ones.',
+        a: 'Easy Move Florida is owner-led by Evgenii Romanov, also spelled Eugene, working out of Hollywood in south Broward. He handles the estimates and the schedule directly. Crews work in English and Russian, and there is a Russian version of this page if that is easier for someone in your household.',
       },
     ],
   },
@@ -1316,7 +1316,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move from Delray Beach to another state?',
-        a: 'Yes. Long distance starts at $1,500 flat with a dedicated truck, meaning your goods are the only load on it, and you get a written estimate within 24 hours. No deposit is required to book. We handle a fair number of Delray owners heading north in spring and returning south later, and the same crew that loads is the crew that unloads - your things are not transferred to another carrier along the way.',
+        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
       },
       {
         q: 'Who am I dealing with when I call?',

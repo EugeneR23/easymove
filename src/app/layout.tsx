@@ -169,7 +169,6 @@ const localBusinessSchema = {
     'Apartment Moving',
     'House Moving',
     'Office Moving (Small)',
-    'Long-Distance Moving',
     'Packing Services',
     'Furniture Disassembly and Reassembly',
     'Heavy Item Handling',
@@ -215,15 +214,6 @@ const localBusinessSchema = {
           name: 'Building / HOA / COI coordination',
           description: 'Certificate of Insurance within 24 hours, elevator reservations, parking permits, freight elevator scheduling.',
           areaServed: ['Hollywood', 'Aventura', 'Sunny Isles Beach', 'Hallandale', 'Fort Lauderdale', 'Miami'],
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Long-Distance Moving',
-          description: 'From $1,500. Custom written estimate within 24 hours, based on miles, inventory and access at both ends. Dedicated truck, no deposit required to book.',
-          areaServed: 'United States',
         },
       },
       {
