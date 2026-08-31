@@ -81,60 +81,38 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
 
   'long-distance-moving': {
     longIntro: [
-      "Long-distance moves out of South Florida are different from local work in three ways: distance pricing, dedicated truck logistics, and delivery window honesty. Most national van lines quote a low price, then load your goods on a truck shared with three other families, then deliver in a 2-week window that stretches to 4. Easy Move Florida doesn't operate that way. Your goods travel on a dedicated truck that's loaded, driven, and unloaded by the same crew. We commit to a delivery window in writing before you book.",
-      "We've moved clients from South Florida to the Northeast (NY, NJ, MA, CT), the mid-Atlantic (DC, MD, VA, PA), the Southeast (GA, NC, SC, TN), and the Midwest (IL, OH, MI). Long-distance pricing starts at $1,500 minimum for short interstate hauls and scales with distance, volume, and access at both ends. Every long-distance quote is custom — no online calculator estimates that change on move day.",
+      "Easy Move Florida does not do long-distance or interstate moves. This page exists so you get a straight answer instead of a quote we cannot honour: we are a local mover working inside Miami-Dade, Broward and Palm Beach, and taking household goods across a state line requires federal operating authority that we do not hold.",
+      "That is the whole story. If you are leaving Florida, call 786-305-1844 anyway — we will point you toward a licensed carrier we would use ourselves. We can also still do the parts that are ours: packing your home before the long-haul truck arrives, or the local leg on the Florida side.",
     ],
     whyUs: [
       {
-        title: 'Dedicated truck — no shared loads',
-        body: "Your goods are loaded onto a truck reserved exclusively for your move, driven directly to destination, and unloaded by the same crew. No relay warehouse transfers. No mixed loads with other families' belongings. No 2-week delays because the truck has to drop off three other moves first.",
+        title: 'Why we say no to this',
+        body: "A mover who quotes an interstate job without the authority to run it is either subcontracting it silently or gambling. Both leave you with a company that cannot answer for your belongings once they are on the road. We would rather lose the booking than be that company.",
       },
       {
-        title: 'Honest delivery windows',
-        body: "We commit to a delivery window in writing before you book — typically a 1-3 day window depending on distance. The truck is dedicated to your move, so the schedule is ours to keep. National van lines quote 7-14 day windows that stretch because the truck has multiple stops; we don't have that problem.",
-      },
-      {
-        title: 'En-route check-ins',
-        body: "Your coordinator stays in contact with the driver throughout the trip and updates you with location and ETA daily. You're not wondering where your stuff is.",
-      },
-      // [TODO: confirm insurance details with Evgenii — coverage type and limits]
-      {
-        title: 'Transit insurance included',
-        body: "Standard cargo insurance is included on every long-distance move. Higher-value coverage (full replacement, declared value) is available — we'll discuss what makes sense based on your goods.",
+        title: 'What we can still do for an out-of-state move',
+        body: "Packing is packing wherever the truck is going, from $79 per hour for two packers. If your long-haul carrier wants everything boxed and ready on the driveway, that is work we do well. Same for moving you into storage on this end while the interstate leg is arranged.",
       },
     ],
     process: [
-      { step: 1, title: 'In-person or video survey', body: "For long-distance moves over $3,000, we strongly recommend an in-person or video walk-through to confirm volume. This is what makes the estimate accurate. Web-form-only estimates routinely come in 30-50% under actual." },
-      { step: 2, title: 'Custom written quote', body: 'We send a written quote within 24 hours of survey. Quote includes pickup date, delivery window, total cost (no hourly billing on long-distance), insurance coverage, and any optional services (packing, crating, storage between dates).' },
-      { step: 3, title: 'Booking and packing prep', body: "After you book, we coordinate packing dates if you've added packing service, and confirm building/HOA paperwork at both origin and destination if either has restrictions." },
-      { step: 4, title: 'Load day', body: 'Crew arrives at origin with the dedicated truck. Inventory walk-through and labeling. Floor protection. Loading. Final walk-through and confirmation. Truck departs same day.' },
-      { step: 5, title: 'Transit and en-route updates', body: 'Coordinator sends daily location/ETA updates. For most South Florida → Northeast routes, transit is 2-3 days. South Florida → Midwest is 3-4 days.' },
-      { step: 6, title: 'Delivery', body: 'Crew arrives at destination within the committed window. Inventory check against load list. Unloading. Furniture placement. Reassembly of disassembled items. Final walk-through and payment.' },
+      { step: 1, title: 'Tell us where you are going', body: 'Call or WhatsApp 786-305-1844. If the destination is outside Florida, we will say so on that first call rather than after you have booked.' },
+      { step: 2, title: 'We point you somewhere real', body: 'We will name a licensed carrier rather than hand you a list. You can also check any mover yourself against the federal register before you pay anyone a deposit.' },
+      { step: 3, title: 'We take the Florida-side work if you want it', body: 'Packing, a local move into storage, or getting a home ready for the long-haul crew — all priced the same way our local work is, hourly with the truck as its own line.' },
     ],
-    // Ranges below are typical market ranges for planning, not quotes; every LD move gets a custom written estimate within 24 hours, floored at $1,500.
     pricingBreakdown: [
-      'Long distance from $1,500 — custom written estimate within 24 hours, no deposit',
-      'Minimum charge: $1,500 (short interstate, e.g., FL → GA studio)',
-      'Studio, FL → NY: typical market range $2,800–$3,800',
-      '1-bedroom, FL → NY: typical market range $3,600–$4,800',
-      '2-bedroom, FL → NY: typical market range $4,800–$6,500',
-      '3-bedroom, FL → NY: typical market range $6,500–$9,500',
-      'Packing service: add 15-25% of base move cost',
-      'Standard cargo insurance: included',
-      'Full replacement insurance: optional, quoted by carrier',
-      'Storage in transit (between dates): from $200/month',
+      'Long-distance and interstate moves: not offered, not quoted',
+      'Packing before a long-haul carrier arrives: from $79/hour for two packers',
+      'Local move into storage on the Florida side: standard hourly rates, from $129/hour for two movers',
+      'Storage coordination: from $200/month through our storage partner',
     ],
     faqs: [
-      { q: "How long does a move from Miami to New York take?", a: "Transit time is typically 2-3 days. Total move including loading and unloading: 3-5 days. We commit to a 1-3 day delivery window in writing before you book — the truck is dedicated to your move only." },
-      { q: 'Do you offer flat-rate or hourly pricing for long-distance?', a: "Long-distance moves are flat-rate — quoted as a single price based on distance, volume, and access. Hourly billing only applies to local moves under 100 miles. You know your total cost before booking." },
-      { q: 'Will my belongings be on a shared truck?', a: "No. Every long-distance move travels on a truck reserved exclusively for your goods. The same crew loads, drives, and unloads — no relay warehouses or mixed loads." },
-      { q: 'What about insurance for valuable items?', a: 'Standard cargo insurance is included. For high-value items (art, antiques, jewelry), we recommend full replacement or declared value coverage — your coordinator walks you through options before booking.' },
-      { q: 'Do you do moves to international destinations?', a: 'For overseas moves, we handle the Miami-side packing, loading, and freight forwarder coordination. Ocean and air transport are handled by licensed international freight specialists. See our International Moving page for details.' },
+      { q: 'Can you move me from Miami to New York?', a: 'No. We do not hold the federal operating authority that interstate household moves require, so we do not quote or take them. Call us and we will point you toward a licensed carrier — that costs you nothing and saves you the round of calls.' },
+      { q: 'Do you move within Florida but outside South Florida — say Miami to Orlando?', a: 'Our work is local: Miami-Dade, Broward and Palm Beach. We are registered and set up for that, and going further afield is a different service with different rules. Ask us and we will be straight with you about whether it is something we can do.' },
+      { q: 'Can you pack for me even if another company drives?', a: 'Yes, and it is common. Packing runs from $79 per hour for two packers, with a studio package from $237. We box, wrap and label so the long-haul crew loads a home that is ready, which usually saves you money on their end too.' },
+      { q: 'How do I check that a long-distance mover is legitimate?', a: 'Ask for their USDOT number and look it up in the federal register before you pay a deposit. A carrier that will not give you the number over the phone has told you something useful. This is the same check you could run on us, which is why we are telling you plainly that interstate is not ours.' },
     ],
-    // [TODO: confirm with Evgenii] — route-frequency claims are unverified; phrased below as routes we quote, not claimed history.
-    localContext: "South Florida has unique long-distance traffic patterns: Florida → New York is the route we quote most, especially during snowbird season (October-December and April-May). We schedule around peak periods to keep delivery windows tight. We also regularly quote South Florida → Texas, → Tennessee (Nashville), and → North Carolina (Charlotte, Raleigh) moves driven by relocation trends.",
+    localContext: "We are a Hollywood-based local mover: Miami-Dade, Broward and Palm Beach. That focus is deliberate, and it is why the pages on this site quote hourly rates for local work and say nothing about per-mile interstate pricing.",
   },
-
   'international-moving': {
     longIntro: [
       "International relocation from Miami is one of the most logistically complex moves you can make. Customs documentation, ocean freight scheduling, country-specific import rules, destination delivery — these are specialized disciplines handled by licensed international freight forwarders. Easy Move Florida handles what we do best: professional packing to international shipping standards on the Miami end, loading onto your carrier or container, and coordinating the handoff. We're straightforward about our role.",

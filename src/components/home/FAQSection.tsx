@@ -51,7 +51,7 @@ const FAQS = [
   },
   {
     q: 'How does Easy Move Florida price long-distance and out-of-state moves?',
-    a: 'Long-distance is a flat rate per job starting at $1,500, with a custom written estimate back to you within 24 hours and no deposit required to book. It is not billed hourly and it is not a shared-load brokerage arrangement — you get a dedicated truck. The number depends on three inputs: total mileage, the volume of the household inventory, and complexity at both ends (stair carries, long carries, packing, anything needing custom crating). To get the estimate, send both addresses, a room-by-room inventory or photos of each room, your date window, and any building access constraints.',
+    a: 'No — we are a local mover working inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; packing and the local Florida-side leg are still ours.',
   },
   {
     q: 'Can you do small handyman work alongside the move?',

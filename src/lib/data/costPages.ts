@@ -77,7 +77,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Do you charge hourly or flat rate?',
-      a: 'Local Fort Lauderdale moves are hourly, because access decides the work and hours are the honest way to price it. Moves leaving South Florida are quoted flat, from $1,500, with a written estimate within 24 hours and no deposit. Either way you see the arithmetic before you commit, and billing after the minimum runs in 15-minute increments.',
+      a: 'Local Fort Lauderdale moves are hourly, because access decides the work and hours are the honest way to price it. Either way you see the arithmetic before you commit, and billing after the minimum runs in 15-minute increments.',
     },
     {
       q: 'What is included in the hourly rate?',
@@ -301,7 +301,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Why hourly instead of a flat price?',
-      a: 'Because in a condo city the work is access, and access varies more than furniture does. An hourly rate with a written hour estimate keeps the price honest in both directions: an easy move finishes early and costs less, a hard one is visible in the estimate before you book. Flat pricing exists too; long-distance moves out of Florida start at $1,500 flat.',
+      a: 'Because in a condo city the work is access, and access varies more than furniture does. An hourly rate with a written hour estimate keeps the price honest in both directions: an easy move finishes early and costs less, a hard one is visible in the estimate before you book.',
     },
     {
       q: 'What do you need from me for a firm Hallandale estimate?',
@@ -413,7 +413,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Would a flat rate be better for a big house move?',
-      a: 'For local work, no. Hourly with a written estimate is the fairer instrument, because it returns money when the day goes faster than planned. Flat pricing suits moves where the variables are locked, which is why our long-distance moves from Florida are flat, starting at $1,500 with a written figure inside 24 hours. Local Pines jobs stay hourly, billed in 15-minute steps after the minimum.',
+      a: 'For local work, no. Hourly with a written estimate is the fairer instrument, because it returns money when the day goes faster than planned. Local Pines jobs stay hourly, billed in 15-minute steps after the minimum.',
     },
     {
       q: 'How do I get an exact quote for my Pines address?',
@@ -710,7 +710,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Вы перевозите вещи из Голливуда в другой штат?',
-      a: 'Да, дальние переезды считаются фиксированной суммой, от $1,500, а не по часам. Письменная смета приходит в течение 24 часов после описи вещей, депозита нет и предоплату мы не просим. Вещи едут выделенным траком, без перегрузок на чужих складах. Если параллельно нужна упаковка, она считается отдельно — от $79 в час за двух упаковщиков или готовым пакетом для студии от $237.',
+      a: 'Нет. Мы локальная компания и работаем в Miami-Dade, Broward и Palm Beach. Перевозка вещей через границу штата требует федерального разрешения, которого у нас нет, поэтому такие заказы мы не считаем и не берём. Позвоните всё равно на 786-305-1844 — подскажем лицензированного перевозчика. За нами при этом остаётся упаковка и локальный переезд на флоридской стороне, например на склад.',
     },
     {
       q: 'Можно ли оставить вещи на хранение между двумя датами?',
@@ -775,7 +775,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'А если я переезжаю из Майами в другой штат?',
-      a: 'Дальние переезды считаются фиксированной суммой, от $1,500, а не по часам, так что итог известен заранее. Письменная смета приходит в течение 24 часов после описи вещей, депозит не нужен. Ваши вещи едут выделенным траком, без перегрузки на складах и без чужого груза в кузове. Маршруты на север по восточному побережью мы ездим регулярно, и координатор ведёт такой переезд на русском от описи до выгрузки.',
+      a: 'Нет. Мы локальная компания и работаем в Miami-Dade, Broward и Palm Beach. Перевозка вещей через границу штата требует федерального разрешения, которого у нас нет, поэтому такие заказы мы не считаем и не берём. Позвоните всё равно на 786-305-1844 — подскажем лицензированного перевозчика. За нами при этом остаётся упаковка и локальный переезд на флоридской стороне, например на склад.',
     },
   ],
 },
@@ -824,7 +824,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Вы считаете по часам или фиксированной суммой?',
-      a: 'Локальные переезды в Форт-Лодердейле — по часам, потому что здесь всё решает доступ, и честно посчитать его можно только временем. Переезды за пределы Южной Флориды считаются фиксированной суммой, от $1,500, с письменной сметой в течение 24 часов и без депозита. В обоих случаях вы видите арифметику до того, как что-то подтверждаете.',
+      a: 'Локальные переезды в Форт-Лодердейле — по часам, потому что здесь всё решает доступ, и честно посчитать его можно только временем. В обоих случаях вы видите арифметику до того, как что-то подтверждаете.',
     },
     {
       q: 'Что входит в почасовую ставку?',
@@ -1010,7 +1010,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Ви возите з Халландейла в інші штати?',
-      a: 'Так. Міжміські та міжштатні переїзди рахуються не по годинах, а фіксованою сумою від $1,500, яка залежить від обсягу й відстані. Письмовий кошторис надсилаємо протягом 24 годин після опису вантажу, депозит не потрібен. Якщо дати виїзду й заїзду не збігаються, речі можна залишити на зберіганні — від $200 на місяць.',
+      a: 'Так. Письмовий кошторис надсилаємо протягом 24 годин після опису вантажу, депозит не потрібен. Якщо дати виїзду й заїзду не збігаються, речі можна залишити на зберіганні — від $200 на місяць.',
     },
   ],
 },
