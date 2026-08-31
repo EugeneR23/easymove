@@ -68,8 +68,8 @@ const SECTIONS = [
     body: `If your building requires a certificate of insurance, we issue it free within 24 hours of your request. Most South Florida towers ask for coverage somewhere in the $1M–$2M range; send us the requirements sheet from your management office and we confirm the certificate matches yours before move day. Where the building books freight elevators by appointment, we help reserve the window and plan the crew's start time around it. In gated communities we make sure the crew and the truck are on the gate list ahead of time, so the day does not begin with a standoff at security. You forward one email from your building, and we handle the rest.`,
   },
   {
-    title: `Snowbirds, relocations and long distance`,
-    body: `Seasonal moves in and out of Florida are a large part of our calendar. Long-distance moves start at $1,500 flat with a dedicated truck for your shipment, a written estimate within 24 hours, and no deposit to hold the date. Cancellation is free with more than 48 hours' notice, which matters when a closing slips or a lease start moves. We also work in the receiving direction: if furniture is arriving into Florida while you are still up north, we can accept the delivery with a signed proxy and place everything in your Florida apartment before you arrive.`,
+    title: `Snowbirds and seasonal moves`,
+    body: `Seasonal moves in and out of Florida are a large part of our calendar — apartments closed up for the summer, homes opened before the season, belongings moved to storage and back. We do the Florida side of that work: the local move, the packing, the storage run. We do not do the interstate leg — that needs federal authority we do not hold — but we will point you toward a licensed carrier and handle everything once your shipment is here.`,
   },
 ];
 
@@ -100,7 +100,7 @@ const FAQS = [
   },
   {
     q: `Do you handle long-distance moves out of Florida?`,
-    a: `Yes. Long-distance moves start at $1,500 flat with a dedicated truck for your move. You get a written estimate within 24 hours, and no deposit is needed to reserve the date. We also work in the other direction: with a signed proxy we can receive a shipment arriving into Florida when you cannot be there yourself.`,
+    a: `No — we are a local mover. Interstate household moves require federal operating authority that we do not hold, so we neither quote nor take them. Call 786-305-1844 anyway: we will point you toward a licensed carrier, and we can still pack your home in Russian or handle the local Florida-side move into storage.`,
   },
   {
     q: `Do I need a deposit, and what if my plans change?`,

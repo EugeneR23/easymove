@@ -349,7 +349,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Long-Distance',
     heroImage: '/images/Real/Miami.jpg',
     body: [
-      { type: 'p', text: 'New York to Miami is one of the most common long-distance moves in the country, and it\'s a route we know well — Manhattan apartment to Brickell condo, Brooklyn brownstone to Coral Gables, Westchester family home to Boca. After enough of these, patterns emerge: what costs more than people expect, what arrives broken, what to leave behind, and which Miami neighborhoods actually fit which kind of New York life.' },
+      { type: 'p', text: 'New York to Miami is one of the most common long-distance moves in the country. We do not run it ourselves — Easy Move Florida is a local mover, and interstate work requires federal operating authority we do not hold — but we meet these moves at the Miami end often enough to see the patterns: what costs more than people expect, what arrives broken, what to leave behind, and which Miami neighborhoods actually fit which kind of New York life.' },
       { type: 'p', text: 'Here\'s the full guide based on what we\'ve learned doing the move.' },
 
       { type: 'h2', text: 'What it actually costs' },

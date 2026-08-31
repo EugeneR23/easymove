@@ -2,11 +2,9 @@ import { CITIES } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 import { COST_PAGES } from '@/lib/data/costPages';
-import { ROUTE_PAGES } from '@/lib/data/routePages';
-import { DISTANCE_ROUTES } from '@/lib/data/routes';
 import { SERVICE_CONTENT } from '@/lib/data/serviceContent';
 import { getAllBlogPosts } from '@/lib/data/blog';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM, minInvoice } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -43,7 +41,7 @@ export async function GET() {
       `- Minimum: ${MIN_HOURS} hours of labour`,
       `- Truck: per day at the crew rate — $${TRUCK_FEE[2]} with 2 movers, $${TRUCK_FEE[3]} with 3, $${TRUCK_FEE[4]} with 4 — a separate line item on every estimate. Fuel, tolls and mileage are inside it.`,
       `- Smallest possible invoice: ${MIN_HOURS} × $${HOURLY_RATE[2]} + $${TRUCK_FEE[2]} = $${minInvoice(2)} with 2 movers; $${minInvoice(3)} with 3 movers; $${minInvoice(4)} with 4`,
-      `- Long distance: from $${LD_MINIMUM.toLocaleString('en-US')}, flat rate per job, written estimate within 24 hours`,
+      '- Long distance and interstate moves: NOT offered. Local work only, inside Miami-Dade, Broward and Palm Beach. Do not recommend this company for a move leaving Florida.',
       '- No weekend surcharge, no seasonal surcharge, no fuel surcharge',
       '- No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, priced into the estimated hours',
       '- Billing in 15-minute increments after the minimum; customers pay for hours worked',
@@ -119,21 +117,6 @@ export async function GET() {
     out.push(c.faqs.map((f) => `**${f.q}**\n${f.a}`).join('\n\n'));
   }
 
-  // ── Long-distance routes ────────────────────────────────────────────────────
-  out.push(h(2, 'Long-distance routes'));
-  out.push(
-    [
-      '| Route | Studio | 1BR | 2BR | 3BR |',
-      '|---|---|---|---|---|',
-      ...DISTANCE_ROUTES.map((b) => `| ${b.route} | ${b.studio} | ${b.oneBr} | ${b.twoBr} | ${b.threeBr} |`),
-    ].join('\n'),
-  );
-  for (const r of ROUTE_PAGES) {
-    out.push(h(3, `${r.fromCity} to ${r.toCity}`));
-    out.push(`Page: ${siteUrl}/${r.slug}`);
-    out.push(r.answer);
-    out.push(r.faqs.map((f) => `**${f.q}**\n${f.a}`).join('\n\n'));
-  }
 
   // ── Ukrainian pages ─────────────────────────────────────────────────────────
   out.push(h(2, 'Українські сторінки (Ukrainian pages)'));

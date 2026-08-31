@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE } from '@/lib/pricing';
 import { whatsappUrl } from '@/lib/utils';
 
 const TIERS = [
@@ -18,12 +18,6 @@ const TIERS = [
     note: `${MIN_HOURS}-hour minimum + $${TRUCK_FEE[3]}/day truck`,
     body: 'Same inclusions, faster crew. Best for 2BR+, walk-ups, and larger inventory.',
     highlight: true,
-  },
-  {
-    label: 'Long Distance',
-    price: null,
-    note: `From $${LD_MINIMUM.toLocaleString('en-US')} per job`,
-    body: 'Based on miles, inventory and access at both ends. Send origin, destination and inventory — written estimate within 24 hours, no deposit to book.',
   },
 ];
 
@@ -42,7 +36,7 @@ export default function PricingTransparency() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
           {TIERS.map((t) => (
             <div
               key={t.label}
