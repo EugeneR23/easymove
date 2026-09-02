@@ -128,7 +128,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'When and how do I pay?',
-    a: 'Payment is collected on site roughly 45–60 minutes before the job wraps, once the final hour count is clear. We take card (Visa, MasterCard, Amex, Discover), Zelle, Apple Pay, and cash — no card surcharge.',
+    a: 'Payment is collected on site roughly 45–60 minutes before the job wraps, once the final hour count is clear. We take card (Visa, MasterCard, Amex, Discover), Zelle, Apple Pay, and cash — no card surcharge. Our only Zelle address is romanov@easy-move-florida.com; if anyone asks you to Zelle a different address or phone number, it is not us.',
   },
   {
     q: 'Can I cancel or reschedule?',
