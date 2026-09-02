@@ -38,10 +38,9 @@ https://www.fdacs.gov/Business-Services/Moving-Companies
   закона для интрастейт-перевозок, и получить его надо до подачи куда-либо.
   Для регистрации FDACS понадобится и действующий полис (proof of insurance).
 
-USDOT нужен только если возить между штатами под своей authority — для
-дальних маршрутов, которые сайт уже продаёт от $1,500. Если они едут под
-чужой authority или через партнёра, на страницах это лучше не уточнять, но и
-USDOT тогда не заявлять.
+USDOT нужен только для межштатных перевозок под своей authority. Сайт их
+больше не продаёт (снято 31.08.2026 вместе со всеми страницами маршрутов),
+поэтому USDOT не нужен и нигде не заявляется.
 
 ## Порядок подачи (по соотношению эффект/усилие)
 
@@ -85,14 +84,13 @@ Categories:    Movers / Moving Company / Piano Movers / Packing Services
 > fuel or stairs fees: access costs time, not surcharges. Free COI issued to
 > building management within 24 hours of booking. High-rise and condo
 > specialists: freight elevator reservations, loading dock scheduling,
-> gate-community paperwork. Long-distance moves from $1,500 flat with a
-> dedicated truck. No deposit.
+> gate-community paperwork. No deposit.
 
 Короткая версия (до 250 знаков):
 
 > Owner-led movers in Hollywood, FL. English & Russian crews. $129/hr for 2
 > movers + truck at the crew rate, 3-hr minimum. Free COI in 24h. High-rise
-> specialists. Long distance from $1,500. No deposit, no hidden fees.
+> specialists. No deposit, no hidden fees.
 > (786) 305-1844
 
 ## Русскоязычные каталоги — найдены 2026-08-30
@@ -134,8 +132,7 @@ Email: romanov@easy-move-florida.com
 трак отдельной строкой по ставке бригады. Надбавок за выходные, сезон,
 топливо, лестницы и лифт нет. COI для здания — бесплатно за 24 часа.
 Специализация: высотки и кондо — бронь грузового лифта, доки, списки на КПП.
-Дальние переезды от $1,500, выделенный трак, письменная смета за 24 часа,
-без депозита.
+Письменная смета за 24 часа, без депозита.
 ```
 
 Название в каталогах — **строго «Easy Move Florida»**, латиницей, без
@@ -164,8 +161,7 @@ Easy Move Florida — переїзди в Південній Флориді
 вихідні, сезон, паливо, сходи чи ліфт. COI для будинку безкоштовно за 24
 години. Приблизно кожен третій наш вантажник — україномовний, тож бригаду,
 яка говоритиме українською, зберемо за попереднім запитом; кошторис і
-листування ведемо російською або англійською. Далекі переїзди від $1,500,
-виділений трак, письмовий кошторис за 24 години, без депозиту.
+листування ведемо російською або англійською. Письмовий кошторис за 24 години, без депозиту.
 ```
 ## Отзывы — что уже сделано в коде
 
