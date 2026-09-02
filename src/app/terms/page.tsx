@@ -65,7 +65,12 @@ export default function TermsPage() {
               <p>We accept:</p>
               <ul>
                 <li>Cash</li>
-                <li>Credit and debit cards</li>
+                <li>Credit and debit cards (Visa, MasterCard, Amex, Discover) — no surcharge</li>
+                <li>Apple Pay</li>
+                <li>
+                  Zelle to <strong>romanov@easy-move-florida.com</strong> — the only Zelle address we use.
+                  A request to send Zelle to any other address or phone number does not come from us.
+                </li>
                 <li>Other approved payment methods confirmed at booking</li>
               </ul>
             </Section>

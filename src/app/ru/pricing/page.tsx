@@ -115,7 +115,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Какие способы оплаты вы принимаете?',
-    a: 'Карта (Visa, MasterCard, Amex, Discover), Zelle, Apple Pay и наличные. Карта без комиссии.',
+    a: 'Карта (Visa, MasterCard, Amex, Discover), Zelle, Apple Pay и наличные. Карта без комиссии. Zelle у нас только один — romanov@easy-move-florida.com. Если вас просят перевести на другой адрес или номер, это не мы.',
   },
   {
     q: 'Можно ли отменить или перенести?',
