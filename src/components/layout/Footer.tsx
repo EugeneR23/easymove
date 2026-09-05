@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { licenceLine } from '@/lib/data/credentials';
+import { licenceLine, THUMBTACK } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/utils';
@@ -170,7 +170,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-gold/60 hover:text-gold transition-colors"
               >
-                <span className="text-[10px] uppercase tracking-widest">32 ★ Reviews on Thumbtack ↗</span>
+                <span className="text-[10px] uppercase tracking-widest">{THUMBTACK.rating}★ · {THUMBTACK.reviewCount} Reviews on Thumbtack ↗</span>
               </a>
             </div>
             <div className="flex gap-6">

@@ -65,11 +65,18 @@ export const INSURANCE: {
   cargoLimit: null,
 };
 
-/** Verified review source we can already cite today. */
+/**
+ * Verified review source we can already cite today. Re-checked on the live
+ * profile 2026-09-05: 4.7 across 33 reviews (91% five-star, one 1-star),
+ * Top Pro 2024, background checked. Every rating string on the site must come
+ * from here — the hand-typed "5.0/32" copies went stale the day a one-star
+ * review landed.
+ */
 export const THUMBTACK = {
   url: 'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
-  rating: '5.0',
-  reviewCount: 32,
+  rating: '4.7',
+  reviewCount: 33,
+  topProYear: 2024,
 } as const;
 
 /** True once there is a licence number worth showing. */

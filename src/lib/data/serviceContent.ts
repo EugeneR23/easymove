@@ -226,11 +226,11 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     whyUs: [
       {
         title: 'Custom crating built on-site',
-        body: "For art, antiques, and fragile sculpture, we build custom protective crates on-site. Foam-lined, padded, secured for transport. For pieces moving long-distance or internationally, we build to international shipping standards.",
+        body: "For art, antiques, and fragile sculpture, we build custom protective crates on-site. Foam-lined, padded, secured for transport. For pieces continuing with an interstate carrier or overseas, we build to international shipping standards before hand-off.",
       },
       {
         title: 'Climate-aware loading',
-        body: "South Florida heat and humidity damage wood, oil paintings, and certain materials during loading. We minimize exposure time, use moisture barriers in trucks for long-distance, and coordinate climate-controlled transport for high-value or sensitive pieces.",
+        body: "South Florida heat and humidity damage wood, oil paintings, and certain materials during loading. We minimize exposure time, use moisture barriers in the truck, and coordinate climate-controlled transport for high-value or sensitive pieces.",
       },
       {
         title: 'Photo documentation before and after',
@@ -252,7 +252,6 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     pricingBreakdown: [
       'Minimum specialty item charge: $800',
       'Single grand piano move (local): typical $750–$1,400',
-      'Single grand piano move (long-distance): typical $2,500–$4,500',
       'Custom crate for fine art (per piece): $200–$800 depending on size',
       'Climate-controlled transport (when required): add 25-50% to base',
       'Declared-value or full-replacement insurance: quoted by carrier based on item value',
@@ -260,7 +259,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Photo documentation: included',
     ],
     faqs: [
-      { q: "Do you move grand pianos?", a: "Yes. Upright, baby grand, and concert grand pianos are part of our regular work. Local piano move typically $750-$1,400. Long-distance: $2,500-$4,500. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
+      { q: "Do you move grand pianos?", a: "Yes. Upright, baby grand, and concert grand pianos are part of our regular work. A local piano move typically runs $750-$1,400; interstate piano transport we hand to a licensed carrier. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
       { q: 'Can you move large oil paintings or sculpture?', a: "Yes. Custom crating built on-site, climate-aware loading, slow placement at destination. For pieces over 8 feet or weighing over 200 lbs, we may recommend a specialty fine art handler — we'll be honest about what's within our capability." },
       { q: 'How do you handle insurance for high-value items?', a: 'Standard cargo insurance is included up to a per-pound limit. For high-value items (anything over $5,000 typically), we strongly recommend declared value or full-replacement coverage. Your coordinator walks you through options before booking.' },
       { q: 'Do you handle antique or oversized furniture?', a: 'Yes. Antique armoires, 18th-century European pieces, mid-century modern, oversized dining tables — these are common requests. Custom crating where appropriate, padded protection always, photo documentation before and after.' },

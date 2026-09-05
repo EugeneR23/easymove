@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
@@ -223,7 +224,7 @@ export default function RuAboutPage() {
           <div className="relative container-max">
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 text-center">
               {[
-                { label: '5.0 · 32 отзыва', sub: 'Проверено на Thumbtack' },
+                { label: `${THUMBTACK.rating} · ${THUMBTACK.reviewCount} отзыва`, sub: 'Проверено на Thumbtack' },
                 { label: 'COI по запросу', sub: 'Готов в течение 24 часов' },
                 { label: 'Опыт работы с высотками', sub: 'Кондо, лифты, погрузочные доки' },
                 { label: 'Лидер компании на месте', sub: 'Евгений участвует в каждом переезде' },

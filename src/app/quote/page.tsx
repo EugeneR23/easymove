@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import QuoteWizard from '@/components/quote/QuoteWizard';
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 
 const TRUST_POINTS = [
   { icon: Shield, text: 'No hidden fees' },
-  { icon: Star,   text: '5.0 from 32 verified Thumbtack reviews' },
+  { icon: Star,   text: `${THUMBTACK.rating} from ${THUMBTACK.reviewCount} verified Thumbtack reviews` },
   { icon: Phone,  text: 'Direct communication — speak with the person handling your move' },
   { icon: Clock,  text: 'Fast scheduling · Call or text: 786-305-1844' },
 ];

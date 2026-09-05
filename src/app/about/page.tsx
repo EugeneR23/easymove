@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About Easy Move Florida — Owner-Operated Movers in South Florida',
     description:
-      'Evgenii Romanov owns the company, runs dispatch and answers the phone. Hollywood, FL. Russian and English. 5.0 from 32 Thumbtack reviews.',
+      `Evgenii Romanov owns the company, runs dispatch and answers the phone. Hollywood, FL. Russian and English. Rated ${THUMBTACK.rating} across ${THUMBTACK.reviewCount} Thumbtack reviews.`,
   },
 };
 
@@ -125,7 +126,7 @@ export default function AboutPage() {
               </p>
               <p className="text-gold text-sm font-semibold mt-6">— Evgenii Romanov, Owner</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {['Owner-operated', 'Russian & English', '5.0 · 32 Thumbtack reviews', 'Direct: 786-305-1844'].map((tag) => (
+                {['Owner-operated', 'Russian & English', `${THUMBTACK.rating} · ${THUMBTACK.reviewCount} Thumbtack reviews`, 'Direct: 786-305-1844'].map((tag) => (
                   <span key={tag} className="text-[11px] border border-gold/25 text-gold/75 px-3 py-1 tracking-wide">
                     {tag}
                   </span>
@@ -244,7 +245,7 @@ export default function AboutPage() {
                   registration number — Florida Chapter 507 registration is the
                   strongest trust signal we can publish, and competitors show theirs. */}
               {[
-                { label: '5.0 · 32 reviews', sub: 'Verified on Thumbtack' },
+                { label: `${THUMBTACK.rating} · ${THUMBTACK.reviewCount} reviews`, sub: 'Verified on Thumbtack' },
                 { label: 'COI in 24 hours', sub: 'To your building, no charge' },
                 { label: 'High-rise competent', sub: 'Freight elevators, docks, move windows' },
                 { label: 'Russian & English', sub: 'Crew leader and dispatcher both' },

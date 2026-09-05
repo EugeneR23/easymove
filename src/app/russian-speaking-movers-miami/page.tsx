@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     canonical: `${siteUrl}/russian-speaking-movers-miami`,
     languages: {
       en: `${siteUrl}/russian-speaking-movers-miami`,
-      ru: `${siteUrl}/ru`,
+      ru: `${siteUrl}/ru/russkie-gruzchiki-miami`,
       'x-default': `${siteUrl}/russian-speaking-movers-miami`,
     },
   },
@@ -84,7 +84,7 @@ const FAQS = [
   },
   {
     q: `What areas do you cover?`,
-    a: `Our base is Hollywood, FL, and we serve all of Miami-Dade, Broward and Palm Beach counties. Day to day, most of our work is in Miami, Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood, including the condo towers along Collins Avenue. For moves beyond South Florida, we run long-distance moves to other states starting at $1,500 flat.`,
+    a: `Our base is Hollywood, FL, and we serve all of Miami-Dade, Broward and Palm Beach counties. Day to day, most of our work is in Miami, Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood, including the condo towers along Collins Avenue. We are a local mover only — for moves leaving Florida we will point you toward a licensed interstate carrier and can still handle the packing and the Florida-side work.`,
   },
   {
     q: `How much do Russian-speaking movers in Miami cost?`,
@@ -172,6 +172,11 @@ export default function RussianSpeakingMoversPage() {
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">If you or your parents prefer to read in Russian, the full Russian-language version of this site lives at /ru, with dedicated pages for 16 South Florida cities.</p>
             <ul className="flex flex-wrap gap-2">
+              <li>
+                <Link href="/ru/russkie-gruzchiki-miami" className="inline-block text-sm border border-gold/40 text-charcoal px-4 py-2 hover:bg-gold/5 transition-colors duration-150">
+                  Эта страница по-русски
+                </Link>
+              </li>
               <li>
                 <Link href="/ru" className="inline-block text-sm border border-gold/40 text-charcoal px-4 py-2 hover:bg-gold/5 transition-colors duration-150">
                   Сайт по-русски

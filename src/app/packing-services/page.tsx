@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -152,7 +153,7 @@ export default function PackingServicesPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
               {[
                 { icon: Shield, label: 'Owner-led crews' },
-                { icon: Star, label: '5.0★ on Thumbtack (32 reviews)' },
+                { icon: Star, label: `${THUMBTACK.rating}★ on Thumbtack (${THUMBTACK.reviewCount} reviews)` },
                 { icon: Clock, label: 'Same-Week Availability' },
                 { icon: CheckCircle, label: '$0 Hidden Fees' },
               ].map(({ icon: Icon, label }) => (

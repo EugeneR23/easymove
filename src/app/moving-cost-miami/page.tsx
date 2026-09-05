@@ -80,7 +80,7 @@ const FAQS = [
   },
   {
     q: 'Is hourly or flat rate better for a Miami move?',
-    a: `Hourly is better for local moves, where the job is a few hours and the variables are small; you pay for the time actually used, billed in 15-minute increments after the minimum. Flat rate is better for long distance, where the truck is committed for days — those start at $${LD_MINIMUM.toLocaleString('en-US')} here with a written estimate inside 24 hours. Be careful with a flat rate quoted for a local move sight-unseen: it is usually padded to protect the mover.`,
+    a: `Hourly is better for local moves, where the job is a few hours and the variables are small; you pay for the time actually used, billed in 15-minute increments after the minimum. Flat rates belong to interstate carriers, where the truck is committed for days — we are a local hourly mover and do not quote them. Be careful with a flat rate quoted for a local move sight-unseen: it is usually padded to protect the mover.`,
   },
   {
     q: 'What is included in the hourly rate?',

@@ -62,14 +62,14 @@ const SERVICES = [
   },
   {
     icon: Truck,
-    name: 'Long-Distance & Nationwide',
-    sub: 'From Miami to anywhere in the U.S.',
+    name: 'Leaving Florida?',
+    sub: 'We are a local mover — here is how we still help',
     description:
-      "Dedicated truck, no shared loads, delivery window confirmed in writing. A single coordinator manages your move from Miami pickup to final placement — wherever you're going.",
-    highlights: ['Dedicated truck (no shared loads)', 'Regular check-ins en route', 'Single point of contact', 'Full inventory before loading', 'Delivery window confirmed in writing'],
+      "Interstate moves need federal authority we do not hold, so we neither quote nor take them. What we do: pack your home, run the Florida-side move into storage, and point you toward a licensed interstate carrier.",
+    highlights: ['Straight answer, no bait quote', 'Full packing before the carrier arrives', 'Florida-side move into storage', 'We help you vet the carrier (USDOT check)', 'Local leg on arrival back to Florida'],
     image: '/images/Long distance.png',
-    href: '/quote?type=long-distance',
-    cta: 'Get a FREE Long-Distance Quote',
+    href: '/services/long-distance-moving',
+    cta: 'How we can help',
   },
   {
     icon: Package,
