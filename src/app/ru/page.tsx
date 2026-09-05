@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
@@ -8,7 +9,7 @@ import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import CTABanner from '@/components/home/CTABanner';
-import { localStartingPrice } from '@/lib/pricing';
+import { localStartingPrice, HOURLY_RATE } from '@/lib/pricing';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 import {
@@ -60,7 +61,7 @@ const TESTIMONIALS = [
 const SERVICES = [
   { icon: MapPin, name: 'Локальные переезды', desc: 'Майами, Форт-Лодердейл, Бока-Ратон и все пригороды.', href: '/quote?type=local' },
   { icon: Building2, name: 'Переезд из высоток', desc: 'Brickell, Sunny Isles, Aventura — координация лифтов, COI за 24 часа.', href: '/quote?type=local' },
-  { icon: Truck, name: 'Дальние перевозки', desc: 'По всем США. Выделенный трак, GPS-трекинг, один координатор.', href: '/quote?type=long-distance' },
+  { icon: Truck, name: 'Доставка мебели и вещей', desc: 'Диван из магазина или находка с маркетплейса — заберём, упакуем, поднимем на этаж.', href: '/quote?type=local' },
   { icon: Package, name: 'Упаковка', desc: 'Профессиональная упаковка с материалами. Каждый предмет обёрнут.', href: '/quote?type=packing-only' },
   { icon: Palette, name: 'Картины и антиквариат', desc: 'Музейная упаковка, кастомные ящики, климат-контроль.', href: '/quote?type=specialty' },
   { icon: Users, name: 'Офисные переезды', desc: 'Минимальный простой. Серверы, мебель, документы — всё аккуратно.', href: '/quote?type=local' },
@@ -141,7 +142,7 @@ export default function RuHomePage() {
                 </h1>
 
                 <p className="text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed">
-                  Рейтинг 5.0 по 32 проверенным отзывам на Thumbtack. Без скрытых платежей —
+                  Рейтинг {THUMBTACK.rating} по {THUMBTACK.reviewCount} проверенным отзывам на Thumbtack. Без скрытых платежей —
                   надёжная команда, которая приезжает вовремя и бережно обращается с вашими вещами.
                 </p>
 
@@ -191,10 +192,9 @@ export default function RuHomePage() {
 
                   <div className="px-5 sm:px-6 py-5">
                     <p className="text-charcoal text-[11px] font-semibold uppercase tracking-wider mb-2">Тип переезда</p>
-                    <div className="grid grid-cols-4 gap-1.5 mb-5">
+                    <div className="grid grid-cols-3 gap-1.5 mb-5">
                       {([
                         { v: 'local' as MoveType, l: 'Локальный' },
-                        { v: 'long-distance' as MoveType, l: 'Дальний' },
                         { v: 'packing-only' as MoveType, l: 'Упаковка' },
                         { v: 'specialty' as MoveType, l: 'Спец.' },
                       ]).map(t => (
@@ -232,7 +232,7 @@ export default function RuHomePage() {
                               className={`py-3 text-center border transition-all duration-150 ${crew === c ? 'border-gold bg-gold/10' : 'border-gray-200 hover:border-gold/40'}`}
                             >
                               <span className="block text-xs font-bold text-charcoal">{c} {moveType === 'packing-only' ? 'упаковщика' : 'мувера'}</span>
-                              <span className="block text-[10px] text-gray-400 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : (c === 2 ? 129 : c === 3 ? 179 : 229)}/час · {formatCurrency(cp)}</span>
+                              <span className="block text-[10px] text-gray-400 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : HOURLY_RATE[c]}/час · {formatCurrency(cp)}</span>
                             </button>
                           );
                         })}
@@ -250,11 +250,11 @@ export default function RuHomePage() {
                       </div>
                     )}
 
-                    {(moveType === 'specialty' || moveType === 'long-distance') && (
+                    {moveType === 'specialty' && (
                       <div className="bg-cream p-5 text-center mb-5">
                         <p className="font-display text-lg font-bold text-charcoal mb-1">Индивидуальный расчёт</p>
                         <p className="text-gray-400 text-xs leading-relaxed">
-                          {moveType === 'specialty' ? 'Каждый специализированный переезд уникален — координатор предоставит точный расчёт.' : 'Стоимость дальнего переезда зависит от расстояния и объёма. Запросите бесплатный расчёт.'}
+                          Каждый специализированный переезд уникален — координатор предоставит точный расчёт.
                         </p>
                       </div>
                     )}
@@ -302,7 +302,7 @@ export default function RuHomePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
               {[
                 { val: '32', label: 'Отзыва', sub: 'Проверенные на Thumbtack' },
-                { val: '5.0 ★', label: 'Рейтинг', sub: 'Thumbtack, 32 отзыва' },
+                { val: `${THUMBTACK.rating} ★`, label: 'Рейтинг', sub: `Thumbtack, ${THUMBTACK.reviewCount} отзыва` },
                 { val: '< 2 ч', label: 'Ответ', sub: 'Координатор перезвонит' },
                 { val: '$0', label: 'Скрытых платежей', sub: 'Цена подтверждена письменно' },
               ].map((s, i) => (
@@ -431,6 +431,7 @@ export default function RuHomePage() {
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {[
+                { href: '/ru/russkie-gruzchiki-miami', label: 'Русские грузчики в Майами' },
                 { href: '/ru/miami-movers', label: 'Майами' },
                 { href: '/ru/sunny-isles-movers', label: 'Санни-Айлс-Бич' },
                 { href: '/ru/aventura-movers', label: 'Авентура' },

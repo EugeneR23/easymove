@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'motion/react';
@@ -127,7 +128,7 @@ export default function HeroSection() {
                 {[1, 2, 3, 4, 5].map(i => <Star key={i} size={12} className="fill-gold text-gold" />)}
               </span>
               <span className="text-white/80 text-xs font-semibold">
-                5.0 · 32 reviews on Thumbtack
+                {THUMBTACK.rating} · {THUMBTACK.reviewCount} reviews on Thumbtack
               </span>
             </motion.a>
 

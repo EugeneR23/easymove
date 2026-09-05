@@ -263,8 +263,28 @@ export const CITIES: CityData[] = [
         title: 'COI for Aventura Towers',
         body: "Every Aventura high-rise has its own COI requirements — many buildings here require limits in the $1M–$2M range, and some want the association specifically named as additional insured. We confirm your building's exact requirements before move day and issue the COI within 24 hours of confirmed booking.",
       },
+          {
+        title: 'Furniture & Single-Item Delivery',
+        body: 'Bought a sofa, a dining set or a mattress and just need it brought up the tower? Single-item and furniture delivery is a standing service, not a favor — pickup, wrapping, transport and placement by the same insured crews that run full moves. Pick-up-and-deliver jobs are one of the services clients hire us for most on Thumbtack.',
+      },
+      {
+        title: 'Mystic Pointe, Hidden Bay & the East Towers',
+        body: 'The towers off Country Club Dr — Mystic Pointe, Hidden Bay, the Peninsula, Bella Vista — each run their own service-elevator diary and guard-gate list. We book the elevator window, send the COI to management, and get crew names to the front desk before move morning, so the truck is not idling at a guardhouse while paperwork gets sorted.',
+      },
+      {
+        title: 'Packing Crews Before Moving Day',
+        body: 'For tower apartments we usually pack the day before, so the reserved elevator window on move day is spent moving, not boxing. Tell the coordinator what stays and what goes; fragile pieces, art and mirrored furniture get wrapped first.',
+      },
     ],
     faqs: [
+      {
+        q: 'How much do movers in Aventura cost?',
+        a: 'Two movers are $129 per hour and three are $179, with a three-hour minimum, plus the truck as its own line at the crew rate per day. A studio or one-bedroom inside Aventura typically lands near the minimum. The full math with examples is on our Aventura moving-cost page.',
+      },
+      {
+        q: 'Can you deliver a single piece of furniture in Aventura?',
+        a: 'Yes — single-item and furniture delivery is part of what we do daily, with the same wrapping and the same insured crew as a full move. Call 786-305-1844 with the pickup and drop-off addresses and we will quote it in minutes.',
+      },
       {
         // [TODO: confirm exact building COI limits with Evgenii]
         q: 'Do you move into and out of Williams Island?',
@@ -376,8 +396,28 @@ export const CITIES: CityData[] = [
         title: 'White-Glove Standard',
         body: "Sunny Isles residents expect — and pay for — white-glove service. Floor protection in every common area, padded blankets on every piece, photo inventory before transport, full insurance documentation. That's our default, not an upgrade.",
       },
+          {
+        title: 'Winston Towers & the Older Collins Ave Buildings',
+        body: 'Not every Sunny Isles building is a new glass tower. Winston Towers and the older Collins Ave co-ops come with smaller freight cabs, longer service corridors and stricter move hours — so we book longer elevator windows there, bring floor runners and door-frame protection, and keep the crew size matched to the corridor, not just the apartment.',
+      },
+      {
+        title: 'Furniture & Single-Item Delivery Along Collins',
+        body: 'A single sofa to the 30th floor is a real job here: service elevator, building paperwork, wrapping. We run single-item and furniture deliveries along Collins Ave with the same insured crews that handle full moves — pick-up-and-deliver work is one of the services clients hire us for most on Thumbtack.',
+      },
+      {
+        title: 'Packing for Oceanfront Apartments',
+        body: 'Oceanfront units are heavy on glass, mirrors and art. We usually send a packing crew the day before the move, wrap fragile pieces first, and leave the reserved elevator window for moving rather than boxing.',
+      },
     ],
     faqs: [
+      {
+        q: 'How much do movers in Sunny Isles Beach cost?',
+        a: 'Two movers are $129 per hour and three are $179, three-hour minimum, plus the truck as its own line at the crew rate per day. Tower moves usually run with three movers because of elevator windows. Worked examples are on our Sunny Isles moving-cost page.',
+      },
+      {
+        q: 'Do you move people out of Winston Towers?',
+        a: 'Yes — regularly. Winston Towers has its own freight-elevator booking and move-hour rules, and the cabs are smaller than in the new towers, so we plan the load order around them. The COI goes to management ahead of the date, and the crew arrives already briefed.',
+      },
       {
         q: 'Do you move into Trump Tower I, II, or III?',
         a: "Yes. All three Trump Towers are part of our regular service. We know the dock procedures, security check-in, COI templates, and elevator reservation process for each tower.",
@@ -431,8 +471,28 @@ export const CITIES: CityData[] = [
         title: 'Single-Family Home Moves',
         body: "Emerald Hills, the Lakes, and Hollywood's historic neighborhoods have driveways, garages, and yard layouts that make full-house moves efficient. Our crew handles disassembly, padded loading, and reassembly — bed frames, dining tables, and entertainment units are put back together at destination.",
       },
+          {
+        title: 'Based at 2130 Stirling Rd — Hollywood Is Home',
+        body: 'Our shop and trucks live on Stirling Rd, which means a Hollywood crew is not fighting I-95 from Miami to reach you. Morning slots start on time, and if a job runs long, the next crew is minutes away — not an hour of traffic away.',
+      },
+      {
+        title: 'Same-Day & Last-Minute Moves',
+        body: 'Closings slip, leases end early, plans change. Short-notice and last-minute jobs are a normal part of our week, not an exception — it is one of the things our Thumbtack profile is hired for. Call before early afternoon and we will tell you honestly whether today is still possible, and with which crew.',
+      },
+      {
+        title: 'Young Circle & Downtown Walk-Ups',
+        body: 'The apartments around Young Circle and along Hollywood Blvd are often walk-ups with street loading. Stairs cost time, not surcharges — the rate stays $129 or $179 per hour, and the crew brings shoulder straps and door protection sized for older stairwells.',
+      },
     ],
     faqs: [
+      {
+        q: 'Can you move me on short notice in Hollywood?',
+        a: 'Often, yes. We keep short-notice work as a normal part of the schedule, and being based on Stirling Rd means a crew can reach any Hollywood address quickly. Call 786-305-1844 — if today is not honest, we will say so and hold tomorrow’s first slot instead.',
+      },
+      {
+        q: 'Do you deliver single furniture items in Hollywood?',
+        a: 'Yes. Single-item and furniture delivery — a couch, an appliance, a marketplace find — runs with the same insured crews as full moves. Pickup, wrapping, transport and placement, quoted over the phone in minutes.',
+      },
       {
         q: 'How long does a Hollywood-to-Miami move take?',
         a: 'A standard local move from Hollywood to Miami takes 4-6 hours total including loading, transport, and unloading. From Hollywood to Fort Lauderdale or Aventura is typically 3-5 hours. Our quote includes a written time estimate based on your specific addresses.',
@@ -630,6 +690,10 @@ export const CITIES: CityData[] = [
       {
         title: 'Gulfstream Park & West-Side Buildings',
         body: "The west side of Hallandale — Gulfstream Park, Three Islands, the Hemispheres complex — has its own logistics. Three Islands is a sprawling four-tower property with shared dock access and a strict elevator reservation system. We know which tower entrance to use, the dock window for each building, and the security desk's preferred check-in process.",
+      },
+          {
+        title: 'Furniture & Single-Item Delivery',
+        body: 'A new dining set to a Beach Club tower or a marketplace sofa across Three Islands — single-item delivery is a standing service with the same insured crews that run full moves: pickup, wrapping, transport, placement. It is one of the services clients hire us for most on Thumbtack.',
       },
     ],
     faqs: [

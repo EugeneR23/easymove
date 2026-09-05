@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { THUMBTACK_QUOTES } from '@/lib/data/thumbtackQuotes';
+import { THUMBTACK } from '@/lib/data/credentials';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -199,6 +201,10 @@ const UI = {
     readyToMove: (c: CityData) => `Ready to Move in ${c.name}?`,
     commonQuestions: 'Common Questions',
     faqTitle: (c: CityData) => `${c.name} Moving FAQs`,
+    reviewsKicker: 'Verified Reviews',
+    reviewsTitle: 'What clients say about our crews',
+    reviewsNote: (r: number) => `Quoted word-for-word from our Thumbtack profile — ${r} verified reviews, every one from a client Thumbtack confirmed hired us.`,
+    reviewsCta: 'Read all reviews on Thumbtack',
     breadcrumbHome: 'Home',
     breadcrumbAreas: 'Service Areas',
     breadcrumbCity: (c: CityData) => `${c.name} Movers`,
@@ -223,6 +229,10 @@ const UI = {
     readyToMove: (c: CityData) => `Переезжаете в ${c.name}?`,
     commonQuestions: 'Частые вопросы',
     faqTitle: (c: CityData) => `Вопросы о переезде — ${c.name}`,
+    reviewsKicker: 'Проверенные отзывы',
+    reviewsTitle: 'Что клиенты говорят о наших бригадах',
+    reviewsNote: (r: number) => `Дословные цитаты с нашего профиля Thumbtack — ${r} проверенных отзыва, каждый от клиента, чей заказ Thumbtack подтвердил. Оригиналы на английском.`,
+    reviewsCta: 'Все отзывы на Thumbtack',
     breadcrumbHome: 'Главная',
     breadcrumbAreas: 'Города',
     breadcrumbCity: (c: CityData) => `Грузчики ${c.name}`,
@@ -249,6 +259,10 @@ const UI = {
     readyToMove: (c: CityData) => `Переїжджаєте в ${c.name}?`,
     commonQuestions: 'Часті питання',
     faqTitle: (c: CityData) => `Питання про переїзд — ${c.name}`,
+    reviewsKicker: 'Перевірені відгуки',
+    reviewsTitle: 'Що клієнти кажуть про наші бригади',
+    reviewsNote: (r: number) => `Дослівні цитати з нашого профілю Thumbtack — ${r} перевірені відгуки, кожен від клієнта, чиє замовлення Thumbtack підтвердив. Оригінали англійською.`,
+    reviewsCta: 'Усі відгуки на Thumbtack',
     breadcrumbHome: 'Головна',
     breadcrumbAreas: 'Міста',
     breadcrumbCity: (c: CityData) => `Вантажники ${c.name}`,
@@ -507,6 +521,33 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
                 <Phone size={15} /> 786-305-1844
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* ── Verified Thumbtack quotes — verbatim, company-wide ────────── */}
+        <section className="section-padding bg-white">
+          <div className="container-max max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">{t.reviewsKicker}</p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-charcoal mb-3">{t.reviewsTitle}</h2>
+              <p className="text-gray-500 text-sm max-w-2xl mx-auto">{t.reviewsNote(THUMBTACK.reviewCount)}</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {THUMBTACK_QUOTES.slice(0, 3).map((q) => (
+                <figure key={q.author} className="border border-gray-200 bg-cream p-6 flex flex-col">
+                  <blockquote className="text-gray-600 text-sm leading-relaxed flex-1">“{q.text}”</blockquote>
+                  <figcaption className="mt-4 pt-4 border-t border-gray-200">
+                    <span className="block font-semibold text-charcoal text-sm">{q.author}</span>
+                    <span className="block text-gray-400 text-xs">{q.service} · {q.date}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="text-center mt-8">
+              <a href={THUMBTACK.url} target="_blank" rel="noopener noreferrer" className="text-gold text-sm font-semibold hover:underline">
+                {t.reviewsCta} ↗
+              </a>
+            </p>
           </div>
         </section>
 
