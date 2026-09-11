@@ -1,9 +1,5 @@
-'use client';
-
-import { useRef } from 'react';
-import { motion, useInView } from 'motion/react';
+import AnimateIn from '@/components/ui/AnimateIn';
 import { Star, ExternalLink, MessageCircle } from 'lucide-react';
-import { easeLuxury } from '@/lib/motion';
 import { whatsappUrl } from '@/lib/utils';
 
 import { THUMBTACK } from '@/lib/data/credentials';
@@ -13,17 +9,10 @@ const REVIEW_COUNT = THUMBTACK.reviewCount;
 const RATING = Number(THUMBTACK.rating);
 
 export default function TestimonialsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-15% 0px' });
-
   return (
-    <section ref={ref} className="section-padding bg-cream border-t border-gray-100">
+    <section className="section-padding bg-cream border-t border-gray-100">
       <div className="container-max max-w-3xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: easeLuxury }}
-        >
+        <AnimateIn>
           <div className="w-8 h-px bg-gold mx-auto mb-6" />
           <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Reviews</p>
 
@@ -65,7 +54,7 @@ export default function TestimonialsSection() {
               <MessageCircle size={15} /> WhatsApp Evgenii
             </a>
           </div>
-        </motion.div>
+        </AnimateIn>
       </div>
     </section>
   );

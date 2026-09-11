@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { THUMBTACK } from '@/lib/data/credentials';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'motion/react';
 import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
 import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
@@ -78,11 +77,9 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-px gold-separator z-[3]" />
 
       {/* Ambient glow orb */}
-      <motion.div
-        className="absolute -left-32 top-1/3 w-[560px] h-[560px] rounded-full pointer-events-none z-[2]"
+      <div
+        className="absolute -left-32 top-1/3 w-[560px] h-[560px] rounded-full pointer-events-none z-[2] hero-orb"
         style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%)' }}
-        animate={{ scale: [1, 1.12, 1], opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Floating particles */}
@@ -132,18 +129,20 @@ export default function HeroSection() {
                 on mobile. The stagger is the same, it just starts at first paint.
                 See .hero-word in globals.css. */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-5 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
-              {'South Florida movers'.split(' ').map((word, i) => (
+              {'South Florida movers'.split(' ').flatMap((word, i, arr) => [
                 <span key={i} className="hero-word" style={{ animationDelay: `${0.15 + i * 0.09}s` }}>
                   {word}
-                </span>
-              ))}
+                </span>,
+                i < arr.length - 1 ? ' ' : null,
+              ])}
               <br />
               <span className="gold-text">
-                {'you can trust.'.split(' ').map((word, i) => (
+                {'you can trust.'.split(' ').flatMap((word, i, arr) => [
                   <span key={i} className="hero-word" style={{ animationDelay: `${0.42 + i * 0.09}s` }}>
                     {word}
-                  </span>
-                ))}
+                  </span>,
+                  i < arr.length - 1 ? ' ' : null,
+                ])}
               </span>
             </h1>
 

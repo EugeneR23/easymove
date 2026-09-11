@@ -155,9 +155,12 @@ input, select, textarea {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: none; }
 }
+/* No margin-right here on purpose. The words used to be spaced by margin alone,
+   which looks right but leaves no whitespace in the text: a crawler or screen
+   reader reading the homepage H1 got "SouthFloridamovers". The components emit a
+   real space between words instead, so the extracted text is a sentence. */
 .hero-word {
   display: inline-block;
-  margin-right: 0.25em;
   animation: heroWordIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -209,3 +212,20 @@ input, select, textarea {
 .cta-glow { animation: ctaGlow 5s ease-in-out infinite; }
 .cta-orb  { animation: ctaOrb 6s ease-in-out 2s infinite; }
 @media (prefers-reduced-motion: reduce) { .cta-glow, .cta-orb { animation: none; } }
+
+/* Золотая чёрточка над заголовком — растёт CSS-анимацией вместо width-твина. */
+@keyframes ruleGrow { from { width: 0; } to { width: 32px; } }
+.rule-grow { width: 32px; animation: ruleGrow 0.6s ease-out 0.1s both; }
+@media (prefers-reduced-motion: reduce) { .rule-grow { animation: none; } }
+
+/* Пульсирующие кольца вокруг фото владельца — были бесконечной JS-анимацией. */
+@keyframes pulseRingA { 0%, 100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.18); opacity: 0.8; } }
+@keyframes pulseRingB { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.35); opacity: 0; } }
+.pulse-ring-a { animation: pulseRingA 3s ease-in-out infinite; }
+.pulse-ring-b { animation: pulseRingB 3s ease-in-out 0.5s infinite; }
+@media (prefers-reduced-motion: reduce) { .pulse-ring-a, .pulse-ring-b { animation: none; } }
+
+/* Фоновое свечение героя — последняя бесконечная JS-анимация на главной. */
+@keyframes heroOrb { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.12); opacity: 1; } }
+.hero-orb { animation: heroOrb 8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .hero-orb { animation: none; } }
