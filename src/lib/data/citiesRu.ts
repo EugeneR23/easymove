@@ -14,7 +14,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Русские грузчики в Sunny Isles Beach',
     heroSub: 'Trump Towers · Porsche Tower · Jade · Winston Towers — знаем каждое здание на Collins Avenue',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Грузчики и переезды в Sunny Isles Beach — русскоязычная компания | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Sunny Isles Beach | Easy Move Florida',
     metaDescription:
       'Переезды в Санни-Айлс-Бич: русскоязычные грузчики, высотки на Collins Ave, COI за 24 часа, бронирование лифта. От $129/час. Звоните: 786-305-1844.',
     intro:
@@ -94,7 +94,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Переезды и грузчики в Авентуре',
     heroSub: 'Porto Vita · Williams Island · Turnberry · The Peninsula — кондо, дома и офисы',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Грузчики в Авентуре (Aventura, FL) — русскоязычные переезды | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Авентуре | Easy Move Florida',
     metaDescription:
       'Переезд в Авентуре с русскоязычной бригадой: кондо Porto Vita, Williams Island, Turnberry. COI, лифт, упаковка. От $129/час. Тел: 786-305-1844.',
     intro:
@@ -173,7 +173,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Грузчики в Халландейл-Бич',
     heroSub: 'Beachwalk · Hemispheres · Golden Horn · Three Islands — переезды с русскоязычной бригадой',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Грузчики в Халландейл-Бич (Hallandale Beach) — переезды по-русски | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Халландейл-Бич | Easy Move Florida',
     metaDescription:
       'Переезды в Hallandale Beach: русскоязычные грузчики, кондо у океана, Three Islands, COI за 24ч. От $129/час, минимум 3 часа. Тел: 786-305-1844.',
     intro:
@@ -252,7 +252,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Переезды в Голливуде, Флорида',
     heroSub: 'Hollywood Beach · Lakes · Emerald Hills · Downtown — наша домашняя территория',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Грузчики в Голливуде, FL — местная русскоязычная компания | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Голливуде, FL | Easy Move Florida',
     metaDescription:
       'Голливуд, Флорида — наш родной город. Русскоязычные грузчики, переезды квартир и домов, упаковка. От $129/час. База на Stirling Rd. Тел: 786-305-1844.',
     intro:
@@ -331,7 +331,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Русскоязычные грузчики в Майами',
     heroSub: 'Brickell · Майами-Бич · Корал-Гейблс · Даунтаун — переезды любой сложности',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Грузчики в Майами — русскоязычная мувинговая компания | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Майами | Easy Move Florida',
     metaDescription:
       'Переезды в Майами по-русски: высотки Brickell, Майами-Бич, COI за 24 часа, упаковка, хранение. От $129/час, без скрытых доплат. Тел: 786-305-1844.',
     intro:
@@ -410,7 +410,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Грузчики в Форт-Лодердейле',
     heroSub: 'Las Olas · Victoria Park · Plantation · Weston — квартиры, дома и виллы у воды',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Грузчики в Форт-Лодердейле — переезды с русскоязычной бригадой | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Форт-Лодердейле | Easy Move Florida',
     metaDescription:
       'Переезды в Форт-Лодердейле и округе Брауард: дома у каналов, кондо Las Olas, русскоязычная бригада, COI. От $129/час. Тел: 786-305-1844.',
     intro:
@@ -497,7 +497,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Русские грузчики в Майами-Бич',
     heroSub: 'South Beach · Mid-Beach · North Beach — кондо, старый фонд и дома на островах',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Грузчики в Майами-Бич — переезд по-русски | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Майами-Бич | Easy Move Florida',
     metaDescription:
       'Переезд в Майами-Бич с русскоязычной бригадой: South Beach, Mid-Beach, North Beach. Пермит на погрузку, COI за 24 часа, бронь лифта. От $129/час. 786-305-1844.',
     intro:
@@ -734,7 +734,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Переезды и грузчики в Бока-Ратоне',
     heroSub: 'Boca West · St. Andrews · Woodfield · Mizner Park — закрытые клубы и башни даунтауна',
     heroImage: '/images/Real/Boca-Raton.jpg',
-    metaTitle: 'Грузчики в Бока-Ратоне — переезд по-русски | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Бока-Ратоне | Easy Move Florida',
     metaDescription:
       'Переезд в Бока-Ратоне: закрытые клубы Boca West, St. Andrews, Woodfield и башни даунтауна. Русская бригада, списки на КПП, COI. От $129/час. 786-305-1844.',
     intro:
@@ -813,7 +813,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Грузчики в Делрей-Бич',
     heroSub: 'Atlantic Avenue · Pineapple Grove · кондо у океана · комьюнити 55+',
     heroImage: '/images/Real/Boca-Raton.jpg',
-    metaTitle: 'Грузчики в Делрей-Бич — переезды по-русски | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Делрей-Бич | Easy Move Florida',
     metaDescription:
       'Переезд в Делрей-Бич: Atlantic Ave, кондо у океана, комьюнити 55+. Русскоязычные грузчики, COI, одобрение ассоциации. От $129/час. Тел. 786-305-1844.',
     intro:
@@ -892,7 +892,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Русские грузчики в Пемброк-Пайнс',
     heroSub: 'Chapel Trail · Pembroke Falls · Silver Lakes · Towngate · Century Village',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Переезд и грузчики в Пемброк-Пайнс — русскоязычная бригада | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Пемброк-Пайнс | Easy Move Florida',
     metaDescription: 'Русские грузчики в Пемброк-Пайнс: дома, таунхаусы, 55+ комьюнити. Бригада 2 мувера — $129/час, трак отдельно. COI бесплатно, без депозита. Звоните 786-305-1844.',
     intro: 'Пемброк-Пайнс — это не башни у океана, а огромные спланированные комьюнити: Chapel Trail, Pembroke Falls, Silver Lakes, Towngate. Дома на две-четыре спальни, таунхаусы с узкими подъездами, отдельные секции 55+ со своими правилами тишины. Логистика здесь другая, чем в кондо: гаражи забиты вещами, которые копились годами, во дворах стоят грили и патио-сеты, а трак часто приходится ставить у поворота, потому что driveway рассчитан на две машины, а не на 26-футовый грузовик. Мы работаем русскоязычной бригадой: Евгений говорит по-русски и по-английски, поэтому с менеджментом ассоциации, с воротами и с вами разговор идёт без переводчика. Ставка фиксированная: 2 мувера — $129/час, 3 — $179/час, 4 — $219/час, минимум 3 часа. Наценок за выходной, сезон или бензин нет. Оценку часов даём честную, без «доедем — посмотрим». Телефон и WhatsApp: 786-305-1844.',
     neighborhoods: ['Chapel Trail', 'Pembroke Falls', 'Silver Lakes', 'Towngate', 'Century Village Pembroke Pines', 'Pembroke Isles', 'Grand Palms', 'Spring Valley', 'Walnut Creek', 'Raintree', 'Flamingo Lakes', 'Pasadena Lakes'],
@@ -965,7 +965,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Переезды и грузчики в Уэстоне',
     heroSub: 'Weston Hills · Windmill Ranch · Savanna · The Ridges · Weston Bay Colony',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Грузчики и переезд в Уэстоне — русскоязычная бригада | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Уэстоне | Easy Move Florida',
     metaDescription: 'Переезд в Уэстоне: закрытые комьюнити, КПП, строгие HOA. Бригада от $129/час, трак отдельной строкой, COI бесплатно за 24 часа. Звоните нам: 786-305-1844.',
     intro: 'Уэстон устроен как набор закрытых комьюнити: Weston Hills, Windmill Ranch, Savanna, The Ridges, Bay Colony. Почти везде — КПП, список на въезд и ассоциация, у которой есть своё мнение о том, когда и как можно заезжать траку. Здесь бригаду, которая приехала «просто так, разберёмся на месте», разворачивают на воротах, и день переезда превращается в день ожидания. Мы работаем иначе: за один-два дня до переезда отправляем менеджменту имена муверов, номер трака и окно въезда, оформляем COI и приезжаем к согласованному времени. Дома в Уэстоне большие — три-четыре спальни, гараж на две машины, часто второй этаж, — поэтому чаще всего нужна бригада из трёх-четырёх человек. Ставка фиксированная и не растёт ни в выходные, ни в сезон. Русский и английский — оба рабочих. Телефон и WhatsApp: 786-305-1844.',
     neighborhoods: ['Weston Hills', 'Windmill Ranch Estates', 'Savanna', 'The Ridges', 'Weston Bay Colony', 'Country Isles', 'The Falls', 'Emerald Estates', 'Indian Trace', 'The Lakes', 'Sector 7', 'Isles at Weston'],
@@ -1038,7 +1038,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Русские грузчики в Корал-Спрингс',
     heroSub: 'Eagle Trace · Heron Bay · Ramblewood · Wyndham Lakes · Turtle Run',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Переезд в Корал-Спрингс — грузчики со знанием русского | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Корал-Спрингс | Easy Move Florida',
     metaDescription: 'Грузчики и переезды в Корал-Спрингс: дома, таунхаусы, семейные районы. От $129/час за двух муверов, трак отдельно, без депозита. Звоните: 786-305-1844.',
     intro: 'Корал-Спрингс — семейный город: школы, парки, таунхаус-комьюнити и дома на три-четыре спальни. Переезды здесь редко бывают «одна студия и два чемодана». Обычно это семья с детьми, детская мебель, велосипеды, гараж и сроки, привязанные к школьному календарю: все хотят переехать между июнем и августом, чтобы первого сентября ребёнок пошёл в школу уже с нового адреса. Мы работаем в Eagle Trace, Heron Bay, Ramblewood, Turtle Run и остальных районах города и планируем такие переезды заранее, потому что в высокий сезон удобные даты разбирают за недели. Бригада русскоязычная, ставка фиксированная: 2 мувера — $129/час, 3 — $179/час, 4 — $219/час, минимум 3 часа, трак отдельной строкой. Никаких сезонных наценок, даже в самый пик июля, и никакого топливного сбора. Депозита нет, отмена бесплатна за 48 часов. Телефон и WhatsApp: 786-305-1844.',
     neighborhoods: ['Eagle Trace', 'Heron Bay', 'Ramblewood', 'Turtle Run', 'Wyndham Lakes', 'Coral Creek', 'Maplewood', 'Westchester', 'Cypress Run', 'The Hills', 'Riverside', 'Whispering Woods'],
@@ -1111,7 +1111,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Грузчики и переезды в Санрайзе',
     heroSub: 'Sawgrass Mills · Welleby · Sunrise Lakes · Sunrise Golf Village · Bonaventure',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Переезд в Санрайзе — русские грузчики и трак | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Санрайзе | Easy Move Florida',
     metaDescription: 'Русскоязычные грузчики в Санрайзе: кондо, дома, район Sawgrass. 2 мувера $129/час плюс трак, минимум 3 часа, COI бесплатно, без депозита. Звоните 786-305-1844.',
     intro: 'Санрайз — город смешанной застройки: рядом с Sawgrass Mills стоят кондо-комплексы и апартаменты, а чуть западнее и севернее — обычные односемейные дома в Welleby, Bonaventure и Sunrise Golf Village. Из-за этого переезды тут бывают очень разными: то двушка на третьем этаже без грузового лифта, то дом на четыре спальни с гаражом и патио. Мы подбираем размер бригады под конкретный случай, а не «по прайсу»: 2 мувера — $129/час, 3 — $179/час, 4 — $219/час, трак отдельной строкой по той же цифре за день. Минимум три часа, дальше по 15 минут. Отдельная местная особенность — трафик вокруг Sawgrass и развязок в выходные и в сезон распродаж: мы стараемся ставить старт на раннее утро, чтобы дорога не съедала оплаченные часы. Русский и английский. Телефон и WhatsApp: 786-305-1844.',
     neighborhoods: ['Welleby', 'Sunrise Lakes', 'Sunrise Golf Village', 'Bonaventure', 'Sawgrass Mills area', 'Springtree', 'Sunset Strip', 'New River Estates', 'Village Green', 'Sunrise Heights', 'Flamingo Park', 'Oakland Park Estates'],
@@ -1184,7 +1184,7 @@ export const CITIES_RU: CityData[] = [
     heroHeadline: 'Русские грузчики в Бойнтон-Бич',
     heroSub: 'Valencia Cove · Hunters Run · Indian Spring · Quantum Village · Ocean Ridge area',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Переезд в Бойнтон-Бич — русскоязычные грузчики | Easy Move Florida',
+    metaTitle: 'Русские грузчики в Бойнтон-Бич | Easy Move Florida',
     metaDescription: 'Грузчики и переезды в Бойнтон-Бич: 55+ комьюнити, кондо у океана, гейтед-районы. От $129/час, трак отдельно, COI бесплатно. Без депозита. Тел. 786-305-1844.',
     intro: 'Бойнтон-Бич делится надвое: у океана — кондо-корпуса с лифтами и строгим менеджментом, западнее — большие возрастные комьюнити и гейтед-районы вроде Valencia, Hunters Run, Indian Spring. Это две совершенно разные логистики. В кондо всё упирается в бронь лифта и окно, разрешённое зданием. В 55+ комьюнити — в правила: переезды часто только в будни, с ограничением по часам и требованием не шуметь рано утром и вечером. Мы уточняем требования у менеджмента до дня переезда, подаём списки на КПП и оформляем COI бесплатно. Много переездов здесь — это дом на две-три спальни, из которого уезжают на север или, наоборот, в который переезжают из Нью-Йорка. Ставка одна и та же круглый год, без сезонных наценок, даже в разгар зимнего сезона. Русский и английский. Телефон и WhatsApp: 786-305-1844.',
     neighborhoods: ['Valencia Cove', 'Valencia Isles', 'Hunters Run', 'Indian Spring', 'Quantum Village', 'Leisureville', 'Sterling Village', 'Boynton Lakes', 'Meadows 300', 'Aberdeen', 'Village Royale on the Green', 'Renaissance Commons'],

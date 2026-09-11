@@ -142,3 +142,24 @@ input, select, textarea {
 .bg-grain {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ── Hero headline: CSS-driven, never JS-gated ───────────────────────────────
+   The homepage H1 is the LCP element. While its words were revealed by
+   motion/react (wordVariants starts at opacity: 0), they stayed invisible
+   until hydration finished: PageSpeed measured LCP 8.7s on mobile with an
+   element render delay of 2590ms, against 2.9s on a city page whose H1 is
+   plain. A CSS animation starts at first paint instead of after hydration.
+   Base state is visible, so if the animation never runs the headline still
+   shows — the one failure mode worth engineering against. */
+@keyframes heroWordIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-word {
+  display: inline-block;
+  margin-right: 0.25em;
+  animation: heroWordIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-word { animation: none; }
+}

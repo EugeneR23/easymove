@@ -128,6 +128,31 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
     ],
   });
 
+  const offerJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: `Local Moving Service — ${page.cityName}`,
+    serviceType: 'Local Moving',
+    provider: { '@id': 'https://www.easy-move-florida.com/#organization' },
+    areaServed: { '@type': 'City', name: page.cityName },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: HOURLY_RATE[2],
+      highPrice: HOURLY_RATE[4],
+      offerCount: 3,
+      priceSpecification: ([2, 3, 4] as const).map((crew) => ({
+        '@type': 'UnitPriceSpecification',
+        price: HOURLY_RATE[crew],
+        priceCurrency: 'USD',
+        unitText: 'HUR',
+        name: `Crew of ${crew} movers — hourly labour rate`,
+        eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
+      })),
+    },
+  });
+
   const faqJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -143,6 +168,7 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumbJson }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJson }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: offerJson }} />
       <Header />
       <main className="pt-20 pb-16 lg:pb-0">
         {/* Hero — the answer sits in the first paragraph */}

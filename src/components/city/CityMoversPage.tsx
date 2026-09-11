@@ -13,6 +13,7 @@ import { CITIES, type CityData } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
+import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 
 
 const SERVICES = {
@@ -187,7 +188,7 @@ const UI = {
     ctaEstimate: 'Get a FREE Estimate',
     localExpertise: 'Local Expertise',
     weKnow: (c: CityData) => `We Know ${c.name}`,
-    coordinatorPara: 'Every move is assigned a dedicated coordinator. The crew arrives briefed on your building, your timeline, and everything that needs protecting — before a single box is loaded.',
+    coordinatorPara: (c: CityData) => `Every ${c.name} move is assigned a dedicated coordinator who already knows the ground here${c.neighborhoods.length >= 2 ? `, from ${c.neighborhoods[0]} to ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}. The crew arrives briefed on your building, your timeline, and everything that needs protecting — before a single box is loaded.`,
     tags: ['Founder-Led', 'COI Available', 'No Subcontractors', 'Direct: 786-305-1844'],
     whatWeOffer: 'What We Offer',
     everyMove: (c: CityData) => `Every move in ${c.name} we handle`,
@@ -217,7 +218,7 @@ const UI = {
     ctaEstimate: 'Бесплатный расчёт',
     localExpertise: 'Знаем район',
     weKnow: (c: CityData) => `Мы знаем ${c.name}`,
-    coordinatorPara: 'За каждым переездом закреплён персональный координатор — по-русски, напрямую, без колл-центра. Бригада приезжает, уже зная ваше здание, лифт, правила управляющей компании и что нужно беречь особенно.',
+    coordinatorPara: (c: CityData) => `За каждым переездом в ${c.name} закреплён персональный координатор — по-русски, напрямую, без колл-центра${c.neighborhoods.length >= 2 ? `, от ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}. Бригада приезжает, уже зная ваше здание, лифт, правила управляющей компании и что нужно беречь особенно.`,
     tags: ['Русскоязычный владелец', 'COI за 24 часа', 'Без субподрядчиков', 'Прямой телефон: 786-305-1844'],
     whatWeOffer: 'Что мы делаем',
     everyMove: (c: CityData) => `Любой переезд в ${c.name} — наша работа`,
@@ -249,7 +250,7 @@ const UI = {
     ctaEstimate: 'Безкоштовний розрахунок',
     localExpertise: 'Знаємо район',
     weKnow: (c: CityData) => `Ми знаємо ${c.name}`,
-    coordinatorPara: 'За кожним переїздом закріплений персональний координатор. Приблизно кожен третій наш вантажник — україномовний, тож бригаду, яка говоритиме з вами українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Бригада приїздить, уже знаючи ваш будинок, ліфт і правила менеджменту.',
+    coordinatorPara: (c: CityData) => `За кожним переїздом у ${c.name} закріплений персональний координатор. Приблизно кожен третій наш вантажник — україномовний, тож бригаду, яка говоритиме з вами українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Бригада приїздить, уже знаючи ваш будинок${c.neighborhoods.length >= 2 ? ` — від ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}, ліфт і правила менеджменту.`,
     tags: ['Власник на звʼязку', 'COI за 24 години', 'Без субпідрядників', 'Телефон: 786-305-1844'],
     whatWeOffer: 'Що ми робимо',
     everyMove: (c: CityData) => `Будь-який переїзд у ${c.name} — наша робота`,
@@ -321,6 +322,31 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
     inLanguage: locale === 'ua' ? 'uk' : locale, // BCP-47: Ukrainian is uk, not ua
   });
 
+  const offerSchemaJson = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `https://www.easy-move-florida.com/${city.slug}#service`,
+    name: `Local Moving Service — ${city.name}, ${city.state}`,
+    serviceType: 'Local Moving',
+    provider: { '@id': 'https://www.easy-move-florida.com/#organization' },
+    areaServed: { '@type': 'City', name: `${city.name}, ${city.state}` },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: HOURLY_RATE[2],
+      highPrice: HOURLY_RATE[4],
+      offerCount: 3,
+      priceSpecification: ([2, 3, 4] as const).map((crew) => ({
+        '@type': 'UnitPriceSpecification',
+        price: HOURLY_RATE[crew],
+        priceCurrency: 'USD',
+        unitText: 'HUR',
+        name: `Crew of ${crew} movers — hourly labour rate`,
+        eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
+      })),
+    },
+  });
+
   const faqSchemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -350,6 +376,10 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqSchemaJson }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: offerSchemaJson }}
       />
       <script
         type="application/ld+json"
@@ -422,7 +452,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">{city.intro}</p>
               <p className="text-gray-600 leading-relaxed">
-                {t.coordinatorPara}
+                {t.coordinatorPara(city)}
               </p>
               <div className="mt-7 flex flex-wrap gap-2">
                 {t.tags.map((tag) => (
