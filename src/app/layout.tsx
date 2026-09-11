@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import DeferredTagManager from '@/components/analytics/DeferredTagManager';
 import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
 import './globals.css';
 
@@ -333,17 +334,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             чата не рендерился ни разу — виджет был мёртв и только сыпал ошибки
             в консоль. Починить в кабинете tawk.to (домен/виджет) и вернуть той
             же строкой: embed.tawk.to/69c159ee7eea2e1c39d68478/1jkdkeimn */}
-        {/* Google Tag Manager. lazyOnload, не afterInteractive: контейнер
-            весит 443 КБ и давал ~595 мс исполнения в замере PageSpeed — это
-            основной вклад в TBT. Аналитике не нужно опережать интерактивность;
-            заявки всё равно уходят серверно через /api/leads. */}
-        <Script
-          id="gtm-head"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-K7PHS2LP');`,
-          }}
-        />
+        {/* Google Tag Manager загружается по первому действию посетителя —
+            см. DeferredTagManager. Контейнер весит 443 КБ и был самым тяжёлым
+            скриптом на сайте; на статичных страницах он один давал больше
+            исполнения, чем весь остальной код. Владелец эту аналитику не
+            использует, а заявки идут серверно через /api/leads. */}
         {/* Microsoft Clarity — session recordings & heatmaps */}
         {process.env.NEXT_PUBLIC_CLARITY_ID && (
           <Script
@@ -383,6 +378,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {children}
         <Analytics />
+        <DeferredTagManager />
       </body>
     </html>
   );
