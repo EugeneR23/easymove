@@ -119,11 +119,42 @@ const breadcrumbJson = JSON.stringify({
   ],
 });
 
+// Service + AggregateOffer. The other eight cost pages get this from the shared
+// CostPage component; this one is built on its own template, so the schema pass
+// went straight past it — caught by sweeping production rather than by reading
+// the diff. It matters most here: this is the likeliest landing page for
+// "moving cost miami".
+const offerJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${siteUrl}/moving-cost-miami#service`,
+  name: 'Local Moving Service — Miami, FL',
+  serviceType: 'Local Moving',
+  provider: { '@id': `${siteUrl}/#organization` },
+  areaServed: { '@type': 'City', name: 'Miami, FL' },
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: HOURLY_RATE[2],
+    highPrice: HOURLY_RATE[4],
+    offerCount: 3,
+    priceSpecification: ([2, 3, 4] as const).map((crew) => ({
+      '@type': 'UnitPriceSpecification',
+      price: HOURLY_RATE[crew],
+      priceCurrency: 'USD',
+      unitText: 'HUR',
+      name: `Crew of ${crew} movers — hourly labour rate`,
+      eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
+    })),
+  },
+});
+
 export default function MovingCostMiamiPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumbJson }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJson }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: offerJson }} />
       <Header />
       <main className="pt-20 pb-16 lg:pb-0">
         {/* Hero — the answer sits in the first paragraph */}
