@@ -130,7 +130,7 @@ export default function HeroSection() {
                 See .hero-word in globals.css. */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-5 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
               {'South Florida movers'.split(' ').flatMap((word, i, arr) => [
-                <span key={i} className="hero-word" style={{ animationDelay: `${0.15 + i * 0.09}s` }}>
+                <span key={i} className="hero-word" style={{ animationDelay: `${0.04 + i * 0.045}s` }}>
                   {word}
                 </span>,
                 i < arr.length - 1 ? ' ' : null,
@@ -138,7 +138,7 @@ export default function HeroSection() {
               <br />
               <span className="gold-text">
                 {'you can trust.'.split(' ').flatMap((word, i, arr) => [
-                  <span key={i} className="hero-word" style={{ animationDelay: `${0.42 + i * 0.09}s` }}>
+                  <span key={i} className="hero-word" style={{ animationDelay: `${0.175 + i * 0.045}s` }}>
                     {word}
                   </span>,
                   i < arr.length - 1 ? ' ' : null,
