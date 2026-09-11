@@ -163,3 +163,18 @@ input, select, textarea {
 @media (prefers-reduced-motion: reduce) {
   .hero-word { animation: none; }
 }
+
+/* Above-the-fold entrance animations, CSS instead of motion/react.
+   Same reason as .hero-word: anything in the hero that starts at opacity 0
+   under JS control cannot paint until hydration, and LCP simply hops to
+   whichever animated element is largest. Delays are also compressed — the
+   old choreography finished at 1.35s, which LCP had to wait out. */
+@keyframes heroRise  { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes heroSlideL{ from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: none; } }
+@keyframes heroCard  { from { opacity: 0; transform: translateX(40px) scale(0.97); } to { opacity: 1; transform: none; } }
+.hero-rise   { animation: heroRise  0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-slide-l{ animation: heroSlideL 0.45s ease-out both; }
+.hero-card   { animation: heroCard  0.65s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise, .hero-slide-l, .hero-card { animation: none; }
+}

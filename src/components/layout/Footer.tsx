@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Services</h4>
+            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Services</h2>
             <ul className="space-y-3 text-sm">
               {[
                 { href: '/services/residential-moving', label: 'Local Apartment & House Moves' },
@@ -48,7 +48,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Company</h4>
+            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Company</h2>
             <ul className="space-y-3 text-sm">
               {[
                 { href: '/about', label: 'About Evgenii' },
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Contact</h4>
+            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Contact</h2>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-2">
                 <MessageCircle size={13} className="text-gold shrink-0" />
@@ -120,7 +120,7 @@ export default function Footer() {
             ))}
           </ul>
           <p className="text-center text-xs">
-            <Link href="/russian-speaking-movers-miami" className="text-gray-500 hover:text-gold transition-colors" hrefLang="en">
+            <Link href="/russian-speaking-movers-miami" className="text-gray-500 underline underline-offset-2 hover:text-gold transition-colors" hrefLang="en">
               Russian-speaking movers in Miami — in English
             </Link>
           </p>
@@ -184,7 +184,7 @@ export default function Footer() {
               href="https://oriumstudios.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gold transition-colors"
+              className="text-gray-500 underline underline-offset-2 hover:text-gold transition-colors"
             >
               Orium Studios LLC
             </a>
@@ -193,7 +193,7 @@ export default function Footer() {
               href="https://oriumstudios.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gold/70 hover:text-gold transition-colors"
+              className="text-gold/70 underline underline-offset-2 hover:text-gold transition-colors"
             >
               oriumstudios.com
             </a>
