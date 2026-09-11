@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     languages: {
       en: 'https://www.easy-move-florida.com/miami-movers',
       ru: 'https://www.easy-move-florida.com/ru/miami-movers',
+
+      uk: 'https://www.easy-move-florida.com/ua/miami-movers',
       'x-default': 'https://www.easy-move-florida.com/miami-movers',
     },
   },

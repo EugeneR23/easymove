@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
@@ -154,6 +155,14 @@ export default function RusskieGruzchikiPage() {
           </div>
         </section>
 
+
+        {/* Реальное фото — единственная страница-победитель шла без единого изображения (SXO-аудит 2026-09-11) */}
+        <section className="bg-white pt-12">
+          <div className="container-max max-w-3xl">
+            <Image src="/images/Real/1.png" alt="Упакованные и подписанные коробки у лестницы перед переездом в Южной Флориде — Easy Move Florida" width={409} height={543} className="w-full h-auto" />
+            <p className="text-gray-400 text-xs mt-3">Упаковано за день до переезда: окно грузового лифта тратится на переезд, а не на коробки.</p>
+          </div>
+        </section>
         {SECTIONS.map((s, i) => (
           <section key={s.title} className={i % 2 === 0 ? 'section-padding bg-white' : 'section-padding bg-cream'}>
             <div className="container-max max-w-3xl">

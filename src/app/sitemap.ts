@@ -97,13 +97,31 @@ const RU_PAIRED: Record<string, string> = {
   '/boynton-beach-movers': '/ru/boynton-beach-movers',
 };
 
+// Пары EN-путь → UA-путь. Возвратный hreflang uk обязан стоять на EN и RU
+// записях, иначе Google отбрасывает всю связку (найдено аудитом 2026-09-11).
+const UA_PAIRED: Record<string, string> = {
+  '/': '/ua',
+  '/sunny-isles-movers': '/ua/sunny-isles-movers',
+  '/hallandale-beach-movers': '/ua/hallandale-beach-movers',
+  '/hollywood-movers': '/ua/hollywood-movers',
+  '/miami-movers': '/ua/miami-movers',
+  '/aventura-movers': '/ua/aventura-movers',
+  '/fort-lauderdale-movers': '/ua/fort-lauderdale-movers',
+  '/moving-cost-miami': '/ua/moving-cost-miami',
+  '/moving-cost-sunny-isles': '/ua/moving-cost-sunny-isles',
+  '/moving-cost-hallandale-beach': '/ua/moving-cost-hallandale-beach',
+  '/moving-cost-hollywood': '/ua/moving-cost-hollywood',
+  '/moving-cost-aventura': '/ua/moving-cost-aventura',
+};
 function withAlternates(path: string): MetadataRoute.Sitemap[number]['alternates'] | undefined {
   const ruPath = RU_PAIRED[path];
-  if (!ruPath) return undefined;
+  const uaPath = UA_PAIRED[path];
+  if (!ruPath && !uaPath) return undefined;
   return {
     languages: {
       en: `${siteUrl}${path === '/' ? '' : path}`,
-      ru: `${siteUrl}${ruPath}`,
+      ...(ruPath ? { ru: `${siteUrl}${ruPath}` } : {}),
+      ...(uaPath ? { uk: `${siteUrl}${uaPath}` } : {}),
       'x-default': `${siteUrl}${path === '/' ? '' : path}`,
     },
   };

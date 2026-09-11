@@ -14,10 +14,18 @@ const siteUrl = 'https://www.easy-move-florida.com';
 // kept verbatim so the page keeps whatever ranking it has; the numbers inside
 // are corrected to the real rate card.
 export const metadata: Metadata = {
-  title: { absolute: 'How Much Do Movers Cost in Miami? (2026 Prices) | Easy Move Florida' },
+  title: { absolute: 'Movers Cost in Miami — 2026 Prices | Easy Move Florida' },
   description:
-    'Miami movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum plus a truck fee per day that matches the crew rate. A 1-bedroom runs $516–$774 all-in. Full 2026 cost breakdown.',
-  alternates: { canonical: `${siteUrl}/moving-cost-miami` },
+    'Miami movers: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum + truck at the crew rate. A 1-bedroom runs $516–$774 all-in. Full 2026 breakdown.',
+  alternates: {
+    canonical: `${siteUrl}/moving-cost-miami`,
+    languages: {
+      en: `${siteUrl}/moving-cost-miami`,
+      ru: `${siteUrl}/ru/moving-cost-miami`,
+      uk: `${siteUrl}/ua/moving-cost-miami`,
+      'x-default': `${siteUrl}/moving-cost-miami`,
+    },
+  },
   openGraph: {
     type: 'article',
     locale: 'en_US',

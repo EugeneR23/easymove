@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${siteUrl}/fort-lauderdale-movers`,
       ru: `${siteUrl}/ru/fort-lauderdale-movers`,
+      uk: `${siteUrl}/ua/fort-lauderdale-movers`,
       'x-default': `${siteUrl}/fort-lauderdale-movers`,
     },
   },

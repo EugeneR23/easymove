@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     languages: {
       en: 'https://www.easy-move-florida.com/hallandale-beach-movers',
       ru: 'https://www.easy-move-florida.com/ru/hallandale-beach-movers',
+
+      uk: 'https://www.easy-move-florida.com/ua/hallandale-beach-movers',
       'x-default': 'https://www.easy-move-florida.com/hallandale-beach-movers',
     },
   },

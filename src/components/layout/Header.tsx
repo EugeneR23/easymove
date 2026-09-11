@@ -107,7 +107,7 @@ export default function Header() {
                   key={l.label}
                   href={l.href}
                   hrefLang={l.hl}
-                  className="text-[11px] font-bold tracking-wider border border-white/30 text-white/60 px-2.5 py-1 hover:border-gold hover:text-gold transition-all duration-200"
+                  className="text-[11px] font-bold tracking-wider border border-white/30 text-white/60 px-3 py-2 hover:border-gold hover:text-gold transition-all duration-200"
                 >
                   {l.label}
                 </Link>
@@ -149,7 +149,7 @@ export default function Header() {
                 key={l.label}
                 href={l.href}
                 hrefLang={l.hl}
-                className="text-[10px] font-bold tracking-wider border border-white/30 text-white/60 px-2 py-0.5"
+                className="text-[11px] font-bold tracking-wider border border-white/30 text-white/60 px-2.5 py-1.5"
               >
                 {l.label}
               </Link>
@@ -163,7 +163,7 @@ export default function Header() {
               <span className="hidden sm:inline">786-305-1844</span>
             </a>
             <button
-              className="p-2 text-white"
+              className="p-2.5 -mr-1 text-white"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle menu"
             >

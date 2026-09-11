@@ -8,7 +8,14 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Fort Lauderdale? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: { canonical: `${siteUrl}/moving-cost-fort-lauderdale` },
+  alternates: {
+    canonical: `${siteUrl}/moving-cost-fort-lauderdale`,
+    languages: {
+      en: `${siteUrl}/moving-cost-fort-lauderdale`,
+      ru: `${siteUrl}/ru/moving-cost-fort-lauderdale`,
+      'x-default': `${siteUrl}/moving-cost-fort-lauderdale`,
+    },
+  },
   openGraph: {
     type: 'article',
     locale: 'en_US',

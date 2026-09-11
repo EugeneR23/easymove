@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     languages: {
       en: 'https://www.easy-move-florida.com',
       ru: 'https://www.easy-move-florida.com/ru',
+
+      uk: 'https://www.easy-move-florida.com/ua',
       'x-default': 'https://www.easy-move-florida.com',
     },
   },

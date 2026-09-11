@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${siteUrl}/moving-cost-hallandale-beach`,
       ru: `${siteUrl}/ru/moving-cost-hallandale-beach`,
+      uk: `${siteUrl}/ua/moving-cost-hallandale-beach`,
       'x-default': `${siteUrl}/moving-cost-hallandale-beach`,
     },
   },

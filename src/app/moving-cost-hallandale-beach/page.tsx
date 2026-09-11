@@ -8,7 +8,15 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Hallandale Beach? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: { canonical: `${siteUrl}/moving-cost-hallandale-beach` },
+  alternates: {
+    canonical: `${siteUrl}/moving-cost-hallandale-beach`,
+    languages: {
+      en: `${siteUrl}/moving-cost-hallandale-beach`,
+      ru: `${siteUrl}/ru/moving-cost-hallandale-beach`,
+      uk: `${siteUrl}/ua/moving-cost-hallandale-beach`,
+      'x-default': `${siteUrl}/moving-cost-hallandale-beach`,
+    },
+  },
   openGraph: {
     type: 'article',
     locale: 'en_US',
