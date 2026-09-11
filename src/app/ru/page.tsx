@@ -199,7 +199,7 @@ export default function RuHomePage() {
                         { v: 'specialty' as MoveType, l: 'Спец.' },
                       ]).map(t => (
                         <button key={t.v} onClick={() => { setMoveType(t.v); setHomeSize(null); }}
-                          className={`py-2 px-1 text-[11px] font-semibold border transition-all duration-150 text-center ${moveType === t.v ? 'border-gold bg-gold text-white' : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'}`}
+                          className={`py-2 px-1 text-[11px] font-semibold border transition-all duration-150 text-center ${moveType === t.v ? 'border-gold bg-gold text-charcoal' : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'}`}
                         >{t.l}</button>
                       ))}
                     </div>
@@ -212,10 +212,10 @@ export default function RuHomePage() {
                             const sp = moveType === 'local' ? localStartingPrice(s.value, crew) : packingPrice(s.value, crew);
                             return (
                               <button key={s.value} onClick={() => setHomeSize(s.value)}
-                                className={`py-2.5 px-2 text-center border transition-all duration-150 ${homeSize === s.value ? 'border-gold bg-gold text-white' : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'}`}
+                                className={`py-2.5 px-2 text-center border transition-all duration-150 ${homeSize === s.value ? 'border-gold bg-gold text-charcoal' : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'}`}
                               >
-                                <span className={`block text-xs font-bold ${homeSize === s.value ? 'text-white' : 'text-charcoal'}`}>{s.label}</span>
-                                <span className={`block text-[10px] mt-0.5 ${homeSize === s.value ? 'text-white/80' : 'text-gray-400'}`}>от {formatCurrency(sp)}</span>
+                                <span className={`block text-xs font-bold ${homeSize === s.value ? 'text-charcoal' : 'text-charcoal'}`}>{s.label}</span>
+                                <span className={`block text-[10px] mt-0.5 ${homeSize === s.value ? 'text-charcoal/80' : 'text-gray-500'}`}>от {formatCurrency(sp)}</span>
                               </button>
                             );
                           })}
@@ -232,7 +232,7 @@ export default function RuHomePage() {
                               className={`py-3 text-center border transition-all duration-150 ${crew === c ? 'border-gold bg-gold/10' : 'border-gray-200 hover:border-gold/40'}`}
                             >
                               <span className="block text-xs font-bold text-charcoal">{c} {moveType === 'packing-only' ? 'упаковщика' : 'мувера'}</span>
-                              <span className="block text-[10px] text-gray-400 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : HOURLY_RATE[c]}/час · {formatCurrency(cp)}</span>
+                              <span className="block text-[10px] text-gray-500 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : HOURLY_RATE[c]}/час · {formatCurrency(cp)}</span>
                             </button>
                           );
                         })}
@@ -264,7 +264,7 @@ export default function RuHomePage() {
                         Бесплатный расчёт <ArrowRight size={15} />
                       </Button>
                     </Link>
-                    <div className="flex items-center justify-center gap-3 mt-3 text-gray-400 text-[10px]">
+                    <div className="flex items-center justify-center gap-3 mt-3 text-gray-500 text-[10px]">
                       <span>Без обязательств</span>
                       <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
                       <span>Быстрый ответ</span>

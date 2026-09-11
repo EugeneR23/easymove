@@ -9,7 +9,6 @@ import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
 import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
 import { formatCurrency, whatsappUrl } from '@/lib/utils';
-import { easeLuxury } from '@/lib/motion';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
@@ -102,27 +101,23 @@ export default function HeroSection() {
           {/* ── Left: Headline ─────────────────────────────────────── */}
           <div className="lg:col-span-6">
             {/* Eyebrow badge */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-              className="inline-flex items-center gap-2 border border-gold/40 bg-black/20 backdrop-blur-[2px] px-4 py-1.5 mb-3"
+            <div
+              className="hero-slide-l inline-flex items-center gap-2 border border-gold/40 bg-black/20 backdrop-blur-[2px] px-4 py-1.5 mb-3"
+              style={{ animationDelay: '0.05s' }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block shrink-0" />
               <span className="text-gold text-xs font-semibold tracking-[0.08em] sm:tracking-[0.2em] uppercase">
                 Hollywood · Aventura · Sunny Isles · Fort Lauderdale · Miami
               </span>
-            </motion.div>
+            </div>
 
             {/* Real Thumbtack rating ribbon */}
-            <motion.a
+            <a
               href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
-              className="inline-flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity"
+              className="hero-slide-l inline-flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity"
+              style={{ animationDelay: '0.12s' }}
             >
               <span className="flex items-center gap-0.5">
                 {[1, 2, 3, 4, 5].map(i => <Star key={i} size={12} className="fill-gold text-gold" />)}
@@ -130,7 +125,7 @@ export default function HeroSection() {
               <span className="text-white/80 text-xs font-semibold">
                 {THUMBTACK.rating} · {THUMBTACK.reviewCount} reviews on Thumbtack
               </span>
-            </motion.a>
+            </a>
 
             {/* Word-by-word headline reveal — CSS, not motion/react. This H1 is
                 the LCP element; animating it through hydration measured 8.7s LCP
@@ -153,15 +148,13 @@ export default function HeroSection() {
             </h1>
 
             {/* Subhead */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.85, ease: easeLuxury }}
-              className="text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed"
+            <p
+              className="hero-rise text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed"
+              style={{ animationDelay: '0.22s' }}
             >
               From $129/hour with 3-hour minimum. Russian + English. WhatsApp + Telegram.
               Owner-led crew, transparent pricing, careful handling.
-            </motion.p>
+            </p>
 
             {/* Key selling points */}
             <div className="space-y-2.5 mb-8 hidden lg:block">
@@ -170,25 +163,21 @@ export default function HeroSection() {
                 'Building / HOA / COI fluent — paperwork handled',
                 'Owner-led by Evgenii — direct WhatsApp anytime',
               ].map((item, i) => (
-                <motion.div
+                <div
                   key={item}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.45, delay: 1.0 + i * 0.1, ease: 'easeOut' }}
-                  className="flex items-center gap-2.5"
+                  className="hero-slide-l flex items-center gap-2.5"
+                  style={{ animationDelay: `${0.3 + i * 0.08}s` }}
                 >
                   <CheckCircle size={14} className="text-gold shrink-0" />
                   <span className="text-white/70 text-sm">{item}</span>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Phone + availability — desktop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.35, ease: 'easeOut' }}
-              className="hidden lg:flex items-center gap-5"
+            <div
+              className="hero-rise hidden lg:flex items-center gap-5"
+              style={{ animationDelay: '0.5s' }}
             >
               <a
                 href="tel:+17863051844"
@@ -207,16 +196,11 @@ export default function HeroSection() {
                 <MessageCircle size={13} className="text-gold" />
                 WhatsApp
               </a>
-            </motion.div>
+            </div>
           </div>
 
           {/* ── Right: Calculator Card ────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, x: 40, scale: 0.97 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.7, ease: easeLuxury, delay: 0.2 }}
-            className="lg:col-span-6"
-          >
+          <div className="hero-card lg:col-span-6" style={{ animationDelay: '0.1s' }}>
             <div className="bg-white shadow-[0_25px_60px_rgba(0,0,0,0.4)] w-full overflow-hidden">
 
               {/* Card header — dark with rates */}
@@ -248,7 +232,7 @@ export default function HeroSection() {
                       onClick={() => { setMoveType(t.v); setHomeSize(null); }}
                       className={`py-2 px-1 text-[11px] font-semibold border transition-all duration-150 text-center ${
                         moveType === t.v
-                          ? 'border-gold bg-gold text-white'
+                          ? 'border-gold bg-gold text-charcoal'
                           : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'
                       }`}
                     >
@@ -272,14 +256,14 @@ export default function HeroSection() {
                             onClick={() => setHomeSize(s.value)}
                             className={`py-2.5 px-2 text-center border transition-all duration-150 ${
                               homeSize === s.value
-                                ? 'border-gold bg-gold text-white'
+                                ? 'border-gold bg-gold text-charcoal'
                                 : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'
                             }`}
                           >
-                            <span className={`block text-xs font-bold ${homeSize === s.value ? 'text-white' : 'text-charcoal'}`}>
+                            <span className={`block text-xs font-bold ${homeSize === s.value ? 'text-charcoal' : 'text-charcoal'}`}>
                               {s.label}
                             </span>
-                            <span className={`block text-[10px] mt-0.5 ${homeSize === s.value ? 'text-white/80' : 'text-gray-400'}`}>
+                            <span className={`block text-[10px] mt-0.5 ${homeSize === s.value ? 'text-charcoal/80' : 'text-gray-500'}`}>
                               from {formatCurrency(sizePrice)}
                             </span>
                           </button>
@@ -310,7 +294,7 @@ export default function HeroSection() {
                           <span className="block text-xs font-bold text-charcoal">
                             {c} {moveType === 'packing-only' ? 'Packers' : 'Movers'}
                           </span>
-                          <span className="block text-[10px] text-gray-400 mt-0.5">
+                          <span className="block text-[10px] text-gray-500 mt-0.5">
                             ${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : (c === 2 ? 129 : c === 3 ? 179 : 229)}/hr · {formatCurrency(crewPrice)}
                           </span>
                         </button>
@@ -364,7 +348,7 @@ export default function HeroSection() {
                 </a>
 
                 {/* Microcopy */}
-                <div className="flex items-center justify-center gap-3 mt-3 text-gray-400 text-[10px]">
+                <div className="flex items-center justify-center gap-3 mt-3 text-gray-500 text-[10px]">
                   <span>No obligation</span>
                   <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
                   <span>Owner-led</span>
@@ -373,16 +357,14 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
 
         {/* Trust badges — mobile only */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.0, ease: 'easeOut' }}
-          className="flex flex-wrap items-center justify-center gap-4 mt-8 lg:hidden"
+        <div
+          className="hero-rise flex flex-wrap items-center justify-center gap-4 mt-8 lg:hidden"
+          style={{ animationDelay: '0.35s' }}
         >
           <div className="flex items-center gap-2 text-white/60">
             <CheckCircle size={13} className="text-gold shrink-0" />
@@ -396,7 +378,7 @@ export default function HeroSection() {
             <CheckCircle size={13} className="text-gold shrink-0" />
             <span className="text-[11px] tracking-wider uppercase">RU + EN</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
