@@ -1,17 +1,20 @@
-'use client';
-
-import { useRef } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
-import { motion, useInView } from 'motion/react';
+import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, MessageCircle } from 'lucide-react';
-import { easeLuxury } from '@/lib/motion';
 import { whatsappUrl } from '@/lib/utils';
 
+/**
+ * Closing call to action. Rendered on nearly every page, which is why it no
+ * longer imports an animation library: the reveals go through <AnimateIn>
+ * (IntersectionObserver + CSS) and the ambient glows are CSS keyframes, so
+ * this component ships no JavaScript of its own at all.
+ *
+ * The ambient layers animate opacity and scale over a static gradient rather
+ * than animating the gradient itself — same look, but the compositor can do it
+ * without repainting.
+ */
 export default function CTABanner() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
-
   return (
     <section className="relative py-14 md:py-24 bg-charcoal overflow-hidden">
       {/* Gold gradient top border */}
@@ -20,72 +23,46 @@ export default function CTABanner() {
       <div className="absolute inset-0 grain-overlay" />
 
       {/* Ambient pulsing radial glow */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{
-          background: [
-            'radial-gradient(ellipse 50% 60% at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 70%)',
-            'radial-gradient(ellipse 65% 75% at 50% 100%, rgba(201,168,76,0.10) 0%, transparent 70%)',
-            'radial-gradient(ellipse 50% 60% at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 70%)',
-          ],
-        }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+      <div
+        className="absolute inset-0 pointer-events-none cta-glow"
+        style={{ background: 'radial-gradient(ellipse 60% 70% at 50% 100%, rgba(201,168,76,0.10) 0%, transparent 70%)' }}
       />
 
       {/* Secondary ambient orb at top */}
-      <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] pointer-events-none"
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] pointer-events-none cta-orb"
         style={{ background: 'radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 70%)' }}
-        animate={{ opacity: [0.5, 1, 0.5], scaleX: [1, 1.1, 1] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
 
-      <div ref={ref} className="relative max-w-4xl mx-auto px-4 text-center">
+      <div className="relative max-w-4xl mx-auto px-4 text-center">
         {/* Decorative separator */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={inView ? { opacity: 1, scaleX: 1 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="flex items-center justify-center gap-4 mb-8 md:mb-10"
-          style={{ transformOrigin: 'center' }}
-        >
+        <AnimateIn direction="none" className="flex items-center justify-center gap-4 mb-8 md:mb-10">
           <div className="flex-1 max-w-[80px] h-px gold-separator" />
           <div className="w-1.5 h-1.5 bg-gold rotate-45" />
           <div className="flex-1 max-w-[80px] h-px gold-separator" />
-        </motion.div>
+        </AnimateIn>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2, ease: easeLuxury }}
-          className="font-display text-3xl md:text-5xl font-bold text-white mb-5 leading-tight"
-        >
-          Ready to move?
-        </motion.h2>
+        <AnimateIn delay={0.2}>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
+            Ready to move?
+          </h2>
+        </AnimateIn>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.35, ease: 'easeOut' }}
-          className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed"
-        >
-          Send photos via WhatsApp, get an estimate in 5 minutes, book same week. Or run the calculator now and lock your rate.
-        </motion.p>
+        <AnimateIn delay={0.35}>
+          <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed">
+            Send photos via WhatsApp, get an estimate in 5 minutes, book same week. Or run the calculator now and lock your rate.
+          </p>
+        </AnimateIn>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
+        <AnimateIn delay={0.5} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
             <Link href="/quote">
               <Button size="lg" variant="primary" className="w-full sm:w-auto min-w-[220px] shadow-[0_0_32px_rgba(201,168,76,0.2)] hover:shadow-[0_0_48px_rgba(201,168,76,0.3)]">
                 Calculate My Move
               </Button>
             </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
+          </div>
+          <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
             <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
@@ -95,8 +72,8 @@ export default function CTABanner() {
                 WhatsApp Us
               </Button>
             </a>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ duration: 0.15 }}>
+          </div>
+          <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
             <a href="tel:+17863051844">
               <Button
                 size="lg"
@@ -106,15 +83,10 @@ export default function CTABanner() {
                 786-305-1844
               </Button>
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </AnimateIn>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.7, ease: 'easeOut' }}
-          className="flex items-center justify-center gap-4 mt-8 flex-wrap"
-        >
+        <AnimateIn delay={0.7} direction="none" className="flex items-center justify-center gap-4 mt-8 flex-wrap">
           <span className="text-white/45 text-xs">Owner-led</span>
           <span className="w-px h-3 bg-white/15" />
           <span className="text-white/45 text-xs">COI on request</span>
@@ -122,7 +94,7 @@ export default function CTABanner() {
           <span className="text-white/45 text-xs">Russian + English</span>
           <span className="w-px h-3 bg-white/15" />
           <span className="text-white/45 text-xs">Hollywood-based</span>
-        </motion.div>
+        </AnimateIn>
       </div>
     </section>
   );

@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
@@ -173,16 +172,11 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="md:hidden bg-charcoal border-t border-white/10 shadow-lg"
-          >
+      {/* Mobile Menu. CSS transition instead of AnimatePresence — this header
+          renders on every page, so importing an animation library here put it
+          in every bundle on the site for one 0.18s fade. */}
+      {menuOpen && (
+        <div className="mobile-menu-in md:hidden bg-charcoal border-t border-white/10 shadow-lg">
             <div className="px-4 py-6 space-y-4">
               {NAV_LINKS.map((link) => (
                 <Link
@@ -208,10 +202,9 @@ export default function Header() {
                   {isRu ? 'Рассчитать переезд' : 'Calculate My Move'}
                 </Button>
               </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
