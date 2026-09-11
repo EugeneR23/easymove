@@ -4,7 +4,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Переезды Майами | Easy Move Florida',
+    default: 'Переезды Майами',
     template: '%s | Easy Move Florida',
   },
   description:
@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     languages: {
       'en': siteUrl,
       'ru': `${siteUrl}/ru`,
+      'uk': `${siteUrl}/ua`,
       'x-default': siteUrl,
     },
   },

@@ -25,7 +25,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Movers, FL | Easy Move Florida',
     metaDescription:
-      'Licensed Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $129/hr. Call 786-305-1844.',
+      'Insured Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $129/hr. Call 786-305-1844.',
     intro:
       "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. Easy Move Florida was built in Miami-Dade and every crew we send is briefed on your building before they arrive.",
     neighborhoods: [
@@ -101,7 +101,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
     metaTitle: 'Fort Lauderdale Movers | Easy Move Florida',
     metaDescription:
-      'Licensed & insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
+      'Insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
     intro:
       "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. Easy Move Florida has served Broward County clients across every neighborhood — from Las Olas Boulevard high-rises to Plantation family homes — with the same crew, the same standards, and direct access to the founder.",
     neighborhoods: [
@@ -241,7 +241,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/4.png',
     metaTitle: 'Aventura Movers — High-Rise & Condo | Easy Move Florida',
     metaDescription:
-      "Licensed & insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
+      "Insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
     intro:
       "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. Easy Move Florida was built for buildings like Williams Island, Porto Vita, Turnberry Isle, and Hidden Bay — we know the dock managers by name and we issue building-compliant Certificates of Insurance within 24 hours. We also speak Russian, which matters in Aventura.",
     neighborhoods: [

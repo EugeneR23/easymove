@@ -8,7 +8,14 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Miami Beach? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: { canonical: `${siteUrl}/moving-cost-miami-beach` },
+  alternates: {
+    canonical: `${siteUrl}/moving-cost-miami-beach`,
+    languages: {
+      en: `${siteUrl}/moving-cost-miami-beach`,
+      ru: `${siteUrl}/ru/moving-cost-miami-beach`,
+      'x-default': `${siteUrl}/moving-cost-miami-beach`,
+    },
+  },
   openGraph: {
     type: 'article',
     locale: 'en_US',

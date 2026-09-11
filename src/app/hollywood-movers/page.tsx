@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     languages: {
       en: 'https://www.easy-move-florida.com/hollywood-movers',
       ru: 'https://www.easy-move-florida.com/ru/hollywood-movers',
+
+      uk: 'https://www.easy-move-florida.com/ua/hollywood-movers',
       'x-default': 'https://www.easy-move-florida.com/hollywood-movers',
     },
   },

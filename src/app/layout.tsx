@@ -157,13 +157,15 @@ const localBusinessSchema = {
       closes: '19:00',
     },
   ],
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: '+17863051844',
-    contactType: 'customer service',
-    areaServed: 'US',
-    availableLanguage: ['English', 'Russian'],
-  },
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+17863051844',
+      contactType: 'customer service',
+      areaServed: 'US',
+      availableLanguage: ['English', 'Russian'],
+    },
+  ],
   serviceType: [
     'Local Residential Moving',
     'Apartment Moving',
@@ -326,14 +328,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             every page, including pages that never render it. The hero <img> uses
             next/image, which emits its own AVIF imageSrcSet preload with
             fetchPriority="high". */}
-        {/* Tawk.to live chat — replace YOUR_PROPERTY_ID/YOUR_WIDGET_ID with values from tawk.to dashboard */}
-        <Script
-          id="tawkto"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];s1.async=true;s1.src='https://embed.tawk.to/69c159ee7eea2e1c39d68478/1jkdkeimn';s1.charset='UTF-8';s1.setAttribute('crossorigin','*');s0.parentNode.insertBefore(s1,s0);})();`,
-          }}
-        />
+        {/* Tawk.to удалён 2026-09-11: скрипт эмбеда блокировался CORS-ом на
+            каждой загрузке (проверено в реальном браузере, 8/8 страниц), пузырь
+            чата не рендерился ни разу — виджет был мёртв и только сыпал ошибки
+            в консоль. Починить в кабинете tawk.to (домен/виджет) и вернуть той
+            же строкой: embed.tawk.to/69c159ee7eea2e1c39d68478/1jkdkeimn */}
         {/* Google Tag Manager */}
         <Script
           id="gtm-head"

@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     languages: {
       en: 'https://www.easy-move-florida.com/sunny-isles-movers',
       ru: 'https://www.easy-move-florida.com/ru/sunny-isles-movers',
+
+      uk: 'https://www.easy-move-florida.com/ua/sunny-isles-movers',
       'x-default': 'https://www.easy-move-florida.com/sunny-isles-movers',
     },
   },

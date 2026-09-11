@@ -87,7 +87,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={13} className="text-gold shrink-0 mt-0.5" />
-                <span>Hollywood, FL &mdash; serving<br />all of South Florida</span>
+                <span>2130 Stirling Rd, Hollywood, FL 33020<br />serving all of South Florida</span>
               </li>
               <li className="text-xs text-gray-600 pt-1">
                 Mon – Sat &nbsp;·&nbsp; 8:00 AM – 7:00 PM EST

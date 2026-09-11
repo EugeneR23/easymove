@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${siteUrl}/miami-movers`,
       ru: `${siteUrl}/ru/miami-movers`,
+      uk: `${siteUrl}/ua/miami-movers`,
       'x-default': `${siteUrl}/miami-movers`,
     },
   },

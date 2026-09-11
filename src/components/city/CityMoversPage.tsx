@@ -18,7 +18,7 @@ import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
 const SERVICES = {
   en: [
     { href: '/services/residential-moving',  label: 'High-Rise & Residential', desc: 'Condos, apartments, and homes of every size.' },
-    { href: '/services/long-distance-moving', label: 'Long-Distance',           desc: 'Interstate moves with full coordination.' },
+    { href: '/quote', label: 'Single-Item & Furniture Delivery', desc: 'Pickup, wrap and placement by the same insured crews.' },
     { href: '/services/office-commercial',   label: 'Office & Commercial',     desc: 'Minimal downtime, maximum precision.' },
     { href: '/services/specialty-items',     label: 'Fine Art & Specialty',    desc: 'Museum-grade handling for high-value items.' },
     { href: '/services/storage-solutions',   label: 'Premium Storage',         desc: 'Short-term and monthly storage options.' },
@@ -26,7 +26,7 @@ const SERVICES = {
   ],
   ru: [
     { href: '/services/residential-moving',  label: 'Квартиры и высотки',      desc: 'Кондо, апартаменты и дома любого размера.' },
-    { href: '/services/long-distance-moving', label: 'Дальние переезды',        desc: 'Межштатные переезды с полной координацией.' },
+    { href: '/quote', label: 'Доставка мебели и вещей',          desc: 'Заберём, упакуем и поднимем — те же застрахованные бригады.' },
     { href: '/services/office-commercial',   label: 'Офисы и бизнес',          desc: 'Минимальный простой, максимальная точность.' },
     { href: '/services/specialty-items',     label: 'Искусство и антиквариат', desc: 'Музейный уровень обращения с ценными вещами.' },
     { href: '/services/storage-solutions',   label: 'Хранение',                desc: 'Краткосрочное и помесячное хранение вещей.' },
@@ -34,7 +34,7 @@ const SERVICES = {
   ],
   ua: [
     { href: '/services/residential-moving',  label: 'Квартири та висотки',     desc: 'Кондо, апартаменти й будинки будь-якого розміру.' },
-    { href: '/services/long-distance-moving', label: 'Далекі переїзди',         desc: 'Міжштатні переїзди з повною координацією.' },
+    { href: '/quote', label: 'Доставка меблів і речей',          desc: 'Заберемо, запакуємо й піднімемо — ті самі застраховані бригади.' },
     { href: '/services/office-commercial',   label: 'Офіси та бізнес',         desc: 'Мінімальний простій, максимальна точність.' },
     { href: '/services/specialty-items',     label: 'Мистецтво й антикваріат', desc: 'Музейний рівень поводження з цінними речами.' },
     { href: '/services/storage-solutions',   label: 'Зберігання',              desc: 'Короткострокове та помісячне зберігання речей.' },
@@ -205,6 +205,8 @@ const UI = {
     reviewsTitle: 'What clients say about our crews',
     reviewsNote: (r: number) => `Quoted word-for-word from our Thumbtack profile — ${r} verified reviews, every one from a client Thumbtack confirmed hired us.`,
     reviewsCta: 'Read all reviews on Thumbtack',
+    coiLine: 'Property manager? We issue the COI within 24 hours, free — matched to your building\u2019s requirements sheet.',
+    coiCta: 'How the COI process works',
     breadcrumbHome: 'Home',
     breadcrumbAreas: 'Service Areas',
     breadcrumbCity: (c: CityData) => `${c.name} Movers`,
@@ -233,6 +235,8 @@ const UI = {
     reviewsTitle: 'Что клиенты говорят о наших бригадах',
     reviewsNote: (r: number) => `Дословные цитаты с нашего профиля Thumbtack — ${r} проверенных отзыва, каждый от клиента, чей заказ Thumbtack подтвердил. Оригиналы на английском.`,
     reviewsCta: 'Все отзывы на Thumbtack',
+    coiLine: 'Вы управляющий зданием? COI выпускаем за 24 часа, бесплатно — точно по листу требований вашего здания.',
+    coiCta: 'Как устроен процесс COI',
     breadcrumbHome: 'Главная',
     breadcrumbAreas: 'Города',
     breadcrumbCity: (c: CityData) => `Грузчики ${c.name}`,
@@ -263,6 +267,8 @@ const UI = {
     reviewsTitle: 'Що клієнти кажуть про наші бригади',
     reviewsNote: (r: number) => `Дослівні цитати з нашого профілю Thumbtack — ${r} перевірені відгуки, кожен від клієнта, чиє замовлення Thumbtack підтвердив. Оригінали англійською.`,
     reviewsCta: 'Усі відгуки на Thumbtack',
+    coiLine: 'Ви менеджер будинку? COI випускаємо за 24 години, безкоштовно — точно за листом вимог вашого будинку.',
+    coiCta: 'Як влаштований процес COI',
     breadcrumbHome: 'Головна',
     breadcrumbAreas: 'Міста',
     breadcrumbCity: (c: CityData) => `Вантажники ${c.name}`,
@@ -291,6 +297,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const schemaJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'MovingCompany',
+    '@id': 'https://www.easy-move-florida.com/#organization',
     name: 'Easy Move Florida',
     description: city.metaDescription,
     url: `https://www.easy-move-florida.com/${city.slug}`,
@@ -308,7 +315,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
       postalCode: '33020',
       addressCountry: 'US',
     },
-    priceRange: '$$$',
+    priceRange: '$$',
     openingHours: 'Mo-Sa 08:00-19:00',
     knowsLanguage: ['en', 'ru'],
     inLanguage: locale === 'ua' ? 'uk' : locale, // BCP-47: Ukrainian is uk, not ua
@@ -548,6 +555,16 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
                 {t.reviewsCta} ↗
               </a>
             </p>
+          </div>
+        </section>
+
+        {/* ── COI fast path for building managers ───────────────────────── */}
+        <section className="bg-cream border-t border-gray-200 py-6">
+          <div className="container-max max-w-3xl mx-auto text-center text-sm text-gray-600">
+            {t.coiLine}{' '}
+            <Link href="/coi-miami-condo-movers" className="text-gold font-semibold hover:underline whitespace-nowrap">
+              {t.coiCta} →
+            </Link>
           </div>
         </section>
 

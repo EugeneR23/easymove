@@ -179,14 +179,14 @@ const offerJson = JSON.stringify({
   '@id': `${siteUrl}/pricing#service`,
   name: 'Local Moving Service — South Florida',
   serviceType: 'Local Moving',
-  provider: { '@type': 'MovingCompany', name: 'Easy Move Florida', telephone: '+17863051844', url: siteUrl },
+  provider: { '@id': `${siteUrl}/#organization` },
   areaServed: { '@type': 'AdministrativeArea', name: 'South Florida (Miami-Dade, Broward, Palm Beach Counties)' },
   offers: {
     '@type': 'AggregateOffer',
     priceCurrency: 'USD',
     lowPrice: HOURLY_RATE[2],
-    highPrice: HOURLY_RATE[3],
-    offerCount: 2,
+    highPrice: HOURLY_RATE[4],
+    offerCount: 3,
     priceSpecification: [
       {
         '@type': 'UnitPriceSpecification',

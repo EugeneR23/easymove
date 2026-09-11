@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${siteUrl}/aventura-movers`,
       ru: `${siteUrl}/ru/aventura-movers`,
+      uk: `${siteUrl}/ua/aventura-movers`,
       'x-default': `${siteUrl}/aventura-movers`,
     },
   },

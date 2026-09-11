@@ -6,9 +6,11 @@ import { Star, ExternalLink, MessageCircle } from 'lucide-react';
 import { easeLuxury } from '@/lib/motion';
 import { whatsappUrl } from '@/lib/utils';
 
-const THUMBTACK_URL = 'https://www.thumbtack.com/profile/services/474342774303219734/reviews';
-const REVIEW_COUNT = 32;
-const RATING = 5.0;
+import { THUMBTACK } from '@/lib/data/credentials';
+
+const THUMBTACK_URL = THUMBTACK.url;
+const REVIEW_COUNT = THUMBTACK.reviewCount;
+const RATING = Number(THUMBTACK.rating);
 
 export default function TestimonialsSection() {
   const ref = useRef(null);
