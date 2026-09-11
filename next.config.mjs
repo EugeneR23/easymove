@@ -45,6 +45,29 @@ const nextConfig = {
         key: 'Permissions-Policy',
         value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()',
       },
+      // CSP in report-only first, deliberately. The audit of 2026-09-11 found no
+      // CSP at all, but an enforcing policy here would have to allow the inline
+      // GTM bootstrap and everything GTM itself injects at runtime — which is
+      // exactly the kind of policy that silently breaks analytics or, worse, the
+      // quote form. Report-only surfaces what a real policy would block, using
+      // live traffic, before anything is enforced. Turn it into
+      // Content-Security-Policy once the violation reports come back clean.
+      {
+        key: 'Content-Security-Policy-Report-Only',
+        value: [
+          "default-src 'self'",
+          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://embed.tawk.to",
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: blob: https:",
+          "font-src 'self' data:",
+          "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://*.clarity.ms",
+          "frame-src 'self' https://www.googletagmanager.com https://www.google.com",
+          "frame-ancestors 'self'",
+          "base-uri 'self'",
+          "form-action 'self'",
+          "object-src 'none'",
+        ].join('; '),
+      },
     ];
 
     return [

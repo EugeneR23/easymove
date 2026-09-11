@@ -66,7 +66,18 @@ export default function BlogIndexPage() {
                       </span>
                     </div>
                     <div className="p-6 flex flex-col flex-1">
-                      <h2 className="font-display text-xl font-bold text-charcoal mb-3 leading-snug group-hover:text-gold transition-colors">
+                      {/* Русскоязычные материалы стояли в английском списке без
+                          пометки — читателю и роботу одинаково непонятно, на каком
+                          языке статья. Определяем по кириллице в заголовке. */}
+                      <h2
+                        className="font-display text-xl font-bold text-charcoal mb-3 leading-snug group-hover:text-gold transition-colors"
+                        lang={/[А-Яа-яЁё]/.test(post.title) ? 'ru' : 'en'}
+                      >
+                        {/[А-Яа-яЁё]/.test(post.title) && (
+                          <span className="align-middle mr-2 border border-gold/40 text-gold text-[10px] font-bold tracking-widest uppercase px-1.5 py-0.5">
+                            RU
+                          </span>
+                        )}
                         {post.title}
                       </h2>
                       <p className="text-gray-600 text-sm leading-relaxed mb-5 flex-1">
