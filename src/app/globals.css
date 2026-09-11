@@ -161,7 +161,7 @@ input, select, textarea {
    real space between words instead, so the extracted text is a sentence. */
 .hero-word {
   display: inline-block;
-  animation: heroWordIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroWordIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-word { animation: none; }
