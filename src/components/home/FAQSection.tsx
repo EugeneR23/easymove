@@ -1,10 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { motion, useInView } from 'motion/react';
+import AnimateIn from '@/components/ui/AnimateIn';
 import { Plus } from 'lucide-react';
-import { easeLuxury } from '@/lib/motion';
 
 const FAQS = [
   {
@@ -69,22 +68,16 @@ const FAQS = [
 
 export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
+
 
   return (
     <>
-      <section ref={ref} className="section-padding bg-white border-t border-gray-100">
+      <section className="section-padding bg-white border-t border-gray-100">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
 
             {/* Left — sticky header */}
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, ease: easeLuxury }}
-              className="lg:col-span-1"
-            >
+            <AnimateIn direction="left" className="lg:col-span-1">
               <div className="lg:sticky lg:top-28">
                 <div className="w-8 h-px bg-gold mb-6" />
                 <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">FAQ</p>
@@ -109,15 +102,10 @@ export default function FAQSection() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </AnimateIn>
 
             {/* Right — accordion */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15, ease: easeLuxury }}
-              className="lg:col-span-2 divide-y divide-gray-100"
-            >
+            <AnimateIn delay={0.15} className="lg:col-span-2 divide-y divide-gray-100">
               {FAQS.map((faq, i) => {
                 const isOpen = open === i;
                 return (
@@ -131,13 +119,11 @@ export default function FAQSection() {
                         {faq.q}
                       </span>
                       {/* Plus icon rotates 45° to become × */}
-                      <motion.span
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.25, ease: 'easeInOut' }}
-                        className="shrink-0 mt-0.5 block"
+                      <span
+                        className={`shrink-0 mt-0.5 block transition-transform duration-[250ms] ease-in-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}
                       >
                         <Plus size={16} className={isOpen ? 'text-gold' : 'text-gray-400 group-hover:text-gold transition-colors duration-200'} />
-                      </motion.span>
+                      </span>
                     </button>
 
                     {/*
@@ -146,23 +132,15 @@ export default function FAQSection() {
                       without executing JS. Visual collapse is handled via animated
                       max-height + opacity, not conditional render.
                     */}
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        maxHeight: isOpen ? 1400 : 0,
-                        opacity: isOpen ? 1 : 0,
-                      }}
-                      transition={{
-                        maxHeight: { duration: 0.3, ease: easeLuxury },
-                        opacity: { duration: 0.2 },
-                      }}
-                      className="overflow-hidden"
+                    <div
+                      className="overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      style={{ maxHeight: isOpen ? 1400 : 0, opacity: isOpen ? 1 : 0 }}
                       aria-hidden={!isOpen}
                     >
                       <div className="pb-5 pr-6">
                         <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
                 );
               })}
@@ -182,7 +160,7 @@ export default function FAQSection() {
                   Calculate My Move
                 </Link>
               </div>
-            </motion.div>
+            </AnimateIn>
           </div>
         </div>
       </section>

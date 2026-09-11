@@ -1,10 +1,6 @@
-'use client';
-
-import { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useInView } from 'motion/react';
+import AnimateIn from '@/components/ui/AnimateIn';
 import { Clock, Package, DollarSign, ShieldCheck, Building2, Languages, MessageCircle, UserCircle2, ArrowRight } from 'lucide-react';
-import { easeLuxury, containerVariants, wordVariants } from '@/lib/motion';
 
 const reasons = [
   {
@@ -52,54 +48,31 @@ const reasons = [
 ];
 
 export default function WhyChooseUs() {
-  const headerRef = useRef(null);
-  const gridRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true, margin: '-10% 0px' });
-  const gridInView = useInView(gridRef, { once: true, margin: '-5% 0px' });
-
   return (
     <section className="section-padding bg-white border-t border-gray-100">
       <div className="container-max">
         {/* Header */}
-        <div ref={headerRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-10 lg:mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={headerInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, ease: easeLuxury }}
-            className="lg:col-span-1"
-          >
-            <motion.div
-              className="h-px bg-gold mb-6"
-              initial={{ width: 0 }}
-              animate={headerInView ? { width: 32 } : {}}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mb-10 lg:mb-16">
+          <AnimateIn direction="left" className="lg:col-span-1">
+            <div className="h-px bg-gold mb-6 rule-grow" />
             <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Why Easy Move Florida</p>
-            <motion.h2
-              variants={containerVariants(0.08, 0.2)}
-              initial="hidden"
-              animate={headerInView ? 'visible' : 'hidden'}
-              className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight"
-            >
-              {'Why customers'.split(' ').map((word, i) => (
-                <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-charcoal leading-tight">
+              {'Why customers'.split(' ').flatMap((word, i, arr) => [
+                <span key={i} className="hero-word" style={{ animationDelay: `${0.2 + i * 0.08}s` }}>
                   {word}
-                </motion.span>
-              ))}
+                </span>,
+                i < arr.length - 1 ? ' ' : null,
+              ])}
               <br />
-              {'pick us.'.split(' ').map((word, i) => (
-                <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+              {'pick us.'.split(' ').flatMap((word, i, arr) => [
+                <span key={i} className="hero-word" style={{ animationDelay: `${0.36 + i * 0.08}s` }}>
                   {word}
-                </motion.span>
-              ))}
-            </motion.h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.25, ease: easeLuxury }}
-            className="lg:col-span-2 flex flex-col justify-center gap-6"
-          >
+                </span>,
+                i < arr.length - 1 ? ' ' : null,
+              ])}
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25} className="lg:col-span-2 flex flex-col justify-center gap-6">
             <p className="text-gray-500 text-base md:text-lg leading-relaxed">
               Eight things that make a real difference on move day. No marketing fluff,
               no fake awards — just the operational habits we keep so you do not get
@@ -112,19 +85,17 @@ export default function WhyChooseUs() {
               Calculate My Move
               <ArrowRight size={14} className="translate-x-0 group-hover/link:translate-x-[3px] transition-transform duration-200 ease-out" />
             </Link>
-          </motion.div>
+          </AnimateIn>
         </div>
 
         {/* Grid */}
-        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100">
           {reasons.map((r, i) => {
             const Icon = r.icon;
             return (
-              <motion.div
+              <AnimateIn
                 key={r.title}
-                initial={{ opacity: 0, y: 32 }}
-                animate={gridInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.55, delay: i * 0.08, ease: easeLuxury }}
+                delay={i * 0.08}
                 className="relative bg-white p-8 group hover:bg-cream transition-all duration-300 overflow-hidden"
               >
                 {/* Gold left accent */}
@@ -143,7 +114,7 @@ export default function WhyChooseUs() {
                     <ArrowRight size={11} className="translate-x-0 group-hover/card-link:translate-x-[2px] transition-transform duration-200" />
                   </Link>
                 )}
-              </motion.div>
+              </AnimateIn>
             );
           })}
         </div>
