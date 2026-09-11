@@ -9,7 +9,7 @@ import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
 import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
 import { formatCurrency, whatsappUrl } from '@/lib/utils';
-import { containerVariants, wordVariants, easeLuxury } from '@/lib/motion';
+import { easeLuxury } from '@/lib/motion';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
@@ -132,27 +132,25 @@ export default function HeroSection() {
               </span>
             </motion.a>
 
-            {/* Word-by-word headline reveal */}
-            <motion.h1
-              variants={containerVariants(0.09, 0.3)}
-              initial="hidden"
-              animate="visible"
-              className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-5 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]"
-            >
+            {/* Word-by-word headline reveal — CSS, not motion/react. This H1 is
+                the LCP element; animating it through hydration measured 8.7s LCP
+                on mobile. The stagger is the same, it just starts at first paint.
+                See .hero-word in globals.css. */}
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.08] mb-5 drop-shadow-[0_2px_24px_rgba(0,0,0,0.5)]">
               {'South Florida movers'.split(' ').map((word, i) => (
-                <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+                <span key={i} className="hero-word" style={{ animationDelay: `${0.15 + i * 0.09}s` }}>
                   {word}
-                </motion.span>
+                </span>
               ))}
               <br />
               <span className="gold-text">
                 {'you can trust.'.split(' ').map((word, i) => (
-                  <motion.span key={i} variants={wordVariants} className="inline-block mr-[0.25em]">
+                  <span key={i} className="hero-word" style={{ animationDelay: `${0.42 + i * 0.09}s` }}>
                     {word}
-                  </motion.span>
+                  </span>
                 ))}
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Subhead */}
             <motion.p

@@ -581,7 +581,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/2.png',
     metaTitle: 'Doral Movers, FL | Easy Move Florida',
     metaDescription:
-      'Doral movers — Doral Isles, Vintage Estates, Trump National. Corporate relocations, MIA-adjacent logistics, trilingual EN/RU/Spanish crew. COI in 24h. Call 786-305-1844.',
+      'Doral movers — Doral Isles, Vintage Estates, Trump National. Corporate moves, MIA logistics, EN/RU/Spanish crew. COI in 24h. Call 786-305-1844.',
     intro:
       "Doral is unlike any other city in Miami-Dade. It's part residential boomtown, part Latin American corporate headquarters, and part industrial logistics corridor — all wedged between Miami International Airport and the Everglades. Moving here means juggling three very different jobs at once: corporate relocations into Trump National Doral and Costa Del Sol townhouses, family moves into Doral Isles and Vintage Estates, and warehouse-to-warehouse business moves along NW 36th Street and the airport industrial belt. Our crew speaks English, Russian, and Spanish — which matters more in Doral than anywhere else in Miami-Dade, because the building managers, gate guards, and HOA boards here often default to Spanish. We handle the COI paperwork, the gate clearances, and the cross-border corporate paperwork that comes with relocating an executive from Caracas, Bogotá, or São Paulo into a Doral home.",
     neighborhoods: [
