@@ -55,7 +55,7 @@ export default function PricingTransparency() {
               <div className="mb-2">
                 {t.price !== null ? (
                   <>
-                    <span className="text-gray-400 text-sm align-top mr-1">from</span>
+                    <span className="text-gray-500 text-sm align-top mr-1">from</span>
                     <span className="font-display text-5xl font-bold text-charcoal">${t.price}</span>
                     <span className="text-gray-400 text-sm ml-1">/hr</span>
                   </>
