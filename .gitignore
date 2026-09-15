@@ -40,3 +40,11 @@ next-env.d.ts
 .superpowers/
 .playwright-mcp/
 docs/deflora/
+
+# Customer data. These files held 15 real leads (names, phones, emails) in a
+# public repo until 2026-09-15. On Vercel they are never used — src/lib/data/leads.ts
+# writes to a temp dir when process.env.VERCEL is set — so tracking them bought
+# nothing and leaked everything. data/services.json stays tracked: it is content,
+# not customer data, and the site renders from it.
+data/leads.json
+data/quotes.json
