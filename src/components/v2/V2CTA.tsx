@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { localStartingPrice, LD_MINIMUM } from '@/lib/pricing';
+import { localStartingPrice } from '@/lib/pricing';
 import { formatCurrency } from '@/lib/utils';
 
 export default function V2CTA() {
@@ -12,7 +12,7 @@ export default function V2CTA() {
           YOUR MOVE,<br /><span className="text-stroke-gold">TO THE MINUTE.</span>
         </h2>
         <p className="text-white/50 max-w-lg mx-auto leading-relaxed mb-4">
-          Local moves from {formatCurrency(localStartingPrice('studio'))} · long-distance from {formatCurrency(LD_MINIMUM)}.
+          Local moves from {formatCurrency(localStartingPrice('studio'))}.
           A real coordinator confirms every number in writing — before the truck rolls.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">

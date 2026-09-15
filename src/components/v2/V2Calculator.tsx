@@ -13,7 +13,7 @@ const packingStartingPrice = (size: HomeSize, crew: CrewSize) =>
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
   { value: 'local',         label: 'Local',         sub: 'Within South Florida' },
-  { value: 'long-distance', label: 'Long Distance', sub: 'Out of state' },
+  { value: 'long-distance', label: 'Long Distance', sub: 'Within Florida' },
   { value: 'packing-only',  label: 'Packing Only',  sub: 'We pack, you move' },
   { value: 'specialty',     label: 'Specialty',     sub: 'Piano · art · office' },
 ];

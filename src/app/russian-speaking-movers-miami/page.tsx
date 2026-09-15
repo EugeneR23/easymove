@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SERVICE_SCOPE } from '@/lib/data/scope';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
@@ -99,10 +100,7 @@ const FAQS = [
     q: `Can I book a move for my Russian-speaking parents?`,
     a: `Yes, and it is a common arrangement. You handle the booking in English from wherever you live; on move day the crew works with your parents directly in Russian. The coordinator keeps you updated by phone or text while speaking with your parents in their own language, so nobody has to translate and nothing gets lost between the two conversations.`,
   },
-  {
-    q: `Do you handle long-distance moves out of Florida?`,
-    a: `No — we are a local mover. Interstate household moves require federal operating authority that we do not hold, so we neither quote nor take them. Call 786-305-1844 anyway: we will point you toward a licensed carrier, and we can still pack your home in Russian or handle the local Florida-side move into storage.`,
-  },
+  { ...SERVICE_SCOPE.en.faq },
   {
     q: `Do I need a deposit, and what if my plans change?`,
     a: `No deposit is required to book, and cancellation is free with more than 48 hours' notice, which matters when a closing date shifts or a condo approval takes longer than promised. The written estimate you receive is what the crew works from on move day, with no weekend or fuel surcharges added later. Call 786-305-1844 and the coordinator will hold your date.`,

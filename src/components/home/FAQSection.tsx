@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import AnimateIn from '@/components/ui/AnimateIn';
+import { SERVICE_SCOPE } from '@/lib/data/scope';
 import { Plus } from 'lucide-react';
 
 const FAQS = [
@@ -48,10 +49,7 @@ const FAQS = [
     q: 'Is the moving crew Russian-speaking?',
     a: 'Yes — the founder, the dispatch coordinator, and most of the crew at Easy Move Florida speak Russian fluently, which makes the company a practical choice for the Russian-speaking communities concentrated in Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood, North Miami Beach, and parts of Miami Beach. Quotes can be issued in Russian or English, the on-site walkthrough on move day can be conducted in Russian, and any sensitive logistics conversations — about pricing, valuation, or building access — can be handled in whichever language the client prefers. The website is published in both English and Russian (`/ru/`). For clients who specifically need a fully Russian-speaking crew rather than just a Russian-speaking crew leader, ask when booking and the dispatcher will confirm availability for the requested date; this is usually available with 5+ days of notice.',
   },
-  {
-    q: 'How does Easy Move Florida price long-distance and out-of-state moves?',
-    a: 'No — we are a local mover working inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; packing and the local Florida-side leg are still ours.',
-  },
+  { ...SERVICE_SCOPE.en.faq },
   {
     q: 'Can you do small handyman work alongside the move?',
     a: 'Yes — Easy Move Florida bundles small handyman services with moves so you do not have to coordinate a second visit after the truck leaves. Common requests include TV mounting (single or multi-screen, including soundbar wiring), wall-anchor picture and mirror hanging, IKEA or Wayfair furniture assembly, curtain rod installation, floating shelf installation, baby gates, and minor furniture repairs from transit. When handyman work is bundled with a same-day move, the handyman portion is discounted versus standalone pricing and is billed in the same continuous hourly window, not as a separate trip. Easy Move Florida does NOT perform licensed plumbing or electrical work, gas line installation, HVAC, or anything requiring a permit pull — for those, we refer to vetted local licensed trades. Mention any handyman needs at quote time so the right tools and anchors are loaded on the truck.',

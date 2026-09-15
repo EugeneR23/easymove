@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SERVICE_SCOPE } from '@/lib/data/scope';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -134,10 +135,7 @@ const PRICING_FAQS = [
     q: 'Can I cancel or reschedule?',
     a: 'Yes — free cancellation or reschedule when made more than 48 hours before the move. Inside 48 hours, we ask for a partial reschedule fee only if we cannot fill the slot.',
   },
-  {
-    q: 'Do you do long-distance or out-of-state moves?',
-    a: 'No. We are a local company and work inside Miami-Dade, Broward and Palm Beach. Interstate household moves require federal operating authority we do not hold, so we neither quote nor take them. If you are moving out of state and ask, we will gladly point you toward a licensed carrier — we are simply not the ones doing the driving.',
-  },
+  { ...SERVICE_SCOPE.en.faq },
   {
     q: 'Do you charge extra for moving on a weekend?',
     a: 'No. The hourly rate is the same seven days a week — it does not go up because your move lands on a Saturday. Weekend slots fill first, so book those earlier.',

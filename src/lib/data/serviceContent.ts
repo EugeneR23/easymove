@@ -81,37 +81,42 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
 
   'long-distance-moving': {
     longIntro: [
-      "Easy Move Florida does not do long-distance or interstate moves. This page exists so you get a straight answer instead of a quote we cannot honour: we are a local mover working inside Miami-Dade, Broward and Palm Beach, and taking household goods across a state line requires federal operating authority that we do not hold.",
-      "That is the whole story. If you are leaving Florida, call 786-305-1844 anyway — we will point you toward a licensed carrier we would use ourselves. We can also still do the parts that are ours: packing your home before the long-haul truck arrives, or the local leg on the Florida side.",
+      "Easy Move Florida moves anywhere inside Florida. Orlando, Tampa, Naples, Jacksonville, the Panhandle - those are quoted individually on distance, volume and access at both ends rather than from the hourly card we use locally. You get the figure in writing before anything is booked, and there is no deposit.",
+      "What we do not do is cross a state line. Moving household goods between states requires federal operating authority we do not hold, so we neither quote nor take interstate jobs. If you are leaving Florida, call 786-305-1844 anyway - we will point you toward a licensed carrier we would use ourselves, and we can still do the parts that are ours: packing your home before the long-haul truck arrives, or the local leg on the Florida side.",
     ],
     whyUs: [
       {
-        title: 'Why we say no to this',
+        title: 'What an in-Florida quote covers',
+        body: "Loading, the drive, and unloading at the far end, priced as one written figure rather than an open clock. We look at what is actually moving and at the access on both ends - stairs, elevator windows, how far the truck can park from the door - because those decide the day more than the mileage does.",
+      },
+      {
+        title: 'Why we say no to interstate',
         body: "A mover who quotes an interstate job without the authority to run it is either subcontracting it silently or gambling. Both leave you with a company that cannot answer for your belongings once they are on the road. We would rather lose the booking than be that company.",
       },
       {
         title: 'What we can still do for an out-of-state move',
-        body: "Packing is packing wherever the truck is going, from $79 per hour for two packers. If your long-haul carrier wants everything boxed and ready on the driveway, that is work we do well. Same for moving you into storage on this end while the interstate leg is arranged.",
+        body: "Packing is packing wherever the truck is going, from $79 per hour for two packers. If your long-haul carrier wants everything boxed and ready on the driveway, that is work we do well. Same for moving you into storage on this end while the interstate leg is arranged, or taking delivery at the Florida end of a move coming the other way.",
       },
     ],
     process: [
       { step: 1, title: 'Tell us where you are going', body: 'Call or WhatsApp 786-305-1844. If the destination is outside Florida, we will say so on that first call rather than after you have booked.' },
-      { step: 2, title: 'We point you somewhere real', body: 'We will name a licensed carrier rather than hand you a list. You can also check any mover yourself against the federal register before you pay anyone a deposit.' },
-      { step: 3, title: 'We take the Florida-side work if you want it', body: 'Packing, a local move into storage, or getting a home ready for the long-haul crew — all priced the same way our local work is, hourly with the truck as its own line.' },
+      { step: 2, title: 'Inside Florida: a written figure', body: 'Send photos or walk us through on a video call. We quote the job - loading, drive and unloading - in writing, with no deposit to hold the date.' },
+      { step: 3, title: 'Out of state: we point you somewhere real', body: 'We will name a licensed carrier rather than hand you a list. You can also check any mover yourself against the federal register before you pay anyone a deposit.' },
     ],
     pricingBreakdown: [
-      'Long-distance and interstate moves: not offered, not quoted',
+      'Long-distance inside Florida: quoted individually, in writing, no deposit',
+      'Interstate and out-of-state moves: not offered, not quoted',
       'Packing before a long-haul carrier arrives: from $79/hour for two packers',
       'Local move into storage on the Florida side: standard hourly rates, from $129/hour for two movers',
       'Storage coordination: from $200/month through our storage partner',
     ],
     faqs: [
-      { q: 'Can you move me from Miami to New York?', a: 'No. We do not hold the federal operating authority that interstate household moves require, so we do not quote or take them. Call us and we will point you toward a licensed carrier — that costs you nothing and saves you the round of calls.' },
-      { q: 'Do you move within Florida but outside South Florida — say Miami to Orlando?', a: 'Our work is local: Miami-Dade, Broward and Palm Beach. We are registered and set up for that, and going further afield is a different service with different rules. Ask us and we will be straight with you about whether it is something we can do.' },
+      { q: 'Do you move within Florida but outside South Florida - say Miami to Orlando?', a: 'Yes. That is a long-distance move for us and it is quoted individually rather than by the hour: we look at the volume, the distance and the access at both ends, and send one written figure. No deposit to book.' },
+      { q: 'Can you move me from Miami to New York?', a: 'No. We do not hold the federal operating authority that interstate household moves require, so we do not quote or take them. Call us and we will point you toward a licensed carrier - that costs you nothing and saves you the round of calls.' },
       { q: 'Can you pack for me even if another company drives?', a: 'Yes, and it is common. Packing runs from $79 per hour for two packers, with a studio package from $237. We box, wrap and label so the long-haul crew loads a home that is ready, which usually saves you money on their end too.' },
       { q: 'How do I check that a long-distance mover is legitimate?', a: 'Ask for their USDOT number and look it up in the federal register before you pay a deposit. A carrier that will not give you the number over the phone has told you something useful. This is the same check you could run on us, which is why we are telling you plainly that interstate is not ours.' },
     ],
-    localContext: "We are a Hollywood-based local mover: Miami-Dade, Broward and Palm Beach. That focus is deliberate, and it is why the pages on this site quote hourly rates for local work and say nothing about per-mile interstate pricing.",
+    localContext: "We are a Hollywood-based Florida mover: hourly across Miami-Dade, Broward and Palm Beach, and quoted per job for anywhere else in the state. That focus is deliberate, and it is why the pages on this site quote hourly rates for local work and say nothing about per-mile interstate pricing.",
   },
   'office-commercial': {
     longIntro: [

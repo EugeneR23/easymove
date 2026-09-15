@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
+import { SERVICE_SCOPE } from '@/lib/data/scope';
 
 const TIER_1 = [
   { label: 'Hollywood', href: '/hollywood-movers' },
@@ -35,7 +36,7 @@ export default function ServiceAreasSection() {
             Where we move.
           </h2>
           <p className="text-gray-500 leading-relaxed">
-            Hollywood-based, covering all of South Florida. Tier 1 cities are within our 30-minute base radius. Tier 2 is custom-priced based on distance. Long-distance — anywhere in Florida or out of state — by custom estimate.
+            Hollywood-based, covering all of South Florida. Tier 1 cities are within our 30-minute base radius. Tier 2 is custom-priced based on distance. {SERVICE_SCOPE.en.short}
           </p>
         </div>
 
@@ -77,7 +78,7 @@ export default function ServiceAreasSection() {
               ))}
             </ul>
             <p className="text-gray-500 text-xs mt-6 leading-relaxed">
-              <span className="text-charcoal font-semibold">Long-distance:</span> custom estimate anywhere in Florida or out of state. Send origin and destination — written estimate within 24 hours.
+              <span className="text-charcoal font-semibold">Long-distance:</span> custom estimate anywhere inside Florida. Send origin and destination — written estimate within 24 hours. We do not move out of state.
             </p>
           </div>
         </div>

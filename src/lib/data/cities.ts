@@ -1,3 +1,5 @@
+import { SERVICE_SCOPE } from './scope';
+
 export interface CityData {
   slug: string;
   name: string;
@@ -677,7 +679,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Snowbird Season Specialists (October–March)',
-        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March we run weekly inbound moves from New York, New Jersey, Massachusetts, Quebec, and Ontario into Hemispheres, Olympus, Three Islands, and the Beach Club. Return-trip storage between seasons, climate-controlled storage for snowbird furniture, and partial-pack services for the items that stay behind are all part of the package.",
+        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March the buildings here - Hemispheres, Olympus, Three Islands, the Beach Club - fill with seasonal residents arriving from the Northeast and Canada. We do the Florida side of those arrivals: taking delivery from the long-haul carrier, unpacking, and moving furniture out of summer storage. Return-trip storage between seasons, climate-controlled storage for snowbird furniture, and partial-pack services for the items that stay behind are all part of the package.",
       },
       {
         title: 'Russian-Speaking Crew',
@@ -798,10 +800,7 @@ export const CITIES: CityData[] = [
         q: 'Do you provide a certificate of insurance for the building?',
         a: 'Yes, free of charge, issued in the format your management company requires and naming the building as additional insured. We send it directly to the building office within 24 hours of you booking, and we follow up to confirm they have accepted it. If your association returns it asking for different wording, we reissue it. You should never have to act as the messenger between your movers and your front desk.',
       },
-      {
-        q: 'Do you move between Miami Beach and other states?',
-        a: 'Yes. You get a written estimate within 24 hours of the survey and there is no deposit. Miami Beach to New York, Chicago, Texas and the Carolinas are routes we run regularly. The written figure is the figure - we do not reweigh at the far end and hand you a different number.',
-      },
+      { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Do you speak Russian?',
         a: 'Yes. Our crew works in English and Russian, and the owner, Evgenii Romanov, handles quotes personally in both. That matters on the beach more than people expect - a lot of our clients here are more comfortable discussing what is fragile, what is valuable and what needs crating in Russian. There is a Russian version of this page if you would rather read it that way, and WhatsApp at 786-305-1844 works in either language.',
@@ -875,10 +874,7 @@ export const CITIES: CityData[] = [
         q: 'Can you store our things between closings?',
         a: 'Yes. Storage starts at $200 per month. Closing dates in this market slip often enough that we plan for it - furniture is inventoried, wrapped and held, then delivered when your new place is ready. You are quoted the outbound move, the storage period and the delivery separately so you can see what each stage costs. No deposit is required to reserve the space.',
       },
-      {
-        q: 'Do you move to Bal Harbour from out of state?',
-        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
-      },
+      { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Is anyone on the crew Russian-speaking?',
         a: 'Yes. We work in English and Russian, and Evgenii Romanov, the owner, takes quote calls in both. In Bal Harbour, Surfside and Bay Harbor Islands that comes up constantly, and it makes the practical conversations easier - which pieces are valuable, what gets crated, what goes to storage. There is a Russian version of this page, and WhatsApp on 786-305-1844 is often the quickest way to reach us.',
@@ -944,10 +940,7 @@ export const CITIES: CityData[] = [
         q: 'How far in advance should I book?',
         a: 'A week is comfortable, and end-of-month dates fill first because most leases here turn over on the first. If your building requires a reserved elevator window, book earlier - associations typically want the certificate of insurance and the elevator request days ahead. There is no deposit, so booking early costs you nothing, and cancelling more than 48 hours out is free. We do take same-week jobs when the calendar allows.',
       },
-      {
-        q: 'Do you move from North Miami Beach to another state?',
-        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
-      },
+      { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Can you help with packing and boxes?',
         a: 'Yes. Two packers are $79 per hour, and a studio packing package starts at $237. Most clients here have us pack the kitchen and any glass or artwork and handle bedrooms and closets themselves. We bring boxes, paper, tape and wardrobe cartons with us. For an older building with a slow elevator, packing the day before is often what keeps the move day inside its window.',
@@ -1116,10 +1109,7 @@ export const CITIES: CityData[] = [
         q: 'Do you charge for stairs, heavy items or a long walk from the truck?',
         a: 'No. There are no stairs, elevator, long-carry or heavy-item fees on our estimates, and no weekend, seasonal or fuel surcharge either. Those conditions cost time, and time is already what the hourly rate covers, so we build them into the estimated hours instead of adding lines at the end. Three movers are $179 per hour, four are $219, three-hour minimum, then 15-minute increments. The rate is locked at booking.',
       },
-      {
-        q: 'We are moving out of Weston to another state. How does that work?',
-        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
-      },
+      { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Can you pack the house as well as move it?',
         a: 'Yes. Packing is from $79 per hour for two packers, and it can be a full pack or only the parts that eat the most time on move day: kitchens, wardrobes, art and glass. In houses this size, packing the day before usually shortens the move itself enough to be worth the cost, particularly when the association window is tight. We bring materials and can pack only what you name, leaving the rest to you.',
@@ -1378,10 +1368,7 @@ export const CITIES: CityData[] = [
         q: 'Can you hold my things between closings?',
         a: 'Yes. Storage starts at $200 a month, with an inventory taken as we load so you can see exactly what went in. It is a common request in Delray, where a downtown sale and a new build west of town rarely close on the same day. We load, store, and redeliver on your date. You are not paying two crews - it is the same job split into two halves, and we quote both up front.',
       },
-      {
-        q: 'Do you move from Delray Beach to another state?',
-        a: 'No — we are a local mover and work inside Miami-Dade, Broward and Palm Beach. Moving household goods across a state line requires federal operating authority that we do not hold, so we neither quote nor take those jobs. Call 786-305-1844 anyway and we will point you toward a licensed carrier; we can also still pack your home, or handle a local move into storage on the Florida side.',
-      },
+      { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Who am I dealing with when I call?',
         a: 'Evgenii Romanov, who owns the company and answers the phone himself, in English or Russian. There is a Russian version of this page for clients who prefer it. Reach him on 786-305-1844, phone or WhatsApp. Sending photos of the parking situation, the stair or the elevator lobby with your first message is the fastest route to an accurate number, because those details are what actually decide the hours in Delray.',

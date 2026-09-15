@@ -438,7 +438,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'Update address with bank, employer, IRS, voter registration',
       ]},
 
-      { type: 'callout', title: 'Get a quote for your NY → Miami move', text: 'Easy Move Florida handles NY-to-Miami long-distance with dedicated trucks (no shared loads). Written estimate, real delivery window, en-route updates. Call 786-305-1844 or get a quote online.' },
+      { type: 'callout', title: 'Moving from New York to Miami?', text: 'Easy Move Florida does not run the interstate leg - that needs federal operating authority we do not hold. What we do handle is the Miami end: receiving your carrier delivery, unpacking, and any Florida-to-Florida leg afterwards. Call 786-305-1844 and we will also point you to a licensed long-haul carrier.' },
     ],
     related: ['miami-moving-cost-2026', 'how-to-choose-moving-company-miami'],
   },

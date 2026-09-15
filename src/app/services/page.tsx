@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Moving Services in South Florida | Easy Move Florida',
-    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516, long-distance nationwide.',
+    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516, long-distance within Florida.',
     url: 'https://www.easy-move-florida.com/services',
     images: [
       {
@@ -62,14 +62,14 @@ const SERVICES = [
   },
   {
     icon: Truck,
-    name: 'Leaving Florida?',
-    sub: 'We are a local mover — here is how we still help',
+    name: 'Long-Distance Within Florida',
+    sub: 'Anywhere in the state, quoted per job — out of state we refer',
     description:
-      "Interstate moves need federal authority we do not hold, so we neither quote nor take them. What we do: pack your home, run the Florida-side move into storage, and point you toward a licensed interstate carrier.",
-    highlights: ['Straight answer, no bait quote', 'Full packing before the carrier arrives', 'Florida-side move into storage', 'We help you vet the carrier (USDOT check)', 'Local leg on arrival back to Florida'],
+      "Orlando, Tampa, Naples, Jacksonville — quoted individually in writing, no deposit. Crossing a state line is the one thing we do not do: that needs federal authority we do not hold, so we refer a licensed carrier and keep the packing or the Florida-side leg.",
+    highlights: ['Anywhere in Florida', 'One written figure, no deposit', 'Packing at either end', 'Out of state: licensed-carrier referral', 'We help you vet that carrier (USDOT check)'],
     image: '/images/Long distance.png',
     href: '/services/long-distance-moving',
-    cta: 'How we can help',
+    cta: 'Get a Florida long-distance quote',
   },
   {
     icon: Package,

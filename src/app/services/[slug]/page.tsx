@@ -91,17 +91,21 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       { '@type': 'City', name: 'Hollywood' },
       { '@type': 'City', name: 'Coconut Grove' },
     ],
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'USD',
-      price: service.startingPrice,
-      priceSpecification: {
-        '@type': 'PriceSpecification',
+    // A service quoted per job has no published figure. Emitting one anyway put
+    // a number in the knowledge graph that no rate card backs.
+    ...(service.priceUnit === 'custom' ? {} : {
+      offers: {
+        '@type': 'Offer',
         priceCurrency: 'USD',
         price: service.startingPrice,
-        unitText: service.priceUnit,
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          priceCurrency: 'USD',
+          price: service.startingPrice,
+          unitText: service.priceUnit,
+        },
       },
-    },
+    }),
   });
 
   const faqJson = content

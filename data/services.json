@@ -44,28 +44,20 @@
     "id": "svc-2",
     "slug": "long-distance-moving",
     "createdAt": "2026-03-19T01:16:37.554Z",
-    "updatedAt": "2026-03-19T01:16:37.554Z",
+    "updatedAt": "2026-09-15T00:00:00.000Z",
     "category": "residential",
-    "name": "Long-Distance Moving — Not Offered",
+    "name": "Long-Distance Moving Within Florida",
     "sortOrder": 2,
-    "tagline": "We are a local mover. Interstate moves need federal authority we do not hold, so we do not take them.",
-    "description": "Easy Move Florida does not perform long-distance or interstate moves. We are a local company working inside Miami-Dade, Broward and Palm Beach counties, and moving household goods across state lines requires operating authority from the federal regulator that we do not hold. We would rather tell you that on this page than take a booking we cannot honour. If you are moving out of state, call us anyway on 786-305-1844 — we will happily point you toward a licensed carrier, and we can still handle the packing or the local leg on the Florida side.",
+    "tagline": "Moves to anywhere else in Florida, quoted per job. Out of state we refer a licensed carrier.",
+    "description": "Long-distance inside Florida - Orlando, Tampa, Naples, Jacksonville, the Panhandle - is quoted individually on distance, volume and access at both ends, not from a rate card. You get the figure in writing before anything is booked, and there is no deposit. What we do not do is cross a state line: moving household goods between states requires federal operating authority we do not hold, so we neither quote nor take those jobs. If you are leaving Florida, call anyway - we will name a licensed carrier, and packing or the Florida-side leg is still ours.",
     "features": [
       {
-        "icon": "Truck",
-        "label": "Dedicated truck — no shared loads"
-      },
-      {
-        "icon": "FileText",
-        "label": "Written estimate within 24 hours"
-      },
-      {
-        "icon": "Phone",
-        "label": "Regular check-ins en route"
+        "icon": "MapPin",
+        "label": "Anywhere in Florida"
       },
       {
         "icon": "CheckCircle",
-        "label": "Delivery window confirmed in writing"
+        "label": "Quoted individually, in writing"
       },
       {
         "icon": "Shield",
@@ -73,13 +65,22 @@
       },
       {
         "icon": "Package",
-        "label": "Professional packing available"
+        "label": "Packing available at either end"
+      },
+      {
+        "icon": "Building2",
+        "label": "Storage on the Florida side"
+      },
+      {
+        "icon": "Phone",
+        "label": "Out of state: referral to a licensed carrier"
       }
     ],
-    "startingPrice": 1500,
-    "priceUnit": "flat-rate",
+    "priceUnit": "custom",
     "imageUrl": "/images/Long%20distance.png",
-    "isActive": true
+    "isActive": true,
+    "pricingNote": "Quoted individually by distance, volume and access at both ends.\n- Anywhere in Florida\n- Written estimate before booking, no deposit\n- Out of state: not offered - we refer a licensed carrier",
+    "startingPrice": 0
   },
   {
     "id": "svc-4",
