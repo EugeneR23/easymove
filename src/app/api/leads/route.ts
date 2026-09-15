@@ -6,7 +6,9 @@ import { sendToAirtable, normalizeSource } from '@/lib/airtable';
 import type { Lead, LeadSource, MoveType } from '@/types';
 
 const LEAD_SOURCES = ['contact-form', 'quote-wizard', 'phone', 'referral'] as const satisfies readonly LeadSource[];
-const MOVE_TYPES = ['local', 'long-distance', 'international', 'office', 'specialty'] as const satisfies readonly MoveType[];
+// Deliberately narrower than pricing's MOVE_TYPES: the callback form has no
+// packing-only option. `satisfies` still fails the build if a name drifts.
+const MOVE_TYPES = ['local', 'long-distance', 'office', 'specialty'] as const satisfies readonly MoveType[];
 
 function parseLeadSource(raw: unknown): LeadSource {
   if (typeof raw === 'string') {

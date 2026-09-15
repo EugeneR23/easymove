@@ -113,57 +113,6 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     localContext: "We are a Hollywood-based local mover: Miami-Dade, Broward and Palm Beach. That focus is deliberate, and it is why the pages on this site quote hourly rates for local work and say nothing about per-mile interstate pricing.",
   },
-  'international-moving': {
-    longIntro: [
-      "International relocation from Miami is one of the most logistically complex moves you can make. Customs documentation, ocean freight scheduling, country-specific import rules, destination delivery — these are specialized disciplines handled by licensed international freight forwarders. Easy Move Florida handles what we do best: professional packing to international shipping standards on the Miami end, loading onto your carrier or container, and coordinating the handoff. We're straightforward about our role.",
-      "Miami is the gateway port for moves to Latin America (Panama, Colombia, Brazil, Argentina, Mexico), the Caribbean (Bahamas, Cayman Islands, Puerto Rico, Dominican Republic), and Europe (UK, Spain, Italy, France, Portugal). Our role is to make sure your belongings leave South Florida packed correctly, loaded correctly, and documented correctly. Once the freight forwarder takes over for ocean or air transport, your goods are in licensed international hands.",
-    ],
-    whyUs: [
-      {
-        title: 'International packing standards',
-        body: "Ocean freight subjects belongings to humidity, temperature swings, and weeks of truck/ship vibration. We pack to standards that account for that: extra padding on fragile items, vacuum-sealed bags for textiles, custom crates for art and antiques, moisture barriers in containers.",
-      },
-      {
-        title: 'Freight forwarder coordination',
-        body: "We work with vetted licensed international freight forwarders (FMC-licensed NVOCCs) for the ocean or air portion. We can recommend partners based on destination — but we're transparent: we're the Miami-end mover, not the freight specialist.",
-      },
-      {
-        title: 'Inventory documentation',
-        body: "Every item is photographed, inventoried, and entered on a packing list that becomes part of your customs documentation. This protects you in the event of a claim and is required by most destination countries.",
-      },
-      {
-        title: 'Single point of contact through handoff',
-        body: "Eugene stays the point of contact through the moment your goods are handed off to the freight forwarder. After handoff, you work directly with the freight specialist for transport, customs, and destination delivery.",
-      },
-    ],
-    process: [
-      { step: 1, title: 'Consultation and forwarder coordination', body: 'We discuss destination country, timing, and volume. If you have a freight forwarder, we coordinate directly with them. If you need a recommendation, we suggest vetted partners.' },
-      { step: 2, title: 'Custom written estimate', body: 'Quote includes packing labor, materials (international-grade), loading, and forwarder coordination. Ocean/air freight quoted separately by your forwarder.' },
-      { step: 3, title: 'Pre-pack walk-through', body: '1-2 days before pack date, we confirm inventory and identify items requiring custom crating (art, antiques, fragile electronics, oversized).' },
-      { step: 4, title: 'Pack day(s)', body: 'Most international packs take 1-2 days. Detailed inventory list created, photos of every box, custom crating built on-site for specialty items, vacuum-sealing for textiles.' },
-      { step: 5, title: 'Container or LCL loading', body: 'For full container (FCL): loaded directly into 20ft or 40ft container at your address or at port warehouse. For less-than-container (LCL): delivered to forwarder warehouse for consolidation.' },
-      { step: 6, title: 'Handoff to forwarder', body: 'Goods handed off to licensed freight forwarder with complete inventory, customs paperwork, and photos. We provide you with all documentation. After this point, freight forwarder is your contact.' },
-    ],
-    pricingBreakdown: [
-      'Minimum charge: $4,500 (small partial pack + container load)',
-      '1-bedroom, packed and loaded: typical range $6,000–$9,500',
-      '2-bedroom, packed and loaded: typical range $9,000–$14,000',
-      '3-bedroom, packed and loaded: typical range $14,000–$22,000',
-      'Custom crating per piece (art/antique): $200–$800 depending on size',
-      'Ocean freight: quoted separately by freight forwarder ($3,000–$15,000+ depending on route and volume)',
-      'Inventory and packing-list documentation for customs: included in our cost',
-      'Destination delivery: handled by destination agent, quoted separately',
-    ],
-    faqs: [
-      { q: 'Do you handle the ocean or air freight portion?', a: "No — international transport requires an FMC-licensed freight forwarder (NVOCC). We handle the Miami-side packing, loading, and forwarder coordination. We can recommend vetted partners, but international transport is handled by specialists." },
-      { q: 'How long does an international move take?', a: 'Pack and load: 1-2 days. Ocean transit: 2-6 weeks depending on destination (Caribbean: 1-2 weeks, Latin America: 2-4 weeks, Europe: 4-6 weeks). Customs clearance and destination delivery: add 1-3 weeks. Total door-to-door: typically 6-10 weeks.' },
-      { q: 'Will I have a single contact through the whole move?', a: "Through the Miami-end (consultation, packing, loading, forwarder handoff): yes, Eugene is your contact. After freight forwarder takeover: you work with them directly for transport, customs, and destination. We can stay in the loop on request." },
-      { q: 'Do I need to be in Miami for the pack?', a: "Strongly recommended. International moves involve customs paperwork, declarations, and decisions about what's shipped vs. what's stored or sold. Being present at the pack ensures nothing important is missed or mispacked." },
-      { q: 'What documents do I need?', a: 'Passport, destination visa documentation, signed power of attorney for customs (provided by forwarder), inventory list (we create), proof of ownership for high-value items, and country-specific import permits if required.' },
-    ],
-    localContext: "Miami is the largest container port on the US East Coast and the gateway for nearly all moves to Latin America and the Caribbean. We work with several FMC-licensed freight forwarders specializing in different regions: Latin America, Europe, and the Caribbean each have specialists we trust. We coordinate, but we're the Miami movers — not the international freight specialists.",
-  },
-
   'office-commercial': {
     longIntro: [
       "Office moves succeed or fail on scheduling. The actual moving labor is the easy part. The hard parts are: timing the move so your team has somewhere to work Monday morning, coordinating with building management at both ends (most office buildings require COI, after-hours scheduling, and specific freight elevator windows), handling IT and AV equipment without breaking it, and getting modular furniture disassembled and reassembled correctly. Easy Move Florida handles all of that.",
@@ -226,7 +175,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     whyUs: [
       {
         title: 'Custom crating built on-site',
-        body: "For art, antiques, and fragile sculpture, we build custom protective crates on-site. Foam-lined, padded, secured for transport. For pieces continuing with an interstate carrier or overseas, we build to international shipping standards before hand-off.",
+        body: "For art, antiques, and fragile sculpture, we build custom protective crates on-site. Foam-lined, padded, secured for transport. For pieces continuing with a licensed long-haul carrier, we crate to that carrier's written requirements before hand-off.",
       },
       {
         title: 'Climate-aware loading',

@@ -5,7 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
-import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield, Phone } from 'lucide-react';
+import { ArrowRight, Building2, Truck, Palette, Package, Shield, Phone } from 'lucide-react';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -46,13 +46,6 @@ const SERVICES = [
     desc: 'Дальние и межштатные переезды мы не делаем — на них нужно федеральное разрешение, которого у нас нет. Упакуем дом, отвезём вещи на склад на флоридской стороне и подскажем лицензированного перевозчика.',
     price: 'честный ответ',
     href: '/services/long-distance-moving',
-  },
-  {
-    icon: MapPin,
-    title: 'Международные переезды',
-    desc: 'Упаковка и погрузка на стороне Майами + координация с лицензированным фрахт-форвардером. Латинская Америка, Карибы, Европа.',
-    price: 'от $4,500',
-    href: '/services/international-moving',
   },
   {
     icon: Building2,

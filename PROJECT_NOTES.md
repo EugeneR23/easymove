@@ -104,7 +104,6 @@ Fields: `id, slug, category, name, tagline, description, features[]{icon, label}
 |---|---|
 | local | $150/hr × estimated hours |
 | long-distance | max($1,200, $0.85 × miles) |
-| international | $4,500 flat |
 | office | $200/hr × estimated hours |
 | specialty | $800 minimum |
 

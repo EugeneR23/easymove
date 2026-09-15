@@ -23,6 +23,9 @@ const nextConfig = {
       // Legacy Wix URLs from the previous site. Bing & Google indexed these
       // before migration; 301 → closest current equivalent so we keep any
       // link equity and stop serving 404s in SERPs.
+      // International moving was never a service this company performed; the page
+      // was indexed and cited before it came down on 2026-09-15.
+      { source: '/services/international-moving', destination: '/services', permanent: true },
       { source: '/services-1',     destination: '/services',         permanent: true },
       { source: '/plans-pricing',  destination: '/pricing',          permanent: true },
       { source: '/book-online',    destination: '/quote',            permanent: true },

@@ -83,23 +83,6 @@ function getSeedServices(): Service[] {
       isActive: true,
     },
     {
-      id: 'svc-3', slug: 'international-moving', createdAt: now, updatedAt: now,
-      category: 'specialty', name: 'International & Overseas Moves', sortOrder: 3,
-      tagline: 'We handle the Miami end — professional packing and loading, coordinated with your freight carrier.',
-      description: `If you're relocating internationally, we handle what we do best: packing your belongings properly for the journey, loading onto your carrier, and managing the logistics on the Miami end. We can recommend vetted freight forwarders for the ocean or air portion — but we're straightforward about our role. International transport, customs documentation, and destination delivery are handled by licensed freight specialists. Our job is to make sure everything leaves in the right condition and is handed off correctly.`,
-      features: [
-        { icon: 'Package', label: 'International-standard packing' },
-        { icon: 'Anchor', label: 'Freight carrier coordination' },
-        { icon: 'Globe', label: 'Freight forwarder referrals available' },
-        { icon: 'FileText', label: 'Inventory documentation' },
-        { icon: 'Shield', label: 'Photo-documented handoff' },
-        { icon: 'Phone', label: 'Single contact on the Miami end' },
-      ],
-      startingPrice: 4500, priceUnit: 'flat-rate',
-      imageUrl: '/images/International.png',
-      isActive: true,
-    },
-    {
       id: 'svc-4', slug: 'office-commercial', createdAt: now, updatedAt: now,
       category: 'commercial', name: 'Office & Commercial', sortOrder: 4,
       tagline: 'Business moves scheduled around your hours, handled with the same care as residential work.',

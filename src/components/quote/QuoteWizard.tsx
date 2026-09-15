@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { MoveType, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
-import { calculatePricing, estimateLongDistance } from '@/lib/pricing';
+import { calculatePricing, estimateLongDistance, normalizeMoveType } from '@/lib/pricing';
 import Step1MoveType from './Step1_MoveType';
 import Step2HomeSize from './Step2_HomeSize';
 import Step3Locations from './Step3_Locations';
@@ -309,7 +309,10 @@ export default function QuoteWizard() {
         if (savedData && savedStep) {
           // Pre-fill phone from callback form if not already set in wizard
           const phone = savedData.phone || callbackPhone;
-          setData({ ...DEFAULT_DATA, ...savedData, phone });
+          // A blob saved before a move type was retired still names it. Restored
+          // unchecked, 'international' fell through the pricing switch and quoted
+          // $800 for a service the site no longer sells.
+          setData({ ...DEFAULT_DATA, ...savedData, moveType: normalizeMoveType(savedData.moveType), phone });
           setStep(savedStep);
           return;
         }

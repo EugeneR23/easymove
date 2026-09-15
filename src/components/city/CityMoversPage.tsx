@@ -23,7 +23,7 @@ const SERVICES = {
     { href: '/services/office-commercial',   label: 'Office & Commercial',     desc: 'Minimal downtime, maximum precision.' },
     { href: '/services/specialty-items',     label: 'Fine Art & Specialty',    desc: 'Museum-grade handling for high-value items.' },
     { href: '/services/storage-solutions',   label: 'Premium Storage',         desc: 'Short-term and monthly storage options.' },
-    { href: '/services/international-moving', label: 'International',          desc: 'Customs coordination and overseas shipping.' },
+    { href: '/packing-services',             label: 'Packing & Unpacking',    desc: 'Full or partial packing, materials supplied.' },
   ],
   ru: [
     { href: '/services/residential-moving',  label: 'Квартиры и высотки',      desc: 'Кондо, апартаменты и дома любого размера.' },
@@ -31,7 +31,7 @@ const SERVICES = {
     { href: '/services/office-commercial',   label: 'Офисы и бизнес',          desc: 'Минимальный простой, максимальная точность.' },
     { href: '/services/specialty-items',     label: 'Искусство и антиквариат', desc: 'Музейный уровень обращения с ценными вещами.' },
     { href: '/services/storage-solutions',   label: 'Хранение',                desc: 'Краткосрочное и помесячное хранение вещей.' },
-    { href: '/services/international-moving', label: 'Международные',          desc: 'Координация с таможней и морской отправкой.' },
+    { href: '/packing-services',             label: 'Упаковка',                desc: 'Полная или частичная упаковка, материалы наши.' },
   ],
   ua: [
     { href: '/services/residential-moving',  label: 'Квартири та висотки',     desc: 'Кондо, апартаменти й будинки будь-якого розміру.' },
@@ -39,7 +39,7 @@ const SERVICES = {
     { href: '/services/office-commercial',   label: 'Офіси та бізнес',         desc: 'Мінімальний простій, максимальна точність.' },
     { href: '/services/specialty-items',     label: 'Мистецтво й антикваріат', desc: 'Музейний рівень поводження з цінними речами.' },
     { href: '/services/storage-solutions',   label: 'Зберігання',              desc: 'Короткострокове та помісячне зберігання речей.' },
-    { href: '/services/international-moving', label: 'Міжнародні',             desc: 'Координація з митницею та морським відправленням.' },
+    { href: '/packing-services',             label: 'Пакування',               desc: 'Повне або часткове пакування, матеріали наші.' },
   ],
 } as const;
 

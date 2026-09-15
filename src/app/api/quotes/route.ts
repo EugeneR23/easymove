@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
-import { calculatePricing, estimateLocalDistance, estimateLongDistance } from '@/lib/pricing';
+import { calculatePricing, estimateLocalDistance, estimateLongDistance, MOVE_TYPES } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
 import type { Quote, MoveType } from '@/types';
 
-const MOVE_TYPES = ['local', 'long-distance', 'international', 'office', 'specialty', 'packing-only'] as const satisfies readonly MoveType[];
 
 function parseMoveType(raw: unknown): MoveType {
   if (typeof raw === 'string') {
@@ -59,7 +58,7 @@ export async function POST(req: NextRequest) {
     // Distance source depends on move type: the South-Florida city table is ONLY
     // valid for local/office moves — long-distance must use the US-wide estimator.
     const moveType = parseMoveType(body.moveType);
-    const isLongMove = moveType === 'long-distance' || moveType === 'international';
+    const isLongMove = moveType === 'long-distance';
     const estimatedDistance = isLongMove
       ? estimateLongDistance(
           (body.fromCity  as string) ?? '',

@@ -168,7 +168,7 @@ export const BLOG_POSTS: BlogPost[] = [
         '2-bedroom: $4,800–$6,500',
         '3-bedroom: $6,500–$9,500',
       ]},
-      { type: 'p', text: 'Miami → Atlanta runs about 60% of the New York cost. Miami → Boston runs about 110-120% of New York. International moves (Miami → Latin America, Caribbean, Europe) start at $4,500 for the Miami-side packing and loading; ocean freight is quoted separately by your forwarder.' },
+      { type: 'p', text: 'Miami → Atlanta runs about 60% of the New York cost. Miami → Boston runs about 110-120% of New York. ' },
 
       { type: 'h2', text: 'Red flags to watch for' },
       { type: 'p', text: 'Some Miami movers quote suspiciously low prices to win the booking, then raise the price on move day. Watch for:' },
@@ -710,7 +710,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'Photographs: fade and stick together in high humidity',
         'Wine: any temp swing over 5°F damages aging',
       ]},
-      { type: 'p', text: 'Mitigation: minimize time on a hot truck. Load specialty items last (so they\'re unloaded first). For long-distance or international moves, use a climate-controlled truck — adds 25-50% to base cost but worth it for valuable collections.' },
+      { type: 'p', text: 'Mitigation: minimize time on a hot truck. Load specialty items last (so they\'re unloaded first). For long-distance moves, use a climate-controlled truck — adds 25-50% to base cost but worth it for valuable collections.' },
 
       { type: 'h2', text: 'Step 4: Painting-specific packing' },
       { type: 'p', text: 'For framed paintings going into a custom crate:' },
@@ -777,7 +777,6 @@ export const BLOG_POSTS: BlogPost[] = [
         'Single piece value over $100,000',
         'Museum-grade works requiring specialized environmental control',
         'Pieces requiring rigging (oversized installations, heavy sculpture moving through restricted access)',
-        'International shipping of art with customs implications',
         'Works on loan from museums or galleries',
       ]},
       { type: 'p', text: 'Reputable Miami fine art handlers include Cooke\'s Crating, US Art, and Atelier Art Services. We\'re happy to refer when a piece is beyond what we should handle — and we\'ll tell you upfront, not take the job and figure it out later.' },

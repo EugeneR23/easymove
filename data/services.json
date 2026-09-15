@@ -82,47 +82,6 @@
     "isActive": true
   },
   {
-    "id": "svc-3",
-    "slug": "international-moving",
-    "createdAt": "2026-03-19T01:16:37.554Z",
-    "updatedAt": "2026-03-19T01:16:37.554Z",
-    "category": "specialty",
-    "name": "International Moving",
-    "sortOrder": 3,
-    "tagline": "We handle the Miami end — packing, loading, and coordination with an FMC-licensed freight forwarder.",
-    "description": "If you're relocating internationally, we handle the Miami side: professional packing to international shipping standards, container or LCL loading, and complete inventory documentation for your customs paperwork. Ocean or air transport, customs clearance, and destination delivery are handled by an FMC-licensed freight forwarder — we coordinate the handoff and can recommend vetted partners. You have one contact on the Miami end from first call through handoff.",
-    "features": [
-      {
-        "icon": "Globe",
-        "label": "FMC-licensed freight forwarder coordination"
-      },
-      {
-        "icon": "FileText",
-        "label": "Inventory & packing-list documentation"
-      },
-      {
-        "icon": "Anchor",
-        "label": "Container & LCL loading"
-      },
-      {
-        "icon": "Package",
-        "label": "International-standard packing"
-      },
-      {
-        "icon": "Shield",
-        "label": "COI to your building within 24 hours"
-      },
-      {
-        "icon": "Headphones",
-        "label": "Single contact on the Miami end"
-      }
-    ],
-    "startingPrice": 4500,
-    "priceUnit": "flat-rate",
-    "imageUrl": "/images/International.png",
-    "isActive": true
-  },
-  {
     "id": "svc-4",
     "slug": "office-commercial",
     "createdAt": "2026-03-19T01:16:37.554Z",

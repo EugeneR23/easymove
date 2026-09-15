@@ -28,6 +28,20 @@ export function normalizeCrewSize(raw: unknown): CrewSize {
   const n = Number(raw);
   return (CREW_SIZES as readonly number[]).includes(n) ? (n as CrewSize) : 2;
 }
+
+/** Every move type the site sells. 'international' was removed 2026-09-15. */
+export const MOVE_TYPES = ['local', 'long-distance', 'office', 'specialty', 'packing-only'] as const satisfies readonly MoveType[];
+
+/**
+ * Same reasoning as normalizeCrewSize, for the one field that can arrive naming
+ * a service we no longer sell. A returning visitor's sessionStorage still holds
+ * `moveType: 'international'` from before it was dropped; restored unchecked it
+ * fell through the pricing switch to the specialty branch and quoted $800 for a
+ * service that does not exist.
+ */
+export function normalizeMoveType(raw: unknown): MoveType {
+  return (MOVE_TYPES as readonly string[]).includes(raw as string) ? (raw as MoveType) : 'local';
+}
 /** Truck, per day, per crew size. Keyed so a caller cannot forget the crew. */
 export const TRUCK_FEE: Record<CrewSize, number> = { 2: 129, 3: 179, 4: 219 };
 /** Smallest possible invoice for a crew: the 3-hour minimum plus that crew's truck. */
@@ -369,7 +383,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
   const { moveType, estimatedDistance, fromCity, toCity, inventory, addons } = input;
   const crew   = normalizeCrewSize(inventory.crewSize);
   const size   = inventory.homeSize ?? '2br';
-  const isLong = moveType === 'long-distance' || moveType === 'international';
+  const isLong = moveType === 'long-distance';
 
   // ── 1. Labour (local) or base rate (long-distance) ────────────────────────
   let laborRate      = 0;
@@ -425,10 +439,6 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       truckFee = Math.round(linehaul + (roadDays - 1) * LD_DAY_FEE);
       // Interstate minimum — never quote below LD_MINIMUM regardless of inputs
       if (laborRate + truckFee < LD_MINIMUM) truckFee = LD_MINIMUM - laborRate;
-      break;
-    }
-    case 'international': {
-      laborRate = 4500;
       break;
     }
     case 'packing-only': {
