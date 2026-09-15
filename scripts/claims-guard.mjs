@@ -23,6 +23,9 @@ const ALLOW = [
   // A comment recording why the old brand name was removed. Keeping the note is
   // the point: it stops someone re-adding the alternateName in good faith.
   '"EasyMove Elite" removed: it named an entity that does not exist in the',
+  // hours.ts documents the hours it replaced. Describing the old value is how
+  // the next reader learns why the module exists.
+  '* away from the Google Business Profile: the site said',
 ];
 
 const RULES = [

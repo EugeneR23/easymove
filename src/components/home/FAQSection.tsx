@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { SERVICE_SCOPE } from '@/lib/data/scope';
+import { hoursSentence } from '@/lib/data/hours';
 import { Plus } from 'lucide-react';
 
 const FAQS = [
@@ -43,7 +44,7 @@ const FAQS = [
   },
   {
     q: 'Can you handle a last-minute or same-week move?',
-    a: 'Often yes — being owner-run rather than a franchise with a central dispatch queue means short-notice jobs get answered directly. Send the move date, both addresses, an approximate inventory (bedrooms, any specialty items) and any building requirements such as COI deadlines or elevator windows to WhatsApp at +1 786-305-1844. We reply during business hours, Monday through Saturday, 8 AM to 7 PM EST, with a written quote and a confirmed crew.',
+    a: `Often yes — being owner-run rather than a franchise with a central dispatch queue means short-notice jobs get answered directly. Send the move date, both addresses, an approximate inventory (bedrooms, any specialty items) and any building requirements such as COI deadlines or elevator windows to WhatsApp at +1 786-305-1844. We reply during business hours, ${hoursSentence('en')}, with a written quote and a confirmed crew.`,
   },
   {
     q: 'Is the moving crew Russian-speaking?',

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { hoursLine } from '@/lib/data/hours';
 import { licenceLine, THUMBTACK } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
@@ -90,7 +91,7 @@ export default function Footer() {
                 <span>2130 Stirling Rd, Hollywood, FL 33020<br />serving all of South Florida</span>
               </li>
               <li className="text-xs text-gray-600 pt-1">
-                Mon – Sat &nbsp;·&nbsp; 8:00 AM – 7:00 PM EST
+                {hoursLine('en')}
               </li>
             </ul>
           </div>

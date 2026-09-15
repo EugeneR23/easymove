@@ -4,6 +4,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
 import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
+import { hoursSchema } from '@/lib/data/hours';
 import './globals.css';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
@@ -150,14 +151,7 @@ const localBusinessSchema = {
     { '@type': 'City', name: 'Delray Beach' },
     { '@type': 'City', name: 'Palm Beach' },
   ],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '08:00',
-      closes: '19:00',
-    },
-  ],
+  openingHoursSpecification: hoursSchema(),
   contactPoint: [
     {
       '@type': 'ContactPoint',

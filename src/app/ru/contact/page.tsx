@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { hoursRows } from '@/lib/data/hours';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -59,7 +60,7 @@ export default function RuContactPage() {
               <div className="bg-white p-8">
                 <Phone size={24} className="text-gold mb-4" />
                 <h2 className="font-display text-xl font-semibold text-charcoal mb-2">Позвонить</h2>
-                <p className="text-gray-500 text-sm mb-4">Самый быстрый способ. Отвечаем сразу с 8:00 до 19:00.</p>
+                <p className="text-gray-500 text-sm mb-4">Самый быстрый способ. Отвечаем сразу в рабочие часы.</p>
                 <a href="tel:+17863051844" className="font-display text-2xl font-bold text-charcoal hover:text-gold transition-colors">
                   786-305-1844
                 </a>
@@ -78,10 +79,11 @@ export default function RuContactPage() {
                 <Clock size={24} className="text-gold mb-4" />
                 <h2 className="font-display text-xl font-semibold text-charcoal mb-2">Часы работы</h2>
                 <ul className="text-gray-600 text-sm space-y-1.5">
-                  <li>Пн–Сб: 8:00 — 19:00 EST</li>
-                  <li>Вс: выходной</li>
+                  {hoursRows('ru').map((r) => (
+                    <li key={r.label}>{r.label}: {r.time} EST</li>
+                  ))}
                 </ul>
-                <p className="text-xs text-gray-400 mt-3">Срочные переезды по выходным — звоните.</p>
+                <p className="text-xs text-gray-400 mt-3">Суббота и воскресенье — обычные рабочие дни, тариф тот же.</p>
               </div>
               <div className="bg-white p-8">
                 <MapPin size={24} className="text-gold mb-4" />

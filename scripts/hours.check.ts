@@ -1,0 +1,12 @@
+import { hoursLine, hoursSentence, hoursRows, hoursOpeningHours, hoursSchema } from '../src/lib/data/hours';
+console.log('en long :', hoursLine('en'));
+console.log('en short:', hoursLine('en', 'short'));
+console.log('ru      :', hoursLine('ru'));
+console.log('uk      :', hoursLine('uk'));
+console.log('en sent :', hoursSentence('en'));
+console.log('ru sent :', hoursSentence('ru'));
+console.log('uk sent :', hoursSentence('uk'));
+console.log('rows en :', JSON.stringify(hoursRows('en')));
+console.log('rows ru :', JSON.stringify(hoursRows('ru')));
+console.log('opening :', JSON.stringify(hoursOpeningHours()));
+console.log('schema  :', JSON.stringify(hoursSchema()));

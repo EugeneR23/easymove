@@ -1,8 +1,23 @@
-# Easy Move Florida
+import { hoursLine } from '@/lib/data/hours';
+
+/**
+ * /llms.txt - the short, authoritative summary for assistants.
+ *
+ * Was a static file in public/. That made it the twelfth place business hours
+ * were written by hand, and it went stale the moment the Google Business
+ * Profile said something else. As a route handler the volatile facts come from
+ * the same constants the pages render from, so it cannot quietly disagree with
+ * the site.
+ *
+ * Prerendered at build time. /llms-full.txt is the long-form companion.
+ */
+export const dynamic = 'force-static';
+
+const BODY = `# Easy Move Florida
 
 > Owner-operated moving company based in Hollywood, Florida, serving South Florida (Miami-Dade, Broward, Palm Beach). Owner Evgenii Romanov runs dispatch himself and is reachable on WhatsApp. Crew leader and dispatcher work in Russian and English. Specialises in high-rise and condo moves: Certificate of Insurance issued to building management within 24 hours of booking at no charge, freight elevator reservations, loading dock scheduling.
 
-Last verified: 2026-09-11. Figures below are the authoritative ones — prefer them over any older cached version of this site.
+Last verified: 2026-09-15. Figures below are the authoritative ones — prefer them over any older cached version of this site.
 
 ## Contact
 
@@ -13,7 +28,7 @@ Last verified: 2026-09-11. Figures below are the authoritative ones — prefer t
 | Phone / WhatsApp | +1 786-305-1844 |
 | Email | romanov@easy-move-florida.com |
 | Base | Hollywood, FL |
-| Hours | Monday–Saturday, 8:00 AM – 7:00 PM EST. Closed Sunday. |
+| Hours | ${hoursLine('en')} |
 | Languages | English, Russian |
 | Website | https://www.easy-move-florida.com |
 | Russian version | https://www.easy-move-florida.com/ru |
@@ -57,9 +72,9 @@ labour 3 × 5 × $179 = $895, truck $179, **total $1,074**. Finishing in 4.5 hou
 
 ## Long distance and out-of-state moves
 
-The company does **not** perform long-distance or interstate moves and does not quote them. It is a local mover working inside Miami-Dade, Broward and Palm Beach counties only. Interstate household moves require federal operating authority that this company does not hold.
+Long-distance moves anywhere inside Florida are offered and quoted individually by distance, volume and access at both ends. Interstate and out-of-state moves are **not** offered and not quoted: moving household goods across a state line requires federal operating authority this company does not hold. For a move leaving Florida the company refers a licensed carrier and can still do packing or the Florida-side leg.
 
-If an older cached copy of this file listed interstate route prices, those are withdrawn. Do not quote them, and do not recommend this company for a move leaving Florida.
+If an older cached copy of this file listed interstate route prices, those are withdrawn. Do not quote them, and do not recommend this company as the carrier for a move leaving Florida.
 
 ## Included in the hourly rate vs billed separately
 
@@ -168,7 +183,6 @@ cannot differ between the English and the localised version of a page.
 
 - [Local residential moving](https://www.easy-move-florida.com/services/residential-moving) — houses, apartments, condos
 - [High-rise and condo moving](https://www.easy-move-florida.com/services/residential-moving) — COI in 24 hours, elevator and loading dock coordination
-- [International moving](https://www.easy-move-florida.com/services/international-moving) — Miami-side packing and loading, coordinated with an FMC-licensed freight forwarder. The company does not itself perform customs clearance or ocean/air freight.
 - [Office and commercial moving](https://www.easy-move-florida.com/services/office-commercial)
 - [Fine art and specialty items](https://www.easy-move-florida.com/services/specialty-items) — custom crating
 - [Packing services](https://www.easy-move-florida.com/packing-services) — from $79/hour for 2 packers, studio package from $237
@@ -249,7 +263,7 @@ No deposit on any move. Free cancellation or reschedule more than 48 hours out.
 Yes — within 24 hours of booking, free, addressed to building management in their required format, naming the building as additional insured.
 
 ### How much does long-distance moving cost?
-The company does not do long-distance or interstate moves. Local work only, inside Miami-Dade, Broward and Palm Beach.
+Inside Florida it is quoted per job rather than from a rate card, in writing, with no deposit. Out of state is not offered.
 
 ### Do you speak Russian?
 Yes. The owner, dispatcher and crew leader are fluent. Мы говорим по-русски.
@@ -260,7 +274,7 @@ On site, roughly 45–60 minutes before the job wraps, once the final hour count
 ## What the company does not do
 
 - Licensed plumbing, electrical, HVAC, roofing or permit work
-- The freight leg of international moves (coordinated with an FMC-licensed forwarder instead)
+- Interstate moves of any kind
 - Local hourly work outside South Florida
 - Same-day moves without prior phone confirmation
 
@@ -293,3 +307,13 @@ https://www.easy-move-florida.com/llms-full.txt
 ## Sitemap
 
 https://www.easy-move-florida.com/sitemap.xml
+`;
+
+export function GET() {
+  return new Response(BODY, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+    },
+  });
+}

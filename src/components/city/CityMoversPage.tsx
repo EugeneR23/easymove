@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { hoursOpeningHours } from '@/lib/data/hours';
 import { THUMBTACK_QUOTES } from '@/lib/data/thumbtackQuotes';
 import { THUMBTACK } from '@/lib/data/credentials';
 import Image from 'next/image';
@@ -317,7 +318,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
       addressCountry: 'US',
     },
     priceRange: '$$',
-    openingHours: 'Mo-Sa 08:00-19:00',
+    openingHours: hoursOpeningHours(),
     knowsLanguage: ['en', 'ru'],
     inLanguage: locale === 'ua' ? 'uk' : locale, // BCP-47: Ukrainian is uk, not ua
   });

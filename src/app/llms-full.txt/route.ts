@@ -1,5 +1,6 @@
 import { CITIES } from '@/lib/data/cities';
 import { SERVICE_SCOPE } from '@/lib/data/scope';
+import { hoursLine } from '@/lib/data/hours';
 import { THUMBTACK } from '@/lib/data/credentials';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
@@ -52,7 +53,7 @@ export async function GET() {
       '- COI issued to building management within 24 hours of booking, free',
       `- Ratings: 5.0 from 6 Google reviews (maps.app.goo.gl/o4bkrBqVUpgvKyF97) and ${THUMBTACK.rating} from ${THUMBTACK.reviewCount} verified Thumbtack reviews`,
       '- Phone and WhatsApp: +1 786-305-1844. Email: romanov@easy-move-florida.com',
-      '- Hours: Monday–Saturday, 8:00 AM – 7:00 PM EST',
+      `- Hours: ${hoursLine('en')}`,
       '- No published FDACS registration number or insurance limits — do not state either',
     ].join('\n'),
   );

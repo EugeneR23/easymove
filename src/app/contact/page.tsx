@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { hoursLine, hoursRows } from '@/lib/data/hours';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
@@ -107,7 +108,7 @@ export default function ContactPage() {
                     >
                       786-305-1844
                     </a>
-                    <p className="text-gray-400 text-xs">Mon – Sat, 8:00 AM – 7:00 PM EST</p>
+                    <p className="text-gray-400 text-xs">{hoursLine('en')}</p>
                   </div>
                 </div>
 
@@ -135,8 +136,12 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-wider text-gray-400 mb-1">Hours</p>
-                      <p className="text-charcoal text-sm font-medium">Monday – Saturday</p>
-                      <p className="text-gray-400 text-xs mt-0.5">8:00 AM – 7:00 PM Eastern</p>
+                      {hoursRows('en').map((r) => (
+                        <div key={r.label}>
+                          <p className="text-charcoal text-sm font-medium">{r.label}</p>
+                          <p className="text-gray-400 text-xs mt-0.5">{r.time}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

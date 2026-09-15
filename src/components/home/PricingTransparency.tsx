@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE } from '@/lib/pricing';
+import { hoursSentence } from '@/lib/data/hours';
 import { whatsappUrl } from '@/lib/utils';
 
 const TIERS = [
@@ -86,7 +87,7 @@ export default function PricingTransparency() {
           </a>
         </div>
         <p className="text-center text-gray-400 text-xs mt-4 max-w-lg mx-auto">
-          Send photos via WhatsApp for a tighter estimate — we reply during business hours, Monday to Saturday, 8:00 AM to 7:00 PM.
+          Send photos via WhatsApp for a tighter estimate — we reply during business hours, {hoursSentence('en')}.
         </p>
       </div>
     </section>
