@@ -578,14 +578,14 @@ export const CITIES: CityData[] = [
     name: 'Doral',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Doral's Corporate & Residential Moving Company",
-    heroSub: 'Doral Isles · Vintage Estates · Doral Park · Trump National',
+    heroHeadline: "Doral's Gated-Community & Downtown Moving Company",
+    heroSub: 'Doral Isles · Vintage Estates · Downtown Doral · Trump National',
     heroImage: '/images/Real/2.png',
     metaTitle: 'Doral Movers, FL | Easy Move Florida',
     metaDescription:
-      'Doral movers — Doral Isles, Vintage Estates, Trump National. Corporate moves, MIA logistics, EN/RU/Spanish crew. COI in 24h. Call 786-305-1844.',
+      'Doral movers — Doral Isles, Vintage Estates, Downtown Doral, Trump National. Gate registration and COI handled, from $129/hr. Call 786-305-1844.',
     intro:
-      "Doral is unlike any other city in Miami-Dade. It's part residential boomtown, part Latin American corporate headquarters, and part industrial logistics corridor — all wedged between Miami International Airport and the Everglades. Moving here means juggling three very different jobs at once: corporate relocations into Trump National Doral and Costa Del Sol townhouses, family moves into Doral Isles and Vintage Estates, and warehouse-to-warehouse business moves along NW 36th Street and the airport industrial belt. Our crew speaks English, Russian, and Spanish — which matters more in Doral than anywhere else in Miami-Dade, because the building managers, gate guards, and HOA boards here often default to Spanish. We handle the COI paperwork, the gate clearances, and the cross-border corporate paperwork that comes with relocating an executive from Caracas, Bogotá, or São Paulo into a Doral home.",
+      "Doral asks for three different kinds of move in one city. West of NW 107th the housing is gated and single-family — Doral Isles, Vintage Estates, Costa Del Sol — where the gate house, not the front door, sets your start time. Downtown Doral and CityPlace brought mid-rise apartment buildings to a city that had almost none, and those run on freight-elevator reservations and COI paperwork like any tower on the coast. North of that, along NW 36th and NW 41st, is one of Florida's largest light-industrial corridors, where small offices and warehouses move after hours. Our crews work in English and Russian, rates are the same hourly card we run everywhere, and the yard is about 25 miles away in Hollywood — only the loaded leg between your two addresses is billed as time.",
     neighborhoods: [
       'Doral Isles', 'Vintage Estates', 'Doral Park', 'Trump National Doral',
       'Costa Del Sol', 'Grand Bay', 'Doral Cay', 'Islands at Doral',
@@ -593,59 +593,58 @@ export const CITIES: CityData[] = [
     ],
     localFacts: [
       {
-        title: 'Corporate & Executive Relocations',
-        body: "Doral hosts the Latin American headquarters of dozens of multinationals — Univision, Carnival, Ryder, Perry Ellis, and most major Latin American bank branches. We handle inbound executive relocations from Caracas, Bogotá, Mexico City, and São Paulo into Doral Isles and Trump National. We coordinate with relocation managers, issue corporate COIs naming the employer, and provide itemized inventory for expense reimbursement.",
+        title: 'The Gate House Sets Your Start Time',
+        body: "Doral Isles, Vintage Estates, Costa Del Sol and Trump National all run gate-house registration: vehicle plates, crew names and a certificate of insurance in the format the association asks for, submitted before move day. None of it is difficult, but a crew that arrives unregistered waits at the gate on your clock. We collect the requirements from the management office as soon as your date is fixed and send the paperwork in.",
       },
       {
-        title: 'Trilingual Crew — English, Spanish, Russian',
-        body: "Doral is roughly 80% Latino, and most gate guards, HOA boards, and building managers operate in Spanish by default. Our coordinator and lead crew members are fluent in Spanish — hablamos español con su HOA, los guardias de la garita, y la administración del edificio. We also handle Russian-speaking clients (мы говорим по-русски) and of course English. No interpreter needed, no message lost in translation.",
+        title: 'Downtown Doral and CityPlace Are Tower Moves',
+        body: "The mid-rises around Downtown Doral and CityPlace — 5500 University, Doral View, Park Square — behave like coastal condo towers rather than suburban houses. Expect a freight-elevator reservation, a certificate of insurance naming the association, and a move-in window the building sets rather than you. We confirm your building's exact requirements in writing before move day rather than discovering them in the lobby.",
       },
       {
-        title: 'MIA Airport-Adjacent Logistics',
-        body: "Doral sits directly north of Miami International Airport, which makes it the natural staging point for international relocations. We coordinate Miami-side handling for clients shipping in from Latin America, the Caribbean, and Europe — receiving containers at the freight forwarder, last-mile delivery into your Doral home, and unpacking on arrival. International inbound moves are part of our regular Doral work.",
+        title: 'The NW 36th Street Industrial Corridor',
+        body: "Doral's northwest quadrant, along NW 36th and NW 41st and the belt beside the airport, is one of the largest light-industrial areas in Florida. Small-office and warehouse moves here usually happen overnight or at the weekend to keep a business trading, and they run on loading-dock access and building-manager scheduling more than on crew size.",
       },
       {
-        title: 'Gated Community Protocols',
-        body: "Doral Isles, Vintage Estates, Costa Del Sol, and Trump National all have full gate-house registration, vehicle/crew name submission requirements, and approved move-in windows. Our coordinator submits all paperwork 48 hours in advance — vehicle plates, crew IDs, COI in the format the community requires — so your crew clears the gate without a 20-minute wait that eats your hourly billing.",
+        title: 'Traffic Decides the Morning',
+        body: "Doral sits inside the Palmetto, the Dolphin and NW 25th Street, and all three seize up between seven and nine. An early start matters more here than in most of Miami-Dade — not because of the distance, but because the last two miles can cost more time than the first twenty. We schedule Doral jobs to load before the corridor fills.",
       },
       {
-        title: 'Doral Industrial & Warehouse Corridor',
-        body: "Doral's northwest quadrant — along NW 36th, NW 41st, and the airport industrial belt — is one of the largest light-industrial corridors in Florida. We handle small-office and warehouse relocations within Doral, coordinating with loading dock managers, freight elevator schedules, and after-hours building access. Most commercial moves here happen overnight or on weekends to avoid disrupting business operations.",
+        title: 'Airport-Adjacent, With What That Actually Means',
+        body: "Miami International Airport sits directly south, which is why the truck traffic on NW 25th and NW 36th is what it is, and why many Doral residents are here on work postings rather than permanently. For a move it means two practical things: heavier commercial traffic on the approach roads, and more short-notice dates than a settled suburb generates.",
       },
       {
-        title: 'Downtown Doral & CityPlace Tower Moves',
-        // [TODO: confirm exact building COI limits with Evgenii]
-        body: "Downtown Doral and CityPlace Doral have brought a new wave of mid-rise residential towers to a city that was historically single-family. These newer buildings — 5500 University, Doral View, Park Square — come with COI requirements (many in the $1M–$2M range), freight elevator reservations, and specific move-in/move-out windows. We confirm your building's exact requirements before move day.",
+        title: 'Rates Are the Same Card as Everywhere Else',
+        body: "$129 an hour for two movers, $179 for three, $219 for four, three-hour minimum, with the truck as its own line at the crew's rate — fuel, tolls and mileage sit inside it. No weekend surcharge, no gate-community surcharge. A written estimate comes before anything is booked and there is no deposit.",
       },
     ],
     faqs: [
       {
-        q: '¿Hablan español? Do you have Spanish-speaking movers?',
-        a: 'Sí, claro. Nuestro coordinador y la mayoría del equipo hablan español con fluidez — coordinamos con el HOA, la administración del edificio, y los guardias de la garita sin problema. We coordinate the entire move in Spanish if that\'s your preference, including the written estimate, COI request, and on-site direction with the crew.',
-      },
-      {
-        q: 'Do you handle corporate relocations into Doral?',
-        a: 'Yes — corporate and executive relocations are one of our most common Doral jobs. We work with HR departments, global mobility teams, and relocation management companies. Corporate COIs (naming the employer as additional insured), itemized inventory for expense reports, and white-glove handling are standard. We\'ve relocated executives into Trump National Doral, Doral Isles, Costa Del Sol, and Grand Bay from Caracas, Bogotá, Mexico City, and São Paulo.',
-      },
-      {
-        q: 'Do you move into Trump National Doral residences?',
-        a: 'Yes. Trump National Doral residences have gate-house registration, advance vehicle clearance, and specific COI requirements. We submit all paperwork 48 hours before your move so the crew clears security without delay.',
-      },
-      {
-        q: 'Can you handle an international inbound move from Latin America into Doral?',
-        a: 'Yes — this is one of our specialties. We coordinate with your overseas freight forwarder, receive your container at the Miami port or airport, handle Miami-side customs paperwork coordination, and deliver and unpack at your Doral home. Common inbound origins: Caracas, Bogotá, Mexico City, São Paulo, Buenos Aires, Lima, Santiago, Madrid.',
-      },
-      {
         q: 'How does pricing work for a Doral move?',
-        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three) as its own line on the estimate — fuel, tolls and mileage are inside it. A typical 2-bedroom Doral Isles townhouse takes 4–6 hours with 2–3 movers: $645–$1,253 all-in. The rate is the same seven days a week. Corporate relocations get an itemized written estimate with line items suitable for HR reimbursement.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three) as its own line on the estimate — fuel, tolls and mileage are inside it. A typical 2-bedroom Doral Isles townhouse takes 4–6 hours with 2–3 movers: $645–$1,253 all-in. The rate is the same seven days a week.',
+      },
+      {
+        q: 'How early should the crew be registered with the gate?',
+        a: "It depends on the association, and they differ more than you would expect — some want the paperwork a couple of days out, others take it the morning of. Send us your community's move-in packet or the management office's email when you book and we will handle the submission and confirm it back to you in writing. What we will not do is show up and hope.",
       },
       {
         q: 'Do you serve Doral Isles and Vintage Estates?',
-        a: 'Yes — both are part of our regular Doral service. We know the gate-house registration process for each community, the COI formats their HOAs require, and the approved move-in windows. Same-day crew availability is often possible — call 786-305-1844 to check.',
+        a: 'Yes, both are inside our service area. Each runs gate-house registration and asks for a certificate of insurance in its own format, plus approved move-in windows — we collect those requirements from the management office at booking. Same-day availability is sometimes possible; call 786-305-1844 to check the date.',
+      },
+      {
+        q: 'Do you move into Trump National Doral residences?',
+        a: 'Yes. Those residences run gate-house registration, advance vehicle clearance and their own COI requirements. We send the paperwork in once your date is set so the crew clears security without standing at the gate on your clock.',
+      },
+      {
+        q: 'Do you handle corporate relocations into Doral?',
+        a: 'Yes. A certificate of insurance naming the employer as additional insured, and an itemised written estimate with line items suitable for an expense claim, are both available — say so when you book and they are prepared up front rather than reconstructed afterwards.',
       },
       {
         q: 'Do you handle small-office and warehouse moves in the Doral industrial corridor?',
-        a: 'Yes. We handle commercial moves along NW 36th, NW 41st, and the airport industrial belt — after-hours and weekend windows are common to avoid disrupting business operations. We coordinate loading dock access, freight elevator reservations, and crew scheduling around your building manager\'s requirements.',
+        a: 'Yes, along NW 36th, NW 41st and the airport industrial belt. After-hours and weekend windows are normal here so a business keeps trading, and the schedule is built around loading-dock access and whatever your building manager requires.',
+      },
+      {
+        q: 'What languages do the crews work in?',
+        a: 'English and Russian. Evgenii Romanov, the owner, takes quote calls in both. If your HOA or building office corresponds in Spanish, send us their written requirements and we handle them — the paperwork side of a Doral move is almost entirely in writing.',
       },
     ],
   },
