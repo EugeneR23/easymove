@@ -24,7 +24,7 @@ git remote set-url --push florida DISABLED
 # 3. Забрать конфиг рынка одним коммитом (не сливать всю ветку)
 git fetch florida feat/multi-market-foundation
 git checkout -b feat/sacramento-foundation
-git cherry-pick 89c94d5
+git cherry-pick 46a778b
 
 # 4. Новый GitHub-репо и origin (после создания репо на GitHub)
 gh repo create easymovesc --private --source=. --remote=origin
@@ -77,7 +77,7 @@ Vercel: **новый проект**, не второй домен на флор�
    `audit/CHANGELOG.md` — почему сайт такой и какие ошибки уже стоили денег.
 4. `src/config/markets/types.ts`, `src/config/markets/ca.ts`, `src/config/markets/fl.ts`,
    `src/config/market.ts`, `src/lib/market-guard.ts`, `scripts/market-check.ts` — конфиг
-   рынка (cherry-pick `89c94d5`). Инварианты: в CA **нет `rating`**, `doubleDriveTime: true`,
+   рынка (cherry-pick `46a778b`). Инварианты: в CA **нет `rating`**, `doubleDriveTime: true`,
    `licence.permitNumber: null`, `nap.streetAddress: null`. На ветке ничего из этого не
    подключено ни к одной странице, `marketOnly()` нигде не вызывается, а упомянутый в `ca.ts`
    файл `docs/SACRAMENTO_LAUNCH_PLAN.md` не существует — ты его напишешь (см. Фазу 1).
