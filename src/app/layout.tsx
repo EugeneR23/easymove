@@ -28,7 +28,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
+    default: 'South Florida Movers — Easy Move Florida | Hollywood, FL',
     template: '%s | Easy Move Florida',
   },
   description:
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     alternateLocale: ['ru_RU', 'uk_UA'],
     siteName: 'Easy Move Florida',
     url: siteUrl,
-    title: 'Easy Move Florida — Local Moving & Small Handyman in South Florida',
+    title: 'South Florida Movers — Easy Move Florida | Hollywood, FL',
     description:
       'Owner-led local movers across South Florida. Transparent hourly pricing from $129/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
     images: [
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Easy Move Florida — Local Moving & Small Handyman',
+    title: 'South Florida Movers — Easy Move Florida',
     description:
       'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
     images: [`${siteUrl}/images/Hero.png`],
