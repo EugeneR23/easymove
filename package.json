@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:claims": "node scripts/claims-guard.mjs",
+    "prebuild": "node scripts/claims-guard.mjs"
   },
   "dependencies": {
     "@remotion/player": "^4.0.454",

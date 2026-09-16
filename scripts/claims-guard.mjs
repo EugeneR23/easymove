@@ -26,6 +26,10 @@ const ALLOW = [
   // hours.ts documents the hours it replaced. Describing the old value is how
   // the next reader learns why the module exists.
   '* away from the Google Business Profile: the site said',
+  // The GBP package documents what the previous version wrongly told the owner
+  // to paste. Naming the mistake is the point of the warning.
+  'Не добавлять «International moving» — такой услуги нет.',
+  'Не «EasyMove Elite», не «Easy Move FL»',
 ];
 
 const RULES = [

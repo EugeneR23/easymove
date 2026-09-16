@@ -134,7 +134,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
       {
         title: 'Modular furniture disassembly and reassembly',
-        body: "Cubicles, modular wall systems, and benching require disassembly with hardware tracking and a reassembly plan. We've handled Steelcase, Herman Miller, Knoll, and most major systems. Hardware bagged and labeled by station.",
+        body: "Cubicles, modular wall systems, and benching require disassembly with hardware tracking and a reassembly plan. The major systems manufacturers all use their own fixings, so hardware is bagged and labelled by station rather than pooled, and the reassembly follows your plan rather than our guess.",
       },
       {
         title: 'Direct owner involvement',
@@ -213,7 +213,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Photo documentation: included',
     ],
     faqs: [
-      { q: "Do you move grand pianos?", a: "Yes. Upright, baby grand, and concert grand pianos are part of our regular work. A local piano move typically runs $750-$1,400; interstate piano transport we hand to a licensed carrier. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
+      { q: "Do you move grand pianos?", a: "Yes - upright, baby grand and concert grand. Each is a different job: an upright is weight and a doorway, a grand comes apart for the move and goes back together at the other end. A local piano move typically runs $750-$1,400; interstate piano transport we hand to a licensed carrier. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
       { q: 'Can you move large oil paintings or sculpture?', a: "Yes. Custom crating built on-site, climate-aware loading, slow placement at destination. For pieces over 8 feet or weighing over 200 lbs, we may recommend a specialty fine art handler — we'll be honest about what's within our capability." },
       { q: 'How do you handle insurance for high-value items?', a: 'Standard cargo insurance is included up to a per-pound limit. For high-value items (anything over $5,000 typically), we strongly recommend declared value or full-replacement coverage. Your coordinator walks you through options before booking.' },
       { q: 'Do you handle antique or oversized furniture?', a: 'Yes. Antique armoires, 18th-century European pieces, mid-century modern, oversized dining tables — these are common requests. Custom crating where appropriate, padded protection always, photo documentation before and after.' },

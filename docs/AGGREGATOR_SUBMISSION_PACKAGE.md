@@ -20,7 +20,7 @@ IM-номер, и это же требование закона для рабо�
 | moveBuddha | **проверяют** (DOT/FMCSA-записи, для intrastate — государственную регистрацию) | **COI, ежеквартально** для Verified-бейджа | аудит: сметы, BoL, тарифная таблица, записи звонков |
 | GreatGuysMoving | проверяют лицензию | спрашивают | форма подачи на сайте |
 | HireAHelper | для labor-only не требуется carrier authority | базовая | можно зайти как «loading/unloading help» |
-| Thumbtack | уже есть профиль 5.0/32 | — | поддерживать актуальным |
+| Thumbtack | уже есть профиль 4.7/33 | — | поддерживать актуальным; листинг называется «EASY MOVE. MOVING SERVICES & PACKING» — переименовать |
 
 ### Про FDACS IM-номер — главное
 
@@ -68,7 +68,7 @@ Phone:         (786) 305-1844
 Address:       2130 Stirling Rd, Hollywood, FL 33020
 Website:       https://www.easy-move-florida.com
 Email:         romanov@easy-move-florida.com
-Hours:         Mon–Sat 8:00 AM – 7:00 PM
+Hours:         Mon–Fri 9:00 AM – 7:00 PM, Sat–Sun 10:00 AM – 6:00 PM
 Categories:    Movers / Moving Company / Piano Movers / Packing Services
 ```
 
@@ -148,7 +148,7 @@ Easy Move Florida — переезды по Южной Флориде
 Адрес: 2130 Stirling Rd, Hollywood, FL 33020
 Сайт: https://www.easy-move-florida.com/ru
 Email: romanov@easy-move-florida.com
-Часы: Пн–Сб, 8:00–19:00
+Часы: Пн–Пт 9:00–19:00, Сб–Вс 10:00–18:00
 
 Владелец Евгений Романов лично ведёт каждый заказ. Весь переезд можно
 провести на русском — от первого звонка до расстановки мебели. Локальные

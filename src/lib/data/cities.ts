@@ -245,7 +245,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       "Insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
     intro:
-      "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. Easy Move Florida was built for buildings like Williams Island, Porto Vita, Turnberry Isle, and Hidden Bay — we know the dock managers by name and we issue building-compliant Certificates of Insurance within 24 hours. We also speak Russian, which matters in Aventura.",
+      "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. Williams Island, Porto Vita, Turnberry Isle and Hidden Bay each run their own version of that: a registered arrival, a reserved dock window, and a certificate of insurance naming the association. We collect those requirements from the management office at booking and issue the COI within 24 hours, in the format the building asks for. We also speak Russian, which matters in Aventura.",
     neighborhoods: [
       'Williams Island', 'Porto Vita', 'Turnberry Isle', 'Hidden Bay',
       'Aventura Lakes', 'The Point', 'Hamptons South', 'Mystic Pointe',
@@ -422,7 +422,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move into Trump Tower I, II, or III?',
-        a: "Yes. All three Trump Towers are part of our regular service. We know the dock procedures, security check-in, COI templates, and elevator reservation process for each tower.",
+        a: "Yes, all three are inside our service area. Each runs its own dock procedure, security check-in, COI format and elevator reservation window - they are not identical to one another. We get the current requirements from the building before the date is confirmed rather than assuming last year's.",
       },
       {
         q: 'Do you handle Acqualina and Mansions at Acqualina moves?',
@@ -553,7 +553,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'Do you move into Park Grove and Grove at Grand Bay?',
-        a: "Yes. Both properties are part of our regular service. We know the COI requirements, freight elevator process, and dock manager preferences for both buildings.",
+        a: "Yes, both are inside our service area. Each has its own COI requirements and freight-elevator process, and both are strict about insurance wording. We confirm the exact format with the management office before move day.",
       },
       {
         q: 'Can you handle a 1920s Coconut Grove home with narrow doorways?',
@@ -660,7 +660,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Hallandale Beach movers — Diplomat, Beach Club Towers, Hyde Resort, Hemispheres. Oceanfront tower COI specialists, Russian-speaking crew. Call 786-305-1844.',
     intro:
-      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north, which makes us the most efficient mover for Hallandale work: no I-95 surcharge, same-day crew availability, and we know the dock manager at the Diplomat by name. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years — мы говорим по-русски и работаем с русскоязычной аудиторией постоянно.",
+      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north, which keeps the billed drive short for Hallandale work: no I-95 surcharge, and same-day crew availability more often than a Miami-based company can offer. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years — мы говорим по-русски и работаем с русскоязычной аудиторией постоянно.",
     neighborhoods: [
       'Diplomat Beach Resort', 'Beach Club Towers', 'Hyde Resort & Residences',
       'Hemispheres', 'Olympus', 'Three Islands', 'The Plaza',
@@ -700,7 +700,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'Do you move into the Diplomat Beach Resort residences?',
-        a: "Yes. The Diplomat residences are part of our regular service. We know the loading dock location, the security check-in process, the COI format the building requires, and the freight elevator reservation window. The Diplomat is also a working hotel — we coordinate with hotel operations to avoid the bell-staff loading zone during peak check-in hours.",
+        a: "Yes, the Diplomat residences are inside our service area. The building has a designated loading dock, a security check-in, a required COI format and a freight-elevator reservation window, and we collect all four from management when you book. The Diplomat is also a working hotel — we coordinate with hotel operations to avoid the bell-staff loading zone during peak check-in hours.",
       },
       {
         q: 'Do you handle Beach Club Towers and Hyde Resort moves?',
@@ -725,7 +725,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you serve Three Islands, Hemispheres, and Olympus?',
-        a: "Yes — all three are part of our regular service. We know the dock access, security desk procedures, and elevator reservation systems for each. Three Islands in particular has multiple towers sharing dock infrastructure, and we know which tower entrance and window to use for each address.",
+        a: "Yes, all three are inside our service area. Each has its own dock access, security desk procedure and elevator reservation system. Three Islands is the one to watch: several towers share dock infrastructure, so the entrance and window depend on your specific address - we confirm which applies to yours before the date.",
       },
       {
         q: 'Do you serve Hollywood, Aventura, and Sunny Isles as well?',

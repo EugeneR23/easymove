@@ -175,7 +175,7 @@ export const COST_PAGES: CostPageData[] = [
   faqs: [
     {
       q: 'Can you move me into a guard-gated community like Williams Island?',
-      a: 'Yes. Those communities are part of our regular Aventura service area, and the requirements are procedural rather than difficult: advance registration of the crew and truck, a certificate of insurance on file with the association, and adherence to the posted moving hours. We collect the requirements from your management office at booking and arrive already cleared through the gate.',
+      a: 'Yes, those communities are inside our Aventura service area, and their requirements are procedural rather than difficult: advance registration of the crew and truck, a certificate of insurance on file with the association, and adherence to the posted moving hours. We collect the requirements from your management office at booking and arrive already cleared through the gate.',
     },
     {
       q: 'What insurance paperwork do Aventura buildings require?',
