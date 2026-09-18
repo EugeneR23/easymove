@@ -174,12 +174,12 @@
     "category": "storage",
     "name": "Storage Coordination",
     "sortOrder": 6,
-    "tagline": "Moving and storage in South Florida — we handle pickup, book the storage space, and redeliver when you're ready.",
-    "description": "Between a closing and your new home, during a renovation, or when your destination isn't ready yet, we book short- and long-term storage with third-party facilities across Miami-Dade and Broward. We pick up from your current address, deliver to the facility and handle redelivery on your schedule, so you are not managing a separate storage relationship. We name the facility before anything moves and tell you what it does and does not control — ask for climate-controlled space specifically if you are storing wood, art or anything upholstered. Month-to-month terms, no pressure.",
+    "tagline": "Moving and storage in South Florida — we handle pickup, keep your things in our own space or at a partner facility, and redeliver when you're ready.",
+    "description": "Between a closing and your new home, during a renovation, or when your destination isn't ready yet, we take care of the storage as part of the move. Depending on volume and how long you need it, your things go into our own space or into a partner facility in Miami-Dade or Broward — we tell you which before anything moves. We pick up from your current address and redeliver on your schedule, so you are never managing a separate storage relationship. Month-to-month terms, no pressure. Climate-controlled space we do not run ourselves; if you are storing wood, art or anything upholstered, say so and we will put it somewhere that has it.",
     "features": [
       {
         "icon": "Archive",
-        "label": "Climate-controlled space available at most facilities"
+        "label": "Climate-controlled space arranged when a piece needs it"
       },
       {
         "icon": "Truck",
@@ -199,7 +199,7 @@
       },
       {
         "icon": "MapPin",
-        "label": "Trusted Miami-Dade facilities"
+        "label": "Our own space or a partner facility — named before it moves"
       }
     ],
     "startingPrice": 200,

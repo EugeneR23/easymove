@@ -230,7 +230,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     whyUs: [
       {
         title: 'Choosing the facility',
-        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. We do not run a storage facility ourselves — we book space with a third-party operator, and we will tell you which facility your items are going to and what it does and does not control before you agree to it.",
+        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. Your things go either into our own space or into a partner facility, depending on volume and how long you need it — we tell you which one before anything moves, and what it does and does not control. Climate-controlled space we do not run ourselves; where a piece needs it we arrange it with a facility that does.",
       },
       {
         title: 'Pickup and redelivery handled',
@@ -248,7 +248,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     process: [
       { step: 1, title: 'Initial consultation', body: 'We discuss what you\'re storing, expected duration, and any special handling (art, electronics, wine). Recommendation on facility type and size.' },
       { step: 2, title: 'Pickup and inventory', body: 'On move day, we pick up items, photograph and inventory each piece, and transport directly to facility. You receive complete inventory list with photos.' },
-      { step: 3, title: 'Secure storage', body: "Items go into a third-party facility we book on your behalf, with monitored access. We stay the point of contact, so you do not manage the facility relationship yourself." },
+      { step: 3, title: 'Secure storage', body: "Items go into our own space or into a partner facility we book on your behalf, with monitored access either way. We stay the point of contact, so you never manage a separate storage relationship." },
       { step: 4, title: 'Monthly billing', body: 'Storage billed month-to-month. Cancel any time with 7 days notice. No annual contracts, no early termination fees.' },
       { step: 5, title: 'Redelivery', body: 'When you\'re ready, schedule redelivery with us. Full delivery service to your new home — placement, reassembly of any disassembled items, walk-through.' },
     ],
@@ -266,7 +266,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     faqs: [
       { q: 'How long can I store items?', a: "Month-to-month — no minimum, no maximum. Some clients store for 30 days during a closing gap; others store for 18+ months during major renovations. Cancel any time with 7 days notice." },
-      { q: 'Is storage climate-controlled?', a: "That depends on the facility, and we will name the one we are booking before anything moves. We do not own storage — we arrange it with third-party operators in Miami-Dade and Broward. For furniture, art or anything wood, ask for climate-controlled space specifically; South Florida heat and humidity make the unconditioned kind a poor choice." },
+      { q: 'Is storage climate-controlled?', a: "That depends on where your things end up, and we name it before anything moves. Some jobs go into our own space, others into a partner facility in Miami-Dade or Broward. Climate-controlled space we do not operate ourselves — if what you are storing is wood, art or upholstered, say so and we will put it somewhere that has it. South Florida heat and humidity make the unconditioned kind a poor choice for those." },
       { q: 'Can I access my items while in storage?', a: 'Yes — with 48-72 hours notice. We retrieve specific items and either deliver to you or hold for pickup at our office. Frequent access is unusual; if you need it, we recommend a self-storage unit instead and we just handle the transport.' },
       { q: 'What about insurance?', a: "Optional storage insurance is available — typically $15-50/month based on declared value. For high-value items (art, antiques over $10K), we coordinate facility-partner coverage. Your homeowner's insurance may also extend to stored items — worth checking before adding storage insurance." },
       { q: 'Can you store items between move-out and move-in dates?', a: 'Yes — this is one of our most common storage uses. Common during closings: move out Tuesday, store 5-30 days, deliver to new home. Pricing is prorated for partial months.' },

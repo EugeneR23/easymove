@@ -709,7 +709,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle snowbird seasonal moves?',
-        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We can also book climate-controlled storage for off-season items with a third-party facility and partial-pack service for clients who keep some belongings in their northern home.',
+        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We can also arrange climate-controlled storage for off-season items with a facility that offers it and partial-pack service for clients who keep some belongings in their northern home.',
       },
       {
         q: 'Вы работаете на русском?',
