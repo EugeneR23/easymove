@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 import { PAIRED_PATHS } from '@/lib/seo/routes';
 
 const NAV_LINKS_EN = [

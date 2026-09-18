@@ -307,7 +307,7 @@ export default function Step4Details({ data, update, onNext, onBack, onSubmit }:
           <div className="min-w-0">
             <p className="text-red-700 text-sm font-semibold mb-1">Submission failed</p>
             <p className="text-red-600 text-xs leading-relaxed">{error}</p>
-            <a href="tel:7863051844" className="inline-block mt-2 text-xs font-semibold text-red-700 underline">
+            <a href="tel:+17863051844" className="inline-block mt-2 text-xs font-semibold text-red-700 underline">
               Call 786-305-1844 to book directly
             </a>
           </div>

@@ -303,7 +303,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   <Button size="lg" variant="primary" className="w-full mb-3">Get Your Quote</Button>
                 </Link>
                 <p className="text-xs text-gray-400 text-center mb-3">No obligation · Fast response</p>
-                <a href="tel:7863051844">
+                <a href="tel:+17863051844">
                   <Button size="lg" variant="ghost" className="w-full mb-5 inline-flex items-center justify-center gap-2">
                     <Phone size={15} />
                     786-305-1844

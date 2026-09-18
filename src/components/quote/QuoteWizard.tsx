@@ -235,7 +235,7 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
 
       {/* Bottom CTA */}
       <div className="hidden lg:block pt-6 border-t border-white/10">
-        <a href="tel:7863051844" className="inline-block text-gold text-xs font-semibold hover:text-gold-light transition-colors">
+        <a href="tel:+17863051844" className="inline-block text-gold text-xs font-semibold hover:text-gold-light transition-colors">
           Call or text: 786-305-1844
         </a>
         <p className="text-white/30 text-[10px] mt-1">Available today</p>

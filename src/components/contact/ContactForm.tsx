@@ -117,7 +117,7 @@ export default function ContactForm() {
         </div>
         <div className="flex items-center gap-1.5 text-xs text-gray-400">
           <Phone size={11} className="text-gold shrink-0" />
-          <a href="tel:7863051844" className="hover:text-gold transition-colors">786-305-1844</a>
+          <a href="tel:+17863051844" className="hover:text-gold transition-colors">786-305-1844</a>
         </div>
       </div>
     </form>

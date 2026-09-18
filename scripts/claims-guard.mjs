@@ -17,7 +17,10 @@ const ROOT = process.cwd();
 const SCAN = ['src', 'data', 'public/llms.txt', 'docs/GBP_COPY_PASTE_PACKAGE.md', 'docs/AGGREGATOR_SUBMISSION_PACKAGE.md'];
 const SKIP_DIRS = new Set(['node_modules', '.next', '.git', 'audit', 'superpowers', 'deflora']);
 /** Files allowed to contain what a rule bans, because they are its single source. */
-const RULE_EXEMPT = new Map([['hand-written-canonical', ['src/lib/seo/routes.ts']]]);
+const RULE_EXEMPT = new Map([
+  ['hand-written-canonical', ['src/lib/seo/routes.ts']],
+  ['tel-format', ['src/lib/data/contact.ts']],
+]);
 const EXT = /\.(tsx?|jsx?|mjs|json|md|txt)$/;
 
 /** Exact substrings that are confirmed true. Add only with a line in CLAIMS_TO_CONFIRM.md. */
@@ -96,6 +99,12 @@ const RULES = [
 
   { id: 'hand-written-canonical', why: 'canonical and hreflang come from alternatesFor() in src/lib/seo/routes.ts. Typing either by hand is how nine Russian pages ended up with a canonical and no language cluster.',
     re: /canonical:\s*[`'"]|languages:\s*\{|'x-default'/g },
+
+  { id: 'tel-format', why: 'Every tel: href is tel:+17863051844. A bare ten-digit number is ambiguous outside the US, and 26 files disagreed with 19 on the same button. Use telHref() from src/lib/data/contact.ts.',
+    re: /tel:(?![$][{])(?!\+17863051844)[^"'`\s)]+/g },
+
+  { id: 'foreign-phone', why: 'One phone number exists: 786-305-1844. Another US-shaped number in copy is a typo or somebody else. Add it to ALLOW if it is deliberate.',
+    re: /(?<!786[-.])\b(?!786[-.]305[-.]1844)(?!800[-.])(?!\d{3}[-.]000[-.]0000)\d{3}[-.]\d{3}[-.]\d{4}\b/g },
 
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },

@@ -160,7 +160,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
           <p className="font-semibold text-charcoal text-sm">Prefer to talk now?</p>
           <p className="text-gray-500 text-xs mt-0.5 mb-3">{hoursLine('en', 'short')}</p>
           <a
-            href="tel:7863051844"
+            href="tel:+17863051844"
             className="flex items-center justify-center gap-2 bg-charcoal text-white px-4 py-2.5 text-sm font-semibold w-full hover:bg-charcoal/80 transition-colors"
           >
             <Phone size={14} />

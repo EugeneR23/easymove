@@ -1,6 +1,6 @@
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Star, ExternalLink, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 
 import { THUMBTACK } from '@/lib/data/credentials';
 

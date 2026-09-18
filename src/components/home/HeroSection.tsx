@@ -7,7 +7,8 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
 import { localStartingPrice, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
-import { formatCurrency, whatsappUrl } from '@/lib/utils';
+import { formatCurrency } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const SIZES: { value: HomeSize; label: string; hrs: number }[] = [

@@ -150,7 +150,7 @@ function Scene({ scene, index, progress }: {
             <a href="#estimate" className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 transition-colors">
               See My Price
             </a>
-            <a href="tel:7863051844" className="border border-white/25 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 transition-all">
+            <a href="tel:+17863051844" className="border border-white/25 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 transition-all">
               786-305-1844
             </a>
           </div>

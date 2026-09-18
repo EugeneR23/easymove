@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
           ` : ''}
 
           <div style="background:#f5f5f5;border-left:4px solid #d4a017;padding:14px 16px;margin-top:20px">
-            <p style="margin:0;font-size:15px;font-weight:bold;color:#111">⚡ ACTION: Call immediately → <a href="tel:7863051844" style="color:#0066cc">786-305-1844</a></p>
+            <p style="margin:0;font-size:15px;font-weight:bold;color:#111">⚡ ACTION: Call immediately → <a href="tel:+17863051844" style="color:#0066cc">786-305-1844</a></p>
             <p style="margin:4px 0 0;font-size:12px;color:#666">Ref: ${lead.id} · Submitted: ${new Date(lead.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York' })}</p>
           </div>
         </div>

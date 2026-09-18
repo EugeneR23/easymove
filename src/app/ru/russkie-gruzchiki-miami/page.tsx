@@ -140,7 +140,7 @@ export default function RusskieGruzchikiPage() {
               <Link href="/quote">
                 <Button size="lg" variant="primary">Получить письменную смету</Button>
               </Link>
-              <a href="tel:7863051844">
+              <a href="tel:+17863051844">
                 <Button size="lg" variant="ghost" className="inline-flex items-center gap-2 text-white border-white/20">
                   <Phone size={15} /> 786-305-1844
                 </Button>

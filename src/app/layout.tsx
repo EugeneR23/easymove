@@ -6,6 +6,7 @@ import DeferredTagManager from '@/components/analytics/DeferredTagManager';
 import { GOOGLE_BUSINESS, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
+import { PHONE, EMAIL, GEO, OWNER, postalAddressSchema } from '@/lib/data/contact';
 import './globals.css';
 import { alternatesFor } from '@/lib/seo/routes';
 
@@ -111,21 +112,10 @@ const localBusinessSchema = {
   image: `${siteUrl}/images/Hero.png`,
   description:
     'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, building/HOA fluent.',
-  telephone: '+17863051844',
-  email: 'romanov@easy-move-florida.com',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '2130 Stirling Rd',
-    addressLocality: 'Hollywood',
-    addressRegion: 'FL',
-    postalCode: '33020',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 26.0038,
-    longitude: -80.158,
-  },
+  telephone: PHONE.e164,
+  email: EMAIL,
+  address: postalAddressSchema(),
+  geo: { '@type': 'GeoCoordinates', ...GEO },
   areaServed: [
     { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
     { '@type': 'City', name: 'Miami Beach', sameAs: 'https://en.wikipedia.org/wiki/Miami_Beach,_Florida' },
@@ -149,7 +139,7 @@ const localBusinessSchema = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+17863051844',
+      telephone: PHONE.e164,
       contactType: 'customer service',
       areaServed: 'US',
       availableLanguage: ['English', 'Russian'],
@@ -271,7 +261,7 @@ const organizationSchema = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+17863051844',
+      telephone: PHONE.e164,
       contactType: 'customer service',
       areaServed: 'US',
       availableLanguage: ['English', 'Russian'],
@@ -290,17 +280,17 @@ const founderSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': `${siteUrl}/#founder`,
-  name: 'Evgenii Romanov',
-  alternateName: ['Eugene Romanov', 'Евгений Романов'],
-  jobTitle: 'Founder & Owner',
+  name: OWNER.name,
+  alternateName: [...OWNER.alternateNames],
+  jobTitle: OWNER.jobTitle,
   description:
     'Owner of Easy Move Florida. Runs dispatch and crew leadership himself in English and Russian; reachable directly on WhatsApp at +1 786-305-1844.',
   knowsLanguage: ['en', 'ru'],
   worksFor: { '@id': `${siteUrl}/#organization` },
   url: `${siteUrl}/about`,
   image: `${siteUrl}/images/founder.jpg`,
-  telephone: '+17863051844',
-  email: 'romanov@easy-move-florida.com',
+  telephone: PHONE.e164,
+  email: EMAIL,
 };
 
 // WebSite schema — provides a stable @id all child entities reference.

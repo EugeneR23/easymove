@@ -34,10 +34,9 @@ export function generateId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2);
 }
 
-export const PHONE_E164 = '+17863051844';
-export const PHONE_DISPLAY = '786-305-1844';
-export const WHATSAPP_NUMBER = '17863051844';
-
-export function whatsappUrl(message = "Hi, I'd like a moving quote"): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
+// PHONE_E164, PHONE_DISPLAY, WHATSAPP_NUMBER and whatsappUrl moved to
+// src/lib/data/contact.ts on 2026-09-18. The first two had zero importers in
+// the whole repository while 282 phone literals sat in the pages, so they were
+// not centralisation — they were a second place to be wrong. No re-export is
+// left here on purpose: that would preserve the two-ways-to-say-it problem the
+// move exists to end.

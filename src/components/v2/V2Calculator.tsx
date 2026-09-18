@@ -163,7 +163,7 @@ export default function V2Calculator() {
               <Link href={wizardHref} className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-colors">
                 Lock This Rate
               </Link>
-              <a href="tel:7863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
+              <a href="tel:+17863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
                 786-305-1844
               </a>
               <button type="button" onClick={reset} className="text-white/25 hover:text-white/60 text-xs transition-colors sm:ml-auto">
@@ -191,7 +191,7 @@ export default function V2Calculator() {
               <Link href={wizardHref} className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-colors">
                 Get Exact Quote
               </Link>
-              <a href="tel:7863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
+              <a href="tel:+17863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
                 786-305-1844
               </a>
             </div>

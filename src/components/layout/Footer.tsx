@@ -4,7 +4,7 @@ import { licenceLine, THUMBTACK, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
 import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 
 export default function Footer() {
   return (

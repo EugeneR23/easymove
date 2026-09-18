@@ -189,7 +189,7 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
               <Link href="/quote">
                 <Button size="lg" variant="primary">{t.ctaEstimate}</Button>
               </Link>
-              <a href="tel:7863051844">
+              <a href="tel:+17863051844">
                 <Button size="lg" variant="ghost" className="inline-flex items-center gap-2 text-white border-white/20">
                   <Phone size={15} /> 786-305-1844
                 </Button>

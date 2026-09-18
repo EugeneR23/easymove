@@ -141,7 +141,7 @@ export default function TermsPage() {
               <p className="text-sm text-gray-600">
                 Easy Move Florida — Evgenii Romanov, owner<br />
                 Hollywood, Florida<br />
-                <a href="tel:7863051844" className="hover:text-gold transition-colors">786-305-1844</a>
+                <a href="tel:+17863051844" className="hover:text-gold transition-colors">786-305-1844</a>
                 <br />
                 <a href="mailto:romanov@easy-move-florida.com" className="hover:text-gold transition-colors">
                   romanov@easy-move-florida.com

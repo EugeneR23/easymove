@@ -97,7 +97,7 @@ export default function ContactPage() {
                       <p className="text-gold text-xs font-semibold tracking-[0.25em] uppercase">Fastest Response</p>
                     </div>
                     <a
-                      href="tel:7863051844"
+                      href="tel:+17863051844"
                       className="font-display text-3xl font-bold text-white hover:text-gold transition-colors duration-200 block mb-1"
                     >
                       786-305-1844
