@@ -49,7 +49,40 @@ const ALLOW = [
   'while the rest of the site said payment is collected on site about',
   'and "Cancellation fees may apply"',
   '* to — contradicted every one of them. It said "Payment is due upon completion of',
+  // Two notes that name the retired $229 four-mover rate and the "each" defect
+  // on purpose. Removing the note is how someone re-introduces the bug in good
+  // faith, which is the same reasoning as the entries above.
+  'used to print $229/hr for four movers next to a "from" price that',
+  'not have caught a single defect this pass found — "$129 per hour each" and',
+  '"$229/hr" both survive token substitution untouched. The claims-guard rule',
 ];
+
+/**
+ * The hourly figures the site is allowed to state, read from the rate card
+ * itself. If HOURLY_RATE changes, every prose sentence still naming the old one
+ * fails this build with a file:line list.
+ *
+ * TRUCK_FEE is deliberately not in here. It is a per-day fee that currently
+ * equals the crew rate, and including it kept $129 authorised after a
+ * simulated change to $139 — the guard passed the very change it exists to
+ * catch. Verified by making that change and watching it stay clean.
+ */
+const RATE_CARD = (() => {
+  const src = readFileSync(join(ROOT, 'src/lib/pricing.ts'), 'utf8');
+  const nums = new Set();
+  for (const name of ['HOURLY_RATE', 'PACKING_HOURLY_RATE']) {
+    const m = new RegExp(name + String.raw`[^=]*=\s*\{([^}]*)\}`).exec(src);
+    if (!m) throw new Error(`claims-guard: could not read ${name} from src/lib/pricing.ts`);
+    for (const n of m[1].matchAll(/:\s*(\d+)/g)) nums.add(n[1]);
+  }
+  if (nums.size < 3) throw new Error('claims-guard: rate card looks empty; refusing to run a rule that would pass everything');
+  return nums;
+})();
+
+const hourlyRate = new RegExp(
+  String.raw`(?<![–—-]\s?)[$](\d{2,4})\s?(?:[/]\s?(?:hr|hour|год)\b|per hour\b|an hour\b|в час\b|за годину\b)`,
+  'gi',
+);
 
 const RULES = [
   { id: 'dock-manager-by-name', why: 'Claims personal acquaintance with building staff. Nobody has confirmed this.',
@@ -73,7 +106,7 @@ const RULES = [
   // Only the boast is a problem. "e.g. Steinway grand piano" in a form placeholder
   // asks the customer what they own; "We've handled Steelcase" asserts a history.
   { id: 'brand-name-drops', why: 'Asserts having handled a named make. Use the category, not the brand.',
-    re: /(?:moved|handled|relocated|familiar)[^.]{0,90}(?:Steinway|Bösendorfer|Herman Miller|Steelcase|Knoll|Teknion)/gi },
+    re: /(?:moved|handled|relocated|familiar)[^.]{0,90}(?:Steinway|Bösendorfer|Herman Miller|Steelcase|Knoll\b|Teknion)/gi },
   // Added 2026-09-18. Each was run against the tree that shipped the defect first:
   // `git stash && npm run test:claims` must name the exact file:line it fixed.
   { id: 'rate-per-mover', why: 'Turns a crew rate into a per-mover rate: "$129 per hour each" reads as $258/hr. The rate covers the crew and its truck.',
@@ -106,6 +139,11 @@ const RULES = [
   { id: 'foreign-phone', why: 'One phone number exists: 786-305-1844. Another US-shaped number in copy is a typo or somebody else. Add it to ALLOW if it is deliberate.',
     re: /(?<!786[-.])\b(?!786[-.]305[-.]1844)(?!800[-.])(?!\d{3}[-.]000[-.]0000)\d{3}[-.]\d{3}[-.]\d{4}\b/g },
 
+  { id: 'undeclared-rate', why: 'An hourly dollar figure that is not on the rate card in src/lib/pricing.ts. This is how a rate change reaches the prose: the build fails and names every stale sentence. A template could not do that - "$129 per hour each" and "$229/hr" both survive token substitution untouched.',
+    // Skips the upper bound of a range ("$99-$149/hour"), which is honest market
+    // context about other movers, not a claim about ours.
+    re: hourlyRate, check: (m) => !RATE_CARD.has(m[1]) },
+
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
 ];
@@ -132,6 +170,7 @@ for (const target of SCAN) {
           if (ALLOW.some((a) => line.includes(a))) continue;
           const rel = relative(ROOT, file).split(sep).join('/');
           if (RULE_EXEMPT.get(rule.id)?.includes(rel)) continue;
+          if (rule.check && !rule.check(m)) continue;
           hits.push({ rule, file: relative(ROOT, file).split(sep).join('/'), line: i + 1, text: m[0] });
         }
       });

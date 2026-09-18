@@ -6,6 +6,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, Clock } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { bandHours, bandRange } from '@/lib/pricingCopy';
 import type { CostPageData } from '@/lib/data/costPages';
 
 import { SITE_URL as siteUrl } from '@/lib/site';
@@ -23,15 +24,12 @@ import { orgRef } from '@/lib/seo/schema';
  */
 
 // hours band × that crew's hourly rate + that crew's truck fee.
-// Same arithmetic as /pricing's APARTMENT_TOTALS; kept as strings because the
-// bands mix crews (2BR spans a 2-mover low and a 3-mover high).
-const TOTALS = [
-  { hours: '3–4',  total: '$516–$645' },
-  { hours: '3–5',  total: '$516–$774' },
-  { hours: '4–6',  total: '$645–$1,253' },
-  { hours: '6–8',  total: '$1,253–$1,611' },
-  { hours: '8–12', total: '$1,611–$2,327+' },
-];
+// Derived from src/lib/pricingCopy.ts, which is also what /pricing and
+// /ru/pricing use. This was three copies of the same arithmetic as strings.
+const TOTALS = ['studio', '1br', '2br', '3br', '4br'].map((k) => ({
+  hours: bandHours(k),
+  total: bandRange(k),
+}));
 
 type Locale = 'en' | 'ru' | 'ua';
 

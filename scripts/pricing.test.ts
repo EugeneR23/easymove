@@ -15,6 +15,7 @@ import {
   HOURLY_RATE,
   PACKING_HOURLY_RATE,
 } from '../src/lib/pricing';
+import { bandHours, bandRange, bandCrew, BAND_KEYS } from '../src/lib/pricingCopy';
 import { readFileSync } from 'node:fs';
 import type { QuoteInventory, QuoteAddons, CrewSize } from '../src/types';
 
@@ -185,6 +186,41 @@ console.log('\n[11] /pricing drive-time copy matches the engine');
   check(`Boca Raton example says "${spoken[boca]}" (engine: ${boca}h)`,
     src.includes(`Miami to Boca Raton ${spoken[boca]}`), spoken[boca]);
   check('the retired "one-time travel-time fee" promise is gone', !src.includes('one-time travel-time fee'), src.includes('one-time travel-time fee'));
+}
+
+// ── 12. Published bands are derived, and the Russian labels agree with them ──
+// The six-row table lived in three files with the money as strings. It is
+// computed now, and this section pins the output to what the site published
+// before the change: a refactor that quietly moves a price is not a refactor.
+console.log('\n[12] Published size bands');
+const PUBLISHED: Record<string, [string, string, string]> = {
+  studio: ['3–4', '2',   '$516–$645'],
+  '1br':  ['3–5', '2',   '$516–$774'],
+  '2br':  ['4–6', '2–3', '$645–$1,253'],
+  '3br':  ['6–8', '3',   '$1,253–$1,611'],
+  '4br':  ['8–12','3',   '$1,611–$2,327+'],
+  office: ['6–9', '3',   '$1,253–$1,790'],
+};
+for (const [key, [h, c, r]] of Object.entries(PUBLISHED)) {
+  check(`${key} band still reads ${h}h / ${c} movers / ${r}`,
+    bandHours(key) === h && bandCrew(key) === c && bandRange(key) === r,
+    [bandHours(key), bandCrew(key), bandRange(key)]);
+}
+check('every band key is known to the module', BAND_KEYS.length === 6, BAND_KEYS);
+
+// /ru/pricing keeps its hours labels hand-written, because the Russian noun
+// declines with the number (3-4 часа, but 3-5 часов) and one template would
+// print the wrong case on five of the six rows. So the numbers in those labels
+// have to be checked against the derived ones instead.
+{
+  const ruSrc = readFileSync('src/app/ru/pricing/page.tsx', 'utf8');
+  const drift: string[] = [];
+  for (const key of BAND_KEYS) {
+    const m = new RegExp(`key: '${key}', hours: '([0-9–]+)`).exec(ruSrc);
+    if (!m) { drift.push(`${key}: no label found`); continue; }
+    if (m[1] !== bandHours(key)) drift.push(`${key}: label ${m[1]} vs derived ${bandHours(key)}`);
+  }
+  check('Russian hour labels match the derived hours', drift.length === 0, drift);
 }
 
 console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);
