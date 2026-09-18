@@ -47,7 +47,7 @@ export const GOOGLE_BUSINESS: {
   // back to Thumbtack.
   reviewUrl: null,
   rating: '5.0',
-  reviewCount: 6,
+  reviewCount: 8,
 };
 
 /**
