@@ -144,6 +144,9 @@ const RULES = [
     // context about other movers, not a claim about ours.
     re: hourlyRate, check: (m) => !RATE_CARD.has(m[1]) },
 
+  { id: 'crew-composition-ratio', why: 'A ratio of the crew that speaks a language is a perishable statistic nobody can evidence - it changes when one person leaves, and it was published in 15 places plus a directory paste block. Say that Ukrainian-speaking movers are on the crew and can be assigned on request.',
+    re: /\u043a\u043e\u0436\u0435\u043d \u0442\u0440\u0435\u0442\u0456\u0439|\u043a\u0430\u0436\u0434\u044b\u0439 \u0442\u0440\u0435\u0442\u0438\u0439|\u0442\u0440\u0435\u0442\u0438\u043d\u0430 (?:\u0432\u0430\u043d\u0442\u0430\u0436\u043d\u0438\u043a|\u043a\u043e\u043c\u0430\u043d\u0434)|one in three (?:movers|crew)|a third of (?:the |our )?(?:crew|movers)/gi },
+
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
 ];

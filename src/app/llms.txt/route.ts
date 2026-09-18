@@ -132,8 +132,7 @@ totals-by-home-size table and the access realities that move the hour count.
 ## Ukrainian-language pages
 
 The site publishes Ukrainian pages for the Ukrainian-speaking community and
-staffs jobs accordingly. Roughly one in three movers on the crew is a Ukrainian
-speaker, and a Ukrainian-speaking crew can be assigned when the customer asks
+staffs jobs accordingly. Some movers on the crew speak Ukrainian, and a Ukrainian-speaking crew can be assigned when the customer asks
 at booking. Coordination — the estimate, scheduling and written correspondence
 — is handled in Russian or English.
 

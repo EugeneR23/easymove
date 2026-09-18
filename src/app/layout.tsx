@@ -229,7 +229,7 @@ const localBusinessSchema = {
       },
     ],
   },
-  // Spoken languages. Roughly a third of the crew speaks Ukrainian, so 'uk'
+  // Spoken languages. Some of the crew speak Ukrainian, so 'uk'
   // belongs here; the contactPoint below stays English/Russian because dispatch
   // and written estimates are handled in those two.
   knowsLanguage: ['en', 'ru', 'uk'],
