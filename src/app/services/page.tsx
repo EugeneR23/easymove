@@ -104,6 +104,17 @@ const SERVICES = [
     href: '/quote?type=specialty',
     cta: 'Get a FREE Office Quote',
   },
+  {
+    icon: Package,
+    name: 'Storage Between Moves',
+    sub: 'Closing gaps · Renovations · Month to month',
+    description:
+      'When the new place is not ready, we pick up, deliver into a storage facility we book on your behalf, and bring everything back on your date. You deal with us, not with a separate storage company.',
+    highlights: ['We book and name the facility', 'Pickup and redelivery by the same crew', 'Month-to-month, no minimum', 'Photo inventory before it goes in', 'Climate-controlled space where offered'],
+    image: '/images/Real/5.png',
+    href: '/services/storage-solutions',
+    cta: 'See How Storage Works',
+  },
 ];
 
 export default function ServicesPage() {

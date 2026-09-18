@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { hoursLine } from '@/lib/data/hours';
 import { licenceLine, THUMBTACK, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
+import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/utils';
 
@@ -39,6 +40,7 @@ export default function Footer() {
                 { href: '/services/office-commercial', label: 'Office (Small)' },
                 { href: '/packing-services', label: 'Packing' },
                 { href: '/services/specialty-items', label: 'Heavy & Specialty Items' },
+                { href: '/services/storage-solutions', label: 'Storage' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
@@ -62,6 +64,10 @@ export default function Footer() {
                 // to sit here went stale the moment nine new city pages shipped.
                 ...CITIES.map((c) => ({ href: `/${c.slug}`, label: `${c.name} Movers` })),
                 { href: '/packing-services', label: 'Packing Services' },
+                // The cost pages had no footer link at all. Their only inbound link
+                // was the conditional one in the city template, which does not fire
+                // for the 12 English cities that have no cost page of their own.
+                ...COST_PAGES.map((c) => ({ href: `/${c.slug}`, label: `Moving Cost in ${c.cityName}` })),
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>

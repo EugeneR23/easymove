@@ -30,6 +30,24 @@ export interface CostPageData {
   faqs: { q: string; a: string }[];
 }
 
+/**
+ * Cost pages that exist as their own route rather than through this registry.
+ *
+ * /moving-cost-miami is hand-rolled at src/app/moving-cost-miami/page.tsx to
+ * preserve a title that is already indexed, so it never appeared in COST_PAGES.
+ * The consequence was invisible: CityMoversPage links to a cost page only when
+ * the lookup finds one, so /miami-movers never linked to /moving-cost-miami —
+ * while /ru/miami-movers linked to /ru/moving-cost-miami perfectly well, because
+ * the Russian one *is* in the registry. The busiest English city page on the site
+ * was the one missing the link.
+ *
+ * Listing it here restores the link without duplicating the page's content or its
+ * sitemap entry, which sitemap.ts still emits by hand at its own lastmod.
+ */
+export const EXTERNAL_COST_PAGES: Pick<CostPageData, 'slug' | 'cityName' | 'citySlug' | 'cityNameRu' | 'cityNameUa'>[] = [
+  { slug: 'moving-cost-miami', cityName: 'Miami', citySlug: 'miami-movers' },
+];
+
 export const COST_PAGES: CostPageData[] = [
 {
   slug: 'moving-cost-fort-lauderdale',

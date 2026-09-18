@@ -24,6 +24,19 @@ const NAV_LINKS_RU = [
   { href: '/ru/contact', label: 'Контакты' },
 ];
 
+// No Ukrainian static pages exist yet — only the home, six city pages and five
+// cost pages. So the UA nav points at /ua for home and at the English originals
+// for the rest, each carrying hrefLang="en" so a screen reader and a crawler both
+// know the language changes. Linking to /ua/about, which does not exist, would be
+// worse than linking honestly to the English one.
+const NAV_LINKS_UA = [
+  { href: '/ua',       label: 'Головна' },
+  { href: '/about',    label: 'Про нас',   hrefLang: 'en' },
+  { href: '/services', label: 'Послуги',   hrefLang: 'en' },
+  { href: '/pricing',  label: 'Ціни',      hrefLang: 'en' },
+  { href: '/contact',  label: 'Контакти', hrefLang: 'en' },
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,7 +44,7 @@ export default function Header() {
   const isRu = pathname.startsWith('/ru');
   const isUa = pathname.startsWith('/ua');
   const isHome = pathname === '/' || pathname === '/ru' || pathname === '/ua';
-  const NAV_LINKS = isRu ? NAV_LINKS_RU : NAV_LINKS_EN;
+  const NAV_LINKS = isRu ? NAV_LINKS_RU : isUa ? NAV_LINKS_UA : NAV_LINKS_EN;
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 60);
@@ -76,7 +89,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href={isRu ? '/ru' : '/'} className="flex items-center gap-2">
+          <Link href={isRu ? '/ru' : isUa ? '/ua' : '/'} className="flex items-center gap-2">
             <span className={cn('font-display text-2xl font-bold tracking-tight transition-colors', textColor)}>
               Easy Move <span className="text-gold">Florida</span>
             </span>
@@ -88,6 +101,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                hrefLang={'hrefLang' in link ? (link as { hrefLang?: string }).hrefLang : undefined}
                 className={cn(
                   'text-sm font-medium tracking-wide uppercase transition-colors',
                   pathname === link.href
@@ -136,7 +150,7 @@ export default function Header() {
 
             <Link href="/quote">
               <Button size="sm" variant="primary">
-                {isRu ? 'Рассчитать' : 'Calculate My Move'}
+                {isRu ? 'Рассчитать' : isUa ? 'Розрахувати' : 'Calculate My Move'}
               </Button>
             </Link>
           </nav>
@@ -182,6 +196,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  hrefLang={'hrefLang' in link ? (link as { hrefLang?: string }).hrefLang : undefined}
                   className={cn(
                     'block font-medium py-2',
                     pathname === link.href ? 'text-gold' : 'text-white/80',
@@ -199,7 +214,7 @@ export default function Header() {
               </a>
               <Link href="/quote" onClick={() => setMenuOpen(false)}>
                 <Button size="md" variant="primary" className="w-full mt-2">
-                  {isRu ? 'Рассчитать переезд' : 'Calculate My Move'}
+                  {isRu ? 'Рассчитать переезд' : isUa ? 'Розрахувати переїзд' : 'Calculate My Move'}
                 </Button>
               </Link>
           </div>

@@ -13,7 +13,7 @@ import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-re
 import { CITIES, type CityData } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
-import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
+import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA , EXTERNAL_COST_PAGES } from '@/lib/data/costPages';
 import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 
 
@@ -295,7 +295,8 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   // into English mid-journey; where no localised cost page exists yet, the
   // lookup simply finds nothing and the link is not rendered.
   const costSource = isRu ? COST_PAGES_RU : isUa ? COST_PAGES_UA : COST_PAGES;
-  const costPage = costSource.find((c) => c.citySlug === city.slug);
+  const costPage = costSource.find((c) => c.citySlug === city.slug)
+    ?? (isRu || isUa ? undefined : EXTERNAL_COST_PAGES.find((c) => c.citySlug === city.slug));
   // RU and UA slugs already carry their locale segment ('ru/miami-movers');
   // English ones do not. Before this, the URL emitted here was the English one
   // on every locale, so /ru/miami-movers told a crawler its entity lived at
