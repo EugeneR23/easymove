@@ -256,7 +256,7 @@ export default function RuAboutPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale="ru" />
       <MobileStickyBar />
     </>
   );

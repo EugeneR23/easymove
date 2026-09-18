@@ -211,9 +211,9 @@ export default function RusskieGruzchikiPage() {
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale="ru" />
       </main>
-      <Footer />
+      <Footer locale="ru" />
       <MobileStickyBar />
     </>
   );

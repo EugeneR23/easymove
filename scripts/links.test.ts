@@ -171,5 +171,27 @@ console.log('\n[4] Cost pages reference real city pages');
 const badCitySlug = COST_PAGES.filter((c) => !enSlugs.has(c.citySlug)).map((c) => c.slug);
 check('every cost page citySlug resolves', badCitySlug.length === 0, badCitySlug);
 
+console.log('\n[5] Localised pages pass their locale to the shared chrome');
+{
+  // Footer and CTABanner default to English so the English pages need no prop.
+  // That default is also how /ru and /ua shipped an English "Ready to move?"
+  // and English column headings under otherwise Russian and Ukrainian copy.
+  const shared = ['Footer', 'CTABanner'];
+  const missing: string[] = [];
+  for (const f of files.map(posix)) {
+    const m = /^src[/]app[/](ru|ua)[/]/.exec(f);
+    if (!m) continue;
+    const want = m[1];
+    const body = readFileSync(f, 'utf8');
+    for (const c of shared) {
+      if (!body.includes(`<${c} `) && !body.includes(`<${c}/`) && !body.includes(`<${c}>`)) continue;
+      const hasLocale = new RegExp(`<${c}[^>]*locale=["{']${want}`).test(body);
+      if (!hasLocale) missing.push(`${f}: <${c}> without locale="${want}"`);
+    }
+  }
+  check('every /ru and /ua page passes locale to Footer and CTABanner',
+    missing.length === 0, missing);
+}
+
 console.log(failed ? `\n${failed} FAILURE(S)` : '\nALL PASS');
 process.exit(failed ? 1 : 0);

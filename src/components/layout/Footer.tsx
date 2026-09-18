@@ -6,7 +6,43 @@ import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/data/contact';
 
-export default function Footer() {
+/**
+ * Site footer.
+ *
+ * The link columns are English on purpose — they point at English pages, and a
+ * Russian label on a link that lands in English helps nobody. What was wrong
+ * until 2026-09-18 is that the *headings* and the hours line were English too,
+ * on /ru and /ua, so a Russian reader met four English words before finding the
+ * Russian block further down. Those translate; the links do not.
+ *
+ * The locale prop defaults to 'en', so the English pages need no change. The two
+ * city/cost templates and the Russian and Ukrainian pages pass their own.
+ */
+type FooterLocale = 'en' | 'ru' | 'ua';
+
+const FOOTER_COPY: Record<FooterLocale, {
+  services: string; company: string; contact: string; hoursLocale: 'en' | 'ru' | 'uk';
+  intro: string; ratePill: string;
+}> = {
+  en: {
+    services: 'Services', company: 'Company', contact: 'Contact', hoursLocale: 'en',
+    intro: 'Local moving and small handyman service across South Florida. Hollywood-based, owner-led by Evgenii Romanov. Russian + English.',
+    ratePill: 'From $129/hr · 3-hour minimum',
+  },
+  ru: {
+    services: 'Услуги', company: 'Компания', contact: 'Контакты', hoursLocale: 'ru',
+    intro: 'Локальные переезды и небольшие работы по дому по Южной Флориде. База в Голливуде, заказ ведёт владелец Евгений Романов. Русский и английский.',
+    ratePill: 'От $129/час · минимум 3 часа',
+  },
+  ua: {
+    services: 'Послуги', company: 'Компанія', contact: 'Контакти', hoursLocale: 'uk',
+    intro: 'Локальні переїзди та невеликі роботи по дому по Південній Флориді. База в Голлівуді, замовлення веде власник Євгеній Романов.',
+    ratePill: 'Від $129/год · мінімум 3 години',
+  },
+};
+
+export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}) {
+  const f = FOOTER_COPY[locale] ?? FOOTER_COPY.en;
   return (
     <footer className="bg-charcoal text-gray-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -17,8 +53,7 @@ export default function Footer() {
               Easy Move <span className="text-gold">Florida</span>
             </span>
             <p className="mt-4 text-sm leading-relaxed">
-              Local moving and small handyman service across South Florida. Hollywood-based,
-              owner-led by Evgenii Romanov. Russian + English.
+              {f.intro}
             </p>
             <div className="mt-4 inline-flex items-center gap-2 border border-gold/40 bg-gold/5 px-3 py-1.5">
               <span className="text-gold text-[10px] font-bold tracking-[0.2em] uppercase">
@@ -26,13 +61,13 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-2 text-xs text-gray-600">
-              From $129/hr &middot; 3-hour minimum
+              {f.ratePill}
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Services</h2>
+            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">{f.services}</h2>
             <ul className="space-y-3 text-sm">
               {[
                 { href: '/services/residential-moving', label: 'Local Apartment & House Moves' },
@@ -51,7 +86,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Company</h2>
+            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">{f.company}</h2>
             <ul className="space-y-3 text-sm">
               {[
                 { href: '/about', label: 'About Evgenii' },
@@ -78,7 +113,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">Contact</h2>
+            <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">{f.contact}</h2>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-2">
                 <MessageCircle size={13} className="text-gold shrink-0" />
@@ -97,7 +132,7 @@ export default function Footer() {
                 <span>2130 Stirling Rd, Hollywood, FL 33020<br />serving all of South Florida</span>
               </li>
               <li className="text-xs text-gray-600 pt-1">
-                {hoursLine('en')}
+                {hoursLine(f.hoursLocale)}
               </li>
             </ul>
           </div>

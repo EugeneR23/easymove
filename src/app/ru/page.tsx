@@ -471,7 +471,7 @@ export default function RuHomePage() {
         </section>
 
       </main>
-      <Footer />
+      <Footer locale="ru" />
       <MobileStickyBar />
     </>
   );

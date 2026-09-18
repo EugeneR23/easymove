@@ -114,7 +114,7 @@ export default function RuContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale="ru" />
       <MobileStickyBar />
     </>
   );

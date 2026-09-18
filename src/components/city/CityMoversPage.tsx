@@ -623,9 +623,9 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale={locale} />
       </main>
-      <Footer />
+      <Footer locale={locale} />
       <MobileStickyBar />
     </>
   );

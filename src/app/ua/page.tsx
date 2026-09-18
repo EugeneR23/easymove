@@ -174,9 +174,9 @@ export default function UaLandingPage() {
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale="ua" />
       </main>
-      <Footer />
+      <Footer locale="ua" />
       <MobileStickyBar />
     </>
   );

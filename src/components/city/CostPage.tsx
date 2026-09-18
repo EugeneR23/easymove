@@ -325,9 +325,9 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
           </div>
         </section>
 
-        <CTABanner />
+        <CTABanner locale={locale} />
       </main>
-      <Footer />
+      <Footer locale={locale} />
       <MobileStickyBar />
     </>
   );

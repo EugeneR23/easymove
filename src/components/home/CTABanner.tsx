@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/lib/data/contact';
+import { PHONE, telHref, whatsappUrl } from '@/lib/data/contact';
 
 /**
  * Closing call to action. Rendered on nearly every page, which is why it no
@@ -13,8 +13,47 @@ import { whatsappUrl } from '@/lib/data/contact';
  * The ambient layers animate opacity and scale over a static gradient rather
  * than animating the gradient itself — same look, but the compositor can do it
  * without repainting.
+ *
+ * The locale prop defaults to 'en' so the ~14 English pages need no change. The
+ * two city/cost templates and the Russian and Ukrainian pages pass their own —
+ * this banner is the last thing a visitor reads before calling, and until
+ * 2026-09-18 it asked a Ukrainian reader "Ready to move?" in English at the
+ * bottom of an otherwise Ukrainian page.
  */
-export default function CTABanner() {
+type CtaLocale = 'en' | 'ru' | 'ua';
+
+const CTA_COPY: Record<CtaLocale, {
+  heading: string; body: string; calc: string; whatsapp: string;
+  badges: string[]; waMessage: string;
+}> = {
+  en: {
+    heading: 'Ready to move?',
+    body: 'Send photos via WhatsApp, get an estimate in 5 minutes, book same week. Or run the calculator now and lock your rate.',
+    calc: 'Calculate My Move',
+    whatsapp: 'WhatsApp Us',
+    badges: ['Owner-led', 'COI on request', 'Russian + English', 'Hollywood-based'],
+    waMessage: "Hi, I'd like a moving quote",
+  },
+  ru: {
+    heading: 'Готовы к переезду?',
+    body: 'Пришлите фото в WhatsApp — смета за 5 минут, дату возьмём на этой же неделе. Или посчитайте сами прямо сейчас.',
+    calc: 'Рассчитать переезд',
+    whatsapp: 'Написать в WhatsApp',
+    badges: ['Владелец ведёт заказ', 'COI по запросу', 'Русский и английский', 'База в Голливуде'],
+    waMessage: 'Здравствуйте, хочу рассчитать переезд',
+  },
+  ua: {
+    heading: 'Готові до переїзду?',
+    body: 'Надішліть фото у WhatsApp — кошторис за 5 хвилин, дату візьмемо цього ж тижня. Або порахуйте самі просто зараз.',
+    calc: 'Розрахувати переїзд',
+    whatsapp: 'Написати у WhatsApp',
+    badges: ['Власник веде замовлення', 'COI на запит', 'Українською — на запит', 'База в Голлівуді'],
+    waMessage: 'Вітаю, хочу розрахувати переїзд',
+  },
+};
+
+export default function CTABanner({ locale = 'en' }: { locale?: CtaLocale } = {}) {
+  const t = CTA_COPY[locale] ?? CTA_COPY.en;
   return (
     <section className="relative py-14 md:py-24 bg-charcoal overflow-hidden">
       {/* Gold gradient top border */}
@@ -44,56 +83,58 @@ export default function CTABanner() {
 
         <AnimateIn delay={0.2}>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
-            Ready to move?
+            {t.heading}
           </h2>
         </AnimateIn>
 
         <AnimateIn delay={0.35}>
           <p className="text-gray-400 text-base md:text-lg mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed">
-            Send photos via WhatsApp, get an estimate in 5 minutes, book same week. Or run the calculator now and lock your rate.
+            {t.body}
           </p>
         </AnimateIn>
 
         <AnimateIn delay={0.5} className="flex flex-col sm:flex-row gap-4 justify-center">
           <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
+            {/* One /quote for every locale. The wizard itself is English, and a
+                ?lang= that nothing reads would only add a crawlable URL variant
+                that renders the same page. */}
             <Link href="/quote">
               <Button size="lg" variant="primary" className="w-full sm:w-auto min-w-[220px] shadow-[0_0_32px_rgba(201,168,76,0.2)] hover:shadow-[0_0_48px_rgba(201,168,76,0.3)]">
-                Calculate My Move
+                {t.calc}
               </Button>
             </Link>
           </div>
           <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
-            <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
+            <a href={whatsappUrl(t.waMessage)} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 className="border border-white/20 bg-transparent text-white hover:bg-white/[0.06] hover:border-white/35 w-full sm:w-auto min-w-[220px] inline-flex items-center gap-2 justify-center transition-all duration-200"
               >
                 <MessageCircle size={16} />
-                WhatsApp Us
+                {t.whatsapp}
               </Button>
             </a>
           </div>
           <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
-            <a href="tel:+17863051844">
+            <a href={telHref()}>
               <Button
                 size="lg"
                 className="border border-white/20 bg-transparent text-white hover:bg-white/[0.06] hover:border-white/35 w-full sm:w-auto min-w-[220px] inline-flex items-center gap-2 justify-center transition-all duration-200"
               >
                 <Phone size={16} />
-                786-305-1844
+                {PHONE.display}
               </Button>
             </a>
           </div>
         </AnimateIn>
 
         <AnimateIn delay={0.7} direction="none" className="flex items-center justify-center gap-4 mt-8 flex-wrap">
-          <span className="text-white/45 text-xs">Owner-led</span>
-          <span className="w-px h-3 bg-white/15" />
-          <span className="text-white/45 text-xs">COI on request</span>
-          <span className="w-px h-3 bg-white/15" />
-          <span className="text-white/45 text-xs">Russian + English</span>
-          <span className="w-px h-3 bg-white/15" />
-          <span className="text-white/45 text-xs">Hollywood-based</span>
+          {t.badges.map((b, i) => (
+            <span key={b} className="contents">
+              {i > 0 && <span className="w-px h-3 bg-white/15" />}
+              <span className="text-white/45 text-xs">{b}</span>
+            </span>
+          ))}
         </AnimateIn>
       </div>
     </section>
