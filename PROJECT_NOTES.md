@@ -1,209 +1,98 @@
-# EasyMove Elite — Project Notes
+# Easy Move Florida — project notes
 
-**Project:** Premium luxury moving company website
-**Stack:** Next.js 14 App Router · TypeScript · Tailwind CSS
-**Data:** Local JSON files (no database)
-**Status:** MVP scaffold complete — awaiting first `npm install` + run
+**Site:** easy-move-florida.com
+**Stack:** Next.js 14 App Router · TypeScript · Tailwind · Vercel
+**Business:** owner-led local moving company, South Florida. Evgenii Romanov, 786-305-1844.
 
----
-
-## Architecture Overview
-
-### Rendering strategy
-
-| Area | Strategy | Reason |
-|---|---|---|
-| Public pages (`/`, `/about`, `/services`, `/services/[slug]`) | Server Components | SEO-friendly, data fetched at request time from JSON |
-| Quote wizard (`/quote`) | Client Component tree | Multi-step form with interactive state |
-| Admin pages | Server Components for data fetch, Client Components for interactive tables/forms | Initial data from JSON, mutations via fetch |
-| API routes | Next.js Route Handlers | REST-style API consumed by client components |
-
-### Data flow
-
-```
-User fills form (client)
-  → fetch POST /api/quotes  or  /api/leads
-  → Route Handler reads JSON file, creates record, writes back
-  → Admin opens /admin/quotes or /admin/leads
-  → Server Component reads JSON directly (no fetch needed)
-  → Admin edits status → fetch PATCH /api/quotes/[id]
-```
-
-### Auth
-
-Mock session stored as a base64-encoded JSON cookie (`admin-session`, HttpOnly, 8h).
-Credentials: `admin@easymove.com` / `luxury2024` — hardcoded in `src/lib/auth.ts`.
-`requireSession()` is called at the top of `src/app/admin/layout.tsx`; it redirects to `/admin/login` if the cookie is absent.
+> This file described a different company until 2026-09-18 — "EasyMove Elite, premium
+> luxury moving", $150/hour, a six-step wizard, a JSON-flat-file admin as the product.
+> None of that is the business or the site. A stale orientation document is worse than
+> none, because the next reader believes it.
 
 ---
 
-## Folder Map
+## What the business actually is
 
-```
-easymove-elite/
-├── data/                        JSON flat-file database
-│   ├── quotes.json              submitted quote records
-│   ├── leads.json               contact form submissions
-│   └── services.json            service catalog (auto-seeded on first run)
-│
-├── src/
-│   ├── types/index.ts           all shared TypeScript interfaces
-│   ├── lib/
-│   │   ├── utils.ts             cn(), formatCurrency(), formatDate(), generateId()
-│   │   ├── pricing.ts           quote pricing engine (base rate + fees + add-ons)
-│   │   ├── auth.ts              mock session cookie helpers
-│   │   └── data/
-│   │       ├── quotes.ts        readAll / readOne / create / update / delete
-│   │       ├── leads.ts         same pattern
-│   │       └── services.ts      same pattern + seed data
-│   │
-│   ├── components/
-│   │   ├── ui/                  Button, Input, Select, Textarea, Badge
-│   │   ├── layout/              Header, Footer, AdminSidebar
-│   │   ├── home/                HeroSection, StatsBar, ServicesPreview,
-│   │   │                        ProcessSection, TestimonialsSection, CTABanner
-│   │   ├── quote/               QuoteWizard + Step1–Step6 + QuoteSummary
-│   │   └── contact/             ContactForm
-│   │
-│   └── app/
-│       ├── page.tsx             / (homepage)
-│       ├── about/               /about
-│       ├── services/            /services + /services/[slug]
-│       ├── contact/             /contact
-│       ├── quote/               /quote
-│       ├── admin/               /admin/** (protected by layout.tsx)
-│       │   ├── login/           public login page
-│       │   ├── leads/           table + [id] detail
-│       │   ├── quotes/          table + [id] detail
-│       │   └── services/        catalog overview
-│       └── api/
-│           ├── quotes/          GET, POST, [id] GET/PATCH/DELETE
-│           ├── leads/           GET, POST, [id] GET/PATCH/DELETE
-│           ├── services/        GET
-│           └── auth/            login (POST), logout (POST)
-```
+Local moving across **Miami-Dade, Broward and Palm Beach**, billed by the hour.
+Long-distance **inside Florida** by written custom quote. **No interstate moves** —
+that needs federal operating authority the company does not hold, and the site says
+so rather than quietly accepting the lead. No international, no customs, no
+climate-controlled fleet (that is booked with a third party when a piece needs it).
+
+English and Russian throughout, Ukrainian on a subset of pages.
+
+## The rate card
+
+Hourly, per crew, with that crew's truck billed per day at the same figure:
+
+| Crew | Labour | Truck/day | Smallest invoice (3h min) |
+|---|---|---|---|
+| 2 movers | $129/hr | $129 | $516 |
+| 3 movers | $179/hr | $179 | $716 |
+| 4 movers | $219/hr | $219 | $876 |
+
+Packing: $79 / $119 / $159 per hour by crew. Three-hour minimum, then 15-minute
+increments. No deposit. Free cancellation over 48 hours out. Nothing added for
+weekends, season, fuel, stairs, elevators, long carries or heavy items.
+
+**Every one of these numbers lives in `src/lib/pricing.ts` and nowhere else.**
 
 ---
 
-## Key Data Models
+## Where a fact lives
 
-### Quote
-Fields: `id, createdAt, updatedAt, status, moveType, from*/to* address fields, estimatedDistance, inventory{bedrooms, bathrooms, hasGarage, hasStorage, estimatedBoxes, specialItems[]}, addons{packingService, unpackingService, furnitureAssembly, storageMonths, autoTransport, artHandling, climateControlled}, preferredDate, flexibleDates, firstName/lastName/email/phone, pricing{baseRate, distanceFee, inventoryFee, addonsFee, discount, total}, adminNotes, assignedTo`
+The repository's organising rule: a fact has one home, and the prose that repeats
+it is guarded rather than templated.
 
-### Lead
-Fields: `id, createdAt, updatedAt, status, source, firstName/lastName/email/phone, message, moveType?, moveDate?, fromCity?, toCity?, adminNotes, followUpDate?, assignedTo, quoteId?`
-
-### Service
-Fields: `id, slug, category, name, tagline, description, features[]{icon, label}, startingPrice, priceUnit, imageUrl, isActive, sortOrder`
-
----
-
-## Pricing Engine (`src/lib/pricing.ts`)
-
-| Move Type | Base Rate |
+| Module | Owns |
 |---|---|
-| local | $150/hr × estimated hours |
-| long-distance | max($1,200, $0.85 × miles) |
-| office | $200/hr × estimated hours |
-| specialty | $800 minimum |
+| `src/lib/pricing.ts` | rates, minimum, billing increment, `routeMode()` |
+| `src/lib/pricingCopy.ts` | every published band and price string, derived from the above |
+| `src/lib/data/hours.ts` | business hours, in three languages and in schema |
+| `src/lib/data/scope.ts` | what is and is not moved, and where |
+| `src/lib/data/policies.ts` | deposit, cancellation, payment, surcharges, COI |
+| `src/lib/data/contact.ts` | phone, email, address, geo, owner identity |
+| `src/lib/data/credentials.ts` | licence numbers, ratings, review counts |
+| `src/lib/site.ts` | the origin and the three JSON-LD `@id` values |
+| `src/lib/seo/routes.ts` | which paths exist in which languages |
+| `src/lib/seo/schema.ts` | JSON-LD node builders |
 
-Add-ons: packing +$350, unpacking +$250, furniture assembly +$180, storage +$200/mo, auto transport +$1,200, art handling +$500, climate control +$300.
+`credentials.ts` and `policies.ts` use a **null-means-do-not-claim** convention: while
+a value is null the site simply does not make that claim, and no placeholder renders.
+`FDACS_NUMBER` is null today, which is why no "Licensed" badge appears anywhere.
 
-Inventory fee: bedrooms × $120, garage +$200, storage +$150, each specialty item +$250.
+## What guards it
 
----
+`npm run build` runs three gates first (`prebuild`):
 
-## Design System
+- **`scripts/claims-guard.mjs`** — 24 regex rules over `src/`, `data/` and the two
+  submission packages. Every rule was run against the code that violated it before
+  being committed; a rule that has never failed is decoration. The `ALLOW` list holds
+  exact sentences that are deliberately true, each with a reason.
+- **`scripts/pricing.test.ts`** — local pricing regressions, plus the rule that
+  nothing crossing a state line and nothing long-distance may return a dollar figure.
+- **`scripts/links.test.ts`** — orphan pages, and a three-way reconciliation of
+  `seo/routes.ts` against the content arrays, the filesystem, and each page.
 
-**Colors:**
-- `gold` (#C9A84C) — primary accent, CTAs, active states
-- `charcoal` (#1C1C1E) — dark backgrounds, headings
-- `cream` (#FAF8F3) — page backgrounds for public sections
-
-**Typography:**
-- `font-display` → Playfair Display (headings, brand name)
-- `font-body` → Inter (body text, UI)
-
-**UI conventions:** Zero border-radius on buttons/cards (sharp luxury aesthetic). Gold focus rings. Uppercase tracking-wide labels.
-
----
-
-## Current Status
-
-### Done
-- [x] Project scaffold (package.json, tsconfig, tailwind, postcss, next.config)
-- [x] TypeScript types (`src/types/index.ts`)
-- [x] Utility functions (`src/lib/utils.ts`)
-- [x] Pricing engine (`src/lib/pricing.ts`)
-- [x] Auth helpers (`src/lib/auth.ts`)
-- [x] JSON data layer — quotes, leads, services with CRUD helpers
-- [x] Service catalog seed data (6 services)
-- [x] UI primitives — Button, Input, Select, Textarea, Badge
-- [x] Layout — Header (scroll-aware, mobile menu), Footer, AdminSidebar
-- [x] Homepage — Hero, StatsBar, ServicesPreview, ProcessSection, Testimonials, CTABanner
-- [x] `/about` page — story, values, team
-- [x] `/services` page — grid from live data
-- [x] `/services/[slug]` page — dynamic detail with features + pricing sidebar
-- [x] `/contact` page + ContactForm (posts to `/api/leads`)
-- [x] `/quote` page + full 6-step QuoteWizard
-  - [x] Step 1: Move type selection (5 options)
-  - [x] Step 2: From/To locations with state dropdowns
-  - [x] Step 3: Inventory (bedrooms, bathrooms, boxes, special items)
-  - [x] Step 4: Add-on services (7 options + storage months)
-  - [x] Step 5: Date picker + flexible toggle
-  - [x] Step 6: Contact details + submit
-  - [x] Quote summary with price breakdown
-- [x] API routes — quotes (GET/POST/PATCH/DELETE), leads, services, auth
-- [x] Admin login page (mock credentials)
-- [x] Admin layout with session guard (redirects to `/admin/login`)
-- [x] Admin dashboard — KPI stats, recent leads + quotes
-- [x] Admin leads — table + detail/edit page
-- [x] Admin quotes — table + detail/edit page with pricing breakdown
-- [x] Admin services — catalog overview
-
-### Not yet started (post-MVP)
-- [ ] Install Node.js + run `npm install` to verify build
-- [ ] Email notifications on new quote/lead submission
-- [ ] Quote PDF export
-- [ ] Admin: edit/create services
-- [ ] Admin: discount field on quotes
-- [ ] Admin: assign leads/quotes to staff members
-- [ ] Real distance calculation (Google Maps API or similar)
-- [ ] Auth upgrade: NextAuth.js with multi-user support
-- [ ] Replace Unsplash placeholder images with real brand photography
-- [ ] Testimonials: dynamic from database instead of hardcoded
-- [ ] Blog / resources section
-- [ ] Analytics integration
+`scripts/pricing.audit.ts` is **not** a gate. It is a standing report of the owner
+questions still open (Q2, Q5) and is expected to fail while they are.
 
 ---
 
-## How to Run Locally
+## Working here
+
+- Read `docs/EASYMOVE_REQUESTS.md` first: one line per request, its state, its commit.
+  It answers "was this built?" without anyone having to remember.
+- `docs/CLAIMS_TO_CONFIRM.md` lists claims removed for want of evidence, and how to
+  restore one if the owner confirms it.
+- `docs/EASY_MOVE_FLORIDA_V3_AUDIT.md` is the 2026-09-18 audit.
+- Never state a figure the code cannot produce or a document cannot back.
+- Verify against the built site, not the source. This pass alone, reading the rendered
+  HTML caught a doubled locale prefix, a schema/footer rating conflict, and a guard
+  regex that could never match anything.
 
 ```bash
-# 1. Install Node.js from https://nodejs.org (LTS v20+)
-
-# 2. Install dependencies
-cd "d:\Работа\Moving\Автоматизация\easymove-elite"
-npm install
-
-# 3. Start dev server
-npm run dev
-
-# 4. Open http://localhost:3000
+npm run dev          # localhost:3000
+npm run build        # runs all three gates first
+npm run test:claims  # just the copy guard
 ```
-
-Admin: http://localhost:3000/admin/login
-Credentials: `admin@easymove.com` / `luxury2024`
-
----
-
-## Upgrade Path (when ready)
-
-| Current (MVP) | Production upgrade |
-|---|---|
-| JSON flat files | PostgreSQL via Prisma or Supabase |
-| Hardcoded mock auth | NextAuth.js + database sessions |
-| Unsplash images | Self-hosted or Cloudinary |
-| No email | Resend or SendGrid on form submit |
-| Client-side distance estimate | Google Maps Distance Matrix API |
-| `npm run dev` | Vercel (zero-config, just push to GitHub) |
