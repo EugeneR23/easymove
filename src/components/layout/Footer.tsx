@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { hoursLine } from '@/lib/data/hours';
-import { licenceLine, THUMBTACK } from '@/lib/data/credentials';
+import { licenceLine, THUMBTACK, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/utils';
@@ -165,14 +165,18 @@ export default function Footer() {
               {licenceLine() && (
                 <p className="text-gray-500">{licenceLine()}</p>
               )}
-              <a
-                href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* The same figure the JSON-LD aggregateRating claims. Google asks that
+                  an aggregate rating be visible on the page carrying the markup, and
+                  this footer is the only rating most pages show. /reviews breaks it
+                  back out by platform and links to both profiles. */}
+              <Link
+                href="/reviews"
                 className="flex items-center gap-1.5 text-gold/60 hover:text-gold transition-colors"
               >
-                <span className="text-[10px] uppercase tracking-widest">{THUMBTACK.rating}★ · {THUMBTACK.reviewCount} Reviews on Thumbtack ↗</span>
-              </a>
+                <span className="text-[10px] uppercase tracking-widest">
+                  {REVIEW_TOTALS.blendedRating}★ · {REVIEW_TOTALS.totalCount} reviews on Google &amp; Thumbtack
+                </span>
+              </Link>
             </div>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>

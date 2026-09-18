@@ -3,8 +3,9 @@ import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
-import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
+import { GOOGLE_BUSINESS, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
+import { SITE_URL, ENTITY_ID } from '@/lib/site';
 import './globals.css';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
@@ -23,7 +24,7 @@ const inter = Inter({
   display: 'swap',
 });
 
-const siteUrl = 'https://www.easy-move-florida.com';
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -184,13 +185,24 @@ const localBusinessSchema = {
   // Verified against the live Google Business Profile (place_id
   // ChIJJcPs4dykvagR_uQxPaSlY_8): 5.0 from 6 reviews. Keep these two numbers in
   // step with the profile — a stale rating in schema is worse than none.
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: GOOGLE_BUSINESS.rating,
-    reviewCount: GOOGLE_BUSINESS.reviewCount,
-    bestRating: '5',
-    worstRating: '1',
-  },
+  //
+  // The figure below is the blend across both platforms, not Google alone. Google
+  // wants an aggregate rating to be visible on the page carrying the markup, and
+  // the only rating a visitor sees on most pages is the footer's. Until
+  // 2026-09-18 those disagreed: schema said 5.0 from 6 (Google), the footer said
+  // 4.7 from 33 (Thumbtack), on the same rendered page. Both now read
+  // REVIEW_TOTALS, and /reviews breaks the blend back out by source.
+  ...(REVIEW_TOTALS.blendedRating
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: REVIEW_TOTALS.blendedRating,
+          reviewCount: REVIEW_TOTALS.totalCount,
+          bestRating: '5',
+          worstRating: '1',
+        },
+      }
+    : {}),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Moving and Handyman Services',

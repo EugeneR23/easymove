@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { hoursOpeningHours } from '@/lib/data/hours';
+import { cityPageNode, serviceNode, faqNode, breadcrumbNode, ld } from '@/lib/seo/schema';
 import { THUMBTACK_QUOTES } from '@/lib/data/thumbtackQuotes';
 import { THUMBTACK } from '@/lib/data/credentials';
 import Image from 'next/image';
@@ -296,83 +296,47 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   // lookup simply finds nothing and the link is not rendered.
   const costSource = isRu ? COST_PAGES_RU : isUa ? COST_PAGES_UA : COST_PAGES;
   const costPage = costSource.find((c) => c.citySlug === city.slug);
-  const schemaJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'MovingCompany',
-    '@id': 'https://www.easy-move-florida.com/#organization',
-    name: 'Easy Move Florida',
-    description: city.metaDescription,
-    url: `https://www.easy-move-florida.com/${city.slug}`,
-    telephone: '+17863051844',
-    email: 'romanov@easy-move-florida.com',
-    areaServed: {
-      '@type': 'AdministrativeArea',
-      name: `${city.name}, ${city.state}`,
-    },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '2130 Stirling Rd',
-      addressLocality: 'Hollywood',
-      addressRegion: 'FL',
-      postalCode: '33020',
-      addressCountry: 'US',
-    },
-    priceRange: '$$',
-    openingHours: hoursOpeningHours(),
-    knowsLanguage: ['en', 'ru'],
-    inLanguage: locale === 'ua' ? 'uk' : locale, // BCP-47: Ukrainian is uk, not ua
-  });
+  // RU and UA slugs already carry their locale segment ('ru/miami-movers');
+  // English ones do not. Before this, the URL emitted here was the English one
+  // on every locale, so /ru/miami-movers told a crawler its entity lived at
+  // /miami-movers.
+  const prefix = isRu ? '/ru' : isUa ? '/ua' : '';
+  const path = `/${city.slug}`;
 
-  const offerSchemaJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `https://www.easy-move-florida.com/${city.slug}#service`,
+  // This page no longer re-declares the organization. It references it. The two
+  // competing definitions of <site>/#organization are why src/lib/seo/schema.ts
+  // exists; see its header.
+  const pageJson = ld(cityPageNode({
+    path,
+    name: city.metaTitle,
+    description: city.metaDescription,
+    locale,
+  }));
+
+  const offerSchemaJson = ld(serviceNode({
+    path,
     name: `Local Moving Service — ${city.name}, ${city.state}`,
     serviceType: 'Local Moving',
-    provider: { '@id': 'https://www.easy-move-florida.com/#organization' },
-    areaServed: { '@type': 'City', name: `${city.name}, ${city.state}` },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'USD',
-      lowPrice: HOURLY_RATE[2],
-      highPrice: HOURLY_RATE[4],
-      offerCount: 3,
-      priceSpecification: ([2, 3, 4] as const).map((crew) => ({
-        '@type': 'UnitPriceSpecification',
-        price: HOURLY_RATE[crew],
-        priceCurrency: 'USD',
-        unitText: 'HUR',
-        name: `Crew of ${crew} movers — hourly labour rate`,
-        eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
-      })),
-    },
-  });
+    areaServed: `${city.name}, ${city.state}`,
+    rates: ([2, 3, 4] as const).map((crew) => ({ crew, price: HOURLY_RATE[crew] })),
+    minHours: MIN_HOURS,
+  }));
 
-  const faqSchemaJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: city.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: { '@type': 'Answer', text: faq.a },
-    })),
-  });
+  const faqSchemaJson = ld(faqNode(city.faqs, locale));
 
-  const breadcrumbJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.breadcrumbHome, item: isRu ? 'https://www.easy-move-florida.com/ru' : isUa ? 'https://www.easy-move-florida.com/ua' : 'https://www.easy-move-florida.com' },
-      { '@type': 'ListItem', position: 2, name: t.breadcrumbAreas, item: locale === 'ru' ? 'https://www.easy-move-florida.com/ru/services' : 'https://www.easy-move-florida.com/services' },
-      { '@type': 'ListItem', position: 3, name: t.breadcrumbCity(city), item: `https://www.easy-move-florida.com/${city.slug}` },
-    ],
-  });
+  const breadcrumbJson = ld(breadcrumbNode([
+    { name: t.breadcrumbHome,  path: prefix || '/' },
+    // The services hub only exists in EN and RU; UA falls back to the English one
+    // rather than linking a page that does not exist.
+    { name: t.breadcrumbAreas, path: isRu ? '/ru/services' : '/services' },
+    { name: t.breadcrumbCity(city), path },
+  ]));
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: schemaJson }}
+        dangerouslySetInnerHTML={{ __html: pageJson }}
       />
       <script
         type="application/ld+json"

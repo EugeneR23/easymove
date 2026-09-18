@@ -8,7 +8,8 @@ import { Phone, Clock } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import type { CostPageData } from '@/lib/data/costPages';
 
-const siteUrl = 'https://www.easy-move-florida.com';
+import { SITE_URL as siteUrl } from '@/lib/site';
+import { orgRef } from '@/lib/seo/schema';
 
 /**
  * "How much do movers cost in {city}?" — the template behind every
@@ -137,7 +138,7 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
     '@id': `${url}#service`,
     name: `Local Moving Service — ${page.cityName}`,
     serviceType: 'Local Moving',
-    provider: { '@id': 'https://www.easy-move-florida.com/#organization' },
+    provider: orgRef(),
     areaServed: { '@type': 'City', name: page.cityName },
     offers: {
       '@type': 'AggregateOffer',
