@@ -14,7 +14,7 @@
  */
 import {
   calculatePricing, resolveLocalDistance, estimateLocalDistance,
-  estimateLongDistance, localStartingPrice, LD_MINIMUM,
+  localStartingPrice,
 } from '../src/lib/pricing';
 import type { QuoteInventory, QuoteAddons, HomeSize, CrewSize } from '../src/types';
 
@@ -72,14 +72,14 @@ must('F1 · drive time now changes the estimate', local('Miami', 'Boca Raton').t
 must('F3 · an unrecognised city is flagged and not billed',
   resolveLocalDistance('Maimi', 'Bocca Raton').confirmed === false && local('Maimi', 'Bocca Raton').travelHours === 0,
   { confirmed: resolveLocalDistance('Maimi', 'Bocca Raton').confirmed, billed: local('Maimi', 'Bocca Raton').travelHours });
-must('F5 · Miami→New York no longer depends on the state field',
-  estimateLongDistance('Miami', 'FL', 'New York', 'FL') === estimateLongDistance('Miami', 'FL', 'New York', 'NY'),
-  { withFL: estimateLongDistance('Miami', 'FL', 'New York', 'FL'), withNY: estimateLongDistance('Miami', 'FL', 'New York', 'NY') });
+// F5 · retired 2026-09-18 with the interstate destination resolver it guarded.
+// The replacement lives in scripts/pricing.test.ts [1]: any route leaving
+// Florida resolves to 'referral' and carries no figure at all.
 must('F7 · a crew size off the rate table no longer yields NaN',
   Number.isFinite(local('Miami', 'Miami', 0, { ...INV, crewSize: 5 as unknown as CrewSize }).total),
   local('Miami', 'Miami', 0, { ...INV, crewSize: 5 as unknown as CrewSize }).total);
 must('F12 · the admin line items now sum to the admin total', (() => {
-  const p = calculatePricing({ moveType: 'long-distance', estimatedDistance: estimateLongDistance('Venice', 'FL', 'Cary', 'NC'), fromCity: 'Venice', toCity: 'Cary', inventory: INV, addons: ADD });
+  const p = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Boca Raton', inventory: INV, addons: ADD });
   return p.laborRate + p.truckFee + p.accessFee + p.travelFee + p.addonsFee - p.discount === p.total;
 })(), 'see admin/quotes/[id]/page.tsx lineItems');
 must('F13 · sidebar and server agree when no cities are given',
@@ -136,27 +136,12 @@ console.log('\n[Q3] no ceiling on "local"');
   });
 }
 
-// ── Q4 · the LD floor rewrites the linehaul line ───────────────────────────
-console.log('\n[Q4] LD_MINIMUM backfills truckFee, so the printed linehaul is fiction');
-{
-  const sizes: HomeSize[] = ['studio', '1br', '2br', '3br', '4br+', 'office'];
-  const crews: CrewSize[] = [2, 3, 4];
-  let belowFloor = 0, negative = 0;
-  const rewritten: Record<string, unknown>[] = [];
-  for (const s of sizes) for (const c of crews) for (const m of [0, 1, 15, 100, 200, 449, 450, 451, 900, 1300, 2700]) {
-    const p = calculatePricing({ moveType: 'long-distance', estimatedDistance: m, inventory: { ...INV, homeSize: s, crewSize: c }, addons: ADD });
-    if (p.total < LD_MINIMUM) belowFloor++;
-    if (p.truckFee < 0) negative++;
-    const miles = Math.max(100, Math.round(m));
-    const trueLinehaul = Math.round(miles * 2.0 * LD_MULT[s] + (Math.max(1, Math.ceil(miles / 450)) - 1) * 250);
-    if (p.truckFee !== trueLinehaul) rewritten.push({ size: s, crew: c, miles: m, printedLinehaul: p.truckFee, actualLinehaul: trueLinehaul });
-  }
-  must('Q4a · no LD combination prices below LD_MINIMUM', belowFloor === 0, { belowFloor });
-  must('Q4b · no LD combination produces a negative truck fee', negative === 0, { negative });
-  OPEN('the "Linehaul" line differs from the computed linehaul when the floor bites', {
-    cases: rewritten.length, of: sizes.length * crews.length * 11, examples: rewritten.slice(0, 3),
-  });
-}
+// ── Q4 · closed 2026-09-18 ────────────────────────────────────────
+// The question was what to print on the "Linehaul" line when the $1,500 floor
+// backfilled it (35 of 198 combinations printed a figure that was not the
+// computed linehaul). The floor, the linehaul model and the line itself are
+// gone: long-distance is quoted by hand, so there is no number to reconcile.
+// Guarded in scripts/pricing.test.ts sections [1]-[3].
 
 // ── Q5 · published bands vs the engine ─────────────────────────────────────
 console.log('\n[Q5] published bands vs the engine (bands exclude drive time)');
@@ -191,7 +176,7 @@ console.log('\n[Q8] stairs on packing-only');
 {
   const stairs = { ...INV, hasStairs: true, stairsFlights: 3 };
   OPEN('deliberate or an omission? packers work inside the home, so this may be correct',
-    Object.fromEntries((['local', 'office', 'long-distance', 'packing-only'] as const).map((mt) => {
+    Object.fromEntries((['local', 'office', 'packing-only'] as const).map((mt) => {
       const a = calculatePricing({ moveType: mt, estimatedDistance: 600, fromCity: 'Miami', toCity: 'Miami', inventory: INV, addons: ADD });
       const b = calculatePricing({ moveType: mt, estimatedDistance: 600, fromCity: 'Miami', toCity: 'Miami', inventory: stairs, addons: ADD });
       return [mt, { flat: a.estimatedHours, withStairs: b.estimatedHours, delta: b.estimatedHours - a.estimatedHours }];

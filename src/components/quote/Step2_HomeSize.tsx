@@ -22,11 +22,13 @@ const FL_CITIES = [
   'Boca Raton', 'Delray Beach', 'Palm Beach', 'West Palm Beach', 'Other',
 ];
 
+// Florida, or not Florida. The company moves within Florida and refers anything
+// crossing a state line, so a 50-entry list of states we decline is not a list
+// worth keeping — it only invites the next caller to price against it.
 const US_STATES = [
-  { value: '', label: 'Select State' },
-  ...['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME',
-      'MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA',
-      'RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY'].map((s) => ({ value: s, label: s })),
+  { value: '',    label: 'Select State' },
+  { value: 'FL',  label: 'Florida' },
+  { value: 'OUT', label: 'Outside Florida' },
 ];
 
 type PropertyType = 'house' | 'apartment';

@@ -36,6 +36,9 @@ const ALLOW = [
   '4.7 across 33 reviews (91% five-star, one 1-star)',
   'The site used to say "Both platforms verify the customer hired us before they',
   'hand-typed "5.0/32" copies went stale the day a one-star review landed',
+  // pricing.ts documents the interstate model it replaced. Naming the constant is
+  // how the next reader learns why routeMode() exists and must not be bypassed.
+  'set of state centroids, a haversine linehaul model and `LD_MINIMUM = 1500`',
 ];
 
 const RULES = [
@@ -74,6 +77,9 @@ const RULES = [
 
   { id: 'climate-controlled-owned', why: 'Climate control is not ours (owner, 2026-09-18) - we book it with a third party. Write "we arrange/book", never "our" or "every facility we use".',
     re: /(?:facilit\w+ we use|we own|our (?:own )?(?:facilit\w+|warehouse)|we (?:offer|provide|run|deliver to a))[^.\n]{0,50}climate|climate-controlled[^.\n]{0,25}(?:\(standard\)|: included)/gi },
+
+  { id: 'interstate-pricing', why: 'The interstate quote engine was deleted 2026-09-18 - it priced a service the company refuses. Do not reintroduce a US-wide table, a linehaul model or a long-distance floor.',
+    re: /LD_MINIMUM|estimateLongDistance|STATE_CENTROIDS|LD_CITY_COORDS|LD_RATE_PER_MILE|'AL',\s*'AK',\s*'AZ'/g },
 
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },

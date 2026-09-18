@@ -1,22 +1,19 @@
 /**
  * One-off pricing regression test — run with: npx tsx scripts/pricing.test.ts
  *
- * Reproduces the Dmitry lead (Ref mq9keymqq4hr00tv2l, 2026-06-11):
- * long-distance · 2br · 2 movers · Venice, FL → Cary, NC
- * Bug: server used the South-Florida city table → 15 mi → $1800 floor price.
+ * Local hourly pricing, plus the rule added 2026-09-18: nothing crossing a state
+ * line, and nothing long-distance at all, may come back carrying a dollar figure.
  */
 import {
   calculatePricing,
   estimateLocalDistance,
-  estimateLongDistance,
-  estimateDistance,
+  routeMode,
   resolveLocalDistance,
   travelHoursFor,
   normalizeCrewSize,
   minInvoice,
   HOURLY_RATE,
   PACKING_HOURLY_RATE,
-  LD_MINIMUM,
 } from '../src/lib/pricing';
 import { readFileSync } from 'node:fs';
 import type { QuoteInventory, QuoteAddons, CrewSize } from '../src/types';
@@ -37,42 +34,41 @@ const addons: QuoteAddons = {
   storageMonths: 0, autoTransport: false, artHandling: false, climateControlled: false,
 };
 
-// ── 1. Long-distance miles: Venice FL → Cary NC (driving ≈ 715 mi) ────────────
-console.log('\n[1] estimateLongDistance');
-const miles = estimateLongDistance('Venice', 'FL', 'Cary', 'NC');
-check('Venice→Cary ≈ 650–850 mi', miles >= 650 && miles <= 850, miles);
+// ── 1. Out-of-state and Florida long-distance carry no automatic price ──────
+// Until 2026-09-18 this file asserted the opposite: that Venice FL → Cary NC
+// priced at $3,000-$4,500 and never below a $1,500 floor. The company holds no
+// interstate authority, so those were prices for a job it refuses. The engine
+// no longer computes them and these checks fail if it ever does again.
+console.log('\n[1] routeMode');
+check('FL → FL local is priced',            routeMode('FL', 'FL', 'local') === 'priced', routeMode('FL', 'FL', 'local'));
+check('FL → FL long-distance is custom',    routeMode('FL', 'FL', 'long-distance') === 'custom', routeMode('FL', 'FL', 'long-distance'));
+check('FL → OUT is a referral',             routeMode('FL', 'OUT', 'local') === 'referral', routeMode('FL', 'OUT', 'local'));
+check('a raw state code is still a referral', routeMode('FL', 'WA', 'long-distance') === 'referral', routeMode('FL', 'WA', 'long-distance'));
+check('lower case is not a loophole',        routeMode('fl', 'wa', 'local') === 'referral', routeMode('fl', 'wa', 'local'));
+check('an origin outside FL is a referral',  routeMode('NY', 'FL', 'local') === 'referral', routeMode('NY', 'FL', 'local'));
+check('a blank destination is not yet a refusal', routeMode('FL', '', 'local') === 'priced', routeMode('FL', '', 'local'));
 
-const miaNy = estimateLongDistance('Miami', 'FL', 'New York', 'NY');
-check('Miami→New York ≈ 1200–1400 mi', miaNy >= 1200 && miaNy <= 1400, miaNy);
-
-const unknownDest = estimateLongDistance('Venice', 'FL', '', '');
-check('Unknown destination → 600 mi default', unknownDest === 600, unknownDest);
-
-const stateOnly = estimateLongDistance('', 'FL', '', 'TX');
-check('States only FL→TX ≈ 900–1300 mi', stateOnly >= 900 && stateOnly <= 1300, stateOnly);
-
-// ── 2. Dmitry quote recalculation ──────────────────────────────────────────────
-console.log('\n[2] Dmitry: long-distance · 2br · 2 movers · Venice FL → Cary NC');
-const dmitry = calculatePricing({
-  moveType: 'long-distance',
-  estimatedDistance: miles,
-  fromCity: 'Venice', toCity: 'Cary',
+console.log('\n[2] a referral never carries a figure');
+const seattle = calculatePricing({
+  moveType: 'long-distance', estimatedDistance: 0,
+  fromCity: 'Miami', toCity: 'Seattle', fromState: 'FL', toState: 'OUT',
   inventory, addons,
 });
-console.log('     →', JSON.stringify(dmitry));
-check('counts loading+unloading hours (6–10h)', dmitry.estimatedHours >= 6 && dmitry.estimatedHours <= 10, dmitry.estimatedHours);
-check('labor = hours × $129 crew rate', dmitry.laborRate === Math.round(dmitry.estimatedHours * 129), dmitry.laborRate);
-check('truck/linehaul ≥ $2000 (FL→NC truck alone costs ~$2k+)', dmitry.truckFee >= 2000, dmitry.truckFee);
-check('total in realistic band $3000–$4500', dmitry.total >= 3000 && dmitry.total <= 4500, dmitry.total);
-check('travelMiles recorded', dmitry.travelMiles === miles, dmitry.travelMiles);
+check('out-of-state total is 0', seattle.total === 0, seattle.total);
+check('out-of-state labour is 0', seattle.laborRate === 0, seattle.laborRate);
+check('out-of-state truck/linehaul is 0', seattle.truckFee === 0, seattle.truckFee);
+check("mode says why, so a caller cannot read 0 as 'free'", seattle.quoteMode === 'referral', seattle.quoteMode);
 
-// ── 3. Old bug must be dead: even with bogus 15 mi the LD floor protects ───────
-console.log('\n[3] LD floor with degenerate distance');
-const degenerate = calculatePricing({
-  moveType: 'long-distance', estimatedDistance: 15,
-  fromCity: 'Venice', toCity: 'Cary', inventory, addons,
+console.log('\n[3] Florida long-distance is quoted by hand, not by formula');
+const orlando = calculatePricing({
+  moveType: 'long-distance', estimatedDistance: 0,
+  fromCity: 'Miami', toCity: 'Orlando', fromState: 'FL', toState: 'FL',
+  inventory, addons,
 });
-check('LD never prices below $1500 floor', degenerate.total >= 1500, degenerate.total);
+check('Miami→Orlando total is 0', orlando.total === 0, orlando.total);
+check('and is marked custom, not refused', orlando.quoteMode === 'custom', orlando.quoteMode);
+check('hours are still estimated so the lead has a shape', orlando.estimatedHours > 0, orlando.estimatedHours);
+
 
 // ── 4. Local pricing (regression guard) ────────────────────────────────────────
 // 2br = 4.5h work + 1h drive (28 mi at 28 mph) = 5.5h x $129 = $710 labour
@@ -148,28 +144,6 @@ check('drive time rounds up to 15-minute increments',
   [travelHoursFor(1, true), travelHoursFor(15, true), travelHoursFor(16, true), travelHoursFor(60, true)].join('/'));
 check('unconfirmed distance never rounds into billable time', travelHoursFor(272, false) === 0, travelHoursFor(272, false));
 
-// ── 8. Long distance: the destination state is not assumed ────────────────────
-console.log('\n[8] LD destination resolution');
-// The wizard used to pre-select FL and never clear it, so "New York" resolved to
-// the Florida state centroid: 199 mi, $1,629, against 1,289 mi and $5,399.
-const nyWrongState = estimateLongDistance('Miami', 'FL', 'New York', 'FL');
-const nyRightState = estimateLongDistance('Miami', 'FL', 'New York', 'NY');
-check('Miami-New York does not depend on the state field being right',
-  nyWrongState === nyRightState && nyWrongState > 1200, `${nyWrongState} vs ${nyRightState}`);
-check('Miami-Atlanta likewise', estimateLongDistance('Miami', 'FL', 'Atlanta', 'FL') === estimateLongDistance('Miami', 'FL', 'Atlanta', 'GA'),
-  `${estimateLongDistance('Miami', 'FL', 'Atlanta', 'FL')} vs ${estimateLongDistance('Miami', 'FL', 'Atlanta', 'GA')}`);
-check('blank destination state no longer collapses to 30 mi',
-  estimateLongDistance('Miami', 'FL', 'New York', '') > 1200, estimateLongDistance('Miami', 'FL', 'New York', ''));
-check('an unresolvable destination falls back to the 600 mi default, never 30',
-  estimateLongDistance('Miami', 'FL', 'Nowhereville', '') === 600, estimateLongDistance('Miami', 'FL', 'Nowhereville', ''));
-// An ambiguous city name must NOT be guessed — Portland is both OR and ME.
-check('an ambiguous city name is left to the given state, not guessed',
-  estimateLongDistance('Miami', 'FL', 'Portland', 'OR') !== estimateLongDistance('Miami', 'FL', 'Portland', 'ME'),
-  `${estimateLongDistance('Miami', 'FL', 'Portland', 'OR')} vs ${estimateLongDistance('Miami', 'FL', 'Portland', 'ME')}`);
-// A real in-state LD destination that is in the table must be unaffected.
-check('Miami-Orlando FL still resolves to the Orlando entry',
-  estimateLongDistance('Miami', 'FL', 'Orlando', 'FL') === 243, estimateLongDistance('Miami', 'FL', 'Orlando', 'FL'));
-
 // ── 9. Inputs that cannot be priced must not become NaN ──────────────────────
 console.log('\n[9] Corrupt input never reaches the client as a price');
 const badCrew = calculatePricing({ moveType: 'local', estimatedDistance: 0, fromCity: 'Miami', toCity: 'Miami', inventory: { ...inventory, crewSize: 5 as unknown as CrewSize }, addons });
@@ -179,20 +153,17 @@ check('normalizeCrewSize clamps anything unpriceable to 2',
   normalizeCrewSize(5) === 2 && normalizeCrewSize(0) === 2 && normalizeCrewSize(undefined) === 2
   && normalizeCrewSize('3') === 3 && normalizeCrewSize(4) === 4,
   [normalizeCrewSize(5), normalizeCrewSize(0), normalizeCrewSize(undefined), normalizeCrewSize('3'), normalizeCrewSize(4)].join('/'));
-check('estimateDistance is case-insensitive', estimateDistance('fl', 'ny') === estimateDistance('FL', 'NY') && estimateDistance('fl', 'ny') === 1280,
-  `${estimateDistance('fl', 'ny')} vs ${estimateDistance('FL', 'NY')}`);
 
 // ── 10. Rate tables have exactly one home ────────────────────────────────────
 console.log('\n[10] One source for every rate');
 check('packing rates are exported and match the card ($79/$119/$159)',
   PACKING_HOURLY_RATE[2] === 79 && PACKING_HOURLY_RATE[3] === 119 && PACKING_HOURLY_RATE[4] === 159,
   JSON.stringify(PACKING_HOURLY_RATE));
-check('LD floor still holds after the local change',
-  calculatePricing({ moveType: 'long-distance', estimatedDistance: 0, inventory, addons }).total >= LD_MINIMUM,
-  calculatePricing({ moveType: 'long-distance', estimatedDistance: 0, inventory, addons }).total);
-check('long distance bills no local drive time (fuel + miles are in the linehaul)',
-  (calculatePricing({ moveType: 'long-distance', estimatedDistance: 753, fromCity: 'Venice', toCity: 'Cary', inventory, addons }).travelHours ?? 0) === 0,
-  calculatePricing({ moveType: 'long-distance', estimatedDistance: 753, fromCity: 'Venice', toCity: 'Cary', inventory, addons }).travelHours);
+check('no long-distance input produces a price, whatever mileage is passed in',
+  [0, 15, 753, 99999].every((d) =>
+    calculatePricing({ moveType: 'long-distance', estimatedDistance: d, fromState: 'FL', toState: 'OUT', inventory, addons }).total === 0),
+  [0, 15, 753, 99999].map((d) =>
+    calculatePricing({ moveType: 'long-distance', estimatedDistance: d, fromState: 'FL', toState: 'OUT', inventory, addons }).total));
 
 // ── 11. The drive-time examples printed on /pricing must be the engine's ─────
 // Written after shipping "about an hour and three quarters" for a route the

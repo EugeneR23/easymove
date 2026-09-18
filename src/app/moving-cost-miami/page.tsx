@@ -6,7 +6,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, CheckCircle, X } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM, minInvoice } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -226,9 +226,9 @@ export default function MovingCostMiamiPage() {
                     <td className="px-5 py-4 text-gray-500">Then 15-minute increments — no rounding up</td>
                   </tr>
                   <tr>
-                    <td className="px-5 py-4 text-charcoal font-semibold">Long distance</td>
-                    <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">from ${LD_MINIMUM.toLocaleString('en-US')}</td>
-                    <td className="px-5 py-4 text-gray-500">Flat per job, written estimate within 24 hours</td>
+                    <td className="px-5 py-4 text-charcoal font-semibold">Long distance (within Florida)</td>
+                    <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">Custom estimate</td>
+                    <td className="px-5 py-4 text-gray-500">Anywhere in Florida, quoted per job in writing within 24 hours. Out of state we refer a licensed carrier</td>
                   </tr>
                 </tbody>
               </table>

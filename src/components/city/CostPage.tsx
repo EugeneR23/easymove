@@ -5,7 +5,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, Clock } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM, minInvoice } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import type { CostPageData } from '@/lib/data/costPages';
 
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -42,12 +42,13 @@ const UI = {
     ctaEstimate: 'Get a Written Estimate',
     ratesTitle: (c: string) => `${c} hourly moving rates, 2026`,
     thBook: 'What you book', thRate: 'Rate', thNotes: 'Notes',
-    movers2: '2 movers', movers3: '3 movers', truck: 'Truck', minimum: 'Minimum', longDistance: 'Long distance',
+    movers2: '2 movers', movers3: '3 movers', truck: 'Truck', minimum: 'Minimum', longDistance: 'Long distance (within Florida)',
     notes2: 'Studios and 1-bedrooms',
     notes3: '2 bedrooms and up, or a tight elevator window',
     notesTruck: 'Per day at the crew rate, its own line. Fuel, tolls and mileage included',
     notesMin: (m: number) => `Smallest invoice $${m} — then 15-minute increments`,
-    notesLd: 'Flat per job, written estimate within 24 hours',
+    ldRate: 'Custom estimate',
+    notesLd: 'Anywhere in Florida, quoted per job in writing within 24 hours. Out of state we refer a licensed carrier',
     hours: 'hours',
     totalsTitle: (c: string) => `What a ${c} move actually costs, by home size`,
     totalsIntro: 'Every figure is the same arithmetic: hours × hourly rate, plus the truck at that same crew rate.',
@@ -67,12 +68,13 @@ const UI = {
     ctaEstimate: 'Получить письменную смету',
     ratesTitle: (c: string) => `Почасовые ставки — ${c}, 2026`,
     thBook: 'Что вы заказываете', thRate: 'Ставка', thNotes: 'Примечания',
-    movers2: '2 грузчика', movers3: '3 грузчика', truck: 'Трак', minimum: 'Минимум', longDistance: 'Дальний переезд',
+    movers2: '2 грузчика', movers3: '3 грузчика', truck: 'Трак', minimum: 'Минимум', longDistance: 'Дальний переезд (по Флориде)',
     notes2: 'Студии и однокомнатные',
     notes3: 'От двух спален или узкое лифтовое окно',
     notesTruck: 'За день по ставке бригады, отдельной строкой. Топливо, платные дороги и пробег внутри',
     notesMin: (m: number) => `Минимальный счёт $${m}, дальше шагами по 15 минут`,
-    notesLd: 'Фиксированно за работу, письменная смета за 24 часа',
+    ldRate: 'Индивидуальная смета',
+    notesLd: 'В любую точку Флориды, считаем под задачу — письменная смета за 24 часа. В другой штат не возим, подскажем перевозчика',
     hours: 'часа',
     totalsTitle: (c: string) => `Сколько на самом деле стоит переезд в ${c}, по размеру жилья`,
     totalsIntro: 'Арифметика везде одна: часы × ставка бригады плюс трак по той же ставке.',
@@ -92,12 +94,13 @@ const UI = {
     ctaEstimate: 'Отримати письмовий кошторис',
     ratesTitle: (c: string) => `Погодинні ставки — ${c}, 2026`,
     thBook: 'Що ви замовляєте', thRate: 'Ставка', thNotes: 'Примітки',
-    movers2: '2 вантажники', movers3: '3 вантажники', truck: 'Трак', minimum: 'Мінімум', longDistance: 'Далекий переїзд',
+    movers2: '2 вантажники', movers3: '3 вантажники', truck: 'Трак', minimum: 'Мінімум', longDistance: 'Далекий переїзд (по Флориді)',
     notes2: 'Студії та однокімнатні',
     notes3: 'Від двох спалень або вузьке ліфтове вікно',
     notesTruck: 'За день за ставкою бригади, окремим рядком. Пальне, платні дороги й пробіг усередині',
     notesMin: (m: number) => `Мінімальний рахунок $${m}, далі кроками по 15 хвилин`,
-    notesLd: 'Фіксовано за роботу, письмовий кошторис за 24 години',
+    ldRate: 'Індивідуальний кошторис',
+    notesLd: 'У будь-яку точку Флориди, рахуємо під задачу — письмовий кошторис за 24 години. В інший штат не возимо, підкажемо перевізника',
     hours: 'години',
     totalsTitle: (c: string) => `Скільки насправді коштує переїзд у ${c}, за розміром житла`,
     totalsIntro: 'Арифметика скрізь одна: години × ставка бригади плюс трак за тією ж ставкою.',
@@ -232,7 +235,7 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
                   </tr>
                   <tr>
                     <td className="px-5 py-4 text-charcoal font-semibold">{t.longDistance}</td>
-                    <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">from ${LD_MINIMUM.toLocaleString('en-US')}</td>
+                    <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">{t.ldRate}</td>
                     <td className="px-5 py-4 text-gray-500">{t.notesLd}</td>
                   </tr>
                 </tbody>
