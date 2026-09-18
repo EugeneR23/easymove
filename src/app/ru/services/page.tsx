@@ -57,7 +57,7 @@ const SERVICES = [
   {
     icon: Palette,
     title: 'Искусство и редкости',
-    desc: 'Кастомные ящики, климатический контроль, музейные стандарты. Картины, антиквариат, рояли, скульптуры.',
+    desc: 'Кастомные деревянные ящики, обрешётка, такелаж. Картины, антиквариат, рояли, скульптуры. Климат-контроль, если он нужен, организуем у профильного перевозчика.',
     price: 'от $800',
     href: '/services/specialty-items',
   },
@@ -89,11 +89,11 @@ export default function RuServicesPage() {
           <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Наши услуги</p>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
-              Полный спектр премиум-переездов
+              Что мы делаем — и чего не делаем
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              От переезда из студии в Майами до международного контейнера в Европу — одна команда,
-              один координатор, один стандарт качества.
+              От студии в Майами до дома в Орландо — одна команда, один координатор,
+              один стандарт качества. Через границу штата вещи не возим.
             </p>
           </div>
         </section>

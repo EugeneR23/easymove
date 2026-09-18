@@ -60,7 +60,7 @@ const WHAT_WE_PACK = [
   { label: 'Kitchen & Fragile Items', desc: 'Plates, glassware, cookware, and small appliances — wrapped individually, boxed to industry standard.' },
   { label: 'Bedrooms & Closets', desc: 'Clothing, linens, and personal items packed efficiently. Wardrobes hung directly into wardrobe boxes.' },
   { label: 'Living Room & Artwork', desc: 'Electronics, décor, books, and framed artwork. Mirror boxes and picture protection on request.' },
-  { label: 'Fine Art & Antiques', desc: 'Museum-grade wrapping for high-value and irreplaceable items. Custom crating available.' },
+  { label: 'Fine Art & Antiques', desc: 'Custom wooden crates, corner protection and double-boxing for high-value and irreplaceable items.' },
   { label: 'Office & Home Office', desc: 'Equipment, files, and electronics packed and labeled by room for easy unpacking.' },
   { label: 'Garage & Storage Areas', desc: 'Tools, sports equipment, and bulk items efficiently sorted and boxed.' },
 ];

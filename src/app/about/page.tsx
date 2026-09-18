@@ -137,7 +137,7 @@ export default function AboutPage() {
               <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
                 <Image
                   src="/images/about.png"
-                  alt="Easy Move Florida premium moving crew, South Florida"
+                  alt="Easy Move Florida moving crew loading a truck in South Florida"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center sm:object-top"

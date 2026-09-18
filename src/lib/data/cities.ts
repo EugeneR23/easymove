@@ -22,7 +22,7 @@ export const CITIES: CityData[] = [
     name: 'Miami',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Miami's White-Glove Moving Company",
+    heroHeadline: "Miami Movers Who Know the Building First",
     heroSub: 'Brickell · Coral Gables · Miami Beach · Coconut Grove',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Movers, FL | Easy Move Florida',
@@ -170,14 +170,14 @@ export const CITIES: CityData[] = [
     name: 'Boca Raton',
     state: 'FL',
     county: 'Palm Beach',
-    heroHeadline: 'Boca Raton\'s Luxury Moving Specialists',
+    heroHeadline: 'Boca Raton Movers for Condos, Gated Communities and Houses',
     heroSub: 'East Boca · Mizner Park · Boca West · Delray Beach',
     heroImage: '/images/Real/Boca-Raton.jpg',
     metaTitle: 'Boca Raton Movers, FL | Easy Move Florida',
     metaDescription:
       'Boca Raton movers — Boca West, Mizner Park, Delray Beach estate and gated community specialists. Fully insured, COI in 24h. Call 786-305-1844.',
     intro:
-      "Boca Raton's gated communities, estate homes, and luxury condos demand a level of care that most moving companies simply cannot provide. Easy Move Florida specializes in high-value residential moves throughout Palm Beach County — with crews trained in fine art handling, furniture protection, and the discretion that Boca Raton clients expect.",
+      "Boca Raton runs on gated communities, estate homes and condo associations, and each one has a gate procedure, a COI requirement and often a window when a truck is allowed in. We collect those from the association or management office when you book, rather than arriving and negotiating at the gate. Crates and padding for art and mirrors, floor protection from the entry to the room, and a photo inventory before anything moves.",
     neighborhoods: [
       'East Boca Raton', 'Mizner Park', 'Royal Palm Yacht & Country Club', 'Boca West',
       'Broken Sound', 'Delray Beach', 'Boynton Beach', 'Lake Worth',
@@ -190,7 +190,7 @@ export const CITIES: CityData[] = [
         body: "The typical Boca move happens inside a gated community — Boca West, Broken Sound, Royal Palm, Woodfield, St. Andrews. These communities require advance vehicle registration, crew ID lists, and approved move windows, and each sets its own rules — we confirm the exact requirements with your HOA or management before move day, so the gate clears your crew instead of stalling it.",
       },
       {
-        title: 'Estate & Luxury Home Moves',
+        title: 'Large Homes and Gated Communities',
         body: "Boca Raton's estates often contain fine art, antiques, custom furniture, and high-value collections. Every item is inventoried, wrapped to our standard, and handled by experienced movers — not day laborers. Larger estates get a video or in-person walkthrough first, so the written estimate reflects the real scope, including garage, patio, and storage rooms.",
       },
       {
@@ -238,7 +238,7 @@ export const CITIES: CityData[] = [
     name: 'Aventura',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Aventura's Premium Moving Company",
+    heroHeadline: "Aventura Movers for Towers, Condos and Houses",
     heroSub: 'Williams Island · Porto Vita · Turnberry · Hidden Bay',
     heroImage: '/images/Real/4.png',
     metaTitle: 'Aventura Movers — High-Rise & Condo | Easy Move Florida',
@@ -395,8 +395,8 @@ export const CITIES: CityData[] = [
         body: 'Sunny Isles has the largest concentration of Russian-speaking residents in South Florida. Our coordinator and crew speak Russian — мы спокойно работаем с русскоязычными клиентами и зданиями где удобнее общаться по-русски.',
       },
       {
-        title: 'White-Glove Standard',
-        body: "Sunny Isles residents expect — and pay for — white-glove service. Floor protection in every common area, padded blankets on every piece, photo inventory before transport, full insurance documentation. That's our default, not an upgrade.",
+        title: 'What Is Standard, Not an Upgrade',
+        body: "Floor protection in every common area, padded blankets on every piece, photo inventory before transport, full insurance documentation. That is how we work on every job in Sunny Isles, not a tier you pay up into.",
       },
           {
         title: 'Winston Towers & the Older Collins Ave Buildings',
@@ -434,7 +434,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you move oversized items like artwork or sculpture?',
-        a: 'Yes. Fine art, sculpture, large mirrors, and oversized installations are handled as a dedicated service — custom crating, climate-controlled transport when needed, and specialized rigging for items that require it.',
+        a: 'Yes. Fine art, sculpture, large mirrors, and oversized installations are handled as a dedicated service — custom crating, specialized rigging, and climate-controlled transport arranged with a specialist carrier when a piece needs it for items that require it.',
       },
       {
         q: 'Do you serve Bal Harbour and Surfside?',
@@ -709,7 +709,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle snowbird seasonal moves?',
-        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We also offer climate-controlled storage for off-season items and partial-pack service for clients who keep some belongings in their northern home.',
+        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We can also book climate-controlled storage for off-season items with a third-party facility and partial-pack service for clients who keep some belongings in their northern home.',
       },
       {
         q: 'Вы работаете на русском?',
@@ -750,7 +750,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Beach Movers | Easy Move Florida',
     metaDescription: 'Movers in Miami Beach from $129/hour for 2 movers. Free COI, no weekend or fuel surcharge, no deposit. Call or WhatsApp 786-305-1844 for a same-day quote.',
-    intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have Art Deco walk-ups on Jefferson, Meridian and Euclid with no elevator at all, a narrow stair and a street where a 26-foot truck cannot legally sit without a permit from the City of Miami Beach. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers and a truck are $129 per hour each, with a three-hour minimum, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
+    intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have Art Deco walk-ups on Jefferson, Meridian and Euclid with no elevator at all, a narrow stair and a street where a 26-foot truck cannot legally sit without a permit from the City of Miami Beach. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers and a truck are $129 per hour for the crew, with a three-hour minimum, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
     neighborhoods: ['South Beach', 'Mid-Beach', 'North Beach', 'South of Fifth', 'Sunset Harbour', 'Flamingo Park', 'West Avenue', 'Belle Isle', 'Venetian Islands', 'La Gorce', 'Normandy Isle', 'Collins Park'],
     localFacts: [
       {
@@ -815,7 +815,7 @@ export const CITIES: CityData[] = [
     name: 'Bal Harbour',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: 'Bal Harbour Luxury Condo Movers',
+    heroHeadline: 'Bal Harbour Condo and Tower Movers',
     heroSub: 'Bal Harbour · Surfside · Bay Harbor Islands · Harbour Way · Kane Concourse',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Bal Harbour Movers | Easy Move Florida',
@@ -845,7 +845,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'A transparent invoice, no surcharges',
-        body: 'Three movers with a truck are $179 per hour each, four movers $219, with a three-hour minimum and 15-minute billing after that. The truck appears as its own line at the same daily figure as the crew rate. Nothing is added for weekends, high season, fuel, elevators or long carries from a service entrance to a unit at the far end of a corridor. No deposit is taken, and cancelling more than 48 hours out costs nothing.',
+        body: 'Three movers with a truck are $179 per hour for the crew, four movers $219, with a three-hour minimum and 15-minute billing after that. The truck appears as its own line at the same daily figure as the crew rate. Nothing is added for weekends, high season, fuel, elevators or long carries from a service entrance to a unit at the far end of a corridor. No deposit is taken, and cancelling more than 48 hours out costs nothing.',
       },
     ],
     faqs: [
@@ -858,8 +858,8 @@ export const CITIES: CityData[] = [
         a: 'As a rule: an approved moving vendor registered with management, a certificate of insurance naming the association as additional insured, a reserved freight elevator slot and a move confirmed for a permitted day and time. Some associations also hold a refundable damage deposit. We contact your management office once you book, get the exact list in writing and complete it. What we never do is claim to know a specific building rules before we have confirmed them.',
       },
       {
-        q: 'How do your crews behave in a luxury building?',
-        a: 'Uniformed, quiet, floor runners down before the first box, elevator pads confirmed with the front desk, and all packing waste removed rather than left in a service corridor. We use the service entrance and loading area management designates, not the residential lobby. Buildings at this level tend to remember which movers respect that, and it is the reason we get invited back into the same towers.',
+        q: 'How do your crews behave in a building with a concierge and a service entrance?',
+        a: 'Uniformed, quiet, floor runners down before the first box, elevator pads confirmed with the front desk, and all packing waste removed rather than left in a service corridor. We use the service entrance and loading area management designates, not the residential lobby.',
       },
       {
         q: 'What will a two-bedroom in Surfside cost?',
@@ -890,7 +890,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'North Miami Beach Movers | Easy Move Florida',
     metaDescription: 'North Miami Beach movers from $129/hour for two movers and a truck. Free COI, no deposit, no hidden fees. Call or text 786-305-1844 for a written estimate.',
-    intro: "North Miami Beach has more housing stock built before 1975 than almost anywhere else in the county, and that shapes every move here. Eastern Shores is canal-front single-family homes on cul-de-sacs, where the question is whether a truck can turn around at the end of your street. West of Biscayne you have Highland Village and Sunkist Grove, older single-story houses with carports and mature trees over the driveway. In between sit the mid-century condo buildings along 163rd Street and Biscayne Boulevard - solid buildings with small elevators, tight lobbies and associations that still want paperwork on file before you move a stick of furniture. We look at yours before quoting. Two movers and a truck start at $129 per hour each with a three-hour minimum, no deposit, and nothing added for weekends. The crew works in English and Russian. Call Evgenii Romanov on 786-305-1844.",
+    intro: "North Miami Beach has more housing stock built before 1975 than almost anywhere else in the county, and that shapes every move here. Eastern Shores is canal-front single-family homes on cul-de-sacs, where the question is whether a truck can turn around at the end of your street. West of Biscayne you have Highland Village and Sunkist Grove, older single-story houses with carports and mature trees over the driveway. In between sit the mid-century condo buildings along 163rd Street and Biscayne Boulevard - solid buildings with small elevators, tight lobbies and associations that still want paperwork on file before you move a stick of furniture. We look at yours before quoting. Two movers and a truck start at $129 per hour for the crew with a three-hour minimum, no deposit, and nothing added for weekends. The crew works in English and Russian. Call Evgenii Romanov on 786-305-1844.",
     neighborhoods: ['Eastern Shores', 'Highland Village', 'Sunkist Grove', 'Fulford-by-the-Sea', 'Uleta', 'Skylake', 'Greynolds Park area', 'Oak Grove', 'Biscayne Boulevard corridor', 'NE 163rd Street corridor', 'Maule Lake', 'Sans Souci Estates'],
     localFacts: [
       {
@@ -911,7 +911,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'What the hours actually cost',
-        body: 'Two movers and a truck are $129 per hour each; three movers $179; four movers $219. Three-hour minimum, then 15-minute increments. The smallest invoice possible is $516 with a two-man crew. A typical NMB one-bedroom finishes between $516 and $774, a two-bedroom between $645 and $1,253, a three-bedroom house between $1,253 and $1,611. Nothing extra for stairs, heavy items, weekends or fuel, and no deposit to book the date.',
+        body: 'Two movers and a truck are $129 per hour for the crew; three movers $179; four movers $219. Three-hour minimum, then 15-minute increments. The smallest invoice possible is $516 with a two-man crew. A typical NMB one-bedroom finishes between $516 and $774, a two-bedroom between $645 and $1,253, a three-bedroom house between $1,253 and $1,611. Nothing extra for stairs, heavy items, weekends or fuel, and no deposit to book the date.',
       },
       {
         title: 'Traffic on 163rd Street and Biscayne',

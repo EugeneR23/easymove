@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: 'https://www.easy-move-florida.com/images/Real/Boca-Raton.jpg',
         width: 1200,
         height: 630,
-        alt: 'Easy Move Florida — Luxury Movers in Boca Raton, FL',
+        alt: 'Easy Move Florida — movers in Boca Raton, FL',
       },
     ],
   },

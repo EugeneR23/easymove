@@ -30,6 +30,12 @@ const ALLOW = [
   // to paste. Naming the mistake is the point of the warning.
   'Не добавлять «International moving» — такой услуги нет.',
   'Не «EasyMove Elite», не «Easy Move FL»',
+  // credentials.ts documents the live profile figures it is the source of, and
+  // records the Google-verification sentence that was removed for being untrue.
+  // Naming the wrong value is the point of the note, same as the entries above.
+  '4.7 across 33 reviews (91% five-star, one 1-star)',
+  'The site used to say "Both platforms verify the customer hired us before they',
+  'hand-typed "5.0/32" copies went stale the day a one-star review landed',
 ];
 
 const RULES = [
@@ -55,6 +61,20 @@ const RULES = [
   // asks the customer what they own; "We've handled Steelcase" asserts a history.
   { id: 'brand-name-drops', why: 'Asserts having handled a named make. Use the category, not the brand.',
     re: /(?:moved|handled|relocated|familiar)[^.]{0,90}(?:Steinway|Bösendorfer|Herman Miller|Steelcase|Knoll|Teknion)/gi },
+  // Added 2026-09-18. Each was run against the tree that shipped the defect first:
+  // `git stash && npm run test:claims` must name the exact file:line it fixed.
+  { id: 'rate-per-mover', why: 'Turns a crew rate into a per-mover rate: "$129 per hour each" reads as $258/hr. The rate covers the crew and its truck.',
+    re: /(?:per hour|an hour|\/hour|\/hr|\u0432 \u0447\u0430\u0441|\u0437\u0430 \u0447\u0430\u0441|\/\u0433\u043e\u0434|\u0437\u0430 \u0433\u043e\u0434\u0438\u043d\u0443)[\s,;]*(?:each|per mover|per person|apiece|\u043a\u0430\u0436\u0434\u044b\u0439|\u0441 \u043a\u0430\u0436\u0434\u043e\u0433\u043e|\u0437\u0430 \u043a\u0430\u0436\u0434\u043e\u0433\u043e|\u043a\u043e\u0436\u0435\u043d)\b/gi },
+
+  { id: 'weekend-surcharge', why: 'There is no weekend or seasonal surcharge (owner confirmed 2026-09-18). A percentage beside a weekend word is the old, wrong answer.',
+    re: /(?:\u043d\u0430\u0434\u0431\u0430\u0432\u043a\w*|\u0434\u043e\u043f\u043b\u0430\u0442\w*|\u043d\u0430\u0446\u0435\u043d\u043a\w*)[^.\n]{0,40}\d{1,2}\s?%|\d{1,2}\s?%[^.\n]{0,25}(?:\u043a \u043f\u043e\u0447\u0430\u0441\u043e\u0432\u043e\u0439|\u043a \u0441\u0442\u0430\u0432\u043a\u0435)|(?:our|we charge|we add)[^.\n]{0,30}(?:weekend|seasonal)[^.\n]{0,25}\d{1,2}\s?%/gi },
+
+  { id: 'hardcoded-rating', why: 'Ratings and review counts come from src/lib/data/credentials.ts. A hand-typed copy goes stale the day a review lands, and one already had.',
+    re: /\b[0-5][.,]\d\s*(?:\u2605|\/\s?5\b|on (?:Google|Thumbtack))|(?:Google|Thumbtack)[^\n]{0,35}?(?<!at least )(?<!more than )(?<!fewer than )(?<!over )(?<!under )\b\d{1,4}\s+(?:verified\s+)?(?:reviews?|\u043e\u0442\u0437\u044b\u0432\w*|\u0432\u0456\u0434\u0433\u0443\u043a\w*)|(?<!at least )(?<!more than )(?<!over )\b\d{1,4}\s+(?:verified\s+)?(?:Google|Thumbtack)\s+(?:reviews?|\u043e\u0442\u0437\u044b\u0432\w*)/gi },
+
+  { id: 'climate-controlled-owned', why: 'Climate control is not ours (owner, 2026-09-18) - we book it with a third party. Write "we arrange/book", never "our" or "every facility we use".',
+    re: /(?:facilit\w+ we use|we own|our (?:own )?(?:facilit\w+|warehouse)|we (?:offer|provide|run|deliver to a))[^.\n]{0,50}climate|climate-controlled[^.\n]{0,25}(?:\(standard\)|: included)/gi },
+
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
 ];

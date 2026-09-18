@@ -350,18 +350,17 @@ export const BLOG_POSTS: BlogPost[] = [
     heroImage: '/images/Real/Miami.jpg',
     body: [
       { type: 'p', text: 'New York to Miami is one of the most common long-distance moves in the country. We do not run it ourselves — Easy Move Florida is a local mover, and interstate work requires federal operating authority we do not hold — but we meet these moves at the Miami end often enough to see the patterns: what costs more than people expect, what arrives broken, what to leave behind, and which Miami neighborhoods actually fit which kind of New York life.' },
-      { type: 'p', text: 'Here\'s the full guide based on what we\'ve learned doing the move.' },
+      { type: 'p', text: 'What follows is what to ask a carrier, what tends to go wrong, and what we can do at the Florida end.' },
 
       { type: 'h2', text: 'What it actually costs' },
-      { type: 'p', text: 'Long-distance moves are flat-rate (not hourly), based on distance, total volume, and access at both ends. Real ranges for NY → Miami in 2026:' },
+      { type: 'p', text: 'Interstate moves are flat-rate, not hourly. The figure turns on four things, and every carrier prices all four: highway distance, the total volume or weight of what ships, how hard the pickup and delivery addresses are to work (stairs, elevator booking, how far the truck parks from the door), and whether packing is included or you do it yourself.' },
+      { type: 'p', text: 'We do not publish a price range for this route, because we do not quote it. We hold no interstate authority, and a number we cannot stand behind is worse than no number. Get two or three written estimates from FMCSA-licensed carriers and compare them on those four variables. What we can tell you is how to read what comes back.' },
       { type: 'ul', items: [
-        'Studio: $2,800-$3,800',
-        '1-bedroom: $3,600-$4,800',
-        '2-bedroom: $4,800-$6,500',
-        '3-bedroom: $6,500-$9,500',
-        '4+ bedroom or furnished house: $9,500-$18,000+',
+        'Ask whether the estimate is binding, non-binding, or binding-not-to-exceed — the wording matters more than the figure.',
+        'Check the volume or weight on the estimate against what you actually own. A low number here is where a low quote hides.',
+        'Confirm packing is priced in or priced out, explicitly. It is the single largest swing.',
+        'Ask what happens if access at either end differs from what was described, and get that answer in writing too.',
       ]},
-      { type: 'p', text: 'These assume professional packing not included. Add 25-40% for full-service packing. Specialty items (grand piano, large art, oversized antiques) add $500-$3,000+ depending on volume.' },
       { type: 'callout', title: 'Watch for lowballs', text: 'Some national van lines quote $1,500 for a NY → Miami 1-bedroom. They\'re betting on the deposit. On move day, the bill becomes $4,800. Get any low quote in writing with binding language — and verify the company is FMCSA-licensed before booking.' },
 
       { type: 'h2', text: 'How long it takes' },
@@ -418,7 +417,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Common pattern: NY apartment lease ends Aug 31, Miami closing scheduled for Sept 15. Two-week gap. Options:' },
       { type: 'ol', items: [
         'Storage in transit — your goods stay on the truck or in a Miami warehouse for the gap. Adds $500-$1,500 depending on length.',
-        'Storage at destination — we deliver to a climate-controlled Miami facility, then redeliver after your closing. Adds $300-$800.',
+        'Storage at destination — we deliver into a Miami storage facility we book for you, then redeliver after your closing. The facility sets its own rate; ask for climate-controlled space if anything is wood or art.',
         'Stay with friends or short-term rental in Miami while waiting — arrange 1-month lease overlap if possible.',
       ]},
 
@@ -1093,7 +1092,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'Если у вас есть продукты длительного хранения в шкафах — проверить на предмет вредителей (особенно во Флориде)',
         'Заранее заказать groceries delivery (Instacart, Amazon Fresh) на день приезда',
       ]},
-      { type: 'p', text: 'Если вы привозите ключевую мебель из основного дома (картины, любимые кресла, какие-то личные вещи) — это типичный snowbird-сценарий, и мы его делаем регулярно: small load из NYC или Boston на 2-3 тысячи фунтов, доставка через 5-10 дней, координируем с consolidated truck чтобы цена была разумной ($1,500-$2,800 за такой объём из северо-востока).' },
+      { type: 'p', text: 'Если вы привозите ключевую мебель из основного дома — картины, любимые кресла, личные вещи — само плечо из NYC или Boston везёт межштатный перевозчик: на это нужно федеральное разрешение, которого у нас нет, и такие рейсы мы не берём и не оцениваем. Наша часть — флоридская: встретить доставку, согласовать со зданием COI и окно грузового лифта, занести и расставить.' },
 
       { type: 'h2', text: 'Storage между сезонами: часто выгоднее, чем возить вещи' },
       { type: 'p', text: 'Один из самых распространённых вопросов: возить ли определённые вещи туда-сюда каждый сезон, или хранить здесь?' },

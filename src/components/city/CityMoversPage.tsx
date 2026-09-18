@@ -22,8 +22,8 @@ const SERVICES = {
     { href: '/services/residential-moving',  label: 'High-Rise & Residential', desc: 'Condos, apartments, and homes of every size.' },
     { href: '/quote', label: 'Single-Item & Furniture Delivery', desc: 'Pickup, wrap and placement by the same insured crews.' },
     { href: '/services/office-commercial',   label: 'Office & Commercial',     desc: 'Minimal downtime, maximum precision.' },
-    { href: '/services/specialty-items',     label: 'Fine Art & Specialty',    desc: 'Museum-grade handling for high-value items.' },
-    { href: '/services/storage-solutions',   label: 'Premium Storage',         desc: 'Short-term and monthly storage options.' },
+    { href: '/services/specialty-items',     label: 'Fine Art & Specialty',    desc: 'Custom crating, padding and rigging for high-value items.' },
+    { href: '/services/storage-solutions',   label: 'Storage',                 desc: 'Short-term and monthly storage, booked for you.' },
     { href: '/packing-services',             label: 'Packing & Unpacking',    desc: 'Full or partial packing, materials supplied.' },
   ],
   ru: [

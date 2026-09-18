@@ -54,7 +54,7 @@ const SERVICES = [
     name: 'High-Rise & Condo Moving',
     sub: 'Brickell · Aventura · Sunny Isles · Boca',
     description:
-      "South Florida's luxury towers require more than a regular crew. We manage elevator reservations, COI submissions, loading dock coordination, and building compliance — so you don't have to.",
+      "South Florida towers will not let a crew past the lobby without paperwork. We handle the elevator reservation, the COI to the association, the loading dock window and the building's own compliance forms, so the move-in is approved before your date rather than argued on the morning of it.",
     highlights: ['COI issued within 24 hours', 'Elevator & dock coordination', 'Building-approved materials', 'Floor & wall protection', 'High-rise moves across Sunny Isles, Aventura, Miami Beach and Hollywood towers'],
     image: '/images/Real/9.jpg',
     href: '/quote?type=local',
@@ -87,8 +87,8 @@ const SERVICES = [
     name: 'Fine Art & Specialty Items',
     sub: 'Pianos · Art Collections · Wine Cellars',
     description:
-      'Grand pianos, original art, wine cellars, and oversized safes require a different level of care. Custom crating, climate-controlled transport, and white-glove placement at destination.',
-    highlights: ['Custom wooden crating', 'Climate-controlled options', 'White-glove installation', 'Coordinated with building', 'Quoted individually'],
+      'Grand pianos, original art, wine cellars and oversized safes need a different plan than a sofa. We build custom wooden crates, pad and rig the piece, and place it where you want it at the other end. Climate-controlled transport, when something needs it, we arrange with a specialist carrier.',
+    highlights: ['Custom wooden crating', 'Padding and rigging', 'Placed where you want it', 'Coordinated with building', 'Quoted individually'],
     image: '/images/Real/10.png',
     href: '/quote?type=specialty',
     cta: 'Request a Specialty Quote',

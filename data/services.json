@@ -7,8 +7,8 @@
     "category": "residential",
     "name": "Residential & High-Rise Moving",
     "sortOrder": 1,
-    "tagline": "Careful, well-organized moving for South Florida's luxury condos, high-rises, and single-family estates.",
-    "description": "South Florida's premier residential buildings have strict requirements — elevator reservations, loading dock windows, COIs, and floor protection mandates. Our crews are trained for exactly this environment. We handle building compliance paperwork, protect every surface from lobby to unit, and deliver with the precision that Brickell, Aventura, and Sunny Isles properties demand. Whether you're moving from a waterfront penthouse or a Coral Gables estate, the standard never changes.",
+    "tagline": "Careful, well-organized moving for South Florida condos, high-rises, apartments and houses.",
+    "description": "South Florida buildings have rules before they have hallways: a reserved elevator, a loading-dock window, a certificate of insurance naming the association, floor protection in the lobby. We collect those requirements from your building's management office when you book, so the paperwork is on file before the truck arrives instead of being discovered on move day. Surfaces get padded from the lobby to the unit, and the owner is reachable by phone the whole way through.",
     "features": [
       {
         "icon": "Building2",
@@ -132,8 +132,8 @@
     "category": "specialty",
     "name": "Fine Art & Specialty Items",
     "sortOrder": 5,
-    "tagline": "Custom crating, climate-aware transport, and careful placement for irreplaceable pieces.",
-    "description": "South Florida's art collectors, estate owners, and luxury residents trust us with pieces that have no replacement value. Grand pianos, museum-quality paintings, antique furniture, wine collections, and curated sculptures require specialist handling that goes beyond standard moving. We use custom crating built to piece dimensions, climate-aware loading and transport, and slow, deliberate placement at the destination. Every specialty move includes full documentation and photographic inventory.",
+    "tagline": "Custom crating, careful rigging, and deliberate placement for irreplaceable pieces.",
+    "description": "Grand pianos, original art, antique furniture, wine collections and sculpture need a different plan than a sofa does. We build wooden crates to the dimensions of the piece, pad and rig it for the route out of the building, and place it slowly at the other end. Every specialty move is photographed and inventoried before it moves. Where a piece needs climate-controlled transport, we arrange that with a specialist carrier rather than improvising it ourselves.",
     "features": [
       {
         "icon": "Palette",
@@ -145,7 +145,7 @@
       },
       {
         "icon": "Thermometer",
-        "label": "Climate-controlled transport"
+        "label": "Climate-controlled transport arranged when needed"
       },
       {
         "icon": "Camera",
@@ -174,12 +174,12 @@
     "category": "storage",
     "name": "Storage Coordination",
     "sortOrder": 6,
-    "tagline": "Moving and storage in South Florida — we handle pickup, secure climate-controlled storage in Miami-Dade, and redelivery when you're ready.",
-    "description": "Between a closing and your new home, during a renovation, or when your destination isn't ready yet, we coordinate short- and long-term storage at trusted, climate-controlled facilities across Miami-Dade and Broward County. We pick up from your current address, deliver to the facility, and handle redelivery on your schedule — so you're not juggling a separate storage relationship. Month-to-month terms, no pressure. Facilities are secured, monitored, and selected based on what you're storing and how long you need it. We stay involved from pickup through final placement.",
+    "tagline": "Moving and storage in South Florida — we handle pickup, book the storage space, and redeliver when you're ready.",
+    "description": "Between a closing and your new home, during a renovation, or when your destination isn't ready yet, we book short- and long-term storage with third-party facilities across Miami-Dade and Broward. We pick up from your current address, deliver to the facility and handle redelivery on your schedule, so you are not managing a separate storage relationship. We name the facility before anything moves and tell you what it does and does not control — ask for climate-controlled space specifically if you are storing wood, art or anything upholstered. Month-to-month terms, no pressure.",
     "features": [
       {
         "icon": "Archive",
-        "label": "Climate-controlled storage facilities"
+        "label": "Climate-controlled space available at most facilities"
       },
       {
         "icon": "Truck",

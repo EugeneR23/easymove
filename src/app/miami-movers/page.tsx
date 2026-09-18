@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: 'https://www.easy-move-florida.com/images/Real/Miami.jpg',
         width: 1200,
         height: 630,
-        alt: 'Easy Move Florida — Premium Movers in Miami, FL',
+        alt: 'Easy Move Florida — movers in Miami, FL',
       },
     ],
   },
