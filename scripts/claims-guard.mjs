@@ -39,6 +39,11 @@ const ALLOW = [
   // pricing.ts documents the interstate model it replaced. Naming the constant is
   // how the next reader learns why routeMode() exists and must not be bypassed.
   'set of state centroids, a haversine linehaul model and `LD_MINIMUM = 1500`',
+  // policies.ts quotes the two sentences from /terms that it replaced. Naming
+  // them is how the next reader learns the module is not decoration.
+  'while the rest of the site said payment is collected on site about',
+  'and "Cancellation fees may apply"',
+  '* to — contradicted every one of them. It said "Payment is due upon completion of',
 ];
 
 const RULES = [
@@ -80,6 +85,12 @@ const RULES = [
 
   { id: 'interstate-pricing', why: 'The interstate quote engine was deleted 2026-09-18 - it priced a service the company refuses. Do not reintroduce a US-wide table, a linehaul model or a long-distance floor.',
     re: /LD_MINIMUM|estimateLongDistance|STATE_CENTROIDS|LD_CITY_COORDS|LD_RATE_PER_MILE|'AL',\s*'AK',\s*'AZ'/g },
+
+  { id: 'contradicts-payment-policy', why: 'Payment is collected on site 45-60 min BEFORE the crew finishes, never "upon completion" and never in advance. Import POLICY_COPY from src/lib/data/policies.ts.',
+    re: /payment is due (?:upon|on) completion|(?<!nothing is )(?<!no deposit is )due up front|payable in advance|\u043e\u043f\u043b\u0430\u0442\u0430 \u043f\u043e \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u0438/gi },
+
+  { id: 'contradicts-cancellation-policy', why: 'Free cancellation more than 48h out, and no fee inside it. Import POLICY_COPY from src/lib/data/policies.ts.',
+    re: /cancellation fees? (?:may|will|can) apply|cancellation (?:fee|charge) of|\u0448\u0442\u0440\u0430\u0444 \u0437\u0430 \u043e\u0442\u043c\u0435\u043d\u0443 \u0441\u043e\u0441\u0442\u0430\u0432/gi },
 
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
