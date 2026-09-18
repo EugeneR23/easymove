@@ -101,3 +101,10 @@ Use these instead of doing full-page analysis inline:
 - Don't use AI stock photos in trust-critical sections
 - Don't change section order without explicit user approval
 - Don't reduce text sizes on mobile to "fit" more content
+
+## Memory scope
+
+This repository's mem0 scope is **`proj-easymove`**. At the start of a task read it
+together with the shared personal scopes listed there; write project facts to `proj-easymove`
+only, never into another repository's scope. The protocol — and why `agent_id`
+must never be passed — is in `~/.claude/CLAUDE.md`.
