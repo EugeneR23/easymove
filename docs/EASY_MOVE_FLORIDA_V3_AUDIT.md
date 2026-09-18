@@ -98,7 +98,7 @@ Williams Island как мест, где мы регулярно работаем
 футере уже есть.
 
 Что теперь держит результат — три гарда на `prebuild`:
-`scripts/claims-guard.mjs` (24 правила), `scripts/pricing.test.ts`,
+`scripts/claims-guard.mjs` (22 правила, 11 из них добавлены 18.09), `scripts/pricing.test.ts`,
 `scripts/links.test.ts`. Каждое новое правило сначала запускалось на коде,
 который его нарушал, и называло конкретные строки.
 

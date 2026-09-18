@@ -65,7 +65,7 @@ a value is null the site simply does not make that claim, and no placeholder ren
 
 `npm run build` runs three gates first (`prebuild`):
 
-- **`scripts/claims-guard.mjs`** — 24 regex rules over `src/`, `data/` and the two
+- **`scripts/claims-guard.mjs`** — 22 regex rules (11 of them added 2026-09-18) over `src/`, `data/` and the two
   submission packages. Every rule was run against the code that violated it before
   being committed; a rule that has never failed is decoration. The `ALLOW` list holds
   exact sentences that are deliberately true, each with a reason.
