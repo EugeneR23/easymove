@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
-import { calculatePricing, estimateLocalDistance, estimateLongDistance, MOVE_TYPES } from '@/lib/pricing';
+import { calculatePricing, estimateLocalDistance, routeMode, MOVE_TYPES } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
@@ -58,14 +58,16 @@ export async function POST(req: NextRequest) {
     // Distance source depends on move type: the South-Florida city table is ONLY
     // valid for local/office moves — long-distance must use the US-wide estimator.
     const moveType = parseMoveType(body.moveType);
+    const fromState = (body.fromState as string) ?? '';
+    const toState   = (body.toState   as string) ?? '';
+    // Resolved here, on the server, before anything is priced. The quote form
+    // only offers Florida and "Outside Florida", but a form is a suggestion:
+    // this endpoint is public, and until 2026-09-18 a hand-rolled POST naming
+    // Seattle came back with a firm dollar figure for a job we do not take.
+    const mode = routeMode(fromState, toState, moveType);
     const isLongMove = moveType === 'long-distance';
-    const estimatedDistance = isLongMove
-      ? estimateLongDistance(
-          (body.fromCity  as string) ?? '',
-          (body.fromState as string) ?? '',
-          (body.toCity    as string) ?? '',
-          (body.toState   as string) ?? '',
-        )
+    const estimatedDistance = mode !== 'priced'
+      ? 0
       : body.fromCity && body.toCity
         ? estimateLocalDistance(body.fromCity as string, body.toCity as string)
         // No cities on a local move: there is no route to measure. This used to
@@ -79,6 +81,8 @@ export async function POST(req: NextRequest) {
       estimatedDistance,
       fromCity:          (body.fromCity as string) ?? '',
       toCity:            (body.toCity   as string) ?? '',
+      fromState,
+      toState,
       inventory:         body.inventory         as QuoteInventory,
       addons:            body.addons            as QuoteAddons,
     });
@@ -156,7 +160,16 @@ export async function POST(req: NextRequest) {
     const row = (label: string, value: string | number | boolean) =>
       `<tr><td style="padding:6px 12px 6px 0;color:#666;white-space:nowrap;vertical-align:top"><b>${label}</b></td><td style="padding:6px 0;color:#111">${value}</td></tr>`;
 
-    const subject = `🔥 New Quote — ${name} · ${quote.fromCity || '?'} → ${quote.toCity || '?'} · $${quote.pricing.total}`;
+    // A quote we cannot price must never reach the coordinator looking like one
+    // we can. The banner leads the subject line so it survives a phone preview.
+    const modeBanner =
+      mode === 'referral' ? '⚠ OUT-OF-STATE — REFER, DO NOT QUOTE'
+      : mode === 'custom' ? '📋 FLORIDA LONG-DISTANCE — custom quote, no automatic price'
+      : null;
+    const priceTag = mode === 'priced' ? `$${quote.pricing.total}` : 'not priced';
+    const subject = modeBanner
+      ? `${modeBanner} — ${name} · ${quote.fromCity || '?'} → ${quote.toCity || '?'}`
+      : `🔥 New Quote — ${name} · ${quote.fromCity || '?'} → ${quote.toCity || '?'} · ${priceTag}`;
 
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:600px">
@@ -215,7 +228,7 @@ export async function POST(req: NextRequest) {
 
           <hr style="border:none;border-top:1px solid #eee;margin:16px 0">
 
-          <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">💰 Estimated Price</p>
+          <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">${mode === 'priced' ? '💰 Estimated Price' : '📋 Job details — price to be written by hand'}</p>
           <table style="border-collapse:collapse;font-size:14px;width:100%">
             ${row('Labor', `$${quote.pricing.laborRate}`)}
             ${quote.pricing.truckFee > 0 ? row(quote.pricing.isLongDistance ? 'Linehaul (truck · fuel · driver)' : 'Truck fee', `$${quote.pricing.truckFee}`) : ''}
@@ -225,7 +238,9 @@ export async function POST(req: NextRequest) {
             ${quote.pricing.addonsFee > 0 ? row('Add-ons fee', `$${quote.pricing.addonsFee}`) : ''}
             ${quote.pricing.discount > 0 ? row('Discount', `-$${quote.pricing.discount}`) : ''}
             ${row('Est. hours', `${quote.pricing.estimatedHours} hrs`)}
-            ${row('TOTAL', `<span style="font-size:20px;font-weight:bold;color:#d4a017">$${quote.pricing.total}</span>`)}
+            ${mode === 'priced'
+              ? row('TOTAL', `<span style="font-size:20px;font-weight:bold;color:#d4a017">$${quote.pricing.total}</span>`)
+              : row('TOTAL', `<span style="font-size:15px;font-weight:bold;color:#c0392b">${modeBanner}</span>`)}
           </table>
 
           <div style="background:#f5f5f5;border-left:4px solid #d4a017;padding:14px 16px;margin-top:20px">
@@ -238,7 +253,7 @@ export async function POST(req: NextRequest) {
 
     // Build Telegram detail lines — only include fields the client actually filled in
     const tgLines: string[] = [
-      `🔥 <b>NEW QUOTE</b>`,
+      modeBanner ? `<b>${modeBanner}</b>` : `🔥 <b>NEW QUOTE</b>`,
       `👤 <b>${tgEscape(name)}</b>`,
       `📞 <b>${tgEscape(quote.phone) || '—'}</b>`,
       `📧 ${tgEscape(quote.email) || '—'}`,
@@ -303,7 +318,7 @@ export async function POST(req: NextRequest) {
         'Floors / Stairs': floorsStairs,
         'Add-ons':         addonsList.join(', '),
         'Notes':           (body.notes as string) || '',
-        'Estimated Price': quote.pricing.total,
+        'Estimated Price': mode === 'priced' ? quote.pricing.total : undefined,
         ...(quote.preferredDate ? { 'Job Date': quote.preferredDate } : {}),
         'Completed':       false,
         'Deposit Paid':    false,

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE } from '@/lib/pricing';
 import { hoursSentence } from '@/lib/data/hours';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 
 const TIERS = [
   {

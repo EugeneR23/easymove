@@ -37,6 +37,8 @@ export interface QuoteAddons {
   climateControlled: boolean;
 }
 
+export type QuoteMode = 'priced' | 'custom' | 'referral';
+
 export interface QuotePricing {
   laborRate: number;       // hourly rate × hours
   truckFee: number;        // truck per day (local) / linehaul (long distance)
@@ -58,6 +60,13 @@ export interface QuotePricing {
   estimatedHours: number;
   crewSize: CrewSize;
   isLongDistance: boolean;
+  /**
+   * Whether this quote carries a price at all. 'priced' is local hourly work;
+   * 'custom' is long-distance inside Florida, which a coordinator writes by hand;
+   * 'referral' crosses a state line and is refused. For the latter two `total` is
+   * 0 and means "not quoted", never "free" - render the mode, not the number.
+   */
+  quoteMode: QuoteMode;
 }
 
 export interface Quote {

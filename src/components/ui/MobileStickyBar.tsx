@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Phone, MessageCircle, Calculator } from 'lucide-react';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 
 interface Props {
   /** Pass true on the /quote page to replace the calculator button with a call-only bar */

@@ -6,7 +6,8 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Star, ExternalLink, MessageSquare, Award } from 'lucide-react';
-import { THUMBTACK, GOOGLE_BUSINESS } from '@/lib/data/credentials';
+import { THUMBTACK, GOOGLE_BUSINESS, REVIEW_TOTALS, REVIEW_SOURCING_NOTE } from '@/lib/data/credentials';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -23,10 +24,7 @@ export const metadata: Metadata = {
   title: { absolute: `Client Reviews — ${THUMBTACK.rating} on Thumbtack, ${GOOGLE_BUSINESS.rating} on Google | Easy Move Florida` },
   description:
     `Easy Move Florida holds a ${THUMBTACK.rating} rating across ${THUMBTACK.reviewCount} verified Thumbtack reviews and ${GOOGLE_BUSINESS.rating} on Google. See the full review history and how we ask for feedback after every South Florida move.`,
-  alternates: {
-    canonical: `${siteUrl}/reviews`,
-    languages: { en: `${siteUrl}/reviews`, 'x-default': `${siteUrl}/reviews` },
-  },
+  alternates: alternatesFor('reviews', 'en'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -123,10 +121,10 @@ export default function ReviewsPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Client Reviews</p>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-5">
-              {THUMBTACK_RATING} <span className="gold-text">from {(GOOGLE_BUSINESS.reviewCount ?? 0) + THUMBTACK_REVIEW_COUNT} verified reviews</span>
+              {REVIEW_TOTALS.blendedRating} <span className="gold-text">across {REVIEW_TOTALS.totalCount} reviews on Google and Thumbtack</span>
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              {GOOGLE_BUSINESS.rating} on Google across {GOOGLE_BUSINESS.reviewCount} reviews and {THUMBTACK_RATING} on Thumbtack across {THUMBTACK_REVIEW_COUNT}. Both platforms verify the customer hired us before they accept a review — neither lets us filter what gets published.
+              {GOOGLE_BUSINESS.rating} on Google across {GOOGLE_BUSINESS.reviewCount} reviews and {THUMBTACK_RATING} on Thumbtack across {THUMBTACK_REVIEW_COUNT}. {REVIEW_SOURCING_NOTE}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a href={THUMBTACK_URL} target="_blank" rel="noopener noreferrer">
@@ -150,7 +148,7 @@ export default function ReviewsPage() {
               {[
                 { value: `${GOOGLE_BUSINESS.rating ?? THUMBTACK_RATING} ★`, label: 'Google rating' },
                 { value: `${THUMBTACK_RATING} ★`, label: 'Thumbtack rating' },
-                { value: `${(GOOGLE_BUSINESS.reviewCount ?? 0) + THUMBTACK_REVIEW_COUNT}`, label: 'Verified reviews' },
+                { value: `${REVIEW_TOTALS.totalCount}`, label: 'Reviews published' },
                 { value: 'EN · RU', label: 'Crew languages' },
               ].map((s) => (
                 <div key={s.label} className="bg-cream p-6 md:p-8 text-center">

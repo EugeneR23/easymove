@@ -207,7 +207,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Minimum specialty item charge: $800',
       'Single grand piano move (local): typical $750–$1,400',
       'Custom crate for fine art (per piece): $200–$800 depending on size',
-      'Climate-controlled transport (when required): add 25-50% to base',
+      'Climate-controlled transport, when a piece needs it: arranged with a specialist carrier and quoted by them',
       'Declared-value or full-replacement insurance: quoted by carrier based on item value',
       'Specialty rigging (oversized, awkward access): quoted case-by-case',
       'Photo documentation: included',
@@ -229,8 +229,8 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     whyUs: [
       {
-        title: 'Climate-controlled facilities',
-        body: "South Florida heat and humidity destroy unpadded furniture, oil paintings, and certain wood pieces in non-climate-controlled storage. Every facility we use is climate-controlled (60-78°F, controlled humidity).",
+        title: 'Choosing the facility',
+        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. We do not run a storage facility ourselves — we book space with a third-party operator, and we will tell you which facility your items are going to and what it does and does not control before you agree to it.",
       },
       {
         title: 'Pickup and redelivery handled',
@@ -248,7 +248,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     process: [
       { step: 1, title: 'Initial consultation', body: 'We discuss what you\'re storing, expected duration, and any special handling (art, electronics, wine). Recommendation on facility type and size.' },
       { step: 2, title: 'Pickup and inventory', body: 'On move day, we pick up items, photograph and inventory each piece, and transport directly to facility. You receive complete inventory list with photos.' },
-      { step: 3, title: 'Secure storage', body: "Items stored in climate-controlled space with monitored access. We retain access on your behalf — you don't need to manage facility relationships." },
+      { step: 3, title: 'Secure storage', body: "Items go into a third-party facility we book on your behalf, with monitored access. We stay the point of contact, so you do not manage the facility relationship yourself." },
       { step: 4, title: 'Monthly billing', body: 'Storage billed month-to-month. Cancel any time with 7 days notice. No annual contracts, no early termination fees.' },
       { step: 5, title: 'Redelivery', body: 'When you\'re ready, schedule redelivery with us. Full delivery service to your new home — placement, reassembly of any disassembled items, walk-through.' },
     ],
@@ -261,12 +261,12 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Pickup labor: hourly at our standard rates ($129/hr 2 movers)',
       'Redelivery labor: hourly at our standard rates',
       'Storage insurance: optional, ~$15-50/month based on declared value',
-      'Climate-controlled (standard): included',
+      'Climate-controlled space, where the facility offers it: priced by that facility, passed through without markup',
       'Month-to-month, no annual contract',
     ],
     faqs: [
       { q: 'How long can I store items?', a: "Month-to-month — no minimum, no maximum. Some clients store for 30 days during a closing gap; others store for 18+ months during major renovations. Cancel any time with 7 days notice." },
-      { q: 'Is storage climate-controlled?', a: "Yes. Every facility we use is climate-controlled to 60-78°F with controlled humidity. South Florida heat and humidity make non-climate-controlled storage a bad option for furniture, art, or anything wood." },
+      { q: 'Is storage climate-controlled?', a: "That depends on the facility, and we will name the one we are booking before anything moves. We do not own storage — we arrange it with third-party operators in Miami-Dade and Broward. For furniture, art or anything wood, ask for climate-controlled space specifically; South Florida heat and humidity make the unconditioned kind a poor choice." },
       { q: 'Can I access my items while in storage?', a: 'Yes — with 48-72 hours notice. We retrieve specific items and either deliver to you or hold for pickup at our office. Frequent access is unusual; if you need it, we recommend a self-storage unit instead and we just handle the transport.' },
       { q: 'What about insurance?', a: "Optional storage insurance is available — typically $15-50/month based on declared value. For high-value items (art, antiques over $10K), we coordinate facility-partner coverage. Your homeowner's insurance may also extend to stored items — worth checking before adding storage insurance." },
       { q: 'Can you store items between move-out and move-in dates?', a: 'Yes — this is one of our most common storage uses. Common during closings: move out Tuesday, store 5-30 days, deliver to new home. Pricing is prorated for partial months.' },

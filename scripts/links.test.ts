@@ -15,7 +15,7 @@ import { CITIES } from '../src/lib/data/cities';
 import { CITIES_RU } from '../src/lib/data/citiesRu';
 import { CITIES_UA } from '../src/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '../src/lib/data/costPages';
-import { PAIRED_SLUGS } from '../src/lib/data/localePairs';
+import { localesOf, pathFor, ROUTE_KEYS } from '../src/lib/seo/routes';
 
 let failed = 0;
 function check(name: string, cond: boolean, actual: unknown) {
@@ -105,24 +105,67 @@ check('RU cost pages link to RU city pages', ruCityLinks.length === 0, ruCityLin
 const uaCityLinks = COST_PAGES_UA.filter((c) => !c.citySlug.startsWith('ua/')).map((c) => c.slug);
 check('UA cost pages link to UA city pages', uaCityLinks.length === 0, uaCityLinks);
 
-console.log('\n[3] Locale switch pairs match the data');
-const ruSlugs = Array.from(new Set(CITIES_RU.map((c) => c.slug.replace(/^ru\//, ''))));
-const uaSlugs = Array.from(new Set(CITIES_UA.map((c) => c.slug.replace(/^ua\//, ''))));
+console.log('\n[3] The routes table matches the pages that exist');
+const ruSlugs = Array.from(new Set(CITIES_RU.map((c) => c.slug.replace(/^ru[/]/, ''))));
+const uaSlugs = Array.from(new Set(CITIES_UA.map((c) => c.slug.replace(/^ua[/]/, ''))));
 const enSlugs = new Set(CITIES.map((c) => c.slug));
-const ruPairs: readonly string[] = PAIRED_SLUGS.ru;
-const uaPairs: readonly string[] = PAIRED_SLUGS.ua;
 
-const missingRu = ruSlugs.filter((s) => !ruPairs.includes(s));
-check('every RU city page is in PAIRED_SLUGS.ru', missingRu.length === 0, missingRu);
+// Three-way reconciliation. On the tree before 2026-09-18 the first of these
+// failed on five /ua/moving-cost-* routes the sitemap knew about and no page's
+// metadata did, and the last failed on the nine /ru/*-movers pages that carried
+// a canonical and no language cluster at all.
+const ruMissing = ruSlugs.filter((sl) => !localesOf(sl).includes('ru'));
+check('every RU city page is in the routes table', ruMissing.length === 0, ruMissing);
 
-const missingUa = uaSlugs.filter((s) => !uaPairs.includes(s));
-check('every UA city page is in PAIRED_SLUGS.ua', missingUa.length === 0, missingUa);
+const uaMissing = uaSlugs.filter((sl) => !localesOf(sl).includes('uk'));
+check('every UA city page is in the routes table', uaMissing.length === 0, uaMissing);
 
-const ruWithoutEn = ruPairs.filter((s) => !enSlugs.has(s));
-check('no RU pair points at a missing English page', ruWithoutEn.length === 0, ruWithoutEn);
+const ruCostMissing = COST_PAGES_RU
+  .map((c) => c.slug.replace(/^ru[/]/, ''))
+  .filter((sl) => !localesOf(sl).includes('ru'));
+check('every RU cost page is in the routes table', ruCostMissing.length === 0, ruCostMissing);
 
-const uaWithoutEn = uaPairs.filter((s) => !enSlugs.has(s));
-check('no UA pair points at a missing English page', uaWithoutEn.length === 0, uaWithoutEn);
+const uaCostMissing = COST_PAGES_UA
+  .map((c) => c.slug.replace(/^ua[/]/, ''))
+  .filter((sl) => !localesOf(sl).includes('uk'));
+check('every UA cost page is in the routes table', uaCostMissing.length === 0, uaCostMissing);
+
+// The reverse: the table must not promise a page that is not on disk.
+const promised = ROUTE_KEYS.flatMap((k) =>
+  localesOf(k).map((loc) => ({ k, loc, path: pathFor(k, loc)! })),
+);
+const onDisk = (route: string) => {
+  const rel = route === '/' ? 'src/app/page.tsx' : `src/app${route}/page.tsx`;
+  try { statSync(rel); return true; } catch { /* may be a dynamic segment */ }
+  const parent = route.slice(0, route.lastIndexOf('/'));
+  if (!parent) return false;
+  for (const dyn of ['[slug]', '[id]']) {
+    try { statSync(`src/app${parent}/${dyn}/page.tsx`); return true; } catch { /* next */ }
+  }
+  return false;
+};
+const phantom = promised.filter((r) => !onDisk(r.path)).map((r) => `${r.path} (${r.loc})`);
+check('every path the routes table promises exists on disk', phantom.length === 0, phantom);
+
+// A page that declares a canonical and no cluster, while its twin points at it,
+// is the exact defect this table replaced. Catch it in the source.
+const brokenCluster: string[] = [];
+for (const { k, loc, path: route } of promised) {
+  if (localesOf(k).length < 2) continue;
+  const rel = route === '/' ? 'src/app/page.tsx' : `src/app${route}/page.tsx`;
+  let body = '';
+  try { body = readFileSync(rel, 'utf8'); } catch { continue; }
+  const hasMeta = /export const metadata/.test(body);
+  if (!hasMeta) continue;                       // inherits from its layout
+  if (!body.includes('alternatesFor(')) brokenCluster.push(`${route} (${loc})`);
+}
+check('every multi-locale page builds alternates from the table', brokenCluster.length === 0, brokenCluster);
+
+const ruWithoutEn = ruSlugs.filter((sl) => !enSlugs.has(sl));
+check('no RU city lacks its English page', ruWithoutEn.length === 0, ruWithoutEn);
+
+const uaWithoutEn = uaSlugs.filter((sl) => !enSlugs.has(sl));
+check('no UA city lacks its English page', uaWithoutEn.length === 0, uaWithoutEn);
 
 console.log('\n[4] Cost pages reference real city pages');
 const badCitySlug = COST_PAGES.filter((c) => !enSlugs.has(c.citySlug)).map((c) => c.slug);

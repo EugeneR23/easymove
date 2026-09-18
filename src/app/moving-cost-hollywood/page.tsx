@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const page = getCostPage('moving-cost-hollywood')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Hollywood? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/moving-cost-hollywood`,
-    languages: {
-      en: `${siteUrl}/moving-cost-hollywood`,
-      ru: `${siteUrl}/ru/moving-cost-hollywood`,
-      uk: `${siteUrl}/ua/moving-cost-hollywood`,
-      'x-default': `${siteUrl}/moving-cost-hollywood`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-hollywood', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone } from 'lucide-react';
 import { CITIES_UA } from '@/lib/data/citiesUa';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -14,7 +15,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
  * /ua — the Ukrainian landing page.
  *
  * South Florida's Ukrainian community searches in Ukrainian and nobody serves
- * those queries. Roughly a third of the crew speaks Ukrainian, so a
+ * those queries. Some of the crew speak Ukrainian, so a
  * Ukrainian-speaking crew can be assigned when a customer asks at booking;
  * coordination — estimate, scheduling, correspondence — runs in Russian or
  * English. Pages state that split rather than promising either extreme.
@@ -23,15 +24,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: `Переїзди в Південній Флориді — сайт українською | Easy Move Florida` },
   description: `Easy Move Florida — переїзди в Маямі, Голлівуді, Санні-Айлс: вантажники від $129/год, без депозиту, кошторис за 24 години. Сайт українською. 786-305-1844.`,
-  alternates: {
-    canonical: `${siteUrl}/ua`,
-    languages: {
-      en: siteUrl,
-      ru: `${siteUrl}/ru`,
-      uk: `${siteUrl}/ua`,
-      'x-default': siteUrl,
-    },
-  },
+  alternates: alternatesFor('', 'uk'),
   openGraph: {
     type: 'website',
     locale: 'uk_UA',
@@ -69,7 +62,7 @@ const PRICING = [
 const FAQS = [
   {
     "q": "Чи можна спілкуватися українською?",
-    "a": "Так. Приблизно кожен третій наш вантажник — україномовний, і бригаду, яка спілкуватиметься з вами українською, ми поставимо на ваш переїзд за попереднім запитом: скажіть про це під час бронювання. Координація — кошторис, узгодження дати, листування — іде російською або англійською. Написати нам у WhatsApp українською можна сміливо: вас зрозуміють, а відповідь прийде російською або англійською."
+    "a": "Так. Серед наших вантажників є україномовні, і бригаду, яка спілкуватиметься з вами українською, ми поставимо на ваш переїзд за попереднім запитом: скажіть про це під час бронювання. Координація — кошторис, узгодження дати, листування — іде російською або англійською. Написати нам у WhatsApp українською можна сміливо: вас зрозуміють, а відповідь прийде російською або англійською."
   },
   {
     "q": "Скільки коштує переїзд?",
@@ -117,12 +110,12 @@ export default function UaLandingPage() {
             <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
               Переїзди в Південній Флориді — сайт українською
             </h1>
-            <p className="text-gray-200 text-lg leading-relaxed mb-8">Якщо ви шукали муверів українською — вітаємо, ви їх знайшли. Easy Move Florida — місцева компанія з Голлівуда: наш двір із траками стоїть на Stirling Road, а власник Євгеній Романов особисто відповідає за кожне замовлення. Ми перевозимо квартири, кондо та будинки в Санні-Айлс, Халландейлі, Голлівуді, Авентурі, Маямі та Форт-Лодердейлі — містах, де живе велика українська громада. Про мову одразу: приблизно кожен третій наш вантажник — україномовний, тож бригаду, яка говоритиме з вами українською в день переїзду, ми зберемо — просто скажіть про це під час бронювання. Координація (кошторис, узгодження дати, листування) іде російською або англійською. Пишіть нам українською у WhatsApp на 786-305-1844: повідомлення зрозуміють, відповідь надійде російською чи англійською. Ціни погодинні й публічні, депозиту немає, кошторис — письмовий, доплат за вихідні, сходи чи важкі меблі не існує. Оберіть своє місто нижче або надішліть кілька фото квартири — і ми повернемося з конкретними цифрами.</p>
+            <p className="text-gray-200 text-lg leading-relaxed mb-8">Якщо ви шукали муверів українською — вітаємо, ви їх знайшли. Easy Move Florida — місцева компанія з Голлівуда: наш двір із траками стоїть на Stirling Road, а власник Євгеній Романов особисто відповідає за кожне замовлення. Ми перевозимо квартири, кондо та будинки в Санні-Айлс, Халландейлі, Голлівуді, Авентурі, Маямі та Форт-Лодердейлі — містах, де живе велика українська громада. Про мову одразу: серед наших вантажників є україномовні, тож бригаду, яка говоритиме з вами українською в день переїзду, ми зберемо — просто скажіть про це під час бронювання. Координація (кошторис, узгодження дати, листування) іде російською або англійською. Пишіть нам українською у WhatsApp на 786-305-1844: повідомлення зрозуміють, відповідь надійде російською чи англійською. Ціни погодинні й публічні, депозиту немає, кошторис — письмовий, доплат за вихідні, сходи чи важкі меблі не існує. Оберіть своє місто нижче або надішліть кілька фото квартири — і ми повернемося з конкретними цифрами.</p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/quote">
                 <Button size="lg" variant="primary">Безкоштовний кошторис</Button>
               </Link>
-              <a href="tel:7863051844">
+              <a href="tel:+17863051844">
                 <Button size="lg" variant="ghost" className="inline-flex items-center gap-2 text-white border-white/20">
                   <Phone size={15} /> 786-305-1844
                 </Button>

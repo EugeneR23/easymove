@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPageUa } from '@/lib/data/costPages';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const page = getCostPageUa('ua/moving-cost-hollywood')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "Скільки коштує переїзд у Голлівуд? Ціни 2026 | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/ua/moving-cost-hollywood`,
-    languages: {
-      en: `${siteUrl}/moving-cost-hollywood`,
-      ru: `${siteUrl}/ru/moving-cost-hollywood`,
-      uk: `${siteUrl}/ua/moving-cost-hollywood`,
-      'x-default': `${siteUrl}/moving-cost-hollywood`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-hollywood', 'uk'),
   openGraph: {
     type: 'article',
     locale: 'uk_UA',

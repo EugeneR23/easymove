@@ -1,20 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('sunrise-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/sunrise-movers',
-    languages: {
-      en: 'https://www.easy-move-florida.com/sunrise-movers',
-      ru: 'https://www.easy-move-florida.com/ru/sunrise-movers',
-      'x-default': 'https://www.easy-move-florida.com/sunrise-movers',
-    },
-  },
+  alternates: alternatesFor('sunrise-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',

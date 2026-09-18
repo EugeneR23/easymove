@@ -8,6 +8,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getBlogPost, getAllBlogPosts, type BlogBlock } from '@/lib/data/blog';
+import { canonicalFor } from '@/lib/seo/routes';
 
 export async function generateStaticParams() {
   return getAllBlogPosts().map((p) => ({ slug: p.slug }));
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: { absolute: post.metaTitle },
     description: post.metaDescription,
-    alternates: { canonical: `https://www.easy-move-florida.com/blog/${post.slug}` },
+    alternates: canonicalFor(`/blog/${post.slug}`),
     openGraph: {
       type: 'article',
       siteName: 'Easy Move Florida',

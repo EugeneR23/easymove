@@ -3,9 +3,13 @@ import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
-import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
+import { GOOGLE_BUSINESS, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
+import { SITE_URL, ENTITY_ID } from '@/lib/site';
+import { PHONE, EMAIL, GEO, OWNER, postalAddressSchema } from '@/lib/data/contact';
+import { offerDescription } from '@/lib/pricingCopy';
 import './globals.css';
+import { alternatesFor } from '@/lib/seo/routes';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
 // Headings use 400/600/700, body uses 400/500/700. Italics + extra weights dropped.
@@ -23,7 +27,7 @@ const inter = Inter({
   display: 'swap',
 });
 
-const siteUrl = 'https://www.easy-move-florida.com';
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -82,15 +86,7 @@ export const metadata: Metadata = {
       'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
     images: [`${siteUrl}/images/Hero.png`],
   },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      'en': siteUrl,
-      'ru': `${siteUrl}/ru`,
-      'uk': `${siteUrl}/ua`,
-      'x-default': siteUrl,
-    },
-  },
+  alternates: alternatesFor('', 'en'),
   // Search Console / Webmaster Tools verification (RU + EN + Bing).
   // Fill in via env vars or paste verification codes when ready.
   verification: {
@@ -117,21 +113,10 @@ const localBusinessSchema = {
   image: `${siteUrl}/images/Hero.png`,
   description:
     'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, building/HOA fluent.',
-  telephone: '+17863051844',
-  email: 'romanov@easy-move-florida.com',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '2130 Stirling Rd',
-    addressLocality: 'Hollywood',
-    addressRegion: 'FL',
-    postalCode: '33020',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 26.0038,
-    longitude: -80.158,
-  },
+  telephone: PHONE.e164,
+  email: EMAIL,
+  address: postalAddressSchema(),
+  geo: { '@type': 'GeoCoordinates', ...GEO },
   areaServed: [
     { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
     { '@type': 'City', name: 'Miami Beach', sameAs: 'https://en.wikipedia.org/wiki/Miami_Beach,_Florida' },
@@ -155,7 +140,7 @@ const localBusinessSchema = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+17863051844',
+      telephone: PHONE.e164,
       contactType: 'customer service',
       areaServed: 'US',
       availableLanguage: ['English', 'Russian'],
@@ -184,13 +169,24 @@ const localBusinessSchema = {
   // Verified against the live Google Business Profile (place_id
   // ChIJJcPs4dykvagR_uQxPaSlY_8): 5.0 from 6 reviews. Keep these two numbers in
   // step with the profile — a stale rating in schema is worse than none.
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: GOOGLE_BUSINESS.rating,
-    reviewCount: GOOGLE_BUSINESS.reviewCount,
-    bestRating: '5',
-    worstRating: '1',
-  },
+  //
+  // The figure below is the blend across both platforms, not Google alone. Google
+  // wants an aggregate rating to be visible on the page carrying the markup, and
+  // the only rating a visitor sees on most pages is the footer's. Until
+  // 2026-09-18 those disagreed: schema said 5.0 from 6 (Google), the footer said
+  // 4.7 from 33 (Thumbtack), on the same rendered page. Both now read
+  // REVIEW_TOTALS, and /reviews breaks the blend back out by source.
+  ...(REVIEW_TOTALS.blendedRating
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: REVIEW_TOTALS.blendedRating,
+          reviewCount: REVIEW_TOTALS.totalCount,
+          bestRating: '5',
+          worstRating: '1',
+        },
+      }
+    : {}),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Moving and Handyman Services',
@@ -200,7 +196,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Local Residential Moving',
-          description: 'Crew of 2 movers $129/hr, crew of 3 movers $179/hr, crew of 4 movers $219/hr, 3-hour minimum. The truck is a separate line charged per day at the same figure as the crew rate ($129, $179 or $219), with fuel, tolls and mileage included in it — there is no fuel surcharge. Same rate seven days a week, year-round: no weekend or seasonal surcharge. No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, so they are priced into the estimated hours. Furniture pads, stretch wrap and basic disassembly are included in the hourly rate.',
+          description: offerDescription(),
           areaServed: 'South Florida',
         },
       },
@@ -233,7 +229,7 @@ const localBusinessSchema = {
       },
     ],
   },
-  // Spoken languages. Roughly a third of the crew speaks Ukrainian, so 'uk'
+  // Spoken languages. Some of the crew speak Ukrainian, so 'uk'
   // belongs here; the contactPoint below stays English/Russian because dispatch
   // and written estimates are handled in those two.
   knowsLanguage: ['en', 'ru', 'uk'],
@@ -266,7 +262,7 @@ const organizationSchema = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
-      telephone: '+17863051844',
+      telephone: PHONE.e164,
       contactType: 'customer service',
       areaServed: 'US',
       availableLanguage: ['English', 'Russian'],
@@ -285,17 +281,17 @@ const founderSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': `${siteUrl}/#founder`,
-  name: 'Evgenii Romanov',
-  alternateName: ['Eugene Romanov', 'Евгений Романов'],
-  jobTitle: 'Founder & Owner',
+  name: OWNER.name,
+  alternateName: [...OWNER.alternateNames],
+  jobTitle: OWNER.jobTitle,
   description:
     'Owner of Easy Move Florida. Runs dispatch and crew leadership himself in English and Russian; reachable directly on WhatsApp at +1 786-305-1844.',
   knowsLanguage: ['en', 'ru'],
   worksFor: { '@id': `${siteUrl}/#organization` },
   url: `${siteUrl}/about`,
   image: `${siteUrl}/images/founder.jpg`,
-  telephone: '+17863051844',
-  email: 'romanov@easy-move-florida.com',
+  telephone: PHONE.e164,
+  email: EMAIL,
 };
 
 // WebSite schema — provides a stable @id all child entities reference.

@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { readAllServices } from '@/lib/data/services';
 import { getAllBlogPosts } from '@/lib/data/blog';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
+import { alternatesFor, keyForSlug, type Locale } from '@/lib/seo/routes';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -70,61 +71,28 @@ function lastmod(path: string): Date {
   return new Date(LASTMOD[path] ?? '2026-07-30');
 }
 
-// Pages that have a Russian translation today. Used to emit xhtml:link
-// alternates inside the sitemap so Google understands the EN ↔ RU mapping
-// without depending on per-page <link rel="alternate"> tags.
-const RU_PAIRED: Record<string, string> = {
-  '/': '/ru',
-  '/about': '/ru/about',
-  '/services': '/ru/services',
-  '/contact': '/ru/contact',
-  '/pricing': '/ru/pricing',
-  '/miami-movers': '/ru/miami-movers',
-  '/fort-lauderdale-movers': '/ru/fort-lauderdale-movers',
-  '/sunny-isles-movers': '/ru/sunny-isles-movers',
-  '/aventura-movers': '/ru/aventura-movers',
-  '/hollywood-movers': '/ru/hollywood-movers',
-  '/hallandale-beach-movers': '/ru/hallandale-beach-movers',
-  '/boca-raton-movers': '/ru/boca-raton-movers',
-  '/miami-beach-movers': '/ru/miami-beach-movers',
-  '/bal-harbour-movers': '/ru/bal-harbour-movers',
-  '/north-miami-beach-movers': '/ru/north-miami-beach-movers',
-  '/pembroke-pines-movers': '/ru/pembroke-pines-movers',
-  '/weston-movers': '/ru/weston-movers',
-  '/coral-springs-movers': '/ru/coral-springs-movers',
-  '/sunrise-movers': '/ru/sunrise-movers',
-  '/delray-beach-movers': '/ru/delray-beach-movers',
-  '/boynton-beach-movers': '/ru/boynton-beach-movers',
-};
-
-// Пары EN-путь → UA-путь. Возвратный hreflang uk обязан стоять на EN и RU
-// записях, иначе Google отбрасывает всю связку (найдено аудитом 2026-09-11).
-const UA_PAIRED: Record<string, string> = {
-  '/': '/ua',
-  '/sunny-isles-movers': '/ua/sunny-isles-movers',
-  '/hallandale-beach-movers': '/ua/hallandale-beach-movers',
-  '/hollywood-movers': '/ua/hollywood-movers',
-  '/miami-movers': '/ua/miami-movers',
-  '/aventura-movers': '/ua/aventura-movers',
-  '/fort-lauderdale-movers': '/ua/fort-lauderdale-movers',
-  '/moving-cost-miami': '/ua/moving-cost-miami',
-  '/moving-cost-sunny-isles': '/ua/moving-cost-sunny-isles',
-  '/moving-cost-hallandale-beach': '/ua/moving-cost-hallandale-beach',
-  '/moving-cost-hollywood': '/ua/moving-cost-hollywood',
-  '/moving-cost-aventura': '/ua/moving-cost-aventura',
-};
+/**
+ * hreflang for a sitemap entry, derived from src/lib/seo/routes.ts.
+ *
+ * This used to be two hand-kept tables, RU_PAIRED and UA_PAIRED, which were the
+ * second and third copies of data the pages also declared. They had drifted:
+ * /boca-raton-movers was in RU_PAIRED but its sitemap entry never called this
+ * function, and the five /ua/moving-cost-* routes were in UA_PAIRED and in no
+ * page's metadata. Now every entry calls it and a single-locale path simply
+ * gets undefined back, so forgetting is no longer possible.
+ *
+ * Takes the served path ('/boca-raton-movers', '/ru/miami-movers', '/').
+ */
 function withAlternates(path: string): MetadataRoute.Sitemap[number]['alternates'] | undefined {
-  const ruPath = RU_PAIRED[path];
-  const uaPath = UA_PAIRED[path];
-  if (!ruPath && !uaPath) return undefined;
-  return {
-    languages: {
-      en: `${siteUrl}${path === '/' ? '' : path}`,
-      ...(ruPath ? { ru: `${siteUrl}${ruPath}` } : {}),
-      ...(uaPath ? { uk: `${siteUrl}${uaPath}` } : {}),
-      'x-default': `${siteUrl}${path === '/' ? '' : path}`,
-    },
-  };
+  const trimmed = path.replace(/^[/]+|[/]+$/g, '');
+  const locale: Locale = trimmed === 'ru' || trimmed.startsWith('ru/') ? 'ru'
+    : trimmed === 'ua' || trimmed.startsWith('ua/') ? 'uk'
+    : 'en';
+  const slug = trimmed.replace(/^(ru|ua)[/]?/, '');
+  const key = keyForSlug(slug, locale);
+  if (key === null) return undefined;
+  const { languages } = alternatesFor(key, locale);
+  return languages ? { languages } : undefined;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -190,13 +158,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const cityRoutes: MetadataRoute.Sitemap = [
     { url: `${siteUrl}/miami-movers`,            lastModified: lastmod('/miami-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miami-movers') },
     { url: `${siteUrl}/fort-lauderdale-movers`,  lastModified: lastmod('/fort-lauderdale-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/fort-lauderdale-movers') },
-    { url: `${siteUrl}/boca-raton-movers`,       lastModified: lastmod('/boca-raton-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/boca-raton-movers`,       lastModified: lastmod('/boca-raton-movers'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/boca-raton-movers') },
     { url: `${siteUrl}/aventura-movers`,         lastModified: lastmod('/aventura-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/aventura-movers') },
-    { url: `${siteUrl}/coral-gables-movers`,     lastModified: lastmod('/coral-gables-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/coral-gables-movers`,     lastModified: lastmod('/coral-gables-movers'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/coral-gables-movers') },
     { url: `${siteUrl}/sunny-isles-movers`,      lastModified: lastmod('/sunny-isles-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/sunny-isles-movers') },
     { url: `${siteUrl}/hollywood-movers`,        lastModified: lastmod('/hollywood-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hollywood-movers') },
-    { url: `${siteUrl}/coconut-grove-movers`,    lastModified: lastmod('/coconut-grove-movers'), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/doral-movers`,            lastModified: lastmod('/doral-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/coconut-grove-movers`,    lastModified: lastmod('/coconut-grove-movers'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/coconut-grove-movers') },
+    { url: `${siteUrl}/doral-movers`,            lastModified: lastmod('/doral-movers'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/doral-movers') },
     { url: `${siteUrl}/hallandale-beach-movers`, lastModified: lastmod('/hallandale-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/hallandale-beach-movers') },
     { url: `${siteUrl}/miami-beach-movers`, lastModified: lastmod('/miami-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miami-beach-movers') },
     { url: `${siteUrl}/bal-harbour-movers`, lastModified: lastmod('/bal-harbour-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/bal-harbour-movers') },
@@ -207,15 +175,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/sunrise-movers`, lastModified: lastmod('/sunrise-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/sunrise-movers') },
     { url: `${siteUrl}/delray-beach-movers`, lastModified: lastmod('/delray-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/delray-beach-movers') },
     { url: `${siteUrl}/boynton-beach-movers`, lastModified: lastmod('/boynton-beach-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/boynton-beach-movers') },
-    { url: `${siteUrl}/packing-services`,        lastModified: lastmod('/packing-services'), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/moving-cost-miami`,       lastModified: lastmod('/moving-cost-miami'), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/russian-speaking-movers-miami`, lastModified: lastmod('/russian-speaking-movers-miami'), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${siteUrl}/coi-miami-condo-movers`,  lastModified: lastmod('/coi-miami-condo-movers'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/packing-services`,        lastModified: lastmod('/packing-services'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/packing-services') },
+    { url: `${siteUrl}/moving-cost-miami`,       lastModified: lastmod('/moving-cost-miami'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/moving-cost-miami') },
+    { url: `${siteUrl}/russian-speaking-movers-miami`, lastModified: lastmod('/russian-speaking-movers-miami'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/russian-speaking-movers-miami') },
+    { url: `${siteUrl}/coi-miami-condo-movers`,  lastModified: lastmod('/coi-miami-condo-movers'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/coi-miami-condo-movers') },
   ];
 
   const ruRoutes: MetadataRoute.Sitemap = [
     { url: `${siteUrl}/ru`,          lastModified: lastmod('/ru'), changeFrequency: 'weekly',  priority: 0.9, alternates: withAlternates('/') },
-    { url: `${siteUrl}/ru/russkie-gruzchiki-miami`, lastModified: lastmod('/ru/russkie-gruzchiki-miami'), changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${siteUrl}/ru/russkie-gruzchiki-miami`, lastModified: lastmod('/ru/russkie-gruzchiki-miami'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/ru/russkie-gruzchiki-miami') },
     { url: `${siteUrl}/ru/about`,    lastModified: lastmod('/ru/about'), changeFrequency: 'monthly', priority: 0.7, alternates: withAlternates('/about') },
     { url: `${siteUrl}/ru/services`, lastModified: lastmod('/ru/services'), changeFrequency: 'monthly', priority: 0.8, alternates: withAlternates('/services') },
     { url: `${siteUrl}/ru/pricing`,  lastModified: lastmod('/ru/pricing'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/pricing') },
@@ -246,6 +214,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date('2026-08-25'),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
+    alternates: withAlternates(`/${c.slug}`),
   }));
 
 
@@ -257,25 +226,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date('2026-08-25'),
       changeFrequency: 'monthly' as const,
       priority: 0.9,
-      alternates: { languages: { en: siteUrl, ru: `${siteUrl}/ru`, uk: `${siteUrl}/ua`, 'x-default': siteUrl } },
+      alternates: withAlternates('/ua'),
     },
-    ...CITIES_UA.map((c) => {
-      const short = c.slug.replace('ua/', '');
-      return {
-        url: `${siteUrl}/${c.slug}`,
-        lastModified: new Date('2026-08-25'),
-        changeFrequency: 'monthly' as const,
-        priority: 0.9,
-        alternates: {
-          languages: {
-            en: `${siteUrl}/${short}`,
-            ru: `${siteUrl}/ru/${short}`,
-            uk: `${siteUrl}/ua/${short}`,
-            'x-default': `${siteUrl}/${short}`,
-          },
-        },
-      };
-    }),
+    ...CITIES_UA.map((c) => ({
+      url: `${siteUrl}/${c.slug}`,
+      lastModified: new Date('2026-08-25'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+      alternates: withAlternates(`/${c.slug}`),
+    })),
   ];
 
 
@@ -288,10 +247,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date('2026-08-30'),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
+    alternates: withAlternates(`/${c.slug}`),
   }));
 
   const blogRoutes: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/blog`, lastModified: lastmod('/blog'), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${siteUrl}/blog`, lastModified: lastmod('/blog'), changeFrequency: 'weekly', priority: 0.7 , alternates: withAlternates('/blog') },
     ...getAllBlogPosts().map((p) => ({
       url: `${siteUrl}/blog/${p.slug}`,
       lastModified: new Date(p.updatedAt),

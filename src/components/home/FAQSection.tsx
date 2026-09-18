@@ -87,7 +87,7 @@ export default function FAQSection() {
                   Still have a question not answered here? Call or text us directly — a real person picks up.
                 </p>
                 <a
-                  href="tel:7863051844"
+                  href="tel:+17863051844"
                   className="inline-flex items-center gap-2 border border-charcoal/20 px-5 py-3 text-charcoal text-sm font-semibold hover:border-gold hover:text-gold transition-colors duration-200"
                 >
                   786-305-1844
@@ -147,7 +147,7 @@ export default function FAQSection() {
               {/* Mobile CTA */}
               <div className="lg:hidden pt-8 flex flex-col sm:flex-row gap-3">
                 <a
-                  href="tel:7863051844"
+                  href="tel:+17863051844"
                   className="flex-1 flex items-center justify-center gap-2 border border-charcoal/20 px-5 py-3 text-charcoal text-sm font-semibold hover:border-gold hover:text-gold transition-colors"
                 >
                   786-305-1844

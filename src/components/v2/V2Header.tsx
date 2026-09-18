@@ -36,7 +36,7 @@ export default function V2Header() {
           <span className="text-white/30 text-[10px] tracking-[0.35em] uppercase">EST</span>
         </div>
         <div className="flex items-center gap-4">
-          <a href="tel:7863051844" className="hidden sm:block text-white/70 hover:text-gold text-sm transition-colors">786-305-1844</a>
+          <a href="tel:+17863051844" className="hidden sm:block text-white/70 hover:text-gold text-sm transition-colors">786-305-1844</a>
           <Link
             href="/quote"
             className="bg-gold hover:bg-gold-dark text-white text-[11px] font-bold tracking-[0.2em] uppercase px-5 py-2.5 transition-colors"

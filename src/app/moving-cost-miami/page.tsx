@@ -6,7 +6,8 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, CheckCircle, X } from 'lucide-react';
-import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, LD_MINIMUM, minInvoice } from '@/lib/pricing';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -17,15 +18,7 @@ export const metadata: Metadata = {
   title: { absolute: 'Movers Cost in Miami — 2026 Prices | Easy Move Florida' },
   description:
     'Miami movers: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum + truck at the crew rate. A 1-bedroom runs $516–$774 all-in. Full 2026 breakdown.',
-  alternates: {
-    canonical: `${siteUrl}/moving-cost-miami`,
-    languages: {
-      en: `${siteUrl}/moving-cost-miami`,
-      ru: `${siteUrl}/ru/moving-cost-miami`,
-      uk: `${siteUrl}/ua/moving-cost-miami`,
-      'x-default': `${siteUrl}/moving-cost-miami`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-miami', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',
@@ -180,7 +173,7 @@ export default function MovingCostMiamiPage() {
               <Link href="/quote">
                 <Button size="lg" variant="primary">Get a Written Estimate</Button>
               </Link>
-              <a href="tel:7863051844">
+              <a href="tel:+17863051844">
                 <Button size="lg" variant="ghost" className="inline-flex items-center gap-2 text-white border-white/20">
                   <Phone size={15} /> 786-305-1844
                 </Button>
@@ -226,9 +219,9 @@ export default function MovingCostMiamiPage() {
                     <td className="px-5 py-4 text-gray-500">Then 15-minute increments — no rounding up</td>
                   </tr>
                   <tr>
-                    <td className="px-5 py-4 text-charcoal font-semibold">Long distance</td>
-                    <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">from ${LD_MINIMUM.toLocaleString('en-US')}</td>
-                    <td className="px-5 py-4 text-gray-500">Flat per job, written estimate within 24 hours</td>
+                    <td className="px-5 py-4 text-charcoal font-semibold">Long distance (within Florida)</td>
+                    <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">Custom estimate</td>
+                    <td className="px-5 py-4 text-gray-500">Anywhere in Florida, quoted per job in writing within 24 hours. Out of state we refer a licensed carrier</td>
                   </tr>
                 </tbody>
               </table>

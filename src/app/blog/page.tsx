@@ -6,11 +6,12 @@ import Footer from '@/components/layout/Footer';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { getAllBlogPosts } from '@/lib/data/blog';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Moving Resources & Guides — South Florida | Easy Move Florida' },
   description: 'Practical moving guides from a working South Florida mover: Brickell condo checklists, Miami pricing, COI requirements, and more. No fluff.',
-  alternates: { canonical: 'https://www.easy-move-florida.com/blog' },
+  alternates: alternatesFor('blog', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',

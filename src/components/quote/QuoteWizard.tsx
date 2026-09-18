@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { MoveType, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
-import { calculatePricing, estimateLongDistance, normalizeMoveType } from '@/lib/pricing';
+import { calculatePricing, normalizeMoveType } from '@/lib/pricing';
 import Step1MoveType from './Step1_MoveType';
 import Step2HomeSize from './Step2_HomeSize';
 import Step3Locations from './Step3_Locations';
@@ -95,20 +95,18 @@ function getLiveEstimate(data: WizardData) {
   if (data.moveType === 'specialty') return null;
 
   const fromState = data.fromState || 'FL';
-  // Blank stays blank. Substituting 'NY' invented a destination the client never
-  // gave; estimateLongDistance answers LD_DEFAULT_MILES for an unknown one, which
-  // is the conservative number the coordinator confirms.
+  // Blank stays blank: a visitor who has not answered yet has not asked us to
+  // leave Florida. calculatePricing resolves the mode and zeroes the money for
+  // anything it will not price, so nothing downstream has to remember to.
   const toState   = data.toState || (data.moveType === 'local' ? 'FL' : '');
   // No travel surcharge until cities are entered in step 3 — keeps sidebar estimate consistent with homepage calculator
-  const distance  = data.moveType === 'local'
-    ? 0
-    : estimateLongDistance(data.fromCity, fromState, data.toCity, toState);
-
   return calculatePricing({
     moveType: data.moveType,
-    estimatedDistance: distance,
+    estimatedDistance: 0,
     fromCity: data.fromCity || undefined,
     toCity:   data.toCity   || undefined,
+    fromState,
+    toState,
     inventory: data.inventory,
     addons: data.addons,
   });
@@ -116,7 +114,11 @@ function getLiveEstimate(data: WizardData) {
 
 // ─── Sidebar step list ────────────────────────────────────────────────────────
 function SidebarSteps({ current, data, steps }: { current: number; data: WizardData; steps: { label: string; sub: string }[] }) {
-  const estimate = getLiveEstimate(data);
+  const priced    = getLiveEstimate(data);
+  // Only a 'priced' quote carries a number. 'custom' (Florida long-distance) and
+  // 'referral' (out of state) render words, because we have no figure to show.
+  const estimate  = priced && priced.quoteMode === 'priced' ? priced : null;
+  const mode      = priced?.quoteMode ?? null;
   const rangeHigh = estimate ? Math.round(estimate.total * 1.4) : null;
 
   return (
@@ -207,6 +209,23 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
             )}
             <p className="text-white/20 text-[10px] mt-1">Preliminary — updates as you go</p>
           </div>
+        ) : mode === 'referral' ? (
+          <div className="border border-gold/20 bg-gold/5 p-4">
+            <p className="text-gold text-[10px] font-semibold uppercase tracking-wider mb-2">Outside Florida</p>
+            <p className="text-white/60 text-xs leading-relaxed">
+              We do not move household goods across a state line — that needs federal operating authority we do
+              not hold. Send your details anyway and we will point you to a licensed carrier. We can still pack
+              your home and handle the Florida-side leg.
+            </p>
+          </div>
+        ) : mode === 'custom' ? (
+          <div className="border border-gold/20 bg-gold/5 p-4">
+            <p className="text-gold text-[10px] font-semibold uppercase tracking-wider mb-2">Florida long-distance</p>
+            <p className="text-white/60 text-xs leading-relaxed">
+              Orlando, Tampa, Naples, Jacksonville — quoted per job on distance, volume and access at both ends,
+              in writing within 24 hours. No online figure, because there is no formula we would stand behind.
+            </p>
+          </div>
         ) : (
           <div className="border border-white/10 p-4">
             <p className="text-white/25 text-xs">Your estimate will appear as you go</p>
@@ -216,7 +235,7 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
 
       {/* Bottom CTA */}
       <div className="hidden lg:block pt-6 border-t border-white/10">
-        <a href="tel:7863051844" className="inline-block text-gold text-xs font-semibold hover:text-gold-light transition-colors">
+        <a href="tel:+17863051844" className="inline-block text-gold text-xs font-semibold hover:text-gold-light transition-colors">
           Call or text: 786-305-1844
         </a>
         <p className="text-white/30 text-[10px] mt-1">Available today</p>

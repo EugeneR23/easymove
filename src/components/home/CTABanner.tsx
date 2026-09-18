@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 
 /**
  * Closing call to action. Rendered on nearly every page, which is why it no

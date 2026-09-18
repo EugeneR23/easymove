@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataRu } from '@/lib/data/citiesRu';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityDataRu('ru/bal-harbour-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,9 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/ru/bal-harbour-movers`,
-  },
+  alternates: alternatesFor('bal-harbour-movers', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

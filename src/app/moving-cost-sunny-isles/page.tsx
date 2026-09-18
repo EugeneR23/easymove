@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const page = getCostPage('moving-cost-sunny-isles')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Sunny Isles Beach? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/moving-cost-sunny-isles`,
-    languages: {
-      en: `${siteUrl}/moving-cost-sunny-isles`,
-      ru: `${siteUrl}/ru/moving-cost-sunny-isles`,
-      uk: `${siteUrl}/ua/moving-cost-sunny-isles`,
-      'x-default': `${siteUrl}/moving-cost-sunny-isles`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-sunny-isles', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { hoursOpeningHours } from '@/lib/data/hours';
+import { cityPageNode, serviceNode, faqNode, breadcrumbNode, ld } from '@/lib/seo/schema';
 import { THUMBTACK_QUOTES } from '@/lib/data/thumbtackQuotes';
 import { THUMBTACK } from '@/lib/data/credentials';
 import Image from 'next/image';
@@ -13,7 +13,7 @@ import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-re
 import { CITIES, type CityData } from '@/lib/data/cities';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { CITIES_UA } from '@/lib/data/citiesUa';
-import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
+import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA , EXTERNAL_COST_PAGES } from '@/lib/data/costPages';
 import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 
 
@@ -22,8 +22,8 @@ const SERVICES = {
     { href: '/services/residential-moving',  label: 'High-Rise & Residential', desc: 'Condos, apartments, and homes of every size.' },
     { href: '/quote', label: 'Single-Item & Furniture Delivery', desc: 'Pickup, wrap and placement by the same insured crews.' },
     { href: '/services/office-commercial',   label: 'Office & Commercial',     desc: 'Minimal downtime, maximum precision.' },
-    { href: '/services/specialty-items',     label: 'Fine Art & Specialty',    desc: 'Museum-grade handling for high-value items.' },
-    { href: '/services/storage-solutions',   label: 'Premium Storage',         desc: 'Short-term and monthly storage options.' },
+    { href: '/services/specialty-items',     label: 'Fine Art & Specialty',    desc: 'Custom crating, padding and rigging for high-value items.' },
+    { href: '/services/storage-solutions',   label: 'Storage',                 desc: 'Short-term and monthly storage, booked for you.' },
     { href: '/packing-services',             label: 'Packing & Unpacking',    desc: 'Full or partial packing, materials supplied.' },
   ],
   ru: [
@@ -243,7 +243,7 @@ const UI = {
     breadcrumbAreas: 'Города',
     breadcrumbCity: (c: CityData) => `Грузчики ${c.name}`,
   },
-  // Українська. Мовна точність: приблизно третина вантажників україномовні,
+  // Українська. Мовна точність: частина вантажників україномовні,
   // тож бригаду можна зібрати під запит; координація — російська або англійська.
   ua: {
     heroAlt: (c: CityData) => `Професійні вантажники та переїзди в ${c.name} — Easy Move Florida`,
@@ -251,7 +251,7 @@ const UI = {
     ctaEstimate: 'Безкоштовний розрахунок',
     localExpertise: 'Знаємо район',
     weKnow: (c: CityData) => `Ми знаємо ${c.name}`,
-    coordinatorPara: (c: CityData) => `За кожним переїздом у ${c.name} закріплений персональний координатор. Приблизно кожен третій наш вантажник — україномовний, тож бригаду, яка говоритиме з вами українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Бригада приїздить, уже знаючи ваш будинок${c.neighborhoods.length >= 2 ? ` — від ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}, ліфт і правила менеджменту.`,
+    coordinatorPara: (c: CityData) => `За кожним переїздом у ${c.name} закріплений персональний координатор. Серед наших вантажників є україномовні, тож бригаду, яка говоритиме з вами українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Бригада приїздить, уже знаючи ваш будинок${c.neighborhoods.length >= 2 ? ` — від ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}, ліфт і правила менеджменту.`,
     tags: ['Власник на звʼязку', 'COI за 24 години', 'Без субпідрядників', 'Телефон: 786-305-1844'],
     whatWeOffer: 'Що ми робимо',
     everyMove: (c: CityData) => `Будь-який переїзд у ${c.name} — наша робота`,
@@ -295,84 +295,49 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
   // into English mid-journey; where no localised cost page exists yet, the
   // lookup simply finds nothing and the link is not rendered.
   const costSource = isRu ? COST_PAGES_RU : isUa ? COST_PAGES_UA : COST_PAGES;
-  const costPage = costSource.find((c) => c.citySlug === city.slug);
-  const schemaJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'MovingCompany',
-    '@id': 'https://www.easy-move-florida.com/#organization',
-    name: 'Easy Move Florida',
-    description: city.metaDescription,
-    url: `https://www.easy-move-florida.com/${city.slug}`,
-    telephone: '+17863051844',
-    email: 'romanov@easy-move-florida.com',
-    areaServed: {
-      '@type': 'AdministrativeArea',
-      name: `${city.name}, ${city.state}`,
-    },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '2130 Stirling Rd',
-      addressLocality: 'Hollywood',
-      addressRegion: 'FL',
-      postalCode: '33020',
-      addressCountry: 'US',
-    },
-    priceRange: '$$',
-    openingHours: hoursOpeningHours(),
-    knowsLanguage: ['en', 'ru'],
-    inLanguage: locale === 'ua' ? 'uk' : locale, // BCP-47: Ukrainian is uk, not ua
-  });
+  const costPage = costSource.find((c) => c.citySlug === city.slug)
+    ?? (isRu || isUa ? undefined : EXTERNAL_COST_PAGES.find((c) => c.citySlug === city.slug));
+  // RU and UA slugs already carry their locale segment ('ru/miami-movers');
+  // English ones do not. Before this, the URL emitted here was the English one
+  // on every locale, so /ru/miami-movers told a crawler its entity lived at
+  // /miami-movers.
+  const prefix = isRu ? '/ru' : isUa ? '/ua' : '';
+  const path = `/${city.slug}`;
 
-  const offerSchemaJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': `https://www.easy-move-florida.com/${city.slug}#service`,
+  // This page no longer re-declares the organization. It references it. The two
+  // competing definitions of <site>/#organization are why src/lib/seo/schema.ts
+  // exists; see its header.
+  const pageJson = ld(cityPageNode({
+    path,
+    name: city.metaTitle,
+    description: city.metaDescription,
+    locale,
+  }));
+
+  const offerSchemaJson = ld(serviceNode({
+    path,
     name: `Local Moving Service — ${city.name}, ${city.state}`,
     serviceType: 'Local Moving',
-    provider: { '@id': 'https://www.easy-move-florida.com/#organization' },
-    areaServed: { '@type': 'City', name: `${city.name}, ${city.state}` },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'USD',
-      lowPrice: HOURLY_RATE[2],
-      highPrice: HOURLY_RATE[4],
-      offerCount: 3,
-      priceSpecification: ([2, 3, 4] as const).map((crew) => ({
-        '@type': 'UnitPriceSpecification',
-        price: HOURLY_RATE[crew],
-        priceCurrency: 'USD',
-        unitText: 'HUR',
-        name: `Crew of ${crew} movers — hourly labour rate`,
-        eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
-      })),
-    },
-  });
+    areaServed: `${city.name}, ${city.state}`,
+    rates: ([2, 3, 4] as const).map((crew) => ({ crew, price: HOURLY_RATE[crew] })),
+    minHours: MIN_HOURS,
+  }));
 
-  const faqSchemaJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: city.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: { '@type': 'Answer', text: faq.a },
-    })),
-  });
+  const faqSchemaJson = ld(faqNode(city.faqs, locale));
 
-  const breadcrumbJson = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.breadcrumbHome, item: isRu ? 'https://www.easy-move-florida.com/ru' : isUa ? 'https://www.easy-move-florida.com/ua' : 'https://www.easy-move-florida.com' },
-      { '@type': 'ListItem', position: 2, name: t.breadcrumbAreas, item: locale === 'ru' ? 'https://www.easy-move-florida.com/ru/services' : 'https://www.easy-move-florida.com/services' },
-      { '@type': 'ListItem', position: 3, name: t.breadcrumbCity(city), item: `https://www.easy-move-florida.com/${city.slug}` },
-    ],
-  });
+  const breadcrumbJson = ld(breadcrumbNode([
+    { name: t.breadcrumbHome,  path: prefix || '/' },
+    // The services hub only exists in EN and RU; UA falls back to the English one
+    // rather than linking a page that does not exist.
+    { name: t.breadcrumbAreas, path: isRu ? '/ru/services' : '/services' },
+    { name: t.breadcrumbCity(city), path },
+  ]));
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: schemaJson }}
+        dangerouslySetInnerHTML={{ __html: pageJson }}
       />
       <script
         type="application/ld+json"

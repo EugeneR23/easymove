@@ -1,22 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('sunny-isles-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/sunny-isles-movers',
-    languages: {
-      en: 'https://www.easy-move-florida.com/sunny-isles-movers',
-      ru: 'https://www.easy-move-florida.com/ru/sunny-isles-movers',
-
-      uk: 'https://www.easy-move-florida.com/ua/sunny-isles-movers',
-      'x-default': 'https://www.easy-move-florida.com/sunny-isles-movers',
-    },
-  },
+  alternates: alternatesFor('sunny-isles-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',
@@ -28,7 +20,7 @@ export const metadata: Metadata = {
         url: `https://www.easy-move-florida.com${city.heroImage}`,
         width: 1200,
         height: 630,
-        alt: 'Easy Move Florida — Premium Movers in Sunny Isles Beach, FL',
+        alt: 'Easy Move Florida — movers in Sunny Isles Beach, FL',
       },
     ],
   },

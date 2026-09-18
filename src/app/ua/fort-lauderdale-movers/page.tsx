@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataUa } from '@/lib/data/citiesUa';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityDataUa('ua/fort-lauderdale-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/ua/fort-lauderdale-movers`,
-    languages: {
-      en: `${siteUrl}/fort-lauderdale-movers`,
-      ru: `${siteUrl}/ru/fort-lauderdale-movers`,
-      uk: `${siteUrl}/ua/fort-lauderdale-movers`,
-      'x-default': `${siteUrl}/fort-lauderdale-movers`,
-    },
-  },
+  alternates: alternatesFor('fort-lauderdale-movers', 'uk'),
   openGraph: {
     type: 'website',
     locale: 'uk_UA',

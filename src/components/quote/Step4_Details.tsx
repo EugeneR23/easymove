@@ -12,10 +12,13 @@ const FL_CITIES = [
   'Boca Raton', 'Delray Beach', 'Palm Beach', 'West Palm Beach', 'Other',
 ];
 
+// Florida, or not Florida. The company moves within Florida and refers anything
+// crossing a state line, so a 50-entry list of states we decline is not a list
+// worth keeping — it only invites the next caller to price against it.
 const US_STATES = [
-  { value: '', label: 'Select State' },
-  ...['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']
-    .map((s) => ({ value: s, label: s })),
+  { value: '',    label: 'Select State' },
+  { value: 'FL',  label: 'Florida' },
+  { value: 'OUT', label: 'Outside Florida' },
 ];
 
 interface AddonOption {
@@ -304,7 +307,7 @@ export default function Step4Details({ data, update, onNext, onBack, onSubmit }:
           <div className="min-w-0">
             <p className="text-red-700 text-sm font-semibold mb-1">Submission failed</p>
             <p className="text-red-600 text-xs leading-relaxed">{error}</p>
-            <a href="tel:7863051844" className="inline-block mt-2 text-xs font-semibold text-red-700 underline">
+            <a href="tel:+17863051844" className="inline-block mt-2 text-xs font-semibold text-red-700 underline">
               Call 786-305-1844 to book directly
             </a>
           </div>

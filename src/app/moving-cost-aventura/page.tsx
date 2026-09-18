@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const page = getCostPage('moving-cost-aventura')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Aventura? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/moving-cost-aventura`,
-    languages: {
-      en: `${siteUrl}/moving-cost-aventura`,
-      ru: `${siteUrl}/ru/moving-cost-aventura`,
-      uk: `${siteUrl}/ua/moving-cost-aventura`,
-      'x-default': `${siteUrl}/moving-cost-aventura`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-aventura', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

@@ -32,7 +32,7 @@ const AI_BOTS = [
   'Diffbot',
 ];
 
-// Major search engines — explicit Allow keeps us multilingual (EN default, /ru/ Russian, /es/ Spanish planned)
+// Major search engines — explicit Allow keeps us multilingual (EN default, /ru/ Russian, no other locales exist)
 const SEARCH_BOTS = [
   'Googlebot',
   'Googlebot-Image',
@@ -49,7 +49,7 @@ const BLOCKED_SCRAPERS = ['AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot', 'BLEXB
 
 // Language paths that actually exist. One source, so a bot rule can never allow
 // a path we never shipped.
-const ALLOW_PATHS = ['/', '/ru/'];
+const ALLOW_PATHS = ['/', '/ru/', '/ua/'];
 
 export default function robots(): MetadataRoute.Robots {
   return {

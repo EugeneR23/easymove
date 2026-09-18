@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import GoogleMapEmbed from '@/components/contact/GoogleMapEmbed';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -13,14 +14,7 @@ export const metadata: Metadata = {
   title: { absolute: 'Контакты | Easy Move Florida' },
   description:
     'Свяжитесь с Easy Move Florida в Майами, Форт-Лодердейле и Бока-Ратоне. Реальный координатор отвечает в течение нескольких часов. Звоните 786-305-1844 или напишите.',
-  alternates: {
-    canonical: `${siteUrl}/ru/contact`,
-    languages: {
-      'en': `${siteUrl}/contact`,
-      'ru': `${siteUrl}/ru/contact`,
-      'x-default': `${siteUrl}/contact`,
-    },
-  },
+  alternates: alternatesFor('contact', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

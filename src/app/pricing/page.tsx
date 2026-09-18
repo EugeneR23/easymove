@@ -8,6 +8,8 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { bandHours, bandCrew, bandRange } from '@/lib/pricingCopy';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -15,14 +17,7 @@ export const metadata: Metadata = {
   title: { absolute: 'South Florida Moving Costs & Hourly Rates | Easy Move Florida' },
   description:
     'Moving in South Florida costs $129/hr for 2 movers or $179/hr for 3, plus a truck fee per day that matches the crew rate. 3-hour minimum. See typical totals by home size and a worked example.',
-  alternates: {
-    canonical: `${siteUrl}/pricing`,
-    languages: {
-      en: `${siteUrl}/pricing`,
-      ru: `${siteUrl}/ru/pricing`,
-      'x-default': `${siteUrl}/pricing`,
-    },
-  },
+  alternates: alternatesFor('pricing', 'en'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -43,18 +38,19 @@ export const metadata: Metadata = {
 
 // Typical totals — hours band × hourly rate + that crew's truck fee. The truck
 // is charged at the crew rate: 2 movers $129, 3 movers $179, 4 movers $219.
-// Math: studio 3–4h × $129 + $129 = $516–$645; 1BR 3–5h × $129 + $129 = $516–$774;
-// 2BR low 4h × $129 + $129 = $645, high 6h × $179 + $179 = $1,253;
-// 3BR 6–8h × $179 + $179 = $1,253–$1,611; 4BR+ 8–12h × $179 + $179 = $1,611–$2,327;
-// office 6–9h × $179 + $179 = $1,253–$1,790.
 const APARTMENT_TOTALS = [
-  { size: 'Studio',          hours: '3–4 hours',  crew: '2 movers',   range: '$516–$645',      details: 'Bed, sofa, dresser, ~15 boxes' },
-  { size: '1-bedroom',       hours: '3–5 hours',  crew: '2 movers',   range: '$516–$774',      details: 'Bed, sofa, dresser, dining table, ~25 boxes' },
-  { size: '2-bedroom',       hours: '4–6 hours',  crew: '2–3 movers', range: '$645–$1,253',    details: 'Two bedroom sets, sofa, dining, ~40 boxes' },
-  { size: '3-bedroom',       hours: '6–8 hours',  crew: '3 movers',   range: '$1,253–$1,611',  details: 'Three bedrooms, living, dining, ~60 boxes' },
-  { size: '4+ bedroom / house', hours: '8–12 hours', crew: '3–4 movers', range: '$1,611–$2,327+', details: 'Full house — recommend an in-person walkthrough' },
-  { size: 'Office (≤20 ppl)',   hours: '6–9 hours', crew: '3 movers',  range: '$1,253–$1,790',  details: 'Desks, chairs, electronics, file storage' },
-];
+  { key: 'studio', size: 'Studio', details: 'Bed, sofa, dresser, ~15 boxes' },
+  { key: '1br', size: '1-bedroom', details: 'Bed, sofa, dresser, dining table, ~25 boxes' },
+  { key: '2br', size: '2-bedroom', details: 'Two bedroom sets, sofa, dining, ~40 boxes' },
+  { key: '3br', size: '3-bedroom', details: 'Three bedrooms, living, dining, ~60 boxes' },
+  { key: '4br', size: '4+ bedroom / house', details: 'Full house — recommend an in-person walkthrough' },
+  { key: 'office', size: 'Office (≤20 ppl)', details: 'Desks, chairs, electronics, file storage' },
+].map((r) => ({
+  ...r,
+  hours: `${bandHours(r.key)} hours`,
+  crew:  `${bandCrew(r.key)} movers`,
+  range: bandRange(r.key),
+}));
 
 const INCLUDED = [
   'Your crew (2 or 3 movers) for the entire job',
@@ -239,7 +235,7 @@ export default function PricingPage() {
               <Link href="/quote">
                 <Button size="lg" variant="primary">Get a Written Estimate</Button>
               </Link>
-              <a href="tel:7863051844">
+              <a href="tel:+17863051844">
                 <Button size="lg" variant="ghost" className="inline-flex items-center gap-2 text-white border-white/20">
                   <Phone size={15} /> 786-305-1844
                 </Button>

@@ -6,8 +6,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
-import { localStartingPrice, TRUCK_FEE } from '@/lib/pricing';
-import { formatCurrency, whatsappUrl } from '@/lib/utils';
+import { localStartingPrice, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { formatCurrency } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
@@ -294,7 +295,7 @@ export default function HeroSection() {
                             {c} {moveType === 'packing-only' ? 'Packers' : 'Movers'}
                           </span>
                           <span className="block text-[10px] text-gray-500 mt-0.5">
-                            ${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : (c === 2 ? 129 : c === 3 ? 179 : 229)}/hr · {formatCurrency(crewPrice)}
+                            ${moveType === 'packing-only' ? PACKING_HOURLY_RATE[c] : HOURLY_RATE[c]}/hr · {formatCurrency(crewPrice)}
                           </span>
                         </button>
                       );

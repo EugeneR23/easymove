@@ -1,15 +1,16 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { POLICY_COPY } from '@/lib/data/policies';
+import { canonicalFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Terms of Service — Easy Move Florida' },
   description:
     'Easy Move Florida terms of service — estimates and pricing, payment, customer responsibilities, liability, and cancellation policies.',
   robots: { index: false, follow: false },
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/terms',
-  },
+  alternates: canonicalFor('/terms'),
 };
 
 export default function TermsPage() {
@@ -55,13 +56,16 @@ export default function TermsPage() {
 
             <Section title="2. Minimum Charges">
               <p>
-                Local moves may be subject to a minimum service charge. This will be communicated
-                clearly at the time of booking.
+                Local moves carry a three-hour minimum on the crew&apos;s labour, plus that crew&apos;s truck
+                fee for the day. Both are published on{' '}
+                <Link href="/pricing" className="text-gold hover:underline">the pricing page</Link>{' '}
+                before you book, not disclosed at booking.
               </p>
+              <p>{POLICY_COPY.en.deposit}</p>
             </Section>
 
             <Section title="3. Payment">
-              <p>Payment is due upon completion of services unless otherwise agreed in writing.</p>
+              <p>{POLICY_COPY.en.payment}</p>
               <p>We accept:</p>
               <ul>
                 <li>Cash</li>
@@ -100,11 +104,8 @@ export default function TermsPage() {
             </Section>
 
             <Section title="6. Rescheduling & Cancellation">
-              <p>
-                We require advance notice for any rescheduling or cancellation. Cancellation fees
-                may apply depending on timing and proximity to the scheduled move date. Details will
-                be communicated at the time of booking.
-              </p>
+              <p>{POLICY_COPY.en.cancellation}</p>
+              <p>{POLICY_COPY.en.surcharges}</p>
             </Section>
 
             <Section title="7. Storage Services">
@@ -140,7 +141,7 @@ export default function TermsPage() {
               <p className="text-sm text-gray-600">
                 Easy Move Florida — Evgenii Romanov, owner<br />
                 Hollywood, Florida<br />
-                <a href="tel:7863051844" className="hover:text-gold transition-colors">786-305-1844</a>
+                <a href="tel:+17863051844" className="hover:text-gold transition-colors">786-305-1844</a>
                 <br />
                 <a href="mailto:romanov@easy-move-florida.com" className="hover:text-gold transition-colors">
                   romanov@easy-move-florida.com

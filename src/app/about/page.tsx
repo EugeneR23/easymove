@@ -7,19 +7,13 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'About Easy Move Florida — Founder-Led Movers in South Florida' },
   description:
     'Easy Move Florida is owner-led: Evgenii Romanov runs dispatch and crew leadership himself, in English and Russian. Hollywood-based, serving Miami, Fort Lauderdale and Boca Raton.',
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/about',
-    languages: {
-      en: 'https://www.easy-move-florida.com/about',
-      ru: 'https://www.easy-move-florida.com/ru/about',
-      'x-default': 'https://www.easy-move-florida.com/about',
-    },
-  },
+  alternates: alternatesFor('about', 'en'),
   openGraph: {
     title: 'About Easy Move Florida — Founder-Led Movers in South Florida',
     description:
@@ -137,7 +131,7 @@ export default function AboutPage() {
               <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
                 <Image
                   src="/images/about.png"
-                  alt="Easy Move Florida premium moving crew, South Florida"
+                  alt="Easy Move Florida moving crew loading a truck in South Florida"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center sm:object-top"

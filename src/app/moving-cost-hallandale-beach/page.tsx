@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const page = getCostPage('moving-cost-hallandale-beach')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Hallandale Beach? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/moving-cost-hallandale-beach`,
-    languages: {
-      en: `${siteUrl}/moving-cost-hallandale-beach`,
-      ru: `${siteUrl}/ru/moving-cost-hallandale-beach`,
-      uk: `${siteUrl}/ua/moving-cost-hallandale-beach`,
-      'x-default': `${siteUrl}/moving-cost-hallandale-beach`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-hallandale-beach', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

@@ -8,6 +8,8 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
+import { bandHours, bandCrew, bandRange } from '@/lib/pricingCopy';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -15,14 +17,7 @@ export const metadata: Metadata = {
   title: { absolute: 'Цены на переезд | Easy Move Florida' },
   description:
     'Переезд в Южной Флориде: $129/час за 2 грузчиков или $179/час за 3, минимум 3 часа, плюс трак в день отдельной строкой по ставке бригады. Реальные суммы по размерам квартиры и что входит в ставку.',
-  alternates: {
-    canonical: `${siteUrl}/ru/pricing`,
-    languages: {
-      en: `${siteUrl}/pricing`,
-      ru: `${siteUrl}/ru/pricing`,
-      'x-default': `${siteUrl}/pricing`,
-    },
-  },
+  alternates: alternatesFor('pricing', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
@@ -42,14 +37,23 @@ export const metadata: Metadata = {
   },
 };
 
+// Labels stay hand-written per language; hours, crew and money are derived
+// from src/lib/pricingCopy.ts. The comment that used to sit here spelled out
+// the arithmetic in prose, which is not the same as performing it.
 const APARTMENT_TOTALS = [
-  { size: 'Студия',                 hours: '3–4 часа',   crew: '2 грузчика',   range: '$516–$645',     details: 'Кровать, диван, комод, ~15 коробок' },
-  { size: '1-комнатная',            hours: '3–5 часов',  crew: '2 грузчика',   range: '$516–$774',     details: 'Кровать, диван, комод, обеденный стол, ~25 коробок' },
-  { size: '2-комнатная',            hours: '4–6 часов',  crew: '2–3 грузчика', range: '$645–$1,253',   details: 'Две спальни, диван, обеденная группа, ~40 коробок' },
-  { size: '3-комнатная',            hours: '6–8 часов',  crew: '3 грузчика',   range: '$1,253–$1,611', details: 'Три спальни, гостиная, столовая, ~60 коробок' },
-  { size: '4+ комнаты / дом',       hours: '8–12 часов', crew: '3–4 грузчика', range: '$1,611–$2,327+', details: 'Дом целиком — рекомендуем осмотр на месте' },
-  { size: 'Офис (до 20 человек)',   hours: '6–9 часов',  crew: '3 грузчика',   range: '$1,253–$1,790', details: 'Столы, кресла, техника, документация' },
-];
+  { key: 'studio', hours: '3–4 часа', size: 'Студия', details: 'Кровать, диван, комод, ~15 коробок' },
+  { key: '1br', hours: '3–5 часов', size: '1-комнатная', details: 'Кровать, диван, комод, обеденный стол, ~25 коробок' },
+  { key: '2br', hours: '4–6 часов', size: '2-комнатная', details: 'Две спальни, диван, обеденная группа, ~40 коробок' },
+  { key: '3br', hours: '6–8 часов', size: '3-комнатная', details: 'Три спальни, гостиная, столовая, ~60 коробок' },
+  { key: '4br', hours: '8–12 часов', size: '4+ комнаты / дом', details: 'Дом целиком — рекомендуем осмотр на месте' },
+  { key: 'office', hours: '6–9 часов', size: 'Офис (до 20 человек)', details: 'Столы, кресла, техника, документация' },
+].map((r) => ({
+  ...r,
+  // hours and crew carry their own Russian wording because the noun declines
+  // with the number; bandHours(r.key) is asserted against them in pricing.test.ts.
+  crew: `${bandCrew(r.key)} грузчика`,
+  range: bandRange(r.key),
+}));
 
 const INCLUDED = [
   'Два (или три) грузчика на весь объём работы',
@@ -223,7 +227,7 @@ export default function PricingRuPage() {
               <Link href="/quote">
                 <Button size="lg" variant="primary">Получить смету</Button>
               </Link>
-              <a href="tel:7863051844">
+              <a href="tel:+17863051844">
                 <Button size="lg" variant="ghost" className="inline-flex items-center gap-2 text-white border-white/20">
                   <Phone size={15} /> 786-305-1844
                 </Button>

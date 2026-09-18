@@ -1,20 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('bal-harbour-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/bal-harbour-movers',
-    languages: {
-      en: 'https://www.easy-move-florida.com/bal-harbour-movers',
-      ru: 'https://www.easy-move-florida.com/ru/bal-harbour-movers',
-      'x-default': 'https://www.easy-move-florida.com/bal-harbour-movers',
-    },
-  },
+  alternates: alternatesFor('bal-harbour-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',

@@ -79,6 +79,40 @@ export const THUMBTACK = {
   topProYear: 2024,
 } as const;
 
+/**
+ * Blended totals across the two platforms.
+ *
+ * /reviews used to print `${THUMBTACK.rating} from ${google + thumbtack} verified
+ * reviews` — a Thumbtack-only average bolted onto a combined count, which is a
+ * number no platform reports. The blend below is weighted by review count, so the
+ * headline figure and the count it cites describe the same set of reviews.
+ *
+ * Returns null while either source is unset, and the page then cites Thumbtack alone.
+ */
+export const REVIEW_TOTALS: { totalCount: number; blendedRating: string | null } = (() => {
+  const g = GOOGLE_BUSINESS;
+  const tCount = THUMBTACK.reviewCount;
+  const tRating = Number(THUMBTACK.rating);
+  if (g.rating === null || g.reviewCount === null) {
+    return { totalCount: tCount, blendedRating: THUMBTACK.rating };
+  }
+  const totalCount = g.reviewCount + tCount;
+  const weighted = (Number(g.rating) * g.reviewCount + tRating * tCount) / totalCount;
+  return { totalCount, blendedRating: weighted.toFixed(1) };
+})();
+
+/**
+ * How each platform gates a review — stated per source, because they differ.
+ *
+ * The site used to say "Both platforms verify the customer hired us before they
+ * accept a review". Thumbtack does tie a review to a booked job. Google does not:
+ * it requires a genuine experience but does not confirm a customer relationship.
+ * Asserting otherwise put a false claim about a third party in our own mouth.
+ */
+export const REVIEW_SOURCING_NOTE =
+  'Thumbtack only accepts a review from a customer it can confirm booked us. Google does not verify the hire, ' +
+  'but like Thumbtack it does not let a business filter or remove what gets published.';
+
 /** True once there is a licence number worth showing. */
 export const hasLicenceNumber = (): boolean => Boolean(FDACS_NUMBER || USDOT_NUMBER);
 

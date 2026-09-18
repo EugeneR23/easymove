@@ -109,7 +109,7 @@ function getSeedServices(): Service[] {
       features: [
         { icon: 'Palette', label: 'Fine art packing & protective crating' },
         { icon: 'Music', label: 'Grand piano moving' },
-        { icon: 'Thermometer', label: 'Climate-aware loading & transport' },
+        { icon: 'Thermometer', label: 'Photographic inventory' },
         { icon: 'Camera', label: 'Before & after photo documentation' },
         { icon: 'Lock', label: 'Extra care protocols for high-value items' },
         { icon: 'Star', label: 'Careful placement at destination' },
@@ -122,9 +122,9 @@ function getSeedServices(): Service[] {
       id: 'svc-6', slug: 'storage-solutions', createdAt: now, updatedAt: now,
       category: 'storage', name: 'Storage Coordination', sortOrder: 6,
       tagline: 'Short- or long-term storage at trusted Miami-Dade facilities — we handle pickup and redelivery.',
-      description: `Between a closing and your new home, or when items need to sit safely during a renovation, we can coordinate storage at trusted, climate-controlled facilities in Miami-Dade. We handle the pickup from your current location and redelivery when you're ready. Storage is month-to-month. We'll recommend the right facility based on what you're storing and how long you need it — and stay involved so you're not managing a separate relationship.`,
+      description: `Between a closing and your new home, or when items need to sit safely during a renovation, we can coordinate storage at third-party facilities in Miami-Dade, naming the facility before anything moves. We handle the pickup from your current location and redelivery when you're ready. Storage is month-to-month. We'll recommend the right facility based on what you're storing and how long you need it — and stay involved so you're not managing a separate relationship.`,
       features: [
-        { icon: 'Archive', label: 'Climate-controlled facilities' },
+        { icon: 'Archive', label: 'Climate-controlled space available' },
         { icon: 'Video', label: 'Secured, monitored storage' },
         { icon: 'Truck', label: 'Pickup & redelivery handled by us' },
         { icon: 'Shield', label: 'Storage insurance available' },

@@ -63,7 +63,7 @@ const SERVICES = [
   { icon: Building2, name: 'Переезд из высоток', desc: 'Brickell, Sunny Isles, Aventura — координация лифтов, COI за 24 часа.', href: '/quote?type=local' },
   { icon: Truck, name: 'Доставка мебели и вещей', desc: 'Диван из магазина или находка с маркетплейса — заберём, упакуем, поднимем на этаж.', href: '/quote?type=local' },
   { icon: Package, name: 'Упаковка', desc: 'Профессиональная упаковка с материалами. Каждый предмет обёрнут.', href: '/quote?type=packing-only' },
-  { icon: Palette, name: 'Картины и антиквариат', desc: 'Музейная упаковка, кастомные ящики, климат-контроль.', href: '/quote?type=specialty' },
+  { icon: Palette, name: 'Картины и антиквариат', desc: 'Кастомные деревянные ящики, двойная упаковка, обрешётка углов.', href: '/quote?type=specialty' },
   { icon: Users, name: 'Офисные переезды', desc: 'Минимальный простой. Серверы, мебель, документы — всё аккуратно.', href: '/quote?type=local' },
 ];
 
@@ -301,7 +301,7 @@ export default function RuHomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 relative">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
               {[
-                { val: '32', label: 'Отзыва', sub: 'Проверенные на Thumbtack' },
+                { val: `${THUMBTACK.reviewCount}`, label: 'Отзыва', sub: 'Проверенные на Thumbtack' },
                 { val: `${THUMBTACK.rating} ★`, label: 'Рейтинг', sub: `Thumbtack, ${THUMBTACK.reviewCount} отзыва` },
                 { val: '< 2 ч', label: 'Ответ', sub: 'Координатор перезвонит' },
                 { val: '$0', label: 'Скрытых платежей', sub: 'Цена подтверждена письменно' },

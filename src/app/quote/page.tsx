@@ -6,14 +6,13 @@ import QuoteWizard from '@/components/quote/QuoteWizard';
 import ExitIntent from '@/components/quote/ExitIntent';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Shield, Clock, Phone, Star } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Get a Free Moving Estimate in South Florida — Easy Move Florida' },
   description:
     'Get a free moving estimate in under 2 minutes. A real coordinator confirms your final price — no automated guesswork. Miami, Fort Lauderdale & Boca Raton.',
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/quote',
-  },
+  alternates: alternatesFor('quote', 'en'),
   openGraph: {
     title: 'Get a Free Moving Estimate — Easy Move Florida',
     description:

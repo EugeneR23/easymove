@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -26,15 +27,7 @@ export const metadata: Metadata = {
     description: 'Переезды в Майами. От $129/час плюс трак в день по ставке бригады. Ставка зафиксирована, скрытых сборов нет.',
     images: [`${siteUrl}/images/Hero.png`],
   },
-  alternates: {
-    canonical: `${siteUrl}/ru`,
-    languages: {
-      'en': siteUrl,
-      'ru': `${siteUrl}/ru`,
-      'uk': `${siteUrl}/ua`,
-      'x-default': siteUrl,
-    },
-  },
+  alternates: alternatesFor('', 'ru'),
 };
 
 export default function RuLayout({ children }: { children: React.ReactNode }) {

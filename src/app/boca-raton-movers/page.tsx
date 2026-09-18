@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('boca-raton-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easy-move-florida.com/boca-raton-movers' },
+  alternates: alternatesFor('boca-raton-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
         url: 'https://www.easy-move-florida.com/images/Real/Boca-Raton.jpg',
         width: 1200,
         height: 630,
-        alt: 'Easy Move Florida — Luxury Movers in Boca Raton, FL',
+        alt: 'Easy Move Florida — movers in Boca Raton, FL',
       },
     ],
   },

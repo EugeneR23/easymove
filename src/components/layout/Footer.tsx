@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { hoursLine } from '@/lib/data/hours';
-import { licenceLine, THUMBTACK } from '@/lib/data/credentials';
+import { licenceLine, THUMBTACK, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
+import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/lib/utils';
+import { whatsappUrl } from '@/lib/data/contact';
 
 export default function Footer() {
   return (
@@ -39,6 +40,7 @@ export default function Footer() {
                 { href: '/services/office-commercial', label: 'Office (Small)' },
                 { href: '/packing-services', label: 'Packing' },
                 { href: '/services/specialty-items', label: 'Heavy & Specialty Items' },
+                { href: '/services/storage-solutions', label: 'Storage' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
@@ -62,6 +64,10 @@ export default function Footer() {
                 // to sit here went stale the moment nine new city pages shipped.
                 ...CITIES.map((c) => ({ href: `/${c.slug}`, label: `${c.name} Movers` })),
                 { href: '/packing-services', label: 'Packing Services' },
+                // The cost pages had no footer link at all. Their only inbound link
+                // was the conditional one in the city template, which does not fire
+                // for the 12 English cities that have no cost page of their own.
+                ...COST_PAGES.map((c) => ({ href: `/${c.slug}`, label: `Moving Cost in ${c.cityName}` })),
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
@@ -165,14 +171,18 @@ export default function Footer() {
               {licenceLine() && (
                 <p className="text-gray-500">{licenceLine()}</p>
               )}
-              <a
-                href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* The same figure the JSON-LD aggregateRating claims. Google asks that
+                  an aggregate rating be visible on the page carrying the markup, and
+                  this footer is the only rating most pages show. /reviews breaks it
+                  back out by platform and links to both profiles. */}
+              <Link
+                href="/reviews"
                 className="flex items-center gap-1.5 text-gold/60 hover:text-gold transition-colors"
               >
-                <span className="text-[10px] uppercase tracking-widest">{THUMBTACK.rating}★ · {THUMBTACK.reviewCount} Reviews on Thumbtack ↗</span>
-              </a>
+                <span className="text-[10px] uppercase tracking-widest">
+                  {REVIEW_TOTALS.blendedRating}★ · {REVIEW_TOTALS.totalCount} reviews on Google &amp; Thumbtack
+                </span>
+              </Link>
             </div>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>

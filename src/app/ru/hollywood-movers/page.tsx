@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataRu } from '@/lib/data/citiesRu';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityDataRu('ru/hollywood-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/ru/hollywood-movers`,
-    languages: {
-      en: `${siteUrl}/hollywood-movers`,
-      ru: `${siteUrl}/ru/hollywood-movers`,
-      uk: `${siteUrl}/ua/hollywood-movers`,
-      'x-default': `${siteUrl}/hollywood-movers`,
-    },
-  },
+  alternates: alternatesFor('hollywood-movers', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

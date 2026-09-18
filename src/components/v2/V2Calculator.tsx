@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { cn, formatCurrency } from '@/lib/utils';
-import { localStartingPrice, LD_MINIMUM, MIN_HOURS, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, MIN_HOURS, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const PACKING_HOURS: Record<HomeSize, number> = {
@@ -163,7 +163,7 @@ export default function V2Calculator() {
               <Link href={wizardHref} className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-colors">
                 Lock This Rate
               </Link>
-              <a href="tel:7863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
+              <a href="tel:+17863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
                 786-305-1844
               </a>
               <button type="button" onClick={reset} className="text-white/25 hover:text-white/60 text-xs transition-colors sm:ml-auto">
@@ -177,21 +177,21 @@ export default function V2Calculator() {
         {(isLong || isCustom) && (
           <div className="border border-gold/25 bg-gold/[0.04] p-6 sm:p-10">
             <p className="text-white/35 text-[10px] tracking-[0.4em] uppercase mb-3">
-              {isLong ? 'Flat rate · dedicated truck' : 'Quoted individually'}
+              {'Quoted individually'}
             </p>
             <p className="font-mono text-gold text-5xl sm:text-6xl leading-none tabular-nums">
-              {isLong ? <>from {formatCurrency(LD_MINIMUM)}</> : 'Custom'}
+              {'Custom'}
             </p>
             <p className="text-white/40 text-sm mt-4 max-w-lg leading-relaxed">
               {isLong
-                ? 'Depends on miles, volume and access at both ends. Written quote within 24 hours — your goods travel on a dedicated truck, never shared.'
+                ? 'Anywhere inside Florida, priced on miles, volume and access at both ends, with a written quote within 24 hours. We do not cross a state line — that needs federal authority we do not hold, and we will point you to a licensed carrier instead.'
                 : 'Pianos, art collections, estates and offices are planned personally with your coordinator. Tell us about the move — we respond within hours.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link href={wizardHref} className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-colors">
                 Get Exact Quote
               </Link>
-              <a href="tel:7863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
+              <a href="tel:+17863051844" className="border border-white/20 hover:border-gold text-white hover:text-gold text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-all">
                 786-305-1844
               </a>
             </div>

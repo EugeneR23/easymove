@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Packing Services Miami | Easy Move Florida' },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     'moving packers Miami',
     'home packing service Miami',
   ],
-  alternates: { canonical: 'https://www.easy-move-florida.com/packing-services' },
+  alternates: alternatesFor('packing-services', 'en'),
   openGraph: {
     title: 'Packing Services Miami | Easy Move Florida',
     description:
@@ -60,7 +61,7 @@ const WHAT_WE_PACK = [
   { label: 'Kitchen & Fragile Items', desc: 'Plates, glassware, cookware, and small appliances — wrapped individually, boxed to industry standard.' },
   { label: 'Bedrooms & Closets', desc: 'Clothing, linens, and personal items packed efficiently. Wardrobes hung directly into wardrobe boxes.' },
   { label: 'Living Room & Artwork', desc: 'Electronics, décor, books, and framed artwork. Mirror boxes and picture protection on request.' },
-  { label: 'Fine Art & Antiques', desc: 'Museum-grade wrapping for high-value and irreplaceable items. Custom crating available.' },
+  { label: 'Fine Art & Antiques', desc: 'Custom wooden crates, corner protection and double-boxing for high-value and irreplaceable items.' },
   { label: 'Office & Home Office', desc: 'Equipment, files, and electronics packed and labeled by room for easy unpacking.' },
   { label: 'Garage & Storage Areas', desc: 'Tools, sports equipment, and bulk items efficiently sorted and boxed.' },
 ];
@@ -138,7 +139,7 @@ export default function PackingServicesPage() {
                 Get a Packing Estimate <ArrowRight size={15} />
               </Link>
               <a
-                href="tel:7863051844"
+                href="tel:+17863051844"
                 className="inline-flex items-center justify-center gap-2 border border-white/25 text-white font-bold px-8 py-4 text-sm uppercase tracking-wider hover:bg-white/10 transition-colors duration-200"
               >
                 <Phone size={15} /> 786-305-1844

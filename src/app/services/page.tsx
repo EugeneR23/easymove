@@ -8,20 +8,14 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   // [TODO: FDACS IM# + insurance details from Evgenii]
   title: { absolute: 'Moving Services in South Florida | Easy Move Florida' },
   description:
     'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Owner-led, COI in 24 hours, transparent pricing.',
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/services',
-    languages: {
-      en: 'https://www.easy-move-florida.com/services',
-      ru: 'https://www.easy-move-florida.com/ru/services',
-      'x-default': 'https://www.easy-move-florida.com/services',
-    },
-  },
+  alternates: alternatesFor('services', 'en'),
   openGraph: {
     title: 'Moving Services in South Florida | Easy Move Florida',
     description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516, long-distance within Florida.',
@@ -54,7 +48,7 @@ const SERVICES = [
     name: 'High-Rise & Condo Moving',
     sub: 'Brickell · Aventura · Sunny Isles · Boca',
     description:
-      "South Florida's luxury towers require more than a regular crew. We manage elevator reservations, COI submissions, loading dock coordination, and building compliance — so you don't have to.",
+      "South Florida towers will not let a crew past the lobby without paperwork. We handle the elevator reservation, the COI to the association, the loading dock window and the building's own compliance forms, so the move-in is approved before your date rather than argued on the morning of it.",
     highlights: ['COI issued within 24 hours', 'Elevator & dock coordination', 'Building-approved materials', 'Floor & wall protection', 'High-rise moves across Sunny Isles, Aventura, Miami Beach and Hollywood towers'],
     image: '/images/Real/9.jpg',
     href: '/quote?type=local',
@@ -87,8 +81,8 @@ const SERVICES = [
     name: 'Fine Art & Specialty Items',
     sub: 'Pianos · Art Collections · Wine Cellars',
     description:
-      'Grand pianos, original art, wine cellars, and oversized safes require a different level of care. Custom crating, climate-controlled transport, and white-glove placement at destination.',
-    highlights: ['Custom wooden crating', 'Climate-controlled options', 'White-glove installation', 'Coordinated with building', 'Quoted individually'],
+      'Grand pianos, original art, wine cellars and oversized safes need a different plan than a sofa. We build custom wooden crates, pad and rig the piece, and place it where you want it at the other end. Climate-controlled transport, when something needs it, we arrange with a specialist carrier.',
+    highlights: ['Custom wooden crating', 'Padding and rigging', 'Placed where you want it', 'Coordinated with building', 'Quoted individually'],
     image: '/images/Real/10.png',
     href: '/quote?type=specialty',
     cta: 'Request a Specialty Quote',
@@ -103,6 +97,17 @@ const SERVICES = [
     image: '/images/Real/4.png',
     href: '/quote?type=specialty',
     cta: 'Get a FREE Office Quote',
+  },
+  {
+    icon: Package,
+    name: 'Storage Between Moves',
+    sub: 'Closing gaps · Renovations · Month to month',
+    description:
+      'When the new place is not ready, we pick up, deliver into a storage facility we book on your behalf, and bring everything back on your date. You deal with us, not with a separate storage company.',
+    highlights: ['We book and name the facility', 'Pickup and redelivery by the same crew', 'Month-to-month, no minimum', 'Photo inventory before it goes in', 'Climate-controlled space where offered'],
+    image: '/images/Real/5.png',
+    href: '/services/storage-solutions',
+    cta: 'See How Storage Works',
   },
 ];
 

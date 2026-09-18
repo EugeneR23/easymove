@@ -7,19 +7,13 @@ import GoogleMapEmbed from '@/components/contact/GoogleMapEmbed';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, Mail, MapPin, Clock, Shield } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Contact Easy Move Florida — South Florida Moving Company' },
   description:
     'Contact Easy Move Florida in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/contact',
-    languages: {
-      en: 'https://www.easy-move-florida.com/contact',
-      ru: 'https://www.easy-move-florida.com/ru/contact',
-      'x-default': 'https://www.easy-move-florida.com/contact',
-    },
-  },
+  alternates: alternatesFor('contact', 'en'),
   openGraph: {
     title: 'Contact Easy Move Florida — South Florida Moving Company',
     description:
@@ -103,7 +97,7 @@ export default function ContactPage() {
                       <p className="text-gold text-xs font-semibold tracking-[0.25em] uppercase">Fastest Response</p>
                     </div>
                     <a
-                      href="tel:7863051844"
+                      href="tel:+17863051844"
                       className="font-display text-3xl font-bold text-white hover:text-gold transition-colors duration-200 block mb-1"
                     >
                       786-305-1844
