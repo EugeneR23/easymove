@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { ArrowRight, Building2, Truck, Palette, Package, Shield, Phone } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -13,14 +14,7 @@ export const metadata: Metadata = {
   title: { absolute: 'Услуги переезда | Easy Move Florida' },
   description:
     'Локальные, дальние, в высотках, упаковка, специальные предметы — все услуги переезда в Майами, Форт-Лодердейле и Бока-Ратоне. COI за 24 часа, прозрачные цены.',
-  alternates: {
-    canonical: `${siteUrl}/ru/services`,
-    languages: {
-      'en': `${siteUrl}/services`,
-      'ru': `${siteUrl}/ru/services`,
-      'x-default': `${siteUrl}/services`,
-    },
-  },
+  alternates: alternatesFor('services', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

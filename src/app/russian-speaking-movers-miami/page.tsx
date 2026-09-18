@@ -9,6 +9,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, MessageCircle } from 'lucide-react';
 import { CITIES_RU } from '@/lib/data/citiesRu';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -26,14 +27,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: `Russian-Speaking Movers in Miami & South Florida | Easy Move Florida` },
   description: `Russian-speaking movers in Miami, Sunny Isles, Aventura, Hallandale and Hollywood. Owner-led crews, rates from $129/hr, free COI in 24h. Call 786-305-1844.`,
-  alternates: {
-    canonical: `${siteUrl}/russian-speaking-movers-miami`,
-    languages: {
-      en: `${siteUrl}/russian-speaking-movers-miami`,
-      ru: `${siteUrl}/ru/russkie-gruzchiki-miami`,
-      'x-default': `${siteUrl}/russian-speaking-movers-miami`,
-    },
-  },
+  alternates: alternatesFor('russian-speaking-movers-miami', 'en'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

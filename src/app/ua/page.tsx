@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone } from 'lucide-react';
 import { CITIES_UA } from '@/lib/data/citiesUa';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -23,15 +24,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: `Переїзди в Південній Флориді — сайт українською | Easy Move Florida` },
   description: `Easy Move Florida — переїзди в Маямі, Голлівуді, Санні-Айлс: вантажники від $129/год, без депозиту, кошторис за 24 години. Сайт українською. 786-305-1844.`,
-  alternates: {
-    canonical: `${siteUrl}/ua`,
-    languages: {
-      en: siteUrl,
-      ru: `${siteUrl}/ru`,
-      uk: `${siteUrl}/ua`,
-      'x-default': siteUrl,
-    },
-  },
+  alternates: alternatesFor('', 'uk'),
   openGraph: {
     type: 'website',
     locale: 'uk_UA',

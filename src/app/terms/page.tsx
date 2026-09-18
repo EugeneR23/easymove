@@ -3,15 +3,14 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { POLICY_COPY } from '@/lib/data/policies';
+import { canonicalFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Terms of Service — Easy Move Florida' },
   description:
     'Easy Move Florida terms of service — estimates and pricing, payment, customer responsibilities, liability, and cancellation policies.',
   robots: { index: false, follow: false },
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/terms',
-  },
+  alternates: canonicalFor('/terms'),
 };
 
 export default function TermsPage() {

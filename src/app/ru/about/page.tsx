@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Award, Users, Shield, MapPin, Phone } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -13,14 +14,7 @@ export const metadata: Metadata = {
   title: { absolute: 'О компании | Easy Move Florida' },
   description:
     'Easy Move Florida — мувинговая компания с личным участием владельца в Южной Флориде. Майами, Форт-Лодердейл, Бока-Ратон. Основатель Евгений Романов. Говорим по-русски.',
-  alternates: {
-    canonical: `${siteUrl}/ru/about`,
-    languages: {
-      'en': `${siteUrl}/about`,
-      'ru': `${siteUrl}/ru/about`,
-      'x-default': `${siteUrl}/about`,
-    },
-  },
+  alternates: alternatesFor('about', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

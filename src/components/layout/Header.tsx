@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { whatsappUrl } from '@/lib/utils';
-import { RU_PAIRED_PATHS, UA_PAIRED_PATHS } from '@/lib/data/localePairs';
+import { PAIRED_PATHS } from '@/lib/seo/routes';
 
 const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
@@ -52,8 +52,8 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  // Which counterparts exist is read from lib/data/localePairs, so the switch
-  // cannot drift from the pages that actually exist — scripts/links.test.ts
+  // Which counterparts exist is read from lib/seo/routes, the same table the
+  // pages and the sitemap use, so the switch cannot drift from them — scripts/links.test.ts
   // fails when it does. The hand-kept list this replaced had already gone
   // stale: nine dual-language cities shipped while it still knew six, and every
   // one of them dropped the visitor on the homepage instead of the counterpart.
@@ -63,13 +63,13 @@ export default function Header() {
   const langLinks = (() => {
     const en = { href: bare ? `/${bare}` : '/', label: 'EN', hl: 'en', active: !isRu && !isUa };
     const ru = {
-      href: bare && RU_PAIRED_PATHS.includes(bare) ? `/ru/${bare}` : '/ru',
+      href: bare && PAIRED_PATHS.ru.includes(bare) ? `/ru/${bare}` : '/ru',
       label: 'RU',
       hl: 'ru',
       active: isRu,
     };
     const ua = {
-      href: bare && UA_PAIRED_PATHS.includes(bare) ? `/ua/${bare}` : '/ua',
+      href: bare && PAIRED_PATHS.uk.includes(bare) ? `/ua/${bare}` : '/ua',
       label: 'UA',
       hl: 'uk',
       active: isUa,

@@ -1,22 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('fort-lauderdale-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/fort-lauderdale-movers',
-    languages: {
-      en: 'https://www.easy-move-florida.com/fort-lauderdale-movers',
-      ru: 'https://www.easy-move-florida.com/ru/fort-lauderdale-movers',
-
-      uk: 'https://www.easy-move-florida.com/ua/fort-lauderdale-movers',
-      'x-default': 'https://www.easy-move-florida.com/fort-lauderdale-movers',
-    },
-  },
+  alternates: alternatesFor('fort-lauderdale-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',

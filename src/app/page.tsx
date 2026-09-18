@@ -12,21 +12,13 @@ import FAQSection from '@/components/home/FAQSection';
 import FounderBlock from '@/components/home/FounderBlock';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'South Florida Movers — Easy Move Florida | Hollywood, FL' },
   description:
     'Owner-led local movers across South Florida — Hollywood, Aventura, Miami, Fort Lauderdale. From $129/hr, 3-hour minimum. COI in 24h. Russian + English.',
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com',
-    languages: {
-      en: 'https://www.easy-move-florida.com',
-      ru: 'https://www.easy-move-florida.com/ru',
-
-      uk: 'https://www.easy-move-florida.com/ua',
-      'x-default': 'https://www.easy-move-florida.com',
-    },
-  },
+  alternates: alternatesFor('', 'en'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

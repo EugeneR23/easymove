@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { canonicalFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Privacy Policy — Easy Move Florida' },
   description:
     'How Easy Move Florida collects, uses, and protects your personal information when you request a moving estimate or contact us.',
   robots: { index: false, follow: false },
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/privacy',
-  },
+  alternates: canonicalFor('/privacy'),
 };
 
 export default function PrivacyPage() {

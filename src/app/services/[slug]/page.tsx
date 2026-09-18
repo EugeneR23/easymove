@@ -12,6 +12,7 @@ import { formatCurrency } from '@/lib/utils';
 import Button from '@/components/ui/Button';
 import * as LucideIcons from 'lucide-react';
 import { CheckCircle, Shield, Phone } from 'lucide-react';
+import { canonicalFor } from '@/lib/seo/routes';
 
 export async function generateStaticParams() {
   const services = readAllServices();
@@ -30,9 +31,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: { absolute: title },
     description,
-    alternates: {
-      canonical: `https://www.easy-move-florida.com/services/${service.slug}`,
-    },
+    alternates: canonicalFor(`/services/${service.slug}`),
     openGraph: {
       title,
       description,

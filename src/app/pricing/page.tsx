@@ -8,6 +8,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -15,14 +16,7 @@ export const metadata: Metadata = {
   title: { absolute: 'South Florida Moving Costs & Hourly Rates | Easy Move Florida' },
   description:
     'Moving in South Florida costs $129/hr for 2 movers or $179/hr for 3, plus a truck fee per day that matches the crew rate. 3-hour minimum. See typical totals by home size and a worked example.',
-  alternates: {
-    canonical: `${siteUrl}/pricing`,
-    languages: {
-      en: `${siteUrl}/pricing`,
-      ru: `${siteUrl}/ru/pricing`,
-      'x-default': `${siteUrl}/pricing`,
-    },
-  },
+  alternates: alternatesFor('pricing', 'en'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

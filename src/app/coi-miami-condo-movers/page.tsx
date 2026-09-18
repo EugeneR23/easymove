@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, CheckCircle, X } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   },
   description:
     'Miami condo and high-rise movers who handle the Certificate of Insurance. COI issued to your building management within 24 hours of booking, free, in their required format naming the building as additional insured. From $129/hr.',
-  alternates: { canonical: `${siteUrl}/coi-miami-condo-movers` },
+  alternates: alternatesFor('coi-miami-condo-movers', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

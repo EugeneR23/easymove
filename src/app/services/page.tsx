@@ -8,20 +8,14 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   // [TODO: FDACS IM# + insurance details from Evgenii]
   title: { absolute: 'Moving Services in South Florida | Easy Move Florida' },
   description:
     'Local, long-distance, high-rise, packing, and specialty moving services in Miami, Fort Lauderdale & Boca Raton. Owner-led, COI in 24 hours, transparent pricing.',
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/services',
-    languages: {
-      en: 'https://www.easy-move-florida.com/services',
-      ru: 'https://www.easy-move-florida.com/ru/services',
-      'x-default': 'https://www.easy-move-florida.com/services',
-    },
-  },
+  alternates: alternatesFor('services', 'en'),
   openGraph: {
     title: 'Moving Services in South Florida | Easy Move Florida',
     description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516, long-distance within Florida.',

@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Star, ExternalLink, MessageSquare, Award } from 'lucide-react';
 import { THUMBTACK, GOOGLE_BUSINESS, REVIEW_TOTALS, REVIEW_SOURCING_NOTE } from '@/lib/data/credentials';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -23,10 +24,7 @@ export const metadata: Metadata = {
   title: { absolute: `Client Reviews — ${THUMBTACK.rating} on Thumbtack, ${GOOGLE_BUSINESS.rating} on Google | Easy Move Florida` },
   description:
     `Easy Move Florida holds a ${THUMBTACK.rating} rating across ${THUMBTACK.reviewCount} verified Thumbtack reviews and ${GOOGLE_BUSINESS.rating} on Google. See the full review history and how we ask for feedback after every South Florida move.`,
-  alternates: {
-    canonical: `${siteUrl}/reviews`,
-    languages: { en: `${siteUrl}/reviews`, 'x-default': `${siteUrl}/reviews` },
-  },
+  alternates: alternatesFor('reviews', 'en'),
   openGraph: {
     type: 'website',
     locale: 'en_US',

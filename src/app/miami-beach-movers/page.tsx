@@ -1,20 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('miami-beach-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/miami-beach-movers',
-    languages: {
-      en: 'https://www.easy-move-florida.com/miami-beach-movers',
-      ru: 'https://www.easy-move-florida.com/ru/miami-beach-movers',
-      'x-default': 'https://www.easy-move-florida.com/miami-beach-movers',
-    },
-  },
+  alternates: alternatesFor('miami-beach-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',

@@ -1,22 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('aventura-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: 'https://www.easy-move-florida.com/aventura-movers',
-    languages: {
-      en: 'https://www.easy-move-florida.com/aventura-movers',
-      ru: 'https://www.easy-move-florida.com/ru/aventura-movers',
-
-      uk: 'https://www.easy-move-florida.com/ua/aventura-movers',
-      'x-default': 'https://www.easy-move-florida.com/aventura-movers',
-    },
-  },
+  alternates: alternatesFor('aventura-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',

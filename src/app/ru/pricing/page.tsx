@@ -8,6 +8,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -15,14 +16,7 @@ export const metadata: Metadata = {
   title: { absolute: 'Цены на переезд | Easy Move Florida' },
   description:
     'Переезд в Южной Флориде: $129/час за 2 грузчиков или $179/час за 3, минимум 3 часа, плюс трак в день отдельной строкой по ставке бригады. Реальные суммы по размерам квартиры и что входит в ставку.',
-  alternates: {
-    canonical: `${siteUrl}/ru/pricing`,
-    languages: {
-      en: `${siteUrl}/pricing`,
-      ru: `${siteUrl}/ru/pricing`,
-      'x-default': `${siteUrl}/pricing`,
-    },
-  },
+  alternates: alternatesFor('pricing', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

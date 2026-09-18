@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const page = getCostPage('moving-cost-pembroke-pines')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,7 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: "How Much Do Movers Cost in Pembroke Pines? (2026 Prices) | Easy Move Florida" },
   description: page.metaDescription,
-  alternates: { canonical: `${siteUrl}/moving-cost-pembroke-pines` },
+  alternates: alternatesFor('moving-cost-pembroke-pines', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

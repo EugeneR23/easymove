@@ -7,6 +7,7 @@ import { GOOGLE_BUSINESS, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
 import './globals.css';
+import { alternatesFor } from '@/lib/seo/routes';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
 // Headings use 400/600/700, body uses 400/500/700. Italics + extra weights dropped.
@@ -83,15 +84,7 @@ export const metadata: Metadata = {
       'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
     images: [`${siteUrl}/images/Hero.png`],
   },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      'en': siteUrl,
-      'ru': `${siteUrl}/ru`,
-      'uk': `${siteUrl}/ua`,
-      'x-default': siteUrl,
-    },
-  },
+  alternates: alternatesFor('', 'en'),
   // Search Console / Webmaster Tools verification (RU + EN + Bing).
   // Fill in via env vars or paste verification codes when ready.
   verification: {

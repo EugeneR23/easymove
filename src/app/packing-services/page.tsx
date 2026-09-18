@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
+import { alternatesFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
   title: { absolute: 'Packing Services Miami | Easy Move Florida' },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     'moving packers Miami',
     'home packing service Miami',
   ],
-  alternates: { canonical: 'https://www.easy-move-florida.com/packing-services' },
+  alternates: alternatesFor('packing-services', 'en'),
   openGraph: {
     title: 'Packing Services Miami | Easy Move Florida',
     description:

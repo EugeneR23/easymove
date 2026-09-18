@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -26,15 +27,7 @@ export const metadata: Metadata = {
     description: 'Від $129/год плюс трак за ставкою бригади. Ставка зафіксована, прихованих зборів немає.',
     images: [`${siteUrl}/images/Hero.png`],
   },
-  alternates: {
-    canonical: `${siteUrl}/ua`,
-    languages: {
-      'en': siteUrl,
-      'ru': `${siteUrl}/ru`,
-      'uk': `${siteUrl}/ua`,
-      'x-default': siteUrl,
-    },
-  },
+  alternates: alternatesFor('', 'uk'),
 };
 
 export default function UaLayout({ children }: { children: React.ReactNode }) {

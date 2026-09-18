@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, CheckCircle, X } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -17,15 +18,7 @@ export const metadata: Metadata = {
   title: { absolute: 'Movers Cost in Miami — 2026 Prices | Easy Move Florida' },
   description:
     'Miami movers: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum + truck at the crew rate. A 1-bedroom runs $516–$774 all-in. Full 2026 breakdown.',
-  alternates: {
-    canonical: `${siteUrl}/moving-cost-miami`,
-    languages: {
-      en: `${siteUrl}/moving-cost-miami`,
-      ru: `${siteUrl}/ru/moving-cost-miami`,
-      uk: `${siteUrl}/ua/moving-cost-miami`,
-      'x-default': `${siteUrl}/moving-cost-miami`,
-    },
-  },
+  alternates: alternatesFor('moving-cost-miami', 'en'),
   openGraph: {
     type: 'article',
     locale: 'en_US',

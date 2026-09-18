@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "test:claims": "node scripts/claims-guard.mjs",
-    "prebuild": "node scripts/claims-guard.mjs && tsx scripts/pricing.test.ts",
-    "test:pricing": "tsx scripts/pricing.test.ts"
+    "prebuild": "node scripts/claims-guard.mjs && tsx scripts/pricing.test.ts && tsx scripts/links.test.ts",
+    "test:pricing": "tsx scripts/pricing.test.ts",
+    "test:links": "tsx scripts/links.test.ts"
   },
   "dependencies": {
     "@remotion/player": "^4.0.454",

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataUa } from '@/lib/data/citiesUa';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityDataUa('ua/miami-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/ua/miami-movers`,
-    languages: {
-      en: `${siteUrl}/miami-movers`,
-      ru: `${siteUrl}/ru/miami-movers`,
-      uk: `${siteUrl}/ua/miami-movers`,
-      'x-default': `${siteUrl}/miami-movers`,
-    },
-  },
+  alternates: alternatesFor('miami-movers', 'uk'),
   openGraph: {
     type: 'website',
     locale: 'uk_UA',

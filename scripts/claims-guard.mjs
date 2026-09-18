@@ -16,6 +16,8 @@ import { join, relative, sep } from 'node:path';
 const ROOT = process.cwd();
 const SCAN = ['src', 'data', 'public/llms.txt', 'docs/GBP_COPY_PASTE_PACKAGE.md', 'docs/AGGREGATOR_SUBMISSION_PACKAGE.md'];
 const SKIP_DIRS = new Set(['node_modules', '.next', '.git', 'audit', 'superpowers', 'deflora']);
+/** Files allowed to contain what a rule bans, because they are its single source. */
+const RULE_EXEMPT = new Map([['hand-written-canonical', ['src/lib/seo/routes.ts']]]);
 const EXT = /\.(tsx?|jsx?|mjs|json|md|txt)$/;
 
 /** Exact substrings that are confirmed true. Add only with a line in CLAIMS_TO_CONFIRM.md. */
@@ -92,6 +94,9 @@ const RULES = [
   { id: 'contradicts-cancellation-policy', why: 'Free cancellation more than 48h out, and no fee inside it. Import POLICY_COPY from src/lib/data/policies.ts.',
     re: /cancellation fees? (?:may|will|can) apply|cancellation (?:fee|charge) of|\u0448\u0442\u0440\u0430\u0444 \u0437\u0430 \u043e\u0442\u043c\u0435\u043d\u0443 \u0441\u043e\u0441\u0442\u0430\u0432/gi },
 
+  { id: 'hand-written-canonical', why: 'canonical and hreflang come from alternatesFor() in src/lib/seo/routes.ts. Typing either by hand is how nine Russian pages ended up with a canonical and no language cluster.',
+    re: /canonical:\s*[`'"]|languages:\s*\{|'x-default'/g },
+
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
 ];
@@ -116,6 +121,8 @@ for (const target of SCAN) {
         rule.re.lastIndex = 0;
         for (const m of line.matchAll(rule.re)) {
           if (ALLOW.some((a) => line.includes(a))) continue;
+          const rel = relative(ROOT, file).split(sep).join('/');
+          if (RULE_EXEMPT.get(rule.id)?.includes(rel)) continue;
           hits.push({ rule, file: relative(ROOT, file).split(sep).join('/'), line: i + 1, text: m[0] });
         }
       });

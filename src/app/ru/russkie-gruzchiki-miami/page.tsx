@@ -8,6 +8,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Phone, MessageCircle } from 'lucide-react';
 import { CITIES_RU } from '@/lib/data/citiesRu';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -28,14 +29,7 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: {
-    canonical: `${siteUrl}/ru/russkie-gruzchiki-miami`,
-    languages: {
-      en: `${siteUrl}/russian-speaking-movers-miami`,
-      ru: `${siteUrl}/ru/russkie-gruzchiki-miami`,
-      'x-default': `${siteUrl}/russian-speaking-movers-miami`,
-    },
-  },
+  alternates: alternatesFor('russian-speaking-movers-miami', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',

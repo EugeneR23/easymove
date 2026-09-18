@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataUa } from '@/lib/data/citiesUa';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityDataUa('ua/sunny-isles-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -8,15 +9,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: {
-    canonical: `${siteUrl}/ua/sunny-isles-movers`,
-    languages: {
-      en: `${siteUrl}/sunny-isles-movers`,
-      ru: `${siteUrl}/ru/sunny-isles-movers`,
-      uk: `${siteUrl}/ua/sunny-isles-movers`,
-      'x-default': `${siteUrl}/sunny-isles-movers`,
-    },
-  },
+  alternates: alternatesFor('sunny-isles-movers', 'uk'),
   openGraph: {
     type: 'website',
     locale: 'uk_UA',

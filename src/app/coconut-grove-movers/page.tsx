@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
+import { alternatesFor } from '@/lib/seo/routes';
 
 const city = getCityData('coconut-grove-movers')!;
 
 export const metadata: Metadata = {
   title: { absolute: city.metaTitle },
   description: city.metaDescription,
-  alternates: { canonical: 'https://www.easy-move-florida.com/coconut-grove-movers' },
+  alternates: alternatesFor('coconut-grove-movers', 'en'),
   openGraph: {
     type: 'website',
     siteName: 'Easy Move Florida',
