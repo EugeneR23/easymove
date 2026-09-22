@@ -60,12 +60,10 @@ export async function POST(req: NextRequest) {
           ? `If our Russian-speaking crew made a difference for you, mentioning that helps other families find us.\n`
           : '') +
         `— Evgenii, Easy Move Florida\nReply STOP to opt out.`;
-      try {
-        await sendSMS(body.phone, smsBody);
-        results.sms = true;
-      } catch (e) {
-        results.sms = (e as Error).message;
-      }
+      // The admin card shows this. Reporting true for a skipped SMS is how a
+      // review request looks sent while Twilio is not configured at all.
+      const smsResult = await sendSMS(body.phone, smsBody);
+      results.sms = smsResult.sent ? true : `not sent: ${smsResult.reason}`;
     }
 
     if ((channel === 'email' || channel === 'both') && body.email) {

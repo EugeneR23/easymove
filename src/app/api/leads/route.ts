@@ -176,7 +176,8 @@ export async function POST(req: NextRequest) {
 
     status.airtable = airtableResult.status === 'fulfilled';
     status.telegram = tgResult.status       === 'fulfilled';
-    status.sms      = smsResult.status      === 'fulfilled';
+    // sendSMS never throws, so a fulfilled promise says nothing about delivery.
+    status.sms      = smsResult.status === 'fulfilled' && smsResult.value.sent;
     status.email    = emailResult.status    === 'fulfilled';
 
     if (!status.airtable) console.error('[api/leads] Airtable FAILED:', (airtableResult as PromiseRejectedResult).reason);
@@ -185,7 +186,12 @@ export async function POST(req: NextRequest) {
     if (!status.telegram) console.error('[api/leads] Telegram failed:', (tgResult as PromiseRejectedResult).reason);
     else                  console.log('[api/leads] Telegram OK');
 
-    if (!status.sms)      console.error('[api/leads] SMS failed:', (smsResult as PromiseRejectedResult).reason);
+    if (!status.sms) {
+      const why = smsResult.status === 'fulfilled'
+        ? smsResult.value
+        : (smsResult as PromiseRejectedResult).reason;
+      console.error('[api/leads] SMS not sent:', why);
+    }
     else                  console.log('[api/leads] SMS OK');
 
     if (!status.email)    console.error('[api/leads] Email failed:', (emailResult as PromiseRejectedResult).reason);

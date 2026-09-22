@@ -71,29 +71,46 @@ function normalizePhone(phone: string): string {
 }
 
 /**
- * Send an SMS to the customer via Twilio.
- * Never throws — failure is logged but does not block the response.
+ * What happened to an SMS. Skipped and sent must never look the same to a
+ * caller: until 2026-09-22 this function returned void and never threw, so
+ * `status.sms = result.status === 'fulfilled'` was true whether the message
+ * went out, was skipped for missing config, or failed inside Twilio.
+ *
+ * Production has no TWILIO_* variables at all, so every one of the three call
+ * sites had been reporting a delivered SMS for a message that was never sent —
+ * including the review request, which is the mechanism behind the single
+ * highest-value item in docs/ACTION-PLAN.md.
  */
-export async function sendSMS(to: string, body: string): Promise<void> {
+export type SmsResult =
+  | { sent: true }
+  | { sent: false; reason: 'not-configured' | 'no-recipient' | 'failed'; detail?: string };
+
+/**
+ * Send an SMS to the customer via Twilio.
+ * Never throws — it reports instead, so a caller cannot mistake silence for success.
+ */
+export async function sendSMS(to: string, body: string): Promise<SmsResult> {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken  = process.env.TWILIO_AUTH_TOKEN;
   const from       = process.env.TWILIO_PHONE_NUMBER;
 
   if (!accountSid || !authToken || !from) {
     console.warn('[notify] Twilio not configured — SMS skipped');
-    return;
+    return { sent: false, reason: 'not-configured' };
   }
 
   if (!to) {
     console.warn('[notify] SMS skipped — no recipient phone number');
-    return;
+    return { sent: false, reason: 'no-recipient' };
   }
 
   try {
     const client = twilio(accountSid, authToken);
     await client.messages.create({ body, from, to: normalizePhone(to) });
+    return { sent: true };
   } catch (err) {
     console.error('[notify] Twilio SMS failed:', err);
+    return { sent: false, reason: 'failed', detail: (err as Error).message };
   }
 }
 
