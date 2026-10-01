@@ -150,6 +150,9 @@ const RULES = [
   { id: 'building-familiarity-ru', why: 'Claims familiarity with a named building or its management. The English versions were softened on 15.09 and the Russian ones were not, so two languages said different things about the same buildings. Describe what the building requires and say we collect it at booking.',
     re: /\u0437\u043d\u0430\u0435\u043c[^.\n]{0,40}(?:\u043c\u0435\u043d\u0435\u0434\u0436\u043c\u0435\u043d\u0442|\u0443\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0449|\u0437\u0434\u0430\u043d\u0438|\u0431\u0430\u0448\u043d|\u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438|\u0433\u0440\u0430\u0444\u0438\u043a)|\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u044b\u0435 \u0430\u0434\u0440\u0435\u0441\u0430|(?:\u0440\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u043e|\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e)\s+(?:\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u043c|\u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u043c|\u0432\u043e\u0437\u0438\u043c)(?![^.\n]{0,20}\u0440\u0435\u0436\u0438\u043c)[^.\n]{0,60}(?:\u0437\u0434\u0430\u043d|\u0431\u0430\u0448\u043d|\u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0441|Tower|Acqualina|Williams|Porto|Jade|Trump)|\u0437\u043d\u0430\u0435\u043c[^.\n]{0,25}\u043b\u0438\u0447\u043d\u043e|\u0437\u043d\u0430\u0454\u043c\u043e[^.\n]{0,40}(?:\u0431\u0443\u0434\u0456\u0432\u043b|\u043c\u0435\u043d\u0435\u0434\u0436\u043c\u0435\u043d\u0442)/gi },
 
+  { id: 'sacramento-in-sameas', why: 'The Sacramento branch belongs in subOrganization, never sameAs. sameAs asserts one entity, which invites Google to merge the two businesses and their ratings - this one has 41 reviews, Sacramento has none and is not open yet.',
+    re: /sameAs\s*:\s*\[[^\]]{0,600}easy-move-sacramento/gi, whole: true },
+
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
 ];
@@ -170,6 +173,21 @@ for (const target of SCAN) {
     const text = readFileSync(file, 'utf8');
     const lines = text.split(/\r?\n/);
     for (const rule of RULES) {
+      // A rule marked `whole` is tested against the entire file instead of each
+      // line. Structural rules need this: a sameAs array spans several lines, so
+      // a line-based pattern for it can never match and the rule would be
+      // decoration — which is exactly how sacramento-in-sameas first shipped.
+      if (rule.whole) {
+        rule.re.lastIndex = 0;
+        for (const m of text.matchAll(rule.re)) {
+          if (ALLOW.some((a) => m[0].includes(a))) continue;
+          const rel = relative(ROOT, file).split(sep).join('/');
+          if (RULE_EXEMPT.get(rule.id)?.includes(rel)) continue;
+          const line = text.slice(0, m.index).split(/\r?\n/).length;
+          hits.push({ rule, file: rel, line, text: m[0].replace(/\s+/g, ' ').slice(0, 90) });
+        }
+        continue;
+      }
       lines.forEach((line, i) => {
         rule.re.lastIndex = 0;
         for (const m of line.matchAll(rule.re)) {

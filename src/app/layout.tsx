@@ -273,6 +273,13 @@ const organizationSchema = {
     'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
     'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
   ],
+  // The Sacramento branch, declared as a sub-organization and deliberately NOT
+  // in sameAs above. sameAs says "these URLs are the same entity", which would
+  // invite Google to merge the two businesses and with them their ratings —
+  // this one has 41 reviews, Sacramento has none and is not open yet.
+  // subOrganization says what is actually true: same owner, separate company.
+  // That site publishes parentOrganization back at this @id, verified 2026-10-01.
+  subOrganization: { '@id': 'https://www.easy-move-sacramento.com/#organization' },
 };
 
 // Person entity for the founder — one node the whole graph references, so AI

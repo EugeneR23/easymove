@@ -23,21 +23,34 @@ type FooterLocale = 'en' | 'ru' | 'ua';
 const FOOTER_COPY: Record<FooterLocale, {
   services: string; company: string; contact: string; hoursLocale: 'en' | 'ru' | 'uk';
   intro: string; ratePill: string;
+  /**
+   * The Sacramento branch. A plain link on purpose: no rel, no target — it is
+   * our own second company, so the link equity is the point of it, and
+   * nofollow or sponsored would throw that away.
+   *
+   * The relationship is expressed in the graph as subOrganization, never
+   * sameAs: sameAs asserts the two are one legal entity, which would merge the
+   * ratings of a company with 41 reviews into one that has none.
+   */
+  branch: { text: string; href: string };
 }> = {
   en: {
     services: 'Services', company: 'Company', contact: 'Contact', hoursLocale: 'en',
     intro: 'Local moving and small handyman service across South Florida. Hollywood-based, owner-led by Evgenii Romanov. Russian + English.',
     ratePill: 'From $129/hr · 3-hour minimum',
+    branch: { text: 'Moving in Sacramento, California? Our branch there: Easy Move Sacramento', href: 'https://www.easy-move-sacramento.com/' },
   },
   ru: {
     services: 'Услуги', company: 'Компания', contact: 'Контакты', hoursLocale: 'ru',
     intro: 'Локальные переезды и небольшие работы по дому по Южной Флориде. База в Голливуде, заказ ведёт владелец Евгений Романов. Русский и английский.',
     ratePill: 'От $129/час · минимум 3 часа',
+    branch: { text: 'Переезд в Сакраменто, Калифорния? Наш филиал: Easy Move Sacramento', href: 'https://www.easy-move-sacramento.com/ru' },
   },
   ua: {
     services: 'Послуги', company: 'Компанія', contact: 'Контакти', hoursLocale: 'uk',
     intro: 'Локальні переїзди та невеликі роботи по дому по Південній Флориді. База в Голлівуді, замовлення веде власник Євгеній Романов.',
     ratePill: 'Від $129/год · мінімум 3 години',
+    branch: { text: 'Переїзд у Сакраменто, Каліфорнія? Наша філія: Easy Move Sacramento', href: 'https://www.easy-move-sacramento.com/ua' },
   },
 };
 
@@ -195,8 +208,18 @@ export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}
         {/* Service area */}
         <div className="border-t border-white/5 mt-8 pt-8">
           <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-2">Moving Company Service Areas</p>
-          <p className="text-xs text-gray-600 text-center mb-6">
+          <p className="text-xs text-gray-600 text-center mb-3">
             {CITIES.map((c) => c.name).join(' · ')}
+          </p>
+          {/* Our Sacramento branch. Plain anchor: this is our own company and the
+              link is meant to carry weight, so no rel and no target. */}
+          <p className="text-xs text-center mb-6 px-2">
+            <a
+              href={f.branch.href}
+              className="text-gray-500 underline underline-offset-2 hover:text-gold transition-colors"
+            >
+              {f.branch.text}
+            </a>
           </p>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
             <div className="flex flex-col sm:flex-row items-center gap-3">
