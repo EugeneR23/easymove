@@ -79,6 +79,40 @@ questions still open (Q2, Q5) and is expected to fail while they are.
 
 ---
 
+## Builds are skipped for documentation-only commits
+
+`vercel.json` carries an `ignoreCommand`:
+
+```
+git diff --quiet HEAD^ HEAD -- . ':(exclude)docs' ':(exclude)*.md'
+```
+
+**The exit code is inverted and people get it backwards: 0 means skip the
+build, 1 means build it.** The command asks "is there any change outside
+`docs/` and `*.md`?" — `--quiet` exits 0 when the diff is empty, which is
+exactly the case where a build would produce a byte-identical site.
+
+Why it is here: every push to `main` deploys, and a full build of this site is
+~90 pages. Billing for 2026-09-17/18 shows $1.81 of Build CPU Minutes in one
+day against $0 on a quiet day, across roughly 50 deployments a day over nine
+projects. A large share of those were commits that only touched a ledger or a
+runbook.
+
+Checked against real history before committing, not assumed — `a563fd1` and
+`bcc83c8` (docs only) skip, `917b26c` and `8f85dc9` (both touch `src/` or
+`scripts/`) build.
+
+Two things to know:
+
+- A commit touching **both** docs and code still builds: the diff outside the
+  excluded paths is non-empty.
+- If `HEAD^` does not exist, git exits non-zero and the build runs. Failing
+  towards building is the right way round for this to fail.
+
+To confirm it is working after a docs-only push, read the build id out of the
+live HTML (`/_next/static/<buildId>/`): unchanged id means the build was
+skipped.
+
 ## Working here
 
 - Read `docs/EASYMOVE_REQUESTS.md` first: one line per request, its state, its commit.
