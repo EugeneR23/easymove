@@ -6,6 +6,7 @@ import AnimateIn from '@/components/ui/AnimateIn';
 import { SERVICE_SCOPE } from '@/lib/data/scope';
 import { hoursSentence } from '@/lib/data/hours';
 import { Plus } from 'lucide-react';
+import { lastModified } from '@/lib/seo/lastmod';
 
 const FAQS = [
   {
@@ -169,6 +170,7 @@ export default function FAQSection() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
+            dateModified: lastModified('/'),
             mainEntity: FAQS.map((faq) => ({
               '@type': 'Question',
               name: faq.q,

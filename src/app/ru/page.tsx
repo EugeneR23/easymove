@@ -16,6 +16,16 @@ import {
   Phone, Shield, Star, ArrowRight, CheckCircle, ChevronLeft, ChevronRight,
   Clock, MapPin, Users, Truck, Package, Palette, Building2,
 } from 'lucide-react';
+import { ld, webPageNode } from '@/lib/seo/schema';
+
+// The page's own node, so /ru states its language and date like every other
+// page. Name and description match the metadata in ru/layout.tsx.
+const PAGE_JSON = ld(webPageNode({
+  path: '/ru',
+  name: 'Переезды Майами',
+  description: 'Переезды в Южной Флориде — Майами, Холливуд, Sunny Isles, Aventura.',
+  locale: 'ru',
+}));
 
 /* ── Calculator data ─────────────────────────────────────────────────────────── */
 const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
@@ -109,6 +119,7 @@ export default function RuHomePage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: PAGE_JSON }} />
       <Header />
       <main className="pb-16 lg:pb-0">
 

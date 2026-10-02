@@ -10,6 +10,7 @@ import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react'
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import { bandHours, bandCrew, bandRange } from '@/lib/pricingCopy';
 import { alternatesFor } from '@/lib/seo/routes';
+import { lastModified } from '@/lib/seo/lastmod';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -158,6 +159,7 @@ const breadcrumbJson = JSON.stringify({
 const faqJson = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: lastModified('/pricing'),
   mainEntity: PRICING_FAQS.map((f) => ({
     '@type': 'Question',
     name: f.q,

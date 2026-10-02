@@ -13,6 +13,7 @@ import Button from '@/components/ui/Button';
 import * as LucideIcons from 'lucide-react';
 import { CheckCircle, Shield, Phone } from 'lucide-react';
 import { canonicalFor } from '@/lib/seo/routes';
+import { lastModified } from '@/lib/seo/lastmod';
 
 export async function generateStaticParams() {
   const services = readAllServices();
@@ -111,6 +112,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     ? JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
+        dateModified: lastModified(`/services/${service.slug}`),
         mainEntity: content.faqs.map((faq) => ({
           '@type': 'Question',
           name: faq.q,

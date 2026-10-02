@@ -4,72 +4,14 @@ import { getAllBlogPosts } from '@/lib/data/blog';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '@/lib/data/costPages';
 import { alternatesFor, keyForSlug, type Locale } from '@/lib/seo/routes';
 import { CITIES_UA } from '@/lib/data/citiesUa';
+import { lastModified } from '@/lib/seo/lastmod';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
-// Real content-change dates, not build time. `new Date()` on every route made
-// every lastmod identical to the build timestamp, which Google learns to ignore.
-// Update the entry when you materially change that page's content.
-const LASTMOD: Record<string, string> = {
-  '/': '2026-07-30',
-  '/pricing': '2026-07-30',
-  '/services': '2026-07-30',
-  '/about': '2026-07-30',
-  '/reviews': '2026-07-30',
-  '/contact': '2026-07-30',
-  '/quote': '2026-07-30',
-  '/packing-services': '2026-07-30',
-  '/moving-cost-miami': '2026-07-30',
-  '/russian-speaking-movers-miami': '2026-09-05',
-  '/ru/russkie-gruzchiki-miami': '2026-09-05',
-  '/coi-miami-condo-movers': '2026-08-24',
-  '/blog': '2026-07-30',
-  // City pages — all rewritten in the 2026-07-30 commercial-facts pass
-  '/miami-movers': '2026-07-30',
-  '/fort-lauderdale-movers': '2026-07-30',
-  '/boca-raton-movers': '2026-07-30',
-  '/aventura-movers': '2026-09-05',
-  '/coral-gables-movers': '2026-07-30',
-  '/sunny-isles-movers': '2026-09-05',
-  '/hollywood-movers': '2026-09-05',
-  '/coconut-grove-movers': '2026-07-30',
-  '/doral-movers': '2026-07-30',
-  '/hallandale-beach-movers': '2026-09-05',
-  '/miami-beach-movers': '2026-08-24',
-  '/bal-harbour-movers': '2026-08-24',
-  '/north-miami-beach-movers': '2026-08-24',
-  '/pembroke-pines-movers': '2026-08-24',
-  '/weston-movers': '2026-08-24',
-  '/coral-springs-movers': '2026-08-24',
-  '/sunrise-movers': '2026-08-24',
-  '/delray-beach-movers': '2026-08-24',
-  '/boynton-beach-movers': '2026-08-24',
-  '/ru': '2026-07-30',
-  '/ru/about': '2026-07-30',
-  '/ru/services': '2026-07-30',
-  '/ru/pricing': '2026-07-30',
-  '/ru/contact': '2026-07-30',
-  '/ru/miami-movers': '2026-07-30',
-  '/ru/fort-lauderdale-movers': '2026-07-30',
-  '/ru/sunny-isles-movers': '2026-07-30',
-  '/ru/aventura-movers': '2026-07-30',
-  '/ru/hollywood-movers': '2026-07-30',
-  '/ru/hallandale-beach-movers': '2026-07-30',
-  '/ru/miami-beach-movers': '2026-08-24',
-  '/ru/bal-harbour-movers': '2026-08-24',
-  '/ru/north-miami-beach-movers': '2026-08-24',
-  '/ru/boca-raton-movers': '2026-08-24',
-  '/ru/delray-beach-movers': '2026-08-24',
-  '/ru/pembroke-pines-movers': '2026-08-24',
-  '/ru/weston-movers': '2026-08-24',
-  '/ru/coral-springs-movers': '2026-08-24',
-  '/ru/sunrise-movers': '2026-08-24',
-  '/ru/boynton-beach-movers': '2026-08-24',
-};
-
-function lastmod(path: string): Date {
-  return new Date(LASTMOD[path] ?? '2026-07-30');
-}
+// Content dates come from src/lib/seo/lastmod.ts, the same table the pages'
+// JSON-LD reads for dateModified. Not build time: `new Date()` on every route
+// made every lastmod identical to the build timestamp, which Google learns to ignore.
+const lastmod = (path: string): Date => new Date(lastModified(path));
 
 /**
  * hreflang for a sitemap entry, derived from src/lib/seo/routes.ts.
@@ -150,7 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${siteUrl}/services/${service.slug}`,
-    lastModified: new Date(service.updatedAt),
+    lastModified: lastmod(`/services/${service.slug}`),
     changeFrequency: 'monthly',
     priority: 0.8,
   }));
@@ -211,7 +153,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // entry there appears here without a second list to remember.
   const costRoutes: MetadataRoute.Sitemap = COST_PAGES.map((c) => ({
     url: `${siteUrl}/${c.slug}`,
-    lastModified: new Date('2026-08-25'),
+    lastModified: lastmod(`/${c.slug}`),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
     alternates: withAlternates(`/${c.slug}`),
@@ -223,14 +165,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const uaRoutes: MetadataRoute.Sitemap = [
     {
       url: `${siteUrl}/ua`,
-      lastModified: new Date('2026-08-25'),
+      lastModified: lastmod('/ua'),
       changeFrequency: 'monthly' as const,
       priority: 0.9,
       alternates: withAlternates('/ua'),
     },
     ...CITIES_UA.map((c) => ({
       url: `${siteUrl}/${c.slug}`,
-      lastModified: new Date('2026-08-25'),
+      lastModified: lastmod(`/${c.slug}`),
       changeFrequency: 'monthly' as const,
       priority: 0.9,
       alternates: withAlternates(`/${c.slug}`),
@@ -244,7 +186,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...COST_PAGES_RU, ...COST_PAGES_UA,
   ].map((c) => ({
     url: `${siteUrl}/${c.slug}`,
-    lastModified: new Date('2026-08-30'),
+    lastModified: lastmod(`/${c.slug}`),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
     alternates: withAlternates(`/${c.slug}`),

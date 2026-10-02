@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import { Phone, MessageCircle } from 'lucide-react';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { alternatesFor } from '@/lib/seo/routes';
+import { lastModified } from '@/lib/seo/lastmod';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -114,6 +115,7 @@ const breadcrumbJson = JSON.stringify({
 const faqJson = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: lastModified('/ru/russkie-gruzchiki-miami'),
   mainEntity: FAQS.map((f) => ({
     '@type': 'Question',
     name: f.q,

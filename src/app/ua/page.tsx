@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button';
 import { Phone } from 'lucide-react';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 import { alternatesFor } from '@/lib/seo/routes';
+import { lastModified } from '@/lib/seo/lastmod';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -89,6 +90,7 @@ const FAQS = [
 const faqJson = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: lastModified('/ua'),
   inLanguage: 'uk',
   mainEntity: FAQS.map((f) => ({
     '@type': 'Question',

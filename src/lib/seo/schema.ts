@@ -16,6 +16,7 @@
  * service area is a property of the Miami service, not of the company.
  */
 import { SITE_URL, ENTITY_ID, absUrl } from '@/lib/site';
+import { lastModified } from '@/lib/seo/lastmod';
 
 export type SchemaLocale = 'en' | 'ru' | 'uk';
 
@@ -54,14 +55,13 @@ export function faqNode(faqs: { q: string; a: string }[], locale: string) {
 }
 
 /**
- * The page itself. Carries the page's language and its city description, and
- * points `about` at the organization rather than redefining it — which is the
- * whole reason this file exists.
+ * A page as a WebPage node: its language, its date, and references to the site
+ * and the organization rather than copies of them.
  */
-export function cityPageNode(o: {
+export function webPageNode(o: {
   path: string;
   name: string;
-  description: string;
+  description?: string;
   locale: string;
 }) {
   const url = absUrl(o.path);
@@ -71,12 +71,27 @@ export function cityPageNode(o: {
     '@id': `${url}#webpage`,
     url,
     name: o.name,
-    description: o.description,
+    ...(o.description ? { description: o.description } : {}),
     inLanguage: bcp47(o.locale),
+    dateModified: lastModified(o.path),
     about: orgRef(),
     isPartOf: { '@id': ENTITY_ID.website },
-    mainEntity: { '@id': `${url}#service` },
   };
+}
+
+/**
+ * The city page itself. Carries the page's language and its city description,
+ * and points `about` at the organization rather than redefining it — which is
+ * the whole reason this file exists.
+ */
+export function cityPageNode(o: {
+  path: string;
+  name: string;
+  description: string;
+  locale: string;
+}) {
+  const url = absUrl(o.path);
+  return { ...webPageNode(o), mainEntity: { '@id': `${url}#service` } };
 }
 
 /** A service offered in one place, at the published hourly rates. */

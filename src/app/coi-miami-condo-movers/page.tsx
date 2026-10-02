@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button';
 import { Phone, CheckCircle, X } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import { alternatesFor } from '@/lib/seo/routes';
+import { lastModified } from '@/lib/seo/lastmod';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -165,6 +166,7 @@ const FAQS = [
 const faqJson = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: lastModified('/coi-miami-condo-movers'),
   mainEntity: FAQS.map((f) => ({
     '@type': 'Question',
     name: f.q,

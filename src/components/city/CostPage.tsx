@@ -11,6 +11,7 @@ import type { CostPageData } from '@/lib/data/costPages';
 
 import { SITE_URL as siteUrl } from '@/lib/site';
 import { orgRef } from '@/lib/seo/schema';
+import { lastModified } from '@/lib/seo/lastmod';
 
 /**
  * "How much do movers cost in {city}?" — the template behind every
@@ -158,6 +159,7 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
   const faqJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    dateModified: lastModified(`/${page.slug}`),
     inLanguage: locale === 'ua' ? 'uk' : locale,
     mainEntity: page.faqs.map((f) => ({
       '@type': 'Question',

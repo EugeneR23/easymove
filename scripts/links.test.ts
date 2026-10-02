@@ -16,6 +16,7 @@ import { CITIES_RU } from '../src/lib/data/citiesRu';
 import { CITIES_UA } from '../src/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '../src/lib/data/costPages';
 import { localeOfPath, localesOf, pathFor, ROUTE_KEYS, switchPath } from '../src/lib/seo/routes';
+import { CONTENT_FLOOR, NEWER } from '../src/lib/seo/lastmod';
 
 let failed = 0;
 function check(name: string, cond: boolean, actual: unknown) {
@@ -248,6 +249,31 @@ console.log('\n[7] Every /images/ path in the source exists with exactly that ca
     }
   }
   check('no image path differs from the file on disk', caseMismatch.length === 0, caseMismatch);
+}
+
+console.log('\n[8] Page dates come from one table, and every page node states one');
+{
+  // The sitemap carried hand-typed dates that the 2026-09-18 pass never
+  // touched, and no page said dateModified in its schema. Both now read
+  // src/lib/seo/lastmod.ts; these checks keep a second source from growing back.
+  const sitemapSrc = readFileSync('src/app/sitemap.ts', 'utf8');
+  const literalDates = sitemapSrc.match(/new Date\(\s*['"`]\d{4}-\d{2}-\d{2}/g) ?? [];
+  check('sitemap.ts types no dates of its own', literalDates.length === 0, literalDates);
+
+  const undated: string[] = [];
+  for (const f of files) {
+    const body = readFileSync(f, 'utf8');
+    if (/['"]@type['"]:\s*['"](FAQPage|WebPage)['"]/.test(body) && !body.includes('dateModified')) {
+      undated.push(posix(f));
+    }
+  }
+  check('every FAQPage/WebPage node states dateModified', undated.length === 0, undated);
+
+  const sitemapPaths = new Set(promised.map((r) => r.path));
+  const badNewer = Object.entries(NEWER)
+    .filter(([p, d]) => !sitemapPaths.has(p) || d <= CONTENT_FLOOR)
+    .map(([p, d]) => `${p}: ${d}`);
+  check('every NEWER entry is a known page dated after the floor', badNewer.length === 0, badNewer);
 }
 
 console.log(failed ? `\n${failed} FAILURE(S)` : '\nALL PASS');
