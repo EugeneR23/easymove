@@ -92,6 +92,7 @@ const SOUTH_TO_NORTH = [
   'miami-movers',
   'miami-beach-movers',
   'doral-movers',
+  'north-miami-movers',
   'north-miami-beach-movers',
   'bal-harbour-movers',
   'sunny-isles-movers',

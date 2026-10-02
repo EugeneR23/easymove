@@ -299,6 +299,9 @@ const founderSchema = {
   image: `${siteUrl}/images/founder.jpg`,
   telephone: PHONE.e164,
   email: EMAIL,
+  // The owner's own profile; it lists this site and the phone. On the founder
+  // node only, never on the company (owner, 2026-10-02).
+  sameAs: ['https://www.linkedin.com/in/eugene-romanov-orium'],
 };
 
 // WebSite schema — provides a stable @id all child entities reference.

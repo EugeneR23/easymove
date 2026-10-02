@@ -27,6 +27,7 @@ export const NEWER: Record<string, string> = {
   // residential, pricing, ru/services), the city template's building claim
   // rewritten on every city page, and four new city pages.
   '/ru': '2026-10-02',
+  '/north-miami-movers': '2026-10-02',
   '/about': '2026-10-01',
   '/ru/about': '2026-10-01',
   '/services/specialty-items': '2026-10-01',

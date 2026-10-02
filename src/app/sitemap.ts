@@ -121,6 +121,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/miramar-movers`, lastModified: lastmod('/miramar-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/miramar-movers') },
     { url: `${siteUrl}/pembroke-park-movers`, lastModified: lastmod('/pembroke-park-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/pembroke-park-movers') },
     { url: `${siteUrl}/lauderdale-lakes-movers`, lastModified: lastmod('/lauderdale-lakes-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/lauderdale-lakes-movers') },
+    { url: `${siteUrl}/north-miami-movers`, lastModified: lastmod('/north-miami-movers'), changeFrequency: 'monthly', priority: 0.9, alternates: withAlternates('/north-miami-movers') },
     { url: `${siteUrl}/packing-services`,        lastModified: lastmod('/packing-services'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/packing-services') },
     { url: `${siteUrl}/moving-cost-miami`,       lastModified: lastmod('/moving-cost-miami'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/moving-cost-miami') },
     { url: `${siteUrl}/russian-speaking-movers-miami`, lastModified: lastmod('/russian-speaking-movers-miami'), changeFrequency: 'monthly', priority: 0.9 , alternates: withAlternates('/russian-speaking-movers-miami') },

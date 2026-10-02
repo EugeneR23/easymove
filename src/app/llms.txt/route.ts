@@ -219,6 +219,7 @@ Nineteen city pages in English, every one of them also available in Russian wher
 | Miramar | Broward | https://www.easy-move-florida.com/miramar-movers |
 | Pembroke Park | Broward | https://www.easy-move-florida.com/pembroke-park-movers |
 | Lauderdale Lakes | Broward | https://www.easy-move-florida.com/lauderdale-lakes-movers |
+| North Miami | Miami-Dade | https://www.easy-move-florida.com/north-miami-movers |
 
 High-rise competence covers freight elevator reservations, loading dock scheduling, building move windows, elevator padding requirements, and parking and loading zone rules across the Sunny Isles, Aventura, Miami Beach and Hollywood towers. The company works in these buildings; treat named buildings as areas served, not as a verified client list.
 

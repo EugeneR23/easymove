@@ -1702,6 +1702,81 @@ export const CITIES: CityData[] = [
       },
     ],
   },
+  // Added 2026-10-02 on the owner's word: the www property in Search Console
+  // showed "movers north miami" and its variants as the largest query group
+  // with no page behind it. Local facts and the neighbourhood list are only
+  // what Wikipedia's North Miami article states.
+  {
+    slug: 'north-miami-movers',
+    name: 'North Miami',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: 'North Miami Movers On Biscayne Bay',
+    heroSub: 'Northeast Miami-Dade · between North Miami Beach, Biscayne Park and the bay',
+    heroImage: '/images/Real/Miami.jpg',
+    metaTitle: 'North Miami Movers | Easy Move Florida',
+    metaDescription: 'Movers in North Miami FL for apartments, condos and houses. 2 movers $129/hr, 3 movers $179/hr, truck on its own line, free COI. English and Russian. Call 786-305-1844.',
+    intro: "North Miami is a city in northeast Miami-Dade County on Biscayne Bay, about ten miles north of downtown Miami. It borders North Miami Beach to the north, Biscayne Park to the south, and Bay Harbor Islands and Sunny Isles Beach across the bay to the east. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, a short drive north in Broward, so the crew comes down for North Miami jobs. Apartments, condos with an association and houses are all part of the work here. Rates are $129 an hour for two movers, $179 for three, $219 for four, with a three-hour minimum and the truck billed as its own line at the same figure as the crew rate. The crew works in English and Russian.",
+    neighborhoods: [
+      'Alhambra Heights',
+      'Arch Creek Highlands',
+      'Biscayne Park North',
+      'Central',
+      'Golden Glades East',
+      'Golden Glades South',
+      'Keystone Point / Amber Creek East',
+      'San Souci',
+      'Westside Sunkist Grove',
+    ],
+    localFacts: [
+      {
+        title: 'Not the same city as North Miami Beach',
+        body: 'North Miami and North Miami Beach are neighbours with different city halls and different rules. When you book, tell us which one your address is in; it decides which office a building or association answers to, and we plan the paperwork around that.',
+      },
+      {
+        title: 'Waterfront streets and bay access',
+        body: 'North Miami lies on Biscayne Bay, and some streets on the water are narrow or gated. Before we schedule we look at your street by map and by a short video you send from your phone. If a full-size truck cannot get in cleanly we bring a smaller one or shuttle from a legal spot nearby. It adds hours rather than fees.',
+      },
+      {
+        title: 'Condo paperwork, done before move day',
+        body: 'Associations usually want a certificate of insurance, a move form and a reserved elevator window. We ask for your association contact when you book, send the COI within 24 hours in their required format with the association named as additional insured, and confirm the window with management. The COI costs nothing.',
+      },
+      {
+        title: 'Storage between a closing and the next one',
+        body: 'Closings rarely line up. If you hand over keys before you can take possession of the next place, we load, hold your goods in storage from $200 a month, and redeliver when you are ready. Everything is inventoried on the way in so you know what is there.',
+      },
+      {
+        title: 'What the invoice actually looks like',
+        body: 'Two movers are $129 an hour, three are $179, four are $219, with a three-hour minimum and billing in 15-minute increments after it. The truck is its own line at the same figure as the crew rate for the day, so $129 with two movers or $179 with three. The smallest possible invoice is $516 with a two-mover crew. There is no weekend, seasonal or fuel surcharge, no deposit, and free cancellation more than 48 hours out.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move in North Miami?',
+        a: 'Yes. Our base is in Hollywood, a short drive north, and the crew comes down. We do not claim an office in North Miami, because we do not have one. Travel does not add a separate fee to your rate.',
+      },
+      {
+        q: 'Is North Miami the same as North Miami Beach?',
+        a: 'No. They are two cities next to each other. We work in both; tell us which one your address is in so the building paperwork goes to the right office.',
+      },
+      {
+        q: 'My association wants a certificate of insurance. What do you need from me?',
+        a: "Send us the management company name, the exact association name as it should appear, the address the certificate goes to, and any template they gave you. We issue the COI free within 24 hours of booking, in their required format, and confirm your association's requirements before move day.",
+      },
+      {
+        q: 'What does a typical North Miami move cost?',
+        a: 'A studio generally lands between $516 and $645 all in. A one-bedroom is $516 to $774, a two-bedroom $645 to $1,253, a three-bedroom $1,253 to $1,611, and a four-bedroom or house $1,611 to $2,327. Those are total figures including the truck line. We give you a written estimate before you commit.',
+      },
+      {
+        q: 'Is there an extra charge for stairs or a long carry?',
+        a: 'No. Stairs, elevators, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours.',
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes. The owner, Evgenii Romanov, and the crew work in English and Russian. Call or message 786-305-1844 - the same number takes WhatsApp.',
+      },
+    ],
+  },
 ];
 
 export function getCityData(slug: string): CityData | undefined {

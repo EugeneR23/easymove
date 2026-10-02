@@ -30,6 +30,7 @@ export const RU_NAMES: Record<string, string> = {
   'miramar-movers': 'Мирамар',
   'pembroke-park-movers': 'Пемброк-Парк',
   'lauderdale-lakes-movers': 'Лодердейл-Лейкс',
+  'north-miami-movers': 'Норт-Майами',
 };
 
 export const UA_NAMES: Record<string, string> = {
@@ -56,4 +57,5 @@ export const UA_NAMES: Record<string, string> = {
   'miramar-movers': 'Мірамар',
   'pembroke-park-movers': 'Пемброк-Парк',
   'lauderdale-lakes-movers': 'Лодердейл-Лейкс',
+  'north-miami-movers': 'Норт-Маямі',
 };

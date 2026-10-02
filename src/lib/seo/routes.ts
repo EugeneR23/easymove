@@ -60,6 +60,7 @@ const CITY_LOCALES: Record<string, Locale[]> = {
   'coconut-grove-movers':     ['en'],
   'coral-gables-movers':      ['en'],
   'doral-movers':             ['en'],
+  'north-miami-movers':       ['en'],
   'dania-beach-movers':        ['en'],
   'miramar-movers':            ['en'],
   'pembroke-park-movers':      ['en'],
