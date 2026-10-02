@@ -221,7 +221,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle fine art and antiques?',
-        a: 'Yes. Fine art and antique handling is a dedicated service. Items are crated or wrapped to museum standard, inventoried with photos, and transported with the additional care they require.',
+        a: 'Yes, as a dedicated service. We prepare each piece for shipping: wrapped or crated for the piece, inventoried with photos. The shipping itself is done by our partner carriers.',
       },
       {
         q: 'Do you serve Delray Beach and Palm Beach Gardens?',
@@ -350,7 +350,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you handle a historic Coral Gables home with original tile?',
-        a: "Yes. We protect original tile, terrazzo, and wood floors with breathable padding and runners, pad all door frames, and brief the crew specifically on the home's preservation requirements. We move museum-grade pieces — your antique pieces are in safe hands.",
+        a: "Yes. We protect original tile, terrazzo, and wood floors with breathable padding and runners, pad all door frames, and brief the crew specifically on the home's preservation requirements. Antique pieces we prepare for shipping, and our partner carriers ship them.",
       },
       {
         q: 'Do you handle Coral Gables permit requirements for moving trucks?',

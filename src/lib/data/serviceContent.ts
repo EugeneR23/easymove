@@ -28,7 +28,7 @@ export interface ServiceContent {
 export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'residential-moving': {
     longIntro: [
-      "Residential and high-rise moving in South Florida is its own discipline. A move from a Brickell tower has nothing in common with a move from a Coral Gables single-family home — different access, different paperwork, different timing rules. Easy Move Florida handles both with the same standard: the crew arrives knowing the building, the floor protection goes down before any furniture moves, and the coordinator stays reachable from the moment you book until the last item is placed.",
+      "Residential and high-rise moving in South Florida is its own discipline. A move from a Brickell tower has nothing in common with a move from a Coral Gables single-family home — different access, different paperwork, different timing rules. Easy Move Florida handles both with the same standard: the building's rules are checked before move day, the floor protection goes down before any furniture moves, and the coordinator stays reachable from the moment you book until the last item is placed.",
       "We move clients into and out of every type of South Florida residence: 50-story oceanfront condos, gated estate communities, historic Coral Gables and Coconut Grove homes, and standard single-family neighborhoods across Miami-Dade, Broward, and Palm Beach counties. Every move is hourly-billed at $129/hour for two movers or $179/hour for three, with a transparent written estimate before booking. No deposit. No surprise fees on move day.",
     ],
     whyUs: [
@@ -175,7 +175,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'specialty-items': {
     longIntro: [
       "Fine art, antiques, grand pianos, oversized sculpture, and collector items require more than moving blankets and a standard truck. They require custom crating where appropriate, climate-aware loading, slow and deliberate placement, and full documentation. Easy Move Florida handles specialty items as a dedicated service — quoted individually because every piece is different.",
-      "We've moved oil-on-canvas paintings (small frames to museum-scale installations), bronze sculpture (tabletop to oversized garden pieces), grand and baby grand pianos (Steinway, Yamaha, Bösendorfer, and others), antique furniture (18th-century European, mid-century modern, oversized armoires), large mirrors, chandeliers, wine collections (climate-controlled when needed), and high-end electronics. If a piece requires equipment or expertise beyond what we offer, we'll tell you upfront — not take the job and figure it out later.",
+      "For antiques, paintings, sculpture and collections, our part is the preparation: we can prepare any antique piece for shipping — assessment, wrapping, a crate built for the piece where it needs one, and photos at every stage. The shipping itself is done by our partner carriers, who take the prepared piece from us. If a piece needs equipment or expertise beyond what we offer, we'll tell you upfront — not take the job and figure it out later.",
     ],
     whyUs: [
       {
@@ -184,7 +184,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
       {
         title: 'Climate-aware loading',
-        body: "South Florida heat and humidity damage wood, oil paintings, and certain materials during loading. We minimize exposure time, use moisture barriers in the truck, and coordinate climate-controlled transport for high-value or sensitive pieces.",
+        body: "South Florida heat and humidity damage wood, oil paintings, and certain materials while they wait to be loaded. We pack so that exposure time is short, and when a piece needs climate-controlled transport, the partner carrier provides it.",
       },
       {
         title: 'Photo documentation before and after',
@@ -192,15 +192,15 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
       {
         title: "Honest about what we don't do",
-        body: "Some pieces require gallery-grade fine art handlers, museum riggers, or specialty equipment we don't have. We'll tell you upfront and recommend a specialist rather than take the job. Most clients call us first, and we handle 95% of what we're asked to. The 5% we refer out, we refer to people we trust.",
+        body: "Some pieces require gallery-grade fine art handlers, museum riggers, or specialty equipment we don't have. We'll tell you upfront and recommend a specialist rather than take the job.",
       },
     ],
     process: [
       { step: 1, title: 'In-person assessment', body: 'For specialty items, we strongly recommend an in-person walk-through. We assess each piece for crating needs, transport requirements, and any access challenges (oversized pieces, narrow stairwells, elevator size).' },
       { step: 2, title: 'Custom written quote', body: 'Quote includes per-piece crating cost, transport, insurance recommendations, and any specialty equipment (rigging, climate transport, etc.). High-value items often warrant declared value insurance — we walk you through options.' },
       { step: 3, title: 'Crating and prep day', body: 'For pieces requiring custom crates, we build them 1-2 days before move day. Photos taken at this stage.' },
-      { step: 4, title: 'Move day', body: 'Specialty items loaded with extra care, padded, secured against shifting. Loading order considered for unloading priority. Full inventory documented.' },
-      { step: 5, title: 'Placement at destination', body: "Slow, deliberate placement with you present. Pieces unwrapped, inspected, photographed. Final placement coordinated with you — we don't leave until you've confirmed each piece is where you want it." },
+      { step: 4, title: 'Hand-off to the carrier', body: 'Prepared pieces go to our partner carrier with the inventory and the photos taken at packing, so the condition at hand-off is on record.' },
+      { step: 5, title: 'Delivery', body: 'The partner carrier ships and delivers the piece. The photos from packing are the reference for checking it on arrival.' },
     ],
     // [TODO: confirm with Evgenii] — piano/specialty rates below need confirmation.
     pricingBreakdown: [
@@ -214,12 +214,12 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     faqs: [
       { q: "Do you move grand pianos?", a: "Yes - upright, baby grand and concert grand. Each is a different job: an upright is weight and a doorway, a grand comes apart for the move and goes back together at the other end. A local piano move typically runs $750-$1,400; interstate piano transport we hand to a licensed carrier. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
-      { q: 'Can you move large oil paintings or sculpture?', a: "Yes. Custom crating built on-site, climate-aware loading, slow placement at destination. For pieces over 8 feet or weighing over 200 lbs, we may recommend a specialty fine art handler — we'll be honest about what's within our capability." },
+      { q: 'Can you move large oil paintings or sculpture?', a: "We prepare them for shipping: a crate built on-site for the piece, padding, and photos before it leaves. The shipping itself is done by our partner carriers. For pieces over 8 feet or weighing over 200 lbs, we may recommend a specialty fine art handler — we'll be honest about what's within our capability." },
       { q: 'How do you handle insurance for high-value items?', a: 'Standard cargo insurance is included up to a per-pound limit. For high-value items (anything over $5,000 typically), we strongly recommend declared value or full-replacement coverage. Your coordinator walks you through options before booking.' },
-      { q: 'Do you handle antique or oversized furniture?', a: 'Yes. Antique armoires, 18th-century European pieces, mid-century modern, oversized dining tables — these are common requests. Custom crating where appropriate, padded protection always, photo documentation before and after.' },
-      { q: 'Can you move a wine collection?', a: 'Yes — for collections over 50 bottles, we coordinate climate-controlled transport (essential for South Florida summers). Bottles inventoried, packed in proper wine boxes (cell-divided cardboard or wood), loaded last and unloaded first to minimize transit time.' },
+      { q: 'Do you handle antique or oversized furniture?', a: 'We can prepare any antique piece for shipping: assessment, padding, a crate where the piece needs one, and photos before and after. The shipping itself is done by our partner carriers.' },
+      { q: 'Can you move a wine collection?', a: 'We prepare it: bottles inventoried and packed in proper wine boxes (cell-divided cardboard or wood). Transport, climate-controlled when the collection needs it, is done by a partner carrier.' },
     ],
-    localContext: "South Florida has one of the highest concentrations of fine art, antiques, and luxury furniture per capita in the US — driven by Miami's growing art market (Art Basel, Miami Design District galleries) and the wealth concentration in Brickell, Coral Gables, Aventura, and Palm Beach. We've moved pieces for collectors in all of these markets and know what handling each type of item requires.",
+    localContext: "Collectors in Brickell, Coral Gables, Aventura and Palm Beach ask for the same thing: a piece that leaves the house protected and documented. That preparation is our part; the shipping goes to a partner carrier.",
   },
 
   'storage-solutions': {

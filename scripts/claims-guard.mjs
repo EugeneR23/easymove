@@ -55,6 +55,10 @@ const ALLOW = [
   'used to print $229/hr for four movers next to a "from" price that',
   'not have caught a single defect this pass found — "$129 per hour each" and',
   '"$229/hr" both survive token substitution untouched. The claims-guard rule',
+  // The fine-art guide lists museum-grade works as a reason to call a
+  // specialist instead of a mover: a statement about the work, not about us.
+  'Museum-grade works requiring specialized environmental control',
+  'Произведения искусства музейного уровня — нужны специализированные art storage facilities',
 ];
 
 /**
@@ -152,6 +156,15 @@ const RULES = [
 
   { id: 'sacramento-in-sameas', why: 'The Sacramento branch belongs in subOrganization, never sameAs. sameAs asserts one entity, which invites Google to merge the two businesses and their ratings - this one has 41 reviews, Sacramento has none and is not open yet.',
     re: /(?:sameAs\s*:|SAME_AS\s*=)\s*\[[^\]]{0,600}easy-move-sacramento/gi, whole: true },
+
+  { id: 'museum-grade', why: 'Owner, 15.09 (CLAIMS #18): we build custom crates, not to museum standard. "Музейный уровень" survived on /ru and /ua city menus until 2026-10-01.',
+    re: /museum[- ](?:grade|standard|level|quality)|музейн\S*\s+(?:уров|рів|стандарт|качеств|якост)/gi },
+
+  { id: 'crew-knows-building', why: 'The crew does not arrive already knowing the building; we find out its rules before move day. Found on /ru/about 2026-10-01 in a wording building-familiarity-ru did not cover.',
+    re: /(?:приезжа\S*|приїжджа\S*|arriv\S*)\s+(?:уже\s+|already\s+)?(?:зная|знаючи|knowing)\s+(?:здани|будин|the building)/gi },
+
+  { id: 'antiques-we-ship', why: 'Owner, 2026-10-01: we prepare antiques and art for shipping; partner carriers ship them. "We moved Steinway / 18th-century pieces" and "антиквариат мы возим" claim the opposite.',
+    re: /(?:антиквари\S*|антикварі\S*)[^.\n]{0,40}\s(?:мы\s+)?(?:возим|перевозим|веземо|перевозимо)\b|we['’]ve moved[^.\n]{0,120}(?:antique|18th|Steinway|sculpture)/gi },
 
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },

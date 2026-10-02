@@ -8,6 +8,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Award, Users, Shield, MapPin } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE } from '@/lib/pricing';
 import { ogCard } from '@/lib/seo/og';
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ const values = [
   {
     icon: Award,
     title: 'The rate never moves',
-    description: '$129/hour for two movers, $179 for three, plus $129 a day for the truck. It does not go up for a weekend, a long job, or a hard one. You pay for hours worked, in 15-minute increments after the 3-hour minimum.',
+    description: `$${HOURLY_RATE[2]}/hour for two movers, $${HOURLY_RATE[3]} for three, plus the truck per day at the crew rate — $${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three. It does not go up for a weekend, a long job, or a hard one. You pay for hours worked, in 15-minute increments after the ${MIN_HOURS}-hour minimum.`,
   },
   {
     icon: Shield,
@@ -104,9 +105,11 @@ export default function AboutPage() {
                 I started the company because the quotes I was getting as a customer were fiction. The
                 rate quoted on the phone was not the rate on the invoice, the truck fee appeared at the
                 end, and nobody had called the building to find out that the freight elevator was booked
-                until Thursday. So the way we price is deliberately boring: $129 an hour for two movers,
-                $179 for three, $129 a day for the truck with fuel and tolls inside it, and a 3-hour
-                minimum. That rate does not change because it is Saturday or because the job ran long.
+                until Thursday. So the way we price is deliberately boring: ${HOURLY_RATE[2]} an hour for two
+                movers, ${HOURLY_RATE[3]} for three, the truck per day at the same rate as the crew
+                (${TRUCK_FEE[2]} with two movers, ${TRUCK_FEE[3]} with three) with fuel and tolls inside it,
+                and a {MIN_HOURS}-hour minimum. That rate does not change because it is Saturday or because
+                the job ran long.
               </p>
               <p className="text-gray-600 leading-relaxed mb-5">
                 Most of what makes a South Florida move go badly is not the furniture — it is the
