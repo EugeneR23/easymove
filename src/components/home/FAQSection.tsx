@@ -54,6 +54,8 @@ export default function FAQSection() {
                   <div key={i}>
                     <button
                       type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-answer-${i}`}
                       onClick={() => setOpen(isOpen ? null : i)}
                       className="w-full flex items-start justify-between gap-4 py-5 text-left group"
                     >
@@ -73,11 +75,17 @@ export default function FAQSection() {
                       and AI search crawlers (ChatGPT, Perplexity, Claude) can read it
                       without executing JS. Visual collapse is handled via animated
                       max-height + opacity, not conditional render.
+
+                      No aria-hidden on the closed answer: it marked all 14 answers as
+                      hidden content, which geo_audit (2026-10-01) scored as a cloaking
+                      pattern, as it did the inline opacity:0. The fade is a class now and
+                      the open/closed state is on the button's aria-expanded.
                     */}
                     <div
-                      className="overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                      style={{ maxHeight: isOpen ? 1400 : 0, opacity: isOpen ? 1 : 0 }}
-                      aria-hidden={!isOpen}
+                      id={`faq-answer-${i}`}
+                      role="region"
+                      className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+                      style={{ maxHeight: isOpen ? 1400 : 0 }}
                     >
                       <div className="pb-5 pr-6">
                         <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
