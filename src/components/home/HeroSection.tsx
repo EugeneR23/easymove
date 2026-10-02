@@ -111,7 +111,7 @@ export default function HeroSection() {
 
             {/* Real Thumbtack rating ribbon */}
             <a
-              href="https://www.thumbtack.com/profile/services/474342774303219734/reviews"
+              href={THUMBTACK.url}
               target="_blank"
               rel="noopener noreferrer"
               className="hero-slide-l inline-flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity"

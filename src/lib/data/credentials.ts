@@ -46,8 +46,9 @@ export const GOOGLE_BUSINESS: {
   // in the GBP dashboard under "Ask for reviews". Until it is here the CTA falls
   // back to Thumbtack.
   reviewUrl: null,
+  // Re-checked on the live profile 2026-10-02: 5.0 across 9 reviews.
   rating: '5.0',
-  reviewCount: 8,
+  reviewCount: 9,
 };
 
 /**
@@ -73,7 +74,10 @@ export const INSURANCE: {
  * review landed.
  */
 export const THUMBTACK = {
-  url: 'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
+  // The public profile. The /profile/services/<id>/reviews address used until
+  // 2026-10-02 is the pro dashboard: a visitor who is not logged in is sent to
+  // thumbtack.com/login. Rating and count re-checked here 2026-10-02.
+  url: 'https://www.thumbtack.com/fl/hollywood/moving-companies/easy-move-moving-services-packing/service/474342774303219734',
   rating: '4.7',
   reviewCount: 33,
   topProYear: 2024,

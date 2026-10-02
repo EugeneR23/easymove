@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
-import { GOOGLE_BUSINESS, REVIEW_TOTALS } from '@/lib/data/credentials';
+import { GOOGLE_BUSINESS, REVIEW_TOTALS, THUMBTACK } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
 import { PHONE, EMAIL, OWNER, postalAddressSchema } from '@/lib/data/contact';
@@ -34,7 +34,11 @@ const siteUrl = SITE_URL;
 const SAME_AS = [
   'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
   'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
-  'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
+  THUMBTACK.url,
+  // Nextdoor business page: carries our phone, site and address (checked
+  // 2026-10-02). Yelp stays out until its listing stops calling us
+  // "Easy Move Elite" in Sunny Isles Beach.
+  'https://nextdoor.com/pages/easy-move-florida/',
 ];
 
 export const BASE_METADATA: Metadata = {
