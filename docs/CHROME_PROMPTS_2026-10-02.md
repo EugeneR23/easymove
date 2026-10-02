@@ -191,3 +191,174 @@ Easy Move Florida, которые принадлежат нам, и собрат
 | Промт 3 | Проверю, видит ли Bing sitemap |
 | Промт 4 | Добавлю в sameAs только профили, где стоит наш телефон или сайт |
 | Промт 5 | Обновлю рейтинг и число в `credentials.ts` (оттуда берут разметка, llms.txt и страницы). По отзывам Google спрошу, показывать ли их на `/reviews` |
+
+---
+
+# Раунд 2 — после отчётов 2026-10-02
+
+Что уже сделано по отчётам: доменный ресурс подтверждён, четыре записи в
+старом ресурсе удалены, `www`-sitemap переотправлен в доменный ресурс через
+API, ссылка на Thumbtack исправлена (старая вела гостя на экран входа),
+рейтинг Google обновлён до 9 отзывов, Nextdoor добавлен в разметку, девять
+отзывов Google — на `/reviews`, страница North Miami создана.
+
+Главная находка: многие ключевые страницы Google **ни разу не обходил**
+(«Discovered – currently not indexed» или «URL is unknown to Google»). Причина,
+скорее всего: `www`-sitemap Google последний раз скачивал 2024-12-07, ещё во
+времена Wix, а sitemap на адресе без www перечисляет страницы с www — чужой
+хост, такие адреса Google не принимает. Sitemap уже переотправлен; промт 6
+ускоряет индексацию самых важных страниц.
+
+---
+
+# ПРОМТ 6 — запросить индексацию (сегодня 10, завтра ещё 10)
+
+У Google лимит около десяти запросов в сутки. Порядок — по важности.
+
+```
+Ты работаешь в моём браузере, в Google Search Console.
+
+Для каждого адреса из списка:
+1. Вставь его в строку «Проверить URL» вверху (ресурс выбери
+   sc-domain:easy-move-florida.com или https://www.easy-move-florida.com/).
+2. Дождись результата и нажми «Запросить индексирование».
+3. Если пишет, что квота исчерпана — остановись и запиши, на каком адресе.
+Больше ничего не меняй.
+
+День 1:
+https://www.easy-move-florida.com/miami-movers
+https://www.easy-move-florida.com/pricing
+https://www.easy-move-florida.com/services
+https://www.easy-move-florida.com/north-miami-movers
+https://www.easy-move-florida.com/fort-lauderdale-movers
+https://www.easy-move-florida.com/ru/russkie-gruzchiki-miami
+https://www.easy-move-florida.com/about
+https://www.easy-move-florida.com/boca-raton-movers
+https://www.easy-move-florida.com/dania-beach-movers
+https://www.easy-move-florida.com/ru/miami-movers
+
+День 2:
+https://www.easy-move-florida.com/services/residential-moving
+https://www.easy-move-florida.com/packing-services
+https://www.easy-move-florida.com/contact
+https://www.easy-move-florida.com/coral-gables-movers
+https://www.easy-move-florida.com/ru/pricing
+https://www.easy-move-florida.com/services/long-distance-moving
+https://www.easy-move-florida.com/miramar-movers
+https://www.easy-move-florida.com/pembroke-park-movers
+https://www.easy-move-florida.com/lauderdale-lakes-movers
+https://www.easy-move-florida.com/blog
+
+ОТЧЁТ: по каждому адресу — что показала проверка до запроса (индексирован /
+не индексирован / неизвестен) и удалось ли отправить запрос.
+```
+
+---
+
+# ПРОМТ 7 — убрать мусорные записи sitemap (Google и Bing)
+
+Эти записи не страницы сайта и не карты сайта, это старые ошибки. Сайт они
+не затрагивают; удаляем, чтобы в отчётах не висели постоянные ошибки.
+
+```
+Ты работаешь в моём браузере.
+
+ВАЖНО: удаляем только перечисленное. Ресурсы и сайты не удаляем.
+https://www.easy-move-florida.com/sitemap.xml НЕ удаляем нигде.
+
+Google Search Console:
+1. Ресурс sc-domain:easy-move-florida.com → «Файлы Sitemap» → у записи
+   https://www.easy-move-florida.com/locate «⋮» → «Удалить файл Sitemap».
+2. Ресурс https://www.easy-move-florida.com/ → то же для
+   https://www.easy-move-florida.com/locate (если там осталась).
+
+Bing Webmaster Tools (https://www.bing.com/webmasters, сайт
+easy-move-florida.com) → Sitemaps. Удали записи:
+   https://easy-move-florida.com/ru/sunny-isles-movers
+   https://easy-move-florida.com/ru/aventura-movers
+   https://easy-move-florida.com/ru/miami-movers
+   https://easy-move-florida.com/pricing
+
+ОТЧЁТ: что удалено и что осталось в списках Sitemap в Google и в Bing.
+```
+
+---
+
+# ПРОМТ 8 — исправить карточку Yelp
+
+Отчёт показал: ссылка на нашу карточку перенаправляет на
+`yelp.com/biz/easy-move-elite-sunny-isles-beach` — старое название и чужой
+город. Страницей управляешь ты («You manage this page»), значит, её можно
+исправить. Полный разбор и канонический NAP — в
+`docs/DIRECTORY_FIX_PROMPTS.md`, промт 1; ниже короткая версия.
+
+```
+Ты работаешь в моём браузере, я залогинен в Yelp for Business.
+
+ВАЖНО: не создавай новую карточку. Ничего не покупай, от платных пакетов
+откажись. Если нужен код подтверждения — остановись и спроси меня.
+
+1. Открой https://biz.yelp.com и выбери страницу
+   yelp.com/biz/easy-move-elite-sunny-isles-beach
+2. В Business Information приведи к виду:
+   Название:  Easy Move Florida
+   Телефон:   (786) 305-1844
+   Сайт:      https://www.easy-move-florida.com
+   Адрес:     2130 Stirling Rd, Hollywood, FL 33020 — если Yelp разрешает
+              скрыть адрес и указать зону обслуживания, выбери зону:
+              Miami-Dade, Broward, Palm Beach
+   Часы:      Пн–Пт 9:00–19:00, Сб–Вс 10:00–18:00
+   Категория: Movers
+3. Если есть пометка «Unclaimed» и кнопка «Claim this business» —
+   иди по ней и скажи мне, что она просит.
+4. Поищи на Yelp «Eugene Romanov» на 2130 Stirling Rd — это второй листинг
+   с нашим телефоном. Ничего с ним не делай, только перепиши его адрес
+   на Yelp.
+
+ОТЧЁТ: какие поля удалось изменить, что ушло на модерацию, статус claim,
+адрес второго листинга.
+```
+
+---
+
+# ПРОМТ 9 — ответить на отзывы Google (тексты готовы)
+
+По таблице из отчёта без ответа пять отзывов (в тексте отчёта сказано «6»,
+но в таблице ответ стоит у Ivan, Andrei, Tatiana и Andrey). Ответы короткие,
+от первого лица, без обещаний и цифр. Прочитайте и поправьте до запуска —
+это публикация от имени компании.
+
+```
+Ты работаешь в моём браузере, в профиле компании Easy Move Florida в Google
+(business.google.com → Отзывы). Ответь на отзывы ниже ТОЧНО этими текстами.
+На другие отзывы не отвечай, ничего не удаляй и не редактируй.
+
+Ekaterina Bykova:
+Ekaterina, thank you! Glad the move between apartments went smoothly from the first call to the last box. If you ever need us again, you have my number. — Eugene
+
+Bianca Sa:
+Thank you, Bianca! It was a pleasure to help. — Eugene
+
+Katerina Ko:
+Katerina, thank you so much for the kind words! Happy to help anytime. — Eugene
+
+Owen Parker:
+Thanks, Owen! Glad everything arrived safe and the day went fast. — Eugene
+
+Raha Mad:
+Thank you, Raha! We appreciate you trusting us with your move. — Eugene
+
+ОТЧЁТ: на какие отзывы ответ опубликован.
+```
+
+---
+
+## Верификация профиля Google — это не для агента
+
+Отчёт показал: «Verification not successful. To get verified, submit another
+recording.» Непроверенный профиль может не показываться в Картах и в
+локальной выдаче — а оттуда идёт большая часть звонков местной компании.
+Видео записывается с телефона в приложении Google Maps или Google Business,
+одним непрерывным дублем. Точный список того, что должно быть в кадре,
+Google показывает в приложении перед записью; следуйте ему. Сделайте это в
+первую очередь — это важнее любого промта выше.
