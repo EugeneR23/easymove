@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { hoursLine } from '@/lib/data/hours';
 import { licenceLine, THUMBTACK, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
+import { RU_NAMES, UA_NAMES } from '@/lib/data/cityNames';
+import { pathFor } from '@/lib/seo/routes';
 import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/data/contact';
@@ -22,7 +24,11 @@ type FooterLocale = 'en' | 'ru' | 'ua';
 
 const FOOTER_COPY: Record<FooterLocale, {
   services: string; company: string; contact: string; hoursLocale: 'en' | 'ru' | 'uk';
-  intro: string; ratePill: string;
+  intro: string; ratePill: string; serviceAreas: string;
+  /** Company column. Each entry is a route key (see lib/seo/routes) and its label. */
+  pages: { key: string; label: string }[];
+  city: (name: string) => string;
+  cost: (name: string) => string;
   /**
    * The Sacramento branch. A plain link on purpose: no rel, no target — it is
    * our own second company, so the link equity is the point of it, and
@@ -38,24 +44,62 @@ const FOOTER_COPY: Record<FooterLocale, {
     services: 'Services', company: 'Company', contact: 'Contact', hoursLocale: 'en',
     intro: 'Local moving and small handyman service across South Florida. Hollywood-based, owner-led by Evgenii Romanov. Russian + English.',
     ratePill: 'From $129/hr · 3-hour minimum',
+    serviceAreas: 'Moving Company Service Areas',
+    pages: [
+      { key: 'about', label: 'About Evgenii' },
+      { key: 'pricing', label: 'Pricing & Costs' },
+      { key: 'quote', label: 'Calculate My Move' },
+      { key: 'reviews', label: 'Reviews' },
+      { key: 'contact', label: 'Contact' },
+      { key: 'blog', label: 'Resources & Guides' },
+    ],
+    city: (name) => `${name} Movers`,
+    cost: (name) => `Moving Cost in ${name}`,
     branch: { text: 'Moving in Sacramento, California? Our branch there: Easy Move Sacramento', href: 'https://www.easy-move-sacramento.com/' },
   },
   ru: {
     services: 'Услуги', company: 'Компания', contact: 'Контакты', hoursLocale: 'ru',
     intro: 'Локальные переезды и небольшие работы по дому по Южной Флориде. База в Голливуде, заказ ведёт владелец Евгений Романов. Русский и английский.',
     ratePill: 'От $129/час · минимум 3 часа',
+    serviceAreas: 'Где мы работаем',
+    pages: [
+      { key: 'about', label: 'О Евгении' },
+      { key: 'pricing', label: 'Цены' },
+      { key: 'quote', label: 'Рассчитать переезд' },
+      { key: 'reviews', label: 'Отзывы' },
+      { key: 'contact', label: 'Контакты' },
+      { key: 'blog', label: 'Статьи и гайды' },
+    ],
+    city: (name) => `Переезды — ${name}`,
+    cost: (name) => `Стоимость переезда — ${name}`,
     branch: { text: 'Переезд в Сакраменто, Калифорния? Наш филиал: Easy Move Sacramento', href: 'https://www.easy-move-sacramento.com/ru' },
   },
   ua: {
     services: 'Послуги', company: 'Компанія', contact: 'Контакти', hoursLocale: 'uk',
     intro: 'Локальні переїзди та невеликі роботи по дому по Південній Флориді. База в Голлівуді, замовлення веде власник Євгеній Романов.',
     ratePill: 'Від $129/год · мінімум 3 години',
+    serviceAreas: 'Де ми працюємо',
+    pages: [
+      { key: 'about', label: 'Про Євгенія' },
+      { key: 'pricing', label: 'Ціни' },
+      { key: 'quote', label: 'Розрахувати переїзд' },
+      { key: 'reviews', label: 'Відгуки' },
+      { key: 'contact', label: 'Контакти' },
+      { key: 'blog', label: 'Статті та гайди' },
+    ],
+    city: (name) => `Переїзди — ${name}`,
+    cost: (name) => `Вартість переїзду — ${name}`,
     branch: { text: 'Переїзд у Сакраменто, Каліфорнія? Наша філія: Easy Move Sacramento', href: 'https://www.easy-move-sacramento.com/ua' },
   },
 };
 
 export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}) {
   const f = FOOTER_COPY[locale] ?? FOOTER_COPY.en;
+  // The page in this footer's language when it exists, the English one when not.
+  const loc = locale === 'ua' ? 'uk' : locale;
+  const href = (key: string) => pathFor(key, loc) ?? pathFor(key, 'en') ?? `/${key}`;
+  const names = locale === 'ru' ? RU_NAMES : locale === 'ua' ? UA_NAMES : null;
+  const cityName = (slug: string, en: string) => names?.[slug] ?? en;
   return (
     <footer className="bg-charcoal text-gray-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -102,20 +146,15 @@ export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}
             <h2 className="text-white font-semibold text-xs uppercase tracking-widest mb-5">{f.company}</h2>
             <ul className="space-y-3 text-sm">
               {[
-                { href: '/about', label: 'About Evgenii' },
-                { href: '/pricing', label: 'Pricing & Costs' },
-                { href: '/quote', label: 'Calculate My Move' },
-                { href: '/reviews', label: 'Reviews' },
-                { href: '/contact', label: 'Contact' },
-                { href: '/blog', label: 'Resources & Guides' },
+                ...f.pages.map((p) => ({ href: href(p.key), label: p.label })),
                 // Every city page, read from the data. The hand-kept list that used
                 // to sit here went stale the moment nine new city pages shipped.
-                ...CITIES.map((c) => ({ href: `/${c.slug}`, label: `${c.name} Movers` })),
+                ...CITIES.map((c) => ({ href: href(c.slug), label: f.city(cityName(c.slug, c.name)) })),
                 { href: '/packing-services', label: 'Packing Services' },
                 // The cost pages had no footer link at all. Their only inbound link
                 // was the conditional one in the city template, which does not fire
                 // for the 12 English cities that have no cost page of their own.
-                ...COST_PAGES.map((c) => ({ href: `/${c.slug}`, label: `Moving Cost in ${c.cityName}` })),
+                ...COST_PAGES.map((c) => ({ href: href(c.slug), label: f.cost(cityName(c.citySlug, c.cityName)) })),
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-gold transition-colors">{l.label}</Link>
@@ -207,9 +246,9 @@ export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}
 
         {/* Service area */}
         <div className="border-t border-white/5 mt-8 pt-8">
-          <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-2">Moving Company Service Areas</p>
+          <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-2">{f.serviceAreas}</p>
           <p className="text-xs text-gray-600 text-center mb-3">
-            {CITIES.map((c) => c.name).join(' · ')}
+            {CITIES.map((c) => cityName(c.slug, c.name)).join(' · ')}
           </p>
           {/* Our Sacramento branch. Plain anchor: this is our own company and the
               link is meant to carry weight, so no rel and no target. */}
