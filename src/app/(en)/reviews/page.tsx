@@ -46,7 +46,8 @@ export const metadata: Metadata = {
 
 type ClientReview = {
   name: string;
-  date: string;
+  /** YYYY-MM-DD, only when the platform states the date. Google shows "6 months ago". */
+  date?: string;
   text: string;
   source: 'Google' | 'Thumbtack';
   /** The stars this customer gave, as the platform shows them. Never assumed. */
@@ -64,7 +65,67 @@ type ClientReview = {
 // Each entry carries the customer's own star rating; the markup used to stamp
 // ratingValue '5' on every review regardless of what the customer gave.
 // Never paraphrase or invent a review.
-const REVIEWS: ClientReview[] = [];
+//
+// The nine Google reviews as the profile showed them on 2026-10-02, copied
+// word for word by the owner's browser check, all five stars. Google gives
+// only relative dates ("a month ago"), so no date is stated rather than one
+// reconstructed. Published on the owner's decision of 2026-10-02.
+const REVIEWS: ClientReview[] = [
+  {
+    name: "Ekaterina Bykova",
+    source: 'Google',
+    rating: 5,
+    text: "I needed to organize a move from one apartment to another, and the team handled it 100%. From the initial communication to the final unloading of my belongings, everything was top-notch. They did everything quickly, efficiently, and with great care for both my things and me as a client. Thank you so much!",
+  },
+  {
+    name: "Bianca Sa",
+    source: 'Google',
+    rating: 5,
+    text: "Everything was amazing. Really appreciate the help",
+  },
+  {
+    name: "Katerina Ko",
+    source: 'Google',
+    rating: 5,
+    text: "Thank you so much for the amazing service! Honest, reliably, accommodating. Can’t recommend enough, 5 star!!!!",
+  },
+  {
+    name: "Ivan Berezovskii",
+    source: 'Google',
+    rating: 5,
+    text: "Excellent team! They are reliable, punctual, and do a great job every time. Very professional and easy to work with. I’ve trusted them for several years now and highly recommend their services.",
+  },
+  {
+    name: "Owen Parker",
+    source: 'Google',
+    rating: 5,
+    text: "Great moving experience! They handled everything with care, were fast, and very friendly",
+  },
+  {
+    name: "Raha Mad",
+    source: 'Google',
+    rating: 5,
+    text: "Excellent service from start to finish. They communicated well, arrived on time, and moved everything safely. Truly professional movers.",
+  },
+  {
+    name: "Andrei Oho",
+    source: 'Google',
+    rating: 5,
+    text: "Eugene and his team are really professionals. They did everything very carefully and quickly without stress. All my furniture was delivered in full safety.",
+  },
+  {
+    name: "Tatiana Romanova",
+    source: 'Google',
+    rating: 5,
+    text: "Eugene is fantastic!! Definitely would recommend and will use them again!! Very professional and excellent at communicating.",
+  },
+  {
+    name: "Andrey",
+    source: 'Google',
+    rating: 5,
+    text: "Eugene and his team did a flawless job. They arrived at the meeting point on time and delivered everything on time and with great disposition. I will certainly use them again, they are a trustworthy team!",
+  },
+];
 
 const breadcrumbJson = JSON.stringify({
   '@context': 'https://schema.org',
@@ -93,7 +154,7 @@ const reviewArrayJson = REVIEWS.length
           itemReviewed: { '@type': 'MovingCompany', name: 'Easy Move Florida', url: siteUrl },
           reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: r.name },
-          datePublished: r.date,
+          ...(r.date ? { datePublished: r.date } : {}),
           reviewBody: r.text,
           publisher: { '@type': 'Organization', name: r.source },
         },
@@ -201,9 +262,13 @@ export default function ReviewsPage() {
                       <p itemProp="author" className="font-semibold text-charcoal text-sm">
                         {r.name}
                       </p>
-                      <p className="text-gray-400 text-xs mt-0.5">
-                        <time itemProp="datePublished" dateTime={r.date}>{r.date}</time>
-                      </p>
+                      {r.date ? (
+                        <p className="text-gray-400 text-xs mt-0.5">
+                          <time itemProp="datePublished" dateTime={r.date}>{r.date}</time>
+                        </p>
+                      ) : (
+                        <p className="text-gray-400 text-xs mt-0.5">{r.source} review</p>
+                      )}
                     </div>
                   </article>
                 ))}
@@ -217,11 +282,21 @@ export default function ReviewsPage() {
           <div className="container-max max-w-3xl">
             <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Where to read them</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal leading-tight mb-4">
-              All {THUMBTACK_REVIEW_COUNT} reviews are public on Thumbtack
+              Every review is public
             </h2>
             <p className="text-gray-600 leading-relaxed mb-5">
-              We keep our review history on the platform that verifies it rather than reprinting selected quotes here. Thumbtack only accepts a review from a customer it can confirm hired us, and it shows every review — so the {THUMBTACK_RATING} average across {THUMBTACK_REVIEW_COUNT} jobs is the whole record, not a curated subset.
+              The Google reviews above are copied word for word from our Google profile as it stood on 2 October 2026, all of them, not a selection. Thumbtack only accepts a review from a customer it can confirm hired us, and it shows every review — so the {THUMBTACK_RATING} average across {THUMBTACK_REVIEW_COUNT} jobs there is the whole record too.
             </p>
+            {GOOGLE_PROFILE_URL && (
+              <a
+                href={GOOGLE_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gold font-semibold text-sm hover:text-gold/80 transition border-b border-gold/40 pb-1 mr-6 mb-3"
+              >
+                Read them on Google <ExternalLink size={14} />
+              </a>
+            )}
             <a
               href={THUMBTACK_URL}
               target="_blank"
