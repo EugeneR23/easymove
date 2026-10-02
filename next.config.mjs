@@ -26,6 +26,15 @@ const nextConfig = {
       // International moving was never a service this company performed; the page
       // was indexed and cited before it came down on 2026-09-15.
       { source: '/services/international-moving', destination: '/services', permanent: true },
+      // Route pages (Miami → New York, Orlando, Boston …) came down on 2026-08-31
+      // with e3ad59a. Search Console still showed eleven of them in results a
+      // month later, all answering 404. The long-distance page is where the
+      // same question is answered now: Florida moves quoted per job,
+      // interstate referred to a licensed carrier.
+      { source: '/moving-miami-to-:dest',     destination: '/services/long-distance-moving', permanent: true },
+      { source: '/moving-florida-to-:dest',   destination: '/services/long-distance-moving', permanent: true },
+      { source: '/moving-hollywood-to-:dest', destination: '/services/long-distance-moving', permanent: true },
+      { source: '/ru/moving-miami-to-:dest',  destination: '/ru/services',                   permanent: true },
       { source: '/services-1',     destination: '/services',         permanent: true },
       { source: '/plans-pricing',  destination: '/pricing',          permanent: true },
       { source: '/book-online',    destination: '/quote',            permanent: true },
