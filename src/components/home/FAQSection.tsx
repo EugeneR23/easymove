@@ -73,23 +73,25 @@ export default function FAQSection({ locale = 'en' }: { locale?: 'en' | 'ru' } =
                 const isOpen = open === i;
                 return (
                   <div key={i}>
-                    <button
-                      type="button"
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-answer-${i}`}
-                      onClick={() => setOpen(isOpen ? null : i)}
-                      className="w-full flex items-start justify-between gap-4 py-5 text-left group"
-                    >
-                      <span className={`font-semibold text-sm leading-snug transition-colors duration-200 ${isOpen ? 'text-gold' : 'text-charcoal group-hover:text-gold'}`}>
-                        {faq.q}
-                      </span>
-                      {/* Plus icon rotates 45° to become × */}
-                      <span
-                        className={`shrink-0 mt-0.5 block transition-transform duration-[250ms] ease-in-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}
+                    <h3 className="m-0 font-body">
+                      <button
+                        type="button"
+                        aria-expanded={isOpen}
+                        aria-controls={`faq-answer-${i}`}
+                        onClick={() => setOpen(isOpen ? null : i)}
+                        className="w-full flex items-start justify-between gap-4 py-5 text-left group"
                       >
-                        <Plus size={16} className={isOpen ? 'text-gold' : 'text-gray-400 group-hover:text-gold transition-colors duration-200'} />
-                      </span>
-                    </button>
+                        <span className={`font-semibold text-sm leading-snug transition-colors duration-200 ${isOpen ? 'text-gold' : 'text-charcoal group-hover:text-gold'}`}>
+                          {faq.q}
+                        </span>
+                        {/* Plus icon rotates 45° to become × */}
+                        <span
+                          className={`shrink-0 mt-0.5 block transition-transform duration-[250ms] ease-in-out ${isOpen ? 'rotate-45' : 'rotate-0'}`}
+                        >
+                          <Plus size={16} className={isOpen ? 'text-gold' : 'text-gray-400 group-hover:text-gold transition-colors duration-200'} />
+                        </span>
+                      </button>
+                    </h3>
 
                     {/*
                       SEO/GEO: answer text is always rendered in the DOM so Googlebot

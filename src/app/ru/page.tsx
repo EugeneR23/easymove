@@ -79,34 +79,11 @@ const SERVICES = [
 ];
 
 /* ── FAQ ──────────────────────────────────────────────────────────────────────── */
-const FAQS = [
-  {
-    q: 'Сколько стоит локальный переезд?',
-    a: 'Локальные переезды оплачиваются почасово: $129/час за 2 грузчиков или $179/час за 3, минимум 3 часа, плюс трак в день отдельной строкой по той же ставке, что и бригада ($129 при двух грузчиках, $179 при трёх) — топливо, платные дороги и пробег внутри. Минимальный счёт — $516 с двумя грузчиками, $716 с тремя. Студия $516–$645, 2-комнатная $645–$1,253. Надбавок за выходные и сезон нет: ставка зафиксирована.',
-  },
-  {
-    q: 'Вы работаете с высотками в Brickell и Sunny Isles?',
-    a: 'Да, это наша специализация. Мы бронируем лифты, координируем с загрузочной зоной и оформляем страховку (COI) для управляющей компании — обычно за 24 часа.',
-  },
-  {
-    q: 'Вы застрахованы?',
-    a: 'Полностью. У нас есть general liability и cargo insurance. Сертификат страхования (COI) для вашего здания выдаётся по запросу, обычно в течение 24 часов.',
-  },
-  {
-    q: 'Можно ли переехать срочно?',
-    a: 'Да, мы часто берём переезды в течение одной недели. Позвоните нам — мы постараемся найти окно даже на ближайшие дни.',
-  },
-  {
-    q: 'Вы говорите по-русски?',
-    a: 'Да! Основатель и координатор Евгений Романов говорит по-русски. Вы можете обсудить все детали переезда на русском языке.',
-  },
-];
 
 export default function RuHomePage() {
   const [moveType, setMoveType] = useState<MoveType>('local');
   const [homeSize, setHomeSize] = useState<HomeSize | null>(null);
   const [crew, setCrew] = useState<CrewSize>(2);
-  const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [testimonialIdx, setTestimonialIdx] = useState(0);
 
   const showSizeGrid = moveType === 'local' || moveType === 'packing-only';
@@ -376,7 +353,7 @@ export default function RuHomePage() {
                 <Link key={s.name} href={s.href} className="group flex items-start gap-4 bg-white p-6 border border-gray-100 hover:border-gold/40 hover:shadow-card transition-all duration-200">
                   <s.icon size={18} className="text-gold shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-charcoal text-sm mb-1 group-hover:text-gold transition-colors">{s.name}</p>
+                    <h3 className="font-body font-semibold text-charcoal text-sm mb-1 group-hover:text-gold transition-colors">{s.name}</h3>
                     <p className="text-gray-400 text-xs leading-snug">{s.desc}</p>
                   </div>
                   <ArrowRight size={13} className="text-gold/0 group-hover:text-gold/60 ml-auto shrink-0 mt-0.5 transition-colors" />
@@ -412,26 +389,6 @@ export default function RuHomePage() {
           </div>
         </section>
 
-        {/* ══════════════════════ FAQ ══════════════════════ */}
-        <section className="section-padding bg-white">
-          <div className="container-max max-w-3xl mx-auto">
-            <div className="text-center mb-10">
-              <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Частые вопросы</p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-charcoal">Ответы на ваши вопросы</h2>
-            </div>
-            <div className="space-y-0 divide-y divide-gray-200 border-t border-b border-gray-200">
-              {FAQS.map((faq, i) => (
-                <div key={faq.q} className="py-5">
-                  <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} className="w-full flex items-center justify-between text-left">
-                    <p className="font-semibold text-charcoal pr-4">{faq.q}</p>
-                    <span className="text-gold shrink-0 text-xl">{faqOpen === i ? '−' : '+'}</span>
-                  </button>
-                  {faqOpen === i && <p className="text-gray-500 text-sm leading-relaxed mt-3">{faq.a}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ══════════════════════ Города ══════════════════════ */}
         <section className="section-padding bg-cream">
