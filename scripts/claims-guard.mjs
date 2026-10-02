@@ -161,7 +161,7 @@ const RULES = [
     re: /museum[- ](?:grade|standard|level|quality)|музейн\S*\s+(?:уров|рів|стандарт|качеств|якост)/gi },
 
   { id: 'crew-knows-building', why: 'The crew does not arrive already knowing the building; we find out its rules before move day. Found on /ru/about 2026-10-01 in a wording building-familiarity-ru did not cover.',
-    re: /(?:приезжа\S*|приїжджа\S*|arriv\S*)\s+(?:уже\s+|already\s+)?(?:зная|знаючи|knowing)\s+(?:здани|будин|the building)/gi },
+    re: /(?:приезжа\S*|приїжджа\S*|приїзд\S*|arriv\S*)[,\s]+(?:уже\s+|already\s+)?(?:зная|знаючи|knowing)\s+(?:(?:ваше|ваш|your)\s+)?(?:здани|будин|the building|building)|already knows the ground/gi },
 
   { id: 'antiques-we-ship', why: 'Owner, 2026-10-01: we prepare antiques and art for shipping; partner carriers ship them. "We moved Steinway / 18th-century pieces" and "антиквариат мы возим" claim the opposite.',
     re: /(?:антиквари\S*|антикварі\S*)[^.\n]{0,40}\s(?:мы\s+)?(?:возим|перевозим|веземо|перевозимо)\b|we['’]ve moved[^.\n]{0,120}(?:antique|18th|Steinway|sculpture)/gi },

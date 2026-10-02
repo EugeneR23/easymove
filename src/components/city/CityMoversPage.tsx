@@ -252,7 +252,7 @@ const UI = {
     ctaEstimate: 'Get a FREE Estimate',
     localExpertise: 'Local Expertise',
     weKnow: (c: CityData) => `We Know ${c.name}`,
-    coordinatorPara: (c: CityData) => `Every ${c.name} move is assigned a dedicated coordinator who already knows the ground here${c.neighborhoods.length >= 2 ? `, from ${c.neighborhoods[0]} to ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}. The crew arrives briefed on your building, your timeline, and everything that needs protecting — before a single box is loaded.`,
+    coordinatorPara: (c: CityData) => `Every ${c.name} move${c.neighborhoods.length >= 2 ? `, from ${c.neighborhoods[0]} to ${c.neighborhoods[c.neighborhoods.length - 1]},` : ''} is assigned a dedicated coordinator. Your building's rules, the elevator window and everything that needs protecting are confirmed before move day, and the crew arrives briefed on them — before a single box is loaded.`,
     tags: ['Founder-Led', 'COI Available', 'No Subcontractors', 'Direct: 786-305-1844'],
     whatWeOffer: 'What We Offer',
     everyMove: (c: CityData) => `Every move in ${c.name} we handle`,
@@ -282,7 +282,7 @@ const UI = {
     ctaEstimate: 'Бесплатный расчёт',
     localExpertise: 'Знаем район',
     weKnow: (c: CityData) => `Мы знаем ${c.name}`,
-    coordinatorPara: (c: CityData) => `За каждым переездом в ${c.name} закреплён персональный координатор — по-русски, напрямую, без колл-центра${c.neighborhoods.length >= 2 ? `, от ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}. Бригада приезжает, уже зная ваше здание, лифт, правила управляющей компании и что нужно беречь особенно.`,
+    coordinatorPara: (c: CityData) => `За каждым переездом в ${c.name}${c.neighborhoods.length >= 2 ? `, от ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]},` : ''} закреплён персональный координатор — по-русски, напрямую, без колл-центра. Правила здания, окно лифта, требования управляющей компании и то, что нужно беречь особенно, мы узнаём до дня переезда, а не на месте.`,
     tags: ['Русскоязычный владелец', 'COI за 24 часа', 'Без субподрядчиков', 'Прямой телефон: 786-305-1844'],
     whatWeOffer: 'Что мы делаем',
     everyMove: (c: CityData) => `Любой переезд в ${c.name} — наша работа`,
@@ -314,7 +314,7 @@ const UI = {
     ctaEstimate: 'Безкоштовний розрахунок',
     localExpertise: 'Знаємо район',
     weKnow: (c: CityData) => `Ми знаємо ${c.name}`,
-    coordinatorPara: (c: CityData) => `За кожним переїздом у ${c.name} закріплений персональний координатор. Серед наших вантажників є україномовні, тож бригаду, яка говоритиме з вами українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Бригада приїздить, уже знаючи ваш будинок${c.neighborhoods.length >= 2 ? ` — від ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]}` : ''}, ліфт і правила менеджменту.`,
+    coordinatorPara: (c: CityData) => `За кожним переїздом у ${c.name}${c.neighborhoods.length >= 2 ? ` — від ${c.neighborhoods[0]} до ${c.neighborhoods[c.neighborhoods.length - 1]} —` : ''} закріплений персональний координатор. Серед наших вантажників є україномовні, тож бригаду, яка говоритиме з вами українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Правила будинку, вікно ліфта й вимоги менеджменту ми дізнаємося до дня переїзду, а не на місці.`,
     tags: ['Власник на звʼязку', 'COI за 24 години', 'Без субпідрядників', 'Телефон: 786-305-1844'],
     whatWeOffer: 'Що ми робимо',
     everyMove: (c: CityData) => `Будь-який переїзд у ${c.name} — наша робота`,
@@ -546,6 +546,9 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
         </section>
 
         {/* ── Neighborhoods ─────────────────────────────────────────────── */}
+        {/* Only when the page names some. A city with no sourced neighbourhood
+            names gets no section rather than a list made up to fill it. */}
+        {city.neighborhoods.length > 0 && (
         <section className="section-padding bg-white">
           <div className="container-max max-w-4xl mx-auto text-center">
             <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">{t.serviceArea}</p>
@@ -566,6 +569,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
             </p>
           </div>
         </section>
+        )}
 
         {/* ── Mid-page CTA ──────────────────────────────────────────────── */}
         <section className="bg-charcoal py-14">

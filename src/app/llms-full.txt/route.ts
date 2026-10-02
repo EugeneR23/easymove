@@ -91,7 +91,7 @@ export async function GET() {
     out.push(h(3, `${c.name}, ${c.state} — ${c.county} County`));
     out.push(`Page: ${siteUrl}/${c.slug}`);
     out.push(c.intro);
-    out.push(`Neighbourhoods served: ${c.neighborhoods.join(', ')}`);
+    if (c.neighborhoods.length) out.push(`Neighbourhoods served: ${c.neighborhoods.join(', ')}`);
     if (c.localFacts?.length) {
       out.push(c.localFacts.map((f) => `**${f.title}** — ${f.body}`).join('\n\n'));
     }
