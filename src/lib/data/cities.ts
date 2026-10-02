@@ -1460,6 +1460,248 @@ export const CITIES: CityData[] = [
       },
     ],
   },
+  // ── Four cities added 2026-10-01 on the owner's word, from GSC queries that
+  // reached the homepage with no city page behind them. Local facts are only
+  // what the city's Wikipedia article states (borders, the airport, Antique
+  // Row, Dania Pointe, Miramar Regional Park, Pembroke Park's mobile homes);
+  // no neighbourhood names were invented, so these four render without that
+  // section. Company facts are the same sentences the other city pages use.
+  {
+    slug: 'dania-beach-movers',
+    name: 'Dania Beach',
+    state: 'FL',
+    county: 'Broward',
+    heroHeadline: 'Dania Beach Movers, Next Door In Hollywood',
+    heroSub: 'Between Hollywood and Fort Lauderdale · the airport side and the ocean side',
+    heroImage: '/images/Real/Fort-Lauderdale.jpg',
+    metaTitle: 'Dania Beach Movers | Easy Move Florida',
+    metaDescription: 'Movers in Dania Beach FL for homes, condos and offices. 2 movers $129/hr, 3 movers $179/hr, truck on its own line, free COI. English and Russian. Call 786-305-1844.',
+    intro: "Dania Beach sits between Fort Lauderdale to the north and Hollywood to the south, with the Atlantic on its east side and Fort Lauderdale-Hollywood International Airport inside the city. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, right across that southern line, so a Dania Beach job is a short drive for the crew rather than a trip. Residential moves, condo moves with a building that wants paperwork, and office moves all happen here. Rates are $129 an hour for two movers, $179 for three, $219 for four, with a three-hour minimum and the truck billed as its own line at the same figure as the crew rate. The crew works in English and Russian.",
+    neighborhoods: [],
+    localFacts: [
+      {
+        title: 'Next door to our base',
+        body: 'Hollywood borders Dania Beach to the south, and that is where we are based. For you it means an early start is easy to arrange and the drive to your door is a small part of the day rather than a large one. Travel does not add a separate fee to your rate.',
+      },
+      {
+        title: 'The airport is in the city, and so is its traffic',
+        body: 'Fort Lauderdale-Hollywood International Airport is located in Dania Beach. Roads around it carry airport traffic at every hour, so we plan the route and the arrival time around it rather than finding out on the day. If your building sets a move window, we tell you at the estimate stage how the crew will reach it on time.',
+      },
+      {
+        title: 'Antique Row and older pieces',
+        body: 'Dania Beach is known for the antique shops of Antique Row along Federal Highway. If you are moving an antique piece, we prepare it for shipping: assessment, padding, a crate where the piece needs one, and photos before it leaves. The shipping itself is done by our partner carriers.',
+      },
+      {
+        title: 'Office and commercial moves',
+        body: 'Dania Beach has offices and shops as well as homes, including the Dania Pointe district downtown. Office moves are their own service: we plan them around your working hours, label by desk and room, and quote them per job rather than from the household rate card. Tell us the size of the office and what has to keep running, and we put it in writing.',
+      },
+      {
+        title: 'Condo paperwork, done before move day',
+        body: 'Associations on the ocean side usually want a certificate of insurance, a move form and a reserved elevator window. We ask for your association contact when you book, send the COI within 24 hours in their required format with the association named as additional insured, and confirm the elevator window with management. The COI costs nothing.',
+      },
+      {
+        title: 'What the invoice actually looks like',
+        body: 'Two movers are $129 an hour, three are $179, four are $219, with a three-hour minimum and billing in 15-minute increments after it. The truck is its own line at the same figure as the crew rate for the day, so $129 with two movers or $179 with three. The smallest possible invoice is $516 with a two-mover crew. There is no weekend, seasonal or fuel surcharge, no deposit, and free cancellation more than 48 hours out.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move in Dania Beach?',
+        a: 'Yes. Our base is in Hollywood, which borders Dania Beach to the south, so the crew drives over from next door. We do not claim an office in Dania Beach, because we do not have one. Travel does not add a separate fee to your rate.',
+      },
+      {
+        q: 'Do you do commercial and office moves in Dania Beach?',
+        a: 'Yes. Office and commercial moves are a separate service, quoted per job rather than from the household rate card, because the work depends on the equipment, the number of desks and the hours the business can be closed. We plan around your working hours and label everything by room so the office is usable the next morning.',
+      },
+      {
+        q: 'My association wants a certificate of insurance. What do you need from me?',
+        a: "Send us the management company name, the exact association name as it should appear, the address the certificate goes to, and any sample or template they gave you. We issue the COI free within 24 hours of booking, in their required format, naming the association as additional insured, and we confirm your association's exact requirements before move day rather than guessing.",
+      },
+      {
+        q: 'Is there an extra charge for stairs or a long carry?',
+        a: 'No. Stairs, elevators, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours. That is why we ask about access before quoting: we would rather show it in the estimate than surprise you with a line item.',
+      },
+      {
+        q: 'What does a typical Dania Beach move cost?',
+        a: 'A studio generally lands between $516 and $645 all in. A one-bedroom is $516 to $774, a two-bedroom $645 to $1,253, a three-bedroom $1,253 to $1,611, and a four-bedroom or house $1,611 to $2,327. Those are total figures including the truck line. Where you fall in the range depends on access, packing and distance between addresses. We give you a written estimate before you commit.',
+      },
+      {
+        q: 'Can you move an antique piece?',
+        a: 'We prepare it for shipping: assessment, padding, a crate where the piece needs one, and photos before and after. The shipping itself is done by our partner carriers.',
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes. The owner, Evgenii Romanov, and the crew work in English and Russian, so you can do the walkthrough, the quote and the move day itself in either language. Call or message 786-305-1844 - the same number takes WhatsApp - and you will be talking to the person who runs the company rather than a call centre reading from a script.',
+      },
+    ],
+  },
+  {
+    slug: 'miramar-movers',
+    name: 'Miramar',
+    state: 'FL',
+    county: 'Broward',
+    heroHeadline: 'Miramar Movers From The City Next Door',
+    heroSub: 'Southern Broward · bordering Hollywood, Pembroke Pines and West Park',
+    heroImage: '/images/Real/2.png',
+    metaTitle: 'Miramar Movers | Easy Move Florida',
+    metaDescription: 'Movers in Miramar FL for houses and condos. 2 movers $129/hr, 3 movers $179/hr, truck on its own line, free COI. English and Russian. Call 786-305-1844.',
+    intro: "Miramar is a city in southern Broward County, bordered by Pembroke Pines, Hollywood, West Park and Miami-Dade County. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, which borders Miramar, so the crew comes over from the next city rather than across the county. Most Miramar moves are houses and townhomes with a driveway, plus condos and rentals where a community office sets the rules. Rates are $129 an hour for two movers, $179 for three, $219 for four, with a three-hour minimum and the truck billed as its own line at the same figure as the crew rate. The crew works in English and Russian.",
+    neighborhoods: [],
+    localFacts: [
+      {
+        title: 'From the next city over',
+        body: 'Hollywood, where we are based, borders Miramar. That keeps the drive a small part of the day and makes an early start easy to arrange. Travel does not add a separate fee to your rate.',
+      },
+      {
+        title: 'Houses are a truck-access question, not a stairs question',
+        body: 'A house with a driveway usually takes a full-size truck, but cul-de-sacs, gates and low branches catch people out. Before we schedule we look at your street by map and by a short video you send from your phone. If the approach is tight we bring a smaller truck or plan a short shuttle. There is no stairs fee and no long-carry fee — access affects the hours, and the hours are in the estimate.',
+      },
+      {
+        title: 'Community rules come first',
+        body: 'Gated communities and rental complexes usually want to know the date, the truck size and the company before move day, and some want a certificate of insurance. We ask for the office contact when you book, send the COI within 24 hours in their format, and confirm the gate procedure, so the truck is not held at the entrance.',
+      },
+      {
+        title: 'Storage between a closing and the next one',
+        body: 'Closings rarely line up. If you hand over keys before you can take possession of the next place, we load, hold your goods in storage from $200 a month, and redeliver when you are ready. Everything is inventoried on the way in so you know what is there.',
+      },
+      {
+        title: 'What the invoice actually looks like',
+        body: 'Two movers are $129 an hour, three are $179, four are $219, with a three-hour minimum and billing in 15-minute increments after it. The truck is its own line at the same figure as the crew rate for the day, so $129 with two movers or $179 with three. The smallest possible invoice is $516 with a two-mover crew. There is no weekend, seasonal or fuel surcharge, no deposit, and free cancellation more than 48 hours out.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move in Miramar?',
+        a: 'Yes. Our base is in Hollywood, which borders Miramar, so the crew drives over from the next city. We do not claim an office in Miramar, because we do not have one. Travel does not add a separate fee to your rate.',
+      },
+      {
+        q: 'Our community has a gate and an office. What do you need?',
+        a: "The office contact, any move form they use, and whether they want a certificate of insurance. We issue the COI free within 24 hours of booking in their required format and confirm the gate procedure before the truck arrives, so nobody waits at the entrance on the clock.",
+      },
+      {
+        q: 'Is there an extra charge for stairs or a long carry?',
+        a: 'No. Stairs, elevators, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours. That is why we ask about access before quoting.',
+      },
+      {
+        q: 'What does a typical Miramar move cost?',
+        a: 'A studio generally lands between $516 and $645 all in. A one-bedroom is $516 to $774, a two-bedroom $645 to $1,253, a three-bedroom $1,253 to $1,611, and a four-bedroom or house $1,611 to $2,327. Those are total figures including the truck line. Where you fall in the range depends on access, packing and distance between addresses. We give you a written estimate before you commit.',
+      },
+      {
+        q: 'Do you pack, or only load what I have already boxed?',
+        a: 'Either. Packing is $79 an hour for two packers, and a studio packing package starts at $237. Many people pack their own clothes and books and hand us the kitchen, the artwork and the electronics. We bring materials, label by room and unpack at the other end if you want that too.',
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes. The owner, Evgenii Romanov, and the crew work in English and Russian, so you can do the walkthrough, the quote and the move day itself in either language. Call or message 786-305-1844 - the same number takes WhatsApp.',
+      },
+    ],
+  },
+  {
+    slug: 'pembroke-park-movers',
+    name: 'Pembroke Park',
+    state: 'FL',
+    county: 'Broward',
+    heroHeadline: 'Pembroke Park Movers, A Few Minutes Away',
+    heroSub: 'A small town between Hollywood, Hallandale Beach and West Park',
+    heroImage: '/images/Real/4.png',
+    metaTitle: 'Pembroke Park Movers | Easy Move Florida',
+    metaDescription: 'Movers in Pembroke Park FL, including mobile home moves of everything inside. 2 movers $129/hr, 3-hour minimum, truck on its own line. English and Russian. Call 786-305-1844.',
+    intro: "Pembroke Park is a small town in Broward County, next to Hollywood, Hallandale Beach and West Park. Almost half of its residents live in mobile homes, so many moves here are the contents of a mobile home or a small apartment rather than a large house. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, next door. Rates are $129 an hour for two movers, $179 for three, $219 for four, with a three-hour minimum and the truck billed as its own line at the same figure as the crew rate. For a small move, two movers and the minimum are often enough. The crew works in English and Russian.",
+    neighborhoods: [],
+    localFacts: [
+      {
+        title: 'Moving out of a mobile home',
+        body: 'We move what is inside the home: furniture, boxes, appliances that go with you. Moving the structure itself is a different trade. In a mobile home park the lanes are narrow and the park office often has its own rules on truck size and hours, so we ask for the office contact when you book and plan the truck around them.',
+      },
+      {
+        title: 'Small moves, priced as small moves',
+        body: 'A one-room or two-room move is often a two-mover job. The smallest possible invoice is $516: three hours with two movers plus the truck at $129 for the day. If the job is done sooner than the three hours, the minimum still applies; past it, billing is in 15-minute increments.',
+      },
+      {
+        title: 'Next door to our base',
+        body: 'Pembroke Park is adjacent to Hollywood, where we are based. The drive is short, an early start is easy to arrange, and travel does not add a separate fee to your rate.',
+      },
+      {
+        title: 'What the invoice actually looks like',
+        body: 'Two movers are $129 an hour, three are $179, four are $219, with a three-hour minimum and billing in 15-minute increments after it. The truck is its own line at the same figure as the crew rate for the day. There is no weekend, seasonal or fuel surcharge, no deposit, and free cancellation more than 48 hours out.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Can you move the mobile home itself?',
+        a: 'No. We move what is inside it: furniture, boxes and the appliances that go with you. Moving the structure is a different trade.',
+      },
+      {
+        q: 'What is the smallest move you take?',
+        a: 'Any size. The minimum is three hours, so the smallest possible invoice is $516 with two movers and the truck. A one-room move in Pembroke Park often fits inside that minimum.',
+      },
+      {
+        q: 'The park office has rules about trucks. Is that a problem?',
+        a: 'No. Send us the office contact or the rules they gave you. We plan the truck size and the arrival time around them, and if the lane is too narrow for a full-size truck we bring a smaller one or shuttle from a legal spot nearby. It adds hours rather than fees.',
+      },
+      {
+        q: 'Is there an extra charge for stairs or a long carry?',
+        a: 'No. Stairs, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours.',
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes. The owner, Evgenii Romanov, and the crew work in English and Russian. Call or message 786-305-1844 - the same number takes WhatsApp.',
+      },
+    ],
+  },
+  {
+    slug: 'lauderdale-lakes-movers',
+    name: 'Lauderdale Lakes',
+    state: 'FL',
+    county: 'Broward',
+    heroHeadline: 'Lauderdale Lakes Movers For Homes And Offices',
+    heroSub: 'Between Tamarac, Lauderhill, Oakland Park and Fort Lauderdale',
+    heroImage: '/images/Real/6.png',
+    metaTitle: 'Lauderdale Lakes Movers | Easy Move Florida',
+    metaDescription: 'Movers in Lauderdale Lakes FL for apartments, condos and offices. 2 movers $129/hr, 3 movers $179/hr, truck on its own line, free COI. Call 786-305-1844.',
+    intro: "Lauderdale Lakes is a city in Broward County, bordered by Tamarac to the north, Lauderhill to the west and south, Oakland Park to the east and Fort Lauderdale to the southeast. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, south of Fort Lauderdale, so we drive up for Lauderdale Lakes jobs and plan the start time around that. Apartments, condos with an association, houses and small offices are all part of the work here. Rates are $129 an hour for two movers, $179 for three, $219 for four, with a three-hour minimum and the truck billed as its own line at the same figure as the crew rate. The crew works in English and Russian.",
+    neighborhoods: [],
+    localFacts: [
+      {
+        title: 'We drive up from Hollywood',
+        body: 'Our base is in Hollywood, south of Fort Lauderdale. For a Lauderdale Lakes job the crew leaves early so loading starts before the roads fill. Travel does not add a separate fee to your rate.',
+      },
+      {
+        title: 'Office and commercial moves',
+        body: 'Office moves are their own service: planned around your working hours, labelled by desk and room, and quoted per job rather than from the household rate card. Tell us the size of the office and what has to keep running, and we put it in writing.',
+      },
+      {
+        title: 'Condo paperwork, done before move day',
+        body: 'Associations usually want a certificate of insurance, a move form and a reserved elevator window. We ask for your association contact when you book, send the COI within 24 hours in their required format with the association named as additional insured, and confirm the window with management. The COI costs nothing.',
+      },
+      {
+        title: 'What the invoice actually looks like',
+        body: 'Two movers are $129 an hour, three are $179, four are $219, with a three-hour minimum and billing in 15-minute increments after it. The truck is its own line at the same figure as the crew rate for the day, so $129 with two movers or $179 with three. The smallest possible invoice is $516 with a two-mover crew. There is no weekend, seasonal or fuel surcharge, no deposit, and free cancellation more than 48 hours out.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'Do you move in Lauderdale Lakes?',
+        a: 'Yes. Our base is in Hollywood, south of Fort Lauderdale, and the crew drives up. We do not claim an office in Lauderdale Lakes, because we do not have one. Travel does not add a separate fee to your rate.',
+      },
+      {
+        q: 'Do you do commercial and office moves?',
+        a: 'Yes. Office and commercial moves are a separate service, quoted per job rather than from the household rate card, because the work depends on the equipment, the number of desks and the hours the business can be closed.',
+      },
+      {
+        q: 'My association wants a certificate of insurance. What do you need from me?',
+        a: "Send us the management company name, the exact association name as it should appear, the address the certificate goes to, and any template they gave you. We issue the COI free within 24 hours of booking, in their required format, and confirm your association's requirements before move day.",
+      },
+      {
+        q: 'What does a typical Lauderdale Lakes move cost?',
+        a: 'A studio generally lands between $516 and $645 all in. A one-bedroom is $516 to $774, a two-bedroom $645 to $1,253, a three-bedroom $1,253 to $1,611, and a four-bedroom or house $1,611 to $2,327. Those are total figures including the truck line. We give you a written estimate before you commit.',
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes. The owner, Evgenii Romanov, and the crew work in English and Russian. Call or message 786-305-1844 - the same number takes WhatsApp.',
+      },
+    ],
+  },
 ];
 
 export function getCityData(slug: string): CityData | undefined {

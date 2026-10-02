@@ -92,9 +92,13 @@ const RU_NAMES: Record<string, string> = {
   'boca-raton-movers': 'Бока-Ратон',
   'delray-beach-movers': 'Делрей-Бич',
   'boynton-beach-movers': 'Бойнтон-Бич',
+  'dania-beach-movers': 'Дания-Бич',
+  'miramar-movers': 'Мирамар',
+  'pembroke-park-movers': 'Пемброк-Парк',
+  'lauderdale-lakes-movers': 'Лодердейл-Лейкс',
 };
 
-// Ukrainian display names for the same nineteen slugs. Same rule as RU_NAMES:
+// Ukrainian display names for the same slugs. Same rule as RU_NAMES:
 // a label map only, never the source of which cities get linked.
 const UA_NAMES: Record<string, string> = {
   'miami-movers': 'Маямі',
@@ -116,6 +120,10 @@ const UA_NAMES: Record<string, string> = {
   'boca-raton-movers': 'Бока-Ратон',
   'delray-beach-movers': 'Делрей-Біч',
   'boynton-beach-movers': 'Бойнтон-Біч',
+  'dania-beach-movers': 'Данія-Біч',
+  'miramar-movers': 'Мірамар',
+  'pembroke-park-movers': 'Пемброк-Парк',
+  'lauderdale-lakes-movers': 'Лодердейл-Лейкс',
 };
 
 // Which cities have a Russian page — read from the Russian data itself rather
@@ -143,10 +151,14 @@ const SOUTH_TO_NORTH = [
   'sunny-isles-movers',
   'aventura-movers',
   'hallandale-beach-movers',
+  'pembroke-park-movers',
   'hollywood-movers',
+  'dania-beach-movers',
+  'miramar-movers',
   'pembroke-pines-movers',
   'weston-movers',
   'fort-lauderdale-movers',
+  'lauderdale-lakes-movers',
   'sunrise-movers',
   'coral-springs-movers',
   'boca-raton-movers',

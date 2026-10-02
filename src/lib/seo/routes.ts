@@ -60,6 +60,10 @@ const CITY_LOCALES: Record<string, Locale[]> = {
   'coconut-grove-movers':     ['en'],
   'coral-gables-movers':      ['en'],
   'doral-movers':             ['en'],
+  'dania-beach-movers':        ['en'],
+  'miramar-movers':            ['en'],
+  'pembroke-park-movers':      ['en'],
+  'lauderdale-lakes-movers':   ['en'],
 };
 
 /** Cost-page slugs, without their locale segment. */
