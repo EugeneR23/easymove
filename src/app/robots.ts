@@ -1,61 +1,13 @@
 import type { MetadataRoute } from 'next';
+import { AI_BOTS, ALLOW_PATHS, BLOCKED_SCRAPERS, SEARCH_BOTS, STD_DISALLOW } from '@/lib/seo/crawlers';
 
 const siteUrl = 'https://www.easy-move-florida.com';
-
-// Standard disallow list shared across most agents
-const STD_DISALLOW = ['/admin/', '/api/'];
-
-// AI training + AI-search crawlers we want citing us (ChatGPT/Claude/Perplexity/Bing Copilot/AI Overviews)
-const AI_BOTS = [
-  'GPTBot',
-  'ChatGPT-User',
-  'OAI-SearchBot',
-  'ClaudeBot',
-  'Claude-User',
-  'Claude-SearchBot',
-  'Claude-Web',
-  'anthropic-ai',
-  'PerplexityBot',
-  'Perplexity-User',
-  'Google-Extended',
-  'GoogleOther',
-  'DuckAssistBot',
-  'Applebot-Extended',
-  'Meta-ExternalAgent',
-  'Meta-ExternalFetcher',
-  'FacebookBot',
-  'Bytespider',
-  'Amazonbot',
-  'cohere-ai',
-  'YouBot',
-  'CCBot',
-  'Diffbot',
-];
-
-// Major search engines — explicit Allow keeps us multilingual (EN default, /ru/ Russian, no other locales exist)
-const SEARCH_BOTS = [
-  'Googlebot',
-  'Googlebot-Image',
-  'Bingbot',
-  'YandexBot',
-  'YandexImages',
-  'Mail.Ru',
-  'DuckDuckBot',
-  'Applebot',
-];
-
-// Aggressive SEO scrapers — block (consume bandwidth, no benefit)
-const BLOCKED_SCRAPERS = ['AhrefsBot', 'SemrushBot', 'MJ12bot', 'DotBot', 'BLEXBot', 'PetalBot'];
-
-// Language paths that actually exist. One source, so a bot rule can never allow
-// a path we never shipped.
-const ALLOW_PATHS = ['/', '/ru/', '/ua/'];
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // Default rule — applies to any UA not explicitly listed below.
-      // EN (default) at /, RU at /ru/. Add a language path here when it ships.
+      // EN at /, RU at /ru/, UA at /ua/. Add a language path to ALLOW_PATHS when it ships.
       {
         userAgent: '*',
         allow: ALLOW_PATHS,
