@@ -7,6 +7,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { PACKING_HOURLY_RATE } from '@/lib/pricing';
 import { ogCard } from '@/lib/seo/og';
 
 export const metadata: Metadata = {
@@ -67,15 +68,17 @@ const WHAT_WE_PACK = [
   { label: 'Garage & Storage Areas', desc: 'Tools, sports equipment, and bulk items efficiently sorted and boxed.' },
 ];
 
-// [TODO: confirm with Evgenii] packing hourly rates ($79 / $119) and these
-// package totals are not part of the verified rate card.
-const PRICING = [
-  { size: 'Studio', packers: 2, hours: 3, price: 237, note: '2 packers · 3-hr min' },
-  { size: '1 Bedroom', packers: 2, hours: 4, price: 316, note: '2 packers · ~4 hrs' },
-  { size: '2 Bedrooms', packers: 2, hours: 6, price: 474, note: '2 packers · ~6 hrs' },
-  { size: '3 Bedrooms', packers: 3, hours: 6, price: 714, note: '3 packers · ~6 hrs' },
-  { size: '4+ Bedrooms', packers: 3, hours: 8, price: 952, note: '3 packers · ~8 hrs' },
-];
+// Confirmed by the owner 2026-10-01: a studio is $237 (2 packers, 3-hour
+// minimum). Every row is hours x PACKING_HOURLY_RATE for that crew, so the
+// table cannot drift from the rate the quote engine uses.
+const PACKAGES = [
+  { size: 'Studio', packers: 2, hours: 3, note: '2 packers · 3-hr min' },
+  { size: '1 Bedroom', packers: 2, hours: 4, note: '2 packers · ~4 hrs' },
+  { size: '2 Bedrooms', packers: 2, hours: 6, note: '2 packers · ~6 hrs' },
+  { size: '3 Bedrooms', packers: 3, hours: 6, note: '3 packers · ~6 hrs' },
+  { size: '4+ Bedrooms', packers: 3, hours: 8, note: '3 packers · ~8 hrs' },
+] as const;
+const PRICING = PACKAGES.map((p) => ({ ...p, price: p.hours * PACKING_HOURLY_RATE[p.packers] }));
 
 const FAQS = [
   {

@@ -10,6 +10,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { readOneService, readAllServices } from '@/lib/data/services';
 import { getServiceContent } from '@/lib/data/serviceContent';
 import { formatCurrency } from '@/lib/utils';
+import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import * as LucideIcons from 'lucide-react';
 import { CheckCircle, Shield, Phone } from 'lucide-react';
@@ -94,7 +95,27 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     ],
     // A service quoted per job has no published figure. Emitting one anyway put
     // a number in the knowledge graph that no rate card backs.
-    ...(service.priceUnit === 'custom' ? {} : {
+    //
+    // An hourly service publishes the crew rates from lib/pricing, the same
+    // numbers /pricing shows. Residential said "from $450 flat-rate" here
+    // until 2026-10-01; the company has never sold a flat-rate local move.
+    ...(service.priceUnit === 'custom' ? {} : service.priceUnit === 'per-hour' ? {
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'USD',
+        lowPrice: HOURLY_RATE[2],
+        highPrice: HOURLY_RATE[4],
+        offerCount: 3,
+        priceSpecification: ([2, 3, 4] as const).map((crew) => ({
+          '@type': 'UnitPriceSpecification',
+          price: HOURLY_RATE[crew],
+          priceCurrency: 'USD',
+          unitText: 'HUR',
+          name: `Crew of ${crew} movers — hourly labour rate`,
+          eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
+        })),
+      },
+    } : {
       offers: {
         '@type': 'Offer',
         priceCurrency: 'USD',
@@ -300,7 +321,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   <>
                     <p className="text-xs uppercase tracking-wider text-gray-400 mb-1">Starting From</p>
                     <p className="font-display text-4xl font-bold text-charcoal mb-1">
-                      {formatCurrency(service.startingPrice)}
+                      {formatCurrency(service.priceUnit === 'per-hour' ? HOURLY_RATE[2] : service.startingPrice)}
                     </p>
                     <p className="text-sm text-gray-400 mb-7">
                       {service.priceUnit === 'per-hour' ? 'per hour' : service.priceUnit === 'flat-rate' ? 'flat rate' : service.priceUnit === 'per-month' ? 'per month' : service.priceUnit}

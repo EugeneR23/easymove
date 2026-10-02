@@ -35,8 +35,8 @@
         "label": "Dedicated move coordinator"
       }
     ],
-    "startingPrice": 450,
-    "priceUnit": "flat-rate",
+    "startingPrice": 129,
+    "priceUnit": "per-hour",
     "imageUrl": "/images/Local%20distance.png",
     "isActive": true
   },

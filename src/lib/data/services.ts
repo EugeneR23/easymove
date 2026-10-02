@@ -61,7 +61,7 @@ function getSeedServices(): Service[] {
         { icon: 'Clock', label: 'Elevator & loading dock coordination' },
         { icon: 'Phone', label: 'Direct line to Eugene throughout' },
       ],
-      startingPrice: 450, priceUnit: 'flat-rate',
+      startingPrice: 129, priceUnit: 'per-hour',
       imageUrl: '/images/Local%20distance.png',
       isActive: true,
     },

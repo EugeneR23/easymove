@@ -185,7 +185,7 @@ const offerJson = JSON.stringify({
         price: HOURLY_RATE[2],
         priceCurrency: 'USD',
         unitText: 'HUR',
-        name: '2 грузчика + грузовик',
+        name: '2 грузчика',
         eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
       },
       {
@@ -193,7 +193,7 @@ const offerJson = JSON.stringify({
         price: HOURLY_RATE[3],
         priceCurrency: 'USD',
         unitText: 'HUR',
-        name: '3 грузчика + грузовик',
+        name: '3 грузчика',
         eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
       },
       {
@@ -201,7 +201,7 @@ const offerJson = JSON.stringify({
         price: HOURLY_RATE[4],
         priceCurrency: 'USD',
         unitText: 'HUR',
-        name: '4 грузчика + грузовик',
+        name: '4 грузчика',
         eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
       },
     ],
@@ -253,7 +253,7 @@ export default function PricingRuPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
               <div className="border border-gray-200 bg-white p-7">
-                <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">2 грузчика + грузовик</p>
+                <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">2 грузчика</p>
                 <div className="mb-2">
                   <span className="text-gray-400 text-sm align-top mr-1">от</span>
                   <span className="font-display text-5xl font-bold text-charcoal">${HOURLY_RATE[2]}</span>
@@ -264,7 +264,7 @@ export default function PricingRuPage() {
               </div>
               <div className="relative border border-gold bg-cream p-7">
                 <div className="absolute -top-3 left-7 bg-gold px-3 py-1 text-[10px] font-bold text-white uppercase tracking-[0.15em]">Самый частый</div>
-                <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">3 грузчика + грузовик</p>
+                <p className="text-charcoal text-xs font-semibold tracking-[0.2em] uppercase mb-4">3 грузчика</p>
                 <div className="mb-2">
                   <span className="text-gray-400 text-sm align-top mr-1">от</span>
                   <span className="font-display text-5xl font-bold text-charcoal">${HOURLY_RATE[3]}</span>
