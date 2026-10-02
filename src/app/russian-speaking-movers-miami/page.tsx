@@ -11,6 +11,7 @@ import { Phone, MessageCircle } from 'lucide-react';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -37,13 +38,13 @@ export const metadata: Metadata = {
     title: `Russian-Speaking Movers in Miami & South Florida | Easy Move Florida`,
     description: `Russian-speaking movers in Miami, Sunny Isles, Aventura, Hallandale and Hollywood. Owner-led crews, rates from $129/hr, free COI in 24h. Call 786-305-1844.`,
     url: `${siteUrl}/russian-speaking-movers-miami`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Russian-speaking movers in Miami and South Florida' }],
+    images: [ogCard('Russian-speaking movers in Miami and South Florida')],
   },
   twitter: {
     card: 'summary_large_image',
     title: `Russian-Speaking Movers in Miami & South Florida | Easy Move Florida`,
     description: `Russian-speaking movers in Miami, Sunny Isles, Aventura, Hallandale and Hollywood. Owner-led crews, rates from $129/hr, free COI in 24h. Call 786-305-1844.`,
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

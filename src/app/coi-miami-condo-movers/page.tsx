@@ -9,6 +9,7 @@ import { Phone, CheckCircle, X } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -41,12 +42,7 @@ export const metadata: Metadata = {
       'The certificate your building requires, issued to management within 24 hours of booking at no charge. Elevator and loading dock coordination included.',
     url: `${siteUrl}/coi-miami-condo-movers`,
     images: [
-      {
-        url: `${siteUrl}/images/Hero.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Miami high-rise condo move with Certificate of Insurance handled',
-      },
+      ogCard('Miami high-rise condo move with Certificate of Insurance handled'),
     ],
   },
 };

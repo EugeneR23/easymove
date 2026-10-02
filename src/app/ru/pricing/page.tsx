@@ -11,6 +11,7 @@ import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 import { bandHours, bandCrew, bandRange } from '@/lib/pricingCopy';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -28,13 +29,13 @@ export const metadata: Metadata = {
     description:
       'Реальные цены: студия $516–$645, 1 комн. $516–$774, 2 комн. $645–$1,253, 3 комн. $1,253–$1,611. Ставка зафиксирована, трак — отдельная строка по ставке бригады.',
     url: `${siteUrl}/ru/pricing`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — прозрачные цены на переезд' }],
+    images: [ogCard('Easy Move Florida — прозрачные цены на переезд')],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Цены на переезд в Южной Флориде — Прозрачные ставки',
     description: 'От $129/час, минимум 3 часа. Без надбавок за топливо, без оплаты за лестницы, без сюрпризов.',
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataUa } from '@/lib/data/citiesUa';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogImage } from '@/lib/seo/og';
 
 const city = getCityDataUa('ua/hallandale-beach-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: { absolute: city.metaTitle },
     description: city.metaDescription,
     url: `${siteUrl}/ua/hallandale-beach-movers`,
-    images: [{ url: `${siteUrl}${city.heroImage}`, width: 1200, height: 630, alt: "Вантажники та переїзди — Hallandale Beach | Easy Move Florida" }],
+    images: [ogImage(`${siteUrl}${city.heroImage}`, "Вантажники та переїзди — Hallandale Beach | Easy Move Florida")],
   },
 };
 

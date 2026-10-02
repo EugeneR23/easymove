@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
 import { alternatesFor } from '@/lib/seo/routes';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const page = getCostPage('moving-cost-fort-lauderdale')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
     title: "How Much Do Movers Cost in Fort Lauderdale? (2026 Prices)",
     description: page.metaDescription,
     url: `${siteUrl}/moving-cost-fort-lauderdale`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: "Fort Lauderdale moving costs 2026" }],
+    images: [ogCard("Fort Lauderdale moving costs 2026")],
   },
   twitter: {
     card: 'summary_large_image',
     title: "How Much Do Movers Cost in Fort Lauderdale? (2026 Prices)",
     description: page.metaDescription,
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

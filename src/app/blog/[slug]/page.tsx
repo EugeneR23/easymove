@@ -9,6 +9,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getBlogPost, getAllBlogPosts, type BlogBlock } from '@/lib/data/blog';
 import { canonicalFor } from '@/lib/seo/routes';
+import { ogImage } from '@/lib/seo/og';
 
 export async function generateStaticParams() {
   return getAllBlogPosts().map((p) => ({ slug: p.slug }));
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: post.metaTitle,
       description: post.metaDescription,
       url: `https://www.easy-move-florida.com/blog/${post.slug}`,
-      images: [{ url: `https://www.easy-move-florida.com${post.heroImage}`, width: 1200, height: 630, alt: post.title }],
+      images: [ogImage(`https://www.easy-move-florida.com${post.heroImage}`, post.title)],
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author],

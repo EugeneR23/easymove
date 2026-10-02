@@ -9,6 +9,7 @@ import { Phone } from 'lucide-react';
 import { CITIES_UA } from '@/lib/data/citiesUa';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     title: `Переїзди в Південній Флориді — сайт українською | Easy Move Florida`,
     description: `Easy Move Florida — переїзди в Маямі, Голлівуді, Санні-Айлс: вантажники від $129/год, без депозиту, кошторис за 24 години. Сайт українською. 786-305-1844.`,
     url: `${siteUrl}/ua`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — переїзди в Південній Флориді' }],
+    images: [ogCard('Easy Move Florida — переїзди в Південній Флориді')],
   },
 };
 

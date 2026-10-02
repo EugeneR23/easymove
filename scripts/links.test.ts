@@ -276,5 +276,18 @@ console.log('\n[8] Page dates come from one table, and every page node states on
   check('every NEWER entry is a known page dated after the floor', badNewer.length === 0, badNewer);
 }
 
+console.log('\n[9] Share images state the size of the file, not a typed guess');
+{
+  // 83 metadata blocks said 1200x630 for photos that are 1024x1536 or 813x484.
+  // ogImage() and ogCard() in src/lib/seo/og.ts read the real size instead.
+  const typed: string[] = [];
+  for (const f of files) {
+    if (posix(f).endsWith('src/lib/seo/og.ts')) continue;
+    const body = readFileSync(f, 'utf8');
+    if (/url:[^,\n]+,\s*width:\s*\d+,\s*height:\s*\d+,\s*alt:/.test(body)) typed.push(posix(f));
+  }
+  check('no openGraph image types its own width and height', typed.length === 0, typed);
+}
+
 console.log(failed ? `\n${failed} FAILURE(S)` : '\nALL PASS');
 process.exit(failed ? 1 : 0);

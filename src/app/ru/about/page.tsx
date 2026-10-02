@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Award, Users, Shield, MapPin, Phone } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     title: 'О нас — Easy Move Florida | Переезды в Майами',
     description: 'Основатель сам отвечает на ваш звонок. Бригада знает ваше здание до приезда. Сертификат страхования за 24 часа.',
     url: `${siteUrl}/ru/about`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — переезды в Южной Флориде' }],
+    images: [ogCard('Easy Move Florida — переезды в Южной Флориде')],
   },
 };
 

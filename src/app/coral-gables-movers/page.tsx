@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogImage } from '@/lib/seo/og';
 
 const city = getCityData('coral-gables-movers')!;
 
@@ -16,12 +17,7 @@ export const metadata: Metadata = {
     description: city.metaDescription,
     url: 'https://www.easy-move-florida.com/coral-gables-movers',
     images: [
-      {
-        url: `https://www.easy-move-florida.com${city.heroImage}`,
-        width: 1200,
-        height: 630,
-        alt: 'Easy Move Florida — movers in Coral Gables, FL',
-      },
+      ogImage(`https://www.easy-move-florida.com${city.heroImage}`, 'Easy Move Florida — movers in Coral Gables, FL'),
     ],
   },
   twitter: {

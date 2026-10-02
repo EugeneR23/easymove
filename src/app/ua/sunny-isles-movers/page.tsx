@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityDataUa } from '@/lib/data/citiesUa';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogImage } from '@/lib/seo/og';
 
 const city = getCityDataUa('ua/sunny-isles-movers')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: { absolute: city.metaTitle },
     description: city.metaDescription,
     url: `${siteUrl}/ua/sunny-isles-movers`,
-    images: [{ url: `${siteUrl}${city.heroImage}`, width: 1200, height: 630, alt: "Вантажники та переїзди — Sunny Isles Beach | Easy Move Florida" }],
+    images: [ogImage(`${siteUrl}${city.heroImage}`, "Вантажники та переїзди — Sunny Isles Beach | Easy Move Florida")],
   },
 };
 

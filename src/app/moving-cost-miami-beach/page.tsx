@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CostPage from '@/components/city/CostPage';
 import { getCostPage } from '@/lib/data/costPages';
 import { alternatesFor } from '@/lib/seo/routes';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const page = getCostPage('moving-cost-miami-beach')!;
 const siteUrl = 'https://www.easy-move-florida.com';
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
     title: "How Much Do Movers Cost in Miami Beach? (2026 Prices)",
     description: page.metaDescription,
     url: `${siteUrl}/moving-cost-miami-beach`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: "Miami Beach moving costs 2026" }],
+    images: [ogCard("Miami Beach moving costs 2026")],
   },
   twitter: {
     card: 'summary_large_image',
     title: "How Much Do Movers Cost in Miami Beach? (2026 Prices)",
     description: page.metaDescription,
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

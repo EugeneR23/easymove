@@ -13,6 +13,7 @@ import FounderBlock from '@/components/home/FounderBlock';
 import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { alternatesFor } from '@/lib/seo/routes';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 export const metadata: Metadata = {
   title: { absolute: 'South Florida Movers — Easy Move Florida | Hollywood, FL' },
@@ -29,12 +30,7 @@ export const metadata: Metadata = {
       'Owner-led local movers in South Florida. Transparent hourly pricing from $129/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
     url: 'https://www.easy-move-florida.com',
     images: [
-      {
-        url: 'https://www.easy-move-florida.com/images/Hero.png',
-        width: 1200,
-        height: 630,
-        alt: 'Easy Move Florida — local moving crew in South Florida',
-      },
+      ogCard('Easy Move Florida — local moving crew in South Florida'),
     ],
   },
   twitter: {
@@ -42,7 +38,7 @@ export const metadata: Metadata = {
     title: 'South Florida Movers — Easy Move Florida',
     description:
       'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
-    images: ['https://www.easy-move-florida.com/images/Hero.png'],
+    images: [TWITTER_CARD_URL],
   },
 };
 

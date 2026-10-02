@@ -7,6 +7,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { ArrowRight, Building2, Truck, Palette, Package, Shield, Phone } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Услуги — Easy Move Florida',
     description: 'Все услуги переезда премиум-класса в Южной Флориде.',
     url: `${siteUrl}/ru/services`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — переезды в Южной Флориде' }],
+    images: [ogCard('Easy Move Florida — переезды в Южной Флориде')],
   },
 };
 

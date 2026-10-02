@@ -7,6 +7,7 @@ import GoogleMapEmbed from '@/components/contact/GoogleMapEmbed';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Mail, Clock, MapPin } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Контакты — Easy Move Florida',
     description: 'Связаться с координатором, который лично контролирует ваш переезд.',
     url: `${siteUrl}/ru/contact`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — переезды в Южной Флориде' }],
+    images: [ogCard('Easy Move Florida — переезды в Южной Флориде')],
   },
 };
 

@@ -7,6 +7,7 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogCard } from '@/lib/seo/og';
 
 export const metadata: Metadata = {
   title: { absolute: 'Packing Services Miami | Easy Move Florida' },
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     description:
       'Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack. Owner-led crews, from $237.',
     url: 'https://www.easy-move-florida.com/packing-services',
-    images: [{ url: 'https://www.easy-move-florida.com/images/Hero.png', width: 1200, height: 630, alt: 'Easy Move Florida — movers in South Florida' }],
+    images: [ogCard('Easy Move Florida — movers in South Florida')],
   },
 };
 

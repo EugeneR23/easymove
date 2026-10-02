@@ -8,6 +8,7 @@ import Button from '@/components/ui/Button';
 import { Star, ExternalLink, MessageSquare, Award } from 'lucide-react';
 import { THUMBTACK, GOOGLE_BUSINESS, REVIEW_TOTALS, REVIEW_SOURCING_NOTE } from '@/lib/data/credentials';
 import { alternatesFor } from '@/lib/seo/routes';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -33,13 +34,13 @@ export const metadata: Metadata = {
     description:
       `${THUMBTACK.rating} across ${THUMBTACK.reviewCount} verified Thumbtack reviews. South Florida moving clients in Brickell, Aventura, Sunny Isles, Hollywood and Fort Lauderdale.`,
     url: `${siteUrl}/reviews`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — client reviews' }],
+    images: [ogCard('Easy Move Florida — client reviews')],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Reviews — Easy Move Florida',
     description: `${THUMBTACK.rating} across ${THUMBTACK.reviewCount} verified Thumbtack reviews. Real South Florida moving clients.`,
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

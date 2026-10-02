@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { alternatesFor } from '@/lib/seo/routes';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -19,13 +20,13 @@ export const metadata: Metadata = {
     title: 'Easy Move Florida — переїзди в Південній Флориді',
     description:
       'Переїзди в Маямі, Форт-Лодердейлі та Голлівуді. Ціни відкриті, кошторис письмовий, депозиту немає. Сайт українською.',
-    images: [{ url: '/images/Hero.png', width: 1200, height: 630, alt: 'Easy Move Florida — переїзди в Південній Флориді' }],
+    images: [ogCard('Easy Move Florida — переїзди в Південній Флориді')],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Easy Move Florida — переїзди в Південній Флориді',
     description: 'Від $129/год плюс трак за ставкою бригади. Ставка зафіксована, прихованих зборів немає.',
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
   alternates: alternatesFor('', 'uk'),
 };

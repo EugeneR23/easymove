@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CityMoversPage from '@/components/city/CityMoversPage';
 import { getCityData } from '@/lib/data/cities';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogImage } from '@/lib/seo/og';
 
 const city = getCityData('miami-movers')!;
 
@@ -16,12 +17,7 @@ export const metadata: Metadata = {
     description: city.metaDescription,
     url: 'https://www.easy-move-florida.com/miami-movers',
     images: [
-      {
-        url: 'https://www.easy-move-florida.com/images/Real/Miami.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Easy Move Florida — movers in Miami, FL',
-      },
+      ogImage('https://www.easy-move-florida.com/images/Real/Miami.jpg', 'Easy Move Florida — movers in Miami, FL'),
     ],
   },
   twitter: {

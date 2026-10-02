@@ -9,6 +9,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { ArrowRight, Building2, Truck, Palette, Package, MapPin, Shield } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
+import { ogImage } from '@/lib/seo/og';
 
 export const metadata: Metadata = {
   // [TODO: FDACS IM# + insurance details from Evgenii]
@@ -21,12 +22,7 @@ export const metadata: Metadata = {
     description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516, long-distance within Florida.',
     url: 'https://www.easy-move-florida.com/services',
     images: [
-      {
-        url: 'https://www.easy-move-florida.com/images/Real/9.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Professional moving services in Miami, Fort Lauderdale & Boca Raton',
-      },
+      ogImage('https://www.easy-move-florida.com/images/Real/9.jpg', 'Professional moving services in Miami, Fort Lauderdale & Boca Raton'),
     ],
   },
 };

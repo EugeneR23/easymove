@@ -10,6 +10,7 @@ import { Phone, MessageCircle } from 'lucide-react';
 import { CITIES_RU } from '@/lib/data/citiesRu';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -39,13 +40,13 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: `${siteUrl}/ru/russkie-gruzchiki-miami`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Русские грузчики в Майами и Южной Флориде' }],
+    images: [ogCard('Русские грузчики в Майами и Южной Флориде')],
   },
   twitter: {
     card: 'summary_large_image',
     title: TITLE,
     description: DESCRIPTION,
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

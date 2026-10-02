@@ -11,6 +11,7 @@ import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import { bandHours, bandCrew, bandRange } from '@/lib/pricingCopy';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -27,13 +28,13 @@ export const metadata: Metadata = {
     description:
       'Local moves: $129/hr (2 movers) or $179/hr (3 movers) plus a matching truck fee per day, 3-hour minimum. Typical 1BR total $516–$774, 2BR $645–$1,253.',
     url: `${siteUrl}/pricing`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Easy Move Florida — transparent moving prices' }],
+    images: [ogCard('Easy Move Florida — transparent moving prices')],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Moving Costs in South Florida — Transparent Pricing',
     description: 'From $129/hr with a 3-hour minimum plus a matching truck fee per day. No fuel surcharge, no stairs fee.',
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
 };
 

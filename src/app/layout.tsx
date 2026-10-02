@@ -10,6 +10,7 @@ import { PHONE, EMAIL, GEO, OWNER, postalAddressSchema } from '@/lib/data/contac
 import { offerDescription } from '@/lib/pricingCopy';
 import './globals.css';
 import { alternatesFor } from '@/lib/seo/routes';
+import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
 // Headings use 400/600/700, body uses 400/500/700. Italics + extra weights dropped.
@@ -71,12 +72,7 @@ export const metadata: Metadata = {
     description:
       'Owner-led local movers across South Florida. Transparent hourly pricing from $129/hr, 3-hour minimum. WhatsApp-friendly, Russian + English.',
     images: [
-      {
-        url: `${siteUrl}/images/Hero.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Easy Move Florida — local moving crew in South Florida',
-      },
+      ogCard('Easy Move Florida — local moving crew in South Florida'),
     ],
   },
   twitter: {
@@ -84,7 +80,7 @@ export const metadata: Metadata = {
     title: 'South Florida Movers — Easy Move Florida',
     description:
       'Hollywood-based movers serving all of South Florida. Honest hourly pricing, COI on request, Russian + English.',
-    images: [`${siteUrl}/images/Hero.png`],
+    images: [TWITTER_CARD_URL],
   },
   alternates: alternatesFor('', 'en'),
   // Search Console / Webmaster Tools verification (RU + EN + Bing).

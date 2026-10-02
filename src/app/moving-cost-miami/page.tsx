@@ -9,6 +9,7 @@ import { Phone, CheckCircle, X } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     description:
       'Real 2026 Miami moving costs: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum, truck billed per day at the crew rate. Studio $516–$645, 1BR $516–$774, 2BR $645–$1,253.',
     url: `${siteUrl}/moving-cost-miami`,
-    images: [{ url: `${siteUrl}/images/Hero.png`, width: 1200, height: 630, alt: 'Miami moving costs 2026' }],
+    images: [ogCard('Miami moving costs 2026')],
   },
 };
 
