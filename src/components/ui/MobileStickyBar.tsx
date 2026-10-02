@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Phone, MessageCircle, Calculator } from 'lucide-react';
 import { PHONE, telHref, whatsappUrl } from '@/lib/data/contact';
+import { localeOfPath } from '@/lib/seo/routes';
 
 interface Props {
   /** Pass true on the /quote page to replace the calculator button with a call-only bar */
@@ -28,9 +29,8 @@ const BAR_COPY = {
 export default function MobileStickyBar({ onQuotePage = false }: Props) {
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
-  const t = pathname.startsWith('/ru') ? BAR_COPY.ru
-    : pathname.startsWith('/ua') ? BAR_COPY.ua
-    : BAR_COPY.en;
+  const locale = localeOfPath(pathname);
+  const t = locale === 'ru' ? BAR_COPY.ru : locale === 'uk' ? BAR_COPY.ua : BAR_COPY.en;
 
   useEffect(() => {
     setVisible(true);

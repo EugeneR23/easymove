@@ -15,7 +15,7 @@ import { CITIES } from '../src/lib/data/cities';
 import { CITIES_RU } from '../src/lib/data/citiesRu';
 import { CITIES_UA } from '../src/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '../src/lib/data/costPages';
-import { localesOf, pathFor, ROUTE_KEYS, switchPath } from '../src/lib/seo/routes';
+import { localeOfPath, localesOf, pathFor, ROUTE_KEYS, switchPath } from '../src/lib/seo/routes';
 
 let failed = 0;
 function check(name: string, cond: boolean, actual: unknown) {
@@ -209,6 +209,21 @@ console.log('\n[6] Language switch lands on the twin, never on a 404');
     }
   }
   check('switchPath resolves every route to its twin or the home page', wrong.length === 0, wrong);
+
+  // /russian-speaking-movers-miami starts with "/ru". Detecting the locale by
+  // prefix gave that English page Russian navigation and no RU link at all.
+  const misread = promised
+    .filter(({ loc, path: p }) => localeOfPath(p) !== loc)
+    .map(({ loc, path: p }) => `${p}: ${localeOfPath(p)}, want ${loc}`);
+  check('localeOfPath reads every route as its own locale', misread.length === 0, misread);
+
+  const prefixSniff: string[] = [];
+  for (const f of files) {
+    const body = readFileSync(f, 'utf8');
+    if (/startsWith\(\s*['"`][/](ru|ua)['"`]\s*\)/.test(body)) prefixSniff.push(posix(f));
+  }
+  check('no component detects the locale with startsWith("/ru") or ("/ua")',
+    prefixSniff.length === 0, prefixSniff);
 }
 
 console.log('\n[7] Every /images/ path in the source exists with exactly that case');

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { whatsappUrl } from '@/lib/data/contact';
-import { switchPath } from '@/lib/seo/routes';
+import { localeOfPath, switchPath } from '@/lib/seo/routes';
 
 const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
@@ -41,8 +41,10 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isRu = pathname.startsWith('/ru');
-  const isUa = pathname.startsWith('/ua');
+  // Not a prefix test on the path: /russian-speaking-movers-miami is an English page.
+  const locale = localeOfPath(pathname);
+  const isRu = locale === 'ru';
+  const isUa = locale === 'uk';
   const isHome = pathname === '/' || pathname === '/ru' || pathname === '/ua';
   const NAV_LINKS = isRu ? NAV_LINKS_RU : isUa ? NAV_LINKS_UA : NAV_LINKS_EN;
 
