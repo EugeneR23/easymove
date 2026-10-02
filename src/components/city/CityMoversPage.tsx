@@ -182,9 +182,72 @@ function nearbyCities(current: CityData, limit = 8) {
     }));
 }
 
+/**
+ * What each city-page photo actually shows, per language.
+ *
+ * The alt used to be "Professional movers in {city}", built from the page's
+ * city. Three aerial coastline photos serve 41 city pages, so the alt named a
+ * city the photo does not show and described movers that are not in it. Alt
+ * text describes the image; the page's city lives in its headings. A city photo
+ * with no entry here fails the build rather than shipping a made-up alt.
+ */
+const PHOTO_ALT: Record<string, { en: string; ru: string; ua: string }> = {
+  '/images/Real/Miami.jpg': {
+    en: 'Aerial view of beachfront high-rises along the Atlantic coast in South Florida',
+    ru: 'Вид сверху на высотки вдоль атлантического побережья Южной Флориды',
+    ua: 'Вид згори на висотки вздовж атлантичного узбережжя Південної Флориди',
+  },
+  '/images/Real/Fort-Lauderdale.jpg': {
+    en: 'Aerial view of the beach, oceanfront towers and the Intracoastal Waterway in South Florida',
+    ru: 'Вид сверху на пляж, башни у океана и Внутрибережный канал в Южной Флориде',
+    ua: 'Вид згори на пляж, вежі біля океану та Внутрішньоприбережний канал у Південній Флориді',
+  },
+  '/images/Real/Boca-Raton.jpg': {
+    en: 'Aerial view of a palm-lined boulevard, waterfront towers and the ocean in South Florida',
+    ru: 'Вид сверху на бульвар с пальмами, башни у воды и океан в Южной Флориде',
+    ua: 'Вид згори на бульвар із пальмами, вежі біля води та океан у Південній Флориді',
+  },
+  '/images/Real/2.png': {
+    en: 'Moving truck packed floor to ceiling with labelled boxes and shrink-wrapped furniture',
+    ru: 'Кузов грузовика, загруженный до потолка подписанными коробками и мебелью в стрейч-плёнке',
+    ua: 'Кузов вантажівки, завантажений до стелі підписаними коробками та меблями в стрейч-плівці',
+  },
+  '/images/Real/4.png': {
+    en: 'Room with stacked moving boxes and furniture wrapped in plastic and moving pads',
+    ru: 'Комната со сложенными коробками и мебелью в плёнке и защитных одеялах',
+    ua: 'Кімната зі складеними коробками та меблями в плівці й захисних ковдрах',
+  },
+  '/images/Real/5.png': {
+    en: 'Stack of packed boxes on a moving dolly in a building hallway',
+    ru: 'Стопка упакованных коробок на тележке в коридоре здания',
+    ua: 'Стос запакованих коробок на візку в коридорі будинку',
+  },
+  '/images/Real/6.png': {
+    en: 'Cardboard moving boxes stacked against a wall beside a stool with a potted plant',
+    ru: 'Картонные коробки у стены рядом с табуретом и цветком в горшке',
+    ua: 'Картонні коробки біля стіни поруч із табуретом і вазоном',
+  },
+  '/images/Real/9.jpg': {
+    en: 'Shrink-wrapped furniture and luggage in a high-rise elevator lobby with city views',
+    ru: 'Мебель в стрейч-плёнке и чемоданы в лифтовом холле высотки с видом на город',
+    ua: 'Меблі в стрейч-плівці та валізи в ліфтовому холі висотки з видом на місто',
+  },
+  '/images/Real/10.png': {
+    en: 'Two movers in gloves wrapping an armchair in stretch film',
+    ru: 'Двое грузчиков в перчатках оборачивают кресло стрейч-плёнкой',
+    ua: 'Двоє вантажників у рукавичках обгортають крісло стрейч-плівкою',
+  },
+};
+
+function photoAlt(src: string, lang: 'en' | 'ru' | 'ua'): string {
+  const alt = PHOTO_ALT[src]?.[lang];
+  if (!alt) throw new Error(`CityMoversPage: no alt text for ${src}. Describe the photo in PHOTO_ALT.`);
+  return alt;
+}
+
 const UI = {
   en: {
-    heroAlt: (c: CityData) => `Professional movers in ${c.name}, ${c.state} — Easy Move Florida`,
+    heroAlt: (c: CityData) => photoAlt(c.heroImage, 'en'),
     countyLine: (c: CityData) => `${c.county} County · ${c.state}`,
     ctaEstimate: 'Get a FREE Estimate',
     localExpertise: 'Local Expertise',
@@ -214,7 +277,7 @@ const UI = {
     breadcrumbCity: (c: CityData) => `${c.name} Movers`,
   },
   ru: {
-    heroAlt: (c: CityData) => `Профессиональные грузчики и переезды в ${c.name} — Easy Move Florida`,
+    heroAlt: (c: CityData) => photoAlt(c.heroImage, 'ru'),
     countyLine: (c: CityData) => `Округ ${c.county} · ${c.state}`,
     ctaEstimate: 'Бесплатный расчёт',
     localExpertise: 'Знаем район',
@@ -246,7 +309,7 @@ const UI = {
   // Українська. Мовна точність: частина вантажників україномовні,
   // тож бригаду можна зібрати під запит; координація — російська або англійська.
   ua: {
-    heroAlt: (c: CityData) => `Професійні вантажники та переїзди в ${c.name} — Easy Move Florida`,
+    heroAlt: (c: CityData) => photoAlt(c.heroImage, 'ua'),
     countyLine: (c: CityData) => `Округ ${c.county} · ${c.state}`,
     ctaEstimate: 'Безкоштовний розрахунок',
     localExpertise: 'Знаємо район',
