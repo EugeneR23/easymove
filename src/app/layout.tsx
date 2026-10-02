@@ -318,6 +318,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
+        {/* In the head itself rather than metadata.alternates.types: a page's own
+            `alternates` replaces the layout's wholesale, so the feed link would
+            vanish from every page that sets a canonical, which is all of them. */}
+        <link rel="alternate" type="application/rss+xml" title="Easy Move Florida — Moving guides" href="/feed.xml" />
         {/* No hreflang here: these tags used to be hardcoded to the homepage and
             were emitted on every route, so each inner page declared the homepage
             as its own alternate. Per-page alternates now come from each route's
