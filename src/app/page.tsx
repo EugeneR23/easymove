@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: ['ru_RU'],
+    alternateLocale: ['ru_RU', 'uk_UA'],
     siteName: 'Easy Move Florida',
     title: 'South Florida Movers — Easy Move Florida | Hollywood, FL',
     description:

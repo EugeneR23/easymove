@@ -112,6 +112,7 @@ export default function FAQSection() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
+            inLanguage: 'en',
             dateModified: lastModified('/'),
             mainEntity: FAQS.map((faq) => ({
               '@type': 'Question',

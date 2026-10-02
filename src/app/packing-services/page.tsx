@@ -12,7 +12,7 @@ import { ogCard } from '@/lib/seo/og';
 export const metadata: Metadata = {
   title: { absolute: 'Packing Services Miami | Easy Move Florida' },
   description:
-    'Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack or fragile-only. Owner-led crews, from $237. Call 786-305-1844. Call 786-305-1844.',
+    'Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack or fragile-only. Owner-led crews, from $237. Call 786-305-1844.',
   keywords: [
     'packing company Miami',
     'packing services Miami',

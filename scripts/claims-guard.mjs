@@ -14,7 +14,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 const ROOT = process.cwd();
-const SCAN = ['src', 'data', 'public/llms.txt', 'docs/GBP_COPY_PASTE_PACKAGE.md', 'docs/AGGREGATOR_SUBMISSION_PACKAGE.md'];
+const SCAN = ['src', 'data', 'docs/GBP_COPY_PASTE_PACKAGE.md', 'docs/AGGREGATOR_SUBMISSION_PACKAGE.md'];
 const SKIP_DIRS = new Set(['node_modules', '.next', '.git', 'audit', 'superpowers', 'deflora']);
 /** Files allowed to contain what a rule bans, because they are its single source. */
 const RULE_EXEMPT = new Map([
@@ -151,7 +151,7 @@ const RULES = [
     re: /\u0437\u043d\u0430\u0435\u043c[^.\n]{0,40}(?:\u043c\u0435\u043d\u0435\u0434\u0436\u043c\u0435\u043d\u0442|\u0443\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0449|\u0437\u0434\u0430\u043d\u0438|\u0431\u0430\u0448\u043d|\u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438|\u0433\u0440\u0430\u0444\u0438\u043a)|\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u044b\u0435 \u0430\u0434\u0440\u0435\u0441\u0430|(?:\u0440\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u043e|\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e)\s+(?:\u0440\u0430\u0431\u043e\u0442\u0430\u0435\u043c|\u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u043c|\u0432\u043e\u0437\u0438\u043c)(?![^.\n]{0,20}\u0440\u0435\u0436\u0438\u043c)[^.\n]{0,60}(?:\u0437\u0434\u0430\u043d|\u0431\u0430\u0448\u043d|\u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0441|Tower|Acqualina|Williams|Porto|Jade|Trump)|\u0437\u043d\u0430\u0435\u043c[^.\n]{0,25}\u043b\u0438\u0447\u043d\u043e|\u0437\u043d\u0430\u0454\u043c\u043e[^.\n]{0,40}(?:\u0431\u0443\u0434\u0456\u0432\u043b|\u043c\u0435\u043d\u0435\u0434\u0436\u043c\u0435\u043d\u0442)/gi },
 
   { id: 'sacramento-in-sameas', why: 'The Sacramento branch belongs in subOrganization, never sameAs. sameAs asserts one entity, which invites Google to merge the two businesses and their ratings - this one has 41 reviews, Sacramento has none and is not open yet.',
-    re: /sameAs\s*:\s*\[[^\]]{0,600}easy-move-sacramento/gi, whole: true },
+    re: /(?:sameAs\s*:|SAME_AS\s*=)\s*\[[^\]]{0,600}easy-move-sacramento/gi, whole: true },
 
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },

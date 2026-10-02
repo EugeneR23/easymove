@@ -30,6 +30,14 @@ const inter = Inter({
 
 const siteUrl = SITE_URL;
 
+// The company's own profiles, stated once. The Organization and MovingCompany
+// nodes share an @id and both list them; two hand-kept copies would drift.
+const SAME_AS = [
+  'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
+  'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
+  'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
+];
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -157,11 +165,7 @@ const localBusinessSchema = {
   // yet verified against business records.
   foundingDate: '2021',
   founder: { '@id': `${siteUrl}/#founder` },
-  sameAs: [
-    'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
-    'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
-    'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
-  ],
+  sameAs: SAME_AS,
   // Verified against the live Google Business Profile (place_id
   // ChIJJcPs4dykvagR_uQxPaSlY_8): 5.0 from 6 reviews. Keep these two numbers in
   // step with the profile — a stale rating in schema is worse than none.
@@ -264,11 +268,7 @@ const organizationSchema = {
       availableLanguage: ['English', 'Russian'],
     },
   ],
-  sameAs: [
-    'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
-    'https://www.google.com/maps/place/?q=place_id:ChIJJcPs4dykvagR_uQxPaSlY_8',
-    'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
-  ],
+  sameAs: SAME_AS,
   // The Sacramento branch, declared as a sub-organization and deliberately NOT
   // in sameAs above. sameAs says "these URLs are the same entity", which would
   // invite Google to merge the two businesses and with them their ratings —
@@ -306,7 +306,7 @@ const websiteSchema = {
   '@id': `${siteUrl}/#website`,
   url: siteUrl,
   name: 'Easy Move Florida',
-  inLanguage: ['en-US', 'ru-RU'],
+  inLanguage: ['en-US', 'ru-RU', 'uk-UA'],
   publisher: { '@id': `${siteUrl}/#organization` },
 };
 
