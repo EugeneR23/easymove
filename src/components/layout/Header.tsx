@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { whatsappUrl } from '@/lib/data/contact';
-import { PAIRED_PATHS } from '@/lib/seo/routes';
+import { switchPath } from '@/lib/seo/routes';
 
 const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
@@ -57,25 +57,12 @@ export default function Header() {
   // fails when it does. The hand-kept list this replaced had already gone
   // stale: nine dual-language cities shipped while it still knew six, and every
   // one of them dropped the visitor on the homepage instead of the counterpart.
-  const bare = pathname.replace(/^\/(ru|ua)\/?/, '').replace(/^\//, '');
-
   /** The other locales this path exists in. The current one is filtered out. */
-  const langLinks = (() => {
-    const en = { href: bare ? `/${bare}` : '/', label: 'EN', hl: 'en', active: !isRu && !isUa };
-    const ru = {
-      href: bare && PAIRED_PATHS.ru.includes(bare) ? `/ru/${bare}` : '/ru',
-      label: 'RU',
-      hl: 'ru',
-      active: isRu,
-    };
-    const ua = {
-      href: bare && PAIRED_PATHS.uk.includes(bare) ? `/ua/${bare}` : '/ua',
-      label: 'UA',
-      hl: 'uk',
-      active: isUa,
-    };
-    return [en, ru, ua].filter((l) => !l.active);
-  })();
+  const langLinks = [
+    { href: switchPath(pathname, 'en'), label: 'EN', hl: 'en', active: !isRu && !isUa },
+    { href: switchPath(pathname, 'ru'), label: 'RU', hl: 'ru', active: isRu },
+    { href: switchPath(pathname, 'uk'), label: 'UA', hl: 'uk', active: isUa },
+  ].filter((l) => !l.active);
 
   const textColor = scrolled || !isHome ? 'text-white' : 'text-white';
 

@@ -15,7 +15,7 @@ import { CITIES } from '../src/lib/data/cities';
 import { CITIES_RU } from '../src/lib/data/citiesRu';
 import { CITIES_UA } from '../src/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA } from '../src/lib/data/costPages';
-import { localesOf, pathFor, ROUTE_KEYS } from '../src/lib/seo/routes';
+import { localesOf, pathFor, ROUTE_KEYS, switchPath } from '../src/lib/seo/routes';
 
 let failed = 0;
 function check(name: string, cond: boolean, actual: unknown) {
@@ -191,6 +191,48 @@ console.log('\n[5] Localised pages pass their locale to the shared chrome');
   }
   check('every /ru and /ua page passes locale to Footer and CTABanner',
     missing.length === 0, missing);
+}
+
+console.log('\n[6] Language switch lands on the twin, never on a 404');
+{
+  // The switch used to compare bare slugs across languages, which cannot see
+  // CUSTOM: /ru/russkie-gruzchiki-miami offered EN → /russkie-gruzchiki-miami,
+  // a page that does not exist. Every page the table knows must switch to its
+  // twin where one exists and to that language's homepage where none does.
+  const LOCALES = ['en', 'ru', 'uk'] as const;
+  const wrong: string[] = [];
+  for (const { k, path: from } of promised) {
+    for (const t of LOCALES) {
+      const want = pathFor(k, t) ?? pathFor('', t);
+      const got = switchPath(from, t);
+      if (got !== want) wrong.push(`${from} → ${t}: ${got}, want ${want}`);
+    }
+  }
+  check('switchPath resolves every route to its twin or the home page', wrong.length === 0, wrong);
+}
+
+console.log('\n[7] Every /images/ path in the source exists with exactly that case');
+{
+  // Windows and macOS resolve /images/about.png to About.png; Vercel does not.
+  // statSync cannot see the difference, so compare against the directory listing.
+  const caseMismatch: string[] = [];
+  const existsExact = (rel: string): boolean => {
+    let dir = 'public';
+    for (const part of rel.split('/').filter(Boolean)) {
+      let entries: string[];
+      try { entries = readdirSync(dir); } catch { return false; }
+      if (!entries.includes(part)) return false;
+      dir = join(dir, part);
+    }
+    return true;
+  };
+  for (const f of files) {
+    const body = readFileSync(f, 'utf8');
+    for (const m of body.matchAll(/["'`](\/images\/[^"'`$]+\.(?:png|jpe?g|webp|avif|svg))["'`]/g)) {
+      if (!existsExact(decodeURIComponent(m[1]))) caseMismatch.push(`${posix(f)}: ${m[1]}`);
+    }
+  }
+  check('no image path differs from the file on disk', caseMismatch.length === 0, caseMismatch);
 }
 
 console.log(failed ? `\n${failed} FAILURE(S)` : '\nALL PASS');

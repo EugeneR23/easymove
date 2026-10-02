@@ -21,7 +21,7 @@
  * no code path that yields one without the other.
  *
  * Kept slug-only and free of page content on purpose: the header is a client
- * component and imports PAIRED_PATHS from here.
+ * component and imports switchPath from here.
  */
 import { absUrl } from '@/lib/site';
 
@@ -169,15 +169,6 @@ export function canonicalFor(path: string): { canonical: string } {
   return { canonical: absUrl(path) };
 }
 
-/**
- * Slug lists for the header's language switch, replacing
- * src/lib/data/localePairs.ts — the third copy of this data.
- */
-export const PAIRED_PATHS: Record<'ru' | 'uk', string[]> = {
-  ru: ROUTE_KEYS.filter((k) => k && localesOf(k).includes('ru')).map((k) => CUSTOM[k]?.ru ?? k),
-  uk: ROUTE_KEYS.filter((k) => k && localesOf(k).includes('uk')).map((k) => CUSTOM[k]?.uk ?? k),
-};
-
 /** The English key a localised slug belongs to — the switch has to work backwards too. */
 export function keyForSlug(slug: string, locale: Locale): string | null {
   const s = normaliseKey(slug);
@@ -185,4 +176,33 @@ export function keyForSlug(slug: string, locale: Locale): string | null {
     if ((CUSTOM[k]?.[locale] ?? k) === s && localesOf(k).includes(locale)) return k;
   }
   return null;
+}
+
+/** Which locale a served path belongs to, from its first segment. */
+export function localeOfPath(pathname: string): Locale {
+  const p = normaliseKey(pathname);
+  if (p === 'ru' || p.startsWith('ru/')) return 'ru';
+  if (p === 'ua' || p.startsWith('ua/')) return 'uk';
+  return 'en';
+}
+
+/**
+ * Where the header's language switch sends a visitor on `pathname` who picks
+ * `target`: that page's twin, or the target language's homepage when it has none.
+ *
+ * Replaces PAIRED_PATHS, which compared the bare slug across languages and so
+ * could not see CUSTOM. On /ru/russkie-gruzchiki-miami the EN link went to
+ * /russkie-gruzchiki-miami, a 404, and /russian-speaking-movers-miami sent RU
+ * readers to /ru instead of their own page. Resolving through keyForSlug and
+ * pathFor uses the same table as alternatesFor, so the switch and hreflang
+ * cannot disagree.
+ */
+export function switchPath(pathname: string, target: Locale): string {
+  const from = localeOfPath(pathname);
+  const slug = normaliseKey(pathname).replace(/^(ru|ua)([/]|$)/, '');
+  const home = pathFor('', target) as string;
+  if (!slug) return home;
+  const key = keyForSlug(slug, from);
+  if (key === null) return from === target ? `/${normaliseKey(pathname)}` : home;
+  return pathFor(key, target) ?? home;
 }

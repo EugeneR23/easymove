@@ -130,7 +130,7 @@ export default function AboutPage() {
             <AnimateIn direction="right" delay={0.15}>
               <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
                 <Image
-                  src="/images/about.png"
+                  src="/images/About.png"
                   alt="Easy Move Florida moving crew loading a truck in South Florida"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
