@@ -86,7 +86,7 @@ export default function RuAboutPage() {
 
         {/* Story */}
         <section className="section-padding bg-white">
-          <div className="container-max grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="container-max max-w-3xl">
             <div>
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">От основателя</p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal mb-6 leading-tight">
@@ -113,17 +113,6 @@ export default function RuAboutPage() {
                     {tag}
                   </span>
                 ))}
-              </div>
-            </div>
-            <div>
-              <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
-                <Image
-                  src="/images/About.png"
-                  alt="Easy Move Florida — премиум-бригада переездов в Южной Флориде"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center sm:object-top"
-                />
               </div>
             </div>
           </div>

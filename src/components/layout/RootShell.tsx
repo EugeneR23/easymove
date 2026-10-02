@@ -138,6 +138,15 @@ const localBusinessSchema = {
     { '@type': 'City', name: 'Boca Raton', sameAs: 'https://en.wikipedia.org/wiki/Boca_Raton,_Florida' },
     { '@type': 'City', name: 'Delray Beach' },
     { '@type': 'City', name: 'Palm Beach' },
+    // The seven cities with their own page on the site, added 2026-10-01 on the
+    // owner's word: the pages already said we serve them, the schema did not.
+    { '@type': 'City', name: 'North Miami Beach' },
+    { '@type': 'City', name: 'Bal Harbour' },
+    { '@type': 'City', name: 'Pembroke Pines' },
+    { '@type': 'City', name: 'Weston' },
+    { '@type': 'City', name: 'Coral Springs' },
+    { '@type': 'City', name: 'Sunrise' },
+    { '@type': 'City', name: 'Boynton Beach' },
   ],
   openingHoursSpecification: hoursSchema(),
   contactPoint: [
@@ -160,8 +169,7 @@ const localBusinessSchema = {
     'Small Handyman Services',
   ],
   priceRange: '$$',
-  // [TODO: confirm with Evgenii] foundingDate and streetAddress above are not
-  // yet verified against business records.
+  // foundingDate confirmed by the owner 2026-10-01; streetAddress 2026-09-11.
   foundingDate: '2021',
   founder: { '@id': `${siteUrl}/#founder` },
   sameAs: SAME_AS,
@@ -228,10 +236,10 @@ const localBusinessSchema = {
       },
     ],
   },
-  // Spoken languages. Some of the crew speak Ukrainian, so 'uk'
-  // belongs here; the contactPoint below stays English/Russian because dispatch
-  // and written estimates are handled in those two.
-  knowsLanguage: ['en', 'ru', 'uk'],
+  // English and Russian, as on the contactPoint and the Organization node
+  // (owner, 2026-10-01). Ukrainian is the language of the /ua pages, not a
+  // promise that a client is served in it.
+  knowsLanguage: ['en', 'ru'],
   slogan: 'Local moving and small handyman in South Florida',
 };
 
@@ -248,12 +256,6 @@ const organizationSchema = {
   // name works against resolving this business to the right entity.
   alternateName: ['Easy Move FL'],
   url: siteUrl,
-  logo: {
-    '@type': 'ImageObject',
-    url: `${siteUrl}/images/Hero.png`,
-    width: 1200,
-    height: 630,
-  },
   description:
     'Owner-led moving company serving South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. English + Russian.',
   foundingDate: '2021',

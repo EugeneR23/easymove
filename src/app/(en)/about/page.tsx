@@ -89,7 +89,7 @@ export default function AboutPage() {
 
         {/* Story */}
         <section className="section-padding bg-white">
-          <div className="container-max grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="container-max max-w-3xl">
             <AnimateIn direction="left">
               <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-4">Founder-Led</p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal mb-6 leading-tight">
@@ -126,17 +126,6 @@ export default function AboutPage() {
                     {tag}
                   </span>
                 ))}
-              </div>
-            </AnimateIn>
-            <AnimateIn direction="right" delay={0.15}>
-              <div className="relative w-full h-56 sm:h-80 lg:h-[420px] overflow-hidden">
-                <Image
-                  src="/images/About.png"
-                  alt="Easy Move Florida moving crew loading a truck in South Florida"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center sm:object-top"
-                />
               </div>
             </AnimateIn>
           </div>

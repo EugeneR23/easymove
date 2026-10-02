@@ -183,7 +183,7 @@ const offerJson = JSON.stringify({
     priceCurrency: 'USD',
     lowPrice: HOURLY_RATE[2],
     highPrice: HOURLY_RATE[4],
-    offerCount: 3,
+    offerCount: 4,
     priceSpecification: [
       {
         '@type': 'UnitPriceSpecification',
@@ -199,6 +199,14 @@ const offerJson = JSON.stringify({
         priceCurrency: 'USD',
         unitText: 'HUR',
         name: 'Crew of 3 movers — hourly labour rate',
+        eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
+      },
+      {
+        '@type': 'UnitPriceSpecification',
+        price: HOURLY_RATE[4],
+        priceCurrency: 'USD',
+        unitText: 'HUR',
+        name: 'Crew of 4 movers — hourly labour rate',
         eligibleQuantity: { '@type': 'QuantitativeValue', minValue: MIN_HOURS, unitText: 'HUR' },
       },
       {

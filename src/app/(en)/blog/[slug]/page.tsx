@@ -93,11 +93,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     author: { '@type': 'Person', name: post.author, url: 'https://www.easy-move-florida.com/about' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Easy Move Florida',
-      logo: { '@type': 'ImageObject', url: 'https://www.easy-move-florida.com/images/Hero.png' },
-    },
+    // The organization by reference. A second Organization node here carried
+    // the hero photo as a logo; the company has no logo file (owner, 2026-10-01).
+    publisher: { '@id': 'https://www.easy-move-florida.com/#organization' },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.easy-move-florida.com/blog/${post.slug}` },
   });
 
