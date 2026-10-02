@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CTABanner from '@/components/home/CTABanner';
@@ -141,8 +142,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       <main className="pt-20">
         {/* Hero */}
         <section className="relative h-80 md:h-[440px] flex items-end overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={service.imageUrl} alt={`${service.name} — Easy Move Florida South Florida`} className="absolute inset-0 w-full h-full object-cover" />
+          <Image
+            src={service.imageUrl}
+            alt={`${service.name} — Easy Move Florida South Florida`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 w-full">
