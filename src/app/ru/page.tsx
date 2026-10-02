@@ -9,6 +9,7 @@ import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import CTABanner from '@/components/home/CTABanner';
+import FAQSection from '@/components/home/FAQSection';
 import { localStartingPrice, HOURLY_RATE } from '@/lib/pricing';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
@@ -461,6 +462,9 @@ export default function RuHomePage() {
             </div>
           </div>
         </section>
+
+        {/* ══════════════════════ FAQ ══════════════════════ */}
+        <FAQSection locale="ru" />
 
         {/* ══════════════════════ CTA ══════════════════════ */}
         <section className="relative bg-charcoal py-16 overflow-hidden">

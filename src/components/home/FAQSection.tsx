@@ -3,13 +3,34 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import AnimateIn from '@/components/ui/AnimateIn';
-import { HOME_FAQS as FAQS } from '@/lib/data/faq';
+import { HOME_FAQS, HOME_FAQS_RU } from '@/lib/data/faq';
 import { Plus } from 'lucide-react';
 import { lastModified } from '@/lib/seo/lastmod';
 
 
-export default function FAQSection() {
+const COPY = {
+  en: {
+    heading: 'Common Questions',
+    sub: 'Still have a question not answered here? Call or text us directly — a real person picks up.',
+    quoteLink: 'Or calculate my move →',
+    quoteButton: 'Calculate My Move',
+    path: '/',
+    faqs: HOME_FAQS,
+  },
+  ru: {
+    heading: 'Частые вопросы',
+    sub: 'Не нашли ответа? Позвоните или напишите — ответит живой человек.',
+    quoteLink: 'Или рассчитайте переезд →',
+    quoteButton: 'Рассчитать переезд',
+    path: '/ru',
+    faqs: HOME_FAQS_RU,
+  },
+} as const;
+
+export default function FAQSection({ locale = 'en' }: { locale?: 'en' | 'ru' } = {}) {
   const [open, setOpen] = useState<number | null>(null);
+  const t = COPY[locale];
+  const FAQS = t.faqs;
 
 
   return (
@@ -24,10 +45,10 @@ export default function FAQSection() {
                 <div className="w-8 h-px bg-gold mb-6" />
                 <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">FAQ</p>
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal leading-tight mb-5">
-                  Common Questions
+                  {t.heading}
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                  Still have a question not answered here? Call or text us directly — a real person picks up.
+                  {t.sub}
                 </p>
                 <a
                   href="tel:+17863051844"
@@ -40,7 +61,7 @@ export default function FAQSection() {
                     href="/quote"
                     className="text-gold text-sm font-semibold underline-offset-2 hover:underline"
                   >
-                    Or calculate my move →
+                    {t.quoteLink}
                   </Link>
                 </div>
               </div>
@@ -107,7 +128,7 @@ export default function FAQSection() {
                   href="/quote"
                   className="flex-1 flex items-center justify-center gap-2 bg-gold text-white text-sm font-bold px-5 py-3 hover:bg-gold/90 transition-colors"
                 >
-                  Calculate My Move
+                  {t.quoteButton}
                 </Link>
               </div>
             </AnimateIn>
@@ -120,8 +141,8 @@ export default function FAQSection() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            inLanguage: 'en',
-            dateModified: lastModified('/'),
+            inLanguage: locale,
+            dateModified: lastModified(t.path),
             mainEntity: FAQS.map((faq) => ({
               '@type': 'Question',
               name: faq.q,

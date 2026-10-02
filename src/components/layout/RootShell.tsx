@@ -6,7 +6,7 @@ import DeferredTagManager from '@/components/analytics/DeferredTagManager';
 import { GOOGLE_BUSINESS, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
-import { PHONE, EMAIL, GEO, OWNER, postalAddressSchema } from '@/lib/data/contact';
+import { PHONE, EMAIL, OWNER, postalAddressSchema } from '@/lib/data/contact';
 import { offerDescription } from '@/lib/pricingCopy';
 import { alternatesFor } from '@/lib/seo/routes';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
@@ -119,7 +119,6 @@ const localBusinessSchema = {
   telephone: PHONE.e164,
   email: EMAIL,
   address: postalAddressSchema(),
-  geo: { '@type': 'GeoCoordinates', ...GEO },
   areaServed: [
     { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
     { '@type': 'City', name: 'Miami Beach', sameAs: 'https://en.wikipedia.org/wiki/Miami_Beach,_Florida' },

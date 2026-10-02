@@ -55,8 +55,9 @@ export const ADDRESS = {
 export const addressLine = (): string =>
   `${ADDRESS.streetAddress}, ${ADDRESS.addressLocality}, ${ADDRESS.addressRegion} ${ADDRESS.postalCode}`;
 
-/** [TODO: Evgenii] take the exact coordinates from the Google profile rather than a map pin. */
-export const GEO = { latitude: 26.0038, longitude: -80.158 } as const;
+// No GEO export. The old point (26.0038, -80.158) resolved to 2553 Washington
+// St, not to this address, and the Google profile pin is the centre of the
+// service area. Owner, 2026-10-02: remove the coordinates; the address stays.
 
 export const OWNER = {
   name: 'Evgenii Romanov',
