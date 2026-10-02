@@ -49,6 +49,8 @@ type ClientReview = {
   date: string;
   text: string;
   source: 'Google' | 'Thumbtack';
+  /** The stars this customer gave, as the platform shows them. Never assumed. */
+  rating: 1 | 2 | 3 | 4 | 5;
 };
 
 // Deliberately empty. This page previously shipped six cards reading
@@ -59,6 +61,8 @@ type ClientReview = {
 // [TODO: Evgenii] paste real reviews here, copied verbatim from the Thumbtack
 // or Google dashboard: { name, date: 'YYYY-MM-DD', text, source }. The grid and
 // the Review schema below render automatically once this array is non-empty.
+// Each entry carries the customer's own star rating; the markup used to stamp
+// ratingValue '5' on every review regardless of what the customer gave.
 // Never paraphrase or invent a review.
 const REVIEWS: ClientReview[] = [];
 
@@ -87,7 +91,7 @@ const reviewArrayJson = REVIEWS.length
         item: {
           '@type': 'Review',
           itemReviewed: { '@type': 'MovingCompany', name: 'Easy Move Florida', url: siteUrl },
-          reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+          reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: r.name },
           datePublished: r.date,
           reviewBody: r.text,
@@ -97,11 +101,11 @@ const reviewArrayJson = REVIEWS.length
     })
   : null;
 
-function StarRow() {
+function StarRow({ rating }: { rating: number }) {
   return (
-    <div className="flex items-center gap-0.5" aria-label="5 out of 5 stars">
+    <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5 stars`}>
       {[0, 1, 2, 3, 4].map((i) => (
-        <Star key={i} size={14} className="text-gold fill-gold" />
+        <Star key={i} size={14} className={i < rating ? 'text-gold fill-gold' : 'text-gold/30'} />
       ))}
     </div>
   );
@@ -184,12 +188,12 @@ export default function ReviewsPage() {
                     className="bg-cream border border-gray-100 p-6 flex flex-col"
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <StarRow />
+                      <StarRow rating={r.rating} />
                       <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-gold border border-gold/40 px-2 py-1">
                         {r.source}
                       </span>
                     </div>
-                    <meta itemProp="reviewRating" content="5" />
+                    <meta itemProp="reviewRating" content={String(r.rating)} />
                     <p itemProp="reviewBody" className="text-charcoal text-sm leading-relaxed mb-5 flex-1">
                       {r.text}
                     </p>
