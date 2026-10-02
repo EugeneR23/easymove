@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import RootShell, { BASE_METADATA } from '@/components/layout/RootShell';
+import '../globals.css';
 import { alternatesFor } from '@/lib/seo/routes';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
+  ...BASE_METADATA,
   title: {
     default: 'Переезды Майами',
     template: '%s | Easy Move Florida',
@@ -32,9 +35,5 @@ export const metadata: Metadata = {
 };
 
 export default function RuLayout({ children }: { children: React.ReactNode }) {
-  // The root layout owns <html lang="en"> and making it locale-aware would
-  // require headers(), which opts every route out of static generation. Marking
-  // the Russian subtree with lang="ru" is the standards-correct alternative:
-  // element-level lang applies to the whole subtree.
-  return <div lang="ru">{children}</div>;
+  return <RootShell lang="ru">{children}</RootShell>;
 }

@@ -172,7 +172,7 @@ check('no long-distance input produces a price, whatever mileage is passed in',
 // in prose is still a number, and it drifts silently.
 console.log('\n[11] /pricing drive-time copy matches the engine');
 {
-  const src = readFileSync(new URL('../src/app/pricing/page.tsx', import.meta.url), 'utf8');
+  const src = readFileSync(new URL('../src/app/(en)/pricing/page.tsx', import.meta.url), 'utf8');
   const minutesFor = (f: string, t: string) => Math.round(estimateLocalDistance(f, t) / 28 * 60);
   const spoken: Record<number, string> = {
     0.25: 'a quarter of an hour', 0.5: 'half an hour', 0.75: 'three quarters of an hour',

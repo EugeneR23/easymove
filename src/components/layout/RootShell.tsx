@@ -8,7 +8,6 @@ import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
 import { PHONE, EMAIL, GEO, OWNER, postalAddressSchema } from '@/lib/data/contact';
 import { offerDescription } from '@/lib/pricingCopy';
-import './globals.css';
 import { alternatesFor } from '@/lib/seo/routes';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
@@ -38,7 +37,7 @@ const SAME_AS = [
   'https://www.thumbtack.com/profile/services/474342774303219734/reviews',
 ];
 
-export const metadata: Metadata = {
+export const BASE_METADATA: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: 'South Florida Movers — Easy Move Florida | Hollywood, FL',
@@ -310,9 +309,25 @@ const websiteSchema = {
   publisher: { '@id': `${siteUrl}/#organization` },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+/**
+ * The document shell shared by the three root layouts: (en), ru and ua.
+ *
+ * Each language is its own root layout so that <html lang> is right in the
+ * static HTML. With one root layout the Russian and Ukrainian pages shipped
+ * <html lang="en"> and marked their language on an inner <div>; geo_audit
+ * (2026-10-01) read /ru as English, and so do crawlers that only look at
+ * the html element. Reading the path in one root layout would need
+ * headers(), which makes every route dynamic.
+ */
+export default function RootShell({
+  lang,
+  children,
+}: {
+  lang: 'en' | 'ru' | 'uk';
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang={lang} className={`${playfair.variable} ${inter.variable}`}>
       <head>
         {/* In the head itself rather than metadata.alternates.types: a page's own
             `alternates` replaces the layout's wholesale, so the feed link would

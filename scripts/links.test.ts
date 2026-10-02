@@ -28,6 +28,19 @@ function check(name: string, cond: boolean, actual: unknown) {
   }
 }
 
+/**
+ * The page file behind a served route. English routes live in the (en) route
+ * group, which has its own root layout so <html lang> is right per language;
+ * /ru and /ua keep their URL segment as their folder.
+ */
+function appDir(route: string): string {
+  if (route === '/ru' || route.startsWith('/ru/') || route === '/ua' || route.startsWith('/ua/')) {
+    return `src/app${route}`;
+  }
+  return route === '/' ? 'src/app/(en)' : `src/app/(en)${route}`;
+}
+const pageFile = (route: string) => `${appDir(route)}/page.tsx`;
+
 const SEP = String.fromCharCode(92); // backslash, for Windows paths
 const posix = (f: string) => f.split(SEP).join('/');
 
@@ -44,7 +57,7 @@ const files = walk('src');
 /** The page's own route folder and the sitemap do not count as inbound links. */
 function isSelfOrSitemap(file: string, slug: string): boolean {
   const f = posix(file);
-  return f.includes(`src/app/${slug}/`) || f.endsWith('src/app/sitemap.ts');
+  return f.includes(`${appDir(`/${slug}`)}/`) || f.endsWith('src/app/sitemap.ts');
 }
 
 function inboundLinks(slug: string): string[] {
@@ -136,12 +149,12 @@ const promised = ROUTE_KEYS.flatMap((k) =>
   localesOf(k).map((loc) => ({ k, loc, path: pathFor(k, loc)! })),
 );
 const onDisk = (route: string) => {
-  const rel = route === '/' ? 'src/app/page.tsx' : `src/app${route}/page.tsx`;
+  const rel = pageFile(route);
   try { statSync(rel); return true; } catch { /* may be a dynamic segment */ }
   const parent = route.slice(0, route.lastIndexOf('/'));
   if (!parent) return false;
   for (const dyn of ['[slug]', '[id]']) {
-    try { statSync(`src/app${parent}/${dyn}/page.tsx`); return true; } catch { /* next */ }
+    try { statSync(`${appDir(parent)}/${dyn}/page.tsx`); return true; } catch { /* next */ }
   }
   return false;
 };
@@ -153,7 +166,7 @@ check('every path the routes table promises exists on disk', phantom.length === 
 const brokenCluster: string[] = [];
 for (const { k, loc, path: route } of promised) {
   if (localesOf(k).length < 2) continue;
-  const rel = route === '/' ? 'src/app/page.tsx' : `src/app${route}/page.tsx`;
+  const rel = pageFile(route);
   let body = '';
   try { body = readFileSync(rel, 'utf8'); } catch { continue; }
   const hasMeta = /export const metadata/.test(body);

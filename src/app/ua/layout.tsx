@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import RootShell, { BASE_METADATA } from '@/components/layout/RootShell';
+import '../globals.css';
 import { alternatesFor } from '@/lib/seo/routes';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
+  ...BASE_METADATA,
   title: {
     default: 'Переїзди в Південній Флориді | Easy Move Florida',
     template: '%s | Easy Move Florida',
@@ -32,9 +35,5 @@ export const metadata: Metadata = {
 };
 
 export default function UaLayout({ children }: { children: React.ReactNode }) {
-  // Same reasoning as the Russian subtree: the root layout owns
-  // <html lang="en">, and making it locale-aware would require headers(), which
-  // opts every route out of static generation. Element-level lang applies to
-  // the whole subtree, so lang="uk" here covers every Ukrainian page.
-  return <div lang="uk">{children}</div>;
+  return <RootShell lang="uk">{children}</RootShell>;
 }
