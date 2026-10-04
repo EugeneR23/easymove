@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { unauthorizedUnlessAdmin } from '@/lib/auth';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
 import { calculatePricing, estimateLocalDistance, routeMode, MOVE_TYPES } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
@@ -16,6 +17,8 @@ function parseMoveType(raw: unknown): MoveType {
 }
 
 export async function GET() {
+  const denied = unauthorizedUnlessAdmin();
+  if (denied) return denied;
   const quotes = readAllQuotes();
   return NextResponse.json(quotes);
 }

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { unauthorizedUnlessAdmin } from '@/lib/auth';
 import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
@@ -27,6 +28,8 @@ function parseMoveType(raw: unknown): MoveType | undefined {
 }
 
 export async function GET() {
+  const denied = unauthorizedUnlessAdmin();
+  if (denied) return denied;
   return NextResponse.json(readAllLeads());
 }
 

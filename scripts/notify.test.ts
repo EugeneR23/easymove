@@ -65,6 +65,33 @@ async function main() {
     review.includes('smsResult.sent ? true :'),
     review.match(/results\.sms\s*=.*/g));
 
+  // Lead and quote records carry customers' names, phones and emails. Until
+  // 2026-10-04 every GET, PATCH and DELETE on them was open to anyone, and the
+  // admin cookie was unsigned base64 JSON that anyone could forge.
+  console.log('\n[guard] lead and quote data needs an admin session');
+  const unguarded: string[] = [];
+  for (const f of [
+    'src/app/api/leads/route.ts', 'src/app/api/leads/[id]/route.ts',
+    'src/app/api/quotes/route.ts', 'src/app/api/quotes/[id]/route.ts',
+  ]) {
+    const src = readFileSync(f, 'utf8');
+    for (const m of src.matchAll(/export async function (GET|PATCH|DELETE)\b[^{]*\{([\s\S]*?)\n\}/g)) {
+      if (!m[2].includes('unauthorizedUnlessAdmin()')) unguarded.push(`${f} ${m[1]}`);
+    }
+  }
+  check('every GET/PATCH/DELETE on leads and quotes checks the admin session',
+    unguarded.length === 0, unguarded);
+  const auth = readFileSync('src/lib/auth.ts', 'utf8');
+  check('the admin session cookie is verified with an HMAC, not just decoded',
+    auth.includes('timingSafeEqual(') && auth.includes("createHmac('sha256'"), null);
+  // Returning before cookies() when no key exists at build time made Next.js
+  // prerender /admin as a static redirect (caught on a local build 2026-10-04).
+  const body = auth.slice(auth.indexOf('export function getSession('));
+  const firstReturn = body.indexOf('return ');
+  const cookieRead = body.indexOf('cookies().get(');
+  check('getSession reads cookies() before any early return',
+    cookieRead > -1 && firstReturn > -1 && cookieRead < firstReturn, { cookieRead, firstReturn });
+
   console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);
   process.exit(failed ? 1 : 0);
 }
