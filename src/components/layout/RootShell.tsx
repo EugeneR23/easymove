@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
-import { GOOGLE_BUSINESS, REVIEW_TOTALS, THUMBTACK } from '@/lib/data/credentials';
+import { GOOGLE_BUSINESS, REVIEW_TOTALS, THUMBTACK, licenceIdentifiers } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
 import { PHONE, EMAIL, OWNER, postalAddressSchema } from '@/lib/data/contact';
@@ -243,6 +243,8 @@ const localBusinessSchema = {
   // (owner, 2026-10-01). Ukrainian is the language of the /ua pages, not a
   // promise that a client is served in it.
   knowsLanguage: ['en', 'ru'],
+  // Florida mover registration, once the owner supplies it (credentials.ts).
+  ...(licenceIdentifiers().length ? { identifier: licenceIdentifiers() } : {}),
   slogan: 'Local moving and small handyman in South Florida',
 };
 

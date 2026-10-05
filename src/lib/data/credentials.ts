@@ -121,6 +121,18 @@ export const REVIEW_SOURCING_NOTE =
 export const hasLicenceNumber = (): boolean => Boolean(FDACS_NUMBER || USDOT_NUMBER);
 
 /** "FDACS IM1234 · USDOT 5292075", or null while neither is set. */
+/**
+ * schema.org identifiers for the registrations that are set, in the shape
+ * competitors use (Surf Moving publishes IM4087 as an `identifier`). Empty
+ * while the numbers are null, so nothing is claimed until the owner gives one.
+ */
+export function licenceIdentifiers(): { '@type': 'PropertyValue'; propertyID: string; value: string }[] {
+  const ids: { '@type': 'PropertyValue'; propertyID: string; value: string }[] = [];
+  if (FDACS_NUMBER) ids.push({ '@type': 'PropertyValue', propertyID: 'FDACS intrastate mover registration', value: FDACS_NUMBER });
+  if (USDOT_NUMBER) ids.push({ '@type': 'PropertyValue', propertyID: 'USDOT', value: USDOT_NUMBER });
+  return ids;
+}
+
 export function licenceLine(): string | null {
   const parts: string[] = [];
   if (FDACS_NUMBER) parts.push(`FDACS ${FDACS_NUMBER}`);
