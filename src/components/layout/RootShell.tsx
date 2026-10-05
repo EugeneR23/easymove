@@ -254,6 +254,11 @@ const localBusinessSchema = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  // Google's AI Overview (owner's check, 2026-10-04) merged us with Easy
+  // Florida Moving LLC of Hallandale Beach: their 258 reviews and their second
+  // phone number printed under our name. Same statement as llms.txt.
+  disambiguatingDescription:
+    'Easy Move Florida (Hollywood, FL; +1 786-305-1844) is a different company from Easy Florida Moving LLC (easyfloridamoving.com, Hallandale Beach).',
   '@id': `${siteUrl}/#organization`,
   name: 'Easy Move Florida',
   // "EasyMove Elite" removed: it named an entity that does not exist in the

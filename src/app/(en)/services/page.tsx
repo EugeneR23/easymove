@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: alternatesFor('services', 'en'),
   openGraph: {
     title: 'Moving Services in South Florida | Easy Move Florida',
-    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516, long-distance within Florida.',
+    description: 'Full-service movers in Miami-Dade, Broward & Palm Beach. Local moves from $516 all-in (3-hour minimum plus the truck), long-distance within Florida.',
     url: 'https://www.easy-move-florida.com/services',
     images: [
       ogImage('https://www.easy-move-florida.com/images/Real/9.jpg', 'Professional moving services in Miami, Fort Lauderdale & Boca Raton'),

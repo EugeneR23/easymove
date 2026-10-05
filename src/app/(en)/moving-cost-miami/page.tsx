@@ -63,7 +63,7 @@ const HIDDEN_FEES = [
 const FAQS = [
   {
     q: 'How much do movers charge per hour in Miami?',
-    a: `Two movers with a truck cost $${HOURLY_RATE[2]} per hour and three movers $${HOURLY_RATE[3]} per hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line at $${TRUCK_FEE[2]} per day with two movers and $${TRUCK_FEE[3]} with three — it matches the crew rate, because a bigger crew brings a bigger truck. Market rates across Miami-Dade generally run $100–$180 per hour for a two-mover crew, so this sits mid-range — the difference is usually in what gets added at the end, not in the headline rate.`,
+    a: `Two movers cost $${HOURLY_RATE[2]} per hour and three movers $${HOURLY_RATE[3]} per hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line at $${TRUCK_FEE[2]} per day with two movers and $${TRUCK_FEE[3]} with three — it matches the crew rate, because a bigger crew brings a bigger truck. Market rates across Miami-Dade generally run $100–$180 per hour for a two-mover crew, so this sits mid-range — the difference is usually in what gets added at the end, not in the headline rate.`,
   },
   {
     q: 'How much does moving a 1-bedroom apartment cost in Miami?',

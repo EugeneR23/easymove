@@ -750,7 +750,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Beach Movers | Easy Move Florida',
     metaDescription: 'Movers in Miami Beach from $129/hour for 2 movers. Free COI, no weekend or fuel surcharge, no deposit. Call or WhatsApp 786-305-1844 for a same-day quote.',
-    intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have Art Deco walk-ups on Jefferson, Meridian and Euclid with no elevator at all, a narrow stair and a street where a 26-foot truck cannot legally sit without a permit from the City of Miami Beach. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers and a truck are $129 per hour for the crew, with a three-hour minimum, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
+    intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have Art Deco walk-ups on Jefferson, Meridian and Euclid with no elevator at all, a narrow stair and a street where a 26-foot truck cannot legally sit without a permit from the City of Miami Beach. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers are $129 per hour for the crew, with a three-hour minimum and the truck on its own line, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
     neighborhoods: ['South Beach', 'Mid-Beach', 'North Beach', 'South of Fifth', 'Sunset Harbour', 'Flamingo Park', 'West Avenue', 'Belle Isle', 'Venetian Islands', 'La Gorce', 'Normandy Isle', 'Collins Park'],
     localFacts: [
       {
@@ -771,7 +771,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'What a Miami Beach move actually costs',
-        body: 'Two movers with a truck are $129 per hour, three movers $179, four movers $219, with a three-hour minimum. The truck is a separate line at the same daily figure as your crew rate. A studio on the beach usually lands between $516 and $645 all in; a one-bedroom $516 to $774; a two-bedroom $645 to $1,253. After the minimum we bill in 15-minute increments. No deposit, and free cancellation more than 48 hours out.',
+        body: 'Two movers are $129 per hour, three movers $179, four movers $219, with a three-hour minimum. The truck is a separate line at the same daily figure as your crew rate. A studio on the beach usually lands between $516 and $645 all in; a one-bedroom $516 to $774; a two-bedroom $645 to $1,253. After the minimum we bill in 15-minute increments. No deposit, and free cancellation more than 48 hours out.',
       },
       {
         title: 'Hurricane season and the summer calendar',
@@ -845,7 +845,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'A transparent invoice, no surcharges',
-        body: 'Three movers with a truck are $179 per hour for the crew, four movers $219, with a three-hour minimum and 15-minute billing after that. The truck appears as its own line at the same daily figure as the crew rate. Nothing is added for weekends, high season, fuel, elevators or long carries from a service entrance to a unit at the far end of a corridor. No deposit is taken, and cancelling more than 48 hours out costs nothing.',
+        body: 'Three movers are $179 per hour for the crew, four movers $219, with a three-hour minimum and 15-minute billing after that. The truck appears as its own line at the same daily figure as the crew rate. Nothing is added for weekends, high season, fuel, elevators or long carries from a service entrance to a unit at the far end of a corridor. No deposit is taken, and cancelling more than 48 hours out costs nothing.',
       },
     ],
     faqs: [
@@ -889,8 +889,8 @@ export const CITIES: CityData[] = [
     heroSub: 'Eastern Shores · Highland Village · Sunkist Grove · Fulford-by-the-Sea · Uleta',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'North Miami Beach Movers | Easy Move Florida',
-    metaDescription: 'North Miami Beach movers from $129/hour for two movers and a truck. Free COI, no deposit, no hidden fees. Call or text 786-305-1844 for a written estimate.',
-    intro: "North Miami Beach has more housing stock built before 1975 than almost anywhere else in the county, and that shapes every move here. Eastern Shores is canal-front single-family homes on cul-de-sacs, where the question is whether a truck can turn around at the end of your street. West of Biscayne you have Highland Village and Sunkist Grove, older single-story houses with carports and mature trees over the driveway. In between sit the mid-century condo buildings along 163rd Street and Biscayne Boulevard - solid buildings with small elevators, tight lobbies and associations that still want paperwork on file before you move a stick of furniture. We look at yours before quoting. Two movers and a truck start at $129 per hour for the crew with a three-hour minimum, no deposit, and nothing added for weekends. The crew works in English and Russian. Call Evgenii Romanov on 786-305-1844.",
+    metaDescription: 'North Miami Beach movers from $129/hour for two movers, truck on its own line. Free COI, no deposit, no hidden fees. Call or text 786-305-1844 for a written estimate.',
+    intro: "North Miami Beach has more housing stock built before 1975 than almost anywhere else in the county, and that shapes every move here. Eastern Shores is canal-front single-family homes on cul-de-sacs, where the question is whether a truck can turn around at the end of your street. West of Biscayne you have Highland Village and Sunkist Grove, older single-story houses with carports and mature trees over the driveway. In between sit the mid-century condo buildings along 163rd Street and Biscayne Boulevard - solid buildings with small elevators, tight lobbies and associations that still want paperwork on file before you move a stick of furniture. We look at yours before quoting. Two movers start at $129 per hour for the crew with a three-hour minimum, the truck on its own line, no deposit, and nothing added for weekends. The crew works in English and Russian. Call Evgenii Romanov on 786-305-1844.",
     neighborhoods: ['Eastern Shores', 'Highland Village', 'Sunkist Grove', 'Fulford-by-the-Sea', 'Uleta', 'Skylake', 'Greynolds Park area', 'Oak Grove', 'Biscayne Boulevard corridor', 'NE 163rd Street corridor', 'Maule Lake', 'Sans Souci Estates'],
     localFacts: [
       {
@@ -911,7 +911,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'What the hours actually cost',
-        body: 'Two movers and a truck are $129 per hour for the crew; three movers $179; four movers $219. Three-hour minimum, then 15-minute increments. The smallest invoice possible is $516 with a two-man crew. A typical NMB one-bedroom finishes between $516 and $774, a two-bedroom between $645 and $1,253, a three-bedroom house between $1,253 and $1,611. Nothing extra for stairs, heavy items, weekends or fuel, and no deposit to book the date.',
+        body: 'Two movers are $129 per hour for the crew; three movers $179; four movers $219. Three-hour minimum, then 15-minute increments. The smallest invoice possible is $516 with a two-man crew. A typical NMB one-bedroom finishes between $516 and $774, a two-bedroom between $645 and $1,253, a three-bedroom house between $1,253 and $1,611. Nothing extra for stairs, heavy items, weekends or fuel, and no deposit to book the date.',
       },
       {
         title: 'Traffic on 163rd Street and Biscayne',

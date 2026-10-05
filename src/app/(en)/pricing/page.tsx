@@ -99,7 +99,7 @@ const FACTORS = [
 const PRICING_FAQS = [
   {
     q: 'How much does a local move cost in South Florida?',
-    a: `Two movers with a truck cost $${HOURLY_RATE[2]}/hour, three movers $${HOURLY_RATE[3]}/hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line per day charged at the same figure as the crew rate — $${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three — and fuel, tolls and mileage are inside it. A typical 1-bedroom runs $516–$774 all-in; a 2-bedroom $645–$1,253.`,
+    a: `Two movers cost $${HOURLY_RATE[2]}/hour, three movers $${HOURLY_RATE[3]}/hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line per day charged at the same figure as the crew rate — $${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three — and fuel, tolls and mileage are inside it. A typical 1-bedroom runs $516–$774 all-in; a 2-bedroom $645–$1,253.`,
   },
   {
     q: 'What does the truck fee cover?',

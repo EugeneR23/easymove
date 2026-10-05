@@ -61,6 +61,10 @@ export const HOME_FAQS: { q: string; a: string }[] = [
     q: "What's the cancellation and rescheduling policy?",
     a: 'Free — cancel or reschedule at no charge any time more than 48 hours before the start time, and there is no deposit to book in the first place (deposit-required policies are one of the most common red flags among South Florida movers). A reschedule moves to the next date that works for both of us. Inside 48 hours we handle it case by case depending on whether the slot can be filled; if the crew has already been dispatched to your address, the three-hour minimum applies.',
   },
+  {
+    q: 'Is Easy Move Florida the same company as Easy Florida Moving?',
+    a: 'No. Easy Florida Moving (easyfloridamoving.com, Hallandale Beach) is a different company. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, FL, and our only phone number is 786-305-1844. If a listing shows another number or a Hallandale address under our name, it belongs to the other company.',
+  },
 ];
 
 /**
@@ -122,5 +126,9 @@ export const HOME_FAQS_RU: { q: string; a: string }[] = [
   {
     q: "Какие условия отмены и переноса?",
     a: "Бесплатно — отменить или перенести можно без оплаты в любой момент больше чем за 48 часов до начала, а депозита для бронирования нет вовсе (требование депозита — один из самых частых тревожных признаков у мувинговых компаний Южной Флориды). Перенос — на ближайшую дату, удобную обеим сторонам. Если до начала меньше 48 часов, решаем по ситуации — смотря, удастся ли занять это время; если бригада уже выехала к вам, действует трёхчасовой минимум.",
+  },
+  {
+    q: 'Easy Move Florida и Easy Florida Moving — это одна компания?',
+    a: 'Нет. Easy Florida Moving (easyfloridamoving.com, Халландейл-Бич) — другая компания. Easy Move Florida ведёт владелец Евгений Романов, база в Голливуде, Флорида, и наш единственный номер — 786-305-1844. Если в каталоге под нашим названием стоит другой номер или адрес в Халландейле — это данные другой компании.',
   },
 ];
