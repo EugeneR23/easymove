@@ -7,6 +7,7 @@ import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import { Star, ExternalLink, MessageSquare, Award } from 'lucide-react';
 import { THUMBTACK, GOOGLE_BUSINESS, REVIEW_TOTALS, REVIEW_SOURCING_NOTE } from '@/lib/data/credentials';
+import { GOOGLE_REVIEWS } from '@/lib/data/googleReviews';
 import { alternatesFor } from '@/lib/seo/routes';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
@@ -70,62 +71,12 @@ type ClientReview = {
 // word for word by the owner's browser check, all five stars. Google gives
 // only relative dates ("a month ago"), so no date is stated rather than one
 // reconstructed. Published on the owner's decision of 2026-10-02.
-const REVIEWS: ClientReview[] = [
-  {
-    name: "Ekaterina Bykova",
-    source: 'Google',
-    rating: 5,
-    text: "I needed to organize a move from one apartment to another, and the team handled it 100%. From the initial communication to the final unloading of my belongings, everything was top-notch. They did everything quickly, efficiently, and with great care for both my things and me as a client. Thank you so much!",
-  },
-  {
-    name: "Bianca Sa",
-    source: 'Google',
-    rating: 5,
-    text: "Everything was amazing. Really appreciate the help",
-  },
-  {
-    name: "Katerina Ko",
-    source: 'Google',
-    rating: 5,
-    text: "Thank you so much for the amazing service! Honest, reliably, accommodating. Can’t recommend enough, 5 star!!!!",
-  },
-  {
-    name: "Ivan Berezovskii",
-    source: 'Google',
-    rating: 5,
-    text: "Excellent team! They are reliable, punctual, and do a great job every time. Very professional and easy to work with. I’ve trusted them for several years now and highly recommend their services.",
-  },
-  {
-    name: "Owen Parker",
-    source: 'Google',
-    rating: 5,
-    text: "Great moving experience! They handled everything with care, were fast, and very friendly",
-  },
-  {
-    name: "Raha Mad",
-    source: 'Google',
-    rating: 5,
-    text: "Excellent service from start to finish. They communicated well, arrived on time, and moved everything safely. Truly professional movers.",
-  },
-  {
-    name: "Andrei Oho",
-    source: 'Google',
-    rating: 5,
-    text: "Eugene and his team are really professionals. They did everything very carefully and quickly without stress. All my furniture was delivered in full safety.",
-  },
-  {
-    name: "Tatiana Romanova",
-    source: 'Google',
-    rating: 5,
-    text: "Eugene is fantastic!! Definitely would recommend and will use them again!! Very professional and excellent at communicating.",
-  },
-  {
-    name: "Andrey",
-    source: 'Google',
-    rating: 5,
-    text: "Eugene and his team did a flawless job. They arrived at the meeting point on time and delivered everything on time and with great disposition. I will certainly use them again, they are a trustworthy team!",
-  },
-];
+const REVIEWS: ClientReview[] = GOOGLE_REVIEWS.map((r) => ({
+  name: r.name,
+  source: 'Google' as const,
+  rating: r.rating,
+  text: r.text,
+}));
 
 const breadcrumbJson = JSON.stringify({
   '@context': 'https://schema.org',

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { cityPageNode, serviceNode, faqNode, breadcrumbNode, ld } from '@/lib/seo/schema';
 import { THUMBTACK_QUOTES } from '@/lib/data/thumbtackQuotes';
-import { THUMBTACK } from '@/lib/data/credentials';
+import { THUMBTACK, GOOGLE_BUSINESS } from '@/lib/data/credentials';
+import { GOOGLE_REVIEWS } from '@/lib/data/googleReviews';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -17,6 +18,18 @@ import { CITIES_UA } from '@/lib/data/citiesUa';
 import { COST_PAGES, COST_PAGES_RU, COST_PAGES_UA , EXTERNAL_COST_PAGES } from '@/lib/data/costPages';
 import { HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 
+
+/**
+ * Three of the Google reviews for a city page, chosen by the page's slug so
+ * neighbouring pages do not all print the same three. Deterministic: the same
+ * page always shows the same reviews.
+ */
+function googleReviewsFor(slug: string, n = 3) {
+  let h = 0;
+  for (const ch of slug) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const start = h % GOOGLE_REVIEWS.length;
+  return Array.from({ length: Math.min(n, GOOGLE_REVIEWS.length) }, (_, i) => GOOGLE_REVIEWS[(start + i) % GOOGLE_REVIEWS.length]);
+}
 
 const SERVICES = {
   en: [
@@ -229,6 +242,8 @@ const UI = {
     reviewsTitle: 'What clients say about our crews',
     reviewsNote: (r: number) => `Quoted word-for-word from our Thumbtack profile — ${r} verified reviews, every one from a client Thumbtack confirmed hired us.`,
     reviewsCta: 'Read all reviews on Thumbtack',
+    googleTitle: 'On Google',
+    googleCta: 'Read them on Google',
     coiLine: 'Property manager? We issue the COI within 24 hours, free — matched to your building\u2019s requirements sheet.',
     coiCta: 'How the COI process works',
     breadcrumbHome: 'Home',
@@ -259,6 +274,8 @@ const UI = {
     reviewsTitle: 'Что клиенты говорят о наших бригадах',
     reviewsNote: (r: number) => `Дословные цитаты с нашего профиля Thumbtack — ${r} проверенных отзыва, каждый от клиента, чей заказ Thumbtack подтвердил. Оригиналы на английском.`,
     reviewsCta: 'Все отзывы на Thumbtack',
+    googleTitle: 'В Google',
+    googleCta: 'Все отзывы в Google',
     coiLine: 'Вы управляющий зданием? COI выпускаем за 24 часа, бесплатно — точно по листу требований вашего здания.',
     coiCta: 'Как устроен процесс COI',
     breadcrumbHome: 'Главная',
@@ -291,6 +308,8 @@ const UI = {
     reviewsTitle: 'Що клієнти кажуть про наші бригади',
     reviewsNote: (r: number) => `Дослівні цитати з нашого профілю Thumbtack — ${r} перевірені відгуки, кожен від клієнта, чиє замовлення Thumbtack підтвердив. Оригінали англійською.`,
     reviewsCta: 'Усі відгуки на Thumbtack',
+    googleTitle: 'У Google',
+    googleCta: 'Усі відгуки в Google',
     coiLine: 'Ви менеджер будинку? COI випускаємо за 24 години, безкоштовно — точно за листом вимог вашого будинку.',
     coiCta: 'Як влаштований процес COI',
     breadcrumbHome: 'Головна',
@@ -577,6 +596,28 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
                 {t.reviewsCta} ↗
               </a>
             </p>
+            {/* Google reviews, verbatim, from the same module as /reviews. */}
+            <h3 className="font-display text-xl font-bold text-charcoal text-center mt-12 mb-6">
+              {t.googleTitle}{GOOGLE_BUSINESS.rating ? ` · ${GOOGLE_BUSINESS.rating} ★` : ''}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {googleReviewsFor(city.slug).map((r) => (
+                <figure key={r.name} className="border border-gray-200 bg-cream p-6 flex flex-col">
+                  <blockquote className="text-gray-600 text-sm leading-relaxed flex-1">“{r.text}”</blockquote>
+                  <figcaption className="mt-4 pt-4 border-t border-gray-200">
+                    <span className="block font-semibold text-charcoal text-sm">{r.name}</span>
+                    <span className="block text-gray-400 text-xs">Google · {'★'.repeat(r.rating)}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            {GOOGLE_BUSINESS.profileUrl && (
+              <p className="text-center mt-8">
+                <a href={GOOGLE_BUSINESS.profileUrl} target="_blank" rel="noopener noreferrer" className="text-gold text-sm font-semibold hover:underline">
+                  {t.googleCta} ↗
+                </a>
+              </p>
+            )}
           </div>
         </section>
 
