@@ -4,6 +4,7 @@ import { licenceLine, THUMBTACK, REVIEW_TOTALS } from '@/lib/data/credentials';
 import { CITIES } from '@/lib/data/cities';
 import { RU_NAMES, UA_NAMES } from '@/lib/data/cityNames';
 import { pathFor } from '@/lib/seo/routes';
+import { requestFormHref } from '@/lib/requestForm';
 import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { whatsappUrl } from '@/lib/data/contact';
@@ -97,7 +98,10 @@ export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}
   const f = FOOTER_COPY[locale] ?? FOOTER_COPY.en;
   // The page in this footer's language when it exists, the English one when not.
   const loc = locale === 'ua' ? 'uk' : locale;
-  const href = (key: string) => pathFor(key, loc) ?? pathFor(key, 'en') ?? `/${key}`;
+  // 'quote' on a Russian or Ukrainian page opens the form in that language,
+  // not the English-only wizard (2026-10-11).
+  const href = (key: string) =>
+    key === 'quote' ? requestFormHref(loc) : pathFor(key, loc) ?? pathFor(key, 'en') ?? `/${key}`;
   const names = locale === 'ru' ? RU_NAMES : locale === 'ua' ? UA_NAMES : null;
   const cityName = (slug: string, en: string) => names?.[slug] ?? en;
   return (
