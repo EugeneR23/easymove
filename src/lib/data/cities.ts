@@ -175,7 +175,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Boca-Raton.jpg',
     metaTitle: 'Boca Raton Movers, FL | Easy Move Florida',
     metaDescription:
-      'Boca Raton movers — Boca West, Mizner Park, Delray Beach estate and gated community specialists. Fully insured, COI in 24h. Call 786-305-1844.',
+      'Boca Raton movers for Boca West, Mizner Park and gated communities. 2 movers $129/hr, no deposit, free COI in 24h, gate registration handled. Call 786-305-1844.',
     intro:
       "Boca Raton runs on gated communities, estate homes and condo associations, and each one has a gate procedure, a COI requirement and often a window when a truck is allowed in. We collect those from the association or management office when you book, rather than arriving and negotiating at the gate. Crates and padding for art and mirrors, floor protection from the entry to the room, and a photo inventory before anything moves.",
     neighborhoods: [
@@ -320,7 +320,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/5.png',
     metaTitle: 'Coral Gables Movers, FL | Easy Move Florida',
     metaDescription:
-      'Coral Gables movers — historic homes & gated estates. Gables Estates, Cocoplum, Old Cutler. HOA-compliant, fully insured. Call 786-305-1844.',
+      'Coral Gables movers for historic homes and gated estates: Gables Estates, Cocoplum, Old Cutler. 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
     intro:
       "Moving in Coral Gables is not the same as moving in Brickell. The streets are narrow, the trees are protected, the historic-preservation rules are real, and the HOAs in Cocoplum, Gables Estates, and Old Cutler are some of the strictest in South Florida. Most moving companies don't know what a Mediterranean Bonus is or why the Garden Club cares about your moving truck idling on Granada Boulevard. We do. Easy Move Florida handles Coral Gables estates, historic single-family homes, and Miracle Mile condos with the patience and protocol they require.",
     neighborhoods: [
@@ -528,7 +528,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/10.png',
     metaTitle: 'Coconut Grove Movers, FL | Easy Move Florida',
     metaDescription:
-      'Coconut Grove movers — historic Grove homes, Park Grove, Grove at Grand Bay specialists. Fully insured, COI in 24h. Call 786-305-1844.',
+      'Coconut Grove movers for historic Grove homes and towers like Park Grove and Grove at Grand Bay. 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
     intro:
       "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means knowing both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. Easy Move Florida handles both with the same standard.",
     neighborhoods: [
@@ -539,10 +539,10 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Historic Grove Homes',
-        body: "Many Coconut Grove homes are original 1920s construction with narrow doorways, wood floors, and built-in features. We pad doorframes, lay floor runners on every walking surface, and brief the crew on protecting historic finishes. We also know which streets in Center Grove restrict moving truck access during certain hours.",
+        body: "Many Coconut Grove homes are original 1920s construction with narrow doorways, wood floors, and built-in features. We pad doorframes, lay floor runners on every walking surface, and brief the crew on protecting historic finishes. Some Center Grove streets restrict moving-truck access at certain hours, so we check the rules for your block before move day.",
       },
       {
-        title: 'Park Grove & Bay Tower Specialists',
+        title: 'Park Grove & the Bay Towers',
         body: "Park Grove, One Park Grove, and Grove at Grand Bay all have specific COI requirements, freight elevator reservations, and loading dock windows. Our coordinator handles building paperwork before your move date so the crew arrives ready to work.",
       },
       {
@@ -557,7 +557,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you handle a 1920s Coconut Grove home with narrow doorways?',
-        a: "Yes. We measure doorways and stairwells in advance, pre-disassemble large pieces that won't clear, and use floor protection on original wood and tile. Historic Grove homes are a regular part of our work.",
+        a: "Yes. We measure doorways and stairwells in advance, pre-disassemble large pieces that won't clear, and use floor protection on original wood and tile.",
       },
       {
         q: 'Do Coconut Grove streets allow large moving trucks?',
@@ -1776,6 +1776,65 @@ export const CITIES: CityData[] = [
       {
         q: 'Do you speak Russian?',
         a: 'Yes. The owner, Evgenii Romanov, and the crew work in English and Russian. Call or message 786-305-1844 - the same number takes WhatsApp.',
+      },
+    ],
+  },
+  // Brickell, added 2026-10-11. Demand checked first: "brickell movers" and
+  // "movers brickell" run about 70 searches a month each in the Miami DMA
+  // (DataForSEO, 2026-10-11). Every place fact below is from the Wikipedia
+  // article "Brickell" as read that day; everything else describes our own
+  // process, not a history of jobs in named buildings.
+  {
+    slug: 'brickell-movers',
+    name: 'Brickell',
+    state: 'FL',
+    county: 'Miami-Dade',
+    heroHeadline: 'Brickell Condo & High-Rise Movers',
+    heroSub: 'Brickell Avenue · Brickell Key · Mary Brickell Village · Financial District',
+    heroImage: '/images/Real/Miami.jpg',
+    metaTitle: 'Brickell Movers — $129/hr, Free COI | Easy Move Florida',
+    metaDescription:
+      'Brickell movers for condo and apartment towers. Freight elevator and COI paperwork handled, 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
+    intro:
+      "Brickell runs from the Miami River south to SW 26th Road, and from I-95 east to Biscayne Bay. It is Miami's financial district and one of its densest neighborhoods: mostly condominium and apartment towers, with Brickell Key — an island of residential and hotel towers — just off its northeastern edge. That makes almost every Brickell move a tower move. The truck does not park where you would like it to; it parks where the building's loading dock allows, at the time the building gives you, and the freight elevator is booked in a window. We ask the management office for its move rules and its certificate-of-insurance wording as soon as your date is fixed, send the COI free within 24 hours of booking, and plan the crew around the elevator slot. Rates are the same hourly card we run everywhere, and only the loaded leg between your two addresses is billed as time.",
+    neighborhoods: [
+      'Brickell Avenue', 'Brickell Key', 'Mary Brickell Village', 'Brickell City Centre',
+      'Brickell Bay Drive', 'Southside', 'Financial District', 'SW 1st Avenue',
+    ],
+    localFacts: [
+      {
+        title: 'The Freight Elevator Sets the Day',
+        body: 'In a Brickell tower the freight elevator, not the crew, decides how long a move takes. Most buildings book it in a fixed window and ask for the movers\' insurance certificate before they release it. We request the window and the COI format from management when you book, and choose the crew size so the job fits inside the slot instead of spilling past it.',
+      },
+      {
+        title: 'Brickell Key Is Its Own Island',
+        body: 'Brickell Key sits a few hundred feet east of Brickell and is made up of high-rise residential and hotel towers. Each tower sets its own move rules, so a move from Brickell to Brickell Key is two sets of building paperwork, not one. We collect both before move day.',
+      },
+      {
+        title: 'Curb Space Is the Bottleneck',
+        body: 'Dense high-rise blocks have little curb space, and many towers will only let a truck stand at their loading dock at booked times. We ask for dock time together with the elevator booking, so the truck is not circling the block on your clock.',
+      },
+    ],
+    faqs: [
+      {
+        q: 'How much does a Brickell condo move cost?',
+        a: 'A Brickell one-bedroom typically runs $516–$774 and a two-bedroom $645–$1,253. That is 3–6 hours at $129 per hour with 2 movers or $179 with 3, a 3-hour minimum, and the truck on its own line, charged per day at the crew rate. Elevator waits and long carries cost time, never a fee. There is no deposit, and no surcharge for weekends or stairs.',
+      },
+      {
+        q: 'Will you send the certificate of insurance to my building?',
+        a: 'Yes. The COI goes to your building management free of charge within 24 hours of booking, in the format the building asks for and naming it as additional insured. Send us the management office contact or the building\'s COI sample and we take it from there.',
+      },
+      {
+        q: 'Can you move me out of Brickell today?',
+        a: 'If a crew is free, yes — same day, at the normal hourly rate, with no rush fee. The building still has to release the freight elevator, so call 786-305-1844 as early as you can.',
+      },
+      {
+        q: 'Do you speak Russian?',
+        a: 'Yes. The owner, the dispatcher and the crew leader work in Russian and English.',
+      },
+      {
+        q: 'How is the drive to Coconut Grove, Brickell Key or Miami Beach billed?',
+        a: 'Only the loaded leg between your two addresses counts as time, at the crew rate. There is no separate fuel or mileage charge; fuel and tolls are inside the per-day truck fee.',
       },
     ],
   },

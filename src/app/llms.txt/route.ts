@@ -209,6 +209,7 @@ ${CITIES.length} city pages in English. The Russian pages are listed in the next
 | Sunny Isles Beach | Miami-Dade | https://www.easy-move-florida.com/sunny-isles-movers |
 | Hollywood | Broward | https://www.easy-move-florida.com/hollywood-movers |
 | Coconut Grove | Miami-Dade | https://www.easy-move-florida.com/coconut-grove-movers |
+| Brickell | Miami-Dade | https://www.easy-move-florida.com/brickell-movers |
 | Doral | Miami-Dade | https://www.easy-move-florida.com/doral-movers |
 | Hallandale Beach | Broward | https://www.easy-move-florida.com/hallandale-beach-movers |
 | Miami Beach | Miami-Dade | https://www.easy-move-florida.com/miami-beach-movers |

@@ -58,6 +58,8 @@ const ALLOW = [
   // The fine-art guide lists museum-grade works as a reason to call a
   // specialist instead of a mover: a statement about the work, not about us.
   'Museum-grade works requiring specialized environmental control',
+  // credentials.ts: the comment recording why the badges were removed.
+  'audit had to strip ~15 "Licensed & Insured" badges because none of them',
   'Произведения искусства музейного уровня — нужны специализированные art storage facilities',
 ];
 
@@ -174,6 +176,12 @@ const RULES = [
 
   { id: 'crew-knows-your-building', why: 'The crew does not know your building in advance; we find out its rules before move day. "Каждая бригада знает ваше здание" on /ru and "Бригада знает ваше здание до приезда" in /ru/about meta slipped past crew-knows-building until 2026-10-11.',
     re: /(?:бригад\S*|crew)\s+(?:знает|знают|знає|knows?)\s+(?:ваше|ваш|your)\s+(?:здани|будин|building)/gi },
+
+  { id: 'fully-insured', why: 'No carrier or limits are on record (credentials.ts INSURANCE is empty), and ~15 "Licensed & Insured" badges were removed for that reason. "Fully insured" survived in three city meta descriptions until 2026-10-11. State the COI instead.',
+    re: /fully insured|fully licensed|licensed (?:and|&) insured|полностью застрахован/gi },
+
+  { id: 'regular-part-of-work', why: 'Claims a move history no record backs ("Historic Grove homes are a regular part of our work", found 2026-10-11). regular-service catches "part of our regular"; this is the same claim reworded.',
+    re: /regular part of (?:our|my) (?:work|business|jobs?)|we (?:also )?know which streets/gi },
 
   { id: 'telegram-promise', why: 'Owner, 2026-10-11: there is no customer Telegram channel. "WhatsApp + Telegram" promised a contact route with no link behind it.',
     re: /WhatsApp\s*(?:\+|and|и|та|&)\s*Telegram|Telegram\s*(?:\+|and|и|та|&)\s*WhatsApp/gi },

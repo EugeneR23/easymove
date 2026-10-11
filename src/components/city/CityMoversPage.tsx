@@ -106,6 +106,7 @@ const UA_CITY_SLUGS = new Set(CITIES_UA.map((c) => c.slug.replace(/^ua\//, '')))
 const SOUTH_TO_NORTH = [
   'coconut-grove-movers',
   'coral-gables-movers',
+  'brickell-movers',
   'miami-movers',
   'miami-beach-movers',
   'doral-movers',

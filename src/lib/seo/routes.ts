@@ -58,6 +58,7 @@ const CITY_LOCALES: Record<string, Locale[]> = {
   'delray-beach-movers':      ['en', 'ru'],
   'boynton-beach-movers':     ['en', 'ru'],
   'coconut-grove-movers':     ['en'],
+  'brickell-movers':          ['en'],
   'coral-gables-movers':      ['en'],
   'doral-movers':             ['en'],
   'north-miami-movers':       ['en'],
