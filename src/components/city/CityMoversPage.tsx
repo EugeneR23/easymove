@@ -333,6 +333,10 @@ interface Props {
 export default function CityMoversPage({ city, locale = 'en' }: Props) {
   const t = UI[locale];
   const services = SERVICES[locale];
+  // Russian and Ukrainian readers stay in their language: the main button opens
+  // the request form at the bottom of the page (CTABanner, id "zayavka"), not
+  // the English-only wizard it led to until 2026-10-11.
+  const quoteHref = locale === 'en' ? '/quote' : '#zayavka';
   const trust = TRUST[locale];
   const isRu = locale === 'ru';
   const isUa = locale === 'ua';
@@ -422,7 +426,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
             </h1>
             <p className="text-gray-300 text-lg mb-8 max-w-xl">{city.heroSub}</p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/quote">
+              <Link href={quoteHref}>
                 <Button variant="primary" size="lg" className="gap-2">
                   {t.ctaEstimate} <ArrowRight size={15} />
                 </Button>
@@ -504,8 +508,8 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
                 const offsetTop = i % 2 === 1 ? 'md:mt-16 lg:mt-24' : '';
                 return (
                   <Link
-                    key={s.href}
-                    href={s.href}
+                    key={s.label}
+                    href={locale !== 'en' && s.href.startsWith('/quote') ? '#zayavka' : s.href}
                     className={`group block border-l-2 border-gold/30 hover:border-gold pl-6 md:pl-8 py-2 transition-all duration-300 ${offsetTop}`}
                   >
                     <p className="text-gold text-[10px] font-bold tracking-[0.25em] uppercase mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -562,7 +566,7 @@ export default function CityMoversPage({ city, locale = 'en' }: Props) {
               {t.readyToMove(city)}
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/quote">
+              <Link href={quoteHref}>
                 <Button variant="primary" size="lg" className="gap-2">
                   {t.ctaEstimate} <ArrowRight size={15} />
                 </Button>

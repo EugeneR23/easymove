@@ -85,10 +85,12 @@ interface Props {
   prefill?: { homeSize?: HomeSize | null; moveType?: MoveType };
   id?: string;
   className?: string;
+  /** One column at every width — for narrow containers such as the call-back sheet. */
+  stacked?: boolean;
 }
 
 export default function QuickLeadForm({
-  locale = 'en', variant = 'full', tone = 'light', prefill, id, className,
+  locale = 'en', variant = 'full', tone = 'light', prefill, id, className, stacked = false,
 }: Props) {
   const t = T[locale];
   const [form, setForm] = useState({
@@ -175,7 +177,7 @@ export default function QuickLeadForm({
         {isFull ? t.titleFull : t.titleCallback}
       </p>
 
-      <div className={cn('grid gap-3', isFull ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-[1fr_1fr_auto] sm:items-end')}>
+      <div className={cn('grid gap-3', stacked ? 'grid-cols-1' : isFull ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-[1fr_1fr_auto] sm:items-end')}>
         <div>
           <label htmlFor={`${id ?? 'qlf'}-name`} className={label}>{t.name}</label>
           <input id={`${id ?? 'qlf'}-name`} className={field} autoComplete="given-name" value={form.firstName} onChange={(e) => set('firstName')(e.target.value)} />
@@ -217,7 +219,7 @@ export default function QuickLeadForm({
           </>
         )}
 
-        <div className={cn(isFull && 'sm:col-span-2')}>
+        <div className={cn(isFull && !stacked && 'sm:col-span-2')}>
           <button
             type="submit"
             disabled={state === 'sending'}

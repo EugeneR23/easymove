@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { unauthorizedUnlessAdmin } from '@/lib/auth';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
-import { calculatePricing, estimateLocalDistance, routeMode, MOVE_TYPES } from '@/lib/pricing';
+import { calculatePricing, estimateLocalDistance, routeMode, MOVE_TYPES, LONG_DISTANCE_THRESHOLD_MILES } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
@@ -89,9 +89,9 @@ export async function POST(req: NextRequest) {
     // only offers Florida and "Outside Florida", but a form is a suggestion:
     // this endpoint is public, and until 2026-09-18 a hand-rolled POST naming
     // Seattle came back with a firm dollar figure for a job we do not take.
-    const mode = routeMode(fromState, toState, moveType);
+    const routedMode = routeMode(fromState, toState, moveType);
     const isLongMove = moveType === 'long-distance';
-    const estimatedDistance = mode !== 'priced'
+    const estimatedDistance = routedMode !== 'priced'
       ? 0
       : body.fromCity && body.toCity
         ? estimateLocalDistance(body.fromCity as string, body.toCity as string)
@@ -111,6 +111,9 @@ export async function POST(req: NextRequest) {
       inventory:         body.inventory         as QuoteInventory,
       addons:            body.addons            as QuoteAddons,
     });
+    // The pricing engine can still send a Florida job to a hand quote: a city it
+    // does not know, or a leg over 50 miles (owner, 2026-10-11). Its answer wins.
+    const mode = pricing.quoteMode;
 
     const quote: Quote = {
       id:          generateId(),
@@ -203,6 +206,8 @@ export async function POST(req: NextRequest) {
     // we can. The banner leads the subject line so it survives a phone preview.
     const modeBanner =
       mode === 'referral' ? '⚠ OUT-OF-STATE — REFER, DO NOT QUOTE'
+      : mode === 'custom' && pricing.customReason === 'unknown-city' ? '📋 CITY NOT IN THE TABLE — custom quote, no automatic price'
+      : mode === 'custom' && pricing.customReason === 'over-distance' ? `📋 OVER ${LONG_DISTANCE_THRESHOLD_MILES} MILES — custom quote, no automatic price`
       : mode === 'custom' ? '📋 FLORIDA LONG-DISTANCE — custom quote, no automatic price'
       : null;
     const priceTag = mode === 'priced' ? `$${quote.pricing.total}` : 'not priced';

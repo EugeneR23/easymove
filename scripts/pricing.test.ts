@@ -230,9 +230,11 @@ check('every band key is known to the module', BAND_KEYS.length === 6, BAND_KEYS
 // out on purpose: 5 h against the 6–9 h band is still open question Q5.
 {
   console.log('\n[from] calculator starting price equals the published band low');
-  // [band key, home size, crew at the band's low end]
+  // [band key, home size, crew at the band's low end]. Office joined 2026-10-11
+  // (Q5: 6 hours, 3 movers, from $1,253 everywhere).
   const pairs: [string, string, CrewSize][] = [
     ['studio', 'studio', 2], ['1br', '1br', 2], ['2br', '2br', 2], ['3br', '3br', 3], ['4br', '4br+', 3],
+    ['office', 'office', 3],
   ];
   const drift: string[] = [];
   for (const [key, size, crew] of pairs) {
@@ -244,6 +246,29 @@ check('every band key is known to the module', BAND_KEYS.length === 6, BAND_KEYS
   const own = ['src/components/home/HeroSection.tsx', 'src/app/ru/page.tsx', 'src/components/v2/V2Calculator.tsx']
     .filter((f) => /value:\s*'2br'[^}]*hrs:|PACKING_RATE\s*[:=]|PACKING_HOURS\s*[:=]/.test(readFileSync(f, 'utf8')));
   check('no calculator keeps its own hours or packing rate', own.length === 0, own);
+}
+
+// ── Owner decisions 2026-10-11: Q2 unknown city, Q3 over 50 miles, Q5 office ──
+{
+  console.log('\n[routes] unknown city and long legs go to a hand quote; office crew');
+  const route = (from: string, to: string, extra: Partial<QuoteInventory> = {}) => calculatePricing({
+    moveType: 'local', estimatedDistance: 0, fromCity: from, toCity: to, fromState: 'FL', toState: 'FL',
+    inventory: { ...inventory, ...extra }, addons,
+  });
+  const keyWest = route('Key West', 'Miami');
+  check('Q2: a city the table does not know -> custom, no figure',
+    keyWest.quoteMode === 'custom' && keyWest.customReason === 'unknown-city' && keyWest.total === 0, keyWest);
+  const jupiter = route('Homestead', 'Jupiter');
+  check('Q3: Homestead -> Jupiter (127 mi) -> custom, no figure',
+    jupiter.quoteMode === 'custom' && jupiter.customReason === 'over-distance' && jupiter.total === 0, jupiter);
+  const boca = route('Miami', 'Boca Raton');
+  check('Q3 boundary: Miami -> Boca Raton (50 mi) stays hourly', boca.quoteMode === 'priced' && boca.total > 0, boca);
+  const office = calculatePricing({
+    moveType: 'local', estimatedDistance: 0, fromState: 'FL', toState: 'FL',
+    inventory: { ...inventory, homeSize: 'office', crewSize: 2 }, addons,
+  });
+  check('Q5: an office asked with 2 movers is priced with 3, 6 hours',
+    office.crewSize === 3 && office.estimatedHours === 6, { crew: office.crewSize, hours: office.estimatedHours });
 }
 
 console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);

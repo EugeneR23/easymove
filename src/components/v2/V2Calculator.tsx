@@ -3,7 +3,7 @@ import { replyPromise } from '@/lib/data/policies';
 import { useState } from 'react';
 import Link from 'next/link';
 import { cn, formatCurrency } from '@/lib/utils';
-import { localStartingPrice, packingStartingPrice, startingHours, MIN_HOURS } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, crewOptions, effectiveCrew, MIN_HOURS } from '@/lib/pricing';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
@@ -98,7 +98,7 @@ export default function V2Calculator() {
                   <button
                     key={s.value}
                     type="button"
-                    onClick={() => setHomeSize(s.value)}
+                    onClick={() => { setHomeSize(s.value); setCrew((c) => effectiveCrew(s.value, c)); }}
                     className={cn(
                       'p-4 border text-left transition-all duration-200 group',
                       sel ? 'border-gold bg-gold/10' : 'border-white/10 hover:border-gold/50 hover:bg-white/[0.03]',
@@ -130,7 +130,7 @@ export default function V2Calculator() {
               <div className="md:text-right">
                 <p className="text-white/30 text-[10px] tracking-[0.4em] uppercase mb-3">Crew</p>
                 <div className="flex md:justify-end gap-2">
-                  {([2, 3, 4] as CrewSize[]).map((c) => (
+                  {crewOptions(homeSize).map((c) => (
                     <button
                       key={c}
                       type="button"

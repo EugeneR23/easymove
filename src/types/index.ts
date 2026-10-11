@@ -67,6 +67,8 @@ export interface QuotePricing {
    * 0 and means "not quoted", never "free" - render the mode, not the number.
    */
   quoteMode: QuoteMode;
+  /** Why a Florida job went to a hand-written quote: a city the table does not know, or a leg over 50 miles. */
+  customReason?: 'unknown-city' | 'over-distance';
 }
 
 export interface Quote {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize } from '@/types';
-import { localStartingPrice, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, crewOptions, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
@@ -153,7 +153,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
               : '2 movers handle most homes. 3 movers are recommended for 3+ bedrooms or heavy items. 4 movers for 4+ bedroom houses or tight elevator windows.'}
           </p>
           <div className="grid grid-cols-3 gap-3">
-            {([2, 3, 4] as CrewSize[]).map((crew) => {
+            {crewOptions(inv.homeSize).map((crew) => {
               const selected    = (inv.crewSize ?? 2) === crew;
               // Both rates come from the rate card, never retyped here. This card
               // used to print $229/hr for four movers next to a "from" price that

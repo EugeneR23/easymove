@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Phone, MessageCircle, Calculator } from 'lucide-react';
+import { Phone, MessageCircle, Calculator, PhoneIncoming } from 'lucide-react';
+import { OPEN_CALLBACK_EVENT } from '@/components/forms/CallbackLauncher';
 import { PHONE, telHref, whatsappUrl } from '@/lib/data/contact';
 import { localeOfPath } from '@/lib/seo/routes';
+import { requestFormHref, goToRequestForm } from '@/lib/requestForm';
 
 interface Props {
   /** Pass true on the /quote page to replace the calculator button with a call-only bar */
@@ -21,9 +23,9 @@ interface Props {
  * Ukrainian page until 2026-09-18.
  */
 const BAR_COPY = {
-  en: { call: 'Call',    calc: 'Calculate',   wa: "Hi, I'd like a moving quote" },
-  ru: { call: 'Позвонить', calc: 'Рассчитать', wa: 'Здравствуйте, хочу рассчитать переезд' },
-  ua: { call: 'Зателефонувати', calc: 'Розрахувати', wa: 'Вітаю, хочу розрахувати переїзд' },
+  en: { call: 'Call',    back: 'Call me back', calc: 'Calculate',   wa: "Hi, I'd like a moving quote" },
+  ru: { call: 'Позвонить', back: 'Перезвоните', calc: 'Рассчитать', wa: 'Здравствуйте, хочу рассчитать переезд' },
+  ua: { call: 'Подзвонити', back: 'Передзвоніть', calc: 'Розрахувати', wa: 'Вітаю, хочу розрахувати переїзд' },
 } as const;
 
 export default function MobileStickyBar({ onQuotePage = false }: Props) {
@@ -44,30 +46,40 @@ export default function MobileStickyBar({ onQuotePage = false }: Props) {
         href={whatsappUrl(t.wa)}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-1.5 py-4 bg-charcoal text-white text-xs font-bold border-r border-white/10 flex-1"
+        className="flex flex-col items-center justify-center gap-1 py-2.5 leading-tight text-center bg-charcoal text-white text-xs font-bold border-r border-white/10 flex-1"
       >
         <MessageCircle size={14} />
         WhatsApp
       </a>
       <a
         href={telHref()}
-        className="flex items-center justify-center gap-1.5 py-4 bg-charcoal text-white text-xs font-bold border-r border-white/10 flex-1"
+        className="flex flex-col items-center justify-center gap-1 py-2.5 leading-tight text-center bg-charcoal text-white text-xs font-bold border-r border-white/10 flex-1"
       >
         <Phone size={14} />
         {t.call}
       </a>
+      {/* Name and phone, nothing else — opens CallbackLauncher's sheet. */}
+      <button
+        type="button"
+        onClick={() => window.dispatchEvent(new Event(OPEN_CALLBACK_EVENT))}
+        className="flex flex-col items-center justify-center gap-1 py-2.5 leading-tight text-center bg-charcoal text-white text-xs font-bold border-r border-white/10 flex-1"
+      >
+        <PhoneIncoming size={14} />
+        {t.back}
+      </button>
       {onQuotePage ? (
         <a
           href={telHref()}
-          className="flex items-center justify-center gap-1.5 py-4 bg-gold text-white text-xs font-bold flex-1"
+          className="flex flex-col items-center justify-center gap-1 py-2.5 leading-tight text-center bg-gold text-white text-xs font-bold flex-1"
         >
           <Phone size={14} />
           {PHONE.display}
         </a>
       ) : (
         <Link
-          href="/quote"
-          className="flex items-center justify-center gap-1.5 py-4 bg-gold text-white text-xs font-bold flex-1"
+          href={requestFormHref(locale)}
+          onClick={(e) => goToRequestForm(e, locale)}
+          className="flex flex-col items-center justify-center gap-1 py-2.5 leading-tight text-center bg-gold text-white text-xs font-bold flex-1"
         >
           <Calculator size={14} />
           {t.calc}

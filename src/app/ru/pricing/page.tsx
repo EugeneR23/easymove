@@ -227,7 +227,7 @@ export default function PricingRuPage() {
               Почасовые ставки фиксируются до старта. Если работа идёт дольше расчёта — та же ставка. Без надбавок за топливо, без оплаты за лестницы, без сюрпризов в день переезда.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/quote">
+              <Link href="#zayavka">
                 <Button size="lg" variant="primary">Получить смету</Button>
               </Link>
               <a href="tel:+17863051844">

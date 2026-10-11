@@ -183,6 +183,9 @@ const RULES = [
   { id: 'regular-part-of-work', why: 'Claims a move history no record backs ("Historic Grove homes are a regular part of our work", found 2026-10-11). regular-service catches "part of our regular"; this is the same claim reworded.',
     re: /regular part of (?:our|my) (?:work|business|jobs?)|we (?:also )?know which streets/gi },
 
+  { id: 'goods-coverage-promise', why: 'Owner, 2026-10-11 (Q18): no coverage for belongings is promised. "Каждый переезд застрахован базовым покрытием… расширенное покрытие по полной стоимости" stood in the Miami FAQ on /ru. State the COI; liability terms are explained before booking.',
+    re: /застрахован\S*\s+базов\S*\s+покрыти|расширенн\S*\s+покрыти\S*\s+по\s+полной|basic (?:valuation )?coverage is included|full[- ]value (?:protection|coverage) (?:is )?included/gi },
+
   { id: 'telegram-promise', why: 'Owner, 2026-10-11: there is no customer Telegram channel. "WhatsApp + Telegram" promised a contact route with no link behind it.',
     re: /WhatsApp\s*(?:\+|and|и|та|&)\s*Telegram|Telegram\s*(?:\+|and|и|та|&)\s*WhatsApp/gi },
 

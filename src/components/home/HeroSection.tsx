@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
-import { localStartingPrice, packingStartingPrice, startingHours, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, crewOptions, effectiveCrew, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import { formatCurrency } from '@/lib/utils';
 import { whatsappUrl } from '@/lib/data/contact';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
@@ -250,7 +250,7 @@ export default function HeroSection() {
                         return (
                           <button
                             key={s.value}
-                            onClick={() => setHomeSize(s.value)}
+                            onClick={() => { setHomeSize(s.value); setCrew((c) => effectiveCrew(s.value, c)); }}
                             className={`py-2.5 px-2 text-center border transition-all duration-150 ${
                               homeSize === s.value
                                 ? 'border-gold bg-gold text-charcoal'
@@ -273,7 +273,7 @@ export default function HeroSection() {
                 {/* Crew toggle */}
                 {homeSize && showSizeGrid && (
                   <div className="grid grid-cols-3 gap-1.5 mb-5">
-                    {([2, 3, 4] as CrewSize[]).map(c => {
+                    {crewOptions(homeSize).map(c => {
                       const isActive = crew === c;
                       const crewPrice = moveType === 'local'
                         ? localStartingPrice(homeSize, c)

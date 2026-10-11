@@ -10,7 +10,7 @@ import Button from '@/components/ui/Button';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import CTABanner from '@/components/home/CTABanner';
 import FAQSection from '@/components/home/FAQSection';
-import { localStartingPrice, packingStartingPrice, startingHours, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, crewOptions, effectiveCrew, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import { replyPromise, sameDayCopy, RESPONSE } from '@/lib/data/policies';
 import { GOOGLE_REVIEWS } from '@/lib/data/googleReviews';
 import QuickLeadForm from '@/components/forms/QuickLeadForm';
@@ -63,12 +63,12 @@ const TESTIMONIALS = REVIEW_PICKS.map((p) => {
 
 /* ── Services ────────────────────────────────────────────────────────────────── */
 const SERVICES = [
-  { icon: MapPin, name: 'Локальные переезды', desc: 'Майами, Форт-Лодердейл, Бока-Ратон и все пригороды.', href: '/quote?type=local' },
-  { icon: Building2, name: 'Переезд из высоток', desc: 'Brickell, Sunny Isles, Aventura — координация лифтов, COI за 24 часа.', href: '/quote?type=local' },
-  { icon: Truck, name: 'Доставка мебели и вещей', desc: 'Диван из магазина или находка с маркетплейса — заберём, упакуем, поднимем на этаж.', href: '/quote?type=local' },
-  { icon: Package, name: 'Упаковка', desc: 'Профессиональная упаковка с материалами. Каждый предмет обёрнут.', href: '/quote?type=packing-only' },
-  { icon: Palette, name: 'Картины и антиквариат', desc: 'Кастомные деревянные ящики, двойная упаковка, обрешётка углов.', href: '/quote?type=specialty' },
-  { icon: Users, name: 'Офисные переезды', desc: 'Минимальный простой. Серверы, мебель, документы — всё аккуратно.', href: '/quote?type=local' },
+  { icon: MapPin, name: 'Локальные переезды', desc: 'Майами, Форт-Лодердейл, Бока-Ратон и все пригороды.', href: '#zayavka' },
+  { icon: Building2, name: 'Переезд из высоток', desc: 'Brickell, Sunny Isles, Aventura — координация лифтов, COI за 24 часа.', href: '#zayavka' },
+  { icon: Truck, name: 'Доставка мебели и вещей', desc: 'Диван из магазина или находка с маркетплейса — заберём, упакуем, поднимем на этаж.', href: '#zayavka' },
+  { icon: Package, name: 'Упаковка', desc: 'Профессиональная упаковка с материалами. Каждый предмет обёрнут.', href: '#zayavka' },
+  { icon: Palette, name: 'Картины и антиквариат', desc: 'Кастомные деревянные ящики, двойная упаковка, обрешётка углов.', href: '#zayavka' },
+  { icon: Users, name: 'Офисные переезды', desc: 'Минимальный простой. Серверы, мебель, документы — всё аккуратно.', href: '#zayavka' },
 ];
 
 /* ── FAQ ──────────────────────────────────────────────────────────────────────── */
@@ -192,7 +192,7 @@ export default function RuHomePage() {
                           {SIZES.map(s => {
                             const sp = moveType === 'local' ? localStartingPrice(s.value, crew) : packingPrice(s.value, crew);
                             return (
-                              <button key={s.value} onClick={() => setHomeSize(s.value)}
+                              <button key={s.value} onClick={() => { setHomeSize(s.value); setCrew((c) => effectiveCrew(s.value, c)); }}
                                 className={`py-2.5 px-2 text-center border transition-all duration-150 ${homeSize === s.value ? 'border-gold bg-gold text-charcoal' : 'border-gray-200 text-gray-500 hover:border-gold/40 hover:bg-gold/5'}`}
                               >
                                 <span className={`block text-xs font-bold ${homeSize === s.value ? 'text-charcoal' : 'text-charcoal'}`}>{s.label}</span>
@@ -206,7 +206,7 @@ export default function RuHomePage() {
 
                     {homeSize && showSizeGrid && (
                       <div className="grid grid-cols-2 gap-1.5 mb-5">
-                        {([2, 3, 4] as CrewSize[]).map(c => {
+                        {crewOptions(homeSize).map(c => {
                           const cp = moveType === 'local' ? localStartingPrice(homeSize, c) : packingPrice(homeSize, c);
                           return (
                             <button key={c} onClick={() => setCrew(c)}

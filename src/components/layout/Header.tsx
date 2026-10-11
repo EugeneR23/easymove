@@ -7,6 +7,7 @@ import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { whatsappUrl } from '@/lib/data/contact';
 import { localeOfPath, switchPath } from '@/lib/seo/routes';
+import { requestFormHref, goToRequestForm } from '@/lib/requestForm';
 
 const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
@@ -137,7 +138,7 @@ export default function Header() {
               786-305-1844
             </a>
 
-            <Link href="/quote">
+            <Link href={requestFormHref(locale)} onClick={(e) => goToRequestForm(e, locale)}>
               <Button size="sm" variant="primary">
                 {isRu ? 'Рассчитать' : isUa ? 'Розрахувати' : 'Calculate My Move'}
               </Button>
@@ -201,7 +202,7 @@ export default function Header() {
               <a href="tel:+17863051844" className="flex items-center gap-2 text-white/80 py-2" onClick={() => setMenuOpen(false)}>
                 <Phone size={14} className="text-gold" /> 786-305-1844
               </a>
-              <Link href="/quote" onClick={() => setMenuOpen(false)}>
+              <Link href={requestFormHref(locale)} onClick={(e) => { setMenuOpen(false); goToRequestForm(e, locale); }}>
                 <Button size="md" variant="primary" className="w-full mt-2">
                   {isRu ? 'Рассчитать переезд' : isUa ? 'Розрахувати переїзд' : 'Calculate My Move'}
                 </Button>

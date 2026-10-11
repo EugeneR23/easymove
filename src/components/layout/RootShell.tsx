@@ -4,6 +4,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
 import ContactClickTracker from '@/components/analytics/ContactClickTracker';
+import CallbackLauncher from '@/components/forms/CallbackLauncher';
 import { GOOGLE_BUSINESS, REVIEW_TOTALS, THUMBTACK, licenceIdentifiers } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
@@ -407,6 +408,7 @@ export default function RootShell({
         {children}
         <Analytics />
         <ContactClickTracker />
+        <CallbackLauncher />
         <DeferredTagManager />
       </body>
     </html>

@@ -116,7 +116,8 @@ const HOME_SIZE_HOURS: Record<HomeSize, number> = {
   '2br':    4.5,
   '3br':    6,
   '4br+':   8,
-  'office': 5,
+  // Owner, 2026-10-11 (Q5): an office is 6 hours with 3 movers, as /pricing says.
+  'office': 6,
 };
 
 /** Bedrooms by home size (kept for admin/lead display) */
@@ -174,8 +175,17 @@ export function routeMode(fromState: string, toState: string, moveType: MoveType
 }
 
 // ─── Main calculator ──────────────────────────────────────────────────────────
-// Average South Florida city driving speed (mph) — accounts for traffic + stops
+// Average South Florida city driving speed (mph) — accounts for traffic + stops.
+// Owner, 2026-10-11 (Q6): keep 28.
 const TRAVEL_SPEED_MPH = 28;
+
+/**
+ * Owner, 2026-10-11 (Q3): a move whose loaded leg is MORE than 50 miles is
+ * quoted by hand, like any long-distance move. Homestead → Jupiter (127 mi) was
+ * still being priced as an ordinary hourly job. Miami → Boca Raton resolves to
+ * exactly 50 and stays hourly.
+ */
+export const LONG_DISTANCE_THRESHOLD_MILES = 50;
 
 // Drive time between pickup and drop-off is billable on an hourly job: the crew
 // is on the clock for it (confirmed by Evgenii, 2026-08-24). It is charged as
@@ -207,9 +217,10 @@ interface PricingInput {
 
 export function calculatePricing(input: PricingInput): QuotePricing {
   const { moveType, estimatedDistance, fromCity, toCity, inventory, addons } = input;
-  const quoteMode = routeMode(input.fromState ?? 'FL', input.toState ?? '', moveType);
-  const crew   = normalizeCrewSize(inventory.crewSize);
+  let quoteMode = routeMode(input.fromState ?? 'FL', input.toState ?? '', moveType);
+  let customReason: QuotePricing['customReason'];
   const size   = inventory.homeSize ?? '2br';
+  const crew   = effectiveCrew(size, normalizeCrewSize(inventory.crewSize), moveType);
   const isLong = moveType === 'long-distance';
 
   // ── 1. Labour (local) or base rate (long-distance) ────────────────────────
@@ -238,6 +249,15 @@ export function calculatePricing(input: PricingInput): QuotePricing {
         const resolved   = resolveLocalDistance(fromCity, toCity);
         travelMiles      = resolved.miles;
         distanceConfirmed = resolved.confirmed;
+        // Owner, 2026-10-11: a city the table does not know (Q2) and a leg over
+        // the threshold (Q3) both go to a hand-written quote, with no figure.
+        if (quoteMode === 'priced' && !resolved.confirmed) {
+          quoteMode = 'custom';
+          customReason = 'unknown-city';
+        } else if (quoteMode === 'priced' && resolved.miles > LONG_DISTANCE_THRESHOLD_MILES) {
+          quoteMode = 'custom';
+          customReason = 'over-distance';
+        }
       } else {
         travelMiles      = estimatedDistance;
         distanceConfirmed = false; // no cities given — nothing to verify against
@@ -318,6 +338,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
     crewSize:     crew,
     isLongDistance: isLong,
     quoteMode,
+    ...(customReason ? { customReason } : {}),
   };
 }
 
@@ -327,10 +348,10 @@ export function calculatePricing(input: PricingInput): QuotePricing {
  * in pricingCopy.ts, not the typical estimate in HOME_SIZE_HOURS: "from" is a
  * floor. Owner, 2026-10-11: a two-bedroom is "from $645" everywhere — /pricing
  * said $645 and the homepage calculator said $710 (4.5 h) until that day.
- * Office stays at 5 h: the 6–9 h band against 5 h is still open question Q5.
+ * Office (Q5, owner 2026-10-11): 6 hours with at least 3 movers, "from $1,253".
  */
 export const STARTING_HOURS: Record<HomeSize, number> = {
-  'studio': 3, '1br': 3, '2br': 4, '3br': 6, '4br+': 8, 'office': 5,
+  'studio': 3, '1br': 3, '2br': 4, '3br': 6, '4br+': 8, 'office': 6,
 };
 /** Hours behind a packing-only "from" price. Unchanged since the rate card. */
 export const PACKING_STARTING_HOURS: Record<HomeSize, number> = {
@@ -341,8 +362,23 @@ export function startingHours(size: HomeSize, packing = false): number {
   return Math.max(MIN_HOURS, (packing ? PACKING_STARTING_HOURS : STARTING_HOURS)[size]);
 }
 
+/** Owner, 2026-10-11 (Q5): an office move is never quoted with fewer than 3 movers. */
+export const OFFICE_MIN_CREW: CrewSize = 3;
+
+/** The crew sizes a calculator may offer for this home size. */
+export function crewOptions(size: HomeSize | null | undefined): CrewSize[] {
+  return size === 'office' ? [3, 4] : [2, 3, 4];
+}
+
+/** The crew actually priced: an office is lifted to its minimum. */
+export function effectiveCrew(size: HomeSize | null | undefined, crew: CrewSize, moveType?: MoveType): CrewSize {
+  const office = size === 'office' || moveType === 'office';
+  return office && crew < OFFICE_MIN_CREW ? OFFICE_MIN_CREW : crew;
+}
+
 export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
-  return Math.round(HOURLY_RATE[crew] * startingHours(size) + TRUCK_FEE[crew]);
+  const c = effectiveCrew(size, crew);
+  return Math.round(HOURLY_RATE[c] * startingHours(size) + TRUCK_FEE[c]);
 }
 
 /** Packing-only floor: hours at the packers' rate. No truck on a packing job. */

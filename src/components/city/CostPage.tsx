@@ -186,7 +186,7 @@ export default function CostPage({ page, locale = 'en' }: { page: CostPageData; 
             <p className="text-gray-200 text-lg leading-relaxed mb-4">{page.answer}</p>
             <p className="text-gray-400 leading-relaxed mb-8">{page.intro}</p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/quote">
+              <Link href={locale === 'en' ? '/quote' : '#zayavka'}>
                 <Button size="lg" variant="primary">{t.ctaEstimate}</Button>
               </Link>
               <a href="tel:+17863051844">
