@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { replyPromise } from '@/lib/data/policies';
 import type { MoveType } from '@/types';
 import { Truck, Star, Package } from 'lucide-react';
 import Button from '@/components/ui/Button';
@@ -68,7 +69,7 @@ export default function Step1MoveType({ data, update, onNext }: Props) {
         <div className="bg-cream border border-gold/20 p-4 mb-6">
           <p className="text-sm text-charcoal font-medium mb-1">Specialty moves are quoted individually.</p>
           <p className="text-xs text-gray-500">
-            Continue to provide your details and we will follow up with a custom quote — typically within a few hours.
+            Continue to provide your details and we will follow up with a custom quote. {replyPromise('en')}
           </p>
         </div>
       )}

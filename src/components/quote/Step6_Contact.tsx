@@ -4,6 +4,9 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 import { Shield, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import { replyPromise, RESPONSE } from '@/lib/data/policies';
+import HoneypotField from '@/components/ui/HoneypotField';
+import { HONEYPOT_FIELD } from '@/lib/leadGuard';
 
 interface Props {
   data: WizardData;
@@ -15,7 +18,7 @@ interface Props {
 
 const WHAT_YOU_GET = [
   'A real coordinator reviews your details — not an algorithm',
-  'Your price confirmed in writing, typically within a few hours',
+  `Your price confirmed in writing within ${RESPONSE.writtenEstimateWithinHours} hours`,
   'No commitment to book until you are fully satisfied',
 ];
 
@@ -23,8 +26,9 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState('');
 
-  // ── Derived validity — mirrors what the backend requires ──────────────────
-  const valid = !!(data.firstName.trim() && data.email.trim() && data.phone.trim());
+  // ── Derived validity. Email is optional since 2026-10-11: every required
+  //    field costs leads on a phone, and the coordinator calls anyway. ───────
+  const valid = !!(data.firstName.trim() && data.phone.trim());
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -35,9 +39,8 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
     const email     = (e.currentTarget.querySelector<HTMLInputElement>('[name="email"]')?.value     ?? data.email).trim();
     const phone     = (e.currentTarget.querySelector<HTMLInputElement>('[name="phone"]')?.value     ?? data.phone).trim();
 
-    if (!firstName || !email || !phone) {
-      setError('Please fill in all required fields before submitting.');
-      console.warn('[Step6] Blocked submit — missing fields:', { firstName: !!firstName, email: !!email, phone: !!phone });
+    if (!firstName || !phone) {
+      setError('Please enter your name and a phone number we can call.');
       return;
     }
 
@@ -100,11 +103,10 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
         />
         <Input
           name="email"
-          label="Email Address *"
+          label="Email (optional — we send your estimate here)"
           type="email"
           autoComplete="email"
           inputMode="email"
-          required
           value={data.email}
           onChange={(e) => update({ email: e.target.value })}
         />
@@ -120,6 +122,8 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
           onChange={(e) => update({ phone: e.target.value })}
         />
       </div>
+
+      <HoneypotField value={data[HONEYPOT_FIELD]} onChange={(v) => update({ [HONEYPOT_FIELD]: v })} />
 
       {/* Submit row */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
@@ -158,7 +162,7 @@ export default function Step6Contact({ data, update, onBack, onSubmit }: Props) 
         </div>
         <div className="flex items-center gap-1.5">
           <Clock size={11} className="text-gold" />
-          <span className="text-xs text-gray-400">Response within a few hours</span>
+          <span className="text-xs text-gray-400">{replyPromise('en', 'short')}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <CheckCircle size={11} className="text-gold" />

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { THUMBTACK } from '@/lib/data/credentials';
+import { replyPromise } from '@/lib/data/policies';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     siteName: 'Easy Move Florida',
     title: 'О нас — Easy Move Florida | Переезды в Майами',
-    description: 'Основатель сам отвечает на ваш звонок. Бригада знает ваше здание до приезда. Сертификат страхования за 24 часа.',
+    description: 'Основатель сам отвечает на ваш звонок. Правила вашего здания выясняем до дня переезда. Сертификат страхования за 24 часа.',
     url: `${siteUrl}/ru/about`,
     images: [ogCard('Easy Move Florida — переезды в Южной Флориде')],
   },
@@ -229,7 +230,7 @@ export default function RuAboutPage() {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal mb-4">
               Готовы получить смету?
             </h2>
-            <p className="text-gray-500 mb-8">Звоните или отправьте запрос — отвечаем в течение нескольких часов.</p>
+            <p className="text-gray-500 mb-8">Звоните или отправьте запрос. {replyPromise('ru')}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/ru#calculator"

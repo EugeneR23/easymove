@@ -5,6 +5,8 @@ import { calculatePricing, estimateLocalDistance, routeMode, MOVE_TYPES } from '
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
+import { rateLimited, isHoneypotFilled, hasContact } from '@/lib/leadGuard';
+import { sendCustomerConfirmation, confirmationNote, customerLocale } from '@/lib/customerEmail';
 import type { Quote, MoveType } from '@/types';
 
 
@@ -27,8 +29,16 @@ export async function POST(req: NextRequest) {
   const startedAt = Date.now();
   console.log('[api/quotes] POST received');
 
+  if (rateLimited(req, 'quotes')) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please call or WhatsApp 786-305-1844.' },
+      { status: 429 },
+    );
+  }
+
   // Delivery status for debug log
   const status = {
+    customerEmail: false,
     endpoint:   '/api/quotes',
     leadSaved:  false,
     airtable:   false,
@@ -46,6 +56,18 @@ export async function POST(req: NextRequest) {
       console.error('[api/quotes] Failed to parse request body');
       return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
     }
+
+    if (isHoneypotFilled(body)) {
+      console.warn('[api/quotes] Honeypot filled — dropped as spam');
+      return NextResponse.json({ id: generateId(), pricing: null }, { status: 201 });
+    }
+    if (!hasContact(body)) {
+      return NextResponse.json(
+        { error: 'Please leave a phone number or an email so we can reach you.' },
+        { status: 400 },
+      );
+    }
+    const locale = customerLocale(body.locale);
 
     console.log('[api/quotes] Payload received:', JSON.stringify({
       moveType:  body.moveType,
@@ -120,6 +142,20 @@ export async function POST(req: NextRequest) {
 
     const name = `${quote.firstName} ${quote.lastName}`.trim() || 'Unknown';
     console.log(`[api/quotes] Quote built: id=${quote.id} name="${name}" total=$${pricing.total}`);
+
+    // Customer confirmation before the owner alert, so the alert can say
+    // whether the customer heard back.
+    const confirmation = await sendCustomerConfirmation(quote.email, {
+      locale,
+      firstName: quote.firstName,
+      ref: quote.id,
+      mode,
+      estimate: mode === 'priced'
+        ? { total: pricing.total, crewSize: pricing.crewSize, estimatedHours: pricing.estimatedHours }
+        : undefined,
+    });
+    status.customerEmail = confirmation.sent;
+    const confirmationLine = confirmationNote(confirmation);
 
     // ── 3. Local /tmp storage (best-effort cache — not primary, never blocks) ─
     try {
@@ -295,6 +331,7 @@ export async function POST(req: NextRequest) {
     }
 
     tgLines.push(``);
+    tgLines.push(`✉️ ${tgEscape(confirmationLine)}`);
     tgLines.push(`⚡ Call: 786-305-1844`);
 
     const tg = tgLines.join('\n');
@@ -359,6 +396,15 @@ export async function POST(req: NextRequest) {
 
     // ── 7. Final debug summary ────────────────────────────────────────────────
     console.log(`[api/quotes] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
+
+    // A quote that reached no one is a lost customer who was told "received".
+    if (!status.airtable && !status.telegram && !status.email) {
+      console.error('[api/quotes] Quote reached NO channel:', quote.id);
+      return NextResponse.json(
+        { error: 'We could not deliver your request. Please call or WhatsApp 786-305-1844.' },
+        { status: 502 },
+      );
+    }
 
     // Airtable failure is non-blocking — Telegram + email are the live alerts.
     // Log the failure but always return 201 so the customer sees success.

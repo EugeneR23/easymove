@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import { replyPromise, sameDayCopy } from '@/lib/data/policies';
 import Button from '@/components/ui/Button';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Phone, MessageCircle } from 'lucide-react';
 import { PHONE, telHref, whatsappUrl } from '@/lib/data/contact';
+import QuickLeadForm from '@/components/forms/QuickLeadForm';
 
 /**
  * Closing call to action. Rendered on nearly every page, which is why it no
@@ -28,7 +30,7 @@ const CTA_COPY: Record<CtaLocale, {
 }> = {
   en: {
     heading: 'Ready to move?',
-    body: 'Send photos via WhatsApp, get an estimate in 5 minutes, book same week. Or run the calculator now and lock your rate.',
+    body: `Send photos via WhatsApp or leave your number below. ${replyPromise('en')} ${sameDayCopy('en', 'short')}.`,
     calc: 'Calculate My Move',
     whatsapp: 'WhatsApp Us',
     badges: ['Owner-led', 'COI on request', 'Russian + English', 'Hollywood-based'],
@@ -36,7 +38,7 @@ const CTA_COPY: Record<CtaLocale, {
   },
   ru: {
     heading: 'Готовы к переезду?',
-    body: 'Пришлите фото в WhatsApp — смета за 5 минут, дату возьмём на этой же неделе. Или посчитайте сами прямо сейчас.',
+    body: `Пришлите фото в WhatsApp или оставьте заявку ниже. ${replyPromise('ru')} ${sameDayCopy('ru', 'short')}.`,
     calc: 'Рассчитать переезд',
     whatsapp: 'Написать в WhatsApp',
     badges: ['Владелец ведёт заказ', 'COI по запросу', 'Русский и английский', 'База в Голливуде'],
@@ -44,7 +46,7 @@ const CTA_COPY: Record<CtaLocale, {
   },
   ua: {
     heading: 'Готові до переїзду?',
-    body: 'Надішліть фото у WhatsApp — кошторис за 5 хвилин, дату візьмемо цього ж тижня. Або порахуйте самі просто зараз.',
+    body: `Надішліть фото у WhatsApp або залиште заявку нижче. ${replyPromise('ua')} ${sameDayCopy('ua', 'short')}.`,
     calc: 'Розрахувати переїзд',
     whatsapp: 'Написати у WhatsApp',
     badges: ['Власник веде замовлення', 'COI на запит', 'Українською — на запит', 'База в Голлівуді'],
@@ -95,10 +97,10 @@ export default function CTABanner({ locale = 'en' }: { locale?: CtaLocale } = {}
 
         <AnimateIn delay={0.5} className="flex flex-col sm:flex-row gap-4 justify-center">
           <div className="transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]">
-            {/* One /quote for every locale. The wizard itself is English, and a
-                ?lang= that nothing reads would only add a crawlable URL variant
-                that renders the same page. */}
-            <Link href="/quote">
+            {/* English goes to the wizard. Russian and Ukrainian readers get
+                the form below in their own language instead of an English
+                wizard (until 2026-10-11 this button sent them to /quote). */}
+            <Link href={locale === 'en' ? '/quote' : '#zayavka'}>
               <Button size="lg" variant="primary" className="w-full sm:w-auto min-w-[220px] shadow-[0_0_32px_rgba(201,168,76,0.2)] hover:shadow-[0_0_48px_rgba(201,168,76,0.3)]">
                 {t.calc}
               </Button>
@@ -127,6 +129,18 @@ export default function CTABanner({ locale = 'en' }: { locale?: CtaLocale } = {}
             </a>
           </div>
         </AnimateIn>
+
+        {/* A form at the bottom of every page. Russian and Ukrainian get the
+            full request form; English gets the one-field call-back, which is
+            the only call-back on a phone (the /quote exit popup is desktop). */}
+        <div className="max-w-2xl mx-auto mt-10 border border-white/10 bg-white/[0.02] p-5 sm:p-7">
+          <QuickLeadForm
+            id="zayavka"
+            locale={locale}
+            variant={locale === 'en' ? 'callback' : 'full'}
+            tone="dark"
+          />
+        </div>
 
         <AnimateIn delay={0.7} direction="none" className="flex items-center justify-center gap-4 mt-8 flex-wrap">
           {t.badges.map((b, i) => (

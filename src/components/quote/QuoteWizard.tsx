@@ -3,15 +3,14 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
-import type { MoveType, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
-import { calculatePricing, normalizeMoveType } from '@/lib/pricing';
+import type { HomeSize, MoveType, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
+import { calculatePricing, normalizeMoveType, normalizeCrewSize } from '@/lib/pricing';
+import { GOOGLE_REVIEWS } from '@/lib/data/googleReviews';
+import { HONEYPOT_FIELD } from '@/lib/leadGuard';
 import Step1MoveType from './Step1_MoveType';
 import Step2HomeSize from './Step2_HomeSize';
-import Step3Locations from './Step3_Locations';
-import Step4Services from './Step4_Services';
 import Step5Schedule from './Step5_Schedule';
 import Step6Contact from './Step6_Contact';
-import Step4Details from './Step4_Details';
 import StepPackingMaterials from './Step_PackingMaterials';
 import QuoteSummary from './QuoteSummary';
 import { Check, TrendingUp } from 'lucide-react';
@@ -26,6 +25,8 @@ export interface WizardData {
   flexibleDates: boolean;
   firstName: string; lastName: string; email: string; phone: string;
   notes: string;
+  /** Honeypot. People never see it; /api/quotes drops anything that fills it. */
+  [HONEYPOT_FIELD]: string;
 }
 
 const DEFAULT_DATA: WizardData = {
@@ -64,13 +65,16 @@ const DEFAULT_DATA: WizardData = {
   preferredDate: '', flexibleDates: false,
   firstName: '', lastName: '', email: '', phone: '',
   notes: '',
+  [HONEYPOT_FIELD]: '',
 };
 
+// Three steps. A fourth, "Details", was listed here and counted in "Step 1 of
+// 4", but the contact step submits and never advances, so nobody ever reached
+// it. The progress bar promised a step that did not exist (fixed 2026-10-11).
 const DEFAULT_STEPS = [
-  { label: 'Move Type', sub: 'Local, long-distance, specialty' },
-  { label: 'Home Size', sub: 'Crew size & starting price'      },
-  { label: 'Contact',   sub: 'Name, email, phone'              },
-  { label: 'Details',   sub: 'Optional: locations, date, add-ons' },
+  { label: 'Move Type', sub: 'Local, packing, specialty' },
+  { label: 'Home Size', sub: 'Crew size & starting price' },
+  { label: 'Contact',   sub: 'Name and phone'             },
 ];
 
 const PACKING_STEPS = [
@@ -78,15 +82,14 @@ const PACKING_STEPS = [
   { label: 'Home Size', sub: 'Number of rooms'        },
   { label: 'Materials', sub: 'Boxes & supplies'       },
   { label: 'Date',      sub: 'Preferred packing date' },
-  { label: 'Contact',   sub: 'Name, email, phone'     },
+  { label: 'Contact',   sub: 'Name and phone'         },
 ];
 
 // Step-specific microcopy — shown in mobile strip and sidebar
 const STEP_MICRO: Record<number, string> = {
   1: 'Takes less than 2 minutes',
   2: 'Your estimate is being calculated',
-  3: 'Almost there — just one more step',
-  4: 'Optional details help us tailor your quote',
+  3: 'Last step — where should we send your estimate?',
 };
 
 // ─── Live estimate from current data ──────────────────────────────────────────
@@ -110,6 +113,35 @@ function getLiveEstimate(data: WizardData) {
     inventory: data.inventory,
     addons: data.addons,
   });
+}
+
+// A real Google review, word for word. An invented one ("Maria S., Brickell ·
+// Feb 2025") stood here until 2026-10-11.
+const SIDEBAR_REVIEW = GOOGLE_REVIEWS.find((r) => r.name === 'Owen Parker') ?? GOOGLE_REVIEWS[0];
+
+/**
+ * The homepage calculator links to /quote?type=&size=&crew=. Nothing read those
+ * parameters until 2026-10-11, so a visitor who had already picked "2 BR, 3
+ * movers" started the wizard from zero. Returns null when there is nothing to use.
+ */
+function readCalculatorParams(): Partial<WizardData> | null {
+  if (typeof window === 'undefined') return null;
+  const q = new URLSearchParams(window.location.search);
+  const type = q.get('type');
+  const size = q.get('size');
+  const crew = q.get('crew');
+  const SIZES: HomeSize[] = ['studio', '1br', '2br', '3br', '4br+', 'office'];
+  const moveType = type && ['local', 'packing-only', 'specialty'].includes(type) ? normalizeMoveType(type) : null;
+  const homeSize = size && (SIZES as string[]).includes(size) ? (size as HomeSize) : null;
+  if (!moveType && !homeSize) return null;
+  return {
+    moveType: moveType ?? 'local',
+    inventory: {
+      ...DEFAULT_DATA.inventory,
+      ...(homeSize ? { homeSize } : {}),
+      ...(crew ? { crewSize: normalizeCrewSize(crew) } : {}),
+    },
+  };
 }
 
 // ─── Sidebar step list ────────────────────────────────────────────────────────
@@ -181,9 +213,9 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
           ))}
         </div>
         <p className="text-white/60 text-[11px] leading-relaxed italic">
-          &ldquo;Professional, on time, and no hidden fees. Exactly what I needed.&rdquo;
+          &ldquo;{SIDEBAR_REVIEW.text}&rdquo;
         </p>
-        <p className="text-white/30 text-[10px] mt-1.5">— Maria S., Brickell · Feb 2025</p>
+        <p className="text-white/30 text-[10px] mt-1.5">{SIDEBAR_REVIEW.name} · Google review</p>
       </div>
 
       {/* Live estimate panel */}
@@ -318,27 +350,29 @@ export default function QuoteWizard() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // ── Restore from sessionStorage on mount ──────────────────────────────────
+  // ── Restore on mount: calculator choices first, then saved progress ──────
   useEffect(() => {
     try {
+      // Fresh choices from the homepage calculator beat an older saved session:
+      // the visitor just told us their size, so start them on the size step.
+      const fromCalculator = readCalculatorParams();
+      if (fromCalculator) {
+        setData((d) => ({ ...d, ...fromCalculator }));
+        setStep(2);
+        return;
+      }
       const saved = sessionStorage.getItem('quoteWizardData');
-      const callbackPhone = sessionStorage.getItem('callbackPhone') ?? '';
       if (saved) {
         const { data: savedData, step: savedStep } = JSON.parse(saved);
         if (savedData && savedStep) {
-          // Pre-fill phone from callback form if not already set in wizard
-          const phone = savedData.phone || callbackPhone;
           // A blob saved before a move type was retired still names it. Restored
           // unchecked, 'international' fell through the pricing switch and quoted
-          // $800 for a service the site no longer sells.
-          setData({ ...DEFAULT_DATA, ...savedData, moveType: normalizeMoveType(savedData.moveType), phone });
-          setStep(savedStep);
-          return;
+          // $800 for a service the site no longer sells. A blob saved when the
+          // wizard had four steps can name step 4, which no longer exists.
+          const isPackingSaved = normalizeMoveType(savedData.moveType) === 'packing-only';
+          setData({ ...DEFAULT_DATA, ...savedData, moveType: normalizeMoveType(savedData.moveType) });
+          setStep(Math.min(savedStep, isPackingSaved ? 5 : 3));
         }
-      }
-      // No saved wizard data — still pre-fill phone from callback if available
-      if (callbackPhone) {
-        setData((d) => ({ ...d, phone: callbackPhone }));
       }
     } catch { /* ignore parse errors */ }
   }, []);
@@ -347,7 +381,6 @@ export default function QuoteWizard() {
   useEffect(() => {
     if (submittedQuote) {
       sessionStorage.removeItem('quoteWizardData');
-      sessionStorage.removeItem('callbackPhone');
       return;
     }
     try {
@@ -371,7 +404,7 @@ export default function QuoteWizard() {
   }, [submittedQuote]);
 
   const isPacking  = data.moveType === 'packing-only';
-  const totalSteps = isPacking ? 5 : 4;
+  const totalSteps = isPacking ? 5 : 3;
   const activeSteps = isPacking ? PACKING_STEPS : DEFAULT_STEPS;
 
   // ── Track funnel step views ────────────────────────────────────────────────
@@ -419,7 +452,7 @@ export default function QuoteWizard() {
     });
 
     try {
-      const bodyStr = JSON.stringify(data);
+      const bodyStr = JSON.stringify({ ...data, locale: 'en' });
       console.log(tag, 'fetch → POST /api/quotes, body size:', bodyStr.length, 'bytes');
 
       const res = await fetch('/api/quotes', {
@@ -495,9 +528,8 @@ export default function QuoteWizard() {
                     {step === 3 && isPacking  && <StepPackingMaterials {...stepProps} />}
                     {step === 4 && isPacking  && <Step5Schedule {...stepProps} />}
                     {step === 5 && isPacking  && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
-                    {/* Standard 4-step flow: Contact → Optional Details */}
+                    {/* Standard 3-step flow: Move type → Home size → Contact */}
                     {step === 3 && !isPacking && <Step6Contact {...stepProps} onSubmit={handleSubmit} />}
-                    {step === 4 && !isPacking && <Step4Details {...stepProps} onSubmit={handleSubmit} />}
                   </motion.div>
                 </AnimatePresence>
               </div>

@@ -10,7 +10,10 @@ import Button from '@/components/ui/Button';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import CTABanner from '@/components/home/CTABanner';
 import FAQSection from '@/components/home/FAQSection';
-import { localStartingPrice, HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { replyPromise, sameDayCopy, RESPONSE } from '@/lib/data/policies';
+import { GOOGLE_REVIEWS } from '@/lib/data/googleReviews';
+import QuickLeadForm from '@/components/forms/QuickLeadForm';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 import {
@@ -29,44 +32,34 @@ const PAGE_JSON = ld(webPageNode({
 }));
 
 /* ── Calculator data ─────────────────────────────────────────────────────────── */
-const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
-  { value: 'studio', label: 'Студия', hrs: 3 },
-  { value: '1br', label: '1 комн.', hrs: 3 },
-  { value: '2br', label: '2 комн.', hrs: 4.5 },
-  { value: '3br', label: '3 комн.', hrs: 6 },
-  { value: '4br+', label: '4+ комн.', hrs: 8 },
-  { value: 'office', label: 'Офис', hrs: 5 },
+// Hours and prices come from lib/pricing; this list only names the sizes.
+// It used to carry its own hours, so the 2-bedroom "от" here said $710 while
+// /ru/pricing said $645 (owner chose $645 on 2026-10-11).
+const SIZES: { value: HomeSize; label: string }[] = [
+  { value: 'studio', label: 'Студия' },
+  { value: '1br', label: '1 комн.' },
+  { value: '2br', label: '2 комн.' },
+  { value: '3br', label: '3 комн.' },
+  { value: '4br+', label: '4+ комн.' },
+  { value: 'office', label: 'Офис' },
 ];
-
-const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119, 4: 159 };
-function packingPrice(size: HomeSize, crew: CrewSize): number {
-  const hrs = Math.max(3, SIZES.find(s => s.value === size)?.hrs ?? 3);
-  return Math.round(PACKING_RATE[crew] * hrs);
-}
+const packingPrice = packingStartingPrice;
 
 /* ── Testimonials ────────────────────────────────────────────────────────────── */
-const TESTIMONIALS = [
-  {
-    name: 'Валентина Р.', city: 'Sunny Isles Beach', initials: 'ВР', color: '#7C6AF7',
-    type: 'Переезд из высотки',
-    quote: 'Переезд с 38-го этажа — бронирование лифта, защита полов, страховка для управляющей компании. Всё было готово до того, как я успела попросить.',
-  },
-  {
-    name: 'Камила и Диего П.', city: 'Hollywood', initials: 'КД', color: '#9B6FB0',
-    type: 'Локальный переезд',
-    quote: 'Переезжали с маленьким ребёнком и собакой — полный хаос с нашей стороны. Ребята работали спокойно и быстро, за три часа всё расставили. Каждый доллар оправдан.',
-  },
-  {
-    name: 'Марк С.', city: 'Doral', initials: 'МС', color: '#5B8FBF',
-    type: 'Переезд офиса',
-    quote: 'Перевезли офис на 12 человек за выходные. В понедельник все работали как обычно. Даже IT-шник был в шоке — ничего не пришлось перенастраивать.',
-  },
-  {
-    name: 'Лиза и Роберт К.', city: 'Brickell', initials: 'ЛК', color: '#C2724F',
-    type: 'Срочный переезд',
-    quote: 'Дата закрытия сделки сдвинулась на неделю раньше. Позвонили во вторник — в четверг уже переехали. Страховку оформили за ночь. До сих пор не понимаю, как они это сделали.',
-  },
+// Real Google reviews, quoted word for word from googleReviews.ts, with a
+// Russian translation marked as one. Four invented testimonials with avatar
+// initials stood here until 2026-10-11 (claims-guard: invented-testimonial).
+const REVIEW_PICKS: { name: string; ru: string }[] = [
+  { name: 'Ekaterina Bykova', ru: 'Нужно было организовать переезд из одной квартиры в другую, и команда справилась на 100%. От первого общения до разгрузки всё было на высшем уровне: быстро, чётко и с большой заботой и о вещах, и обо мне как о клиенте. Огромное спасибо!' },
+  { name: 'Ivan Berezovskii', ru: 'Отличная команда! Надёжные, пунктуальные и каждый раз делают работу хорошо. Очень профессиональные, с ними легко работать. Доверяю им уже несколько лет и очень рекомендую.' },
+  { name: 'Andrei Oho', ru: 'Евгений и его команда — настоящие профессионалы. Всё сделали очень аккуратно и быстро, без стресса. Вся моя мебель доставлена в полной сохранности.' },
+  { name: 'Andrey', ru: 'Евгений и его команда сделали работу безупречно. Приехали к месту встречи вовремя и всё доставили в срок, с отличным настроем. Обязательно обращусь снова — команде можно доверять!' },
 ];
+const TESTIMONIALS = REVIEW_PICKS.map((p) => {
+  const r = GOOGLE_REVIEWS.find((g) => g.name === p.name);
+  if (!r) throw new Error(`ru/page: review by ${p.name} is not in googleReviews.ts`);
+  return { name: r.name, original: r.text, ru: p.ru };
+});
 
 /* ── Services ────────────────────────────────────────────────────────────────── */
 const SERVICES = [
@@ -84,10 +77,9 @@ export default function RuHomePage() {
   const [moveType, setMoveType] = useState<MoveType>('local');
   const [homeSize, setHomeSize] = useState<HomeSize | null>(null);
   const [crew, setCrew] = useState<CrewSize>(2);
-  const [testimonialIdx, setTestimonialIdx] = useState(0);
 
   const showSizeGrid = moveType === 'local' || moveType === 'packing-only';
-  const sizeData = homeSize ? SIZES.find(s => s.value === homeSize) : null;
+  const sizeHours = homeSize ? startingHours(homeSize, moveType === 'packing-only') : null;
   const price =
     homeSize && moveType === 'local' ? localStartingPrice(homeSize, crew)
       : homeSize && moveType === 'packing-only' ? packingPrice(homeSize, crew)
@@ -155,7 +147,7 @@ export default function RuHomePage() {
                   <span className="text-white/20">|</span>
                   <p className="text-white/40 text-xs">
                     <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 mr-1.5 align-middle animate-pulse" />
-                    Отвечаем в течение 2 часов
+                    {replyPromise('ru')}
                   </p>
                 </div>
               </div>
@@ -221,7 +213,7 @@ export default function RuHomePage() {
                               className={`py-3 text-center border transition-all duration-150 ${crew === c ? 'border-gold bg-gold/10' : 'border-gray-200 hover:border-gold/40'}`}
                             >
                               <span className="block text-xs font-bold text-charcoal">{c} {moveType === 'packing-only' ? 'упаковщика' : 'мувера'}</span>
-                              <span className="block text-[10px] text-gray-500 mt-0.5">${moveType === 'packing-only' ? (c === 2 ? 79 : c === 3 ? 119 : 159) : HOURLY_RATE[c]}/час · {formatCurrency(cp)}</span>
+                              <span className="block text-[10px] text-gray-500 mt-0.5">${moveType === 'packing-only' ? PACKING_HOURLY_RATE[c] : HOURLY_RATE[c]}/час · {formatCurrency(cp)}</span>
                             </button>
                           );
                         })}
@@ -234,7 +226,7 @@ export default function RuHomePage() {
                         <div className="relative">
                           <p className="text-gold text-[10px] uppercase tracking-[0.2em] font-semibold mb-1">Стоимость от</p>
                           <p className="font-display text-4xl font-bold text-white mb-1">{formatCurrency(price)}</p>
-                          <p className="text-gray-400 text-xs">{sizeData?.hrs} ч · {crew} {moveType === 'packing-only' ? 'упаковщ.' : 'мувера'}{moveType === 'local' ? ' · трак включён' : ''}</p>
+                          <p className="text-gray-400 text-xs">{sizeHours} ч · {crew} {moveType === 'packing-only' ? 'упаковщ.' : 'мувера'}{moveType === 'local' ? ' · трак включён' : ''}</p>
                         </div>
                       </div>
                     )}
@@ -248,15 +240,18 @@ export default function RuHomePage() {
                       </div>
                     )}
 
-                    <Link href={quoteHref} className="block">
+                    {/* Russian readers stay in Russian: the button opens the
+                        form below with the size already chosen, instead of the
+                        English-only /quote wizard. */}
+                    <a href="#zayavka" className="block">
                       <Button variant="primary" size="lg" className="w-full gap-2 shadow-[0_0_24px_rgba(201,168,76,0.3)]">
                         Бесплатный расчёт <ArrowRight size={15} />
                       </Button>
-                    </Link>
+                    </a>
                     <div className="flex items-center justify-center gap-3 mt-3 text-gray-500 text-[10px]">
                       <span>Без обязательств</span>
                       <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
-                      <span>Быстрый ответ</span>
+                      <span>{replyPromise('ru', 'short')}</span>
                       <span className="w-0.5 h-0.5 rounded-full bg-gray-300" />
                       <span>COI за 24 часа</span>
                     </div>
@@ -269,7 +264,7 @@ export default function RuHomePage() {
             <div className="flex flex-wrap items-center justify-center gap-4 mt-8 lg:hidden">
               <div className="flex items-center gap-2 text-white/60">
                 <Shield size={13} className="text-gold shrink-0" />
-                <span className="text-[11px] tracking-wider uppercase">Застрахованы</span>
+                <span className="text-[11px] tracking-wider uppercase">COI за 24 часа</span>
               </div>
               <div className="flex items-center gap-1 text-white/60">
                 {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="fill-gold text-gold" />)}
@@ -292,7 +287,7 @@ export default function RuHomePage() {
               {[
                 { val: `${THUMBTACK.reviewCount}`, label: 'Отзыва', sub: 'Проверенные на Thumbtack' },
                 { val: `${THUMBTACK.rating} ★`, label: 'Рейтинг', sub: `Thumbtack, ${THUMBTACK.reviewCount} отзыва` },
-                { val: '< 2 ч', label: 'Ответ', sub: 'Координатор перезвонит' },
+                { val: `${RESPONSE.replyWithinBusinessHours} ч`, label: 'Ответ', sub: 'В рабочее время' },
                 { val: '$0', label: 'Скрытых платежей', sub: 'Цена подтверждена письменно' },
               ].map((s, i) => (
                 <div key={s.label} className={`text-center ${i < 3 ? 'md:border-r md:border-white/[0.07]' : ''}`}>
@@ -316,28 +311,24 @@ export default function RuHomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {TESTIMONIALS.slice(testimonialIdx * 2, testimonialIdx * 2 + 2).map(t => (
-                <div key={t.name} className="border border-white/10 bg-white/[0.03] p-7">
+              {TESTIMONIALS.map(t => (
+                <figure key={t.name} className="border border-white/10 bg-white/[0.03] p-7 flex flex-col">
                   <div className="flex items-center justify-between mb-5">
                     <div className="flex gap-1">{[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} className="fill-gold text-gold" />)}</div>
-                    <span className="border border-gold/25 text-gold text-[9px] font-semibold tracking-[0.15em] uppercase px-2.5 py-1">{t.type}</span>
+                    <span className="border border-gold/25 text-gold text-[9px] font-semibold tracking-[0.15em] uppercase px-2.5 py-1">Отзыв в Google</span>
                   </div>
-                  <blockquote className="font-display text-base md:text-lg text-white/80 italic leading-relaxed mb-6">&ldquo;{t.quote}&rdquo;</blockquote>
-                  <div className="flex items-center gap-3 pt-5 border-t border-white/10">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0" style={{ backgroundColor: t.color }}>{t.initials}</div>
-                    <div>
-                      <p className="text-white font-semibold text-sm">{t.name}</p>
-                      <p className="text-gray-500 text-xs mt-0.5">{t.city}, FL</p>
-                    </div>
-                  </div>
-                </div>
+                  <blockquote className="font-display text-base md:text-lg text-white/80 italic leading-relaxed mb-3">&laquo;{t.ru}&raquo;</blockquote>
+                  <p className="text-white/35 text-xs leading-relaxed mb-6">Перевод с английского. Оригинал: &ldquo;{t.original}&rdquo;</p>
+                  <figcaption className="pt-5 border-t border-white/10 mt-auto">
+                    <p className="text-white font-semibold text-sm">{t.name}</p>
+                    <p className="text-gray-500 text-xs mt-0.5">Google, 5 звёзд</p>
+                  </figcaption>
+                </figure>
               ))}
             </div>
-            <div className="flex items-center justify-center gap-4">
-              <button onClick={() => setTestimonialIdx(i => i === 0 ? 1 : 0)} className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all"><ChevronLeft size={15} /></button>
-              {[0, 1].map(i => <button key={i} onClick={() => setTestimonialIdx(i)} className={`h-px transition-all duration-300 ${i === testimonialIdx ? 'bg-gold w-8' : 'bg-white/20 w-4'}`} />)}
-              <button onClick={() => setTestimonialIdx(i => i === 1 ? 0 : 1)} className="w-9 h-9 border border-white/15 flex items-center justify-center text-white/50 hover:border-gold hover:text-gold transition-all"><ChevronRight size={15} /></button>
-            </div>
+            <p className="text-center">
+              <Link href="/reviews" className="text-gold text-sm font-semibold hover:underline">Все отзывы Google →</Link>
+            </p>
           </div>
         </section>
 
@@ -379,7 +370,7 @@ export default function RuHomePage() {
               <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-xl mx-auto">
                 Большинство мувинговых компаний растут за счёт количества заказов и отправляют кого попало.
                 Мы растём за счёт качества. У каждого клиента — личный координатор.
-                Каждая бригада знает ваше здание. Каждый переезд — тот, за который мы готовы отвечать.
+                Правила вашего здания выясняем до дня переезда. Каждый переезд — тот, за который мы готовы отвечать.
               </p>
               <p className="text-gold/60 text-sm font-semibold mb-5">&mdash; Евгений Романов, Основатель</p>
               <a href="tel:+17863051844" className="inline-flex items-center gap-1.5 text-white/40 text-[11px] font-semibold uppercase tracking-[0.12em] hover:text-white/70 transition-colors duration-200 border-b border-white/20 pb-px hover:border-white/50">
@@ -423,21 +414,18 @@ export default function RuHomePage() {
         {/* ══════════════════════ FAQ ══════════════════════ */}
         <FAQSection locale="ru" />
 
-        {/* ══════════════════════ CTA ══════════════════════ */}
-        <section className="relative bg-charcoal py-16 overflow-hidden">
-          <div className="absolute inset-0 grain-overlay" />
-          <div className="absolute top-0 left-0 right-0 h-px gold-separator" />
-          <div className="relative container-max text-center">
-            <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Готовы к переезду?</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-3">Получите бесплатный расчёт сегодня</h2>
-            <p className="text-gray-400 text-sm max-w-md mx-auto mb-8">Координатор перезвонит и подтвердит точную стоимость. Без обязательств.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/quote">
-                <Button variant="primary" size="lg" className="gap-2">Бесплатный расчёт <ArrowRight size={14} /></Button>
-              </Link>
-              <a href="tel:+17863051844" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white text-sm font-semibold px-8 py-4 hover:border-gold hover:text-gold transition-all">
-                <Phone size={14} /> 786-305-1844
-              </a>
+        {/* ══════════════════════ ЗАЯВКА ══════════════════════ */}
+        <section className="section-padding bg-cream">
+          <div className="container-max max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-3">Готовы к переезду?</p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal mb-3">Оставьте заявку — посчитаем переезд</h2>
+              <p className="text-gray-500 text-sm max-w-md mx-auto">
+                {replyPromise('ru')} {sameDayCopy('ru', 'short')}. Или звоните: <a href="tel:+17863051844" className="text-charcoal font-semibold hover:text-gold">786-305-1844</a>
+              </p>
+            </div>
+            <div className="bg-white border border-gray-100 shadow-card p-6 sm:p-8">
+              <QuickLeadForm id="zayavka" locale="ru" prefill={{ homeSize, moveType }} />
             </div>
           </div>
         </section>

@@ -4,28 +4,32 @@ import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
 import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
 import { sendToAirtable, normalizeSource } from '@/lib/airtable';
-import type { Lead, LeadSource, MoveType } from '@/types';
+import { rateLimited, isHoneypotFilled, hasContact } from '@/lib/leadGuard';
+import { sendCustomerConfirmation, confirmationNote, customerLocale } from '@/lib/customerEmail';
+import type { HomeSize, Lead, LeadSource, MoveType } from '@/types';
 
-const LEAD_SOURCES = ['contact-form', 'quote-wizard', 'phone', 'referral'] as const satisfies readonly LeadSource[];
-// Deliberately narrower than pricing's MOVE_TYPES: the callback form has no
+const LEAD_SOURCES = ['contact-form', 'quote-wizard', 'phone', 'referral', 'popup', 'callback', 'quick-form'] as const satisfies readonly LeadSource[];
+// Deliberately narrower than pricing's MOVE_TYPES: the lead forms have no
 // packing-only option. `satisfies` still fails the build if a name drifts.
 const MOVE_TYPES = ['local', 'long-distance', 'office', 'specialty'] as const satisfies readonly MoveType[];
+const HOME_SIZES = ['studio', '1br', '2br', '3br', '4br+', 'office'] as const satisfies readonly HomeSize[];
 
-function parseLeadSource(raw: unknown): LeadSource {
-  if (typeof raw === 'string') {
-    const match = LEAD_SOURCES.find((s) => s === raw);
-    if (match) return match;
-  }
-  return 'contact-form';
+/** What the owner sees first in Telegram and the email subject. */
+const SOURCE_LABEL: Record<LeadSource, string> = {
+  'contact-form': 'NEW LEAD — contact form',
+  'quote-wizard': 'NEW LEAD — quote wizard',
+  'phone':        'NEW LEAD — phone',
+  'referral':     'NEW LEAD — referral',
+  'popup':        'CALLBACK REQUEST — exit popup',
+  'callback':     'CALLBACK REQUEST',
+  'quick-form':   'NEW LEAD — quick quote form',
+};
+
+function pick<T extends string>(list: readonly T[], raw: unknown): T | undefined {
+  return typeof raw === 'string' ? list.find((s) => s === raw) : undefined;
 }
 
-function parseMoveType(raw: unknown): MoveType | undefined {
-  if (typeof raw === 'string') {
-    const match = MOVE_TYPES.find((s) => s === raw);
-    if (match) return match;
-  }
-  return undefined;
-}
+const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '');
 
 export async function GET() {
   const denied = unauthorizedUnlessAdmin();
@@ -37,17 +41,25 @@ export async function POST(req: NextRequest) {
   const startedAt = Date.now();
   console.log('[api/leads] POST received');
 
+  if (rateLimited(req, 'leads')) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please call or WhatsApp 786-305-1844.' },
+      { status: 429 },
+    );
+  }
+
   const status = {
-    endpoint:  '/api/leads',
-    leadSaved: false,
-    airtable:  false,
-    email:     false,
-    telegram:  false,
-    sms:       false,
+    endpoint:      '/api/leads',
+    leadSaved:     false,
+    airtable:      false,
+    email:         false,
+    telegram:      false,
+    sms:           false,
+    customerEmail: false,
   };
 
   try {
-    // ── 1. Parse body ──────────────────────────────────────────────────────────
+    // ── 1. Parse and screen ────────────────────────────────────────────────────
     let body: Record<string, unknown>;
     try {
       body = await req.json();
@@ -56,102 +68,108 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
     }
 
-    console.log('[api/leads] Payload received:', JSON.stringify({
-      source:    body.source,
-      firstName: body.firstName,
-      phone:     body.phone,
-      email:     body.email,
-      moveType:  body.moveType,
-      fromCity:  body.fromCity,
-      toCity:    body.toCity,
-    }));
+    if (isHoneypotFilled(body)) {
+      // Answer like a success so the bot learns nothing; deliver nothing.
+      console.warn('[api/leads] Honeypot filled — dropped as spam');
+      return NextResponse.json({ id: generateId() }, { status: 201 });
+    }
+
+    if (!hasContact(body)) {
+      return NextResponse.json(
+        { error: 'Please leave a phone number or an email so we can reach you.' },
+        { status: 400 },
+      );
+    }
 
     // ── 2. Build lead object ───────────────────────────────────────────────────
+    const locale = customerLocale(body.locale);
     const lead: Lead = {
       id:         generateId(),
       createdAt:  new Date().toISOString(),
       updatedAt:  new Date().toISOString(),
       status:     'new',
-      source:     parseLeadSource(body.source),
-      firstName:  (body.firstName as string) ?? '',
-      lastName:   (body.lastName  as string) ?? '',
-      email:      (body.email     as string) ?? '',
-      phone:      (body.phone     as string) ?? '',
-      message:    (body.message   as string) ?? '',
-      moveType:   parseMoveType(body.moveType),
-      moveDate:   body.moveDate as string | undefined,
-      fromCity:   body.fromCity as string | undefined,
-      toCity:     body.toCity   as string | undefined,
+      source:     pick(LEAD_SOURCES, body.source) ?? 'contact-form',
+      firstName:  str(body.firstName),
+      lastName:   str(body.lastName),
+      email:      str(body.email),
+      phone:      str(body.phone),
+      message:    str(body.message),
+      moveType:   pick(MOVE_TYPES, body.moveType),
+      moveDate:   str(body.moveDate) || undefined,
+      fromCity:   str(body.fromCity) || undefined,
+      toCity:     str(body.toCity) || undefined,
+      homeSize:   pick(HOME_SIZES, body.homeSize),
+      locale,
       adminNotes: '',
       assignedTo: '',
     };
 
     const name = [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 'Unknown';
-    console.log(`[api/leads] Lead built: id=${lead.id} name="${name}"`);
+    const headline = SOURCE_LABEL[lead.source] + (locale !== 'en' ? ` (${locale.toUpperCase()})` : '');
+    console.log(`[api/leads] Lead built: id=${lead.id} source=${lead.source} locale=${locale}`);
 
     // ── 3. Local /tmp storage (best-effort cache — not primary, never blocks) ─
     try {
       createLead(lead);
       status.leadSaved = true;
-      console.log('[api/leads] Local storage write OK:', lead.id);
     } catch (writeErr) {
       console.error('[api/leads] Local storage write failed (non-fatal):', writeErr);
     }
 
-    // ── 4. Build notification strings ─────────────────────────────────────────
-    const subject = `🔥 New Lead — ${name}${lead.phone ? ' · ' + lead.phone : ''}`;
+    // ── 4. Customer confirmation first, so the owner's alert can say whether
+    //       the customer heard back.
+    const confirmation = await sendCustomerConfirmation(lead.email, {
+      locale, firstName: lead.firstName, ref: lead.id,
+    });
+    status.customerEmail = confirmation.sent;
+    const confirmationLine = confirmationNote(confirmation);
+
+    // ── 5. Owner notification content ─────────────────────────────────────────
+    const subject = `🔥 ${headline} — ${name}${lead.phone ? ' · ' + lead.phone : ''}`;
 
     const row = (label: string, value: string) =>
       `<tr><td style="padding:6px 12px 6px 0;color:#666;white-space:nowrap;vertical-align:top"><b>${label}</b></td><td style="padding:6px 0;color:#111">${value}</td></tr>`;
+    const h = (v: string | undefined) => tgEscape(v ?? '');
 
     const html = `
       <div style="font-family:Arial,sans-serif;max-width:600px">
         <div style="background:#111;color:#fff;padding:16px 20px;border-left:4px solid #d4a017">
-          <p style="margin:0;font-size:18px;font-weight:bold">🔥 NEW HIGH-INTENT LEAD</p>
-          <p style="margin:4px 0 0;font-size:13px;color:#aaa">Contact form submission — respond quickly</p>
+          <p style="margin:0;font-size:18px;font-weight:bold">🔥 ${h(headline)}</p>
+          <p style="margin:4px 0 0;font-size:13px;color:#aaa">Respond quickly — the site promises a reply within 2 working hours</p>
         </div>
-
         <div style="padding:20px;background:#fff;border:1px solid #e5e5e5;border-top:none">
-
-          <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">📋 Contact</p>
           <table style="border-collapse:collapse;font-size:14px;width:100%">
-            ${row('Name', `<span style="font-size:16px;font-weight:bold;color:#d4a017">${name}</span>`)}
-            ${row('Phone', `<a href="tel:${lead.phone}" style="font-size:16px;font-weight:bold;color:#0066cc">${lead.phone || '—'}</a>`)}
-            ${row('Email', lead.email || '—')}
+            ${row('Name', `<span style="font-size:16px;font-weight:bold;color:#d4a017">${h(name)}</span>`)}
+            ${row('Phone', `<a href="tel:${h(lead.phone)}" style="font-size:16px;font-weight:bold;color:#0066cc">${h(lead.phone) || '—'}</a>`)}
+            ${row('Email', h(lead.email) || '—')}
+            ${row('Language', locale.toUpperCase())}
+            ${lead.moveType ? row('Move type', h(lead.moveType)) : ''}
+            ${lead.homeSize ? row('Home size', h(lead.homeSize)) : ''}
+            ${lead.fromCity ? row('From', h(lead.fromCity)) : ''}
+            ${lead.toCity   ? row('To', h(lead.toCity)) : ''}
+            ${lead.moveDate ? row('Date', h(lead.moveDate)) : ''}
+            ${row('Auto-reply', h(confirmationLine))}
           </table>
-
-          ${(lead.moveType || lead.moveDate || lead.fromCity || lead.toCity) ? `
-          <hr style="border:none;border-top:1px solid #eee;margin:16px 0">
-          <p style="margin:0 0 14px;font-size:15px;font-weight:bold;color:#111">🚚 Move Info</p>
-          <table style="border-collapse:collapse;font-size:14px;width:100%">
-            ${lead.moveType ? row('Move type', lead.moveType) : ''}
-            ${lead.fromCity ? row('From', lead.fromCity) : ''}
-            ${lead.toCity   ? row('To', lead.toCity) : ''}
-            ${lead.moveDate ? row('Date', lead.moveDate) : ''}
-          </table>
-          ` : ''}
-
-          ${lead.message ? `
-          <hr style="border:none;border-top:1px solid #eee;margin:16px 0">
-          <p style="margin:0 0 8px;font-size:15px;font-weight:bold;color:#111">💬 Message</p>
-          <p style="margin:0;font-size:14px;color:#333;background:#f9f9f9;padding:12px;border-left:3px solid #d4a017">${lead.message}</p>
-          ` : ''}
-
-          <div style="background:#f5f5f5;border-left:4px solid #d4a017;padding:14px 16px;margin-top:20px">
-            <p style="margin:0;font-size:15px;font-weight:bold;color:#111">⚡ ACTION: Call immediately → <a href="tel:+17863051844" style="color:#0066cc">786-305-1844</a></p>
-            <p style="margin:4px 0 0;font-size:12px;color:#666">Ref: ${lead.id} · Submitted: ${new Date(lead.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York' })}</p>
-          </div>
+          ${lead.message ? `<p style="margin:16px 0 0;font-size:14px;color:#333;background:#f9f9f9;padding:12px;border-left:3px solid #d4a017">${h(lead.message)}</p>` : ''}
+          <p style="margin:16px 0 0;font-size:12px;color:#666">Ref: ${lead.id} · ${new Date(lead.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York' })}</p>
         </div>
       </div>
     `;
 
-    const tg = `🔥 <b>NEW LEAD</b>\n👤 <b>${tgEscape(name)}</b>\n📞 <b>${tgEscape(lead.phone) || '—'}</b>\n📧 ${tgEscape(lead.email) || '—'}${lead.moveType ? '\n📦 ' + tgEscape(lead.moveType) : ''}${lead.fromCity || lead.toCity ? '\n📍 ' + (tgEscape(lead.fromCity) || '?') + ' → ' + (tgEscape(lead.toCity) || '?') : ''}${lead.message ? '\n💬 ' + tgEscape(lead.message).slice(0, 100) : ''}\n\n⚡ Call: 786-305-1844`;
+    const tg = [
+      `🔥 <b>${h(headline)}</b>`,
+      `👤 <b>${h(name)}</b>`,
+      `📞 <b>${h(lead.phone) || '—'}</b>`,
+      `📧 ${h(lead.email) || '—'}`,
+      lead.moveType ? `📦 ${h(lead.moveType)}${lead.homeSize ? ' · ' + h(lead.homeSize) : ''}` : lead.homeSize ? `📦 ${h(lead.homeSize)}` : '',
+      lead.fromCity || lead.toCity ? `📍 ${h(lead.fromCity) || '?'} → ${h(lead.toCity) || '?'}` : '',
+      lead.moveDate ? `📅 ${h(lead.moveDate)}` : '',
+      lead.message ? `💬 ${h(lead.message).slice(0, 200)}` : '',
+      `✉️ ${h(confirmationLine)}`,
+    ].filter(Boolean).join('\n');
 
-    // ── 5. Airtable (primary) + all notifications in parallel ─────────────────
-    // Running in parallel ensures Telegram/email fire even if Airtable fails.
-    // Airtable failure still returns 500 — but only after notifications are sent.
-    console.log('[api/leads] Writing to Airtable + sending notifications in parallel...');
-
+    // ── 6. Airtable (primary) + notifications in parallel ─────────────────────
+    const noteTag = `[${lead.source}${locale !== 'en' ? ' ' + locale : ''}${lead.homeSize ? ' ' + lead.homeSize : ''}]`;
     const [airtableResult, tgResult, smsResult, emailResult] = await Promise.allSettled([
       sendToAirtable({
         'Created At':   new Date(lead.createdAt).toISOString().split('T')[0],
@@ -164,7 +182,7 @@ export async function POST(req: NextRequest) {
         'Move Type':    lead.moveType ?? '',
         'From City':    lead.fromCity ?? '',
         'To City':      lead.toCity   ?? '',
-        'Notes':        lead.message  || '',
+        'Notes':        [noteTag, lead.message].filter(Boolean).join(' '),
         ...(lead.moveDate ? { 'Job Date': lead.moveDate } : {}),
         'Completed':    false,
         'Deposit Paid': false,
@@ -184,34 +202,27 @@ export async function POST(req: NextRequest) {
     status.email    = emailResult.status    === 'fulfilled';
 
     if (!status.airtable) console.error('[api/leads] Airtable FAILED:', (airtableResult as PromiseRejectedResult).reason);
-    else                  console.log('[api/leads] Airtable OK');
-
-    if (!status.telegram) console.error('[api/leads] Telegram failed:', (tgResult as PromiseRejectedResult).reason);
-    else                  console.log('[api/leads] Telegram OK');
-
+    if (!status.telegram) console.error('[api/leads] Telegram FAILED:', (tgResult as PromiseRejectedResult).reason);
+    if (!status.email)    console.error('[api/leads] Email FAILED:', (emailResult as PromiseRejectedResult).reason);
     if (!status.sms) {
-      const why = smsResult.status === 'fulfilled'
-        ? smsResult.value
-        : (smsResult as PromiseRejectedResult).reason;
-      console.error('[api/leads] SMS not sent:', why);
+      const why = smsResult.status === 'fulfilled' ? smsResult.value : (smsResult as PromiseRejectedResult).reason;
+      console.warn('[api/leads] SMS not sent:', why);
     }
-    else                  console.log('[api/leads] SMS OK');
+    console.log(`[api/leads] DELIVERY (${Date.now() - startedAt}ms):`, JSON.stringify(status));
 
-    if (!status.email)    console.error('[api/leads] Email failed:', (emailResult as PromiseRejectedResult).reason);
-    else                  console.log('[api/leads] Email OK');
-
-    // ── 6. Final debug summary ────────────────────────────────────────────────
-    console.log(`[api/leads] DEBUG STATUS (${Date.now() - startedAt}ms):`, JSON.stringify(status));
-
-    // Airtable failure is non-blocking — Telegram + email are the live alerts.
-    // Log the failure but always return 201 so the customer sees success.
-    if (!status.airtable) {
-      console.warn('[api/leads] Airtable write failed — lead captured via Telegram/email, CRM sync missed');
+    // A lead that reached no one is a lost customer who was told "received".
+    // Say so, so the form can show the phone number instead.
+    if (!status.airtable && !status.telegram && !status.email) {
+      console.error('[api/leads] Lead reached NO channel:', lead.id);
+      return NextResponse.json(
+        { error: 'We could not deliver your request. Please call or WhatsApp 786-305-1844.' },
+        { status: 502 },
+      );
     }
 
-    return NextResponse.json(lead, { status: 201 });
+    return NextResponse.json({ id: lead.id, customerEmail: status.customerEmail }, { status: 201 });
   } catch (err) {
     console.error('[api/leads] Unexpected error:', err);
-    return NextResponse.json({ error: 'Failed to create lead' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to create lead. Please call 786-305-1844.' }, { status: 500 });
   }
 }

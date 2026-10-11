@@ -46,6 +46,7 @@ export async function GET() {
       `- Smallest possible invoice: ${MIN_HOURS} × $${HOURLY_RATE[2]} + $${TRUCK_FEE[2]} = $${minInvoice(2)} with 2 movers; $${minInvoice(3)} with 3 movers; $${minInvoice(4)} with 4`,
       SERVICE_SCOPE.en.llms,
       '- No weekend surcharge, no seasonal surcharge, no fuel surcharge',
+      '- No same-day (rush) surcharge: same-day moves are taken when a crew is free, at the normal rate',
       '- No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, priced into the estimated hours',
       '- Billing in 15-minute increments after the minimum; customers pay for hours worked',
       '- No deposit on any move. Free cancellation or reschedule more than 48 hours out',

@@ -4,7 +4,7 @@ export type HomeSize = 'studio' | '1br' | '2br' | '3br' | '4br+' | 'office';
 export type CrewSize = 2 | 3 | 4;
 export type QuoteStatus = 'pending' | 'reviewed' | 'sent' | 'accepted' | 'declined';
 export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'converted' | 'lost';
-export type LeadSource = 'contact-form' | 'quote-wizard' | 'phone' | 'referral';
+export type LeadSource = 'contact-form' | 'quote-wizard' | 'phone' | 'referral' | 'popup' | 'callback' | 'quick-form';
 export type ServiceCategory = 'residential' | 'commercial' | 'specialty' | 'storage';
 
 // ─── Quote ────────────────────────────────────────────────────────────────────
@@ -115,6 +115,10 @@ export interface Lead {
   moveDate?: string;
   fromCity?: string;
   toCity?: string;
+  /** Home size picked on the quick form or the homepage calculator. */
+  homeSize?: HomeSize;
+  /** Language of the page the lead came from: en, ru or ua. */
+  locale?: 'en' | 'ru' | 'ua';
   adminNotes: string;
   followUpDate?: string;
   assignedTo: string;

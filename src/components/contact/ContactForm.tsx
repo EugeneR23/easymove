@@ -5,15 +5,19 @@ import Textarea from '@/components/ui/Textarea';
 import Button from '@/components/ui/Button';
 import { CheckCircle, ArrowRight, Shield, Clock, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { replyPromise } from '@/lib/data/policies';
+import HoneypotField from '@/components/ui/HoneypotField';
+import { HONEYPOT_FIELD } from '@/lib/leadGuard';
 
 export default function ContactForm() {
-  const [form, setForm]       = useState({ name: '', phone: '', email: '', message: '' });
+  const [form, setForm]       = useState({ name: '', phone: '', email: '', message: '', hp: '' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError]     = useState('');
 
   const update = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
-  const valid  = form.name && form.phone && form.email;
+  // Email is optional since 2026-10-11: name and a phone are enough to call back.
+  const valid  = form.name && form.phone;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -30,9 +34,16 @@ export default function ContactForm() {
           email: form.email,
           message: form.message,
           source: 'contact-form',
+          locale: 'en',
+          [HONEYPOT_FIELD]: form.hp,
         }),
       });
       if (!res.ok) throw new Error('Failed');
+      try {
+        const w = window as unknown as { dataLayer?: unknown[] };
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ event: 'lead_submitted', form: 'contact', locale: 'en' });
+      } catch { /* analytics never blocks a lead */ }
       setSuccess(true);
     } catch {
       setError('Something went wrong. Please call us at 786-305-1844.');
@@ -49,7 +60,7 @@ export default function ContactForm() {
         </div>
         <h3 className="font-display text-2xl font-semibold text-white mb-3">Message Received</h3>
         <p className="text-gray-400 mb-6 leading-relaxed max-w-sm mx-auto">
-          A coordinator will be in touch within a few hours to discuss your move.
+          A coordinator will be in touch to discuss your move. {replyPromise('en')}
         </p>
         <Link href="/quote">
           <Button size="md" variant="primary" className="inline-flex items-center gap-2">
@@ -79,9 +90,8 @@ export default function ContactForm() {
           onChange={(e) => update('phone', e.target.value)}
         />
         <Input
-          label="Email Address"
+          label="Email (optional)"
           type="email"
-          required
           placeholder="you@email.com"
           value={form.email}
           onChange={(e) => update('email', e.target.value)}
@@ -95,6 +105,8 @@ export default function ContactForm() {
         rows={4}
       />
 
+      <HoneypotField value={form.hp} onChange={(v) => update('hp', v)} />
+
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
       <Button type="submit" size="lg" loading={loading} disabled={!valid} className="w-full mt-1">
@@ -102,7 +114,7 @@ export default function ContactForm() {
       </Button>
 
       <p className="text-gray-400 text-xs text-center">
-        No obligation &nbsp;·&nbsp; We respond within a few hours
+        No obligation &nbsp;·&nbsp; {replyPromise('en', 'short')}
       </p>
 
       {/* Trust strip */}

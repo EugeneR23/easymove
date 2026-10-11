@@ -12,6 +12,8 @@
  * and "viw..." is a view ID — neither is the base ID.
  */
 
+import { NotConfiguredError } from './delivery';
+
 const AIRTABLE_API = 'https://api.airtable.com/v0';
 
 function cfg() {
@@ -29,6 +31,11 @@ export function normalizeSource(source: string | undefined): string {
   const map: Record<string, string> = {
     'contact-form':  'contact_form',
     'popup':         'callback_popup',
+    // New sources (2026-10-11) map onto values the base already has, so a
+    // single-select Source field never rejects them; the exact source goes
+    // into Notes as a [tag].
+    'callback':      'callback_popup',
+    'quick-form':    'contact_form',
     'quote-form':    'quote_form',
     'quote_form':    'quote_form',
   };
@@ -45,12 +52,14 @@ export async function sendToAirtable(fields: Record<string, unknown>): Promise<v
   const { token, baseId, table } = cfg();
 
   if (!token || !baseId) {
-    console.warn('[airtable] sendToAirtable: AIRTABLE_API_KEY or AIRTABLE_BASE_ID not set — skipped');
-    return;
+    console.warn('[airtable] sendToAirtable: AIRTABLE_API_KEY or AIRTABLE_BASE_ID not set — not saved');
+    throw new NotConfiguredError('airtable');
   }
 
   const url = `${AIRTABLE_API}/${encodeURIComponent(baseId)}/${encodeURIComponent(table)}`;
-  const payload = { records: [{ fields }] };
+  // typecast lets Airtable coerce values (a number into a text field, a new
+  // select option) instead of rejecting the whole lead with a 422.
+  const payload = { records: [{ fields }], typecast: true };
 
   console.log('[airtable] sendToAirtable → POST', url);
   console.log('[airtable] sendToAirtable payload:', JSON.stringify(payload));
@@ -128,4 +137,36 @@ export async function getNextJob(): Promise<Record<string, unknown> | null> {
   const record = data.records[0]?.fields ?? null;
   console.log(`[airtable] getNextJob: ${data.records.length} record(s) returned. First:`, record ? JSON.stringify(record).slice(0, 300) : 'null');
   return record;
+}
+
+export interface AirtableLead {
+  id: string;
+  createdAt: string;
+  fields: Record<string, unknown>;
+}
+
+/**
+ * The newest records in the Leads table, newest first. Used by the admin
+ * dashboard: until 2026-10-11 it read /tmp JSON files that live on one server
+ * instance and vanish on redeploy, so in production it showed no leads at all
+ * while Airtable held every one of them.
+ *
+ * Throws on API failure or missing config, so the page can say which.
+ */
+export async function listRecentLeads(limit = 50): Promise<AirtableLead[]> {
+  const { token, baseId, table } = cfg();
+  if (!token || !baseId) throw new NotConfiguredError('airtable');
+
+  const qs = new URLSearchParams();
+  qs.set('pageSize', String(Math.min(limit, 100)));
+  qs.set('sort[0][field]', 'Created At');
+  qs.set('sort[0][direction]', 'desc');
+
+  const url = `${AIRTABLE_API}/${encodeURIComponent(baseId)}/${encodeURIComponent(table)}?${qs.toString()}`;
+  const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` }, cache: 'no-store' });
+  const text = await res.text().catch(() => '');
+  if (!res.ok) throw new Error(`Airtable ${res.status}: ${text.slice(0, 200)}`);
+
+  const data = JSON.parse(text) as { records: Array<{ id: string; createdTime: string; fields: Record<string, unknown> }> };
+  return data.records.map((r) => ({ id: r.id, createdAt: r.createdTime, fields: r.fields }));
 }

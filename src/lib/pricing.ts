@@ -322,7 +322,30 @@ export function calculatePricing(input: PricingInput): QuotePricing {
 }
 
 // ─── Starting price helpers (for homepage display) ────────────────────────────
+/**
+ * The hours behind a published "from" price. They are the LOW end of the bands
+ * in pricingCopy.ts, not the typical estimate in HOME_SIZE_HOURS: "from" is a
+ * floor. Owner, 2026-10-11: a two-bedroom is "from $645" everywhere — /pricing
+ * said $645 and the homepage calculator said $710 (4.5 h) until that day.
+ * Office stays at 5 h: the 6–9 h band against 5 h is still open question Q5.
+ */
+export const STARTING_HOURS: Record<HomeSize, number> = {
+  'studio': 3, '1br': 3, '2br': 4, '3br': 6, '4br+': 8, 'office': 5,
+};
+/** Hours behind a packing-only "from" price. Unchanged since the rate card. */
+export const PACKING_STARTING_HOURS: Record<HomeSize, number> = {
+  'studio': 3, '1br': 3, '2br': 4.5, '3br': 6, '4br+': 8, 'office': 5,
+};
+
+export function startingHours(size: HomeSize, packing = false): number {
+  return Math.max(MIN_HOURS, (packing ? PACKING_STARTING_HOURS : STARTING_HOURS)[size]);
+}
+
 export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
-  const hours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size]);
-  return Math.round(HOURLY_RATE[crew] * hours + TRUCK_FEE[crew]);
+  return Math.round(HOURLY_RATE[crew] * startingHours(size) + TRUCK_FEE[crew]);
+}
+
+/** Packing-only floor: hours at the packers' rate. No truck on a packing job. */
+export function packingStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
+  return Math.round(PACKING_HOURLY_RATE[crew] * startingHours(size, true));
 }

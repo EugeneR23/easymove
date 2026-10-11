@@ -958,8 +958,9 @@ export const CITIES: CityData[] = [
     heroHeadline: 'Movers for Pembroke Pines Communities',
     heroSub: 'Chapel Trail · Silver Lakes · Pembroke Falls · Grand Palms · Towngate · Century Village',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Pembroke Pines Movers | Easy Move Florida',
-    metaDescription: 'Pembroke Pines movers for houses, townhouses and 55+ communities. 2 movers $129/hr, 3-hour minimum, free COI, no weekend surcharge. Call 786-305-1844.',
+    // GSC 2026-10-01: position 1, zero clicks. The snippet now leads with the price.
+    metaTitle: 'Pembroke Pines Movers — $129/hr, No Deposit | Easy Move Florida',
+    metaDescription: 'Pembroke Pines movers for houses, townhouses and 55+ communities. 2 movers $129/hr, 3-hour minimum, no deposit, free COI, same-day if a crew is free. Call 786-305-1844.',
     intro: "Pembroke Pines is a city of master-planned communities, and a move here is usually a house move: a three or four bedroom single-family home or a two-storey townhouse inside a gated section with its own management office. That changes the job. There is more furniture than a condo carries, the garage is full, and the walk from the front door to where a 26-foot truck can legally park is often longer than the drive between the two addresses. We plan for that distance before quoting hours instead of discovering it on the day. Easy Move Florida is owned and run by Evgenii Romanov out of Hollywood, twenty minutes east. Two movers are $129 per hour, three are $179, four are $219, with a three-hour minimum and the truck billed per day at the same figure as the crew. A typical three-bedroom house runs six to eight hours with three movers, $1,253 to $1,611 all in. Call or WhatsApp 786-305-1844.",
     neighborhoods: [
       'Chapel Trail',
@@ -1474,8 +1475,9 @@ export const CITIES: CityData[] = [
     heroHeadline: 'Dania Beach Movers, Next Door In Hollywood',
     heroSub: 'Between Hollywood and Fort Lauderdale · the airport side and the ocean side',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Dania Beach Movers | Easy Move Florida',
-    metaDescription: 'Movers in Dania Beach FL for homes, condos and offices. 2 movers $129/hr, 3 movers $179/hr, truck on its own line, free COI. English and Russian. Call 786-305-1844.',
+    // GSC 2026-10-01: position 1, zero clicks. The snippet now leads with the price.
+    metaTitle: 'Dania Beach Movers — $129/hr, No Deposit | Easy Move Florida',
+    metaDescription: 'Movers in Dania Beach FL for homes, condos and offices. 2 movers $129/hr, no deposit, free COI, same-day if a crew is free. English and Russian. Call 786-305-1844.',
     intro: "Dania Beach sits between Fort Lauderdale to the north and Hollywood to the south, with the Atlantic on its east side and Fort Lauderdale-Hollywood International Airport inside the city. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, right across that southern line, so a Dania Beach job is a short drive for the crew rather than a trip. Residential moves, condo moves with a building that wants paperwork, and office moves all happen here. Rates are $129 an hour for two movers, $179 for three, $219 for four, with a three-hour minimum and the truck billed as its own line at the same figure as the crew rate. The crew works in English and Russian.",
     neighborhoods: [],
     localFacts: [

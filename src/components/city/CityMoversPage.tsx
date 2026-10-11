@@ -10,7 +10,8 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import Button from '@/components/ui/Button';
 import AnimateIn from '@/components/ui/AnimateIn';
-import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, Shield, Award, CheckCircle, MapPin, ArrowRight, Clock } from 'lucide-react';
+import { sameDayCopy } from '@/lib/data/policies';
 import { CITIES, type CityData } from '@/lib/data/cities';
 import { RU_NAMES, UA_NAMES } from '@/lib/data/cityNames';
 import { CITIES_RU } from '@/lib/data/citiesRu';
@@ -66,18 +67,21 @@ const TRUST = {
     { icon: Award,  label: 'Owner-led — the WhatsApp number reaches Evgenii' },
     { icon: CheckCircle, label: 'COI issued within 24 hours, no charge' },
     { icon: MapPin, label: 'Based in Hollywood · Russian & English' },
+    { icon: Clock,  label: sameDayCopy('en', 'short') },
   ],
   ru: [
     { icon: Shield, label: 'От $129/час · 2 грузчика · минимум 3 часа' },
     { icon: Award,  label: 'Владелец на связи — WhatsApp 786-305-1844' },
     { icon: CheckCircle, label: 'COI для здания за 24 часа, бесплатно' },
     { icon: MapPin, label: 'База в Голливуде · русский и английский' },
+    { icon: Clock,  label: sameDayCopy('ru', 'short') },
   ],
   ua: [
     { icon: Shield, label: 'Від $129/год · 2 вантажники · мінімум 3 години' },
     { icon: Award,  label: 'Власник на звʼязку — WhatsApp 786-305-1844' },
     { icon: CheckCircle, label: 'COI для будинку за 24 години, безкоштовно' },
     { icon: MapPin, label: 'База в Голлівуді · україномовні вантажники в бригаді' },
+    { icon: Clock,  label: sameDayCopy('ua', 'short') },
   ],
 } as const;
 

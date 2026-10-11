@@ -64,15 +64,69 @@ export const COI = {
 export const RESPONSE = {
   writtenEstimateWithinHours: 24,
   /**
-   * The site carries five different reply-time promises — "2 business hours",
-   * "within hours", "a few hours", "< 2 ч", "during business hours". None is
-   * confirmed, so none is asserted from here until one is.
-   * [TODO: Evgenii] the real number, and whether it is business hours or clock hours.
+   * Owner, 2026-10-11: a reply within 2 hours, counted in working hours (the
+   * hours in hours.ts). Until that day the site carried five hand-typed promises
+   * that contradicted each other; claims-guard rule `reply-time-literal` now
+   * fails the build on any of them, so copy has to come through replyPromise().
    */
-  replyWithinBusinessHours: null as number | null,
-  /** Same: an arrival window is promised in three places with two different shapes. */
+  replyWithinBusinessHours: 2,
+  /** Still unconfirmed: an arrival window is promised nowhere until the owner names one. */
   arrivalWindowHours: null as number | null,
 } as const;
+
+/**
+ * Owner, 2026-10-11: a same-day move is taken when a crew is free, and costs the
+ * same as any other day. Competitors in Hollywood charge 10–20% for it, which is
+ * why this is stated as an offer rather than buried.
+ */
+export const SAME_DAY = {
+  offered: true,
+  onlyWhenCrewAvailable: true,
+  surcharge: false,
+} as const;
+
+type AnyLocale = 'en' | 'ru' | 'uk' | 'ua';
+const norm = (l: AnyLocale): 'en' | 'ru' | 'uk' => (l === 'ua' ? 'uk' : l);
+
+const REPLY_COPY = {
+  en: {
+    short: `Reply within ${RESPONSE.replyWithinBusinessHours} hours`,
+    sentence: `We reply within ${RESPONSE.replyWithinBusinessHours} hours during working hours.`,
+  },
+  ru: {
+    short: `Ответ за ${RESPONSE.replyWithinBusinessHours} часа`,
+    sentence: `Отвечаем за ${RESPONSE.replyWithinBusinessHours} часа в рабочее время.`,
+  },
+  uk: {
+    short: `Відповідь за ${RESPONSE.replyWithinBusinessHours} години`,
+    sentence: `Відповідаємо за ${RESPONSE.replyWithinBusinessHours} години в робочий час.`,
+  },
+} as const;
+
+/** The one reply-time promise, in the visitor's language. */
+export function replyPromise(locale: AnyLocale = 'en', form: 'short' | 'sentence' = 'sentence'): string {
+  return REPLY_COPY[norm(locale)][form];
+}
+
+const SAME_DAY_COPY = {
+  en: {
+    short: 'Same-day moves, no rush fee',
+    sentence: 'Need to move today? If a crew is free, we come the same day — at the same hourly rate, with no rush fee.',
+  },
+  ru: {
+    short: 'Срочно в тот же день — без доплаты',
+    sentence: 'Нужно переехать сегодня? Если бригада свободна, приедем в тот же день — по обычной ставке, без доплаты за срочность.',
+  },
+  uk: {
+    short: 'Терміново того ж дня — без доплати',
+    sentence: 'Потрібно переїхати сьогодні? Якщо бригада вільна, приїдемо того ж дня — за звичайною ставкою, без доплати за терміновість.',
+  },
+} as const;
+
+/** The same-day offer, in the visitor's language. */
+export function sameDayCopy(locale: AnyLocale = 'en', form: 'short' | 'sentence' = 'sentence'): string {
+  return SAME_DAY_COPY[norm(locale)][form];
+}
 
 interface PolicyCopy {
   deposit: string;

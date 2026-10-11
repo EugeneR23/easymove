@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { replyPromise } from '@/lib/data/policies';
 import AnimateIn from '@/components/ui/AnimateIn';
 import { Clock, Package, DollarSign, ShieldCheck, Building2, Languages, MessageCircle, UserCircle2, ArrowRight } from 'lucide-react';
 
@@ -37,8 +38,8 @@ const reasons = [
   },
   {
     icon: MessageCircle,
-    title: 'WhatsApp + Telegram',
-    description: 'Send photos and addresses on the channel you already use. Estimate back in 5 minutes during business hours.',
+    title: 'WhatsApp',
+    description: `Send photos and addresses on WhatsApp. ${replyPromise('en')}`,
   },
   {
     icon: UserCircle2,

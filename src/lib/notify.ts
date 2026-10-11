@@ -1,5 +1,8 @@
 import { Resend } from 'resend';
 import twilio from 'twilio';
+import { NotConfiguredError } from './delivery';
+
+export { NotConfiguredError };
 
 /**
  * Escape HTML special characters in user-provided strings before embedding
@@ -19,6 +22,16 @@ const FROM_EMAIL = process.env.RESEND_FROM      ?? 'onboarding@resend.dev';
 const TG_TOKEN  = process.env.TELEGRAM_BOT_TOKEN;
 const TG_CHAT   = process.env.TELEGRAM_CHAT_ID;
 
+
+/**
+ * Resend's shared onboarding@resend.dev sender delivers only to the account
+ * owner's own address. Mail to a customer needs a verified domain sender in
+ * RESEND_FROM, so customer-facing mail is skipped (and reported) until then.
+ */
+export function senderVerified(): boolean {
+  return !!process.env.RESEND_API_KEY && FROM_EMAIL !== 'onboarding@resend.dev';
+}
+
 /**
  * Send an email via Resend.
  * Throws on failure so the caller can surface the error.
@@ -26,11 +39,11 @@ const TG_CHAT   = process.env.TELEGRAM_CHAT_ID;
  * `to` defaults to NOTIFY_EMAIL (the owner's inbox) for internal notifications.
  * Pass an explicit address (e.g. customer email for review requests) to override.
  */
-export async function sendEmail(subject: string, html: string, to?: string): Promise<void> {
+export async function sendEmail(subject: string, html: string, to?: string, opts: { replyTo?: string } = {}): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.warn('[notify] RESEND_API_KEY not set — email skipped');
-    return;
+    console.warn('[notify] RESEND_API_KEY not set — email not sent');
+    throw new NotConfiguredError('email');
   }
 
   const recipient = to ?? TO_EMAIL;
@@ -49,6 +62,7 @@ export async function sendEmail(subject: string, html: string, to?: string): Pro
     to:   recipient,
     subject,
     html,
+    ...(opts.replyTo ? { replyTo: opts.replyTo } : {}),
   });
 
   if (error) {
@@ -116,12 +130,12 @@ export async function sendSMS(to: string, body: string): Promise<SmsResult> {
 
 /**
  * Send a Telegram message via bot API.
- * Never throws — failure is logged but does not block email or the response.
+ * Throws on failure or missing config, so allSettled reports it as not sent.
  */
 export async function sendTelegram(text: string): Promise<void> {
   if (!TG_TOKEN || !TG_CHAT) {
-    console.warn('[notify] Telegram not configured (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing) — skipped');
-    return;
+    console.warn('[notify] Telegram not configured (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing) — not sent');
+    throw new NotConfiguredError('telegram');
   }
 
   console.log(`[notify] Sending Telegram message to chat ${TG_CHAT}, length=${text.length}`);

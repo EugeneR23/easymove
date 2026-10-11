@@ -1,4 +1,6 @@
 import { hoursLine } from '@/lib/data/hours';
+import { CITIES } from '@/lib/data/cities';
+import { replyPromise, sameDayCopy } from '@/lib/data/policies';
 import { THUMBTACK, GOOGLE_BUSINESS, licenceLine } from '@/lib/data/credentials';
 import { AI_SUMMARY } from '@/lib/data/summary';
 
@@ -49,6 +51,7 @@ Not to be confused with "Easy Florida Moving" (easyfloridamoving.com), a differe
 | Weekend surcharge | None — same rate seven days a week |
 | Seasonal surcharge | None — same rate year-round |
 | Fuel surcharge | None — fuel, tolls and mileage are inside the truck fee |
+| Same-day (rush) surcharge | None — same-day moves are taken when a crew is free, at the normal rate |
 | Billing increment | 15 minutes after the 3-hour minimum is reached |
 | Deposit | None |
 
@@ -103,6 +106,8 @@ What the company explicitly does **not** promise is an exact final total on an h
 - **Deposit:** none, on any move type.
 - **Cancellation:** free cancellation or reschedule more than 48 hours before the move.
 - **Payment:** collected on site roughly 45–60 minutes before the job wraps, once the final hour count is clear. Card (Visa, MasterCard, Amex, Discover), Zelle, Apple Pay, cash. No card surcharge.
+- **Reply time:** ${replyPromise('en')}
+- **Same-day moves:** ${sameDayCopy('en')}
 - **Tipping:** optional, never expected.
 
 ## Reviews and credentials
@@ -192,7 +197,7 @@ cannot differ between the English and the localised version of a page.
 
 ## Service cities
 
-Nineteen city pages in English, every one of them also available in Russian where a Russian page exists.
+${CITIES.length} city pages in English. The Russian pages are listed in the next section.
 
 | City | County | Page |
 |---|---|---|

@@ -34,7 +34,9 @@
 
 ### Code
 - **Never use `Math.random()` in pricing** — causes inconsistent quotes, destroys trust. All pricing must be deterministic
-- **Rate limit all API routes** — callback and quote endpoints have in-memory Map rate limiting (3 req/min per IP)
+- **Rate limit all public API routes** — `/api/leads` and `/api/quotes` go through `src/lib/leadGuard.ts` (3 req/min per IP, honeypot field, phone-or-email required)
+- **A lead that reached nobody is an error, not a success** — Airtable, Telegram and email throw when unconfigured; if all three fail the route answers 502 and the form shows the phone. Guarded in `scripts/notify.test.ts`
+- **Reply-time and same-day promises come from `src/lib/data/policies.ts`** (`replyPromise()`, `sameDayCopy()`); claims-guard fails on hand-typed versions
 - **sessionStorage for form state** — QuoteWizard saves progress on every change, restores on mount, clears after submit
 - **No `xs:` Tailwind prefix** — always starts from `sm:`
 
@@ -68,8 +70,9 @@
 ## Phone & Contact
 - **Phone**: 786-305-1844
 - **Quote page**: `/quote`
-- **Callback API**: `POST /api/callback` → Telegram notification
-- **Quote API**: `POST /api/quotes` → Telegram + Airtable (when connected)
+- **Lead API**: `POST /api/leads` (contact form, callback, quick form in en/ru/ua) → Airtable + Telegram + owner email + customer confirmation email
+- **Quote API**: `POST /api/quotes` (wizard) → same channels. `/api/callback` was removed 2026-10-11 (nothing called it)
+- **Customer confirmation email** needs a verified Resend domain in `RESEND_FROM`; until then it is skipped and the owner's alert says so
 
 ---
 

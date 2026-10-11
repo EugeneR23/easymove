@@ -1,4 +1,5 @@
 import { requireSession } from '@/lib/auth';
+import { listRecentLeads, type AirtableLead } from '@/lib/airtable';
 import { readAllQuotes } from '@/lib/data/quotes';
 import { readAllLeads } from '@/lib/data/leads';
 import { formatCurrency, formatDateShort } from '@/lib/utils';
@@ -16,8 +17,26 @@ function StatCard({ label, value, sub, color }: { label: string; value: string |
   );
 }
 
-export default function AdminDashboard() {
+export const dynamic = 'force-dynamic';
+
+const fieldText = (v: unknown) => (v === undefined || v === null || v === '' ? '—' : String(v));
+
+export default async function AdminDashboard() {
   requireSession();
+  // Airtable is the record of every lead. The /tmp lists further down are a
+  // per-server cache that is empty after any redeploy.
+  let airtable: AirtableLead[] = [];
+  let airtableError = '';
+  try {
+    airtable = await listRecentLeads(50);
+  } catch (err) {
+    airtableError = (err as Error).message;
+  }
+  const byStatus = airtable.reduce<Record<string, number>>((acc, r) => {
+    const s = fieldText(r.fields['Status']);
+    acc[s] = (acc[s] ?? 0) + 1;
+    return acc;
+  }, {});
   const quotes = readAllQuotes();
   const leads = readAllLeads();
 
@@ -34,6 +53,49 @@ export default function AdminDashboard() {
         <h1 className="font-display text-3xl font-bold text-charcoal">Dashboard</h1>
         <p className="text-gray-500 mt-1">Welcome back. Here&apos;s an overview of your business.</p>
       </div>
+
+      {/* Airtable — the real lead list */}
+      <div className="bg-white border border-gray-100 mb-10">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-5 border-b border-gray-100">
+          <h2 className="font-display text-lg font-semibold text-charcoal">Latest requests — Airtable</h2>
+          <p className="text-xs text-gray-500">
+            {airtableError
+              ? `Airtable unavailable: ${airtableError}`
+              : `${airtable.length} newest · ` + Object.entries(byStatus).map(([s, n]) => `${s}: ${n}`).join(' · ')}
+          </p>
+        </div>
+        {airtable.length > 0 && (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-[11px] uppercase tracking-wider text-gray-400 border-b border-gray-100">
+                  <th className="px-4 py-3">Date</th><th className="px-4 py-3">Name</th><th className="px-4 py-3">Phone</th>
+                  <th className="px-4 py-3">Source</th><th className="px-4 py-3">Status</th><th className="px-4 py-3">Route</th>
+                  <th className="px-4 py-3">Est.</th><th className="px-4 py-3">Notes</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
+                {airtable.map((r) => (
+                  <tr key={r.id} className="align-top">
+                    <td className="px-4 py-3 whitespace-nowrap text-gray-500">{fieldText(r.fields['Created At'])}</td>
+                    <td className="px-4 py-3 font-medium text-charcoal">{fieldText(r.fields['Name'])}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      {r.fields['Phone'] ? <a className="text-gold hover:underline" href={`tel:${String(r.fields['Phone'])}`}>{String(r.fields['Phone'])}</a> : '—'}
+                    </td>
+                    <td className="px-4 py-3 text-gray-500">{fieldText(r.fields['Source'])}</td>
+                    <td className="px-4 py-3">{fieldText(r.fields['Status'])}</td>
+                    <td className="px-4 py-3 text-gray-500">{fieldText(r.fields['From City'])} → {fieldText(r.fields['To City'])}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">{typeof r.fields['Estimated Price'] === 'number' ? formatCurrency(r.fields['Estimated Price'] as number) : '—'}</td>
+                    <td className="px-4 py-3 text-gray-500 max-w-xs">{fieldText(r.fields['Notes']).slice(0, 120)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      <p className="text-xs text-gray-400 mb-4">Below: this server&apos;s temporary cache only. It empties on every deploy; Airtable above is the record.</p>
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">

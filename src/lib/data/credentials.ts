@@ -42,10 +42,12 @@ export const GOOGLE_BUSINESS: {
 } = {
   profileUrl: 'https://maps.app.goo.gl/o4bkrBqVUpgvKyF97',
   placeId: 'ChIJJcPs4dykvagR_uQxPaSlY_8',
-  // [TODO: Evgenii] the g.page/r/<id>/review "leave a review" short link — it is
-  // in the GBP dashboard under "Ask for reviews". Until it is here the CTA falls
-  // back to Thumbtack.
-  reviewUrl: null,
+  // Google's documented write-review link for this place ID. Checked 2026-10-11:
+  // the place ID decodes to feature 0xa8bda4dce1ecc325:0xff63a5a43d31e4fe, the
+  // same feature the profileUrl above resolves to ("Easy Move Florida"). The
+  // g.page/r/... short link from the dashboard can replace it once the profile
+  // is verified; both open the same review box.
+  reviewUrl: 'https://search.google.com/local/writereview?placeid=ChIJJcPs4dykvagR_uQxPaSlY_8',
   // Re-checked on the live profile 2026-10-02: 5.0 across 9 reviews.
   rating: '5.0',
   reviewCount: 9,

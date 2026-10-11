@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendSMS, sendEmail } from '@/lib/notify';
+import { unauthorizedUnlessAdmin } from '@/lib/auth';
+import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
 
-const REVIEW_URL = process.env.GOOGLE_REVIEW_URL ?? '';
+const REVIEW_URL = process.env.GOOGLE_REVIEW_URL || GOOGLE_BUSINESS.reviewUrl || '';
 
 /**
  * Trigger a post-move review request via SMS, email, or both.
@@ -12,6 +14,10 @@ const REVIEW_URL = process.env.GOOGLE_REVIEW_URL ?? '';
  * Body: { phone?, email?, name?, channel?: 'sms'|'email'|'both', moveCity?, moveType? }
  */
 export async function POST(req: NextRequest) {
+  // Sends SMS and email in the company's name to any number or address it is
+  // given. It had no auth at all until 2026-10-11; only the admin pages call it.
+  const denied = unauthorizedUnlessAdmin();
+  if (denied) return denied;
   try {
     const body = await req.json() as {
       phone?: string;

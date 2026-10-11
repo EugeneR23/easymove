@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Playfair_Display, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
+import ContactClickTracker from '@/components/analytics/ContactClickTracker';
 import { GOOGLE_BUSINESS, REVIEW_TOTALS, THUMBTACK, licenceIdentifiers } from '@/lib/data/credentials';
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
@@ -176,8 +177,8 @@ const localBusinessSchema = {
   foundingDate: '2021',
   founder: { '@id': `${siteUrl}/#founder` },
   sameAs: SAME_AS,
-  // Verified against the live Google Business Profile (place_id
-  // ChIJJcPs4dykvagR_uQxPaSlY_8): 5.0 from 6 reviews. Keep these two numbers in
+  // The Google rating and count live in credentials.ts (GOOGLE_BUSINESS), checked
+  // against the live profile (place_id ChIJJcPs4dykvagR_uQxPaSlY_8). Keep them in
   // step with the profile — a stale rating in schema is worse than none.
   //
   // The figure below is the blend across both platforms, not Google alone. Google
@@ -283,7 +284,7 @@ const organizationSchema = {
   // The Sacramento branch, declared as a sub-organization and deliberately NOT
   // in sameAs above. sameAs says "these URLs are the same entity", which would
   // invite Google to merge the two businesses and with them their ratings —
-  // this one has 41 reviews, Sacramento has none and is not open yet.
+  // this one has REVIEW_TOTALS.count reviews, Sacramento has none and is not open yet.
   // subOrganization says what is actually true: same owner, separate company.
   // That site publishes parentOrganization back at this @id, verified 2026-10-01.
   subOrganization: { '@id': 'https://www.easy-move-sacramento.com/#organization' },
@@ -405,6 +406,7 @@ export default function RootShell({
         />
         {children}
         <Analytics />
+        <ContactClickTracker />
         <DeferredTagManager />
       </body>
     </html>

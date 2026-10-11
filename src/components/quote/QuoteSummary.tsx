@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { replyPromise } from '@/lib/data/policies';
 import { CheckCircle, Phone, ArrowRight, Shield } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { hoursLine } from '@/lib/data/hours';
@@ -88,7 +89,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
           We&rsquo;ll contact you shortly
         </h2>
         <p className="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">
-          We&rsquo;ll review your details and confirm your final price — usually within a few hours.
+          We&rsquo;ll review your details and confirm your final price. {replyPromise('en')}
         </p>
         <p className="text-white/25 text-xs mt-4">Reference #{ref}</p>
       </div>

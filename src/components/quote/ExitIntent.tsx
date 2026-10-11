@@ -1,4 +1,5 @@
 'use client';
+import { replyPromise } from '@/lib/data/policies';
 import { useState, useEffect, useRef } from 'react';
 import { X, Phone } from 'lucide-react';
 
@@ -64,7 +65,7 @@ export default function ExitIntent() {
         {sent ? (
           <div className="flex-1 text-center py-1">
             <p className="text-gold font-semibold text-sm">Thanks — we&apos;ll contact you shortly.</p>
-            <p className="text-white/40 text-xs mt-1">A coordinator will reach out within a few hours.</p>
+            <p className="text-white/40 text-xs mt-1">{replyPromise('en')}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex-1">

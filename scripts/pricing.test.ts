@@ -14,6 +14,7 @@ import {
   minInvoice,
   HOURLY_RATE,
   PACKING_HOURLY_RATE,
+  localStartingPrice,
 } from '../src/lib/pricing';
 import { bandHours, bandRange, bandCrew, BAND_KEYS } from '../src/lib/pricingCopy';
 import { readFileSync } from 'node:fs';
@@ -221,6 +222,28 @@ check('every band key is known to the module', BAND_KEYS.length === 6, BAND_KEYS
     if (m[1] !== bandHours(key)) drift.push(`${key}: label ${m[1]} vs derived ${bandHours(key)}`);
   }
   check('Russian hour labels match the derived hours', drift.length === 0, drift);
+}
+
+// ── The calculator's "from" is the /pricing table's low end ─────────────────
+// Owner, 2026-10-11: a two-bedroom is "from $645" everywhere. The homepage
+// calculator said $710 (4.5 h) while /pricing said $645 (4 h). Office is left
+// out on purpose: 5 h against the 6–9 h band is still open question Q5.
+{
+  console.log('\n[from] calculator starting price equals the published band low');
+  // [band key, home size, crew at the band's low end]
+  const pairs: [string, string, CrewSize][] = [
+    ['studio', 'studio', 2], ['1br', '1br', 2], ['2br', '2br', 2], ['3br', '3br', 3], ['4br', '4br+', 3],
+  ];
+  const drift: string[] = [];
+  for (const [key, size, crew] of pairs) {
+    const low = Number(bandRange(key).split('–')[0].replace(/[^0-9]/g, ''));
+    const engine = localStartingPrice(size as never, crew);
+    if (engine !== low) drift.push(`${key}: calculator $${engine} vs /pricing $${low}`);
+  }
+  check('every size: calculator "from" = /pricing low end', drift.length === 0, drift);
+  const own = ['src/components/home/HeroSection.tsx', 'src/app/ru/page.tsx', 'src/components/v2/V2Calculator.tsx']
+    .filter((f) => /value:\s*'2br'[^}]*hrs:|PACKING_RATE\s*[:=]|PACKING_HOURS\s*[:=]/.test(readFileSync(f, 'utf8')));
+  check('no calculator keeps its own hours or packing rate', own.length === 0, own);
 }
 
 console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);

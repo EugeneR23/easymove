@@ -168,6 +168,18 @@ const RULES = [
 
   { id: 'stale-brand', why: 'The entity is Easy Move Florida. Other spellings split it in the knowledge graph.',
     re: /EasyMove Elite/g },
+
+  { id: 'reply-time-literal', why: 'Owner, 2026-10-11: one promise — a reply within 2 hours in working hours. It lives in policies.ts (RESPONSE) and reaches copy through replyPromise(). Five hand-typed versions ("a few hours", "2 business hours", "< 2 ч", "смета за 5 минут") contradicted each other until that day.',
+    re: /within (?:a few )?hours\b|within 2 business hours|estimate in 5 minutes|в течение (?:нескольких часов|2 часов)|<\s?2\s?ч(?![а-яё])|смета за 5 минут|кошторис за 5 хвилин|протягом кількох годин/gi },
+
+  { id: 'crew-knows-your-building', why: 'The crew does not know your building in advance; we find out its rules before move day. "Каждая бригада знает ваше здание" on /ru and "Бригада знает ваше здание до приезда" in /ru/about meta slipped past crew-knows-building until 2026-10-11.',
+    re: /(?:бригад\S*|crew)\s+(?:знает|знают|знає|knows?)\s+(?:ваше|ваш|your)\s+(?:здани|будин|building)/gi },
+
+  { id: 'telegram-promise', why: 'Owner, 2026-10-11: there is no customer Telegram channel. "WhatsApp + Telegram" promised a contact route with no link behind it.',
+    re: /WhatsApp\s*(?:\+|and|и|та|&)\s*Telegram|Telegram\s*(?:\+|and|и|та|&)\s*WhatsApp/gi },
+
+  { id: 'invented-testimonial', why: 'A review must be a real one, quoted from googleReviews.ts or Thumbtack. "Maria S., Brickell · Feb 2025" in the quote wizard and four /ru testimonials with avatar initials had no source anywhere (found 2026-10-11).',
+    re: /initials:\s*['"]|—\s*[A-Z][a-z]+ [A-Z]\.,\s*[A-Z][a-z]+\s*·\s*[A-Z][a-z]{2} 20\d\d/g },
 ];
 
 function* walk(p) {

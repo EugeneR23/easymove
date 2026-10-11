@@ -6,26 +6,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import { Phone, ArrowRight, CheckCircle, MessageCircle, Star } from 'lucide-react';
-import { localStartingPrice, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import { formatCurrency } from '@/lib/utils';
 import { whatsappUrl } from '@/lib/data/contact';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
-const SIZES: { value: HomeSize; label: string; hrs: number }[] = [
-  { value: 'studio', label: 'Studio', hrs: 3 },
-  { value: '1br', label: '1 BR', hrs: 3 },
-  { value: '2br', label: '2 BR', hrs: 4.5 },
-  { value: '3br', label: '3 BR', hrs: 6 },
-  { value: '4br+', label: '4+ BR', hrs: 8 },
-  { value: 'office', label: 'Office', hrs: 5 },
+// Hours and prices come from lib/pricing — this list only names the sizes.
+// It used to carry its own hours and its own packing rate, and the 2-bedroom
+// "from" here drifted to $710 while /pricing said $645.
+const SIZES: { value: HomeSize; label: string }[] = [
+  { value: 'studio', label: 'Studio' },
+  { value: '1br', label: '1 BR' },
+  { value: '2br', label: '2 BR' },
+  { value: '3br', label: '3 BR' },
+  { value: '4br+', label: '4+ BR' },
+  { value: 'office', label: 'Office' },
 ];
-
-const PACKING_RATE: Record<CrewSize, number> = { 2: 79, 3: 119, 4: 159 };
-
-function packingPrice(size: HomeSize, crew: CrewSize): number {
-  const hrs = Math.max(3, SIZES.find(s => s.value === size)?.hrs ?? 3);
-  return Math.round(PACKING_RATE[crew] * hrs);
-}
+const packingPrice = packingStartingPrice;
 
 const PARTICLES = [
   { top: '18%', left: '8%',  size: 3, cls: 'animate-float-a' },
@@ -42,7 +39,7 @@ export default function HeroSection() {
   const [crew, setCrew] = useState<CrewSize>(2);
 
   const showSizeGrid = moveType === 'local' || moveType === 'packing-only';
-  const sizeData = homeSize ? SIZES.find(s => s.value === homeSize) : null;
+  const sizeHours = homeSize ? startingHours(homeSize, moveType === 'packing-only') : null;
   const price =
     homeSize && moveType === 'local'
       ? localStartingPrice(homeSize, crew)
@@ -152,7 +149,7 @@ export default function HeroSection() {
               className="hero-rise text-gray-300 text-base lg:text-lg max-w-lg mb-8 leading-relaxed"
               style={{ animationDelay: '0.22s' }}
             >
-              From $129/hour with 3-hour minimum. Russian + English. WhatsApp + Telegram.
+              From $129/hour with 3-hour minimum. Russian + English. WhatsApp.
               Owner-led crew, transparent pricing, careful handling.
             </p>
 
@@ -311,7 +308,7 @@ export default function HeroSection() {
                       <p className="text-gold text-[10px] uppercase tracking-[0.2em] font-semibold mb-1">Your starting price</p>
                       <p className="font-display text-4xl font-bold text-white mb-1">{formatCurrency(price)}</p>
                       <p className="text-gray-400 text-xs">
-                        {sizeData?.hrs} hrs · {crew} {moveType === 'packing-only' ? 'packers' : 'movers'}
+                        {sizeHours} hrs · {crew} {moveType === 'packing-only' ? 'packers' : 'movers'}
                         {moveType === 'local' ? ` · incl. $${TRUCK_FEE[crew]} truck` : ''}
                       </p>
                     </div>

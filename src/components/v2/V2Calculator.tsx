@@ -1,15 +1,10 @@
 'use client';
+import { replyPromise } from '@/lib/data/policies';
 import { useState } from 'react';
 import Link from 'next/link';
 import { cn, formatCurrency } from '@/lib/utils';
-import { localStartingPrice, MIN_HOURS, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, MIN_HOURS } from '@/lib/pricing';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
-
-const PACKING_HOURS: Record<HomeSize, number> = {
-  studio: 3, '1br': 3, '2br': 4.5, '3br': 6, '4br+': 8, office: 5,
-};
-const packingStartingPrice = (size: HomeSize, crew: CrewSize) =>
-  Math.round(PACKING_HOURLY_RATE[crew] * Math.max(MIN_HOURS, PACKING_HOURS[size]));
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
   { value: 'local',         label: 'Local',         sub: 'Within South Florida' },
@@ -18,14 +13,9 @@ const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
   { value: 'specialty',     label: 'Specialty',     sub: 'Piano · art · office' },
 ];
 
-const HOME_SIZES: { value: HomeSize; label: string; hours: string }[] = [
-  { value: 'studio', label: 'Studio',      hours: '3 hrs' },
-  { value: '1br',    label: '1 Bedroom',   hours: '3 hrs' },
-  { value: '2br',    label: '2 Bedrooms',  hours: '4.5 hrs' },
-  { value: '3br',    label: '3 Bedrooms',  hours: '6 hrs' },
-  { value: '4br+',   label: '4+ Bedrooms', hours: '8 hrs' },
-  { value: 'office', label: 'Office',      hours: '5 hrs' },
-];
+const HOME_SIZES: { value: HomeSize; label: string; hours: string }[] = (
+  [['studio', 'Studio'], ['1br', '1 Bedroom'], ['2br', '2 Bedrooms'], ['3br', '3 Bedrooms'], ['4br+', '4+ Bedrooms'], ['office', 'Office']] as [HomeSize, string][]
+).map(([value, label]) => ({ value, label, hours: `${startingHours(value)} hrs` }));
 
 export default function V2Calculator() {
   const [moveType, setMoveType] = useState<MoveType | null>(null);
@@ -185,7 +175,7 @@ export default function V2Calculator() {
             <p className="text-white/40 text-sm mt-4 max-w-lg leading-relaxed">
               {isLong
                 ? 'Anywhere inside Florida, priced on miles, volume and access at both ends, with a written quote within 24 hours. We do not cross a state line — that needs federal authority we do not hold, and we will point you to a licensed carrier instead.'
-                : 'Pianos, art collections, estates and offices are planned personally with your coordinator. Tell us about the move — we respond within hours.'}
+                : `Pianos, art collections, estates and offices are planned personally with your coordinator. Tell us about the move. ${replyPromise('en')}`}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-8">
               <Link href={wizardHref} className="bg-gold hover:bg-gold-dark text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-4 text-center transition-colors">

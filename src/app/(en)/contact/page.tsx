@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { hoursLine, hoursRows } from '@/lib/data/hours';
+import { replyPromise } from '@/lib/data/policies';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ContactForm from '@/components/contact/ContactForm';
@@ -13,12 +14,12 @@ import { ogCard } from '@/lib/seo/og';
 export const metadata: Metadata = {
   title: { absolute: 'Contact Easy Move Florida — South Florida Moving Company' },
   description:
-    'Contact Easy Move Florida in Miami, Fort Lauderdale & Boca Raton. A real coordinator responds within hours — not a bot. Call 786-305-1844 or send a message.',
+    `Contact Easy Move Florida in Miami, Fort Lauderdale & Boca Raton. A real coordinator, not a bot. ${replyPromise('en')} Call 786-305-1844 or send a message.`,
   alternates: alternatesFor('contact', 'en'),
   openGraph: {
     title: 'Contact Easy Move Florida — South Florida Moving Company',
     description:
-      'A real coordinator responds within hours. No automated systems. Call 786-305-1844 or fill out the form.',
+      `A real coordinator answers. ${replyPromise('en')} Call 786-305-1844 or fill out the form.`,
     url: 'https://www.easy-move-florida.com/contact',
     images: [ogCard('Easy Move Florida — movers in South Florida')],
   },
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Contact Easy Move Florida — South Florida Moving Company',
     description:
-      'Reach a real coordinator within hours. Call 786-305-1844 or send a message. Serving Miami, Fort Lauderdale & Boca Raton.',
+      `${replyPromise('en')} Call 786-305-1844 or send a message. Serving Miami, Fort Lauderdale & Boca Raton.`,
   },
 };
 
@@ -57,7 +58,7 @@ export default function ContactPage() {
               Let&rsquo;s Plan Your Move
             </h1>
             <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-              A real coordinator responds within hours — not an automated system.
+              A real coordinator answers, not an automated system. {replyPromise('en')}
               Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.
             </p>
           </AnimateIn>
@@ -79,7 +80,7 @@ export default function ContactPage() {
                       Tell Us About Your Move
                     </h2>
                     <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-                      Fill in your details and we&rsquo;ll get back to you within a few hours with availability and a starting price.
+                      Fill in your details and we&rsquo;ll get back to you with availability and a starting price. {replyPromise('en')}
                     </p>
                     <ContactForm />
                   </div>
@@ -118,7 +119,7 @@ export default function ContactPage() {
                       <a href="mailto:romanov@easy-move-florida.com" className="text-charcoal text-sm font-medium hover:text-gold transition-colors">
                         romanov@easy-move-florida.com
                       </a>
-                      <p className="text-gray-400 text-xs mt-0.5">Replies within 2 business hours</p>
+                      <p className="text-gray-400 text-xs mt-0.5">{replyPromise('en')}</p>
                     </div>
                   </div>
                 </div>

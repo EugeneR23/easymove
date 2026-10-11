@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { hoursRows } from '@/lib/data/hours';
+import { replyPromise } from '@/lib/data/policies';
+import QuickLeadForm from '@/components/forms/QuickLeadForm';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -14,7 +16,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'Контакты | Easy Move Florida' },
   description:
-    'Свяжитесь с Easy Move Florida в Майами, Форт-Лодердейле и Бока-Ратоне. Реальный координатор отвечает в течение нескольких часов. Звоните 786-305-1844 или напишите.',
+    `Свяжитесь с Easy Move Florida в Майами, Форт-Лодердейле и Бока-Ратоне. Отвечает живой координатор: ${replyPromise('ru')} Звоните 786-305-1844 или оставьте заявку на этой странице.`,
   alternates: alternatesFor('contact', 'ru'),
   openGraph: {
     type: 'website',
@@ -64,7 +66,7 @@ export default function RuContactPage() {
               <div className="bg-white p-8">
                 <Mail size={24} className="text-gold mb-4" />
                 <h2 className="font-display text-xl font-semibold text-charcoal mb-2">Написать</h2>
-                <p className="text-gray-500 text-sm mb-4">Отвечаем в течение нескольких часов в рабочее время.</p>
+                <p className="text-gray-500 text-sm mb-4">{replyPromise('ru')}</p>
                 <a href="mailto:romanov@easy-move-florida.com" className="font-display text-base font-semibold text-charcoal hover:text-gold transition-colors break-all">
                   romanov@easy-move-florida.com
                 </a>
@@ -88,6 +90,16 @@ export default function RuContactPage() {
                   Корал-Гейблс, Кокосовый Гров, Форт-Лодердейл, Бока-Ратон и весь регион.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Russian request form. /ru/contact had no form until 2026-10-11:
+            the English page had one, the Russian twin only listed numbers. */}
+        <section className="bg-white pb-12">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="border border-gray-100 shadow-card p-6 sm:p-8">
+              <QuickLeadForm id="zayavka" locale="ru" />
             </div>
           </div>
         </section>
