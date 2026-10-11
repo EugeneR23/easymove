@@ -17,10 +17,15 @@ export function tgEscape(text: string | undefined | null): string {
     .replace(/>/g, '&gt;');
 }
 
-const TO_EMAIL  = process.env.NOTIFY_EMAIL      ?? 'romanov@easy-move-florida.com';
-const FROM_EMAIL = process.env.RESEND_FROM      ?? 'onboarding@resend.dev';
-const TG_TOKEN  = process.env.TELEGRAM_BOT_TOKEN;
-const TG_CHAT   = process.env.TELEGRAM_CHAT_ID;
+// Read at call time, not at module load. Captured once as constants, they made
+// a test that removed TELEGRAM_* still send a real message from the Vercel build
+// (2026-10-11), because the module had already copied the production values.
+const toEmail   = () => (process.env.NOTIFY_EMAIL ?? 'romanov@easy-move-florida.com').trim();
+const fromEmail = () => (process.env.RESEND_FROM ?? 'onboarding@resend.dev').trim();
+const tgToken   = () => process.env.TELEGRAM_BOT_TOKEN?.trim();
+const tgChat    = () => process.env.TELEGRAM_CHAT_ID?.trim();
+/** Resend's shared test domain. Delivers only to the account owner's own inbox. */
+const isSharedSender = (from: string) => /@resend\.dev>?$/i.test(from);
 
 
 /**
@@ -29,7 +34,7 @@ const TG_CHAT   = process.env.TELEGRAM_CHAT_ID;
  * RESEND_FROM, so customer-facing mail is skipped (and reported) until then.
  */
 export function senderVerified(): boolean {
-  return !!process.env.RESEND_API_KEY && FROM_EMAIL !== 'onboarding@resend.dev';
+  return !!process.env.RESEND_API_KEY && !isSharedSender(fromEmail());
 }
 
 /**
@@ -46,9 +51,10 @@ export async function sendEmail(subject: string, html: string, to?: string, opts
     throw new NotConfiguredError('email');
   }
 
-  const recipient = to ?? TO_EMAIL;
+  const recipient = to ?? toEmail();
+  const FROM_EMAIL = fromEmail();
 
-  if (FROM_EMAIL === 'onboarding@resend.dev') {
+  if (isSharedSender(FROM_EMAIL)) {
     console.warn('[notify] RESEND_FROM is using the default onboarding@resend.dev sender. ' +
       'This only works when sending to your own Resend-verified email. ' +
       'Set RESEND_FROM to a verified domain address (e.g. noreply@easy-move-florida.com).');
@@ -133,6 +139,8 @@ export async function sendSMS(to: string, body: string): Promise<SmsResult> {
  * Throws on failure or missing config, so allSettled reports it as not sent.
  */
 export async function sendTelegram(text: string): Promise<void> {
+  const TG_TOKEN = tgToken();
+  const TG_CHAT = tgChat();
   if (!TG_TOKEN || !TG_CHAT) {
     console.warn('[notify] Telegram not configured (TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing) — not sent');
     throw new NotConfiguredError('telegram');

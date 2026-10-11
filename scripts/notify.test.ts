@@ -98,6 +98,17 @@ async function main() {
   // missing config; Promise.allSettled called that "fulfilled", and a lead that
   // reached nobody was logged as delivered while the customer saw "received".
   console.log('\n[3] Unconfigured channels reject');
+  // This test runs inside the Vercel build, where the real keys exist. On
+  // 2026-10-11 it sent a real Telegram message from the build, because notify.ts
+  // had copied the token into a constant at import time and deleting the env
+  // var afterwards changed nothing. So: no network at all here — fetch is
+  // stubbed and every call is recorded — and settings must be read per call.
+  const realFetch = globalThis.fetch;
+  const calls: string[] = [];
+  globalThis.fetch = (async (url: string | URL | Request) => {
+    calls.push(String(url));
+    return new Response('{}', { status: 200 });
+  }) as typeof fetch;
   for (const k of ['RESEND_API_KEY', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID', 'AIRTABLE_API_KEY', 'AIRTABLE_BASE_ID']) {
     delete process.env[k];
   }
@@ -106,6 +117,7 @@ async function main() {
     sendTelegram('t'),
     sendToAirtable({ Name: 't' }),
   ]);
+  check('an unconfigured channel makes no network call', calls.length === 0, calls);
   check('sendEmail without RESEND_API_KEY rejects', settled[0].status === 'rejected', settled[0].status);
   check('sendTelegram without token rejects', settled[1].status === 'rejected', settled[1].status);
   check('sendToAirtable without key rejects', settled[2].status === 'rejected', settled[2].status);
@@ -131,10 +143,16 @@ async function main() {
   const noAddr = await sendCustomerConfirmation('', { locale: 'en', firstName: 'T', ref: 'x' });
   check('no email -> no-recipient', !noAddr.sent && noAddr.reason === 'no-recipient', noAddr);
   process.env.RESEND_API_KEY = 're_test';
-  delete process.env.RESEND_FROM;
-  const unverified = await sendCustomerConfirmation('a@b.co', { locale: 'ru', firstName: 'T', ref: 'x' });
-  check('onboarding sender -> sender-not-verified, not a send attempt',
-    !unverified.sent && unverified.reason === 'sender-not-verified', unverified);
+  // Production's RESEND_FROM is Resend's shared sender with a trailing newline:
+  // a strict equality with 'onboarding@resend.dev' called it verified (build log).
+  for (const from of ['onboarding@resend.dev', 'onboarding@resend.dev\n', ' Easy <onboarding@resend.dev>']) {
+    process.env.RESEND_FROM = from;
+    const r = await sendCustomerConfirmation('a@b.co', { locale: 'ru', firstName: 'T', ref: 'x' });
+    check(`shared sender ${JSON.stringify(from)} -> sender-not-verified, no send attempt`,
+      !r.sent && r.reason === 'sender-not-verified', r);
+  }
+  check('still no network call after the confirmation checks', calls.length === 0, calls);
+  globalThis.fetch = realFetch;
 
   console.log(failed === 0 ? '\nALL PASS' : `\n${failed} FAILURE(S)`);
   process.exit(failed ? 1 : 0);
