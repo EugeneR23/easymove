@@ -42,6 +42,12 @@ const isSharedSender = (from: string) => /@resend\.dev>?$/i.test(from);
  */
 export const customerFromEmail = () => (process.env.RESEND_CUSTOMER_FROM ?? '').trim();
 
+/**
+ * Owner, 2026-10-11: lead alerts by Telegram are enough; no email copy. Set
+ * OWNER_EMAIL_ALERTS=on to bring the owner's email alert back.
+ */
+export const ownerEmailEnabled = () => (process.env.OWNER_EMAIL_ALERTS ?? '').trim().toLowerCase() === 'on';
+
 export function senderVerified(): boolean {
   const from = customerFromEmail();
   return !!process.env.RESEND_API_KEY && from !== '' && !isSharedSender(from);

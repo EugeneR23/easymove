@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { unauthorizedUnlessAdmin } from '@/lib/auth';
 import { readAllLeads, createLead } from '@/lib/data/leads';
 import { generateId } from '@/lib/utils';
-import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
+import { sendEmail, sendTelegram, sendSMS, tgEscape, ownerEmailEnabled } from '@/lib/notify';
 import { sendToAirtable, normalizeSource } from '@/lib/airtable';
 import { rateLimited, isHoneypotFilled, hasContact } from '@/lib/leadGuard';
 import { sendCustomerConfirmation, confirmationNote, customerLocale } from '@/lib/customerEmail';
@@ -192,18 +192,20 @@ export async function POST(req: NextRequest) {
         lead.phone,
         'Thanks for contacting Easy Move Florida. We received your request and will reach out shortly with your confirmed quote. Reply STOP to opt out.',
       ),
-      sendEmail(subject, html),
+      // Owner chose Telegram only (2026-10-11); 'skipped' is not a delivery.
+      ownerEmailEnabled() ? sendEmail(subject, html) : Promise.resolve('skipped' as const),
     ]);
 
     status.airtable = airtableResult.status === 'fulfilled';
     status.telegram = tgResult.status       === 'fulfilled';
     // sendSMS never throws, so a fulfilled promise says nothing about delivery.
     status.sms      = smsResult.status === 'fulfilled' && smsResult.value.sent;
-    status.email    = emailResult.status    === 'fulfilled';
+    const emailSkipped = emailResult.status === 'fulfilled' && emailResult.value === 'skipped';
+    status.email    = emailResult.status    === 'fulfilled' && !emailSkipped;
 
     if (!status.airtable) console.error('[api/leads] Airtable FAILED:', (airtableResult as PromiseRejectedResult).reason);
     if (!status.telegram) console.error('[api/leads] Telegram FAILED:', (tgResult as PromiseRejectedResult).reason);
-    if (!status.email)    console.error('[api/leads] Email FAILED:', (emailResult as PromiseRejectedResult).reason);
+    if (!status.email && !emailSkipped)    console.error('[api/leads] Email FAILED:', (emailResult as PromiseRejectedResult).reason);
     if (!status.sms) {
       const why = smsResult.status === 'fulfilled' ? smsResult.value : (smsResult as PromiseRejectedResult).reason;
       console.warn('[api/leads] SMS not sent:', why);

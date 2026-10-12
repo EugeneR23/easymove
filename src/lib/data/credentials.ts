@@ -122,7 +122,7 @@ export const REVIEW_SOURCING_NOTE =
 /** True once there is a licence number worth showing. */
 export const hasLicenceNumber = (): boolean => Boolean(FDACS_NUMBER || USDOT_NUMBER);
 
-/** "FDACS IM1234 · USDOT 5292075", or null while neither is set. */
+/** "Fla. IM No. IM1234 · USDOT 5292075", or null while neither is set. */
 /**
  * schema.org identifiers for the registrations that are set, in the shape
  * competitors use (Surf Moving publishes IM4087 as an `identifier`). Empty
@@ -137,7 +137,10 @@ export function licenceIdentifiers(): { '@type': 'PropertyValue'; propertyID: st
 
 export function licenceLine(): string | null {
   const parts: string[] = [];
-  if (FDACS_NUMBER) parts.push(`FDACS ${FDACS_NUMBER}`);
+  // s. 507.03, Fla. Stat. (2025): a registered mover's advertisements must show
+  // "Fla. Mover Reg. No." or "Fla. IM No." followed by the number. The site is
+  // an advertisement, so this exact wording, not "FDACS IM1234".
+  if (FDACS_NUMBER) parts.push(`Fla. IM No. ${FDACS_NUMBER}`);
   if (USDOT_NUMBER) parts.push(`USDOT ${USDOT_NUMBER}`);
   return parts.length ? parts.join(' · ') : null;
 }

@@ -3,7 +3,7 @@ import { unauthorizedUnlessAdmin } from '@/lib/auth';
 import { readAllQuotes, createQuote } from '@/lib/data/quotes';
 import { calculatePricing, estimateLocalDistance, routeMode, MOVE_TYPES, LONG_DISTANCE_THRESHOLD_MILES } from '@/lib/pricing';
 import { generateId } from '@/lib/utils';
-import { sendEmail, sendTelegram, sendSMS, tgEscape } from '@/lib/notify';
+import { sendEmail, sendTelegram, sendSMS, tgEscape, ownerEmailEnabled } from '@/lib/notify';
 import { sendToAirtable } from '@/lib/airtable';
 import { rateLimited, isHoneypotFilled, hasContact } from '@/lib/leadGuard';
 import { sendCustomerConfirmation, confirmationNote, customerLocale } from '@/lib/customerEmail';
@@ -373,14 +373,16 @@ export async function POST(req: NextRequest) {
         quote.phone,
         `Hi ${quote.firstName || 'there'}! This is Evgenii from Easy Move Florida. Thank you for your request — we're reviewing it now and will contact you shortly with your confirmed quote. Feel free to call or text me directly: 786-305-1844. Reply STOP to opt out.`,
       ),
-      sendEmail(subject, html),
+      // Owner chose Telegram only (2026-10-11); 'skipped' is not a delivery.
+      ownerEmailEnabled() ? sendEmail(subject, html) : Promise.resolve('skipped' as const),
     ]);
 
     status.airtable = airtableResult.status === 'fulfilled';
     status.telegram = tgResult.status       === 'fulfilled';
     // sendSMS never throws, so a fulfilled promise says nothing about delivery.
     status.sms      = smsResult.status === 'fulfilled' && smsResult.value.sent;
-    status.email    = emailResult.status    === 'fulfilled';
+    const emailSkipped = emailResult.status === 'fulfilled' && emailResult.value === 'skipped';
+    status.email    = emailResult.status    === 'fulfilled' && !emailSkipped;
 
     if (!status.airtable) console.error('[api/quotes] Airtable FAILED:', (airtableResult as PromiseRejectedResult).reason);
     else                  console.log('[api/quotes] Airtable OK');
@@ -396,7 +398,7 @@ export async function POST(req: NextRequest) {
     }
     else                  console.log('[api/quotes] SMS OK');
 
-    if (!status.email)    console.error('[api/quotes] Email failed:', (emailResult as PromiseRejectedResult).reason);
+    if (!status.email && !emailSkipped)    console.error('[api/quotes] Email failed:', (emailResult as PromiseRejectedResult).reason);
     else                  console.log('[api/quotes] Email OK');
 
     // ── 7. Final debug summary ────────────────────────────────────────────────
