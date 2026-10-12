@@ -1,5 +1,6 @@
 import { requireSession } from '@/lib/auth';
 import { listRecentLeads, type AirtableLead } from '@/lib/airtable';
+import ReviewRequestButton from '@/components/admin/ReviewRequestButton';
 import { readAllQuotes } from '@/lib/data/quotes';
 import { readAllLeads } from '@/lib/data/leads';
 import { formatCurrency, formatDateShort } from '@/lib/utils';
@@ -71,7 +72,7 @@ export default async function AdminDashboard() {
                 <tr className="text-left text-[11px] uppercase tracking-wider text-gray-400 border-b border-gray-100">
                   <th className="px-4 py-3">Date</th><th className="px-4 py-3">Name</th><th className="px-4 py-3">Phone</th>
                   <th className="px-4 py-3">Source</th><th className="px-4 py-3">Status</th><th className="px-4 py-3">Route</th>
-                  <th className="px-4 py-3">Est.</th><th className="px-4 py-3">Notes</th>
+                  <th className="px-4 py-3">Est.</th><th className="px-4 py-3">Notes</th><th className="px-4 py-3">Review</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
@@ -87,6 +88,11 @@ export default async function AdminDashboard() {
                     <td className="px-4 py-3 text-gray-500">{fieldText(r.fields['From City'])} → {fieldText(r.fields['To City'])}</td>
                     <td className="px-4 py-3 whitespace-nowrap">{typeof r.fields['Estimated Price'] === 'number' ? formatCurrency(r.fields['Estimated Price'] as number) : '—'}</td>
                     <td className="px-4 py-3 text-gray-500 max-w-xs">{fieldText(r.fields['Notes']).slice(0, 120)}</td>
+                    <td className="px-4 py-3">
+                      {typeof r.fields['Email'] === 'string' && r.fields['Email']
+                        ? <ReviewRequestButton email={r.fields['Email'] as string} name={fieldText(r.fields['Name'])} />
+                        : <span className="text-gray-300 text-xs">no email</span>}
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendSMS, sendEmail } from '@/lib/notify';
+import { sendSMS, sendEmail, senderVerified, customerFromEmail } from '@/lib/notify';
 import { unauthorizedUnlessAdmin } from '@/lib/auth';
 import { GOOGLE_BUSINESS } from '@/lib/data/credentials';
 
@@ -91,16 +91,24 @@ export async function POST(req: NextRequest) {
           <p>— Evgenii Romanov<br/>Owner, Easy Move Florida<br/>786-305-1844</p>
         </div>
       `;
-      try {
-        await sendEmail(subject, html, body.email);
-        results.email = true;
-      } catch (e) {
-        results.email = (e as Error).message;
+      // Owner, 2026-10-11 (Q14): review requests go by email, from the customer
+      // sender. Until the domain is verified in Resend it says so instead of
+      // pretending.
+      if (!senderVerified()) {
+        results.email = 'not sent: sender-not-verified';
+      } else {
+        try {
+          await sendEmail(subject, html, body.email, { from: customerFromEmail(), replyTo: 'romanov@easy-move-florida.com' });
+          results.email = true;
+        } catch (e) {
+          results.email = (e as Error).message;
+        }
       }
     }
 
     console.log(`[review-request] Sent to name=${body.name} phone=${body.phone} email=${body.email} channel=${channel}`, results);
-    return NextResponse.json({ ok: true, results });
+    const ok = Object.values(results).some((v) => v === true);
+    return NextResponse.json({ ok, results }, { status: ok ? 200 : 502 });
   } catch (err) {
     console.error('[review-request] Error:', err);
     return NextResponse.json({ error: 'Failed to send' }, { status: 500 });

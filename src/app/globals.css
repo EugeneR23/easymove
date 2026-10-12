@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fonts are loaded via next/font/google in layout.tsx — no @import needed */
+/* Fonts are self-hosted via next/font/local in components/layout/RootShell.tsx (src/fonts) — no @import needed */
 
 @layer base {
   * {

@@ -146,11 +146,20 @@ async function main() {
   // Production's RESEND_FROM is Resend's shared sender with a trailing newline:
   // a strict equality with 'onboarding@resend.dev' called it verified (build log).
   for (const from of ['onboarding@resend.dev', 'onboarding@resend.dev\n', ' Easy <onboarding@resend.dev>']) {
-    process.env.RESEND_FROM = from;
+    process.env.RESEND_CUSTOMER_FROM = from;
     const r = await sendCustomerConfirmation('a@b.co', { locale: 'ru', firstName: 'T', ref: 'x' });
     check(`shared sender ${JSON.stringify(from)} -> sender-not-verified, no send attempt`,
       !r.sent && r.reason === 'sender-not-verified', r);
   }
+  delete process.env.RESEND_CUSTOMER_FROM;
+  const noSender = await sendCustomerConfirmation('a@b.co', { locale: 'en', firstName: 'T', ref: 'x' });
+  check('no RESEND_CUSTOMER_FROM -> sender-not-verified (owner sender is never used for customers)',
+    !noSender.sent && noSender.reason === 'sender-not-verified', noSender);
+  process.env.RESEND_FROM = 'romanov@easy-move-florida.com';
+  const ownerOnly = await sendCustomerConfirmation('a@b.co', { locale: 'en', firstName: 'T', ref: 'x' });
+  check('a domain RESEND_FROM alone does not switch customer mail on',
+    !ownerOnly.sent && ownerOnly.reason === 'sender-not-verified', ownerOnly);
+  delete process.env.RESEND_FROM;
   check('still no network call after the confirmation checks', calls.length === 0, calls);
   globalThis.fetch = realFetch;
 

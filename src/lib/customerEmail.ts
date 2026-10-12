@@ -8,7 +8,7 @@
  * Every figure here comes from lib/pricing (passed in) and lib/data/policies.
  * Nothing is typed by hand, so the email cannot promise what the site does not.
  */
-import { sendEmail, senderVerified } from './notify';
+import { sendEmail, senderVerified, customerFromEmail } from './notify';
 import { CANCELLATION, COI, PAYMENT, replyPromise } from './data/policies';
 import { PHONE } from './data/contact';
 
@@ -107,7 +107,7 @@ export async function sendCustomerConfirmation(to: string | undefined, input: Co
   if (!senderVerified()) return { sent: false, reason: 'sender-not-verified' };
   const { subject, html } = buildConfirmation(input);
   try {
-    await sendEmail(subject, html, address, { replyTo: 'romanov@easy-move-florida.com' });
+    await sendEmail(subject, html, address, { replyTo: 'romanov@easy-move-florida.com', from: customerFromEmail() });
     return { sent: true };
   } catch (err) {
     return { sent: false, reason: 'failed', detail: (err as Error).message };

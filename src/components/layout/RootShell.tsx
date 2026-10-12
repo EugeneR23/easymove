@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { Playfair_Display, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/react';
 import DeferredTagManager from '@/components/analytics/DeferredTagManager';
 import ContactClickTracker from '@/components/analytics/ContactClickTracker';
@@ -15,18 +15,28 @@ import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
 
 // SEO/CWV: trimmed font weights to reduce preloaded woff2 files (was 13 across latin+cyrillic).
 // Headings use 400/600/700, body uses 400/500/700. Italics + extra weights dropped.
-const playfair = Playfair_Display({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['400', '600', '700'],
+// Fonts live in the repo (src/fonts, SIL OFL; licences alongside). Until
+// 2026-10-11 next/font/google fetched them from Google on every build, and on
+// 2026-10-01 a bad response from Google failed a production deploy (Q16).
+// One variable woff2 per family, latin + cyrillic, weights 400-700, built from
+// google/fonts with fontTools (Inter pinned at opsz 14). That replaces up to
+// 13 preloaded subset files with 2.
+const playfair = localFont({
+  src: '../../fonts/PlayfairDisplay-latin-cyrillic.woff2',
+  weight: '400 700',
+  style: 'normal',
   variable: '--font-playfair',
   display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 });
 
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '700'],
+const inter = localFont({
+  src: '../../fonts/Inter-latin-cyrillic.woff2',
+  weight: '400 700',
+  style: 'normal',
   variable: '--font-inter',
   display: 'swap',
+  adjustFontFallback: 'Arial',
 });
 
 const siteUrl = SITE_URL;

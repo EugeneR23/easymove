@@ -33,8 +33,18 @@ const isSharedSender = (from: string) => /@resend\.dev>?$/i.test(from);
  * owner's own address. Mail to a customer needs a verified domain sender in
  * RESEND_FROM, so customer-facing mail is skipped (and reported) until then.
  */
+/**
+ * The sender for mail to CUSTOMERS. Kept apart from RESEND_FROM (owner alerts)
+ * since 2026-10-11: switching the one shared variable to romanov@ before Resend
+ * had verified the domain made Resend refuse every email, owner alerts
+ * included (403 "domain is not verified"). Now the owner's alerts stay on the
+ * sender that works, and customer mail starts by itself once Resend verifies.
+ */
+export const customerFromEmail = () => (process.env.RESEND_CUSTOMER_FROM ?? '').trim();
+
 export function senderVerified(): boolean {
-  return !!process.env.RESEND_API_KEY && !isSharedSender(fromEmail());
+  const from = customerFromEmail();
+  return !!process.env.RESEND_API_KEY && from !== '' && !isSharedSender(from);
 }
 
 /**
@@ -44,7 +54,7 @@ export function senderVerified(): boolean {
  * `to` defaults to NOTIFY_EMAIL (the owner's inbox) for internal notifications.
  * Pass an explicit address (e.g. customer email for review requests) to override.
  */
-export async function sendEmail(subject: string, html: string, to?: string, opts: { replyTo?: string } = {}): Promise<void> {
+export async function sendEmail(subject: string, html: string, to?: string, opts: { replyTo?: string; from?: string } = {}): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.warn('[notify] RESEND_API_KEY not set — email not sent');
@@ -52,7 +62,7 @@ export async function sendEmail(subject: string, html: string, to?: string, opts
   }
 
   const recipient = to ?? toEmail();
-  const FROM_EMAIL = fromEmail();
+  const FROM_EMAIL = opts.from?.trim() || fromEmail();
 
   if (isSharedSender(FROM_EMAIL)) {
     console.warn('[notify] RESEND_FROM is using the default onboarding@resend.dev sender. ' +
