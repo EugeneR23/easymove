@@ -72,7 +72,7 @@
 - **Quote page**: `/quote`
 - **Lead API**: `POST /api/leads` (contact form, callback, quick form in en/ru/ua) → Airtable + Telegram + owner email + customer confirmation email
 - **Quote API**: `POST /api/quotes` (wizard) → same channels. `/api/callback` was removed 2026-10-11 (nothing called it)
-- **Customer confirmation email** needs a verified Resend domain in `RESEND_FROM`; until then it is skipped and the owner's alert says so
+- **Two Resend senders**: `RESEND_FROM` for the owner's alerts, `RESEND_CUSTOMER_FROM` (romanov@) for customer confirmations and review requests. Never point `RESEND_FROM` at the domain before Resend shows it Verified: on 2026-10-11 that made Resend refuse the owner's alerts too (403)
 
 ---
 
