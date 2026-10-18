@@ -5,7 +5,8 @@
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
       "Bash(npx vercel:*)",
-      "Bash(node heights.mjs)"
+      "Bash(node heights.mjs)",
+      "ClaudeInChromeDomain(business.facebook.com)"
     ]
   }
 }
