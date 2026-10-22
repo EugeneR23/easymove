@@ -806,7 +806,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you pack for me as well?',
-        a: 'Yes. Packing is $79 per hour for two packers, and a studio packing package starts at $237. On the beach we most often pack kitchens, artwork and closets while the client handles the rest, which keeps the bill down. We bring materials with us. If your building has a tight elevator window, packing the day before is usually the difference between a comfortable move and a rushed one.',
+        a: 'Yes. Packing is $99 per hour for two packers, and a studio packing package starts at $297. On the beach we most often pack kitchens, artwork and closets while the client handles the rest, which keeps the bill down. We bring materials with us. If your building has a tight elevator window, packing the day before is usually the difference between a comfortable move and a rushed one.',
       },
     ],
   },
@@ -841,7 +841,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Art, mirrors and high-value pieces',
-        body: 'Homes here often contain framed art, large mirrors, glass tables and pieces that cost more than the move. We crate and blanket-wrap those rather than trusting a pad and hope. Packing runs $79 per hour for two packers and we usually recommend it for exactly these items even when clients pack the rest themselves. Tell us what needs special handling when you call and we will price the time for it up front instead of discovering it in your living room.',
+        body: 'Homes here often contain framed art, large mirrors, glass tables and pieces that cost more than the move. We crate and blanket-wrap those rather than trusting a pad and hope. Packing runs $99 per hour for two packers and we usually recommend it for exactly these items even when clients pack the rest themselves. Tell us what needs special handling when you call and we will price the time for it up front instead of discovering it in your living room.',
       },
       {
         title: 'A transparent invoice, no surcharges',
@@ -942,7 +942,7 @@ export const CITIES: CityData[] = [
       { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Can you help with packing and boxes?',
-        a: 'Yes. Two packers are $79 per hour, and a studio packing package starts at $237. Most clients here have us pack the kitchen and any glass or artwork and handle bedrooms and closets themselves. We bring boxes, paper, tape and wardrobe cartons with us. For an older building with a slow elevator, packing the day before is often what keeps the move day inside its window.',
+        a: 'Yes. Two packers are $99 per hour, and a studio packing package starts at $297. Most clients here have us pack the kitchen and any glass or artwork and handle bedrooms and closets themselves. We bring boxes, paper, tape and wardrobe cartons with us. For an older building with a slow elevator, packing the day before is often what keeps the move day inside its window.',
       },
       {
         q: 'Do you have Russian-speaking movers?',
@@ -999,7 +999,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Between closings, and during the school year',
-        body: 'Plenty of Pembroke Pines moves fall in a gap: the new house closes a week after the old one, or the family wants the move inside a school break. Storage starts at $200 per month, so we can load, hold and deliver without you renting a unit or hiring twice. Packing is from $79 per hour for two packers. Booking needs no deposit, and cancelling more than 48 hours out is free.',
+        body: 'Plenty of Pembroke Pines moves fall in a gap: the new house closes a week after the old one, or the family wants the move inside a school break. Storage starts at $200 per month, so we can load, hold and deliver without you renting a unit or hiring twice. Packing is from $99 per hour for two packers. Booking needs no deposit, and cancelling more than 48 hours out is free.',
       },
     ],
     faqs: [
@@ -1112,7 +1112,7 @@ export const CITIES: CityData[] = [
       { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Can you pack the house as well as move it?',
-        a: 'Yes. Packing is from $79 per hour for two packers, and it can be a full pack or only the parts that eat the most time on move day: kitchens, wardrobes, art and glass. In houses this size, packing the day before usually shortens the move itself enough to be worth the cost, particularly when the association window is tight. We bring materials and can pack only what you name, leaving the rest to you.',
+        a: 'Yes. Packing is from $99 per hour for two packers, and it can be a full pack or only the parts that eat the most time on move day: kitchens, wardrobes, art and glass. In houses this size, packing the day before usually shortens the move itself enough to be worth the cost, particularly when the association window is tight. We bring materials and can pack only what you name, leaving the rest to you.',
       },
       {
         q: 'Who actually shows up, and what languages do they speak?',
@@ -1190,7 +1190,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you pack the children’s rooms and the kitchen only?',
-        a: 'Yes. Packing is from $79 an hour for two packers and can be scoped to whatever you want done, which for families is usually the kitchen, the fragile items and the children’s rooms. A studio-sized packing package starts at $237. Packing those rooms the day before shortens move day noticeably, and it means the boxes that need to be opened first are labelled and loaded last, so they come off the truck first at the new house.',
+        a: 'Yes. Packing is from $99 an hour for two packers and can be scoped to whatever you want done, which for families is usually the kitchen, the fragile items and the children’s rooms. A studio-sized packing package starts at $297. Packing those rooms the day before shortens move day noticeably, and it means the boxes that need to be opened first are labelled and loaded last, so they come off the truck first at the new house.',
       },
       {
         q: 'Is Saturday more expensive, or the summer?',
@@ -1284,7 +1284,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you pack, or only load what I have already boxed?',
-        a: 'Either. Packing is $79 an hour for two packers, and a studio packing package starts at $237. Plenty of people in Sunrise pack their own clothes and books and hand us the kitchen, the artwork and the electronics, which is usually the sensible split. We bring materials, label by room and unpack at the other end if you want that too. Tell us which parts you want covered and it goes in the estimate.',
+        a: 'Either. Packing is $99 an hour for two packers, and a studio packing package starts at $297. Plenty of people in Sunrise pack their own clothes and books and hand us the kitchen, the artwork and the electronics, which is usually the sensible split. We bring materials, label by room and unpack at the other end if you want that too. Tell us which parts you want covered and it goes in the estimate.',
       },
       {
         q: 'Do you speak Russian?',
@@ -1590,7 +1590,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you pack, or only load what I have already boxed?',
-        a: 'Either. Packing is $79 an hour for two packers, and a studio packing package starts at $237. Many people pack their own clothes and books and hand us the kitchen, the artwork and the electronics. We bring materials, label by room and unpack at the other end if you want that too.',
+        a: 'Either. Packing is $99 an hour for two packers, and a studio packing package starts at $297. Many people pack their own clothes and books and hand us the kitchen, the artwork and the electronics. We bring materials, label by room and unpack at the other end if you want that too.',
       },
       {
         q: 'Do you speak Russian?',

@@ -59,7 +59,7 @@ const SECTIONS = [
   },
   {
     title: `Pricing in plain terms`,
-    body: `The rate is set by crew size: $129 per hour for two movers, $179 for three, $219 for four, with a three-hour minimum on every job. The truck is billed once per day at the same rate as your crew, $129, $179 or $219, so the smallest possible invoice is $516 with a two-mover crew. There are no weekend, fuel or stairs fees. Typical totals: a studio runs $516–$645, a one-bedroom $516–$774, a two-bedroom $645–$1,253, a three-bedroom $1,253–$1,611, and larger homes $1,611–$2,327. Packing help is available from $79 per hour, or $237 for a complete studio packing package, and storage starts at $200 per month.`,
+    body: `The rate is set by crew size: $129 per hour for two movers, $179 for three, $219 for four, with a three-hour minimum on every job. The truck is billed once per day at the same rate as your crew, $129, $179 or $219, so the smallest possible invoice is $516 with a two-mover crew. There are no weekend, fuel or stairs fees. Typical totals: a studio runs $516–$645, a one-bedroom $516–$774, a two-bedroom $645–$1,253, a three-bedroom $1,253–$1,611, and larger homes $1,611–$2,327. Packing help is available from $99 per hour, or $297 for a complete studio packing package, and storage starts at $200 per month.`,
   },
   {
     title: `High-rise paperwork, handled for you`,

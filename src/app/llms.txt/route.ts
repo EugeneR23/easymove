@@ -191,7 +191,7 @@ cannot differ between the English and the localised version of a page.
 - [High-rise and condo moving](https://www.easy-move-florida.com/services/residential-moving) — COI in 24 hours, elevator and loading dock coordination
 - [Office and commercial moving](https://www.easy-move-florida.com/services/office-commercial)
 - [Fine art and specialty items](https://www.easy-move-florida.com/services/specialty-items) — custom crating
-- [Packing services](https://www.easy-move-florida.com/packing-services) — from $79/hour for 2 packers, studio package from $237
+- [Packing services](https://www.easy-move-florida.com/packing-services) — from $99/hour for 2 packers, studio package from $297
 - [Storage coordination](https://www.easy-move-florida.com/services/storage-solutions) — blankets left permanently in storage are billed
 - Small handyman work bundled with a move: TV mounting, IKEA assembly, shelving. No licensed plumbing, electrical, HVAC or permit work.
 

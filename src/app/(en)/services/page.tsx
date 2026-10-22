@@ -67,7 +67,7 @@ const SERVICES = [
     sub: 'We pack — you relax',
     description:
       'Professional packers wrap and box everything using premium materials. We label by room, protect fragile items individually, and can unpack and organize at your new home.',
-    highlights: ['$79/hr · 2-packer crew', '$119/hr · 3-packer crew', 'Premium boxes & materials', 'Fragile item wrapping', 'Unpack & organize available'],
+    highlights: ['$99/hr · 2-packer crew', '$139/hr · 3-packer crew', 'Premium boxes & materials', 'Fragile item wrapping', 'Unpack & organize available'],
     image: '/images/Real/6.png',
     href: '/quote?type=packing-only',
     cta: 'Get a FREE Packing Quote',

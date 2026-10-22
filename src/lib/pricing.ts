@@ -13,8 +13,11 @@ import type { MoveType, HomeSize, CrewSize, QuoteInventory, QuoteAddons, QuotePr
 // (extra estimated hours), never a fee.
 export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 219 };
 export const MIN_HOURS = 3;
-/** Packing-only hourly rate per crew size. Exported so no component retypes it. */
-export const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 79,  3: 119, 4: 159 };
+/**
+ * Packing-only hourly rate per crew size. Exported so no component retypes it.
+ * Owner, 2026-10-22: 2 packers $79 → $99, 3 packers $119 → $139. 4 unchanged.
+ */
+export const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 99,  3: 139, 4: 159 };
 /** The only crew sizes that have a rate. Anything else is corrupt input, not a price. */
 export const CREW_SIZES = [2, 3, 4] as const satisfies readonly CrewSize[];
 /**
@@ -280,8 +283,7 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       break;
     }
     case 'packing-only': {
-      // $79/hr for 2 packers, $119/hr for 3 packers, $159/hr for 4 packers — 3-hour minimum
-      // [TODO: confirm with Evgenii] packing hourly rates are not in the verified rate card
+      // PACKING_HOURLY_RATE for the crew, 3-hour minimum, no truck
       estimatedHours = Math.max(MIN_HOURS, HOME_SIZE_HOURS[size] ?? 3);
       laborRate      = Math.round(PACKING_HOURLY_RATE[crew] * estimatedHours);
       truckFee       = 0;

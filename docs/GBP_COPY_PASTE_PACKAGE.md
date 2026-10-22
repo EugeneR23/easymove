@@ -99,7 +99,7 @@ Long-distance within Florida quoted per job. We do not do interstate moves.
 |---|---|---|
 | Local Moving | Apartments, condos and houses across Miami-Dade, Broward, Palm Beach | From $129/hr |
 | High-Rise & Condo Moving | COI within 24 hours, elevator and dock coordination | From $129/hr |
-| Packing Services | Full or partial packing, materials supplied | From $79/hr |
+| Packing Services | Full or partial packing, materials supplied | From $99/hr |
 | Piano & Specialty Items | Upright and grand pianos, art, antiques | By quote |
 | Office & Commercial | Evening and weekend windows to keep you trading | By quote |
 | Long-Distance Within Florida | Orlando, Tampa, Naples, Jacksonville — quoted per job | By quote |
@@ -168,7 +168,7 @@ The limit is usually the building: many Brickell and Aventura towers do not
 permit Sunday moves at all, so we check your association allows the date.
 
 **Q: Do you do packing only, without the move?**
-A: Yes. Packing runs from $79/hour for two packers, studio package from $237.
+A: Yes. Packing runs from $99/hour for two packers, studio package from $297.
 Common when another company is driving — we box, wrap and label so their crew
 loads a home that is ready.
 

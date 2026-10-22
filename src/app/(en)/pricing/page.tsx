@@ -88,7 +88,7 @@ const FACTORS = [
   },
   {
     title: 'Packing scope',
-    body: 'Full pack adds 2–6 hours depending on apartment size, at the packing rate ($79/hr for 2 packers, $119/hr for 3). Partial pack — just kitchen and breakables — typically adds 2–3 hours.',
+    body: 'Full pack adds 2–6 hours depending on apartment size, at the packing rate ($99/hr for 2 packers, $139/hr for 3). Partial pack — just kitchen and breakables — typically adds 2–3 hours.',
   },
   {
     title: 'Specialty inventory',

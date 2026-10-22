@@ -7,13 +7,16 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
-import { PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { PACKING_HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
 import { ogCard } from '@/lib/seo/og';
+
+/** Studio: 2 packers for the 3-hour minimum. */
+const STUDIO_FROM = MIN_HOURS * PACKING_HOURLY_RATE[2];
 
 export const metadata: Metadata = {
   title: { absolute: 'Packing Services Miami | Easy Move Florida' },
   description:
-    'Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack or fragile-only. Owner-led crews, from $237. Call 786-305-1844.',
+    `Packing services in Miami, Fort Lauderdale & Boca Raton. Full or partial pack or fragile-only. Owner-led crews, from $${STUDIO_FROM}. Call 786-305-1844.`,
   keywords: [
     'packing company Miami',
     'packing services Miami',
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Packing Services Miami | Easy Move Florida',
     description:
-      'Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack. Owner-led crews, from $237.',
+      `Packing in Miami, Fort Lauderdale & Boca Raton. Full or partial pack. Owner-led crews, from $${STUDIO_FROM}.`,
     url: 'https://www.easy-move-florida.com/packing-services',
     images: [ogCard('Easy Move Florida — movers in South Florida')],
   },
@@ -53,9 +56,9 @@ const schemaJson = JSON.stringify({
   areaServed: 'South Florida',
   offers: {
     '@type': 'Offer',
-    price: '237',
+    price: String(STUDIO_FROM),
     priceCurrency: 'USD',
-    description: 'Starting from $237 for a studio (2 packers, 3-hour minimum)',
+    description: `Starting from $${STUDIO_FROM} for a studio (2 packers, 3-hour minimum)`,
   },
 });
 
@@ -68,8 +71,8 @@ const WHAT_WE_PACK = [
   { label: 'Garage & Storage Areas', desc: 'Tools, sports equipment, and bulk items efficiently sorted and boxed.' },
 ];
 
-// Confirmed by the owner 2026-10-01: a studio is $237 (2 packers, 3-hour
-// minimum). Every row is hours x PACKING_HOURLY_RATE for that crew, so the
+// Owner, 2026-10-01: a studio is 2 packers for the 3-hour minimum ($297 at the
+// 2026-10-22 rate). Every row is hours x PACKING_HOURLY_RATE for that crew, so the
 // table cannot drift from the rate the quote engine uses.
 const PACKAGES = [
   { size: 'Studio', packers: 2, hours: 3, note: '2 packers · 3-hr min' },
@@ -241,7 +244,7 @@ export default function PackingServicesPage() {
                 Packing Service Rates
               </h2>
               <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto">
-                $79/hr · 2 packers &nbsp;|&nbsp; $119/hr · 3 packers &nbsp;|&nbsp; 3-hour minimum. Final price confirmed in writing.
+                $99/hr · 2 packers &nbsp;|&nbsp; $139/hr · 3 packers &nbsp;|&nbsp; 3-hour minimum. Final price confirmed in writing.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">

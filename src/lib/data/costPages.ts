@@ -101,7 +101,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is included in the hourly rate?',
-      a: 'The crew, blankets, wrap, tape, dollies, tools, furniture disassembly and reassembly, and all the loading work. The truck is the one separate line, billed per day at the crew rate. There are no charges for stairs, long carries, heavy items, weekends, or fuel; when access is hard we quote more hours, not more fees. Packing service is separate, from $79 per hour for two packers.',
+      a: 'The crew, blankets, wrap, tape, dollies, tools, furniture disassembly and reassembly, and all the loading work. The truck is the one separate line, billed per day at the crew rate. There are no charges for stairs, long carries, heavy items, weekends, or fuel; when access is hard we quote more hours, not more fees. Packing service is separate, from $99 per hour for two packers.',
     },
   ],
 },
@@ -265,7 +265,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is included, and what costs extra?',
-      a: 'Included: the crew, all wrapping and padding, dollies, floor protection, disassembly and reassembly, and the loading work itself. Billed separately: the truck day at your crew rate, packing from $79 per hour for two packers if you want us boxing, and storage from $200 per month. Not billed at all: stairs, long carries, heavy items, fuel, weekends.',
+      a: 'Included: the crew, all wrapping and padding, dollies, floor protection, disassembly and reassembly, and the loading work itself. Billed separately: the truck day at your crew rate, packing from $99 per hour for two packers if you want us boxing, and storage from $200 per month. Not billed at all: stairs, long carries, heavy items, fuel, weekends.',
     },
     {
       q: 'Does Sunny Isles building management need insurance paperwork from you?',
@@ -673,7 +673,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Можно заказать только упаковку, без перевозки?',
-      a: 'Да. Упаковка — от $79 в час за двух упаковщиков, готовый пакет для студии — от $237. Люди в Халландейле часто берут упаковку отдельно перед приездом контейнера или перед отъездом на лето. Посуду, стекло и картины пакуем в бумагу и коробки с перегородками. Если потом понадобится и перевозка, часы бригады считаются обычным порядком.',
+      a: 'Да. Упаковка — от $99 в час за двух упаковщиков, готовый пакет для студии — от $297. Люди в Халландейле часто берут упаковку отдельно перед приездом контейнера или перед отъездом на лето. Посуду, стекло и картины пакуем в бумагу и коробки с перегородками. Если потом понадобится и перевозка, часы бригады считаются обычным порядком.',
     },
     {
       q: 'Насколько заранее нужно бронировать дату?',
@@ -788,7 +788,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Сколько стоит упаковка вещей?',
-      a: 'От $79 в час за двух упаковщиков; готовый пакет для студии — от $237. Упаковку можно заказать без перевозки или взять частичную: например, только кухню, стекло и картины, а одежду и книги собрать самим. Часы упаковки в день переезда идут отдельной строкой от часов бригады, чтобы в смете было видно, за что вы платите.',
+      a: 'От $99 в час за двух упаковщиков; готовый пакет для студии — от $297. Упаковку можно заказать без перевозки или взять частичную: например, только кухню, стекло и картины, а одежду и книги собрать самим. Часы упаковки в день переезда идут отдельной строкой от часов бригады, чтобы в смете было видно, за что вы платите.',
     },
     { ...SERVICE_SCOPE.ru.faq },
   ],
@@ -1020,7 +1020,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Скільки коштує запакувати квартиру, а не лише перевезти?',
-      a: 'Пакування рахується окремо: від $79 за годину за двох пакувальників, а готовий пакет для студії — від $237. Можна замовити повне пакування напередодні, а можна залишити нам тільки кухню й крихке, зібравши решту самостійно. Матеріали привозимо з собою. Найчастіше в Халландейлі беруть саме половинчастий варіант — він помітно скорочує години в день переїзду.',
+      a: 'Пакування рахується окремо: від $99 за годину за двох пакувальників, а готовий пакет для студії — від $297. Можна замовити повне пакування напередодні, а можна залишити нам тільки кухню й крихке, зібравши решту самостійно. Матеріали привозимо з собою. Найчастіше в Халландейлі беруть саме половинчастий варіант — він помітно скорочує години в день переїзду.',
     },
     {
       q: 'Ви возите з Халландейла в інші штати?',
@@ -1138,7 +1138,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Скільки коштує пакування, якщо часу збиратися немає?',
-      a: 'Пакування починається від $79 за годину за двох пакувальників; готовий пакет для студії — від $237. Матеріали привозимо свої: коробки, папір, плівку, спеціальні короби для картин і телевізорів. Найчастіше в Маямі замовляють пакування напередодні переїзду, щоб у день дока й броні ліфта бригада працювала тільки з готовими коробками й не втрачала вікно.',
+      a: 'Пакування починається від $99 за годину за двох пакувальників; готовий пакет для студії — від $297. Матеріали привозимо свої: коробки, папір, плівку, спеціальні короби для картин і телевізорів. Найчастіше в Маямі замовляють пакування напередодні переїзду, щоб у день дока й броні ліфта бригада працювала тільки з готовими коробками й не втрачала вікно.',
     },
   ],
 },

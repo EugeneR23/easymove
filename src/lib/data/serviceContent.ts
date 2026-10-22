@@ -95,7 +95,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
       {
         title: 'What we can still do for an out-of-state move',
-        body: "Packing is packing wherever the truck is going, from $79 per hour for two packers. If your long-haul carrier wants everything boxed and ready on the driveway, that is work we do well. Same for moving you into storage on this end while the interstate leg is arranged, or taking delivery at the Florida end of a move coming the other way.",
+        body: "Packing is packing wherever the truck is going, from $99 per hour for two packers. If your long-haul carrier wants everything boxed and ready on the driveway, that is work we do well. Same for moving you into storage on this end while the interstate leg is arranged, or taking delivery at the Florida end of a move coming the other way.",
       },
     ],
     process: [
@@ -106,14 +106,14 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     pricingBreakdown: [
       'Long-distance inside Florida: quoted individually, in writing, no deposit',
       'Interstate and out-of-state moves: not offered, not quoted',
-      'Packing before a long-haul carrier arrives: from $79/hour for two packers',
+      'Packing before a long-haul carrier arrives: from $99/hour for two packers',
       'Local move into storage on the Florida side: standard hourly rates, from $129/hour for two movers',
       'Storage coordination: from $200/month through our storage partner',
     ],
     faqs: [
       { q: 'Do you move within Florida but outside South Florida - say Miami to Orlando?', a: 'Yes. That is a long-distance move for us and it is quoted individually rather than by the hour: we look at the volume, the distance and the access at both ends, and send one written figure. No deposit to book.' },
       { q: 'Can you move me from Miami to New York?', a: 'No. We do not hold the federal operating authority that interstate household moves require, so we do not quote or take them. Call us and we will point you toward a licensed carrier - that costs you nothing and saves you the round of calls.' },
-      { q: 'Can you pack for me even if another company drives?', a: 'Yes, and it is common. Packing runs from $79 per hour for two packers, with a studio package from $237. We box, wrap and label so the long-haul crew loads a home that is ready, which usually saves you money on their end too.' },
+      { q: 'Can you pack for me even if another company drives?', a: 'Yes, and it is common. Packing runs from $99 per hour for two packers, with a studio package from $297. We box, wrap and label so the long-haul crew loads a home that is ready, which usually saves you money on their end too.' },
       { q: 'How do I check that a long-distance mover is legitimate?', a: 'Ask for their USDOT number and look it up in the federal register before you pay a deposit. A carrier that will not give you the number over the phone has told you something useful. This is the same check you could run on us, which is why we are telling you plainly that interstate is not ours.' },
     ],
     localContext: "We are a Hollywood-based Florida mover: hourly across Miami-Dade, Broward and Palm Beach, and quoted per job for anywhere else in the state. That focus is deliberate, and it is why the pages on this site quote hourly rates for local work and say nothing about per-mile interstate pricing.",

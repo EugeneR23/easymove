@@ -3,7 +3,7 @@ import { replyPromise } from '@/lib/data/policies';
 import { useState } from 'react';
 import Link from 'next/link';
 import { cn, formatCurrency } from '@/lib/utils';
-import { localStartingPrice, packingStartingPrice, startingHours, crewOptions, effectiveCrew, MIN_HOURS } from '@/lib/pricing';
+import { localStartingPrice, packingStartingPrice, startingHours, crewOptions, effectiveCrew, MIN_HOURS, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
 import type { HomeSize, CrewSize, MoveType } from '@/types';
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string }[] = [
@@ -145,7 +145,7 @@ export default function V2Calculator() {
                   ))}
                 </div>
                 <p className="text-white/25 text-[10px] mt-2">
-                  ${crew === 2 ? (isPacking ? 79 : 129) : crew === 3 ? (isPacking ? 119 : 179) : (isPacking ? 159 : 229)}/hr
+                  ${(isPacking ? PACKING_HOURLY_RATE : HOURLY_RATE)[crew]}/hr
                 </p>
               </div>
             </div>

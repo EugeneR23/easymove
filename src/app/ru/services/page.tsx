@@ -60,7 +60,7 @@ const SERVICES = [
     icon: Package,
     title: 'Упаковка',
     desc: 'Полная или частичная упаковка качественными материалами. Материалы включены в смету.',
-    price: 'от $237',
+    price: 'от $297',
     href: '/packing-services',
   },
   {
