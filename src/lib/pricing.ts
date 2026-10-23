@@ -15,9 +15,9 @@ export const HOURLY_RATE: Record<CrewSize, number>  = { 2: 129, 3: 179, 4: 219 }
 export const MIN_HOURS = 3;
 /**
  * Packing-only hourly rate per crew size. Exported so no component retypes it.
- * Owner, 2026-10-22: 2 packers $79 → $99, 3 packers $119 → $139. 4 unchanged.
+ * Owner, 2026-10-22: 2 packers $79 → $99, 3 packers $119 → $139, 4 packers $159 → $169.
  */
-export const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 99,  3: 139, 4: 159 };
+export const PACKING_HOURLY_RATE: Record<CrewSize, number> = { 2: 99,  3: 139, 4: 169 };
 /** The only crew sizes that have a rate. Anything else is corrupt input, not a price. */
 export const CREW_SIZES = [2, 3, 4] as const satisfies readonly CrewSize[];
 /**

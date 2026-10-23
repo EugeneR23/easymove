@@ -158,8 +158,8 @@ check('normalizeCrewSize clamps anything unpriceable to 2',
 
 // ── 10. Rate tables have exactly one home ────────────────────────────────────
 console.log('\n[10] One source for every rate');
-check('packing rates are exported and match the card ($99/$139/$159)',
-  PACKING_HOURLY_RATE[2] === 99 && PACKING_HOURLY_RATE[3] === 139 && PACKING_HOURLY_RATE[4] === 159,
+check('packing rates are exported and match the card ($99/$139/$169)',
+  PACKING_HOURLY_RATE[2] === 99 && PACKING_HOURLY_RATE[3] === 139 && PACKING_HOURLY_RATE[4] === 169,
   JSON.stringify(PACKING_HOURLY_RATE));
 check('no long-distance input produces a price, whatever mileage is passed in',
   [0, 15, 753, 99999].every((d) =>
