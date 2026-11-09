@@ -55,20 +55,21 @@ export const COST_PAGES: CostPageData[] = [
   cityName: 'Fort Lauderdale',
   citySlug: 'fort-lauderdale-movers',
   metaDescription: 'Fort Lauderdale movers cost $129–$219/hr with a 3-hour minimum and no hidden fees. Real local rates, no deposit. Call or WhatsApp 786-305-1844 for a quote.',
-  answer: 'Fort Lauderdale movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Expect the hours, not the rate, to vary: canal-side streets that only take a smaller truck, Las Olas towers with fixed dock windows, and drawbridges on the route all add loading time. A typical two-bedroom in Fort Lauderdale finishes between $645 and $1,253 all-in, and there are no weekend, fuel, or stairs surcharges on top.',
+  answer: 'Fort Lauderdale movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Expect the hours, not the rate, to vary: canal-side streets where a smaller truck may be needed, Las Olas towers with their own dock and elevator bookings, and drawbridges on the route can all add time. A typical two-bedroom in Fort Lauderdale finishes between $645 and $1,253 all-in, and there are no weekend, fuel, or stairs surcharges on top.',
   intro: 'Fort Lauderdale pricing is simple to state and easy to predict once you know how your address loads. Two movers cost $129 per hour, three cost $179, four cost $219, and the truck is billed per day at the same figure as the crew rate: $129 with two movers, $179 with three, $219 with four. Every job carries a three-hour minimum, after which time is billed in 15-minute increments. There is no deposit, cancellation is free more than 48 hours before the move, and a certificate of insurance for your building is free within 24 hours of booking. The variable is hours, and in Fort Lauderdale hours are set by water: canals decide truck size, bridges decide timing, and tower docks decide when you can start.',
   accessFactors: [
     {
       title: 'Canal streets and truck size',
-      body: 'Many finger-island streets off Las Olas and in Rio Vista are narrow, with cul-de-sac turnarounds a 26-foot truck cannot manage. When only a 16-footer fits, a larger home takes two trips or a shuttle from a staging spot, and each extra trip is real loading time on the clock.',
+      body: 'Whether a full-size truck can reach a canal-front home depends on the street and its turnaround, so we check both before assigning a truck. When only a 16-footer fits, a larger home takes two trips or a shuttle from a staging spot, and each extra trip is real loading time on the clock.',
     },
     {
       title: 'Las Olas and downtown dock windows',
-      body: 'High-rises along Las Olas Boulevard and in the downtown core typically assign a dock and a freight elevator window, often two to four hours. If the window is tight, we bring a bigger crew so the load fits inside it: a third mover at $179 per hour usually costs less than a second elevator reservation.',
+      body: 'Each high-rise along Las Olas Boulevard and in the downtown core sets its own dock and freight elevator booking rules, and we ask the management office for the current window before move day. If the window is tight, we bring a bigger crew so the load fits inside it: a third mover at $179 per hour usually costs less than a second elevator reservation.',
     },
     {
+      // Bridge schedules: 33 CFR 117.261 https://www.law.cornell.edu/cfr/text/33/117.261 and 33 CFR 117.313 https://www.law.cornell.edu/cfr/text/33/117.313 (checked 2026-11-09)
       title: 'Drawbridge timing',
-      body: 'The Las Olas and Third Avenue drawbridges open on schedule for boat traffic, and a loaded truck caught at an opening sits on billed time. We plan routes and start times around the bridge schedules, which is one of the quiet ways a local crew keeps a Fort Lauderdale bill down.',
+      body: 'Under the Coast Guard bridge schedule, the Las Olas bridge opens on the quarter-hour and three-quarter hour, and the SE Third Avenue bridge opens on signal for boats, except weekdays 7:30 to 9 a.m. and 4:30 to 6 p.m., when it need not open. A loaded truck caught at an opening sits on billed time, so we plan routes and start times around the bridge schedules.',
     },
     {
       title: 'Beach-side condos on A1A',
@@ -86,11 +87,11 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Can a full-size moving truck reach a canal street in the Las Olas Isles?',
-      a: 'Often not. We check the street on the video call before assigning a truck, and if the turnaround will not take a 26-footer we send a smaller one and plan the extra trip into the estimate. Finding this out on moving day instead is how bills grow past their quotes, so the check happens before we ever quote hours.',
+      a: 'It depends on the street. We check the street on the video call before assigning a truck, and if the turnaround will not take a 26-footer we send a smaller one and plan the extra trip into the estimate. Finding this out on moving day instead is how bills grow past their quotes, so the check happens before we ever quote hours.',
     },
     {
       q: 'How do drawbridges affect what I pay?',
-      a: 'A bridge opening costs ten to fifteen minutes of billed time if the truck is caught at it, so we schedule around openings rather than through them. On a cross-town move between the beach and the mainland we pick the route by bridge schedule and time of day. It is a small item, but small items are what an hourly bill is made of.',
+      a: 'A truck caught at a bridge opening waits on billed time, so we schedule around openings rather than through them. On a cross-town move between the beach and the mainland we pick the route by bridge schedule and time of day. It is a small item, but small items are what an hourly bill is made of.',
     },
     {
       q: 'What is the cheapest possible move in Fort Lauderdale?',
@@ -176,7 +177,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       title: 'Freight elevator windows',
-      body: 'Most Aventura towers assign moves a reserved freight elevator block, commonly two to four hours, and as a rule they release those blocks on weekday schedules. A short window with a big apartment argues for four movers: at $219 per hour, a larger crew inside one window beats a smaller crew needing a second reservation.',
+      body: 'Aventura towers assign moves a reserved freight elevator block, and each building sets its own length and days. A short window with a big apartment argues for four movers: at $219 per hour, a larger crew inside one window beats a smaller crew needing a second reservation.',
     },
     {
       title: 'Mall-area traffic timing',
@@ -210,7 +211,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Do you charge extra for weekend moves in Aventura?',
-      a: 'No. The rate card has no weekend, evening, or seasonal surcharge. The practical catch is your building: many Aventura associations restrict moves to weekday business hours as a rule, so Saturday may not be available regardless of our pricing. Check the association calendar first; if weekends are permitted, our price is identical to a Tuesday.',
+      a: 'No. The rate card has no weekend, evening, or seasonal surcharge. The practical catch is your building: each association sets its own move days and hours, so Saturday may not be available regardless of our pricing. Check the association calendar first; if weekends are permitted, our price is identical to a Tuesday.',
     },
     {
       q: 'How do I get an accurate quote for an Aventura condo move?',
@@ -280,7 +281,7 @@ export const COST_PAGES: CostPageData[] = [
   citySlug: 'hallandale-beach-movers',
   metaDescription: 'Hallandale Beach movers cost $129–$219/hr with a 3-hour minimum. No travel fee: the clock starts when the crew arrives. Call or WhatsApp 786-305-1844 today.',
   answer: 'Hallandale Beach movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. There is no travel fee: billable hours start when the crew arrives at your first address. The split that matters is east versus west: oceanfront towers on South Ocean Drive move at freight-elevator pace, while the condos and townhouses around the Three Islands and Golden Isles areas load faster and cheaper.',
-  intro: 'Hallandale Beach runs on the same rates as the rest of our map: $129, $179, and $219 per hour for two, three, and four movers with a three-hour minimum and a truck day at the crew figure. Billable hours start when the crew arrives at your first address, and the city is compact enough that a local move rarely spends meaningful time driving between addresses. What separates one Hallandale quote from another is the building. An oceanfront tower brings dock rules and weekday association windows; a west-side condo or townhouse often brings a parking lot and a short walk.',
+  intro: 'Hallandale Beach runs on the same rates as the rest of our map: $129, $179, and $219 per hour for two, three, and four movers with a three-hour minimum and a truck day at the crew figure. Billable hours start when the crew arrives at your first address, and the city is compact enough that a local move rarely spends meaningful time driving between addresses. What separates one Hallandale quote from another is the building. An oceanfront tower brings dock rules and association move windows; a west-side condo or townhouse often brings a parking lot and a short walk.',
   accessFactors: [
     {
       title: 'When the clock starts',
@@ -291,8 +292,8 @@ export const COST_PAGES: CostPageData[] = [
       body: 'The beachfront line of towers runs on classic condo logistics: reserved dock, freight elevator block, protection panels up before the first box moves. As a rule these buildings add an hour or more against a comparable west-side move, and we size the crew so the elevator window is never the thing that runs out.',
     },
     {
-      title: 'Weekday association windows',
-      body: 'Many Hallandale associations permit moves only on weekdays inside set business hours, and some close the calendar on Sundays entirely. That rarely changes the price, since our rates carry no weekend premium anyway, but it shapes scheduling: the compliant slots go early, and a rushed slot creates exactly the time pressure that inflates hours.',
+      title: 'Association move days and hours',
+      body: 'Each Hallandale association sets the days and hours when moves are allowed. That rarely changes the price, since our rates carry no weekend premium anyway, but it shapes scheduling: the permitted slots go early, and a rushed slot creates exactly the time pressure that inflates hours.',
     },
     {
       title: 'West-side condos and townhouses',
@@ -314,7 +315,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Can I move on a weekend in Hallandale Beach?',
-      a: 'From our side, certainly: there is no weekend surcharge and Saturdays are working days. The obstacle, when there is one, is your association, since several Hallandale buildings restrict moves to weekday windows. Ask your management first; if Saturday is allowed, it costs exactly what Friday costs. If it is not, weekday mornings are the slots worth taking early.',
+      a: 'From our side, certainly: there is no weekend surcharge and Saturdays are working days. The obstacle, when there is one, is your association, which sets its own move days and hours. Ask your management first; if Saturday is allowed, it costs exactly what Friday costs. If it is not, weekday mornings are the slots worth taking early.',
     },
     {
       q: 'What is the minimum I could pay for a small Hallandale move?',
@@ -530,7 +531,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       title: 'Зона погрузки и движение по Collins',
-      body: 'Collins Avenue узкая, а служебный въезд у большинства башен один и небольшой. В сезон к нему стоит очередь из курьеров и подрядчиков, и трак может ждать своей очереди. Мы закладываем это время в оценку заранее, а не показываем сюрпризом в счёте: смета на переезд у океана всегда содержит запас на подачу машины.',
+      body: 'У каждой башни на Collins Avenue свой служебный въезд и своя зона погрузки. В сезон трак может ждать у въезда своей очереди за курьерами и подрядчиками. Мы закладываем это время в оценку заранее, а не показываем сюрпризом в счёте: смета на переезд у океана всегда содержит запас на подачу машины.',
     },
     {
       title: 'Сезон снегоптиц: с ноября по апрель',
@@ -583,7 +584,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       title: 'Окна грузовых лифтов в башнях',
-      body: 'В высотках вдоль Country Club Drive и Biscayne Boulevard переезд оформляется заявкой: менеджмент даёт грузовой лифт на конкретные часы, как правило будни с утра до раннего вечера. В некоторых домах просят возвратный депозит за лифт — его платит жилец, к нашей смете это отношения не имеет. Мы уточняем длину окна до дня переезда и подбираем бригаду под неё.',
+      body: 'В высотках вдоль Country Club Drive и Biscayne Boulevard переезд оформляется заявкой: менеджмент даёт грузовой лифт на конкретные часы, а дни и часы каждое здание устанавливает само. В некоторых домах просят возвратный депозит за лифт — его платит жилец, к нашей смете это отношения не имеет. Мы уточняем длину окна до дня переезда и подбираем бригаду под неё.',
     },
     {
       title: 'Трафик у Aventura Mall',
@@ -631,7 +632,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   cityNameRu: 'Халландейл-Бич',
   citySlug: 'ru/hallandale-beach-movers',
   metaDescription: 'Сколько стоит переезд в Халландейл-Бич: $129/час за двоих, минимум 3 часа, трак за день. Платы за дорогу до вас нет. Звоните 786-305-1844.',
-  answer: 'Переезд в Халландейл-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Платы за дорогу до вас нет: часы идут с момента, когда бригада приехала на первый адрес, и включают дорогу между двумя адресами. Океанские башни на A1A и кондо западнее Federal Highway ведут себя по-разному: в первых всё решает окно грузового лифта, во вторых — будние часы, в которые ассоциация вообще разрешает переезд.',
+  answer: 'Переезд в Халландейл-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Платы за дорогу до вас нет: часы идут с момента, когда бригада приехала на первый адрес, и включают дорогу между двумя адресами. Океанские башни на A1A и кондо западнее Federal Highway ведут себя по-разному: в первых всё решает окно грузового лифта, во вторых дни и часы, в которые ассоциация разрешает переезд.',
   intro: 'Прайс в Халландейл-Бич простой: $129 в час за двоих грузчиков, $179 за троих, $219 за четверых, минимум три часа, дальше шагами по 15 минут. Трак идёт в смете отдельной строкой, за день, по ставке бригады: $129 при двух грузчиках, $179 при трёх. Минимальный счёт получается $516 за двоих, $716 за троих. Депозита нет, бесплатная отмена более чем за 48 часов, COI для здания за 24 часа после брони. Дорога от нашей базы до вашего первого адреса не оплачивается: часы идут с приезда бригады. Город компактный, поэтому маленький переезд внутри него может целиком уложиться в минимум.',
   accessFactors: [
     {
@@ -640,11 +641,11 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       title: 'Океанские башни на A1A',
-      body: 'Высотки вдоль A1A и в районе Diplomat живут по расписанию грузового лифта: окно на несколько часов, служебный вход, защита лобби. Если в квартире три спальни, а окно короткое, дешевле выходит бригада из трёх человек по $179 в час, чем двое, которым не хватит времени. Мы узнаём длину окна до дня переезда и считаем оба варианта.',
+      body: 'Высотки вдоль A1A живут по расписанию грузового лифта: окно на несколько часов, служебный вход, защита лобби. Если в квартире три спальни, а окно короткое, дешевле выходит бригада из трёх человек по $179 в час, чем двое, которым не хватит времени. Мы узнаём длину окна до дня переезда и считаем оба варианта.',
     },
     {
       title: 'Кондо западнее Federal Highway',
-      body: 'В кварталах западнее Federal Highway многоэтажки ниже и проще, зато ассоциации строже к дням и часам: во многих домах переезды разрешены только в будни и только до раннего вечера. Ставка от дня недели у нас не зависит вообще, но выбор даты диктует не наш календарь, а правила вашего дома. Уточните их до бронирования.',
+      body: 'В кварталах западнее Federal Highway многоэтажки ниже и проще, а дни и часы переезда каждая ассоциация устанавливает сама. Ставка от дня недели у нас не зависит вообще, но выбор даты диктует не наш календарь, а правила вашего дома. Уточните их до бронирования.',
     },
     {
       title: 'Старые дома у Three Islands Boulevard',
@@ -800,20 +801,21 @@ export const COST_PAGES_RU: CostPageData[] = [
   cityNameRu: 'Форт-Лодердейл',
   citySlug: 'ru/fort-lauderdale-movers',
   metaDescription: 'Цены на переезд в Форт-Лодердейле: $129/час за двоих грузчиков, $179 за троих, минимум 3 часа, трак за день. Без доплат за выходные. Звоните 786-305-1844.',
-  answer: 'Переезд в Форт-Лодердейле стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Часы здесь диктует вода. На канальных улицах Las Olas Isles и Rio Vista разворота для 26-футового трака нет, и работать приходится 16-футовой машиной, а значит иногда в две ходки. У башен на Las Olas и в даунтауне переезд идёт через док по забронированному окну. А разводные мосты умеют съесть пятнадцать минут у гружёной машины прямо посреди маршрута.',
+  answer: 'Переезд в Форт-Лодердейле стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Часы здесь диктует вода. На канальных улицах многое зависит от того, какой трак заедет к дому: иногда приходится работать 16-футовой машиной, а значит в две ходки. У башен на Las Olas и в даунтауне переезд идёт через док по забронированному окну. А гружёная машина, попавшая на развод моста, стоит на оплаченном времени.',
   intro: 'Прайс в Форт-Лодердейле такой же, как по всей Южной Флориде: двое грузчиков — $129 в час, трое — $179, четверо — $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой в смете, за день, по ставке бригады. Минимальный счёт: $516 вдвоём, $716 втроём, $876 вчетвером. Депозита нет, отмена более чем за 48 часов бесплатная. Доплат за субботу, за высокий сезон и за топливо нет, как нет и сборов за лифт и лестницы: это время, уже заложенное в оценку часов. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони. Поэтому смета в Форт-Лодердейле начинается не с прайса, а с двух вопросов: какая машина заедет к вашему подъезду и в какое окно вас пускает здание.',
   accessFactors: [
     {
       title: 'Канальные улицы и размер трака',
-      body: 'На узких улицах островов у Las Olas и в Rio Vista тупики и повороты рассчитаны на легковые машины: 26-футовый трак туда заходить не должен. Мы отправляем 16-футовый и, если объём вещей в него не помещается, планируем вторую ходку заранее. Ходка — это реальные часы, и их лучше видеть в смете, чем в финальном счёте.',
+      body: 'Заедет ли к дому на канале полноразмерный трак, зависит от улицы и места для разворота, поэтому мы проверяем это до того, как назначить машину. Если подходит только 16-футовый и объём вещей в него не помещается, планируем вторую ходку заранее. Каждая ходка означает реальные часы, и их лучше видеть в смете, чем в финальном счёте.',
     },
     {
       title: 'Доки башен Las Olas и даунтауна',
-      body: 'Высотки в центре и вдоль Las Olas Boulevard принимают переезды через загрузочный док, обычно на два-четыре часа. Если окно короткое, а квартира большая, бригада из трёх человек за $179 в час чаще всего выходит дешевле, чем двое, которым не хватило времени и пришлось переносить остаток на другой день.',
+      body: 'Каждая высотка в центре и вдоль Las Olas Boulevard сама устанавливает правила брони дока и грузового лифта, и мы узнаём актуальное окно у управляющей компании до дня переезда. Если окно короткое, а квартира большая, бригада из трёх человек за $179 в час чаще всего выходит дешевле, чем двое, которым не хватило времени и пришлось переносить остаток на другой день.',
     },
     {
+      // Bridge schedules: 33 CFR 117.261 https://www.law.cornell.edu/cfr/text/33/117.261 and 33 CFR 117.313 https://www.law.cornell.edu/cfr/text/33/117.313 (checked 2026-11-09)
       title: 'Разводные мосты на маршруте',
-      body: 'Мосты на Las Olas и на Третьей авеню разводят по расписанию для лодок, и гружёный трак, попавший на развод, просто стоит — на оплаченном времени. Мы строим маршрут и время старта с учётом расписания мостов. Это мелочь, но почасовой счёт из таких мелочей и складывается, и местная бригада экономит их автоматически.',
+      body: 'По расписанию мостов Береговой охраны США мост на Las Olas разводят в 15 и 45 минут каждого часа, а мост на SE Third Avenue разводят по сигналу судов, кроме будней с 7:30 до 9:00 и с 16:30 до 18:00, когда его могут не разводить. Гружёный трак, попавший на развод, стоит на оплаченном времени, поэтому мы строим маршрут и время старта с учётом расписания мостов.',
     },
     {
       title: 'Низкие гаражи прибрежных домов на A1A',
@@ -827,7 +829,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   faqs: [
     {
       q: 'Как узнать, заедет ли к моему дому большой трак?',
-      a: 'Мы смотрим улицу и подъезд по видео или по карте до того, как назначить машину. На канальных улицах у Las Olas почти всегда идёт 16-футовый трак, и если вещей больше, чем в него помещается, вторая ходка попадает в смету сразу. Выяснять размер проезда на месте — самый быстрый способ превратить трёхчасовой переезд в шестичасовой.',
+      a: 'Мы смотрим улицу и подъезд по видео или по карте до того, как назначить машину. Если на канальную улицу подходит только 16-футовый трак и вещей больше, чем в него помещается, вторая ходка попадает в смету сразу. Выяснять размер проезда на месте — самый быстрый способ превратить трёхчасовой переезд в шестичасовой.',
     },
     {
       q: 'Насколько дороже переезд в башне на Las Olas, чем в доме?',
@@ -835,7 +837,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Разводные мосты действительно влияют на счёт?',
-      a: 'На отдельно взятом переезде это десять-пятнадцать минут, но они оплачиваются как рабочее время, поэтому мы стараемся их не собирать. При переезде между пляжной стороной и материком маршрут и час старта выбираются по расписанию мостов. Специальных доплат за это нет ни у нас, ни у кого-либо ещё — просто одни бригады про мосты знают, а другие нет.',
+      a: 'Да: время, которое трак стоит перед разведённым мостом, оплачивается как рабочее, поэтому мы стараемся на разводы не попадать. При переезде между пляжной стороной и материком маршрут и час старта выбираются по расписанию мостов. Специальных доплат за это у нас нет.',
     },
     {
       q: 'Вы считаете по часам или фиксированной суммой?',
@@ -990,8 +992,8 @@ export const COST_PAGES_UA: CostPageData[] = [
       body: 'Схід міста — це висотки біля води з вантажним ліфтом, вахтою й журналом заїзду. Захід — переважно дво- і триповерхові кондо без ліфта, де трак стає майже під дверима. Той самий обсяг речей у вежі забирає на годину-дві більше, ніж у низькому будинку, і саме тому дві однакові двокімнатні квартири в одному місті потрапляють у різні кінці діапазону $645–$1,253.',
     },
     {
-      title: 'Будні вікна асоціацій',
-      body: 'Чимало кондомініумів тут дозволяють переїзди лише в будні, як правило з девʼятої ранку до четвертої дня, і не пускають бригаду у вихідні. Ми не беремо доплати за жоден день тижня, тож будній переїзд не дорожчий — але дат менше, і найзручніші ранкові слоти забирають першими. Дізнаємося правила вашого будинку до бронювання, щоб не втратити день.',
+      title: 'Дні й години асоціацій',
+      body: 'Кожна асоціація сама встановлює дні й години, коли дозволені переїзди. Ми не беремо доплати за жоден день тижня, тож ціна від дня не залежить, але найзручніші ранкові слоти забирають першими. Дізнаємося правила вашого будинку до бронювання, щоб не втратити день.',
     },
     {
       title: 'Ліфти в будинках старшого покоління',
@@ -1052,7 +1054,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       title: 'Мости через Intracoastal',
-      body: 'Дорога з материкової частини на пляж іде через мости, які розводять для човнів за розкладом. Завантажений трак, що стоїть перед розведеним мостом, стоїть на оплаченому часі. Ми плануємо маршрут і час старту з урахуванням цього, і зазвичай це питання пʼятнадцяти хвилин, а не години — але саме такі дрібниці відрізняють місцеву бригаду від приїжджої.',
+      body: 'Дорога з материкової частини на пляж іде через мости, які розводять для човнів за розкладом. Завантажений трак, що стоїть перед розведеним мостом, стоїть на оплаченому часі. Ми плануємо маршрут і час старту з урахуванням цього.',
     },
     {
       title: 'Зберігання, коли дати не збігаються',
@@ -1158,7 +1160,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       title: 'Вікна вантажного ліфта у вежах',
-      body: 'Висотки вздовж Country Club Drive і Biscayne Boulevard видають вантажний ліфт на конкретні години, часто не більш ніж на половину дня, і зазвичай тільки в будні. Розмір бригади ми підбираємо під це вікно: якщо квартира велика, четверо вантажників за $219 на годину закривають переїзд за один слот, і це виходить дешевше, ніж повертатися вдруге.',
+      body: 'Висотки вздовж Country Club Drive і Biscayne Boulevard видають вантажний ліфт на конкретні години, а дні й тривалість вікна кожен будинок встановлює сам. Розмір бригади ми підбираємо під це вікно: якщо квартира велика, четверо вантажників за $219 на годину закривають переїзд за один слот, і це виходить дешевше, ніж повертатися вдруге.',
     },
     {
       title: 'Трафік навколо Aventura Mall',
