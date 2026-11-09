@@ -223,7 +223,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
       { type: 'h2', text: 'Red flags' },
       { type: 'p', text: 'If a moving company can\'t or won\'t provide a COI, that\'s a serious red flag — they\'re likely uninsured. An uninsured mover puts you on the hook for any damage they cause, both to your goods and to the building. Walk away from any quote where the mover hesitates on COI.' },
-      { type: 'p', text: 'Some movers charge $50-$150 to issue a COI. This is a junk fee — issuing a COI takes 5 minutes and costs the mover nothing. Reputable movers include it for free. If a mover charges for it, expect more junk fees on move day.' },
+      { type: 'p', text: 'Ask whether the mover charges to issue a COI. We issue it free of charge.' },
 
       { type: 'h2', text: 'When to request your COI' },
       { type: 'p', text: 'Best practice: forward building requirements to your mover the day you book. Confirm with your building 5-7 days before move date. Some buildings\' approval processes can take 3-5 business days, so don\'t wait until the week of your move.' },
@@ -906,7 +906,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'If your origin or destination falls inside an evacuation zone, we postpone — no exceptions',
         'We confirm in writing the new date and that pricing is unchanged',
       ]},
-      { type: 'p', text: 'Most reputable Florida movers have a version of this policy. Read the fine print on whoever you book — some charge "weather rescheduling fees" of $200-$500, which is predatory in a state where hurricanes are an annual fact.' },
+      { type: 'p', text: 'Most reputable Florida movers have a version of this policy. Read the fine print on whoever you book: ask what happens to your booking if a storm moves the date.' },
 
       { type: 'h2', text: 'Our 72-hour rule' },
       { type: 'p', text: 'Once a system is named and enters the Atlantic with any Florida forecast probability, we start monitoring. At 72 hours from your move date:' },

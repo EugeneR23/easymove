@@ -94,7 +94,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the cheapest possible move in Fort Lauderdale?',
-      a: 'The floor is $516: two movers for the three-hour minimum plus the $129 truck day that goes with a two-mover crew. A studio or small one-bedroom with easy access on both ends can genuinely land there. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew, so the floor here sits at the lower-middle of the market.',
+      a: 'The floor is $516: two movers for the three-hour minimum plus the $129 truck day that goes with a two-mover crew. A studio or small one-bedroom with easy access on both ends can genuinely land there.',
     },
     {
       q: 'Do you charge hourly or flat rate?',
@@ -206,7 +206,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the least an Aventura move can cost?',
-      a: 'The minimum invoice is $516: the two-mover minimum of three hours plus the $129 truck day that accompanies a two-mover crew. A one-bedroom moving between towers with generous elevator windows can stay near that figure if boxes are packed and sealed before arrival. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew, for comparison.',
+      a: 'The minimum invoice is $516: the two-mover minimum of three hours plus the $129 truck day that accompanies a two-mover crew. A one-bedroom moving between towers with generous elevator windows can stay near that figure if boxes are packed and sealed before arrival.',
     },
     {
       q: 'Do you charge extra for weekend moves in Aventura?',
@@ -318,7 +318,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the minimum I could pay for a small Hallandale move?',
-      a: '$516 covers two movers for the three-hour minimum plus the matching $129 truck day, and a small move between two nearby addresses can finish inside it. The one-bedroom band runs $516–$774 overall. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew, so the floor is competitive.',
+      a: '$516 covers two movers for the three-hour minimum plus the matching $129 truck day, and a small move between two nearby addresses can finish inside it. The one-bedroom band runs $516–$774 overall.',
     },
     {
       q: 'Why hourly instead of a flat price?',
@@ -374,7 +374,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the least expensive Boca Raton move?',
-      a: 'The invoice floor is $516, meaning two movers for three hours plus the $129 truck day that pairs with a two-mover crew, though Boca jobs more commonly land mid-band because of community procedures. A packed one-bedroom with clearances arranged can still finish low in the $516–$774 band. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew.',
+      a: 'The invoice floor is $516, meaning two movers for three hours plus the $129 truck day that pairs with a two-mover crew, though Boca jobs more commonly land mid-band because of community procedures. A packed one-bedroom with clearances arranged can still finish low in the $516–$774 band.',
     },
     {
       q: 'Which fees should I expect on top of the hourly rate?',
@@ -490,7 +490,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the minimum cost to move on Miami Beach?',
-      a: 'The floor is $516, covering two movers for the three-hour minimum and the $129 truck day a two-mover crew carries, and it is reachable for a packed studio with legal parking at the door and no stairs. Access is what pushes past it here, not size. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew.',
+      a: 'The floor is $516, covering two movers for the three-hour minimum and the $129 truck day a two-mover crew carries, and it is reachable for a packed studio with legal parking at the door and no stairs. Access is what pushes past it here, not size.',
     },
     {
       q: 'Are there surcharges for beach addresses, weekends, or heavy furniture?',
@@ -689,7 +689,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   citySlug: 'ru/hollywood-movers',
   metaDescription: 'Сколько стоит переезд в Голливуде, Флорида: $129/час за двоих, $179 за троих, минимум 3 часа, трак за день. Без депозита. Звоните 786-305-1844.',
   answer: 'Переезд в Голливуде стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Наша бригада базируется в районе Голливуд - Форт-Лодердейл; дорога от базы до вашего первого адреса не оплачивается, часы идут с приезда бригады. Дом на материке, в Hollywood Hills или Emerald Hills, грузится прямо от двери и часто заканчивается по минимальному счёту в $516. Квартира в башне у Broadwalk добавляет лифт, служебный вход и пронос через лобби — обычно час-полтора сверху.',
-  intro: 'Прайс в Голливуде тот же, что везде: двое грузчиков $129 в час, трое $179, четверо $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой, за день, по ставке бригады. Ни выходные, ни сезон, ни топливо цену не двигают; нет и сборов за лестницы, лифт или длинный пронос, потому что всё это просто время, уже посчитанное в часах. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони. Лицензированные муверы в этом районе обычно берут $100–180 в час за бригаду из двух человек, так что $129 — середина рынка, а не демпинг. Дорога от нашей базы до вашего первого адреса не оплачивается.',
+  intro: 'Прайс в Голливуде тот же, что везде: двое грузчиков $129 в час, трое $179, четверо $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой, за день, по ставке бригады. Ни выходные, ни сезон, ни топливо цену не двигают; нет и сборов за лестницы, лифт или длинный пронос, потому что всё это просто время, уже посчитанное в часах. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони. Дорога от нашей базы до вашего первого адреса не оплачивается.',
   accessFactors: [
     {
       title: 'С какого момента идут часы',
@@ -743,7 +743,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   citySlug: 'ru/miami-movers',
   metaDescription: 'Сколько стоит переезд в Майами: $129/час за двух грузчиков, $179 за трёх, минимум 3 часа, трак за день, COI бесплатно за 24 часа. Звоните 786-305-1844.',
   answer: 'Переезд в Майами стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Город большой и неоднородный: в Brickell всё упирается в док и страховой сертификат, в лофтах Wynwood и Edgewater — в один общий лифт на здание, в Коконат-Гроув — в узкие улицы, куда большой трак не заходит. Плюс дорога: I-95 и US-1 в час пик добавляют время, а время в почасовой смете и есть деньги. Двухкомнатная квартира в Майами обычно выходит в $645–$1,253.',
-  intro: 'Ставки в Майами не зависят ни от района, ни от дня недели: двое грузчиков — $129 в час, трое — $179, четверо — $219, минимум три часа, дальше шагами по 15 минут. Трак идёт отдельной строкой в смете, за день, по той же цифре, что и бригада. Минимальный счёт — $516. Лицензированные муверы в этом районе обычно берут $100–180 в час за бригаду из двух человек, так что вопрос при выборе почти никогда не в ставке, а в том, насколько честно посчитаны часы. В Майами их определяют три вещи: док и правила здания, ширина улицы у подъезда и время суток, на которое назначен старт.',
+  intro: 'Ставки в Майами не зависят ни от района, ни от дня недели: двое грузчиков — $129 в час, трое — $179, четверо — $219, минимум три часа, дальше шагами по 15 минут. Трак идёт отдельной строкой в смете, за день, по той же цифре, что и бригада. Минимальный счёт — $516. В Майами их определяют три вещи: док и правила здания, ширина улицы у подъезда и время суток, на которое назначен старт.',
   accessFactors: [
     {
       title: 'Brickell: док, заявка и страховой сертификат',
@@ -858,7 +858,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   citySlug: 'ru/miami-beach-movers',
   metaDescription: 'Сколько стоит переезд в Майами-Бич: $129/час за двоих грузчиков, $179 за троих, минимум 3 часа, трак за день, COI бесплатно за 24 часа. WhatsApp 786-305-1844.',
   answer: 'Переезд в Майами-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Остров добавляет к работе две вещи, которых нет на материке: место для трака, которое на многих улицах нужно оформлять через город заранее, и дамбы — весь въезд и выезд идёт через несколько мостов, а дорога между адресами оплачивается как часы. Дальше всё зависит от дома: в ар-деко зданиях Саут-Бич лифта часто нет вовсе, а в новых башнях у Sunset Harbour работа идёт через док по расписанию.',
-  intro: 'В Майами-Бич действуют те же ставки, что и везде: $129 в час за двух грузчиков, $179 за трёх, $219 за четырёх, минимум три часа, потом шагами по 15 минут. Трак стоит в смете своей строкой и считается за день по той же цифре, что и бригада. Никаких надбавок за остров, за выходной день, за сезон или за топливо. Лицензированные муверы в этом районе обычно берут $100–180 в час за бригаду из двух человек, и разница между ними чаще всего не в цифре, а в том, кто заранее разобрался с парковкой и правилами дома. Именно на этом в Майами-Бич выигрываются или теряются часы, из которых потом складывается ваш счёт.',
+  intro: 'В Майами-Бич действуют те же ставки, что и везде: $129 в час за двух грузчиков, $179 за трёх, $219 за четырёх, минимум три часа, потом шагами по 15 минут. Трак стоит в смете своей строкой и считается за день по той же цифре, что и бригада. Никаких надбавок за остров, за выходной день, за сезон или за топливо. Именно на этом в Майами-Бич выигрываются или теряются часы, из которых потом складывается ваш счёт.',
   accessFactors: [
     {
       title: 'Место для трака и городские правила',
