@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { POLICY_COPY } from '@/lib/data/policies';
+import { POLICY_COPY, parkingPolicy } from '@/lib/data/policies';
 import { canonicalFor } from '@/lib/seo/routes';
 
 export const metadata: Metadata = {
@@ -87,6 +87,7 @@ export default function TermsPage() {
                 <li>Securing valuables, personal documents, and irreplaceable items prior to the move</li>
                 <li>Informing us of any building-specific requirements (COI, elevator reservations, etc.)</li>
               </ul>
+              <p>{parkingPolicy('en')}</p>
             </Section>
 
             <Section title="5. Liability">

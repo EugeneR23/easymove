@@ -125,7 +125,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       title: 'Hollywood Beach parking',
-      body: 'Near the Broadwalk, legal space for a 26-foot truck is scarce, and some buildings offer no dock at all. When the closest legal spot is half a block away, every dolly run gets longer. We scout the parking situation before quoting hours, so the estimate already contains the walk.',
+      body: 'Near the Broadwalk, legal space for a 26-foot truck is scarce, and some buildings offer no dock at all. When the closest legal spot is half a block away, every dolly run gets longer. Parking for the truck is yours to arrange. Tell us where it will stand before we quote hours, so the estimate already contains the walk.',
     },
     {
       title: 'Mainland single-family speed',
@@ -453,7 +453,7 @@ export const COST_PAGES: CostPageData[] = [
   accessFactors: [
     {
       title: 'Loading zones and curb space',
-      body: 'Miami Beach polices its curbs, and as a rule a moving truck needs a legal place to stand: a building dock, a marked loading zone, or a temporary curb reservation arranged with the city in advance. We settle where the truck will legally sit before moving day, because a truck circling for space bills like a truck being loaded.',
+      body: 'Miami Beach polices its curbs, and as a rule a moving truck needs a legal place to stand: a building dock, a marked loading zone, or a temporary curb reservation arranged with the city in advance. Parking for the truck is yours to arrange, and it needs settling before moving day, because a truck circling for space bills like a truck being loaded.',
     },
     {
       title: 'Causeway timing',
@@ -475,7 +475,7 @@ export const COST_PAGES: CostPageData[] = [
   faqs: [
     {
       q: 'Who arranges the loading spot or parking for my Miami Beach move?',
-      a: 'We handle the logistics side: identifying where the truck can legally stand at your address and, when a reserved curb zone is needed, arranging it ahead of the date. Some buildings solve it internally with a dock or a service driveway. Either way it is settled before moving day; a mover improvising curb space on the Beach is a mover billing you for circling.',
+      a: 'Parking for the truck is yours to arrange: a legal place for it at your address and, where the city requires one, the reserved curb space. Some buildings solve it internally with a dock or a service driveway. Either way it needs settling before moving day; a mover improvising curb space on the Beach is a mover billing you for circling.',
     },
     {
       q: 'How much more does a third-floor Art Deco walk-up cost?',
@@ -890,7 +890,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   faqs: [
     {
       q: 'Нужно ли оформлять разрешение на парковку трака в Майами-Бич?',
-      a: 'На многих улицах — да, место для грузовой машины оформляется через город заранее, и правила отличаются по районам. Мы проверяем ваш адрес до дня переезда и говорим, что именно потребуется: разрешение, заезд во двор или согласование с менеджментом здания. Разбираться с этим утром в день переезда означает платить за время, пока трак ищет, где встать.',
+      a: 'На многих улицах — да, место для грузовой машины оформляется через город заранее, и правила отличаются по районам. Место под грузовик организует клиент: узнайте у города или у менеджмента здания, что требуется по вашему адресу (разрешение, заезд во двор или согласование), и скажите нам до дня переезда. Разбираться с этим утром в день переезда означает платить за время, пока трак ищет, где встать.',
     },
     {
       q: 'У меня третий этаж в ар-деко доме без лифта. Сколько это добавит?',

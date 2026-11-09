@@ -72,6 +72,7 @@ const ALLOW = [
   'Do not cite "2130 Stirling Rd" from older copies of this site',
   '/pricing said "a partial reschedule fee" and the FAQ said this',
   '"+$50 / +$100" while /pricing and /terms said',
+  'pull these permits", "we coordinate parking" and "we arrange the reserved',
 ];
 
 /**
@@ -226,6 +227,12 @@ const RULES = [
 
   { id: 'crew-language-majority', why: 'Owner, 2026-11-09: the owner answers the phone and the crew leader speaks Russian. "Most of the crew" and "the dispatcher" were both published as fact.',
     re: /most of (?:the|our) crew[^.\n]{0,40}Russian|coordinator and most of the crew|crew leader,? (?:and|the) dispatcher|owner, dispatcher and crew leader/gi },
+
+  { id: 'we-arrange-parking', why: 'Owner, 2026-11-09: the customer arranges parking for the truck, including any permit or reserved space. Use parkingPolicy() from policies.ts. Pages said "we pull these permits", "we coordinate parking" and "we handle the application".',
+    re: /\bwe (?:pull|file|apply for|arrange|handle|coordinate|sort out|take care of)\b[^.\n]{0,45}(?:parking|permits?\b|curb (?:zone|space))|оформляем (?:парковочн|разрешени)\S*/gi },
+
+  { id: 'storage-notice-or-partner', why: 'Owner, 2026-11-09: storage is a unit at a public self-storage facility; the key is left for the customer or the unit is opened on request. "Partner facility" and "48-72 hours notice" were both unsourced.',
+    re: /partner (?:storage )?facility|storage partner|with 48-72 hours notice/gi },
 
   { id: 'invented-testimonial', why: 'A review must be a real one, quoted from googleReviews.ts or Thumbtack. "Maria S., Brickell · Feb 2025" in the quote wizard and four /ru testimonials with avatar initials had no source anywhere (found 2026-10-11).',
     re: /initials:\s*['"]|—\s*[A-Z][a-z]+ [A-Z]\.,\s*[A-Z][a-z]+\s*·\s*[A-Z][a-z]{2} 20\d\d/g },

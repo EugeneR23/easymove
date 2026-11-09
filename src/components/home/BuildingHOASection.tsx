@@ -16,7 +16,7 @@ const ITEMS = [
   {
     icon: Car,
     title: 'Loading zone + parking',
-    body: 'Many high-rises set their own loading zone and parking rules. We ask the building where the truck may stand, and for how long, before move day.',
+    body: 'Many high-rises set their own loading zone and parking rules. Parking for the truck is yours to arrange. Tell us where it may stand, and for how long, before move day.',
   },
   {
     icon: ClipboardCheck,

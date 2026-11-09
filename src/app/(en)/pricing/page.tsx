@@ -70,7 +70,7 @@ const NOT_INCLUDED = [
   `The truck: $${TRUCK_FEE[2]} per day with two movers, $${TRUCK_FEE[3]} with three, $${TRUCK_FEE[4]} with four — it matches the crew rate. Fuel, tolls and mileage are inside it; there is no fuel surcharge.`,
   'Packing materials (boxes, TV cartons, mattress bags you keep, corner protectors) — billed as flat packages, not per-item markups',
   'Heavy items: piano, safe, marble piece. A separate line on the estimate, agreed before you book',
-  'Storage between move-out and move-in — coordinated with our storage partner; blankets left in storage are billed',
+  'Storage between move-out and move-in — in a public self-storage unit; blankets left in storage are billed',
 ];
 
 const FACTORS = [

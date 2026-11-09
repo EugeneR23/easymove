@@ -830,7 +830,7 @@ export const BLOG_POSTS: BlogPost[] = [
         'We monitor National Hurricane Center updates daily during active systems',
         'If a named storm enters the cone within 72 hours of your move, we proactively call to reschedule — no fee, no rate change',
         'For moves the day before a forecasted landfall, we postpone — your goods do not belong in a truck on I-95 in a tropical storm',
-        'Storage at a partner facility in Miami is available if your Orlando closing is delayed by weather, from $200/month. A climate-controlled unit is booked with a third party',
+        'Storage in a public self-storage unit in Miami is available if your Orlando closing is delayed by weather, from $200/month. A climate-controlled unit is booked with a third party',
         'We do not move during active tropical storm warnings, period',
       ]},
 
@@ -941,10 +941,10 @@ export const BLOG_POSTS: BlogPost[] = [
       ]},
 
       { type: 'h2', text: 'Storage as a hurricane buffer' },
-      { type: 'p', text: 'If you have flexibility in your timeline, storage is a tactical option during hurricane season. We arrange it at a partner facility from $200/month, and a climate-controlled unit is booked with a third party.' },
+      { type: 'p', text: 'If you have flexibility in your timeline, storage is a tactical option during hurricane season. We arrange it in a public self-storage unit from $200/month, and a climate-controlled unit is booked with a third party.' },
       { type: 'p', text: 'Common scenarios where storage helps:' },
       { type: 'ul', items: [
-        'Origin lease ends Aug 31, destination closing delayed by storm: we load Aug 31, hold goods in a partner storage facility, deliver when destination is ready',
+        'Origin lease ends Aug 31, destination closing delayed by storm: we load Aug 31, hold goods in a public self-storage unit, deliver when destination is ready',
         'You want to move in early June (before peak season) but new home doesn\'t close until September — we hold inventory through the worst months',
         'Storm forecasted for move day — we can load early, hold for 1-3 days in storage, deliver after the storm clears',
       ]},

@@ -107,7 +107,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Interstate and out-of-state moves: not offered, not quoted',
       'Packing before a long-haul carrier arrives: from $99/hour for two packers',
       'Local move into storage on the Florida side: standard hourly rates, from $129/hour for two movers',
-      'Storage coordination: from $200/month through our storage partner',
+      'Storage coordination: from $200/month in a public self-storage unit',
     ],
     faqs: [
       { q: 'Do you move within Florida but outside South Florida - say Miami to Orlando?', a: 'Yes. That is a long-distance move for us and it is quoted individually rather than by the hour: we look at the volume, the distance and the access at both ends, and send one written figure. No deposit to book.' },
@@ -225,7 +225,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     whyUs: [
       {
         title: 'Choosing the facility',
-        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. Your things go into a partner facility, chosen on volume and how long you need it. We tell you which one before anything moves, and what it does and does not control. Climate-controlled space we do not run ourselves; where a piece needs it we book a unit with a third-party facility that has it.",
+        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. Your things go into a unit at a public self-storage facility, chosen on volume and how long you need it. We tell you which one before anything moves, and what it does and does not control. Climate-controlled space we do not run ourselves; where a piece needs it we book a unit with a third-party facility that has it.",
       },
       {
         title: 'Pickup and redelivery handled',
@@ -243,7 +243,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     process: [
       { step: 1, title: 'Initial consultation', body: 'We discuss what you\'re storing, expected duration, and any special handling (art, electronics, wine). Recommendation on facility type and size.' },
       { step: 2, title: 'Pickup and inventory', body: 'On move day, we pick up items, photograph and inventory each piece, and transport directly to facility. You receive complete inventory list with photos.' },
-      { step: 3, title: 'Secure storage', body: "Items go into a partner facility we book on your behalf, with monitored access. We stay the point of contact, so you never manage a separate storage relationship." },
+      { step: 3, title: 'Secure storage', body: "Items go into a unit at a public self-storage facility that we book on your behalf. We stay the point of contact, so you never manage a separate storage relationship." },
       { step: 4, title: 'Monthly billing', body: 'Storage billed month-to-month. Cancel any time with 7 days notice. No annual contracts, no early termination fees.' },
       { step: 5, title: 'Redelivery', body: 'When you\'re ready, schedule redelivery with us. Full delivery service to your new home — placement, reassembly of any disassembled items, walk-through.' },
     ],
@@ -259,8 +259,8 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     faqs: [
       { q: 'How long can I store items?', a: "Month-to-month, no minimum, no maximum: a few weeks during a closing gap or many months during a renovation. Cancel any time with 7 days notice." },
-      { q: 'Is storage climate-controlled?', a: "That depends on the unit, and we name it before anything moves. Storage is at a partner facility in Miami-Dade or Broward. Climate-controlled units we do not operate ourselves; they are booked with a third party. If what you are storing is wood, art or upholstered, say so and we will book one. South Florida heat and humidity make the unconditioned kind a poor choice for those." },
-      { q: 'Can I access my items while in storage?', a: 'Yes, with 48-72 hours notice. We retrieve specific items and deliver them to you. Frequent access is unusual; if you need it, we recommend a self-storage unit instead and we just handle the transport.' },
+      { q: 'Is storage climate-controlled?', a: "That depends on the unit, and we name it before anything moves. Storage is in a unit at a public self-storage facility in Miami-Dade or Broward. Climate-controlled units we do not operate ourselves; they are booked with a third party. If what you are storing is wood, art or upholstered, say so and we will book one. South Florida heat and humidity make the unconditioned kind a poor choice for those." },
+      { q: 'Can I access my items while in storage?', a: 'Yes. Your things are in a unit at a public self-storage facility. We can leave the key for you, or open the unit when you ask.' },
       { q: 'What about insurance?', a: "Optional storage insurance is arranged with the storage facility and priced on declared value. For high-value items (art, antiques over $10K), we coordinate facility-partner coverage. Your homeowner's insurance may also extend to stored items — worth checking before adding storage insurance." },
       { q: 'Can you store items between move-out and move-in dates?', a: 'Yes. It is common during closings: move out Tuesday, store 5-30 days, deliver to new home. Pricing is prorated for partial months.' },
     ],
