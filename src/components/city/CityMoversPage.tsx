@@ -139,7 +139,10 @@ const SOUTH_TO_NORTH = [
  * and Boca, not Coconut Grove.
  */
 function nearbyCities(current: CityData, limit = 8) {
-  const currentSlug = current.slug.replace(/^ru\//, '');
+  // Both locale prefixes. Only "ru/" was stripped, so a Ukrainian page never
+  // found itself in the order: it listed its own city under "nearby" and the
+  // rest came out in file order instead of by distance.
+  const currentSlug = current.slug.replace(/^(?:ru|ua)\//, '');
   const here = SOUTH_TO_NORTH.indexOf(currentSlug);
   const rank = (slug: string) => {
     const i = SOUTH_TO_NORTH.indexOf(slug);

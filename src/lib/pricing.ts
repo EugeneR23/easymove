@@ -107,6 +107,17 @@ export function resolveLocalDistance(fromCity: string, toCity: string): { miles:
   return { miles: Math.round(Math.sqrt(dx * dx + dy * dy) * 1.15), confirmed: true }; // 1.15 road routing factor
 }
 
+/**
+ * The cities a quote form may offer: exactly the ones the distance table can
+ * measure, so every option has a real mileage behind it. The wizard kept its
+ * own list of 13, which left out Hallandale Beach, Miami Beach and a dozen
+ * other served cities; a visitor from one of those pages had to pick "Other"
+ * and lost the automatic estimate.
+ */
+export const QUOTE_CITIES: string[] = Object.keys(CITY_COORDS)
+  .map((c) => c.replace(/(^|[\s-])([a-z])/g, (_, sep: string, ch: string) => sep + ch.toUpperCase()))
+  .sort((a, b) => a.localeCompare(b));
+
 /** Estimate driving distance (miles) between two South Florida cities */
 export function estimateLocalDistance(fromCity: string, toCity: string): number {
   return resolveLocalDistance(fromCity, toCity).miles;
@@ -174,7 +185,9 @@ export function routeMode(fromState: string, toState: string, moveType: MoveType
   // destination is not yet a refusal - the visitor simply has not answered.
   const outside = (s: string) => s !== '' && s !== 'FL';
   if (outside(from) || outside(to)) return 'referral';
-  return moveType === 'long-distance' ? 'custom' : 'priced';
+  // Specialty joined long-distance here on 2026-11-09: the owner withdrew the
+  // "$800 minimum", so a piano or an art job has no formula either.
+  return moveType === 'long-distance' || moveType === 'specialty' ? 'custom' : 'priced';
 }
 
 // ─── Main calculator ──────────────────────────────────────────────────────────
@@ -290,8 +303,9 @@ export function calculatePricing(input: PricingInput): QuotePricing {
       break;
     }
     default: {
-      // specialty — custom base, quoted individually
-      laborRate = 800;
+      // specialty: quoted individually, so no figure. This was `laborRate = 800`
+      // until 2026-11-09, a number no rate card backed.
+      laborRate = 0;
       break;
     }
   }

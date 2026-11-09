@@ -16,6 +16,52 @@ import * as LucideIcons from 'lucide-react';
 import { CheckCircle, Shield, Phone } from 'lucide-react';
 import { canonicalFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
+import { CITIES } from '@/lib/data/cities';
+import { PHONE, telHref } from '@/lib/data/contact';
+import { localStartingPrice, OFFICE_MIN_CREW, STARTING_HOURS } from '@/lib/pricing';
+
+/**
+ * What each service page is called in search. The catalogue names in
+ * data/services.json ("Office & Commercial", "Storage Coordination") are menu
+ * labels: as H1 and title they gave "Office Commercial" and "Long-Distance
+ * Moving Within Florida in South Florida", and none of the five pages ranked
+ * in the top 49 for its own query on 2026-11-09. Prices are read from the
+ * pricing module, never typed here.
+ */
+const SEARCH_COPY: Record<string, { h1: string; title: string; description: (startingPrice: number) => string }> = {
+  'residential-moving': {
+    h1: 'Apartment, Condo and House Movers',
+    title: 'Apartment, Condo & House Movers | Easy Move Florida',
+    description: () =>
+      `Apartment, condo and house moves across South Florida. From $${HOURLY_RATE[2]}/hr for 2 movers, ${MIN_HOURS}-hour minimum, truck as its own line. No deposit. Free COI.`,
+  },
+  'long-distance-moving': {
+    h1: 'Long-Distance Movers Within Florida',
+    title: 'Long-Distance Movers Within Florida | Easy Move Florida',
+    description: () =>
+      'Moves from South Florida to anywhere else in Florida, quoted per job in writing within 24 hours. No deposit. Out of state we refer a licensed carrier.',
+  },
+  'office-commercial': {
+    h1: 'Office Movers in South Florida',
+    title: 'Office Movers in South Florida | Easy Move Florida',
+    description: () =>
+      `Office moves in Miami-Dade and Broward, evenings and weekends at the same rate. From ${formatCurrency(localStartingPrice('office', OFFICE_MIN_CREW))} for ${OFFICE_MIN_CREW} movers and ${STARTING_HOURS.office} hours. Free COI.`,
+  },
+  'specialty-items': {
+    h1: 'Fine Art and Specialty Item Movers',
+    title: 'Fine Art & Specialty Item Movers | Easy Move Florida',
+    description: () =>
+      `Custom crating and careful handling for art, antiques and pianos in South Florida. Each job is quoted per piece before you book. Call ${PHONE.display}.`,
+  },
+  'storage-solutions': {
+    h1: 'Moving and Storage in South Florida',
+    title: 'Moving and Storage in South Florida | Easy Move Florida',
+    description: (startingPrice) =>
+      `Pickup, storage at a partner facility and redelivery in South Florida. From ${formatCurrency(startingPrice)} a month, month to month. Call ${PHONE.display}.`,
+  },
+};
+
+const ORG_ID = 'https://www.easy-move-florida.com/#organization';
 
 export async function generateStaticParams() {
   const services = readAllServices();
@@ -26,10 +72,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const service = readOneService(params.slug);
   if (!service) return { title: 'Service | Easy Move Florida' };
 
-  const title = `${service.name} in South Florida | Easy Move Florida`;
-  // Trim tagline at sentence boundary and append a short, keyword-rich suffix (~155 chars total)
-  const tagline = service.tagline.replace(/\.$/, '');
-  const description = `${tagline} — Miami, Fort Lauderdale & Boca Raton. Owner-led, COI in 24 hours. Free written estimate.`;
+  const copy = SEARCH_COPY[service.slug];
+  const title = copy?.title ?? `${service.name} | Easy Move Florida`;
+  // A service added later without an entry above falls back to its own tagline,
+  // with no suffix: the old suffix repeated the cities the tagline already named.
+  const description = copy ? copy.description(service.startingPrice) : service.tagline;
 
   return {
     title: { absolute: title },
@@ -77,22 +124,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     name: service.name,
     description: service.description,
     serviceType: service.name,
-    provider: {
-      '@type': 'MovingCompany',
-      name: 'Easy Move Florida',
-      telephone: '+17863051844',
-      url: 'https://www.easy-move-florida.com',
-    },
-    areaServed: [
-      { '@type': 'City', name: 'Miami' },
-      { '@type': 'City', name: 'Fort Lauderdale' },
-      { '@type': 'City', name: 'Boca Raton' },
-      { '@type': 'City', name: 'Aventura' },
-      { '@type': 'City', name: 'Coral Gables' },
-      { '@type': 'City', name: 'Sunny Isles Beach' },
-      { '@type': 'City', name: 'Hollywood' },
-      { '@type': 'City', name: 'Coconut Grove' },
-    ],
+    // A reference to the one business node in RootShell, not a second,
+    // unlinked "MovingCompany" that reads as a different business.
+    provider: { '@id': ORG_ID },
+    areaServed: CITIES.map((c) => ({ '@type': 'City', name: c.name })),
     // A service quoted per job has no published figure. Emitting one anyway put
     // a number in the knowledge graph that no rate card backs.
     //
@@ -162,7 +197,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       <Header />
       <main className="pt-20">
         {/* Hero */}
-        <section className="relative h-80 md:h-[440px] flex items-end overflow-hidden">
+        {/* min-h, not h: the hero now carries two buttons, and a fixed height
+            would clip the heading on a 375px screen. */}
+        <section className="relative min-h-[20rem] md:min-h-[440px] flex items-end overflow-hidden">
           <Image
             src={service.imageUrl}
             alt={`${service.name} — Easy Move Florida South Florida`}
@@ -173,15 +210,26 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/40 to-transparent" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 w-full">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 w-full">
             <span className="inline-block text-gold text-xs font-semibold uppercase tracking-widest border border-gold/30 px-3 py-1 mb-4">
               {service.category}
             </span>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-white">{service.name}</h1>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-white">{SEARCH_COPY[service.slug]?.h1 ?? service.name}</h1>
             <p className="text-gray-300 mt-3 max-w-xl">{service.tagline}</p>
-            <p className="text-gold/55 text-[11px] font-semibold tracking-[0.2em] uppercase mt-4">
-              Miami · Fort Lauderdale · Boca Raton
-            </p>
+            {/* The only calls to action used to sit in the sidebar, which on a
+                phone is below the whole article. */}
+            <div className="flex flex-wrap gap-3 mt-6">
+              <Link href="/quote">
+                <Button size="lg" variant="primary">Get Your Quote</Button>
+              </Link>
+              <a
+                href={telHref()}
+                className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 text-sm font-semibold hover:border-gold hover:text-gold transition-colors"
+              >
+                <Phone size={15} />
+                {PHONE.display}
+              </a>
+            </div>
           </div>
         </section>
 
@@ -192,7 +240,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <div className="lg:col-span-2">
               <p className="text-gray-600 text-lg leading-relaxed mb-10">{service.description}</p>
 
-              <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">What&rsquo;s Included</h3>
+              <h2 className="font-display text-2xl font-semibold text-charcoal mb-6">What&rsquo;s Included</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12">
                 {service.features.map((f) => (
                   <div key={f.label} className="flex items-center gap-3 bg-white p-4 border border-gray-100 group hover:border-gold transition-colors duration-200">
@@ -214,9 +262,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               {/* Why us — service-specific reasoning */}
               {content && content.whyUs.length > 0 && (
                 <div className="mb-12">
-                  <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">
+                  <h2 className="font-display text-2xl font-semibold text-charcoal mb-6">
                     Why Easy Move Florida for {service.name}
-                  </h3>
+                  </h2>
                   <div className="space-y-5">
                     {content.whyUs.map((item) => (
                       <div key={item.title} className="bg-white border border-gray-100 p-5">
@@ -231,7 +279,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               {/* Process steps */}
               {content && content.process.length > 0 && (
                 <div className="mb-12">
-                  <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">How It Works</h3>
+                  <h2 className="font-display text-2xl font-semibold text-charcoal mb-6">How It Works</h2>
                   <ol className="space-y-5">
                     {content.process.map((step) => (
                       <li key={step.step} className="flex gap-4">
@@ -251,7 +299,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               {/* Pricing breakdown */}
               {content && content.pricingBreakdown.length > 0 && (
                 <div className="mb-12 bg-cream border border-gold/20 p-6">
-                  <h3 className="font-display text-xl font-semibold text-charcoal mb-4">Pricing Breakdown</h3>
+                  <h2 className="font-display text-xl font-semibold text-charcoal mb-4">Pricing Breakdown</h2>
                   <ul className="space-y-2">
                     {content.pricingBreakdown.map((line) => (
                       <li key={line} className="flex items-start gap-2 text-sm text-charcoal">
@@ -266,7 +314,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               {/* FAQs */}
               {content && content.faqs.length > 0 && (
                 <div className="mb-12">
-                  <h3 className="font-display text-2xl font-semibold text-charcoal mb-6">Common Questions</h3>
+                  <h2 className="font-display text-2xl font-semibold text-charcoal mb-6">Common Questions</h2>
                   <div className="divide-y divide-gray-200">
                     {content.faqs.map((faq, i) => (
                       <div key={i} className="py-5">
@@ -284,6 +332,21 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   <p className="text-gray-600 text-sm leading-relaxed">{content.localContext}</p>
                 </div>
               )}
+
+              {/* Service pages linked to no city page at all; city pages already
+                  link here. */}
+              <div className="mb-12">
+                <h2 className="font-display text-2xl font-semibold text-charcoal mb-4">Cities We Serve</h2>
+                <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                  {CITIES.map((c) => (
+                    <li key={c.slug}>
+                      <Link href={`/${c.slug}`} className="text-charcoal underline underline-offset-2 hover:text-gold transition-colors">
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Trust signals */}
               <div className="bg-charcoal p-8">

@@ -170,7 +170,7 @@ const offerJson = JSON.stringify({
   name: 'Локальный переезд — Южная Флорида',
   serviceType: 'Local Moving',
   inLanguage: 'ru-RU',
-  provider: { '@type': 'MovingCompany', name: 'Easy Move Florida', telephone: '+17863051844', url: siteUrl },
+  provider: { '@id': `${siteUrl}/#organization` },
   areaServed: { '@type': 'AdministrativeArea', name: 'Южная Флорида (округа Miami-Dade, Broward, Palm Beach)' },
   offers: {
     '@type': 'AggregateOffer',

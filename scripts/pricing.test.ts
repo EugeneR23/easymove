@@ -50,6 +50,20 @@ check('lower case is not a loophole',        routeMode('fl', 'wa', 'local') === 
 check('an origin outside FL is a referral',  routeMode('NY', 'FL', 'local') === 'referral', routeMode('NY', 'FL', 'local'));
 check('a blank destination is not yet a refusal', routeMode('FL', '', 'local') === 'priced', routeMode('FL', '', 'local'));
 
+// Owner, 2026-11-09: specialty work (piano, art, safes) is quoted per job and
+// the "$800 minimum" is withdrawn. The engine still returned laborRate 800 in
+// 'priced' mode, so the quote summary printed "$800" for a job nobody had priced.
+console.log('\n[1b] specialty carries no automatic price');
+const specialty = calculatePricing({
+  moveType: 'specialty', estimatedDistance: 0,
+  fromCity: 'Miami', toCity: 'Aventura', fromState: 'FL', toState: 'FL',
+  inventory, addons,
+});
+check('specialty is a hand quote',     specialty.quoteMode === 'custom', specialty.quoteMode);
+check('specialty total is 0',          specialty.total === 0, specialty.total);
+check('specialty labour is 0',         specialty.laborRate === 0, specialty.laborRate);
+check('routeMode agrees for specialty', routeMode('FL', 'FL', 'specialty') === 'custom', routeMode('FL', 'FL', 'specialty'));
+
 console.log('\n[2] a referral never carries a figure');
 const seattle = calculatePricing({
   moveType: 'long-distance', estimatedDistance: 0,

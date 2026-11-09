@@ -102,7 +102,7 @@ const reviewArrayJson = REVIEWS.length
         position: i + 1,
         item: {
           '@type': 'Review',
-          itemReviewed: { '@type': 'MovingCompany', name: 'Easy Move Florida', url: siteUrl },
+          itemReviewed: { '@id': `${siteUrl}/#organization` },
           reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: r.name },
           ...(r.date ? { datePublished: r.date } : {}),

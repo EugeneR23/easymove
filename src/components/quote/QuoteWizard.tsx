@@ -134,7 +134,7 @@ function readCalculatorParams(): Partial<WizardData> | null {
   const size = q.get('size');
   const crew = q.get('crew');
   const SIZES: HomeSize[] = ['studio', '1br', '2br', '3br', '4br+', 'office'];
-  const moveType = type && ['local', 'packing-only', 'specialty'].includes(type) ? normalizeMoveType(type) : null;
+  const moveType = type && ['local', 'long-distance', 'packing-only', 'specialty'].includes(type) ? normalizeMoveType(type) : null;
   const homeSize = size && (SIZES as string[]).includes(size) ? (size as HomeSize) : null;
   if (!moveType && !homeSize) return null;
   return {
