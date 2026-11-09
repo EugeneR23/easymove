@@ -115,7 +115,7 @@ const NO_FEES = [
   {
     fee: 'A "COI processing fee"',
     us: false,
-    note: 'Some companies bill $50–$150 to issue the certificate. We do not charge for it.',
+    note: 'We do not charge to issue the certificate.',
   },
   {
     fee: 'An elevator fee, a stairs fee or a long-carry fee',
@@ -131,7 +131,7 @@ const FAQS = [
   },
   {
     q: 'Do you charge for the certificate?',
-    a: 'No. The COI is free, and so is reissuing it if the building wants something changed. Some movers bill $50–$150 for it; that fee does not exist here.',
+    a: 'No. The COI is free, and so is reissuing it if the building wants something changed. There is no fee for it here.',
   },
   {
     q: 'What limits will my building require?',

@@ -23,12 +23,12 @@ export const CITIES: CityData[] = [
     name: 'Miami',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Miami Movers for Condos, Apartments and Houses",
+    heroHeadline: "Movers in Miami, FL",
     heroSub: 'Brickell · Coral Gables · Miami Beach · Coconut Grove',
     heroImage: '/images/Real/Miami.jpg',
-    metaTitle: 'Miami Movers, FL | Easy Move Florida',
+    metaTitle: "Movers in Miami, FL from $129/hr | Easy Move Florida",
     metaDescription:
-      'Insured Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $129/hr. Call 786-305-1844.',
+      "Local movers in Miami for condos and houses. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
       "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. Every crew we send is briefed on your building before they arrive.",
     neighborhoods: [
@@ -99,12 +99,12 @@ export const CITIES: CityData[] = [
     name: 'Fort Lauderdale',
     state: 'FL',
     county: 'Broward',
-    heroHeadline: "Fort Lauderdale's Trusted Moving Company",
+    heroHeadline: "Movers in Fort Lauderdale, FL",
     heroSub: 'Las Olas · Victoria Park · Wilton Manors · Plantation',
     heroImage: '/images/Real/Fort-Lauderdale.jpg',
-    metaTitle: 'Fort Lauderdale Movers | Easy Move Florida',
+    metaTitle: "Movers in Fort Lauderdale from $129/hr | Easy Move Florida",
     metaDescription:
-      'Insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
+      "Local movers in Fort Lauderdale and Broward. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
       "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. Easy Move Florida serves all of Broward County, from Las Olas Boulevard high-rises to Plantation family homes, with the same crew, the same standards, and direct access to the founder.",
     neighborhoods: [
@@ -239,12 +239,12 @@ export const CITIES: CityData[] = [
     name: 'Aventura',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Aventura Movers for Towers, Condos and Houses",
+    heroHeadline: "Movers in Aventura, FL",
     heroSub: 'Williams Island · Porto Vita · Turnberry · Hidden Bay',
     heroImage: '/images/Real/4.png',
-    metaTitle: 'Aventura Movers — High-Rise & Condo | Easy Move Florida',
+    metaTitle: "Movers in Aventura, FL from $129/hr | Easy Move Florida",
     metaDescription:
-      "Insured movers in Aventura, FL. High-rise moves in Williams Island, Porto Vita, Turnberry & across Aventura. COI within 24 hours. Russian and English spoken. Call 786-305-1844.",
+      "Local movers in Aventura, FL for condos and towers. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
       "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. Williams Island, Porto Vita, Turnberry Isle and Hidden Bay each run their own version of that: a registered arrival, a reserved dock window, and a certificate of insurance naming the association. We collect those requirements from the management office at booking and issue the COI within 24 hours, in the format the building asks for. We also speak Russian, which matters in Aventura.",
     neighborhoods: [
@@ -370,12 +370,12 @@ export const CITIES: CityData[] = [
     name: 'Sunny Isles Beach',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Sunny Isles Beach's High-Rise Moving Specialists",
+    heroHeadline: "Movers in Sunny Isles Beach, FL",
     heroSub: 'Trump Towers · Acqualina · Jade Beach · Porsche Design Tower',
     heroImage: '/images/Real/6.png',
-    metaTitle: 'Sunny Isles Movers, FL | Easy Move Florida',
+    metaTitle: "Movers in Sunny Isles Beach from $129/hr | Easy Move Florida",
     metaDescription:
-      'Sunny Isles movers serving Acqualina, Trump Towers, Jade Beach and Porsche Design Tower. Russian and English spoken. COI in 24h. Call 786-305-1844.',
+      "Movers in Sunny Isles Beach for condos and towers. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
       "Sunny Isles Beach is Miami's vertical city — a strip of oceanfront luxury towers where every move happens through a freight elevator on a fixed time window with a dock manager watching the clock. Trump Tower I, II, and III, Acqualina, Mansions at Acqualina, Jade Beach, Jade Ocean, Porsche Design Tower and Chateau Beach are all inside our service area. Each tower sets its own rules on weekend moves, COI limits (many here require $1M–$2M coverage — we confirm your building's exact requirements before move day), and crew presentation. We also speak Russian, which matters in this neighborhood.",
     neighborhoods: [
@@ -445,12 +445,12 @@ export const CITIES: CityData[] = [
     name: 'Hollywood',
     state: 'FL',
     county: 'Broward',
-    heroHeadline: "Hollywood's Trusted Local Moving Company",
+    heroHeadline: "Movers in Hollywood, FL",
     heroSub: 'Hollywood Beach · Emerald Hills · Hillcrest · Lakes',
     heroImage: '/images/Real/9.jpg',
-    metaTitle: 'Hollywood FL Movers | Easy Move Florida',
+    metaTitle: "Movers in Hollywood, FL from $129/hr | Easy Move Florida",
     metaDescription:
-      'Hollywood FL movers — Hollywood Beach, Emerald Hills, Hillcrest. From $129/hr. Call 786-305-1844.',
+      "Local movers in Hollywood, FL. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
       "Hollywood, Florida sits between Fort Lauderdale and Miami — close enough to both that most moves here are short hops, but with its own neighborhoods, building rules, and traffic quirks. Whether you're moving to Hollywood Beach, Emerald Hills, the Lakes, or one of the historic single-family neighborhoods west of US-1, Easy Move Florida handles your move with the same standards we apply in Brickell and Aventura. We're based in Hollywood — this is our home.",
     neighborhoods: [
@@ -651,12 +651,12 @@ export const CITIES: CityData[] = [
     name: 'Hallandale Beach',
     state: 'FL',
     county: 'Broward',
-    heroHeadline: "Hallandale Beach's Oceanfront Moving Specialists",
+    heroHeadline: "Movers in Hallandale Beach, FL",
     heroSub: 'Diplomat · Beach Club · Hyde Resort · Hemispheres · Olympus',
     heroImage: '/images/Real/6.png',
-    metaTitle: 'Hallandale Beach Movers, FL | Easy Move Florida',
+    metaTitle: "Movers in Hallandale Beach from $129/hr | Easy Move Florida",
     metaDescription:
-      'Hallandale Beach movers serving Diplomat, Beach Club Towers, Hyde Resort and Hemispheres. Free COI in 24h, Russian and English spoken. Call 786-305-1844.',
+      "Movers in Hallandale Beach for condos and towers. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
       "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north. There is no travel fee: billable hours start when the crew arrives at your first address, and a same-day move is possible if a crew is free, at the same hourly rate. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years, и мы говорим по-русски.",
     neighborhoods: [
