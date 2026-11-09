@@ -15,6 +15,7 @@ import {
   HOURLY_RATE,
   PACKING_HOURLY_RATE,
   localStartingPrice,
+  crewOptions,
 } from '../src/lib/pricing';
 import { bandHours, bandRange, bandCrew, BAND_KEYS } from '../src/lib/pricingCopy';
 import { readFileSync } from 'node:fs';
@@ -63,6 +64,23 @@ check('specialty is a hand quote',     specialty.quoteMode === 'custom', special
 check('specialty total is 0',          specialty.total === 0, specialty.total);
 check('specialty labour is 0',         specialty.laborRate === 0, specialty.laborRate);
 check('routeMode agrees for specialty', routeMode('FL', 'FL', 'specialty') === 'custom', routeMode('FL', 'FL', 'specialty'));
+
+// Owner, 2026-11-09: "3 bedrooms only from 3 people". The calculator let a
+// visitor pick two movers for a three-bedroom and showed "from $903", and
+// ChatGPT repeated that figure while /pricing said $1,253 for the same home.
+console.log('\n[1c] three bedrooms and larger are never priced with two movers');
+for (const size of ['3br', '4br+'] as const) {
+  const two = calculatePricing({
+    moveType: 'local', estimatedDistance: 0, fromState: 'FL', toState: 'FL',
+    inventory: { ...inventory, homeSize: size, crewSize: 2 }, addons,
+  });
+  check(`${size}: a request for 2 movers is priced with 3`, two.crewSize === 3, two.crewSize);
+  check(`${size}: calculator "from" with 2 selected equals the 3-mover price`,
+    localStartingPrice(size, 2) === localStartingPrice(size, 3), [localStartingPrice(size, 2), localStartingPrice(size, 3)]);
+  check(`${size}: 2 movers is not offered`, !crewOptions(size).includes(2), crewOptions(size));
+}
+check('2br still offers 2 movers', crewOptions('2br').includes(2), crewOptions('2br'));
+check('3br "from" is the published band low ($1,253)', localStartingPrice('3br', 2) === 1253, localStartingPrice('3br', 2));
 
 console.log('\n[2] a referral never carries a figure');
 const seattle = calculatePricing({

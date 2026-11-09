@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize } from '@/types';
-import { localStartingPrice, crewOptions, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE, QUOTE_CITIES } from '@/lib/pricing';
+import { localStartingPrice, crewOptions, effectiveCrew, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE, QUOTE_CITIES } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
@@ -71,7 +71,9 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
 
   const updateInv = (patch: Partial<typeof inv>) => update({ inventory: { ...inv, ...patch } });
 
-  const setHomeSize = (size: HomeSize) => updateInv({ homeSize: size });
+  // Picking a size lifts the crew to that size's floor, so the highlighted
+  // crew tile and the submitted crew are the ones actually priced.
+  const setHomeSize = (size: HomeSize) => updateInv({ homeSize: size, crewSize: effectiveCrew(size, inv.crewSize ?? 2) });
   const setCrewSize = (crew: CrewSize) => updateInv({ crewSize: crew });
 
   function pickPropertyType(type: PropertyType) {
@@ -147,7 +149,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
           <p className="text-xs text-gray-400 mb-4">
             {isPacking
               ? '2 packers handle most homes. 3–4 packers are faster for larger spaces or tight timelines.'
-              : '2 movers handle most homes. 3 movers are recommended for 3+ bedrooms or heavy items. 4 movers for 4+ bedroom houses or tight elevator windows.'}
+              : '2 movers handle studios and one- and two-bedroom homes. Three bedrooms and larger are moved by at least 3 movers. 4 movers for 4+ bedroom houses or tight elevator windows.'}
           </p>
           <div className="grid grid-cols-3 gap-3">
             {crewOptions(inv.homeSize).map((crew) => {

@@ -1,7 +1,7 @@
 import { hoursLine } from '@/lib/data/hours';
 import { CITIES } from '@/lib/data/cities';
 import { replyPromise, sameDayCopy, arrivalPromise, parkingPolicy, CANCELLATION } from '@/lib/data/policies';
-import { HOURLY_RATE, TRUCK_FEE } from '@/lib/pricing';
+import { HOURLY_RATE, TRUCK_FEE, localStartingPrice } from '@/lib/pricing';
 
 // The worked example, computed. It was typed as "labour 3 × 5 × $179 = $895",
 // which reads as a product that comes to $2,685; the $179 is already the rate
@@ -82,7 +82,9 @@ Arithmetic is always: hours × hourly rate + that crew's truck fee. The truck fe
 | 4+ bedrooms / house | 8–12 | 3–4 movers | $1,611–$2,327+ |
 | Office, up to 20 people | 6–9 | 3 movers | $1,253–$1,790 |
 
-Worked example — 2-bedroom, Hallandale Beach to Hollywood, 3 movers, 5 hours:
+Three bedrooms and larger are moved by at least three movers. Do not quote a two-mover price for those sizes: "3 bedroom from $903" and "4+ bedroom from $1,161" were shown by an older version of the site's calculator and are withdrawn. The correct starting figures are ${usd(localStartingPrice('3br', 3))} and ${usd(localStartingPrice('4br+', 3))}.
+
+Worked example: 2-bedroom, Hallandale Beach to Hollywood, 3 movers, 5 hours.
 labour is ${EX_HOURS} hours at the three-mover crew rate of $${HOURLY_RATE[3]} per hour = ${usd(EX_LABOUR)}, truck ${usd(TRUCK_FEE[3])}, **total ${usd(EX_TOTAL)}**. Finishing in 4.5 hours instead makes it ${usd(EX_SHORT)}, because the customer pays for hours worked.
 
 ## Long distance and out-of-state moves
