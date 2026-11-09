@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'The Complete Brickell Condo Move Checklist (2026)',
     metaTitle: 'Brickell Condo Move Checklist 2026 — COI & Elevator | Easy Move Florida',
     metaDescription: 'Step-by-step Brickell condo move checklist: COI requirements, elevator reservations, loading dock windows, building management contacts. From a Miami mover.',
-    excerpt: 'Moving into a Brickell high-rise involves more than packing boxes. Here\'s every requirement, deadline, and document you need — building by building.',
+    excerpt: 'Moving into a Brickell high-rise involves more than packing boxes. Here are the requirements, deadlines and documents to ask your building for before move day.',
     publishedAt: '2026-04-22',
     updatedAt: '2026-11-09',
     author: 'Eugene Romanov',
@@ -58,7 +58,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Common Brickell COI requirements:' },
       { type: 'ul', items: [
         // [TODO: confirm exact building COI limits with Evgenii]
-        'General liability: commonly $1M, with newer towers (Brickell City Centre, SLS Lux Brickell, 1010 Brickell) often asking for $2M — confirm your building\'s figure in writing',
+        'General liability: commonly $1M, but each building sets its own limit, so confirm your building\'s figure in writing',
         'Workers compensation coverage included',
         'Auto liability for moving truck',
         'Building management named as "additional insured" with exact spelling',
@@ -67,25 +67,18 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Get your building\'s COI requirements in writing from your building manager or move-in coordinator. Forward to your mover. Reputable movers issue COI within 24 hours, free of charge.' },
 
       { type: 'h2', text: '2. Reserve the freight elevator' },
-      { type: 'p', text: 'Most Brickell buildings have one freight elevator and 2-4 hour reservation windows. Popular weekend windows fill up 2-3 weeks in advance, especially during snowbird season (October-May).' },
+      { type: 'p', text: 'Each building sets its own freight elevator booking rules and move windows. Ask the management office for the available windows as soon as your move date is fixed.' },
       { type: 'callout', title: 'Insider tip', text: 'If your building offers Tuesday or Wednesday move-in slots, take them. Competition for elevator windows is much lower midweek, and your move will go faster because the freight elevator isn\'t shared with other movers.' },
 
       { type: 'h2', text: '3. Confirm loading dock access' },
-      { type: 'p', text: 'Brickell building loading docks vary widely:' },
-      { type: 'ul', items: [
-        'Brickell City Centre: dedicated loading dock, must reserve through building management',
-        'ICON Brickell: loading dock under building, max truck height 12 feet',
-        '1010 Brickell: dock requires advance vehicle registration',
-        'SLS Lux Brickell: loading dock on rear, narrow turn for trucks',
-        'Older buildings (1980s-1990s): often just curbside loading on adjacent street',
-      ]},
+      { type: 'p', text: 'Loading dock access differs from building to building. Some towers have a dock that has to be reserved through building management, and some older buildings load from the curb on an adjacent street.' },
       { type: 'p', text: 'Ask your mover to confirm the dock procedure with building management before move day, in writing.' },
 
       { type: 'h2', text: '4. Check parking and street permits' },
-      { type: 'p', text: 'Some Brickell streets restrict commercial vehicle parking. Brickell Avenue itself rarely allows truck parking during business hours. Side streets vary. For curbside loading, some moves require a temporary parking permit from the City of Miami (24-72 hours processing time).' },
+      { type: 'p', text: 'Where the truck has to load from the curb, street parking for it has to be arranged with the city\'s parking authority ahead of time.' },
 
       { type: 'h2', text: '5. Schedule around quiet hours' },
-      { type: 'p', text: 'Most Brickell buildings prohibit moves on Sunday entirely, and many restrict Saturday moves to 9 AM - 5 PM. Weekday moves are usually 8 AM - 6 PM. Confirm your building\'s quiet hours before booking.' },
+      { type: 'p', text: 'Each building sets its own move days and hours. Confirm your building\'s quiet hours and move hours before booking.' },
 
       { type: 'h2', text: '6. Pack and label by room' },
       { type: 'p', text: 'In a high-rise move, the difference between an efficient move and a slow one is labeling. Crews can\'t guess where boxes go in a 38th-floor unit they\'ve never seen. Label every box with destination room ("Master BR", "Kitchen", "Office") so the crew can place them correctly the first time without asking.' },
@@ -474,13 +467,13 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'callout', title: 'Совет', text: 'Запросите требования к COI у вашего building manager письменно (по email). Перешлите эту информацию мувинговой компании. Качественный мувер выпустит COI в течение 24 часов после подтверждения брони — бесплатно.' },
 
       { type: 'h2', text: 'Бронирование лифта и погрузочного дока' },
-      { type: 'p', text: 'В большинстве высоток Авентуры и Санни-Айлс есть один грузовой лифт и фиксированные окна для переезда — обычно 2-4 часа. Популярные часы заполняются за 2-3 недели вперёд, особенно в сезон snowbirds (октябрь-май).' },
+      { type: 'p', text: 'У каждого здания свои правила брони грузового лифта и свои окна для переезда. В сезон snowbirds (октябрь-май) бронируйте окно как можно раньше.' },
       { type: 'p', text: 'Что нужно сделать заранее:' },
       { type: 'ol', items: [
         'Связаться с building management как только зафиксирована дата переезда',
         'Зарезервировать окно лифта (обычно нужно подать письменный запрос за 1-2 недели)',
-        'Оплатить элеватор-депозит если требуется (от $100 до $500, обычно возвращается)',
-        'Подтвердить погрузочный док — некоторые здания (Trump Towers, Acqualina) имеют отдельные правила',
+        'Оплатить депозит за лифт, если здание его требует',
+        'Подтвердить правила погрузочного дока: у каждого здания они свои',
         'Получить контакт dock manager или security в день переезда',
       ]},
 
@@ -491,24 +484,13 @@ export const BLOG_POSTS: BlogPost[] = [
         '1-комнатная: $516-$774 (3-5 часов, 2 грузчика)',
         '2-комнатная: $645-$1,253 (4-6 часов, 2-3 грузчика)',
         '3-комнатная: $1,253-$1,611 (6-8 часов, 3 грузчика)',
-        'Премиум-кондо в Trump/Acqualina/Williams Island: добавьте 30-60 минут на ожидание лифта',
       ]},
       { type: 'p', text: 'Базовая ставка: $129/час за 2 грузчика, $179/час за 3, минимум 3 часа. Грузовик — отдельной строкой в смете, за день, по ставке бригады: $129 при двух грузчиках, $179 при трёх, $219 при четверых; топливо, платные дороги и мили уже включены, никаких топливных надбавок. Надбавок за выходные и сезон у нас нет — ставка фиксируется при бронировании. Все цены прозрачны: вы получаете письменную смету до бронирования. Никаких сюрпризов в день переезда.' },
 
       { type: 'h2', text: 'Особенности конкретных зданий' },
-      { type: 'p', text: 'Ниже — что требует каждый из этих комплексов. Точные условия мы подтверждаем у управляющей компании перед датой: правила меняются, и проверять их надо каждый раз.' },
-
-      { type: 'h3', text: 'Williams Island' },
-      { type: 'p', text: 'Пять башен с разными правилами доступа. Регистрация автомобилей через gate house за 48 часов. Грузовой лифт зарезервирован на 4-часовые окна. Парковка для грузовика — за зданием, не у главного входа. Обязательный walk-through после переезда с representative HOA.' },
-
-      { type: 'h3', text: 'Porto Vita' },
-      { type: 'p', text: 'Три башни. COI должен называть Porto Vita Master Association. Гейт оформляет proper access pass на всю бригаду. Окна лифта — будни 9-17, суббота 9-15. Воскресенье запрещено.' },
-
-      { type: 'h3', text: 'Trump Tower I, II, III' },
-      { type: 'p', text: 'Подробное расписание грузового лифта. Бригада должна быть в форме (мы носим). Security проверяет crew list при въезде. Loading dock в задней части здания — водитель должен знать маршрут заранее.' },
-
-      { type: 'h3', text: 'Acqualina и Mansions at Acqualina' },
-      { type: 'p', text: 'Самые строгие в районе по white-glove protocols. Floor protection обязательна на всех общих площадях (мы это делаем). COI с конкретным wording, который присылает их management. Часто требуется presence concierge при заезде в квартиру.' },
+      // Porto Vita, two towers (North and South): https://www.sunnyislesmiamirealestate.com/aventura-condos/porto-vita.htm (checked 2026-11-09)
+      // No public source was found for per-building rules of Williams Island, Porto Vita, Trump Towers or Acqualina, so none are stated.
+      { type: 'p', text: 'Williams Island, Porto Vita (две башни, North и South), Trump Tower I, II, III, Acqualina и Mansions at Acqualina: у каждого комплекса свои часы переезда, свой порядок брони лифта и свои формулировки страховки. Мы запрашиваем актуальные правила у управляющей компании до дня переезда: они меняются, и проверять их надо каждый раз.' },
 
       { type: 'h2', text: 'Бригада, говорящая по-русски' },
       { type: 'p', text: 'Этот пункт важен по двум причинам. Первая — комфорт общения. Если вам или management здания удобнее обсуждать детали по-русски, это убирает недопонимания, которые могут стоить времени и денег. Вторая — точность инвентаризации и инструкций. Когда вы говорите "вот эту картину поставьте в библиотеку, осторожнее с правым углом" — нужна уверенность что вас правильно поняли.' },
@@ -1011,7 +993,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Russian-Speaking',
     heroImage: '/images/Real/4.png',
     body: [
-      { type: 'p', text: 'Snowbird-сезон в Южной Флориде — это период с октября по март, когда десятки тысяч людей переезжают на зиму из Нью-Йорка, Нью-Джерси, Бостона, Чикаго, Торонто, Москвы и Тель-Авива. Пик — ноябрь, декабрь и январь. В Авентуре, Санни-Айлс и Холливуде в это время переезжают чаще, чем в любой другой период года. И всё это давит на одну инфраструктуру: один грузовой лифт в каждом здании, ограниченные окна для переездов, и одни и те же дни недели, на которые все хотят попасть.' },
+      { type: 'p', text: 'Snowbird-сезон в Южной Флориде — это период с октября по март, когда десятки тысяч людей переезжают на зиму из Нью-Йорка, Нью-Джерси, Бостона, Чикаго, Торонто, Москвы и Тель-Авива. Пик — ноябрь, декабрь и январь. В Авентуре, Санни-Айлс и Холливуде в это время переезжают чаще, чем в любой другой период года. И всё это давит на одну инфраструктуру: грузовые лифты, ограниченные окна для переездов, и одни и те же дни недели, на которые все хотят попасть.' },
       { type: 'p', text: 'Этот гид — для тех, кто живёт сезонами: октябрь приехал, март-апрель уехал, и так из года в год. Что важно знать про логистику, цены и тайминг, чтобы не платить лишнего и не застрять без лифтового окна.' },
 
       { type: 'h2', text: 'Цены в сезон vs межсезонье' },
@@ -1033,28 +1015,30 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Это всё с прозрачной письменной сметой, без депозита и без сюрпризов в день переезда.' },
 
       { type: 'h2', text: 'Бронирование лифтов: ключевой момент сезона' },
-      { type: 'p', text: 'В большинстве высоток Авентуры и Санни-Айлс есть только один грузовой лифт. Окна для переездов — 2-4 часа, обычно 9-13 или 13-17. В пик-сезон эти окна забронированы на 3-4 недели вперёд.' },
+      { type: 'p', text: 'У каждого здания свои правила брони грузового лифта и свои окна для переездов. Мы узнаём актуальные правила у управляющей компании до дня переезда.' },
       { type: 'p', text: 'Что нужно делать:' },
       { type: 'ol', items: [
         'Как только знаете дату приезда (или отъезда) — связываетесь с building management',
         'Запрашиваете доступные окна на нужную неделю',
-        'Бронируете окно письменно, оплачиваете elevator-депозит если требуется (обычно $100-$500, возвращается после переезда)',
+        'Бронируете окно письменно и оплачиваете депозит за лифт, если здание его требует',
         'Передаёте дату и окно вашей мувинговой компании — мы у себя фиксируем и планируем график',
         'За 5-7 дней до переезда подтверждаете с management ещё раз',
       ]},
       { type: 'callout', title: 'Совет на основе опыта', text: 'Если ваше здание предлагает переезд во вторник или среду — берите. В будни конкуренция за лифт ниже, переезд идёт быстрее, и часто получается дешевле общая сумма (за счёт того, что бригада не тратит часы в ожидании лифта).' },
 
-      { type: 'h2', text: 'Какие здания особенно загружены' },
+      { type: 'h2', text: 'Крупные комплексы: правила у каждого свои' },
       { type: 'p', text: 'Не все здания одинаковы. В пик snowbird-сезона окна лифта в крупных комплексах расходятся быстро, а сроки и правила у каждого свои, поэтому уточняйте их у своего management заранее:' },
       { type: 'ul', items: [
-        'Williams Island (5 башен) — лифты забронированы вперёд на 4-5 недель в ноябре-декабре',
-        'Acqualina и Mansions at Acqualina — строгие white-glove protocols, мало окон, всё под жёстким контролем concierge',
-        'Trump Tower I, II, III — стабильно высокий спрос всю осень-зиму, security проверяет crew list',
-        'Hemispheres (Hallandale Beach) — старый комплекс с 4 башнями, лифты медленные, окна короткие',
-        'Porto Vita (3 башни) — менее загружено чем Williams Island, но субботы заняты за 3 недели',
-        'Turnberry Ocean Colony, Turnberry Ocean Club — премиум, ограниченное окно, требуется detailed COI',
+        'Williams Island',
+        'Acqualina и Mansions at Acqualina',
+        'Trump Tower I, II, III',
+        // Hemispheres, four towers: https://www.bexrealty.com/real-estate/Hallandale-Beach/The-Hemispheres/ (checked 2026-11-09)
+        'Hemispheres (Hallandale Beach): комплекс из четырёх башен',
+        // Porto Vita, two towers (North and South): https://www.sunnyislesmiamirealestate.com/aventura-condos/porto-vita.htm (checked 2026-11-09)
+        'Porto Vita: две башни, North и South',
+        'Turnberry Ocean Colony, Turnberry Ocean Club',
       ]},
-      { type: 'p', text: 'Менее загружены, но всё равно требуют брони заранее: Continuum (South Beach), L\'Atelier, Faena House, и большинство малоэтажных кондо в Бал-Харбор и Surfside.' },
+      { type: 'p', text: 'То же относится к Continuum (South Beach), L\'Atelier, Faena House и малоэтажным кондо в Бал-Харбор и Surfside: бронь лифта уточняйте у management заранее.' },
 
       { type: 'h2', text: 'Когда лучше переехать: оптимальные окна' },
       { type: 'h3', text: 'Приезд осенью' },

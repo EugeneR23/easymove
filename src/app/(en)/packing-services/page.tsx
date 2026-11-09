@@ -82,13 +82,15 @@ const PACKAGES = [
   { size: '3 Bedrooms', key: '3br', packers: 3, hours: 6 },
   { size: '4+ Bedrooms', key: '4br+', packers: 3, hours: 8 },
 ] as const;
+/** "$1,112", so a four-figure price reads the way every other page prints it. */
+const usd = (n: number) => `$${n.toLocaleString('en-US')}`;
 const PRICING = PACKAGES.map((p) => {
   const from = packingStartingPrice(p.key, p.packers);
   const typical = Math.round(p.hours * PACKING_HOURLY_RATE[p.packers]);
   const fromHours = startingHours(p.key, true);
   return {
     ...p,
-    priceLabel: from < typical ? `$${from} to $${typical}` : `from $${from}`,
+    priceLabel: from < typical ? `${usd(from)} to ${usd(typical)}` : `from ${usd(from)}`,
     note: fromHours < p.hours ? `${p.packers} packers · ${fromHours} to ${p.hours} hrs` : `${p.packers} packers · about ${p.hours} hrs`,
   };
 });

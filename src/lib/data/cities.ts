@@ -47,19 +47,20 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Coral Gables & Grove HOAs',
-        body: 'Historic neighborhoods come with strict move-in windows and permit requirements. We handle all paperwork and arrival coordination before your move day.',
+        body: 'Historic neighborhoods and their HOAs set their own move-in windows and rules. We confirm them and handle the paperwork and arrival coordination before your move day.',
       },
       {
         title: 'Wynwood Loft Logistics',
-        body: 'Wynwood\'s converted warehouse lofts come with their own quirks — freight elevators that share with neighboring tenants, narrow alleys, and no dedicated loading zones on NW 2nd Ave during Art Walk weekends. We schedule around the district\'s busy windows and bring smaller trucks when access requires it.',
+        body: 'Wynwood\'s converted warehouse lofts come with their own quirks, such as freight elevators shared with neighboring tenants and narrow alleys. We check access for your address before scheduling and bring smaller trucks when it requires it.',
       },
       {
         title: 'Coconut Grove Gated Communities',
-        body: 'Cloisters, The Grove at Grand Bay, and Grove Isle each have their own gate-access procedures and curfew rules for service vehicles. We submit vehicle and crew names ahead of time so your guard list is set before move morning — no idling at the gate while paperwork gets sorted.',
+        body: 'Each gated community in Coconut Grove sets its own gate-access rules for service vehicles. We ask the management office for the current rules and send in whatever the gate requires ahead of time, so there is no idling at the gate while paperwork gets sorted.',
       },
       {
-        title: 'Miami Beach Parking Permits',
-        body: 'South Beach and Mid-Beach moves usually require a temporary loading-zone permit from the City of Miami Beach. We pull these permits 48–72 hours in advance and post them on move day, which avoids meter maids and prevents the crew from having to carry boxes an extra block.',
+        // Source: https://www.miamibeachfl.gov/city-hall/parking/permit-programs/space-rentals/ (checked 2026-11-09)
+        title: 'Miami Beach Street Parking',
+        body: 'According to the City of Miami Beach parking department, the city rents on-street parking spaces for moves. Requests go in at least three business days ahead, or fifteen business days for non-metered and residential streets. A space next to the building keeps the crew from having to carry boxes an extra block.',
       },
     ],
     faqs: [
@@ -73,7 +74,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move to and from Miami Beach?',
-        a: 'Absolutely. South Beach, Mid-Beach, and North Beach are all covered. We work within building move-in windows and coordinate parking permits when needed.',
+        a: 'Absolutely. South Beach, Mid-Beach, and North Beach are all covered. We work within building move-in windows and plan street parking for the truck ahead of time.',
       },
       {
         q: 'What areas of Miami-Dade do you serve?',
@@ -116,11 +117,11 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Two Kinds of Fort Lauderdale Moves',
-        body: "Most Fort Lauderdale work falls into two patterns: waterfront single-family homes along the canals (Rio Vista, Las Olas Isles, Coral Ridge, Seven Isles) and condo moves in the towers on and around Las Olas Boulevard. The homes need truck-access planning — narrow drives, low tree canopy, sometimes a smaller shuttle truck. The condos need paperwork — COI, freight elevator reservation, dock window. We plan for the right one before move day, not on it.",
+        body: "Fort Lauderdale moves fall into two broad patterns: waterfront single-family homes along the canals (Rio Vista, Las Olas Isles, Coral Ridge, Seven Isles) and condo moves in the towers on and around Las Olas Boulevard. The homes need truck-access planning, and sometimes a smaller shuttle truck. The condos need paperwork: COI, freight elevator reservation, dock window. We plan for the right one before move day, not on it.",
       },
       {
         title: 'Waterfront & Canal Homes — Check Access First',
-        body: "Canal-front streets in Rio Vista and Las Olas Isles often can't take a 26-foot truck to the door. Before we schedule, we review your street and driveway by map and video; if access is tight we bring a 16-footer or plan a short shuttle. If any items arrive or leave by boat dock, tell us in advance — dock rules vary by property, and we confirm access with your HOA or management before move day.",
+        body: "Truck access to a canal-front home depends on the street and the driveway. Before we schedule, we review your street and driveway by map and video; if access is tight we bring a 16-footer or plan a short shuttle. If any items arrive or leave by boat dock, tell us in advance: dock rules vary by property, and we confirm access with your HOA or management before move day.",
       },
       {
         title: 'Las Olas Condo Paperwork',
@@ -331,15 +332,15 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Gated Estate Communities',
-        body: "Gables Estates, Cocoplum, Hammock Lakes, and Snapper Creek all require advance vehicle registration, certificate of insurance with the community named, and crew identification at the gate. We submit everything 48 hours before your move so there's no holdup at the gate house.",
+        body: "Gated communities such as Gables Estates, Cocoplum, Hammock Lakes, and Snapper Creek each set their own gate procedure and paperwork. We ask the association for its current rules and submit what it requires ahead of your move, so there's no holdup at the gate house.",
       },
       {
         title: 'Historic Home Specialists',
         body: "Coral Gables's historic Mediterranean and Spanish-Colonial homes have narrow doorways, original tile floors, and built-in furniture that wasn't designed to be moved. We pad door frames, lay floor runners, and handle antique pieces with the protocol they deserve.",
       },
       {
-        title: 'HOA & Permit Compliance',
-        body: "Many Coral Gables neighborhoods restrict moving truck parking, idle times, and weekend hours. We confirm restrictions for your address before scheduling and arrange any required permits, so you don't need to navigate City Hall yourself.",
+        title: 'HOA Rules & Move Hours',
+        body: "Each association and neighborhood in Coral Gables sets its own rules on move days, move hours and where a truck can stand. We confirm the rules for your address before scheduling.",
       },
     ],
     faqs: [
@@ -352,8 +353,8 @@ export const CITIES: CityData[] = [
         a: "Yes. We protect original tile, terrazzo, and wood floors with breathable padding and runners, pad all door frames, and brief the crew specifically on the home's preservation requirements. Antique pieces we prepare for shipping, and our partner carriers ship them.",
       },
       {
-        q: 'Do you handle Coral Gables permit requirements for moving trucks?',
-        a: "Yes. Some Coral Gables streets restrict truck parking and require a permit from the City. We confirm requirements for your specific address and arrange permits in advance when needed.",
+        q: 'Do you check the truck parking rules for my Coral Gables address?',
+        a: "Yes. Parking and move-hour rules differ by street and by association. We confirm what applies to your specific address before scheduling.",
       },
       {
         q: 'Do you serve Old Cutler and Pinecrest as well?',
@@ -385,6 +386,7 @@ export const CITIES: CityData[] = [
     ],
     localFacts: [
       {
+        // Porsche Design Tower vehicle elevator: https://newsroom.porsche.com/en/company/porsche-design-tower-miami-dezer-development-florida-real-estate-13527.html (checked 2026-11-09)
         title: 'Tower-Specific Move Protocols',
         body: "Every oceanfront tower in Sunny Isles has its own protocol: advance scheduling and crew lists, specific COI language and insurance limits, and in Porsche Design Tower a vehicle elevator that needs its own coordination. We get each building's current requirements from its management office before move day.",
       },
@@ -398,7 +400,7 @@ export const CITIES: CityData[] = [
       },
           {
         title: 'Winston Towers & the Older Collins Ave Buildings',
-        body: 'Not every Sunny Isles building is a new glass tower. Winston Towers and the older Collins Ave co-ops come with smaller freight cabs, longer service corridors and stricter move hours — so we book longer elevator windows there, bring floor runners and door-frame protection, and keep the crew size matched to the corridor, not just the apartment.',
+        body: 'Not every Sunny Isles building is a new glass tower. Winston Towers and the older Collins Ave buildings set their own move hours and elevator booking, and we ask the management office for the current rules before move day. We bring floor runners and door-frame protection, and match the crew size to the building, not just the apartment.',
       },
       {
         title: 'Furniture & Single-Item Delivery Along Collins',
@@ -416,7 +418,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move people out of Winston Towers?',
-        a: 'Yes, Winston Towers is inside our service area. It has its own freight-elevator booking and move-hour rules, and the cabs are smaller than in the new towers, so we plan the load order around them. The COI goes to management ahead of the date, and the crew arrives already briefed.',
+        a: 'Yes, Winston Towers is inside our service area. Like every building, it sets its own freight-elevator booking and move-hour rules, and we ask the management office for the current ones before move day. The COI goes to management ahead of the date, and the crew arrives already briefed.',
       },
       {
         q: 'Do you move into Trump Tower I, II, or III?',
@@ -528,7 +530,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Coconut Grove movers for historic Grove homes and towers like Park Grove and Grove at Grand Bay. 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
     intro:
-      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means planning for both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. Easy Move Florida handles both with the same standard.",
+      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means planning for both worlds: the narrow residential streets of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. Easy Move Florida handles both with the same standard.",
     neighborhoods: [
       'Center Grove', 'South Grove', 'Northeast Grove', 'Camp Biscayne',
       'Park Grove', 'Grove at Grand Bay', 'One Park Grove', 'Grovenor House',
@@ -544,8 +546,8 @@ export const CITIES: CityData[] = [
         body: "Park Grove, One Park Grove, and Grove at Grand Bay all have specific COI requirements, freight elevator reservations, and loading dock windows. We handle building paperwork before your move date so the crew arrives ready to work.",
       },
       {
-        title: 'Tree Canopy & Street Permit',
-        body: "Coconut Grove has strict tree-canopy protections — large trucks can't park under low branches in many residential blocks. We scout the address before scheduling, choose appropriate truck sizes, and arrange street permits when needed.",
+        title: 'Truck Access on Grove Streets',
+        body: "Residential blocks in Coconut Grove differ in how much room they give a moving truck. We check your address before scheduling and choose a truck size that suits it.",
       },
     ],
     faqs: [
@@ -559,7 +561,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do Coconut Grove streets allow large moving trucks?',
-        a: "Some don't — particularly in Center Grove and Camp Biscayne where tree canopy is low and streets are narrow. We confirm truck size suitability for your specific address before scheduling and arrange a smaller shuttle vehicle if your block requires it.",
+        a: "It depends on the block: some residential streets are narrow. We confirm truck size suitability for your specific address before scheduling and arrange a smaller shuttle vehicle if your block requires it.",
       },
       {
         q: 'How does pricing work for a Coconut Grove move?',
@@ -652,15 +654,16 @@ export const CITIES: CityData[] = [
     state: 'FL',
     county: 'Broward',
     heroHeadline: "Movers in Hallandale Beach, FL",
-    heroSub: 'Diplomat · Beach Club · Hyde Resort · Hemispheres · Olympus',
+    heroSub: 'Beach Club · Hemispheres · Olympus · Three Islands',
     heroImage: '/images/Real/6.png',
     metaTitle: "Movers in Hallandale Beach from $129/hr | Easy Move Florida",
     metaDescription:
       "Movers in Hallandale Beach for condos and towers. $129/hr for 2 movers, 3-hour minimum, truck as its own line. No deposit. Free COI. Call 786-305-1844.",
     intro:
-      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north. There is no travel fee: billable hours start when the crew arrives at your first address, and a same-day move is possible if a crew is free, at the same hourly rate. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years, и мы говорим по-русски.",
+      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move, whether it is Beach Club Towers, Hemispheres, Olympus or Three Islands, and every one of these buildings has its own COI requirements and freight elevator reservation system. We're based in Hollywood, ten minutes north. There is no travel fee: billable hours start when the crew arrives at your first address, and a same-day move is possible if a crew is free, at the same hourly rate. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years, и мы говорим по-русски.",
     neighborhoods: [
-      'Diplomat Beach Resort', 'Beach Club Towers', 'Hyde Resort & Residences',
+      // Diplomat Oceanfront Residences (3535 S Ocean Dr) is in Hollywood, not Hallandale Beach: https://www.bexrealty.com/real-estate/Hollywood/Diplomat-Oceanfront-Residences/ (checked 2026-11-09)
+      'Beach Club Towers',
       'Hemispheres', 'Olympus', 'Three Islands', 'The Plaza',
       'Parc Central', 'Beach Walk', 'Eastside', 'Golden Isles', 'Gulfstream Park',
     ],
@@ -668,11 +671,11 @@ export const CITIES: CityData[] = [
       {
         // [TODO: confirm exact building COI limits with Evgenii]
         title: 'Oceanfront Tower COI Requirements',
-        body: "Hallandale Beach's oceanfront towers set some of the strictest COI requirements in Broward County. Beach Club Towers, the Diplomat residences and Hyde Resort each specify their own format — many buildings here require limits in the $1M–$2M range, and some ask for the association named exactly as written in their bylaws plus a waiver of subrogation. We confirm your building's exact requirements before move day and issue the COI within 24 hours of your confirmed booking.",
+        body: "Hallandale Beach's oceanfront towers each specify their own COI format. Many buildings here require limits in the $1M to $2M range, and some ask for the association named exactly as written in their bylaws plus a waiver of subrogation. We confirm your building's exact requirements before move day and issue the COI within 24 hours of your confirmed booking.",
       },
       {
-        title: 'A1A & Hallandale Beach Blvd Parking Permits',
-        body: "Parking a moving truck on A1A or Hallandale Beach Boulevard requires a temporary loading-zone permit from the city — meter maids are aggressive here, especially in the November-April high season. We pull permits 48-72 hours in advance and post them on the truck the morning of your move. That avoids the $50-150 ticket and prevents the crew from having to carry boxes an extra block in the heat.",
+        title: 'Truck Parking on A1A & Hallandale Beach Blvd',
+        body: "Each building and each block has its own rules for where a moving truck can stand. We ask the management office and check your address before move day, so the crew does not have to carry boxes an extra block in the heat.",
       },
       {
         title: 'Snowbird Season Specialists (October–March)',
@@ -687,8 +690,9 @@ export const CITIES: CityData[] = [
         body: "We're based ten minutes north in Hollywood. There is no travel fee and no per-mile charge: billable hours start when the crew arrives at your first address and include the drive between your two addresses. A same-day move is possible if a crew is free, at the same hourly rate, with no rush fee.",
       },
       {
-        title: 'Gulfstream Park & West-Side Buildings',
-        body: "The west side of Hallandale — Gulfstream Park, Three Islands, the Hemispheres complex — has its own logistics. Three Islands is a sprawling four-tower property with shared dock access and a strict elevator reservation system. We confirm which tower entrance to use, the dock window for your building, and the security desk's check-in process with management before move day.",
+        // Hemispheres layout: https://www.bexrealty.com/real-estate/Hallandale-Beach/The-Hemispheres/ (checked 2026-11-09)
+        title: 'Gulfstream Park, Three Islands & Hemispheres',
+        body: "Gulfstream Park, Three Islands and the Hemispheres complex each have their own logistics. According to its public property listing, Hemispheres is four towers on South Ocean Drive: two on the ocean and two across the road facing the Intracoastal. We confirm which tower entrance to use, the dock window for your building, and the security desk's check-in process with management before move day.",
       },
           {
         title: 'Furniture & Single-Item Delivery',
@@ -697,13 +701,14 @@ export const CITIES: CityData[] = [
     ],
     faqs: [
       {
-        q: 'Do you move into the Diplomat Beach Resort residences?',
-        a: "Yes, the Diplomat residences are inside our service area. The building has a designated loading dock, a security check-in, a required COI format and a freight-elevator reservation window, and we collect all four from management when you book. The Diplomat is also a working hotel — we coordinate with hotel operations to avoid the bell-staff loading zone during peak check-in hours.",
+        // Diplomat address: https://www.bexrealty.com/real-estate/Hollywood/Diplomat-Oceanfront-Residences/ (checked 2026-11-09)
+        q: 'Do you move into the Diplomat Oceanfront Residences?',
+        a: "Yes, they are inside our service area. According to the building's public property listing, Diplomat Oceanfront Residences is at 3535 S Ocean Dr in Hollywood, just north of the Hallandale Beach city line. The building sets its own move hours, elevator booking and insurance wording, and we ask the management office for the current rules when you book.",
       },
       {
-        q: 'Do you handle Beach Club Towers and Hyde Resort moves?',
+        q: 'Do you handle Beach Club Towers moves?',
         // [TODO: confirm exact building COI limits with Evgenii]
-        a: 'Yes — both buildings are in our service area. Each has its own COI format, additional-insured language and freight elevator reservation system; many buildings here require limits in the $1M–$2M range. We confirm your building\'s exact requirements before move day, submit the COI within 24 hours of booking, and reserve the elevator window ahead of your move date.',
+        a: 'Yes, Beach Club Towers is in our service area. Each building sets its own COI format, additional-insured language and freight elevator reservation rules; many buildings here require limits in the $1M to $2M range. We confirm your building\'s exact requirements before move day, submit the COI within 24 hours of booking, and reserve the elevator window ahead of your move date.',
       },
       {
         q: 'Do you handle snowbird seasonal moves?',
@@ -714,16 +719,16 @@ export const CITIES: CityData[] = [
         a: 'Да, конечно. Владелец, Евгений Романов, сам отвечает на звонки по-русски, и бригадир говорит по-русски. Можем общаться с управлением здания по-английски, а с вами по-русски, без проблем.',
       },
       {
-        q: 'Do you pull parking permits for A1A and Hallandale Beach Blvd?',
-        a: 'Yes. Parking on A1A or Hallandale Beach Boulevard requires a temporary loading-zone permit from the city — we pull it 48-72 hours in advance and post it on the truck the morning of your move.',
+        q: 'Where does the truck park on A1A or Hallandale Beach Blvd?',
+        a: 'It depends on the building and the block. Each building sets its own dock and loading rules, and we ask the management office and check your address before move day.',
       },
       {
         q: 'How does pricing work for a Hallandale Beach move?',
-        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three), shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club, Hyde, Diplomat) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked.',
+        a: 'Local moves are hourly: $129/hour for 2 movers or $179/hour for 3, 3-hour minimum, plus a truck fee per day at the crew rate ($129 with two movers, $179 with three), shown separately on the estimate — fuel, tolls and mileage included in it. A 1-bedroom oceanfront condo move (Beach Club Towers, for example) takes 3–5 hours: $516–$774 all-in. No weekend or seasonal surcharge — the hourly rate is locked.',
       },
       {
         q: 'Do you serve Three Islands, Hemispheres, and Olympus?',
-        a: "Yes, all three are inside our service area. Each has its own dock access, security desk procedure and elevator reservation system. Three Islands is the one to watch: several towers share dock infrastructure, so the entrance and window depend on your specific address - we confirm which applies to yours before the date.",
+        a: "Yes, all three are inside our service area. Each sets its own dock access, security desk procedure and elevator reservation rules, and we confirm with management which apply to your address before the date.",
       },
       {
         q: 'Do you serve Hollywood, Aventura, and Sunny Isles as well?',
@@ -748,20 +753,23 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Beach Movers | Easy Move Florida',
     metaDescription: 'Movers in Miami Beach from $129/hour for 2 movers. Free COI, no weekend or fuel surcharge, no deposit. Call or WhatsApp 786-305-1844 for a written estimate.',
-    intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have Art Deco walk-ups on Jefferson, Meridian and Euclid with no elevator at all, a narrow stair and a street where a 26-foot truck cannot legally sit without a permit from the City of Miami Beach. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers are $129 per hour for the crew, with a three-hour minimum and the truck on its own line, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
+    // Street parking for moves: https://www.miamibeachfl.gov/city-hall/parking/permit-programs/space-rentals/ (checked 2026-11-09)
+    intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have older walk-up buildings with no elevator at all, a narrow stair and a street where the parking space for the truck is rented from the City of Miami Beach in advance. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers are $129 per hour for the crew, with a three-hour minimum and the truck on its own line, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
     neighborhoods: ['South Beach', 'Mid-Beach', 'North Beach', 'South of Fifth', 'Sunset Harbour', 'Flamingo Park', 'West Avenue', 'Belle Isle', 'Venetian Islands', 'La Gorce', 'Normandy Isle', 'Collins Park'],
     localFacts: [
       {
-        title: 'Loading zones and city permits',
-        body: 'Most of South Beach has metered parking right up to the building line, and a 26-foot truck parked at a meter is a ticket waiting to happen. The City of Miami Beach issues temporary loading-zone permits for exactly this, and they take lead time. When we survey your address we tell you whether your street needs one, and we handle the application rather than leaving it to you to discover on move morning.',
+        // Source: https://www.miamibeachfl.gov/city-hall/parking/permit-programs/space-rentals/ (checked 2026-11-09)
+        title: 'Street parking for the truck',
+        body: 'According to the City of Miami Beach parking department, the city rents on-street parking spaces for moves. Requests go in at least three business days ahead, or fifteen business days for non-metered and residential streets. When we survey your address we tell you whether your street needs a rented space, so it is not something you discover on move morning.',
       },
       {
+        // Venetian Causeway toll: https://www.miamidade.gov/parks/causeways.asp ; drawbridge schedule, 33 CFR 117.261: https://www.law.cornell.edu/cfr/text/33/117.261 (checked 2026-11-09)
         title: 'Causeway timing decides your start time',
         body: 'Everything on the beach arrives over a bridge. The MacArthur, Julia Tuttle and Venetian causeways all back up at predictable hours, and the Venetian has a toll and a drawbridge on top of that. We stage crews out of Hollywood and start early enough that the truck is at your door before the queue builds. If your building only releases the freight elevator mid-morning, we plan the drive around that window instead of the other way round.',
       },
       {
-        title: 'Art Deco walk-ups have no elevator',
-        body: 'The 1930s and 1940s buildings west of Washington Avenue are beautiful and completely stair-dependent. Landings are tight, stairwells turn hard, and a queen box spring often will not make the corner. We measure before we quote, bring wardrobe boxes and disassembly tools, and add crew rather than hours where a third mover makes the carry faster. There is no stairs fee on our estimate. Stairs cost time, and time is already in the number you were quoted.',
+        title: 'Older walk-ups have no elevator',
+        body: 'Many older South Beach buildings are walk-ups with no elevator. Landings are tight, stairwells turn hard, and a queen box spring often will not make the corner. We measure before we quote, bring wardrobe boxes and disassembly tools, and add crew rather than hours where a third mover makes the carry faster. There is no stairs fee on our estimate. Stairs cost time, and time is already in the number you were quoted.',
       },
       {
         title: 'Certificates of insurance, issued free',
@@ -778,8 +786,9 @@ export const CITIES: CityData[] = [
     ],
     faqs: [
       {
-        q: 'Do you handle the loading-zone permit for South Beach streets?',
-        a: 'Yes. Where your address has no dock and no legal space for a truck, the City of Miami Beach can authorise a temporary loading zone, and we apply for it as part of preparing your move. We tell you at quote stage whether your street needs one so it is not a surprise. Applications take lead time, which is the main reason we ask for your exact address early rather than just the neighbourhood.',
+        // Source: https://www.miamibeachfl.gov/city-hall/parking/permit-programs/space-rentals/ (checked 2026-11-09)
+        q: 'How does truck parking work on South Beach streets?',
+        a: 'Where your address has no dock, the truck needs a space on the street. According to the City of Miami Beach parking department, the city rents on-street parking spaces for moves, and requests go in at least three business days ahead, or fifteen business days for non-metered and residential streets. We tell you at quote stage whether your street needs one so it is not a surprise. That lead time is the main reason we ask for your exact address early rather than just the neighbourhood.',
       },
       {
         q: 'Can you work with the freight elevator hours in my building?',
@@ -1793,6 +1802,7 @@ export const CITIES: CityData[] = [
     metaTitle: 'Brickell Movers — $129/hr, Free COI | Easy Move Florida',
     metaDescription:
       'Brickell movers for condo and apartment towers. Freight elevator and COI paperwork handled, 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
+    // Brickell boundaries and Brickell Key: https://en.wikipedia.org/wiki/Brickell (checked 2026-11-09)
     intro:
       "Brickell runs from the Miami River south to SW 26th Road, and from I-95 east to Biscayne Bay. It is Miami's financial district and one of its densest neighborhoods: mostly condominium and apartment towers, with Brickell Key — an island of residential and hotel towers — just off its northeastern edge. That makes almost every Brickell move a tower move. The truck does not park where you would like it to; it parks where the building's loading dock allows, at the time the building gives you, and the freight elevator is booked in a window. We ask the management office for its move rules and its certificate-of-insurance wording as soon as your date is fixed, send the COI free within 24 hours of booking, and plan the crew around the elevator slot. Rates are the same hourly card we run everywhere, and only the loaded leg between your two addresses is billed as time.",
     neighborhoods: [
@@ -1805,6 +1815,7 @@ export const CITIES: CityData[] = [
         body: 'In a Brickell tower the freight elevator, not the crew, decides how long a move takes. Most buildings book it in a fixed window and ask for the movers\' insurance certificate before they release it. We request the window and the COI format from management when you book, and choose the crew size so the job fits inside the slot instead of spilling past it.',
       },
       {
+        // Brickell Key description: https://en.wikipedia.org/wiki/Brickell (checked 2026-11-09)
         title: 'Brickell Key Is Its Own Island',
         body: 'Brickell Key sits a few hundred feet east of Brickell and is made up of high-rise residential and hotel towers. Each tower sets its own move rules, so a move from Brickell to Brickell Key is two sets of building paperwork, not one. We collect both before move day.',
       },
