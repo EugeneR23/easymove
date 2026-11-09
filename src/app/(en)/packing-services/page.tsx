@@ -7,7 +7,8 @@ import CTABanner from '@/components/home/CTABanner';
 import MobileStickyBar from '@/components/ui/MobileStickyBar';
 import { Phone, Shield, CheckCircle, Package, Clock, Star, ArrowRight } from 'lucide-react';
 import { alternatesFor } from '@/lib/seo/routes';
-import { PACKING_HOURLY_RATE, MIN_HOURS } from '@/lib/pricing';
+import Image from 'next/image';
+import { PACKING_HOURLY_RATE, MIN_HOURS, packingStartingPrice, startingHours } from '@/lib/pricing';
 import { ogCard } from '@/lib/seo/og';
 
 /** Studio: 2 packers for the 3-hour minimum. */
@@ -43,13 +44,8 @@ const schemaJson = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Professional Packing Services',
-  provider: {
-    '@type': 'LocalBusiness',
-    name: 'Easy Move Florida',
-    telephone: '+17863051844',
-    url: 'https://www.easy-move-florida.com',
-    areaServed: 'Miami-Dade, Broward, Palm Beach Counties, Florida',
-  },
+  // A reference to the one business node in RootShell, not a second business.
+  provider: { '@id': 'https://www.easy-move-florida.com/#organization' },
   description:
     'Full-home and partial packing services in Miami, Fort Lauderdale, and Boca Raton. Experienced packers, quality materials, COI to your building within 24 hours.',
   serviceType: 'Packing Service',
@@ -74,14 +70,28 @@ const WHAT_WE_PACK = [
 // Owner, 2026-10-01: a studio is 2 packers for the 3-hour minimum ($297 at the
 // 2026-10-22 rate). Every row is hours x PACKING_HOURLY_RATE for that crew, so the
 // table cannot drift from the rate the quote engine uses.
+//
+// Each row now shows a range. The low end is the calculator's "from" price
+// (PACKING_STARTING_HOURS in lib/pricing), the high end is the typical job in
+// this table. Before 2026-11-09 this page said "from $396" for a one-bedroom
+// while the homepage calculator said "from $297" for the same job.
 const PACKAGES = [
-  { size: 'Studio', packers: 2, hours: 3, note: '2 packers · 3-hr min' },
-  { size: '1 Bedroom', packers: 2, hours: 4, note: '2 packers · ~4 hrs' },
-  { size: '2 Bedrooms', packers: 2, hours: 6, note: '2 packers · ~6 hrs' },
-  { size: '3 Bedrooms', packers: 3, hours: 6, note: '3 packers · ~6 hrs' },
-  { size: '4+ Bedrooms', packers: 3, hours: 8, note: '3 packers · ~8 hrs' },
+  { size: 'Studio', key: 'studio', packers: 2, hours: 3 },
+  { size: '1 Bedroom', key: '1br', packers: 2, hours: 4 },
+  { size: '2 Bedrooms', key: '2br', packers: 2, hours: 6 },
+  { size: '3 Bedrooms', key: '3br', packers: 3, hours: 6 },
+  { size: '4+ Bedrooms', key: '4br+', packers: 3, hours: 8 },
 ] as const;
-const PRICING = PACKAGES.map((p) => ({ ...p, price: p.hours * PACKING_HOURLY_RATE[p.packers] }));
+const PRICING = PACKAGES.map((p) => {
+  const from = packingStartingPrice(p.key, p.packers);
+  const typical = Math.round(p.hours * PACKING_HOURLY_RATE[p.packers]);
+  const fromHours = startingHours(p.key, true);
+  return {
+    ...p,
+    priceLabel: from < typical ? `$${from} to $${typical}` : `from $${from}`,
+    note: fromHours < p.hours ? `${p.packers} packers · ${fromHours} to ${p.hours} hrs` : `${p.packers} packers · about ${p.hours} hrs`,
+  };
+});
 
 const FAQS = [
   {
@@ -121,10 +131,17 @@ export default function PackingServicesPage() {
       <main className="pt-20 pb-16 lg:pb-0">
 
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
-        <section
-          className="relative h-[420px] md:h-[520px] flex items-center overflow-hidden bg-charcoal"
-          style={{ backgroundImage: "url('/images/Hero.png')", backgroundSize: 'cover', backgroundPosition: 'center 30%' }}
-        >
+        <section className="relative h-[420px] md:h-[520px] flex items-center overflow-hidden bg-charcoal">
+          {/* next/image, not a CSS background: the background shipped the raw
+              2.5 MB PNG to every phone and had no alt text. */}
+          <Image
+            src="/images/Hero.png"
+            alt="Easy Move Florida crew during a local residential move in South Florida"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[center_30%]"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-charcoal/55 via-charcoal/70 to-charcoal/95" />
           <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-gold" />
           <div className="absolute inset-0 grain-overlay" />
@@ -251,7 +268,7 @@ export default function PackingServicesPage() {
               {PRICING.map((p) => (
                 <div key={p.size} className="border border-gray-200 p-6 text-center hover:border-gold/40 transition-colors">
                   <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">{p.size}</p>
-                  <p className="font-display text-3xl font-bold text-gold mb-1">from ${p.price}</p>
+                  <p className="font-display text-3xl font-bold text-gold mb-1">{p.priceLabel}</p>
                   <p className="text-gray-400 text-xs">{p.note}</p>
                 </div>
               ))}

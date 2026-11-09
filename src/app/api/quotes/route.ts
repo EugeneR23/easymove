@@ -210,7 +210,8 @@ export async function POST(req: NextRequest) {
       mode === 'referral' ? '⚠ OUT-OF-STATE — REFER, DO NOT QUOTE'
       : mode === 'custom' && pricing.customReason === 'unknown-city' ? '📋 CITY NOT IN THE TABLE — custom quote, no automatic price'
       : mode === 'custom' && pricing.customReason === 'over-distance' ? `📋 OVER ${LONG_DISTANCE_THRESHOLD_MILES} MILES — custom quote, no automatic price`
-      : mode === 'custom' ? '📋 FLORIDA LONG-DISTANCE — custom quote, no automatic price'
+      : mode === 'custom' && moveType === 'specialty' ? '📋 SPECIALTY JOB: custom quote, no automatic price'
+      : mode === 'custom' ? '📋 FLORIDA LONG-DISTANCE: custom quote, no automatic price'
       : null;
     const priceTag = mode === 'priced' ? `$${quote.pricing.total}` : 'not priced';
     const subject = modeBanner

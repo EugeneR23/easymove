@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, CrewSize } from '@/types';
-import { localStartingPrice, crewOptions, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE } from '@/lib/pricing';
+import { localStartingPrice, crewOptions, TRUCK_FEE, HOURLY_RATE, PACKING_HOURLY_RATE, QUOTE_CITIES } from '@/lib/pricing';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
@@ -16,11 +16,8 @@ const HOME_SIZES: { value: HomeSize; label: string; sub: string }[] = [
   { value: 'office',  label: 'Office / Commercial', sub: 'Business space'          },
 ];
 
-const FL_CITIES = [
-  'Miami', 'Coral Gables', 'Coconut Grove', 'Brickell', 'Aventura',
-  'Sunny Isles Beach', 'Hollywood', 'Fort Lauderdale', 'Pompano Beach',
-  'Boca Raton', 'Delray Beach', 'Palm Beach', 'West Palm Beach', 'Other',
-];
+// Every city the distance table knows, plus "Other" for a hand quote.
+const FL_CITIES = [...QUOTE_CITIES, 'Other'];
 
 // Florida, or not Florida. The company moves within Florida and refers anything
 // crossing a state line, so a 50-entry list of states we decline is not a list

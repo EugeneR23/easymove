@@ -1,12 +1,16 @@
 import { cn } from '@/lib/utils';
 import { replyPromise } from '@/lib/data/policies';
 import type { MoveType } from '@/types';
-import { Truck, Star, Package } from 'lucide-react';
+import { Truck, Star, Package, MapPin } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import type { WizardData } from './QuoteWizard';
 
 const MOVE_TYPES: { value: MoveType; label: string; sub: string; icon: React.ElementType }[] = [
   { value: 'local',         label: 'Local Move',           sub: 'Same city or within South Florida',      icon: Truck   },
+  // The homepage calculator has offered "Long Dist." all along and linked here
+  // with ?type=long-distance. This step had no such option, so the choice was
+  // dropped and the visitor was shown a local hourly price for an Orlando move.
+  { value: 'long-distance', label: 'Long Distance in Florida', sub: 'Orlando, Tampa, Naples, Jacksonville. Quoted per job', icon: MapPin },
   { value: 'packing-only',  label: 'Packing Only',         sub: 'We pack your home — you handle the move', icon: Package },
   { value: 'specialty',     label: 'Specialty / Fine Art', sub: 'Piano, art, wine, custom items',         icon: Star    },
 ];
@@ -61,6 +65,15 @@ export default function Step1MoveType({ data, update, onNext }: Props) {
           <p className="text-sm text-charcoal font-medium mb-1">Professional packing service.</p>
           <p className="text-xs text-gray-500">
             We come to you and carefully pack everything. You arrange transport or use your own vehicle.
+          </p>
+        </div>
+      )}
+
+      {data.moveType === 'long-distance' && (
+        <div className="bg-cream border border-gold/20 p-4 mb-6">
+          <p className="text-sm text-charcoal font-medium mb-1">Long-distance moves within Florida are quoted per job.</p>
+          <p className="text-xs text-gray-500">
+            There is no automatic price for these. Continue with your details and we will send a written estimate. We do not move across a state line; for that we refer a licensed carrier.
           </p>
         </div>
       )}

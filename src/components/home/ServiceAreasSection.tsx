@@ -1,30 +1,26 @@
-'use client';
-
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 import { SERVICE_SCOPE } from '@/lib/data/scope';
+import { CITIES } from '@/lib/data/cities';
+import { BASE_AREA } from '@/lib/data/contact';
+import { RESPONSE } from '@/lib/data/policies';
+import { LONG_DISTANCE_THRESHOLD_MILES } from '@/lib/pricing';
 
-const TIER_1 = [
-  { label: 'Hollywood', href: '/hollywood-movers' },
-  { label: 'Aventura', href: '/aventura-movers' },
-  { label: 'Hallandale', href: null },
-  { label: 'Sunny Isles', href: '/sunny-isles-movers' },
-  { label: 'Dania Beach', href: null },
-  { label: 'Fort Lauderdale', href: '/fort-lauderdale-movers' },
-  { label: 'Miami Beach', href: null },
-  { label: 'Miami', href: '/miami-movers' },
-  { label: 'North Miami', href: null },
-];
-
-const TIER_2 = [
-  { label: 'Boca Raton', href: '/boca-raton-movers' },
-  { label: 'Coral Gables', href: '/coral-gables-movers' },
-  { label: 'Coconut Grove', href: '/coconut-grove-movers' },
-  { label: 'Pompano Beach', href: null },
-  { label: 'Doral', href: null },
-  { label: 'Pinecrest', href: null },
-];
-
+/**
+ * Every city that has a page, linked, from the one list the footer and the
+ * sitemap use.
+ *
+ * This section used to keep two hand-typed lists. Five cities with a page of
+ * their own (Hallandale, Dania Beach, Miami Beach, North Miami, Doral) were
+ * plain text, Pinecrest appeared here and nowhere else on the site, and the
+ * second list was headed "Custom-priced (distance)" for cities the calculator
+ * prices at the ordinary hourly rate. The owner's answer of 2026-11-09 is one
+ * rate everywhere and no travel fee; only a leg over the threshold is quoted
+ * by hand.
+ *
+ * No 'use client': nothing here is interactive, and a client component would
+ * ship the whole city data file to the browser.
+ */
 export default function ServiceAreasSection() {
   return (
     <section className="section-padding bg-white border-t border-gray-100">
@@ -36,25 +32,21 @@ export default function ServiceAreasSection() {
             Where we move.
           </h2>
           <p className="text-gray-500 leading-relaxed">
-            Hollywood-based, covering all of South Florida. Tier 1 cities are within our 30-minute base radius. Tier 2 is custom-priced based on distance. {SERVICE_SCOPE.en.short}
+            Our crew is based in the {BASE_AREA} and works across Miami-Dade, Broward and Palm Beach at the same hourly rate. {SERVICE_SCOPE.en.short}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div>
             <p className="text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-              <MapPin size={14} /> Primary service area
+              <MapPin size={14} /> Cities we serve
             </p>
             <ul className="grid grid-cols-2 gap-y-2 gap-x-4">
-              {TIER_1.map((c) => (
-                <li key={c.label} className="text-charcoal">
-                  {c.href ? (
-                    <Link href={c.href} className="hover:text-gold transition-colors text-sm font-medium border-b border-transparent hover:border-gold">
-                      {c.label}
-                    </Link>
-                  ) : (
-                    <span className="text-sm font-medium">{c.label}</span>
-                  )}
+              {CITIES.map((c) => (
+                <li key={c.slug} className="text-charcoal">
+                  <Link href={`/${c.slug}`} className="hover:text-gold transition-colors text-sm font-medium border-b border-transparent hover:border-gold">
+                    {c.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -62,24 +54,19 @@ export default function ServiceAreasSection() {
 
           <div>
             <p className="text-charcoal/60 text-xs font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
-              <MapPin size={14} /> Custom-priced (distance)
+              <MapPin size={14} /> How distance is priced
             </p>
-            <ul className="grid grid-cols-2 gap-y-2 gap-x-4">
-              {TIER_2.map((c) => (
-                <li key={c.label} className="text-charcoal">
-                  {c.href ? (
-                    <Link href={c.href} className="hover:text-gold transition-colors text-sm font-medium border-b border-transparent hover:border-gold">
-                      {c.label}
-                    </Link>
-                  ) : (
-                    <span className="text-sm font-medium">{c.label}</span>
-                  )}
-                </li>
-              ))}
+            <ul className="space-y-3 text-sm text-charcoal">
+              <li>
+                <span className="font-semibold">One hourly rate in every city.</span> There is no travel fee. Billable hours start when the crew arrives at your first address.
+              </li>
+              <li>
+                <span className="font-semibold">More than {LONG_DISTANCE_THRESHOLD_MILES} miles between your two addresses:</span> quoted by hand, in writing, within {RESPONSE.writtenEstimateWithinHours} hours.
+              </li>
+              <li>
+                <span className="font-semibold">Long distance:</span> anywhere inside Florida, by custom estimate. We do not move out of state.
+              </li>
             </ul>
-            <p className="text-gray-500 text-xs mt-6 leading-relaxed">
-              <span className="text-charcoal font-semibold">Long-distance:</span> custom estimate anywhere inside Florida. Send origin and destination — written estimate within 24 hours. We do not move out of state.
-            </p>
           </div>
         </div>
       </div>

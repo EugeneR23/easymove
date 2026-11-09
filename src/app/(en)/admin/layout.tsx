@@ -1,4 +1,15 @@
+import type { Metadata } from 'next';
 import AdminSidebar from '@/components/layout/AdminSidebar';
+
+// Admin pages set no metadata of their own, so they inherited "index, follow"
+// and the homepage canonical from the root layout. robots.txt blocks crawling
+// of /admin/, which does not stop a linked URL from being indexed.
+export const metadata: Metadata = {
+  title: 'Admin',
+  robots: { index: false, follow: false },
+  // An empty object replaces the inherited homepage canonical and hreflang.
+  alternates: {},
+};
 
 /**
  * Chrome only — no session check here.

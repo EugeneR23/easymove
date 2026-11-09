@@ -114,7 +114,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
               <p className="text-gray-400 text-xs leading-relaxed">
                 {pricing.quoteMode === 'referral'
                   ? 'We do not move household goods across a state line. We will point you to a licensed carrier, and we can still pack your home and handle the Florida-side leg.'
-                  : `This move is priced per job on distance, volume and access at both ends, so there is no automatic figure. Your written estimate arrives within ${RESPONSE.writtenEstimateWithinHours} hours.`}
+                  : `This job is quoted individually, on what is being moved, the distance and the access at both ends, so there is no automatic figure. Your written estimate arrives within ${RESPONSE.writtenEstimateWithinHours} hours.`}
               </p>
             </>
           ) : (

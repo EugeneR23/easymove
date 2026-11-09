@@ -35,7 +35,9 @@ export default function FAQSection({ locale = 'en' }: { locale?: 'en' | 'ru' } =
 
   return (
     <>
-      <section className="section-padding bg-white border-t border-gray-100">
+      {/* id="faq": next.config.mjs redirects the old /faq URL to /#faq, and
+          nothing on the page carried that id. */}
+      <section id="faq" className="section-padding bg-white border-t border-gray-100 scroll-mt-24">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
 
