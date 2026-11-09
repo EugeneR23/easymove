@@ -5,6 +5,7 @@ import { CheckCircle, Phone, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { replyPromise } from '@/lib/data/policies';
 import { PHONE, telHref, whatsappUrl } from '@/lib/data/contact';
+import { readAttribution } from '@/lib/attribution';
 import HoneypotField from '@/components/ui/HoneypotField';
 import { HONEYPOT_FIELD } from '@/lib/leadGuard';
 import type { HomeSize, MoveType } from '@/types';
@@ -128,6 +129,7 @@ export default function QuickLeadForm({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           source: variant === 'callback' ? 'callback' : 'quick-form',
+          attribution: readAttribution(),
           locale,
           firstName: form.firstName,
           phone: form.phone,

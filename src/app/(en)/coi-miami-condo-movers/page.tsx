@@ -94,7 +94,7 @@ const STEPS = [
       'Booked against your move date before it arrives, not negotiated on the morning while the clock runs.',
   },
   {
-    step: 'The crew is briefed before it leaves the yard',
+    step: 'The crew is briefed before move day',
     detail:
       'Building access, elevator window and padding rules confirmed in advance, so the hours you pay for go on your furniture rather than on paperwork at the desk.',
   },
@@ -143,7 +143,7 @@ const FAQS = [
   },
   {
     q: 'Which Miami buildings do you work in?',
-    a: 'High-rise and condo work across Brickell, Downtown, Miami Beach, Coconut Grove, Aventura, Sunny Isles Beach, Hallandale Beach, Hollywood and Fort Lauderdale — Brickell City Centre, ICON Brickell, Williams Island, Porto Vita, the Trump towers, Acqualina, Jade Beach and Jade Ocean among many others. If your building is in the service area, we work with its rules.',
+    a: 'Any managed high-rise or condo building in Brickell, Downtown, Miami Beach, Coconut Grove, Aventura, Sunny Isles Beach, Hallandale Beach, Hollywood and Fort Lauderdale. For each move we ask your management for its rules in writing and work to them.',
   },
   {
     q: 'Do I need a COI for a rental building, not just a condo?',

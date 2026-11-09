@@ -20,7 +20,7 @@ export default function GoogleMapEmbed() {
   // Address-based embed — works without API key. Shows pin at our location.
   // For the richer GBP-card embed, follow the upgrade steps in the comment above.
   const mapSrc =
-    'https://maps.google.com/maps?q=2130+Stirling+Rd,+Hollywood,+FL+33020&t=&z=11&ie=UTF8&iwloc=&output=embed';
+    'https://maps.google.com/maps?q=Hollywood,+FL&t=&z=10&ie=UTF8&iwloc=&output=embed';
 
   return (
     <div className="relative w-full overflow-hidden border border-gold/20 bg-charcoal">

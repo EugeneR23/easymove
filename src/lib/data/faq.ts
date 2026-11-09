@@ -12,11 +12,11 @@ export const HOME_FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'What is included in the hourly rate, and what is billed separately?',
-    a: 'The hourly rate covers your crew, furniture pads, stretch wrap and mattress bags on loan, dollies and straps, and basic disassembly and reassembly of standard items like bed frames, dining tables and sectional sofas. Billed as their own lines on the estimate: the truck at $129 per day, packing materials you keep (boxes, TV cartons, corner protectors, mattress bags left in storage) as flat packages rather than per-item markups, specialty items such as a piano, safe or marble slab, and upgraded valuation coverage if you want it. Loaner pads and wrap return with the truck at no charge; anything left permanently in storage is billed.',
+    a: 'The hourly rate covers your crew, furniture pads, stretch wrap and mattress bags on loan, dollies and straps, and basic disassembly and reassembly of standard items like bed frames, dining tables and sectional sofas. Billed as their own lines on the estimate: the truck per day at the crew rate ($129, $179 or $219), packing materials you keep (boxes, TV cartons, corner protectors, mattress bags left in storage) as flat packages rather than per-item markups, and specialty items such as a piano, safe or marble slab. Loaner pads and wrap return with the truck at no charge; anything left permanently in storage is billed.',
   },
   {
     q: 'Do stairs, elevators or a long carry cost extra?',
-    a: 'No. There is no stairs fee, no heavy item fee, no elevator fee and no long carry fee. On an hourly job those things cost time, not extra fees, so they are priced into the hours we estimate. Tell us about stairs, long carries and freight elevator rules up front and the estimate will be accurate. If we find out on move day the hours go up, but the rate and the fee structure never change.',
+    a: 'No. There is no stairs fee, no elevator fee and no long carry fee. On an hourly job those things cost time, not extra fees, so they are priced into the hours we estimate. Tell us about stairs, long carries and freight elevator rules up front and the estimate will be accurate. If we find out on move day the hours go up, but the rate and the fee structure never change. A piano, safe or marble piece is different: it is a separate line on the estimate, agreed before you book.',
   },
   {
     q: 'What happens if the job runs longer than the estimate?',
@@ -37,8 +37,8 @@ export const HOME_FAQS: { q: string; a: string }[] = [
   {
     // [TODO: Evgenii — confirm insurance carrier, coverage limits and claim
     // turnaround, then state them here. Do not publish specifics until verified.]
-    q: 'How does valuation coverage work if something is damaged?',
-    a: 'Every move carries our standard liability terms at no extra cost, and for high-value pieces — fine art, antiques, designer furniture, instruments, electronics — you can add upgraded valuation coverage priced on the declared replacement value and quoted in writing before the move, rather than the per-pound federal default most national van lines apply. Damage claims come directly to the owner, not to a third-party claims processor: call 786-305-1844 and you are talking to the person who can settle it.',
+    q: 'What happens if something is damaged?',
+    a: 'The business carries insurance, and a certificate of insurance goes to your building free of charge within 24 hours of booking. Damage claims come directly to the owner, not to a third-party claims processor: call 786-305-1844 and you are talking to the person who can settle it.',
   },
   {
     q: 'Can you handle a last-minute or same-week move?',
@@ -46,12 +46,12 @@ export const HOME_FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'Is the moving crew Russian-speaking?',
-    a: 'Yes — the founder, the dispatch coordinator, and most of the crew at Easy Move Florida speak Russian fluently, which makes the company a practical choice for the Russian-speaking communities concentrated in Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood, North Miami Beach, and parts of Miami Beach. Quotes can be issued in Russian or English, the on-site walkthrough on move day can be conducted in Russian, and any sensitive logistics conversations — about pricing, valuation, or building access — can be handled in whichever language the client prefers. The website is published in both English and Russian (`/ru/`). For clients who specifically need a fully Russian-speaking crew rather than just a Russian-speaking crew leader, ask when booking and the dispatcher will confirm availability for the requested date; this is usually available with 5+ days of notice.',
+    a: 'Yes. The owner, Evgenii Romanov, answers the phone himself in Russian or English, and the crew leader speaks Russian, which makes the company a practical choice for the Russian-speaking communities concentrated in Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood, North Miami Beach, and parts of Miami Beach. Quotes can be issued in Russian or English, the on-site walkthrough on move day can be conducted in Russian, and any sensitive logistics conversations, about pricing or building access, can be handled in whichever language the client prefers. The website is published in both English and Russian (`/ru/`).',
   },
   { ...SERVICE_SCOPE.en.faq },
   {
     q: 'Can you do small handyman work alongside the move?',
-    a: 'Yes — Easy Move Florida bundles small handyman services with moves so you do not have to coordinate a second visit after the truck leaves. Common requests include TV mounting (single or multi-screen, including soundbar wiring), wall-anchor picture and mirror hanging, IKEA or Wayfair furniture assembly, curtain rod installation, floating shelf installation, baby gates, and minor furniture repairs from transit. When handyman work is bundled with a same-day move, the handyman portion is discounted versus standalone pricing and is billed in the same continuous hourly window, not as a separate trip. Easy Move Florida does NOT perform licensed plumbing or electrical work, gas line installation, HVAC, or anything requiring a permit pull — for those, we refer to vetted local licensed trades. Mention any handyman needs at quote time so the right tools and anchors are loaded on the truck.',
+    a: 'Yes — Easy Move Florida bundles small handyman services with moves so you do not have to coordinate a second visit after the truck leaves. Common requests include TV mounting (single or multi-screen, including soundbar wiring), wall-anchor picture and mirror hanging, IKEA or Wayfair furniture assembly, curtain rod installation, floating shelf installation, baby gates, and minor furniture repairs from transit. When handyman work is done on the day of the move, it is billed in the same continuous hourly window, not as a separate trip. Easy Move Florida does NOT perform licensed plumbing or electrical work, gas line installation, HVAC, or anything requiring a permit pull — for those, we refer to vetted local licensed trades. Mention any handyman needs at quote time so the right tools and anchors are loaded on the truck.',
   },
   {
     q: 'Is a tip expected for the moving crew?',
@@ -59,7 +59,7 @@ export const HOME_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What's the cancellation and rescheduling policy?",
-    a: 'Free — cancel or reschedule at no charge any time more than 48 hours before the start time, and there is no deposit to book in the first place (deposit-required policies are one of the most common red flags among South Florida movers). A reschedule moves to the next date that works for both of us. Inside 48 hours we handle it case by case depending on whether the slot can be filled; if the crew has already been dispatched to your address, the three-hour minimum applies.',
+    a: 'Free — cancel or reschedule at no charge any time more than 48 hours before the start time, and there is no deposit to book in the first place (deposit-required policies are one of the most common red flags among South Florida movers). A reschedule moves to the next date that works for both of us. Inside 48 hours there is still no cancellation fee and we move the date, with one exception: if the crew has already been dispatched to your address, the three-hour minimum is charged.',
   },
   {
     q: 'Is Easy Move Florida the same company as Easy Florida Moving?',
@@ -80,11 +80,11 @@ export const HOME_FAQS_RU: { q: string; a: string }[] = [
   },
   {
     q: "Что входит в почасовую ставку, а что оплачивается отдельно?",
-    a: "Ставка покрывает работу бригады, мебельные одеяла, стрейч-плёнку и чехлы для матрасов на время переезда, тележки и ремни, а также простую разборку и сборку стандартной мебели: каркасов кроватей, обеденных столов, угловых диванов. Отдельными строками в смете идут: трак — $129 за день; упаковочные материалы, которые остаются у вас (коробки, коробки для телевизоров, уголки, чехлы для матрасов, оставленные на хранении), — готовыми наборами, а не наценкой за каждую единицу; специальные предметы вроде пианино, сейфа или мраморной плиты; расширенное страховое покрытие, если оно вам нужно. Одеяла и плёнка на время переезда уезжают с траком бесплатно; всё, что остаётся на хранении насовсем, оплачивается.",
+    a: "Ставка покрывает работу бригады, мебельные одеяла, стрейч-плёнку и чехлы для матрасов на время переезда, тележки и ремни, а также простую разборку и сборку стандартной мебели: каркасов кроватей, обеденных столов, угловых диванов. Отдельными строками в смете идут: трак за день по ставке бригады ($129, $179 или $219); упаковочные материалы, которые остаются у вас (коробки, коробки для телевизоров, уголки, чехлы для матрасов, оставленные на хранении), — готовыми наборами, а не наценкой за каждую единицу; специальные предметы вроде пианино, сейфа или мраморной плиты. Одеяла и плёнка на время переезда уезжают с траком бесплатно; всё, что остаётся на хранении насовсем, оплачивается.",
   },
   {
     q: "Лестницы, лифт или долгий перенос стоят дороже?",
-    a: "Нет. Платы за лестницы, за тяжёлые предметы, за лифт и за долгий перенос нет. При почасовой оплате всё это стоит времени, а не отдельных сборов, поэтому учитывается в часах, которые мы закладываем в смету. Расскажите о лестницах, долгом переносе и правилах грузового лифта заранее — и смета будет точной. Если мы узнаем об этом только в день переезда, часов станет больше, но ставка и порядок оплаты не меняются.",
+    a: "Нет. Платы за лестницы, за лифт и за долгий перенос нет. При почасовой оплате всё это стоит времени, а не отдельных сборов, поэтому учитывается в часах, которые мы закладываем в смету. Расскажите о лестницах, долгом переносе и правилах грузового лифта заранее, и смета будет точной. Если мы узнаем об этом только в день переезда, часов станет больше, но ставка и порядок оплаты не меняются. Другое дело пианино, сейф или мраморная плита: они идут отдельной строкой в смете, сумму называем до брони.",
   },
   {
     q: "Что будет, если работа займёт больше времени, чем в смете?",
@@ -103,8 +103,8 @@ export const HOME_FAQS_RU: { q: string; a: string }[] = [
     a: "Он оплачивается так же, как любой почасовой переезд, а склад — просто один из адресов. Перед бронированием полезно знать две вещи. Во-первых, время в пути между домом, складом и новым адресом тоже оплачивается, поэтому переезд «дом — склад — дом» занимает больше часов, чем прямой. Во-вторых, всё, что остаётся на складе насовсем, оплачивается, а не выдаётся на время: одеяла, в которые мебель будет завёрнута на складе, оплачиваются, потому что они не возвращаются с траком. Если хотите хранить вещи в одеялах, скажите — и мы сразу внесём материалы в смету.",
   },
   {
-    q: "Как работает страховое покрытие, если что-то повреждено?",
-    a: "Каждый переезд идёт на наших стандартных условиях ответственности без доплаты, а для ценных вещей — искусства, антиквариата, дизайнерской мебели, музыкальных инструментов, электроники — можно добавить расширенное покрытие. Его цена считается от заявленной стоимости замены и фиксируется письменно до переезда, а не по федеральной ставке за фунт веса, которую применяет большинство национальных перевозчиков. Претензии по повреждениям идут напрямую к владельцу, а не к стороннему обработчику: позвоните на 786-305-1844 — и вы говорите с человеком, который может решить вопрос.",
+    q: "Что будет, если что-то повреждено?",
+    a: "У компании есть страховка, и сертификат страхования (COI) уходит в ваше здание бесплатно в течение 24 часов после бронирования. Претензии по повреждениям идут напрямую к владельцу, а не к стороннему обработчику: позвоните на 786-305-1844, и вы говорите с человеком, который может решить вопрос.",
   },
   {
     q: "Возьмётесь за срочный переезд или переезд на этой неделе?",
@@ -112,12 +112,12 @@ export const HOME_FAQS_RU: { q: string; a: string }[] = [
   },
   {
     q: "Бригада говорит по-русски?",
-    a: "Да — основатель, координатор-диспетчер и бо́льшая часть бригады Easy Move Florida свободно говорят по-русски, поэтому компания удобна русскоязычным жителям Санни-Айлс-Бич, Авентуры, Халландейл-Бич, Голливуда, Норт-Майами-Бич и части Майами-Бич. Смету можно получить на русском или английском, осмотр в день переезда — провести на русском, а любые деликатные вопросы — о цене, страховании или доступе в здание — обсудить на удобном вам языке. Сайт работает на английском и русском. Если нужна полностью русскоязычная бригада, а не только русскоязычный старший, скажите при бронировании — диспетчер подтвердит наличие на нужную дату; обычно это возможно, если предупредить за 5 дней и больше.",
+    a: "Да. Владелец, Евгений Романов, сам отвечает на звонки на русском или английском, и старший бригады говорит по-русски, поэтому компания удобна русскоязычным жителям Санни-Айлс-Бич, Авентуры, Халландейл-Бич, Голливуда, Норт-Майами-Бич и части Майами-Бич. Смету можно получить на русском или английском, осмотр в день переезда можно провести на русском, а любые деликатные вопросы, о цене или доступе в здание, обсудить на удобном вам языке. Сайт работает на английском и русском.",
   },
   { ...SERVICE_SCOPE.ru.faq },
   {
     q: "Можете заодно сделать мелкие работы мастера?",
-    a: "Да — Easy Move Florida совмещает мелкие работы мастера с переездом, чтобы вам не пришлось назначать второй визит после отъезда трака. Чаще всего просят: повесить телевизор (один или несколько экранов, включая проводку саундбара), повесить картины и зеркала на анкеры, собрать мебель IKEA или Wayfair, установить карнизы и навесные полки, поставить защитные ворота для детей, сделать мелкий ремонт мебели после перевозки. Если работа мастера идёт в один день с переездом, она стоит дешевле, чем отдельный вызов, и оплачивается в том же непрерывном почасовом окне, а не отдельным выездом. Easy Move Florida НЕ выполняет лицензируемые сантехнические и электромонтажные работы, подключение газа, HVAC и всё, что требует разрешения, — для этого мы рекомендуем проверенных местных лицензированных мастеров. Скажите о работах мастера при расчёте сметы, чтобы на трак загрузили нужные инструменты и крепёж.",
+    a: "Да — Easy Move Florida совмещает мелкие работы мастера с переездом, чтобы вам не пришлось назначать второй визит после отъезда трака. Чаще всего просят: повесить телевизор (один или несколько экранов, включая проводку саундбара), повесить картины и зеркала на анкеры, собрать мебель IKEA или Wayfair, установить карнизы и навесные полки, поставить защитные ворота для детей, сделать мелкий ремонт мебели после перевозки. Если работа мастера идёт в один день с переездом, она оплачивается в том же непрерывном почасовом окне, а не отдельным выездом. Easy Move Florida НЕ выполняет лицензируемые сантехнические и электромонтажные работы, подключение газа, HVAC и всё, что требует разрешения, — для этого мы рекомендуем проверенных местных лицензированных мастеров. Скажите о работах мастера при расчёте сметы, чтобы на трак загрузили нужные инструменты и крепёж.",
   },
   {
     q: "Нужно ли оставлять чаевые бригаде?",
@@ -125,7 +125,7 @@ export const HOME_FAQS_RU: { q: string; a: string }[] = [
   },
   {
     q: "Какие условия отмены и переноса?",
-    a: "Бесплатно — отменить или перенести можно без оплаты в любой момент больше чем за 48 часов до начала, а депозита для бронирования нет вовсе (требование депозита — один из самых частых тревожных признаков у мувинговых компаний Южной Флориды). Перенос — на ближайшую дату, удобную обеим сторонам. Если до начала меньше 48 часов, решаем по ситуации — смотря, удастся ли занять это время; если бригада уже выехала к вам, действует трёхчасовой минимум.",
+    a: "Бесплатно — отменить или перенести можно без оплаты в любой момент больше чем за 48 часов до начала, а депозита для бронирования нет вовсе (требование депозита — один из самых частых тревожных признаков у мувинговых компаний Южной Флориды). Перенос — на ближайшую дату, удобную обеим сторонам. Если до начала меньше 48 часов, платы за отмену всё равно нет, и мы переносим дату, с одним исключением: если бригада уже выехала к вам, оплачивается трёхчасовой минимум.",
   },
   {
     q: 'Easy Move Florida и Easy Florida Moving — это одна компания?',

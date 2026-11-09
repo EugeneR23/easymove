@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { replyPromise } from '@/lib/data/policies';
 import HoneypotField from '@/components/ui/HoneypotField';
 import { HONEYPOT_FIELD } from '@/lib/leadGuard';
+import { track } from '@vercel/analytics';
+import { readAttribution } from '@/lib/attribution';
 
 export default function ContactForm() {
   const [form, setForm]       = useState({ name: '', phone: '', email: '', message: '', hp: '' });
@@ -29,6 +31,7 @@ export default function ContactForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          attribution: readAttribution(),
           firstName: form.name,
           phone: form.phone,
           email: form.email,
@@ -43,6 +46,8 @@ export default function ContactForm() {
         const w = window as unknown as { dataLayer?: unknown[] };
         w.dataLayer = w.dataLayer || [];
         w.dataLayer.push({ event: 'lead_submitted', form: 'contact', locale: 'en' });
+        // Vercel Analytics too, so the count does not depend on GTM loading.
+        track('lead_submitted', { form: 'contact', locale: 'en' });
       } catch { /* analytics never blocks a lead */ }
       setSuccess(true);
     } catch {

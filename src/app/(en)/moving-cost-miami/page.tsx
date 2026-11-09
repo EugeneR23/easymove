@@ -54,7 +54,7 @@ const HIDDEN_FEES = [
   { fee: 'Stairs fee per flight', us: false, note: 'Stairs cost time, so they are priced into the estimated hours.' },
   { fee: 'Elevator fee', us: false, note: 'Same — a freight elevator window costs hours, not a fee.' },
   { fee: 'Long carry fee', us: false, note: 'Same. Tell us the distance up front and the estimate is accurate.' },
-  { fee: 'Heavy item fee', us: false, note: 'Specialty pieces (piano, safe, marble) are a flat line quoted before you book.' },
+  { fee: 'Heavy item line (piano, safe, marble)', us: true, note: 'A piano, safe or marble piece is a separate line on the estimate, agreed before you book.' },
   { fee: 'Weekend surcharge', us: false, note: 'The rate is the same seven days a week.' },
   { fee: 'Peak season surcharge', us: false, note: 'The rate is the same year-round.' },
   { fee: 'Truck fee', us: true, note: `Per day at the crew rate — $${TRUCK_FEE[2]} with two movers, $${TRUCK_FEE[3]} with three — stated as its own line on every estimate.` },
@@ -71,11 +71,11 @@ const FAQS = [
   },
   {
     q: 'What is the cheapest a Miami move can cost?',
-    a: `$${MIN_INVOICE}. That is the ${MIN_HOURS}-hour minimum with two movers ($${MIN_HOURS * HOURLY_RATE[2]}) plus the $${TRUCK_FEE[2]} truck fee. Nothing books below it, because a crew and a truck have to leave the yard either way.`,
+    a: `$${MIN_INVOICE}. That is the ${MIN_HOURS}-hour minimum with two movers ($${MIN_HOURS * HOURLY_RATE[2]}) plus the $${TRUCK_FEE[2]} truck fee. Nothing books below it, because a crew and a truck are committed to the job either way.`,
   },
   {
     q: 'What hidden fees do moving companies add in Miami?',
-    a: 'The common ones are a fuel surcharge, a per-flight stairs fee, an elevator or long-carry fee, a heavy-item fee, and weekend or peak-season percentage uplifts. None of those exist here: the only two lines on a local invoice are labour and the truck fee. Ask any mover you are comparing to send the estimate in writing with every line named — the ones that add fees on move day are usually the ones who will not.',
+    a: 'The common ones are a fuel surcharge, a per-flight stairs fee, an elevator or long-carry fee, and weekend or peak-season percentage uplifts. None of those exist here: the two lines on a local invoice are labour and the truck fee, and a piano, safe or marble piece is a separate line on the estimate, agreed before you book. Ask any mover you are comparing to send the estimate in writing with every line named — the ones that add fees on move day are usually the ones who will not.',
   },
   {
     q: 'Do movers charge more on weekends or in summer in Miami?',
@@ -87,7 +87,7 @@ const FAQS = [
   },
   {
     q: 'What is included in the hourly rate?',
-    a: `Your crew for the whole job, furniture pads, stretch wrap and mattress bags on loan, dollies and straps, and basic disassembly and reassembly of standard items. Billed separately and shown on the estimate before you book: the truck at $${TRUCK_FEE[2]}–$${TRUCK_FEE[4]} per day depending on crew size, packing materials you keep, specialty items, and upgraded valuation coverage if you want it.`,
+    a: `Your crew for the whole job, furniture pads, stretch wrap and mattress bags on loan, dollies and straps, and basic disassembly and reassembly of standard items. Billed separately and shown on the estimate before you book: the truck at $${TRUCK_FEE[2]}–$${TRUCK_FEE[4]} per day depending on crew size, packing materials you keep, and specialty items such as a piano, safe or marble piece.`,
   },
   {
     q: 'How do I get an accurate moving quote in Miami?',
@@ -214,7 +214,7 @@ export default function MovingCostMiamiPage() {
                   <tr className="border-b border-gray-100">
                     <td className="px-5 py-4 text-charcoal font-semibold">Truck</td>
                     <td className="px-5 py-4 text-gold font-bold whitespace-nowrap">${TRUCK_FEE[2]}/day</td>
-                    <td className="px-5 py-4 text-gray-500">Flat, its own line. Fuel, tolls and mileage included</td>
+                    <td className="px-5 py-4 text-gray-500">Its own line, at the crew rate: ${TRUCK_FEE[3]} with three movers, ${TRUCK_FEE[4]} with four. Fuel, tolls and mileage included</td>
                   </tr>
                   <tr className="border-b border-gray-100">
                     <td className="px-5 py-4 text-charcoal font-semibold">Minimum</td>

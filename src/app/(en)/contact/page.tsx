@@ -14,12 +14,12 @@ import { ogCard } from '@/lib/seo/og';
 export const metadata: Metadata = {
   title: { absolute: 'Contact Easy Move Florida — South Florida Moving Company' },
   description:
-    `Contact Easy Move Florida in Miami, Fort Lauderdale & Boca Raton. A real coordinator, not a bot. ${replyPromise('en')} Call 786-305-1844 or send a message.`,
+    `Contact Easy Move Florida in Miami, Fort Lauderdale & Boca Raton. The owner answers the phone himself, not a bot. ${replyPromise('en')} Call 786-305-1844 or send a message.`,
   alternates: alternatesFor('contact', 'en'),
   openGraph: {
     title: 'Contact Easy Move Florida — South Florida Moving Company',
     description:
-      `A real coordinator answers. ${replyPromise('en')} Call 786-305-1844 or fill out the form.`,
+      `The owner, Evgenii Romanov, answers the phone himself. ${replyPromise('en')} Call 786-305-1844 or fill out the form.`,
     url: 'https://www.easy-move-florida.com/contact',
     images: [ogCard('Easy Move Florida — movers in South Florida')],
   },
@@ -58,7 +58,7 @@ export default function ContactPage() {
               Let&rsquo;s Plan Your Move
             </h1>
             <p className="text-gray-400 max-w-xl mx-auto leading-relaxed">
-              A real coordinator answers, not an automated system. {replyPromise('en')}
+              The owner, Evgenii Romanov, answers the phone himself, not an automated system. {replyPromise('en')}
               Serving Miami, Fort Lauderdale, Boca Raton, and all of South Florida.
             </p>
           </AnimateIn>

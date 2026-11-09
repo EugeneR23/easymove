@@ -39,25 +39,33 @@ export const emailHref = (subject?: string): string =>
   `mailto:${EMAIL}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}`;
 
 /**
- * The canonical NAP address, confirmed by the owner 2026-09-11 and the one used
- * on every directory listing. A second street on a third-party card splits the
- * entity exactly as a second spelling of the name would.
+ * City and state only. Until 2026-11-09 this carried "2130 Stirling Rd, 33020",
+ * and pages called it "our shop and trucks" and "warehouse and office". The
+ * owner's answer that day: it was his former home, he now lives in Sacramento,
+ * and the crew works across the Hollywood - Fort Lauderdale area. A service-area
+ * business publishes the area it serves, not a street it is not at.
+ *
+ * Directory listings (MapQuest, Yelp, Thumbtack) still show the old street and
+ * are corrected by hand; a street goes back here only when the Florida mover
+ * registration names a real business address.
  */
 export const ADDRESS = {
-  streetAddress: '2130 Stirling Rd',
   addressLocality: 'Hollywood',
   addressRegion: 'FL',
-  postalCode: '33020',
   addressCountry: 'US',
 } as const;
 
 /** One line, for a footer or a contact block. */
 export const addressLine = (): string =>
-  `${ADDRESS.streetAddress}, ${ADDRESS.addressLocality}, ${ADDRESS.addressRegion} ${ADDRESS.postalCode}`;
+  `${ADDRESS.addressLocality}, ${ADDRESS.addressRegion}`;
+
+/** Where the crew works from, for copy. No street: see ADDRESS above. */
+export const BASE_AREA = 'Hollywood - Fort Lauderdale area';
 
 // No GEO export. The old point (26.0038, -80.158) resolved to 2553 Washington
 // St, not to this address, and the Google profile pin is the centre of the
-// service area. Owner, 2026-10-02: remove the coordinates; the address stays.
+// service area. Owner, 2026-10-02: remove the coordinates. The street followed
+// on 2026-11-09 (see ADDRESS).
 
 export const OWNER = {
   name: 'Evgenii Romanov',

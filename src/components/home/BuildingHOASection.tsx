@@ -16,12 +16,12 @@ const ITEMS = [
   {
     icon: Car,
     title: 'Loading zone + parking',
-    body: 'Familiar with parking rules across Aventura, Sunny Isles, Miami Beach, and Hollywood high-rises. We handle the logistics, you do not get a ticket.',
+    body: 'Many high-rises set their own loading zone and parking rules. We ask the building where the truck may stand, and for how long, before move day.',
   },
   {
     icon: ClipboardCheck,
     title: 'Building rules covered',
-    body: 'Floor protection, padded elevators, time-window compliance — we already know what most South Florida buildings ask for.',
+    body: 'Floor protection, padded elevators, move-in time windows: towers commonly require all three. We ask your building for its rules and bring what it asks for.',
   },
 ];
 
@@ -34,7 +34,7 @@ export default function BuildingHOASection() {
             <div className="w-8 h-px bg-gold mb-6" />
             <p className="text-charcoal text-xs font-semibold tracking-[0.3em] uppercase mb-3">Buildings &amp; HOAs</p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal leading-tight mb-4">
-              Building-fluent crews.
+              Building paperwork, handled.
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed">
               Most condo buildings in South Florida require a COI before move day. Send the building name when you send photos — we handle the paperwork so the front desk does not stop your crew at the door.

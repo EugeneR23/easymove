@@ -90,11 +90,11 @@ const FAQS = [
   },
   {
     q: 'Can you pack only part of my home?',
-    a: 'Absolutely. Many clients have us pack just the kitchen, fragile items, or artwork while they handle the rest themselves. Just let us know in your quote request.',
+    a: 'Absolutely. We can pack just the kitchen, fragile items, or artwork while you handle the rest yourself. Just let us know in your quote request.',
   },
   {
     q: 'Is packing-only available without a full move?',
-    a: "Yes — packing only is a standalone service. You arrange your own truck and transport; we handle the packing. It's popular with clients moving with a freight service or doing a self-move.",
+    a: "Yes, packing only is a standalone service. You arrange your own truck and transport; we handle the packing. It suits a move with a freight service or a self-move.",
   },
   {
     q: 'How far in advance do I need to book?',
@@ -102,11 +102,11 @@ const FAQS = [
   },
   {
     q: 'Are your packers insured?',
-    a: 'Packing work is covered by our standard liability terms, and we issue a COI to your building within 24 hours of booking at no charge. Ask us for the current certificate before move day.',
+    a: 'The business carries insurance, and we issue a COI to your building within 24 hours of booking at no charge. Ask us for the current certificate before move day.',
   },
   {
     q: 'Do you serve Fort Lauderdale and Boca Raton?',
-    a: 'Yes — packing services are available throughout Miami-Dade, Broward, and Palm Beach Counties. Travel time may apply for locations outside Miami.',
+    a: 'Yes. Packing services are available throughout Miami-Dade, Broward, and Palm Beach Counties at the same hourly rate. There is no travel fee.',
   },
 ];
 
@@ -163,7 +163,7 @@ export default function PackingServicesPage() {
                 { icon: Shield, label: 'Owner-led crews' },
                 { icon: Star, label: `${THUMBTACK.rating}★ on Thumbtack (${THUMBTACK.reviewCount} reviews)` },
                 { icon: Clock, label: 'Same-Week Availability' },
-                { icon: CheckCircle, label: '$0 Hidden Fees' },
+                { icon: CheckCircle, label: 'No surprise fees: materials are quoted before the job' },
               ].map(({ icon: Icon, label }) => (
                 <div key={label} className="flex items-center gap-2 text-gray-400">
                   <Icon size={14} className="text-gold shrink-0" />
@@ -186,7 +186,7 @@ export default function PackingServicesPage() {
                 Packing is time-consuming, stressful, and easy to do wrong. Broken plates, wrinkled clothes, and boxes that collapse mid-move are the result of rushed packing. Our crews pack every item methodically — the way it should be done.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                Our packing service is available as a standalone — you don&rsquo;t need to use us for the move itself. Many clients use us to pack and then move with a freight service, a pod, or family help.
+                Our packing service is available as a standalone — you don&rsquo;t need to use us for the move itself. You can have us pack and then move with a freight service, a pod, or family help.
               </p>
               <div className="mt-7 flex flex-wrap gap-2">
                 {['Fragile-Item Specialists', 'Labeled by Room', 'COI Available', 'No Subcontractors'].map((tag) => (
@@ -259,7 +259,6 @@ export default function PackingServicesPage() {
             <p className="text-gray-400 text-xs text-center leading-relaxed bg-cream p-4 border border-gray-100">
               Prices are preliminary estimates. Final quote is confirmed in writing before your appointment.
               Materials (boxes, tape, bubble wrap) are quoted separately if requested.
-              Travel surcharge may apply for locations outside Miami.
             </p>
           </div>
         </section>

@@ -45,12 +45,12 @@ const values = [
   {
     icon: Users,
     title: 'You can do the whole move in Russian',
-    description: 'The crew leader and the dispatcher both work in Russian and English — estimate, contract, move day. That matters in Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood.',
+    description: 'The owner and the crew leader both work in Russian and English: estimate, contract, move day. That matters in Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood.',
   },
   {
     icon: MapPin,
-    title: 'We know the buildings, not just the roads',
-    description: 'Freight elevator reservations, loading dock windows, elevator padding rules, COI formats, parking and loading zone rules across the Sunny Isles, Aventura, Miami Beach and Hollywood towers.',
+    title: 'The building is sorted before move day',
+    description: 'Freight elevator reservations, loading dock windows, elevator padding rules, COI formats, parking and loading zone rules: we ask your building for all of it and confirm it before your date.',
   },
 ];
 
@@ -58,7 +58,7 @@ const howWeWork = [
   { title: 'The owner is on the phone', description: 'The WhatsApp number reaches Evgenii, not a call centre. If something needs attention on move day, you are talking to the person who can decide.' },
   { title: 'COI within 24 hours, free', description: 'Send your building name, management company and their coverage requirements. The certificate goes to management in their format, at no charge.' },
   { title: 'No deposit to book', description: 'Nothing is charged to hold a date, and cancelling or rescheduling more than 48 hours out is free.' },
-  { title: 'Crew briefed before arrival', description: 'Building access, elevator windows and COI requirements are confirmed before the crew leaves the yard, so the clock starts on your furniture rather than on paperwork.' },
+  { title: 'Crew briefed before arrival', description: 'Building access, elevator windows and COI requirements are confirmed before move day, so the clock starts on your furniture rather than on paperwork.' },
 ];
 
 export default function AboutPage() {
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <p className="text-gray-600 leading-relaxed mb-5">
                 Most of what makes a South Florida move go badly is not the furniture — it is the
                 building. Freight elevator windows, loading dock schedules, COI formats, elevator
-                padding rules, which streets you can actually park a 26-footer on. That is the part I
+                padding rules, where the truck is allowed to park. That is the part I
                 handle before your move day, in English or in Russian, whichever you prefer.
               </p>
               <p className="text-gray-600 leading-relaxed">
@@ -235,7 +235,7 @@ export default function AboutPage() {
                 { label: `${THUMBTACK.rating} · ${THUMBTACK.reviewCount} reviews`, sub: 'Verified on Thumbtack' },
                 { label: 'COI in 24 hours', sub: 'To your building, no charge' },
                 { label: 'High-rise competent', sub: 'Freight elevators, docks, move windows' },
-                { label: 'Russian & English', sub: 'Crew leader and dispatcher both' },
+                { label: 'Russian & English', sub: 'Owner and crew leader both' },
               ].map((c) => (
                 <div key={c.label} className="max-w-[160px]">
                   <p className="text-white text-sm font-semibold mb-1">{c.label}</p>

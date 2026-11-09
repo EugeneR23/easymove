@@ -280,11 +280,15 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
           {propertyType === 'house' && (
             <div className="mb-5">
               <p className="text-sm font-semibold text-charcoal mb-1">How many floors?</p>
-              <p className="text-xs text-gray-400 mb-3">Each floor above the first adds a stair fee.</p>
+              {/* Stairs are time, never a fee (policies.ts SURCHARGES.stairs,
+                  pricing.ts STAIRS_EXTRA_HOURS_PER_FLIGHT). These tiles printed
+                  "+$50 / +$100" until 2026-11-09 while /pricing and /terms said
+                  there is no stair fee. */}
+              <p className="text-xs text-gray-400 mb-3">No stair fee. Stairs add carry time to the hourly estimate.</p>
               <div className="flex gap-3">
-                <Tile label="1" sub="No stairs" selected={houseFloors === 1} onClick={() => pickHouseFloors(1)} />
-                <Tile label="2" sub="+$50"      selected={houseFloors === 2} onClick={() => pickHouseFloors(2)} />
-                <Tile label="3+" sub="+$100"    selected={houseFloors === 3} onClick={() => pickHouseFloors(3)} />
+                <Tile label="1" sub="No stairs"  selected={houseFloors === 1} onClick={() => pickHouseFloors(1)} />
+                <Tile label="2" sub="1 flight"   selected={houseFloors === 2} onClick={() => pickHouseFloors(2)} />
+                <Tile label="3+" sub="2 flights" selected={houseFloors === 3} onClick={() => pickHouseFloors(3)} />
               </div>
             </div>
           )}
@@ -296,7 +300,7 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
               <p className="text-xs text-gray-400 mb-3">No extra charge for elevator access — this just helps us plan.</p>
               <div className="flex gap-3">
                 <Tile label="Yes" sub="No extra charge"   selected={elevatorInApt === true}  onClick={() => pickElevator(true)}  />
-                <Tile label="No"  sub="Stair fee may apply" selected={elevatorInApt === false} onClick={() => pickElevator(false)} />
+                <Tile label="No"  sub="Stairs add time, no fee" selected={elevatorInApt === false} onClick={() => pickElevator(false)} />
               </div>
             </div>
           )}
@@ -311,12 +315,12 @@ export default function Step2HomeSize({ data, update, onNext, onBack }: Props) {
           {propertyType === 'apartment' && elevatorInApt === false && (
             <div className="mb-5">
               <p className="text-sm font-semibold text-charcoal mb-1">How many floors up?</p>
-              <p className="text-xs text-gray-400 mb-3">$50 per floor carried without an elevator.</p>
+              <p className="text-xs text-gray-400 mb-3">No stair fee. Each flight adds carry time to the hourly estimate.</p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <Tile label="1st" sub="No charge" selected={aptFloor === 1} onClick={() => pickAptFloor(1)} />
-                <Tile label="2nd" sub="+$50"      selected={aptFloor === 2} onClick={() => pickAptFloor(2)} />
-                <Tile label="3rd" sub="+$100"     selected={aptFloor === 3} onClick={() => pickAptFloor(3)} />
-                <Tile label="4th+" sub="+$150"    selected={aptFloor === 4} onClick={() => pickAptFloor(4)} />
+                <Tile label="1st" sub="Ground floor" selected={aptFloor === 1} onClick={() => pickAptFloor(1)} />
+                <Tile label="2nd" sub="1 flight"     selected={aptFloor === 2} onClick={() => pickAptFloor(2)} />
+                <Tile label="3rd" sub="2 flights"    selected={aptFloor === 3} onClick={() => pickAptFloor(3)} />
+                <Tile label="4th+" sub="3+ flights"  selected={aptFloor === 4} onClick={() => pickAptFloor(4)} />
               </div>
             </div>
           )}

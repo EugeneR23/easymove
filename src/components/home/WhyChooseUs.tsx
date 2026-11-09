@@ -7,7 +7,7 @@ const reasons = [
   {
     icon: Clock,
     title: 'Punctual',
-    description: 'You get a two-hour arrival window and a call 30 minutes before the crew reaches you — not "sometime in the morning."',
+    description: 'You get a one-hour arrival window, and the crew calls 30 to 40 minutes before arriving, not "sometime in the morning."',
   },
   {
     icon: Package,
@@ -28,13 +28,13 @@ const reasons = [
   },
   {
     icon: Building2,
-    title: 'Building / HOA fluent',
-    description: 'COI within 24 hours, elevator reservations, parking permits, freight elevator hours — we know what most South Florida buildings ask for.',
+    title: 'Building / HOA paperwork',
+    description: 'COI within 24 hours, elevator reservations, parking permits, freight elevator hours: we ask your building what it requires and arrange it before move day.',
   },
   {
     icon: Languages,
     title: 'Russian + English',
-    description: 'Crew leader or dispatcher communicates in either language. Big advantage in Sunny Isles, Aventura, and Hollywood.',
+    description: 'The owner and the crew leader both work in either language. Big advantage in Sunny Isles, Aventura, and Hollywood.',
   },
   {
     icon: MessageCircle,

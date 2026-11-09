@@ -16,14 +16,14 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'Контакты | Easy Move Florida' },
   description:
-    `Свяжитесь с Easy Move Florida в Майами, Форт-Лодердейле и Бока-Ратоне. Отвечает живой координатор: ${replyPromise('ru')} Звоните 786-305-1844 или оставьте заявку на этой странице.`,
+    `Свяжитесь с Easy Move Florida в Майами, Форт-Лодердейле и Бока-Ратоне. На звонки отвечает сам владелец, Евгений Романов. ${replyPromise('ru')} Звоните 786-305-1844 или оставьте заявку на этой странице.`,
   alternates: alternatesFor('contact', 'ru'),
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'Easy Move Florida',
     title: 'Контакты — Easy Move Florida',
-    description: 'Связаться с координатором, который лично контролирует ваш переезд.',
+    description: 'Связаться с владельцем, который сам отвечает на звонки.',
     url: `${siteUrl}/ru/contact`,
     images: [ogCard('Easy Move Florida — переезды в Южной Флориде')],
   },
@@ -44,8 +44,8 @@ export default function RuContactPage() {
               Поговорить с реальным человеком
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Не диспетчер. Не служба поддержки. Координатор, который лично контролирует ваш переезд от первого звонка
-              до последней размещённой коробки.
+              Не диспетчер. Не служба поддержки. На звонки отвечает сам владелец, Евгений Романов, и остаётся на связи
+              от первого звонка до последней размещённой коробки.
             </p>
           </div>
         </section>
@@ -115,9 +115,9 @@ export default function RuContactPage() {
         <section className="bg-cream py-16">
           <div className="container-max text-center">
             <h2 className="font-display text-2xl md:text-3xl font-bold text-charcoal mb-4">
-              Хотите смету сразу?
+              Нужна письменная смета?
             </h2>
-            <p className="text-gray-500 mb-8">Заполните короткую форму — получите письменную смету в тот же день.</p>
+            <p className="text-gray-500 mb-8">Заполните короткую форму и получите письменную смету в течение 24 часов.</p>
             <Link
               href="/ru#calculator"
               className="inline-flex items-center justify-center gap-2 bg-gold text-white font-bold px-8 py-4 text-sm uppercase tracking-wider hover:bg-gold/90 transition-colors"
