@@ -30,7 +30,7 @@ export async function GET() {
 
   out.push(h(1, 'Easy Move Florida — full content'));
   out.push(
-    '> Owner-operated moving company in Hollywood, Florida, serving Miami-Dade, Broward and Palm Beach. Owner Evgenii Romanov runs dispatch; crew leader and dispatcher work in Russian and English. This file is the long-form dump; the short authoritative summary is at /llms.txt.',
+    '> Owner-operated moving company with a crew based in the Hollywood - Fort Lauderdale area of Florida, serving Miami-Dade, Broward and Palm Beach. Owner Evgenii Romanov answers the phone himself in Russian and English; the crew leader speaks Russian. This file is the long-form dump; the short authoritative summary is at /llms.txt.',
   );
   out.push(`Last generated from site data on each deploy. Canonical summary: ${siteUrl}/llms.txt`);
 
@@ -47,7 +47,8 @@ export async function GET() {
       SERVICE_SCOPE.en.llms,
       '- No weekend surcharge, no seasonal surcharge, no fuel surcharge',
       '- No same-day (rush) surcharge: same-day moves are taken when a crew is free, at the normal rate',
-      '- No stairs fee, heavy item fee, elevator fee or long carry fee — those cost time, priced into the estimated hours',
+      '- No stairs fee, elevator fee, long carry fee or travel fee: those cost time, priced into the estimated hours',
+      '- A piano, a safe or a marble piece is a separate line on the estimate, agreed before booking; no amount is published',
       '- Billing in 15-minute increments after the minimum; customers pay for hours worked',
       '- No deposit on any move. Free cancellation or reschedule more than 48 hours out',
       '- Payment collected on site roughly 45–60 minutes before the job wraps',

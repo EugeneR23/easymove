@@ -18,77 +18,19 @@
  * newer than the floor.
  */
 
-/** Every page's content is at least this recent. */
-export const CONTENT_FLOOR = '2026-09-18';
+/**
+ * Every page is at least this recent.
+ *
+ * Raised from 2026-09-18 to 2026-11-09. That day the owner settled every open
+ * contradiction on the site (cancellation inside 48 hours, the arrival window,
+ * heavy items, travel time, who answers the phone) and the street address came
+ * off every page and out of the schema, so no page kept its older text. The
+ * 2026-10-22 packing-rate change had also gone out without a bump here.
+ */
+export const CONTENT_FLOOR = '2026-11-09';
 
-/** Served path → YYYY-MM-DD, only for pages changed after the floor. */
-export const NEWER: Record<string, string> = {
-  // 2026-10-11: reply-time and same-day offer on every city page, Brickell page,
-  // Russian forms on /ru and /ru/contact, real reviews on /ru, contact form,
-  // quote wizard, homepage calculator price.
-  '/brickell-movers': '2026-10-11',
-  '/': '2026-10-11',
-  '/contact': '2026-10-11',
-  '/quote': '2026-10-11',
-  '/ru/contact': '2026-10-11',
-  // 2026-10-01: owner decisions on prices and claims (about, fine art,
-  // residential, pricing, ru/services), the city template's building claim
-  // rewritten on every city page, and four new city pages.
-  '/ru': '2026-10-11',
-  '/north-miami-movers': '2026-10-11',
-  '/about': '2026-10-01',
-  '/ru/about': '2026-10-11',
-  '/services/specialty-items': '2026-10-01',
-  '/services/residential-moving': '2026-10-01',
-  '/pricing': '2026-10-01',
-  '/ru/pricing': '2026-10-01',
-  '/ru/services': '2026-10-01',
-  '/miami-movers': '2026-10-11',
-  '/fort-lauderdale-movers': '2026-10-11',
-  '/boca-raton-movers': '2026-10-11',
-  '/aventura-movers': '2026-10-11',
-  '/coral-gables-movers': '2026-10-11',
-  '/sunny-isles-movers': '2026-10-11',
-  '/hollywood-movers': '2026-10-11',
-  '/coconut-grove-movers': '2026-10-11',
-  '/doral-movers': '2026-10-11',
-  '/hallandale-beach-movers': '2026-10-11',
-  '/miami-beach-movers': '2026-10-11',
-  '/bal-harbour-movers': '2026-10-11',
-  '/north-miami-beach-movers': '2026-10-11',
-  '/pembroke-pines-movers': '2026-10-11',
-  '/weston-movers': '2026-10-11',
-  '/coral-springs-movers': '2026-10-11',
-  '/sunrise-movers': '2026-10-11',
-  '/delray-beach-movers': '2026-10-11',
-  '/boynton-beach-movers': '2026-10-11',
-  '/dania-beach-movers': '2026-10-11',
-  '/miramar-movers': '2026-10-11',
-  '/pembroke-park-movers': '2026-10-11',
-  '/lauderdale-lakes-movers': '2026-10-11',
-  '/ru/sunny-isles-movers': '2026-10-01',
-  '/ru/aventura-movers': '2026-10-01',
-  '/ru/hallandale-beach-movers': '2026-10-01',
-  '/ru/hollywood-movers': '2026-10-01',
-  '/ru/miami-movers': '2026-10-01',
-  '/ru/fort-lauderdale-movers': '2026-10-01',
-  '/ru/miami-beach-movers': '2026-10-01',
-  '/ru/bal-harbour-movers': '2026-10-01',
-  '/ru/north-miami-beach-movers': '2026-10-01',
-  '/ru/boca-raton-movers': '2026-10-01',
-  '/ru/delray-beach-movers': '2026-10-01',
-  '/ru/pembroke-pines-movers': '2026-10-01',
-  '/ru/weston-movers': '2026-10-01',
-  '/ru/coral-springs-movers': '2026-10-01',
-  '/ru/sunrise-movers': '2026-10-01',
-  '/ru/boynton-beach-movers': '2026-10-01',
-  '/ua/sunny-isles-movers': '2026-10-01',
-  '/ua/hallandale-beach-movers': '2026-10-01',
-  '/ua/hollywood-movers': '2026-10-01',
-  '/ua/miami-movers': '2026-10-01',
-  '/ua/aventura-movers': '2026-10-01',
-  '/ua/fort-lauderdale-movers': '2026-10-01',
-};
+/** Served path to YYYY-MM-DD, only for pages changed after the floor. */
+export const NEWER: Record<string, string> = {};
 
 /** YYYY-MM-DD for a served path ('/', '/ru/miami-movers', '/services/storage-solutions'). */
 export function lastModified(path: string): string {

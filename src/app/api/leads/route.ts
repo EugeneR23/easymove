@@ -6,6 +6,7 @@ import { sendEmail, sendTelegram, sendSMS, tgEscape, ownerEmailEnabled } from '@
 import { sendToAirtable, normalizeSource } from '@/lib/airtable';
 import { rateLimited, isHoneypotFilled, hasContact } from '@/lib/leadGuard';
 import { sendCustomerConfirmation, confirmationNote, customerLocale } from '@/lib/customerEmail';
+import { attributionLine, sanitizeAttribution } from '@/lib/attribution';
 import type { HomeSize, Lead, LeadSource, MoveType } from '@/types';
 
 const LEAD_SOURCES = ['contact-form', 'quote-wizard', 'phone', 'referral', 'popup', 'callback', 'quick-form'] as const satisfies readonly LeadSource[];
@@ -105,6 +106,7 @@ export async function POST(req: NextRequest) {
     };
 
     const name = [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 'Unknown';
+    const sourceLine = attributionLine(sanitizeAttribution(body.attribution));
     const headline = SOURCE_LABEL[lead.source] + (locale !== 'en' ? ` (${locale.toUpperCase()})` : '');
     console.log(`[api/leads] Lead built: id=${lead.id} source=${lead.source} locale=${locale}`);
 
@@ -165,6 +167,7 @@ export async function POST(req: NextRequest) {
       lead.fromCity || lead.toCity ? `📍 ${h(lead.fromCity) || '?'} → ${h(lead.toCity) || '?'}` : '',
       lead.moveDate ? `📅 ${h(lead.moveDate)}` : '',
       lead.message ? `💬 ${h(lead.message).slice(0, 200)}` : '',
+      sourceLine ? `🧭 ${h(sourceLine)}` : '',
       `✉️ ${h(confirmationLine)}`,
     ].filter(Boolean).join('\n');
 
@@ -182,7 +185,9 @@ export async function POST(req: NextRequest) {
         'Move Type':    lead.moveType ?? '',
         'From City':    lead.fromCity ?? '',
         'To City':      lead.toCity   ?? '',
-        'Notes':        [noteTag, lead.message].filter(Boolean).join(' '),
+        // The source goes into Notes, not a column of its own: Airtable rejects
+        // a write that names a field the base does not have.
+        'Notes':        [noteTag, lead.message, sourceLine ? `[${sourceLine}]` : ''].filter(Boolean).join(' '),
         ...(lead.moveDate ? { 'Job Date': lead.moveDate } : {}),
         'Completed':    false,
         'Deposit Paid': false,

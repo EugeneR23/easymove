@@ -20,6 +20,10 @@ const SKIP_DIRS = new Set(['node_modules', '.next', '.git', 'audit', 'superpower
 const RULE_EXEMPT = new Map([
   ['hand-written-canonical', ['src/lib/seo/routes.ts']],
   ['tel-format', ['src/lib/data/contact.ts']],
+  // The two directory packages still quote the street that MapQuest, Yelp and
+  // Thumbtack show. They change when the Florida mover registration names a
+  // real business address, not before: an edit there is an edit to a listing.
+  ['published-street-address', ['docs/GBP_COPY_PASTE_PACKAGE.md', 'docs/AGGREGATOR_SUBMISSION_PACKAGE.md']],
 ]);
 const EXT = /\.(tsx?|jsx?|mjs|json|md|txt)$/;
 
@@ -61,6 +65,13 @@ const ALLOW = [
   // credentials.ts: the comment recording why the badges were removed.
   'audit had to strip ~15 "Licensed & Insured" badges because none of them',
   'Произведения искусства музейного уровня — нужны специализированные art storage facilities',
+  // Notes written on 2026-11-09 that name the wording they replaced, for the
+  // same reason as every entry above.
+  'site had said "no heavy item fee" and "a flat add-on" on the same page',
+  'Until 2026-11-09 this carried "2130 Stirling Rd, 33020"',
+  'Do not cite "2130 Stirling Rd" from older copies of this site',
+  '/pricing said "a partial reschedule fee" and the FAQ said this',
+  '"+$50 / +$100" while /pricing and /terms said',
 ];
 
 /**
@@ -188,6 +199,33 @@ const RULES = [
 
   { id: 'telegram-promise', why: 'Owner, 2026-10-11: there is no customer Telegram channel. "WhatsApp + Telegram" promised a contact route with no link behind it.',
     re: /WhatsApp\s*(?:\+|and|и|та|&)\s*Telegram|Telegram\s*(?:\+|and|и|та|&)\s*WhatsApp/gi },
+
+  // Added 2026-11-09, after an audit found 33 places where the site contradicted
+  // itself and the owner settled each one. Every rule below was run against the
+  // tree at 8b32fdc first and named the lines it now protects.
+  { id: 'stair-fee', why: 'There is no stair fee: stairs add carry time (policies.ts SURCHARGES.stairs, pricing.ts STAIRS_EXTRA_HOURS_PER_FLIGHT). The quote wizard printed "$50 per floor" and "+$50 / +$100" tiles beside pages that said there is none.',
+    re: /adds a stair fee|stair fee may apply|[$]\d+ per floor|sub="\+[$]\d+"/gi },
+
+  { id: 'travel-or-time-surcharge', why: 'No travel fee, no seasonal uplift, no after-hours premium (owner, 2026-11-09). Billable hours start when the crew arrives at the first address.',
+    re: /travel (?:time|charge|fee) may apply|разовая плата за время в пути|\+\s?\d{1,2}\s?% surcharge|after-hours premium|lower travel surcharges?|trims the billed clock|billed clock starts with less travel|дорога бригады[^.\n]{0,25}оплачива/gi },
+
+  { id: 'arrival-window-literal', why: 'Owner, 2026-11-09: a one-hour arrival window and a call 30 to 40 minutes before arriving. It lives in policies.ts (RESPONSE) and reaches copy through arrivalPromise(). Six pages promised two hours and a 30-minute call.',
+    re: /two-hour arrival window|2-hour arrival window|30-minute heads-up|двухчасов\S* окн/gi },
+
+  { id: 'late-cancellation-literal', why: 'Owner, 2026-11-09: no fee inside 48 hours, except the 3-hour minimum once a crew has been dispatched. /pricing said "a partial reschedule fee" while /terms said there is no fee. Use POLICY_COPY.',
+    re: /partial reschedule fee|частичный сбор за перенос/gi },
+
+  { id: 'no-heavy-item-fee', why: 'Owner, 2026-11-09: a piano, a safe or a marble piece is a separate line on the estimate, agreed before booking. "No heavy item fee" stood on /pricing beside "a flat add-on".',
+    re: /no heavy[- ]item fee/gi },
+
+  { id: 'published-street-address', why: 'No street address is published (owner, 2026-11-09): 2130 Stirling Rd was his former home and pages called it "our shop and trucks". The crew is based in the Hollywood - Fort Lauderdale area. See ADDRESS in contact.ts.',
+    re: /Stirling (?:Rd|Road)\b/g },
+
+  { id: 'belongings-coverage-wording', why: 'The company issues a COI; it does not describe coverage of the customer\'s belongings on the site (owner, Q18, 2026-10-11). These four wordings outlived that decision.',
+    re: /cargo insurance is included|every move is covered|standard liability terms at no extra cost|upgraded valuation coverage|страхов\S* ответственность на каждом/gi },
+
+  { id: 'crew-language-majority', why: 'Owner, 2026-11-09: the owner answers the phone and the crew leader speaks Russian. "Most of the crew" and "the dispatcher" were both published as fact.',
+    re: /most of (?:the|our) crew[^.\n]{0,40}Russian|coordinator and most of the crew|crew leader,? (?:and|the) dispatcher|owner, dispatcher and crew leader/gi },
 
   { id: 'invented-testimonial', why: 'A review must be a real one, quoted from googleReviews.ts or Thumbtack. "Maria S., Brickell · Feb 2025" in the quote wizard and four /ru testimonials with avatar initials had no source anywhere (found 2026-10-11).',
     re: /initials:\s*['"]|—\s*[A-Z][a-z]+ [A-Z]\.,\s*[A-Z][a-z]+\s*·\s*[A-Z][a-z]{2} 20\d\d/g },

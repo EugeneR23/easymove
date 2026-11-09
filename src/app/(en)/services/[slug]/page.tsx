@@ -290,8 +290,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <p className="text-gold text-xs font-semibold tracking-[0.3em] uppercase mb-6">Our Guarantee</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {[
-                    { title: 'Owner-led on every job', desc: 'Every move is covered. COI available for building management within 24 hours.' },
-                    { title: 'Arrival Windows', desc: 'Two-hour arrival window. We call 30 min before. No all-day waiting.' },
+                    { title: 'Owner-led on every job', desc: 'The owner answers the phone himself. COI sent to building management within 24 hours of booking, free.' },
+                    { title: 'Arrival Windows', desc: 'One-hour arrival window. The crew calls 30 to 40 minutes before arriving. No all-day waiting.' },
                     { title: 'Transparent Pricing', desc: 'Written estimate before any work begins. No surprise fees on moving day.' },
                   ].map((g) => (
                     <div key={g.title}>

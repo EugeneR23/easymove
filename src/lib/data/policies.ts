@@ -25,6 +25,12 @@ export const CANCELLATION = {
   freeNoticeHours: 48,
   /** No fee exists. Inside the window we reschedule; we do not charge for it. */
   lateFee: null,
+  /**
+   * The one exception (owner, 2026-11-09): a crew already dispatched to the
+   * address is paid the job minimum. Until that day /terms said "no fee",
+   * /pricing said "a partial reschedule fee" and the FAQ said this.
+   */
+  dispatchedMinimumHours: 3,
 } as const;
 
 export const PAYMENT = {
@@ -44,6 +50,10 @@ export const PAYMENT = {
  * Every one of these is false, permanently. The rate you book is the rate you pay.
  * Owner confirmed 2026-09-18 after one Russian FAQ was found claiming a 10%
  * weekend uplift against roughly fifteen pages saying there is none.
+ *
+ * heavyItem left this list on 2026-11-09. The owner's answer: a piano, a safe
+ * or a marble piece is its own line on the estimate, named before booking. The
+ * site had said "no heavy item fee" and "a flat add-on" on the same page.
  */
 export const SURCHARGES = {
   weekend: false,
@@ -52,7 +62,12 @@ export const SURCHARGES = {
   stairs: false,
   elevator: false,
   longCarry: false,
-  heavyItem: false,
+} as const;
+
+/** Piano, safe, marble: a separate line on the estimate, agreed before booking. No published amount. */
+export const HEAVY_ITEMS = {
+  separateEstimateLine: true,
+  publishedAmount: null,
 } as const;
 
 export const COI = {
@@ -70,9 +85,25 @@ export const RESPONSE = {
    * fails the build on any of them, so copy has to come through replyPromise().
    */
   replyWithinBusinessHours: 2,
-  /** Still unconfirmed: an arrival window is promised nowhere until the owner names one. */
-  arrivalWindowHours: null as number | null,
+  /**
+   * Owner, 2026-11-09: "we say 9 to 10, an hour at most, and the crew always
+   * calls 30-40 minutes before arriving". Six pages had promised a two-hour
+   * window with a 30-minute call while this field was still null.
+   */
+  arrivalWindowHours: 1 as number | null,
+  callAheadMinutes: [30, 40] as const,
 } as const;
+
+const ARRIVAL_COPY = {
+  en: 'a one-hour arrival window, and the crew calls 30 to 40 minutes before arriving',
+  ru: 'окно приезда в один час, и бригада звонит за 30-40 минут до приезда',
+  uk: 'вікно приїзду в одну годину, і бригада телефонує за 30-40 хвилин до приїзду',
+} as const;
+
+/** The one arrival promise, as a clause that fits inside a sentence or a list. */
+export function arrivalPromise(locale: 'en' | 'ru' | 'uk' | 'ua' = 'en'): string {
+  return ARRIVAL_COPY[locale === 'ua' ? 'uk' : locale];
+}
 
 /**
  * Owner, 2026-10-11: a same-day move is taken when a crew is free, and costs the
@@ -142,15 +173,17 @@ export const POLICY_COPY: Record<'en' | 'ru' | 'uk', PolicyCopy> = {
       'No deposit is taken, on any move. You book the date and pay when the work is done.',
     cancellation:
       `Cancel or reschedule free of charge with more than ${CANCELLATION.freeNoticeHours} hours' notice. ` +
-      'Inside that window, call us and we will move the date — there is no cancellation fee.',
+      'Inside that window, call us and we will move the date. There is still no cancellation fee, with one exception: ' +
+      `if the crew has already been dispatched to your address, the ${CANCELLATION.dispatchedMinimumHours}-hour minimum is charged.`,
     payment:
       `Payment is collected on site roughly ${PAYMENT.collectedMinutesBeforeFinish[0]}–${PAYMENT.collectedMinutesBeforeFinish[1]} minutes ` +
       'before the crew finishes, once the final hour count is clear, so you can see the work before you pay for it. ' +
       `Cash, card (Visa, MasterCard, Amex, Discover — no surcharge), Apple Pay, or Zelle to ${PAYMENT.zelleAddress}, ` +
       'which is the only Zelle address we use. A request to send Zelle anywhere else does not come from us.',
     surcharges:
-      'Nothing is added for weekends, high season, fuel, stairs, elevators, long carries or heavy items. ' +
-      'The hourly rate you book is the hourly rate you pay, seven days a week and year-round.',
+      'Nothing is added for weekends, high season, fuel, stairs, elevators or long carries. ' +
+      'The hourly rate you book is the hourly rate you pay, seven days a week and year-round. ' +
+      'A piano, a safe or a marble piece is a separate line on the estimate, agreed with you before you book.',
     coi:
       `A certificate of insurance goes to your building's management within ${COI.leadTimeHours} hours of booking, ` +
       'free of charge, in the format the building asks for and naming it as additional insured.',
@@ -160,15 +193,17 @@ export const POLICY_COPY: Record<'en' | 'ru' | 'uk', PolicyCopy> = {
       'Депозита нет ни на одном переезде. Вы бронируете дату и платите, когда работа сделана.',
     cancellation:
       `Отменить или перенести бесплатно можно больше чем за ${CANCELLATION.freeNoticeHours} часа. ` +
-      'Если срок меньше — позвоните, перенесём дату; штрафа за отмену у нас нет.',
+      'Если срок меньше, позвоните, перенесём дату. Штрафа за отмену нет и в этом случае, с одним исключением: ' +
+      `если бригада уже выехала к вам, оплачивается минимум ${CANCELLATION.dispatchedMinimumHours} часа.`,
     payment:
       `Оплата на месте, примерно за ${PAYMENT.collectedMinutesBeforeFinish[0]}–${PAYMENT.collectedMinutesBeforeFinish[1]} минут ` +
       'до конца работы, когда уже понятно итоговое количество часов — чтобы вы видели результат до того, как платите. ' +
       `Наличные, карта (Visa, MasterCard, Amex, Discover — без комиссии), Apple Pay или Zelle на ${PAYMENT.zelleAddress}. ` +
       'Это единственный наш адрес Zelle: просьба отправить на другой адрес или телефон исходит не от нас.',
     surcharges:
-      'Ничего не добавляется за выходные, высокий сезон, топливо, лестницы, лифты, длинный пронос или тяжёлые вещи. ' +
-      'Ставка, по которой вы забронировали, — это ставка, по которой вы платите, в любой день недели и в любой сезон.',
+      'Ничего не добавляется за выходные, высокий сезон, топливо, лестницы, лифты или длинный пронос. ' +
+      'Вы платите по той ставке, по которой забронировали, в любой день недели и в любой сезон. ' +
+      'Пианино, сейф или мраморная плита идут отдельной строкой в смете, сумму называем до брони.',
     coi:
       `Сертификат страхования уходит в управляющую компанию здания в течение ${COI.leadTimeHours} часов после брони, ` +
       'бесплатно, в том формате, который здание требует, с указанием здания как additional insured.',
@@ -178,14 +213,16 @@ export const POLICY_COPY: Record<'en' | 'ru' | 'uk', PolicyCopy> = {
       'Депозиту немає на жодному переїзді. Ви бронюєте дату й платите, коли роботу зроблено.',
     cancellation:
       `Скасувати або перенести безкоштовно можна більш ніж за ${CANCELLATION.freeNoticeHours} години. ` +
-      'Якщо часу менше — зателефонуйте, перенесемо дату; штрафу за скасування ми не беремо.',
+      'Якщо часу менше, зателефонуйте, перенесемо дату. Штрафу за скасування немає і тоді, з одним винятком: ' +
+      `якщо бригада вже виїхала до вас, оплачується мінімум ${CANCELLATION.dispatchedMinimumHours} години.`,
     payment:
       `Оплата на місці, приблизно за ${PAYMENT.collectedMinutesBeforeFinish[0]}–${PAYMENT.collectedMinutesBeforeFinish[1]} хвилин ` +
       'до кінця роботи, коли вже зрозуміла підсумкова кількість годин. ' +
       `Готівка, картка (без комісії), Apple Pay або Zelle на ${PAYMENT.zelleAddress} — це єдина наша адреса Zelle.`,
     surcharges:
-      'Нічого не додається за вихідні, високий сезон, пальне, сходи, ліфти, довгий пронос чи важкі речі. ' +
-      'Ставка, за якою ви забронювали, — це ставка, за якою ви платите.',
+      'Нічого не додається за вихідні, високий сезон, пальне, сходи, ліфти чи довгий пронос. ' +
+      'Ви платите за тією ставкою, за якою забронювали. ' +
+      'Піаніно, сейф чи мармурова плита йдуть окремим рядком у кошторисі, суму називаємо до броні.',
     coi:
       `Сертифікат страхування йде до управителя будівлі протягом ${COI.leadTimeHours} годин після броні, безкоштовно, ` +
       'у форматі, який вимагає будівля.',

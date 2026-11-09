@@ -1,3 +1,4 @@
+import { arrivalPromise } from './policies';
 import { SERVICE_SCOPE } from './scope';
 
 export interface CityData {
@@ -22,14 +23,14 @@ export const CITIES: CityData[] = [
     name: 'Miami',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: "Miami Movers Who Know the Building First",
+    heroHeadline: "Miami Movers for Condos, Apartments and Houses",
     heroSub: 'Brickell · Coral Gables · Miami Beach · Coconut Grove',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Movers, FL | Easy Move Florida',
     metaDescription:
       'Insured Miami movers — Brickell, Coral Gables, Miami Beach, Coconut Grove high-rises. Founder-led, COI in 24h. From $129/hr. Call 786-305-1844.',
     intro:
-      "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. Easy Move Florida was built in Miami-Dade and every crew we send is briefed on your building before they arrive.",
+      "Moving in Miami means navigating some of the most demanding logistics in the country — Brickell's loading dock windows, Coral Gables HOA requirements, South Beach elevator reservations, and I-95 at the wrong hour. Every crew we send is briefed on your building before they arrive.",
     neighborhoods: [
       'Brickell', 'Coral Gables', 'Coconut Grove', 'Miami Beach', 'South Beach',
       'Wynwood', 'Edgewater', 'Midtown', 'Downtown Miami', 'Aventura',
@@ -37,8 +38,8 @@ export const CITIES: CityData[] = [
     ],
     localFacts: [
       {
-        title: 'High-Rise & Condo Specialists',
-        body: 'We move clients in and out of Miami\'s most demanding buildings — from Brickell City Centre residences to South Beach penthouses. We handle elevator reservations, loading dock scheduling, and COI issuance so you don\'t have to.',
+        title: 'High-Rise & Condo Moves',
+        body: 'For high-rise and condo moves we handle elevator reservations, loading dock scheduling, and COI issuance so you don\'t have to.',
       },
       {
         title: 'COI Issued Within 24 Hours',
@@ -46,7 +47,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Coral Gables & Grove HOAs',
-        body: 'Historic neighborhoods come with strict move-in windows and permit requirements. Our coordinator handles all paperwork and arrival coordination before your move day.',
+        body: 'Historic neighborhoods come with strict move-in windows and permit requirements. We handle all paperwork and arrival coordination before your move day.',
       },
       {
         title: 'Wynwood Loft Logistics',
@@ -64,7 +65,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'Do you move in and out of Brickell high-rises?',
-        a: 'Yes — Brickell is one of our most common service areas. We\'re familiar with loading dock requirements, elevator reservations, and COI formats for major buildings including SLS, ICON, and Brickell Heights.',
+        a: 'Yes. Brickell is inside our service area. Each tower sets its own loading dock requirements, elevator reservations, and COI format, and we get the current requirements from building management before move day.',
       },
       {
         q: 'How quickly can you issue a COI for my building?',
@@ -89,7 +90,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle moves out of Wynwood live-work lofts?',
-        a: 'Often. Most of these buildings have shared freight elevators with hour-window reservations. We book the elevator window before the job and bring a 16-foot truck instead of a 26-footer when alley access is tight.',
+        a: 'Yes. Most of these buildings have shared freight elevators with hour-window reservations. We book the elevator window before the job and bring a 16-foot truck instead of a 26-footer when alley access is tight.',
       },
     ],
   },
@@ -105,7 +106,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Insured movers in Fort Lauderdale & Broward County. Serving Las Olas, Victoria Park, Wilton Manors & all of Broward. Founder-led, COI available.',
     intro:
-      "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. Easy Move Florida has served Broward County clients across every neighborhood — from Las Olas Boulevard high-rises to Plantation family homes — with the same crew, the same standards, and direct access to the founder.",
+      "Fort Lauderdale's mix of waterfront estates, mid-rise condos, and historic bungalows each require different expertise. Easy Move Florida serves all of Broward County, from Las Olas Boulevard high-rises to Plantation family homes, with the same crew, the same standards, and direct access to the founder.",
     neighborhoods: [
       'Las Olas', 'Victoria Park', 'Wilton Manors', 'Lauderdale-by-the-Sea',
       'Hollywood', 'Hallandale Beach', 'Deerfield Beach', 'Pompano Beach',
@@ -149,7 +150,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you handle waterfront property moves in Fort Lauderdale?',
-        a: "Yes. We work waterfront and marina-adjacent properties regularly — limited dock access, narrow drives, and the requirements common to Las Olas-area towers. Building and dock rules vary, so we confirm specifics with your HOA or management before move day.",
+        a: "Yes. Waterfront and marina-adjacent properties come with limited dock access, narrow drives, and the requirements common to Las Olas-area towers. Building and dock rules vary, so we confirm specifics with your HOA or management before move day.",
       },
       {
         q: 'What should I check with my building or HOA before a Fort Lauderdale move?',
@@ -157,11 +158,11 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you offer storage near Fort Lauderdale?',
-        a: 'We offer premium short-term and monthly storage as an add-on. It\'s useful for staging between closings or when your new home isn\'t move-in ready.',
+        a: 'We offer short-term and monthly storage at a partner facility as an add-on. It\'s useful for staging between closings or when your new home isn\'t move-in ready.',
       },
       {
         q: 'How do you handle HOA move-in requirements in Broward?',
-        a: 'Our coordinator confirms COI formats, move-in window times, elevator reservations, and any permits with your HOA before your move date — at no additional charge.',
+        a: 'We confirm COI formats, move-in window times, elevator reservations, and any permits with your HOA before your move date, at no additional charge.',
       },
     ],
   },
@@ -199,7 +200,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Discretion & Privacy',
-        body: "Many of our Palm Beach County clients include executives, collectors, and families who value privacy. We operate with full confidentiality and never disclose client information.",
+        body: "We operate with full confidentiality and never disclose client information.",
       },
     ],
     faqs: [
@@ -243,7 +244,7 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/4.png',
     metaTitle: 'Aventura Movers — High-Rise & Condo | Easy Move Florida',
     metaDescription:
-      "Insured movers in Aventura, FL. High-rise specialists serving Williams Island, Porto Vita, Turnberry & every Aventura building. COI within 24 hours. Russian-speaking crew. Call 786-305-1844.",
+      "Insured movers in Aventura, FL. High-rise moves in Williams Island, Porto Vita, Turnberry & across Aventura. COI within 24 hours. Russian and English spoken. Call 786-305-1844.",
     intro:
       "Aventura is a high-rise city. Almost every move here happens between the 15th and 50th floor of a building with strict COI rules, fixed elevator windows, and management offices that won't let a crew step on the loading dock without paperwork in hand. Williams Island, Porto Vita, Turnberry Isle and Hidden Bay each run their own version of that: a registered arrival, a reserved dock window, and a certificate of insurance naming the association. We collect those requirements from the management office at booking and issue the COI within 24 hours, in the format the building asks for. We also speak Russian, which matters in Aventura.",
     neighborhoods: [
@@ -253,12 +254,12 @@ export const CITIES: CityData[] = [
     ],
     localFacts: [
       {
-        title: 'Williams Island & Porto Vita Specialists',
-        body: "We work in Williams Island and Porto Vita regularly — gate-house registration, the loading dock locations behind each tower, and building-specific COI paperwork are part of the standard prep. Your crew arrives knowing the process — not learning it on your time.",
+        title: 'Williams Island & Porto Vita Moves',
+        body: "Williams Island and Porto Vita are inside our service area. Gate-house registration, loading dock scheduling, and building-specific COI paperwork are part of the standard prep, and we collect each building's requirements from management before move day.",
       },
       {
-        title: 'Russian & English Crew',
-        body: "Aventura, Sunny Isles, and Bal Harbour have one of the largest Russian-speaking populations in South Florida. Our coordinator and most of our crew speak Russian fluently. If your building staff or HOA board prefers Russian — мы говорим по-русски.",
+        title: 'Russian & English Spoken',
+        body: "Aventura, Sunny Isles, and Bal Harbour have one of the largest Russian-speaking populations in South Florida. The owner, Evgenii Romanov, answers the phone himself in Russian or English, and the crew leader speaks Russian. If your building staff or HOA board prefers Russian, мы говорим по-русски.",
       },
       {
         // [TODO: confirm exact building COI limits with Evgenii]
@@ -267,7 +268,7 @@ export const CITIES: CityData[] = [
       },
           {
         title: 'Furniture & Single-Item Delivery',
-        body: 'Bought a sofa, a dining set or a mattress and just need it brought up the tower? Single-item and furniture delivery is a standing service, not a favor — pickup, wrapping, transport and placement by the same insured crews that run full moves. Pick-up-and-deliver jobs are one of the services clients hire us for most on Thumbtack.',
+        body: 'Bought a sofa, a dining set or a mattress and just need it brought up the tower? Single-item and furniture delivery is a standing service, not a favor — pickup, wrapping, transport and placement by the same insured crews that run full moves.',
       },
       {
         title: 'Mystic Pointe, Hidden Bay & the East Towers',
@@ -275,7 +276,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Packing Crews Before Moving Day',
-        body: 'For tower apartments we usually pack the day before, so the reserved elevator window on move day is spent moving, not boxing. Tell the coordinator what stays and what goes; fragile pieces, art and mirrored furniture get wrapped first.',
+        body: 'For tower apartments we usually pack the day before, so the reserved elevator window on move day is spent moving, not boxing. Tell us what stays and what goes; fragile pieces, art and mirrored furniture get wrapped first.',
       },
     ],
     faqs: [
@@ -285,16 +286,15 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Can you deliver a single piece of furniture in Aventura?',
-        a: 'Yes — single-item and furniture delivery is part of what we do daily, with the same wrapping and the same insured crew as a full move. Call 786-305-1844 with the pickup and drop-off addresses and we will quote it in minutes.',
+        a: 'Yes. Single-item and furniture delivery is a standing service, with the same wrapping and the same insured crew as a full move. Call 786-305-1844 with the pickup and drop-off addresses and we will quote it in minutes.',
       },
       {
-        // [TODO: confirm exact building COI limits with Evgenii]
         q: 'Do you move into and out of Williams Island?',
-        a: "Yes. Williams Island is one of our most common service locations. We handle the gate-house registration, loading dock coordination, and elevator reservation process. Many buildings here require COI limits in the $1M–$2M range — we confirm your building's exact requirements before move day.",
+        a: "Yes. Williams Island is inside our service area. We handle the gate-house registration, loading dock coordination, and elevator reservation process. Many buildings here require COI limits in the $1M–$2M range — we confirm your building's exact requirements before move day.",
       },
       {
         q: 'Do you speak Russian?',
-        a: 'Yes — наш координатор и большая часть бригады свободно говорит по-русски. Если вам или управлению здания удобнее по-русски — без проблем.',
+        a: 'Yes. Владелец, Евгений Романов, сам отвечает на звонки по-русски, и бригадир говорит по-русски. Если вам или управлению здания удобнее по-русски, без проблем.',
       },
       {
         q: 'How do you handle Aventura building elevator reservations?',
@@ -322,7 +322,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Coral Gables movers for historic homes and gated estates: Gables Estates, Cocoplum, Old Cutler. 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
     intro:
-      "Moving in Coral Gables is not the same as moving in Brickell. The streets are narrow, the trees are protected, the historic-preservation rules are real, and the HOAs in Cocoplum, Gables Estates, and Old Cutler are some of the strictest in South Florida. Most moving companies don't know what a Mediterranean Bonus is or why the Garden Club cares about your moving truck idling on Granada Boulevard. We do. Easy Move Florida handles Coral Gables estates, historic single-family homes, and Miracle Mile condos with the patience and protocol they require.",
+      "Moving in Coral Gables is not the same as moving in Brickell. The streets are narrow, the trees are protected, the historic-preservation rules are real, and the HOAs in Cocoplum, Gables Estates, and Old Cutler are some of the strictest in South Florida. Easy Move Florida handles Coral Gables estates, historic single-family homes, and Miracle Mile condos with the patience and protocol they require.",
     neighborhoods: [
       'Gables Estates', 'Cocoplum', 'Old Cutler', 'Granada',
       'Hammock Lakes', 'Riviera', 'High Pines', 'Snapper Creek',
@@ -339,14 +339,13 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'HOA & Permit Compliance',
-        body: "Many Coral Gables neighborhoods restrict moving truck parking, idle times, and weekend hours. Our coordinator confirms restrictions for your address before scheduling and arranges any required permits — you don't need to navigate City Hall yourself.",
+        body: "Many Coral Gables neighborhoods restrict moving truck parking, idle times, and weekend hours. We confirm restrictions for your address before scheduling and arrange any required permits, so you don't need to navigate City Hall yourself.",
       },
     ],
     faqs: [
       {
-        // [TODO: confirm exact building COI limits with Evgenii]
         q: 'Do you move into Gables Estates and Cocoplum?',
-        a: "Yes. We work in both communities — gate procedures, COI paperwork, and approved move-in windows. Many communities here require COI limits in the $1M–$2M range with the association named as additional insured — we confirm your community's exact requirements before move day and submit paperwork in advance so the gate clears your crew on arrival.",
+        a: "Yes. Both communities are inside our service area, and each sets its own gate procedures, COI paperwork, and approved move-in windows. Many communities here require COI limits in the $1M–$2M range with the association named as additional insured — we confirm your community's exact requirements before move day and submit paperwork in advance so the gate clears your crew on arrival.",
       },
       {
         q: 'Can you handle a historic Coral Gables home with original tile?',
@@ -376,10 +375,9 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/6.png',
     metaTitle: 'Sunny Isles Movers, FL | Easy Move Florida',
     metaDescription:
-      'Sunny Isles movers — Acqualina, Trump Towers, Jade Beach, Porsche Design specialists. Russian-speaking crew. COI in 24h. Call 786-305-1844.',
-    // [TODO: confirm exact building COI limits with Evgenii]
+      'Sunny Isles movers serving Acqualina, Trump Towers, Jade Beach and Porsche Design Tower. Russian and English spoken. COI in 24h. Call 786-305-1844.',
     intro:
-      "Sunny Isles Beach is Miami's vertical city — a strip of oceanfront luxury towers where every move happens through a freight elevator on a fixed time window with a dock manager watching the clock. Trump Tower I, II, and III, Acqualina, Mansions at Acqualina, Jade Beach, Jade Ocean, Porsche Design Tower, Chateau Beach — we work in these buildings. Each tower sets its own rules on weekend moves, COI limits (many here require $1M–$2M coverage — we confirm your building's exact requirements before move day), and crew presentation. We also speak Russian, which matters in this neighborhood.",
+      "Sunny Isles Beach is Miami's vertical city — a strip of oceanfront luxury towers where every move happens through a freight elevator on a fixed time window with a dock manager watching the clock. Trump Tower I, II, and III, Acqualina, Mansions at Acqualina, Jade Beach, Jade Ocean, Porsche Design Tower and Chateau Beach are all inside our service area. Each tower sets its own rules on weekend moves, COI limits (many here require $1M–$2M coverage — we confirm your building's exact requirements before move day), and crew presentation. We also speak Russian, which matters in this neighborhood.",
     neighborhoods: [
       'Trump Tower I', 'Trump Tower II', 'Trump Tower III', 'Acqualina',
       'Mansions at Acqualina', 'Jade Beach', 'Jade Ocean', 'Porsche Design Tower',
@@ -388,11 +386,11 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Tower-Specific Move Protocols',
-        body: "Every oceanfront tower in Sunny Isles has its own protocol. Trump Towers require detailed advance scheduling and crew lists. Acqualina mandates specific COI language and insurance limits. Porsche Design Tower has a vehicle elevator that needs its own coordination. Our coordinator knows each building's process by heart.",
+        body: "Every oceanfront tower in Sunny Isles has its own protocol: advance scheduling and crew lists, specific COI language and insurance limits, and in Porsche Design Tower a vehicle elevator that needs its own coordination. We get each building's current requirements from its management office before move day.",
       },
       {
-        title: 'Russian-Speaking Coordination',
-        body: 'Sunny Isles has the largest concentration of Russian-speaking residents in South Florida. Our coordinator and crew speak Russian — мы спокойно работаем с русскоязычными клиентами и зданиями где удобнее общаться по-русски.',
+        title: 'Russian Spoken',
+        body: 'Sunny Isles has the largest concentration of Russian-speaking residents in South Florida. The owner answers the phone himself in Russian or English, and the crew leader speaks Russian: мы спокойно работаем с русскоязычными клиентами и зданиями где удобнее общаться по-русски.',
       },
       {
         title: 'What Is Standard, Not an Upgrade',
@@ -404,7 +402,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Furniture & Single-Item Delivery Along Collins',
-        body: 'A single sofa to the 30th floor is a real job here: service elevator, building paperwork, wrapping. We run single-item and furniture deliveries along Collins Ave with the same insured crews that handle full moves — pick-up-and-deliver work is one of the services clients hire us for most on Thumbtack.',
+        body: 'A single sofa to the 30th floor is a real job here: service elevator, building paperwork, wrapping. We run single-item and furniture deliveries along Collins Ave with the same insured crews that handle full moves.',
       },
       {
         title: 'Packing for Oceanfront Apartments',
@@ -418,7 +416,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move people out of Winston Towers?',
-        a: 'Yes — regularly. Winston Towers has its own freight-elevator booking and move-hour rules, and the cabs are smaller than in the new towers, so we plan the load order around them. The COI goes to management ahead of the date, and the crew arrives already briefed.',
+        a: 'Yes, Winston Towers is inside our service area. It has its own freight-elevator booking and move-hour rules, and the cabs are smaller than in the new towers, so we plan the load order around them. The COI goes to management ahead of the date, and the crew arrives already briefed.',
       },
       {
         q: 'Do you move into Trump Tower I, II, or III?',
@@ -426,11 +424,11 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle Acqualina and Mansions at Acqualina moves?',
-        a: "Yes. Both properties are familiar to our crew. Acqualina requires specific insurance limits and COI language addressed to the association — we handle the paperwork before your move date.",
+        a: "Yes, both are inside our service area. Buildings of this kind require specific insurance limits and COI language addressed to the association, and we confirm the exact wording with management and handle the paperwork before your move date.",
       },
       {
         q: 'Вы работаете на русском?',
-        a: 'Да. Координатор и большая часть бригады свободно говорят по-русски. Если вам или управлению здания удобнее общаться по-русски — без проблем.',
+        a: 'Да. Владелец, Евгений Романов, сам отвечает на звонки по-русски, и бригадир говорит по-русски. Если вам или управлению здания удобнее общаться по-русски, без проблем.',
       },
       {
         q: 'Can you move oversized items like artwork or sculpture?',
@@ -463,23 +461,23 @@ export const CITIES: CityData[] = [
     localFacts: [
       {
         title: 'Locally Based',
-        body: "Easy Move Florida is based in Hollywood. Our crews start their day here, our trucks are stored here, and many of our clients are our neighbors. That means faster response times, lower travel surcharges, and a real local presence — not a Miami company that sometimes drives north.",
+        body: "Our crew is based in the Hollywood - Fort Lauderdale area, so the drive to a Hollywood address is short. There is no travel fee: billable hours start when the crew arrives at your first address and include the drive between your two addresses.",
       },
       {
-        title: 'Hollywood Beach Condo Experience',
-        body: "Hollywood Beach has dozens of condo buildings — from older oceanfront walk-ups to modern high-rises. We know the loading-dock-vs-front-entrance rules, COI requirements, and weekend move restrictions for most properties along the Boardwalk and A1A.",
+        title: 'Hollywood Beach Condos',
+        body: "Hollywood Beach has dozens of condo buildings, from older oceanfront walk-ups to modern high-rises. Each one sets its own loading-dock-vs-front-entrance rules, COI requirements, and weekend move restrictions, and we confirm them with management before move day.",
       },
       {
         title: 'Single-Family Home Moves',
         body: "Emerald Hills, the Lakes, and Hollywood's historic neighborhoods have driveways, garages, and yard layouts that make full-house moves efficient. Our crew handles disassembly, padded loading, and reassembly — bed frames, dining tables, and entertainment units are put back together at destination.",
       },
           {
-        title: 'Based at 2130 Stirling Rd — Hollywood Is Home',
-        body: 'Our shop and trucks live on Stirling Rd, which means a Hollywood crew is not fighting I-95 from Miami to reach you. Morning slots start on time, and if a job runs long, the next crew is minutes away — not an hour of traffic away.',
+        title: 'Based in the Hollywood - Fort Lauderdale Area',
+        body: `Our crew is based in the Hollywood - Fort Lauderdale area, which means a Hollywood crew is not fighting I-95 from Miami to reach you. You get ${arrivalPromise('en')}.`,
       },
       {
         title: 'Same-Day & Last-Minute Moves',
-        body: 'Closings slip, leases end early, plans change. Short-notice and last-minute jobs are a normal part of our week, not an exception — it is one of the things our Thumbtack profile is hired for. Call before early afternoon and we will tell you honestly whether today is still possible, and with which crew.',
+        body: 'Closings slip, leases end early, plans change. If a crew is free, we move you the same day at the same hourly rate, with no rush fee. Call 786-305-1844 and we will tell you honestly whether today is still possible.',
       },
       {
         title: 'Young Circle & Downtown Walk-Ups',
@@ -489,7 +487,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'Can you move me on short notice in Hollywood?',
-        a: 'Often, yes. We keep short-notice work as a normal part of the schedule, and being based on Stirling Rd means a crew can reach any Hollywood address quickly. Call 786-305-1844 — if today is not honest, we will say so and hold tomorrow’s first slot instead.',
+        a: 'If a crew is free, yes: same day, at the same hourly rate, with no rush fee. Call 786-305-1844 and we will tell you honestly whether today is possible.',
       },
       {
         q: 'Do you deliver single furniture items in Hollywood?',
@@ -530,7 +528,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Coconut Grove movers for historic Grove homes and towers like Park Grove and Grove at Grand Bay. 2 movers $129/hr, no deposit, free COI in 24h. Call 786-305-1844.',
     intro:
-      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means knowing both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. Easy Move Florida handles both with the same standard.",
+      "Coconut Grove is Miami's oldest neighborhood — banyan-lined streets, historic single-family homes from the 1920s, and a recent wave of luxury high-rises like Park Grove, One Park Grove, and Grove at Grand Bay. Moving here means planning for both worlds: the narrow streets and tree-canopy restrictions of Center Grove, and the loading dock protocols of the new towers along South Bayshore Drive. Easy Move Florida handles both with the same standard.",
     neighborhoods: [
       'Center Grove', 'South Grove', 'Northeast Grove', 'Camp Biscayne',
       'Park Grove', 'Grove at Grand Bay', 'One Park Grove', 'Grovenor House',
@@ -543,7 +541,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Park Grove & the Bay Towers',
-        body: "Park Grove, One Park Grove, and Grove at Grand Bay all have specific COI requirements, freight elevator reservations, and loading dock windows. Our coordinator handles building paperwork before your move date so the crew arrives ready to work.",
+        body: "Park Grove, One Park Grove, and Grove at Grand Bay all have specific COI requirements, freight elevator reservations, and loading dock windows. We handle building paperwork before your move date so the crew arrives ready to work.",
       },
       {
         title: 'Tree Canopy & Street Permit',
@@ -585,7 +583,7 @@ export const CITIES: CityData[] = [
     metaDescription:
       'Doral movers — Doral Isles, Vintage Estates, Downtown Doral, Trump National. Gate registration and COI handled, from $129/hr. Call 786-305-1844.',
     intro:
-      "Doral asks for three different kinds of move in one city. West of NW 107th the housing is gated and single-family — Doral Isles, Vintage Estates, Costa Del Sol — where the gate house, not the front door, sets your start time. Downtown Doral and CityPlace brought mid-rise apartment buildings to a city that had almost none, and those run on freight-elevator reservations and COI paperwork like any tower on the coast. North of that, along NW 36th and NW 41st, is one of Florida's largest light-industrial corridors, where small offices and warehouses move after hours. Our crews work in English and Russian, rates are the same hourly card we run everywhere, and the yard is about 25 miles away in Hollywood — only the loaded leg between your two addresses is billed as time.",
+      "Doral asks for three different kinds of move in one city. West of NW 107th the housing is gated and single-family — Doral Isles, Vintage Estates, Costa Del Sol — where the gate house, not the front door, sets your start time. Downtown Doral and CityPlace brought mid-rise apartment buildings to a city that had almost none, and those run on freight-elevator reservations and COI paperwork like any tower on the coast. North of that, along NW 36th and NW 41st, is one of Florida's largest light-industrial corridors, where small offices and warehouses move after hours. Our crews work in English and Russian, rates are the same hourly card we run everywhere, and our base is about 25 miles away in Hollywood, so only the loaded leg between your two addresses is billed as time.",
     neighborhoods: [
       'Doral Isles', 'Vintage Estates', 'Doral Park', 'Trump National Doral',
       'Costa Del Sol', 'Grand Bay', 'Doral Cay', 'Islands at Doral',
@@ -644,7 +642,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'What languages do the crews work in?',
-        a: 'English and Russian. Evgenii Romanov, the owner, takes quote calls in both. If your HOA or building office corresponds in Spanish, send us their written requirements and we handle them — the paperwork side of a Doral move is almost entirely in writing.',
+        a: 'English and Russian. Evgenii Romanov, the owner, takes quote calls in both.',
       },
     ],
   },
@@ -658,9 +656,9 @@ export const CITIES: CityData[] = [
     heroImage: '/images/Real/6.png',
     metaTitle: 'Hallandale Beach Movers, FL | Easy Move Florida',
     metaDescription:
-      'Hallandale Beach movers — Diplomat, Beach Club Towers, Hyde Resort, Hemispheres. Oceanfront tower COI specialists, Russian-speaking crew. Call 786-305-1844.',
+      'Hallandale Beach movers serving Diplomat, Beach Club Towers, Hyde Resort and Hemispheres. Free COI in 24h, Russian and English spoken. Call 786-305-1844.',
     intro:
-      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north, which keeps the billed drive short for Hallandale work: no I-95 surcharge, and same-day crew availability more often than a Miami-based company can offer. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years — мы говорим по-русски и работаем с русскоязычной аудиторией постоянно.",
+      "Hallandale Beach is a half-mile-wide strip of oceanfront towers, casino-adjacent condo complexes, and the dense snowbird buildings on the west side of the Intracoastal. Every move here is a high-rise move — Diplomat Beach Resort residences, Beach Club Towers, Hyde Resort, Hemispheres, Olympus, Three Islands — and every one of these buildings has its own COI requirements, freight elevator reservation system, and parking permit rules for A1A and Hallandale Beach Boulevard. We're based in Hollywood, ten minutes north. There is no travel fee: billable hours start when the crew arrives at your first address, and a same-day move is possible if a crew is free, at the same hourly rate. Russian-speaking residents from Sunny Isles and Aventura have been spilling north into Hallandale's oceanfront towers for years, и мы говорим по-русски.",
     neighborhoods: [
       'Diplomat Beach Resort', 'Beach Club Towers', 'Hyde Resort & Residences',
       'Hemispheres', 'Olympus', 'Three Islands', 'The Plaza',
@@ -678,23 +676,23 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Snowbird Season Specialists (October–March)',
-        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March the buildings here - Hemispheres, Olympus, Three Islands, the Beach Club - fill with seasonal residents arriving from the Northeast and Canada. We do the Florida side of those arrivals: taking delivery from the long-haul carrier, unpacking, and moving furniture out of summer storage. Return-trip storage between seasons, climate-controlled storage for snowbird furniture, and partial-pack services for the items that stay behind are all part of the package.",
+        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March the buildings here - Hemispheres, Olympus, Three Islands, the Beach Club - fill with seasonal residents arriving from the Northeast and Canada. We do the Florida side of those arrivals: unpacking, and moving furniture out of summer storage. Storage between seasons is at a partner facility (climate-controlled units are booked with a third party), and partial-pack service covers the items that stay behind.",
       },
       {
-        title: 'Russian-Speaking Crew',
-        body: 'Sunny Isles, Aventura, and Hallandale Beach form the largest Russian-speaking corridor in South Florida — and the Russian community has been spilling north into Hallandale\'s oceanfront towers and the Three Islands condos for a decade. Наш координатор и большая часть бригады свободно говорят по-русски. Если вам или управлению здания удобнее по-русски — без проблем.',
+        title: 'Russian Spoken',
+        body: 'Sunny Isles, Aventura, and Hallandale Beach form the largest Russian-speaking corridor in South Florida — and the Russian community has been spilling north into Hallandale\'s oceanfront towers and the Three Islands condos for a decade. Владелец, Евгений Романов, сам отвечает на звонки по-русски, и бригадир говорит по-русски. Если вам или управлению здания удобнее по-русски, без проблем.',
       },
       {
-        title: 'Hollywood-Based — No I-95 Surcharge',
-        body: "We're based ten minutes north in Hollywood, which makes us the most efficient mover for Hallandale Beach jobs. No travel surcharge from Miami, same-day crew availability, and our trucks are already on this side of the county line. Most Miami-based movers add a travel charge for Broward jobs — we don't, because this is our backyard.",
+        title: 'Hollywood-Based, No Travel Fee',
+        body: "We're based ten minutes north in Hollywood. There is no travel fee and no per-mile charge: billable hours start when the crew arrives at your first address and include the drive between your two addresses. A same-day move is possible if a crew is free, at the same hourly rate, with no rush fee.",
       },
       {
         title: 'Gulfstream Park & West-Side Buildings',
-        body: "The west side of Hallandale — Gulfstream Park, Three Islands, the Hemispheres complex — has its own logistics. Three Islands is a sprawling four-tower property with shared dock access and a strict elevator reservation system. We know which tower entrance to use, the dock window for each building, and the security desk's preferred check-in process.",
+        body: "The west side of Hallandale — Gulfstream Park, Three Islands, the Hemispheres complex — has its own logistics. Three Islands is a sprawling four-tower property with shared dock access and a strict elevator reservation system. We confirm which tower entrance to use, the dock window for your building, and the security desk's check-in process with management before move day.",
       },
           {
         title: 'Furniture & Single-Item Delivery',
-        body: 'A new dining set to a Beach Club tower or a marketplace sofa across Three Islands — single-item delivery is a standing service with the same insured crews that run full moves: pickup, wrapping, transport, placement. It is one of the services clients hire us for most on Thumbtack.',
+        body: 'A new dining set to a Beach Club tower or a marketplace sofa across Three Islands — single-item delivery is a standing service with the same insured crews that run full moves: pickup, wrapping, transport, placement.',
       },
     ],
     faqs: [
@@ -709,15 +707,15 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you handle snowbird seasonal moves?',
-        a: 'Yes — October through March is our peak season for snowbird inbound moves into Hallandale Beach. We can also arrange climate-controlled storage for off-season items with a facility that offers it and partial-pack service for clients who keep some belongings in their northern home.',
+        a: 'Yes, on the Florida side: we do not move household goods across a state line. We can also arrange climate-controlled storage for off-season items with a facility that offers it and partial-pack service for clients who keep some belongings in their northern home.',
       },
       {
         q: 'Вы работаете на русском?',
-        a: 'Да, конечно. Координатор и большая часть бригады свободно говорят по-русски. Холлендейл-Бич, Авентура, Санни-Айлс — для русскоязычных клиентов это привычные для нас районы. Можем общаться с управлением здания по-английски, а с вами по-русски — без проблем.',
+        a: 'Да, конечно. Владелец, Евгений Романов, сам отвечает на звонки по-русски, и бригадир говорит по-русски. Можем общаться с управлением здания по-английски, а с вами по-русски, без проблем.',
       },
       {
         q: 'Do you pull parking permits for A1A and Hallandale Beach Blvd?',
-        a: 'Yes. Parking on A1A or Hallandale Beach Boulevard requires a temporary loading-zone permit from the city — we pull it 48-72 hours in advance and post it on the truck the morning of your move. The permit is included in the truck fee for residential moves on those streets.',
+        a: 'Yes. Parking on A1A or Hallandale Beach Boulevard requires a temporary loading-zone permit from the city — we pull it 48-72 hours in advance and post it on the truck the morning of your move.',
       },
       {
         q: 'How does pricing work for a Hallandale Beach move?',
@@ -729,7 +727,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you serve Hollywood, Aventura, and Sunny Isles as well?',
-        a: 'Yes. Hollywood (where we\'re based), Aventura, Sunny Isles Beach, Bal Harbour, and the rest of north Miami-Dade and south Broward are all part of our daily service area — same crew, same standards, no travel surcharge.',
+        a: 'Yes. Hollywood (where we\'re based), Aventura, Sunny Isles Beach, Bal Harbour, and the rest of north Miami-Dade and south Broward are all part of our daily service area — same crew, same standards, no travel fee.',
       },
     ],
   },
@@ -749,7 +747,7 @@ export const CITIES: CityData[] = [
     heroSub: 'South Beach · Mid-Beach · North Beach · Collins Avenue · West Avenue · Sunset Harbour',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Miami Beach Movers | Easy Move Florida',
-    metaDescription: 'Movers in Miami Beach from $129/hour for 2 movers. Free COI, no weekend or fuel surcharge, no deposit. Call or WhatsApp 786-305-1844 for a same-day quote.',
+    metaDescription: 'Movers in Miami Beach from $129/hour for 2 movers. Free COI, no weekend or fuel surcharge, no deposit. Call or WhatsApp 786-305-1844 for a written estimate.',
     intro: "Miami Beach is two moving jobs in one city. On the ocean side you have towers along Collins Avenue with freight elevators, loading docks and a building office that wants a certificate of insurance before anyone touches a hand truck. A few blocks west you have Art Deco walk-ups on Jefferson, Meridian and Euclid with no elevator at all, a narrow stair and a street where a 26-foot truck cannot legally sit without a permit from the City of Miami Beach. We plan for both. Before your date we look at your street, your building rules and your elevator situation, then we quote hours that reflect what the job actually takes. Two movers are $129 per hour for the crew, with a three-hour minimum and the truck on its own line, and there is no weekend or seasonal surcharge on that rate. Our crew works in English and Russian. Owner Evgenii Romanov answers the phone at 786-305-1844.",
     neighborhoods: ['South Beach', 'Mid-Beach', 'North Beach', 'South of Fifth', 'Sunset Harbour', 'Flamingo Park', 'West Avenue', 'Belle Isle', 'Venetian Islands', 'La Gorce', 'Normandy Isle', 'Collins Park'],
     localFacts: [
@@ -789,7 +787,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'My building is a 1940s walk-up with three flights. Is there a stairs charge?',
-        a: 'No. We do not charge for stairs, elevators, long carries or heavy items. Those things cost time, and the time is already built into the hours we estimate for you. What we do instead is look at your stairwell before quoting - a turn that a sofa cannot make changes the plan, not the rate. Sometimes the cheaper answer is three movers at $179 an hour rather than two at $129 taking twice as long.',
+        a: 'No. We do not charge for stairs, elevators or long carries; a piano, safe or marble piece is a separate line on the estimate, agreed before you book. Stairs and carries cost time, and the time is already built into the hours we estimate for you. What we do instead is look at your stairwell before quoting - a turn that a sofa cannot make changes the plan, not the rate. Sometimes the cheaper answer is three movers at $179 an hour rather than two at $129 taking twice as long.',
       },
       {
         q: 'How much does it cost to move within Miami Beach?',
@@ -802,7 +800,7 @@ export const CITIES: CityData[] = [
       { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Do you speak Russian?',
-        a: 'Yes. Our crew works in English and Russian, and the owner, Evgenii Romanov, handles quotes personally in both. That matters on the beach more than people expect - a lot of our clients here are more comfortable discussing what is fragile, what is valuable and what needs crating in Russian. There is a Russian version of this page if you would rather read it that way, and WhatsApp at 786-305-1844 works in either language.',
+        a: 'Yes. Our crew works in English and Russian, and the owner, Evgenii Romanov, handles quotes personally in both. That matters on the beach more than people expect when you are discussing what is fragile, what is valuable and what needs crating. There is a Russian version of this page if you would rather read it that way, and WhatsApp at 786-305-1844 works in either language.',
       },
       {
         q: 'Can you pack for me as well?',
@@ -819,7 +817,7 @@ export const CITIES: CityData[] = [
     heroSub: 'Bal Harbour · Surfside · Bay Harbor Islands · Harbour Way · Kane Concourse',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'Bal Harbour Movers | Easy Move Florida',
-    metaDescription: 'Bal Harbour, Surfside and Bay Harbor Islands movers. From $129/hour, free COI for your building, no deposit. Call or WhatsApp 786-305-1844 for a quote today.',
+    metaDescription: 'Bal Harbour, Surfside and Bay Harbor Islands movers. From $129/hour, free COI for your building, no deposit. Call or WhatsApp 786-305-1844 for a written estimate.',
     intro: "Bal Harbour runs on presentation. The towers along Collins have service entrances that residents never see, and management expects a moving crew to use them without being asked twice: shoe covers, floor protection, no cardboard in the lobby, no raised voices at the valet stand. Surfside sits a few blocks south with lower buildings and a mix of oceanfront condos and single-family homes. Bay Harbor Islands is different again - two small islands connected by the Broad Causeway, streets barely wide enough for a full-size truck, and low-rise buildings where the parking is under the structure. One quote covers all three, but the plan behind it is not the same. We survey the property, confirm what your association requires in writing, and give you a written number before your date. Our crew works in English and Russian. Reach Evgenii Romanov at 786-305-1844.",
     neighborhoods: ['Bal Harbour Village', 'Bal Harbour Shops district', 'Surfside', 'Bay Harbor Islands', 'East Island', 'West Island', 'Kane Concourse', 'Harbour Way', 'Harding Avenue', 'Collins Avenue oceanfront', 'Indian Creek Drive', 'Bal Bay Drive'],
     localFacts: [
@@ -876,7 +874,7 @@ export const CITIES: CityData[] = [
       { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Is anyone on the crew Russian-speaking?',
-        a: 'Yes. We work in English and Russian, and Evgenii Romanov, the owner, takes quote calls in both. In Bal Harbour, Surfside and Bay Harbor Islands that comes up constantly, and it makes the practical conversations easier - which pieces are valuable, what gets crated, what goes to storage. There is a Russian version of this page, and WhatsApp on 786-305-1844 is often the quickest way to reach us.',
+        a: 'Yes. We work in English and Russian, and Evgenii Romanov, the owner, takes quote calls in both. It makes the practical conversations easier - which pieces are valuable, what gets crated, what goes to storage. There is a Russian version of this page, and WhatsApp on 786-305-1844 is often the quickest way to reach us.',
       },
     ],
   },
@@ -885,7 +883,7 @@ export const CITIES: CityData[] = [
     name: 'North Miami Beach',
     state: 'FL',
     county: 'Miami-Dade',
-    heroHeadline: 'North Miami Beach Movers You Can Book Today',
+    heroHeadline: 'North Miami Beach Movers for Condos and Houses',
     heroSub: 'Eastern Shores · Highland Village · Sunkist Grove · Fulford-by-the-Sea · Uleta',
     heroImage: '/images/Real/Miami.jpg',
     metaTitle: 'North Miami Beach Movers | Easy Move Florida',
@@ -911,7 +909,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'What the hours actually cost',
-        body: 'Two movers are $129 per hour for the crew; three movers $179; four movers $219. Three-hour minimum, then 15-minute increments. The smallest invoice possible is $516 with a two-man crew. A typical NMB one-bedroom finishes between $516 and $774, a two-bedroom between $645 and $1,253, a three-bedroom house between $1,253 and $1,611. Nothing extra for stairs, heavy items, weekends or fuel, and no deposit to book the date.',
+        body: 'Two movers are $129 per hour for the crew; three movers $179; four movers $219. Three-hour minimum, then 15-minute increments. The smallest invoice possible is $516 with a two-man crew. A typical NMB one-bedroom finishes between $516 and $774, a two-bedroom between $645 and $1,253, a three-bedroom house between $1,253 and $1,611. Nothing extra for stairs, weekends or fuel, and no deposit to book the date. A piano, safe or marble piece is a separate line on the estimate, agreed before you book.',
       },
       {
         title: 'Traffic on 163rd Street and Biscayne',
@@ -933,7 +931,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you charge for stairs in a walk-up building?',
-        a: 'No. There is no stairs fee, no elevator fee, no long-carry fee and no heavy-item fee anywhere on our estimates. Those factors cost time, and the time is already priced into the hours we quote you. A second-floor walk-up with a straight run of stairs may cost nothing extra at all; one with a hard landing turn may add an hour. We tell you which when we survey, not after.',
+        a: 'No. There is no stairs fee, no elevator fee and no long-carry fee anywhere on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. Stairs and carries cost time, and the time is already priced into the hours we quote you. A second-floor walk-up with a straight run of stairs may cost nothing extra at all; one with a hard landing turn may add an hour. We tell you which when we survey, not after.',
       },
       {
         q: 'How far in advance should I book?',
@@ -942,11 +940,11 @@ export const CITIES: CityData[] = [
       { ...SERVICE_SCOPE.en.faq },
       {
         q: 'Can you help with packing and boxes?',
-        a: 'Yes. Two packers are $99 per hour, and a studio packing package starts at $297. Most clients here have us pack the kitchen and any glass or artwork and handle bedrooms and closets themselves. We bring boxes, paper, tape and wardrobe cartons with us. For an older building with a slow elevator, packing the day before is often what keeps the move day inside its window.',
+        a: 'Yes. Two packers are $99 per hour, and a studio packing package starts at $297. A common split is to have us pack the kitchen and any glass or artwork and to handle bedrooms and closets yourself. We bring boxes, paper, tape and wardrobe cartons with us. For an older building with a slow elevator, packing the day before is often what keeps the move day inside its window.',
       },
       {
         q: 'Do you have Russian-speaking movers?',
-        a: 'Yes. The crew works in English and Russian, and the owner, Evgenii Romanov, handles estimates in both languages himself. North Miami Beach has a large Russian-speaking community and it comes up on most jobs here. There is a Russian version of this page if that is easier for you or for a family member handling the move. Call or WhatsApp 786-305-1844 in either language.',
+        a: 'Yes. The crew works in English and Russian, and the owner, Evgenii Romanov, handles estimates in both languages himself. North Miami Beach has a large Russian-speaking community. There is a Russian version of this page if that is easier for you or for a family member handling the move. Call or WhatsApp 786-305-1844 in either language.',
       },
     ],
   },
@@ -1013,7 +1011,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'The truck cannot reach my door in Silver Lakes. Do you charge extra for the walk?',
-        a: 'No. There is no long-carry fee, no stairs fee and no heavy-item fee on our estimates. A long walk costs time, and time is already what you are paying for at the hourly rate. What we do is measure that walk before quoting, so the hours we give you reflect it. Where the run is very long we bring extra equipment or park a smaller vehicle closer and shuttle, which usually costs less in hours than carrying the whole load by hand.',
+        a: 'No. There is no long-carry fee and no stairs fee on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. A long walk costs time, and time is already what you are paying for at the hourly rate. What we do is measure that walk before quoting, so the hours we give you reflect it. Where the run is very long we bring extra equipment or park a smaller vehicle closer and shuttle, which usually costs less in hours than carrying the whole load by hand.',
       },
       {
         q: 'Can you work inside a 55+ community’s move-in window?',
@@ -1107,7 +1105,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you charge for stairs, heavy items or a long walk from the truck?',
-        a: 'No. There are no stairs, elevator, long-carry or heavy-item fees on our estimates, and no weekend, seasonal or fuel surcharge either. Those conditions cost time, and time is already what the hourly rate covers, so we build them into the estimated hours instead of adding lines at the end. Three movers are $179 per hour, four are $219, three-hour minimum, then 15-minute increments. The rate is locked at booking.',
+        a: 'Not for stairs, elevators or a long walk, and a piano, safe or marble piece is a separate line on the estimate, agreed before you book. There is no weekend, seasonal or fuel surcharge either. Stairs and carries cost time, and time is already what the hourly rate covers, so we build them into the estimated hours instead of adding lines at the end. Three movers are $179 per hour, four are $219, three-hour minimum, then 15-minute increments. The rate is locked at booking.',
       },
       { ...SERVICE_SCOPE.en.faq },
       {
@@ -1152,7 +1150,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Timing a move around the school calendar',
-        body: 'Most families here want the move inside a break or immediately after the last day of term, which means the good dates cluster and disappear early. Book as soon as your closing or lease end is firm; there is no deposit, and cancelling more than 48 hours out costs nothing, so an early booking carries no risk. If the closing slips, we move the date rather than charge for the change.',
+        body: 'Most families here want the move inside a break or immediately after the last day of term, which means the good dates cluster and disappear early. Book as soon as your closing or lease end is firm; there is no deposit, and cancelling more than 48 hours out costs nothing, so an early booking carries no risk. If the closing slips, we move the date rather than charge for the change. The one exception: if the crew has already been dispatched to your address, the 3-hour minimum is charged.',
       },
       {
         title: 'The garage is usually the surprise',
@@ -1174,7 +1172,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'When should I book if we are moving between school terms?',
-        a: 'As early as your closing date or lease end is firm. Break weeks and the days right after term ends are the busiest dates in Coral Springs, and they fill first. Booking costs nothing to hold: there is no deposit at any stage, and cancelling more than 48 hours out is free. If your closing moves, tell us and we reschedule rather than charging a change fee. Holding a good date early and adjusting later is the cheapest way to do this.',
+        a: 'As early as your closing date or lease end is firm. Break weeks and the days right after term ends are the busiest dates in Coral Springs, and they fill first. Booking costs nothing to hold: there is no deposit at any stage, and cancelling more than 48 hours out is free. If your closing moves, tell us and we reschedule with no cancellation fee, even inside 48 hours; the one exception is a crew already dispatched to your address, when the 3-hour minimum is charged. Holding a good date early and adjusting later is the cheapest way to do this.',
       },
       {
         q: 'Our townhouse lane is narrow. Will your truck fit?',
@@ -1246,7 +1244,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Sawgrass traffic decides your start time',
-        body: 'The stretch around Sawgrass Mills, the Sawgrass Expressway ramps and the arena is slow from mid-afternoon and worse on event days. Coming up from Hollywood we plan an early arrival — often 7 or 8 in the morning — so loading happens before the roads fill. Early starts also match the quiet-hours rules many associations here keep. If your building will not open before nine, we tell you that at the estimate stage and build the day around it.',
+        body: 'The stretch around Sawgrass Mills, the Sawgrass Expressway ramps and the arena is slow from mid-afternoon and worse on event days. Coming up from Hollywood we plan an early arrival so loading happens before the roads fill. Early starts also match the quiet-hours rules many associations here keep. If your building will not open before nine, we tell you that at the estimate stage and build the day around it.',
       },
       {
         title: 'Storage between a Sunrise closing and the next one',
@@ -1260,7 +1258,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'Do you actually cover Sunrise, or only the coast?',
-        a: 'We cover Sunrise regularly. Our base is in Hollywood, roughly 20 miles south, and we drive out — we do not claim a yard or an office in Sunrise, because we do not have one. In practice the only difference it makes is the start time: crews leave early so they are at your door before the Sawgrass corridor slows down. Travel does not add a separate fee to your rate.',
+        a: 'Yes, Sunrise is inside our service area. Our base is in Hollywood, roughly 20 miles south, and we drive out. We do not claim a yard or an office in Sunrise, because we do not have one. In practice the only difference it makes is the start time: crews leave early so they are at your door before the Sawgrass corridor slows down. Travel does not add a separate fee to your rate.',
       },
       {
         q: 'My association in Sunrise Lakes wants a certificate of insurance. What do you need from me?',
@@ -1272,7 +1270,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Is there an extra charge for stairs or a long carry from visitor parking?',
-        a: 'No. Stairs, elevators, long carries from visitor parking and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours. That is why we ask about the walk from the loading area to your door before quoting - a 200-foot carry across a parking lot is a real difference in hours, and we would rather show it in the estimate than surprise you with a line item.',
+        a: 'No. Stairs, elevators and long carries from visitor parking do not have their own fees on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. Stairs and carries cost time, and time is already priced into the estimated hours. That is why we ask about the walk from the loading area to your door before quoting - a 200-foot carry across a parking lot is a real difference in hours, and we would rather show it in the estimate than surprise you with a line item.',
       },
       {
         q: 'What does a typical Sunrise move cost?',
@@ -1346,7 +1344,7 @@ export const CITIES: CityData[] = [
     faqs: [
       {
         q: 'Can a moving truck park on Atlantic Avenue?',
-        a: 'Not casually, and not for long. The kerb is metered, the rear alleys are shared with deliveries, and afternoon foot traffic makes a full-size truck unwelcome. We handle it by starting very early, checking your specific block in advance for a legal spot, and using a smaller truck with a short shuttle where the alley is too tight. Downtown moves that begin at six or seven in the morning are usually finished before the Avenue wakes up.',
+        a: 'Not casually, and not for long. The kerb is metered, the rear alleys are shared with deliveries, and afternoon foot traffic makes a full-size truck unwelcome. We handle it by starting very early, checking your specific block in advance for a legal spot, and using a smaller truck with a short shuttle where the alley is too tight. Downtown moves that begin early in the morning are usually finished before the Avenue wakes up.',
       },
       {
         q: 'How early do you start a Delray Beach job?',
@@ -1437,7 +1435,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'How far is your crew travelling to reach Boynton Beach?',
-        a: 'About 46 miles. We are based in Hollywood and do not have a yard, office or branch in Boynton Beach - we drive up. For you that means an early departure so the crew is at your door at the start of your permitted window, not in the middle of it. There is no travel surcharge on your estimate. The distance changes our start time, not your rate.',
+        a: 'About 46 miles. We are based in Hollywood and do not have a yard, office or branch in Boynton Beach - we drive up. For you that means an early departure so the crew is at your door at the start of your permitted window, not in the middle of it. There is no travel fee on your estimate: billable hours start when the crew arrives at your first address. The distance changes our start time, not your rate.',
       },
       {
         q: 'Do you handle the certificate of insurance for a 55+ association?',
@@ -1445,7 +1443,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'The visitor parking is a long way from my villa. Is there a surcharge?',
-        a: 'No. Long carries, stairs, elevators and heavy items carry no separate fee with us. They cost time, and time is what the estimate is built from. So we would rather know about the 250-foot walk from vendor parking in advance, because that is the difference between an accurate quoted range and a bad surprise. A photo or a map pin of where the truck can actually stop is enough for us to price it properly.',
+        a: 'No. Long carries, stairs and elevators carry no separate fee with us; a piano, safe or marble piece is a separate line on the estimate, agreed before you book. Carries and stairs cost time, and time is what the estimate is built from. So we would rather know about the 250-foot walk from vendor parking in advance, because that is the difference between an accurate quoted range and a bad surprise. A photo or a map pin of where the truck can actually stop is enough for us to price it properly.',
       },
       {
         q: 'What will a two-bedroom in Boynton Beach cost?',
@@ -1521,7 +1519,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Is there an extra charge for stairs or a long carry?',
-        a: 'No. Stairs, elevators, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours. That is why we ask about access before quoting: we would rather show it in the estimate than surprise you with a line item.',
+        a: 'No. Stairs, elevators and long carries do not have their own fees on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. Stairs and carries cost time, and time is already priced into the estimated hours. That is why we ask about access before quoting: we would rather show it in the estimate than surprise you with a line item.',
       },
       {
         q: 'What does a typical Dania Beach move cost?',
@@ -1582,7 +1580,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Is there an extra charge for stairs or a long carry?',
-        a: 'No. Stairs, elevators, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours. That is why we ask about access before quoting.',
+        a: 'No. Stairs, elevators and long carries do not have their own fees on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. Stairs and carries cost time, and time is already priced into the estimated hours. That is why we ask about access before quoting.',
       },
       {
         q: 'What does a typical Miramar move cost?',
@@ -1643,7 +1641,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Is there an extra charge for stairs or a long carry?',
-        a: 'No. Stairs, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours.',
+        a: 'No. Stairs and long carries do not have their own fees on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. Stairs and carries cost time, and time is already priced into the estimated hours.',
       },
       {
         q: 'Do you speak Russian?',
@@ -1771,7 +1769,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Is there an extra charge for stairs or a long carry?',
-        a: 'No. Stairs, elevators, long carries and heavy items do not have their own fees on our estimates. They cost time, and time is already priced into the estimated hours.',
+        a: 'No. Stairs, elevators and long carries do not have their own fees on our estimates; a piano, safe or marble piece is a separate line, agreed before you book. Stairs and carries cost time, and time is already priced into the estimated hours.',
       },
       {
         q: 'Do you speak Russian?',
@@ -1830,7 +1828,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you speak Russian?',
-        a: 'Yes. The owner, the dispatcher and the crew leader work in Russian and English.',
+        a: 'Yes. The owner answers the phone himself, and he and the crew leader work in Russian and English.',
       },
       {
         q: 'How is the drive to Coconut Grove, Brickell Key or Miami Beach billed?',

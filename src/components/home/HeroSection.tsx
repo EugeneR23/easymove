@@ -157,8 +157,8 @@ export default function HeroSection() {
             <div className="space-y-2.5 mb-8 hidden lg:block">
               {[
                 'Hourly rate locked — same rate if the job runs longer',
-                'Building / HOA / COI fluent — paperwork handled',
-                'Owner-led by Evgenii — direct WhatsApp anytime',
+                'Building / HOA / COI paperwork handled',
+                'Owner-led by Evgenii, direct WhatsApp',
               ].map((item, i) => (
                 <div
                   key={item}

@@ -9,6 +9,7 @@ import { GOOGLE_BUSINESS, REVIEW_TOTALS, THUMBTACK, licenceIdentifiers } from '@
 import { hoursSchema } from '@/lib/data/hours';
 import { SITE_URL, ENTITY_ID } from '@/lib/site';
 import { PHONE, EMAIL, OWNER, postalAddressSchema } from '@/lib/data/contact';
+import { CITIES } from '@/lib/data/cities';
 import { offerDescription } from '@/lib/pricingCopy';
 import { alternatesFor } from '@/lib/seo/routes';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
@@ -119,6 +120,18 @@ export const BASE_METADATA: Metadata = {
   },
 };
 
+/** Wikipedia pages for the served cities that had one in the schema already. */
+const CITY_WIKI: Record<string, string> = {
+  'Miami': 'https://en.wikipedia.org/wiki/Miami',
+  'Miami Beach': 'https://en.wikipedia.org/wiki/Miami_Beach,_Florida',
+  'North Miami': 'https://en.wikipedia.org/wiki/North_Miami,_Florida',
+  'Doral': 'https://en.wikipedia.org/wiki/Doral,_Florida',
+  'Hallandale Beach': 'https://en.wikipedia.org/wiki/Hallandale_Beach,_Florida',
+  'Dania Beach': 'https://en.wikipedia.org/wiki/Dania_Beach,_Florida',
+  'Fort Lauderdale': 'https://en.wikipedia.org/wiki/Fort_Lauderdale,_Florida',
+  'Boca Raton': 'https://en.wikipedia.org/wiki/Boca_Raton,_Florida',
+};
+
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['MovingCompany', 'LocalBusiness'],
@@ -131,38 +144,18 @@ const localBusinessSchema = {
   url: siteUrl,
   image: `${siteUrl}/images/Hero.png`,
   description:
-    'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, building/HOA fluent.',
+    'Local moving and small handyman service across South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. Owner-led, transparent hourly pricing, certificate of insurance for condo buildings.',
   telephone: PHONE.e164,
   email: EMAIL,
   address: postalAddressSchema(),
-  areaServed: [
-    { '@type': 'City', name: 'Miami', sameAs: 'https://en.wikipedia.org/wiki/Miami' },
-    { '@type': 'City', name: 'Miami Beach', sameAs: 'https://en.wikipedia.org/wiki/Miami_Beach,_Florida' },
-    { '@type': 'City', name: 'North Miami', sameAs: 'https://en.wikipedia.org/wiki/North_Miami,_Florida' },
-    { '@type': 'City', name: 'Coral Gables' },
-    { '@type': 'City', name: 'Coconut Grove' },
-    { '@type': 'City', name: 'Brickell' },
-    { '@type': 'City', name: 'Doral', sameAs: 'https://en.wikipedia.org/wiki/Doral,_Florida' },
-    { '@type': 'City', name: 'Aventura' },
-    { '@type': 'City', name: 'Sunny Isles Beach' },
-    { '@type': 'City', name: 'Hallandale Beach', sameAs: 'https://en.wikipedia.org/wiki/Hallandale_Beach,_Florida' },
-    { '@type': 'City', name: 'Hollywood' },
-    { '@type': 'City', name: 'Dania Beach', sameAs: 'https://en.wikipedia.org/wiki/Dania_Beach,_Florida' },
-    { '@type': 'City', name: 'Fort Lauderdale', sameAs: 'https://en.wikipedia.org/wiki/Fort_Lauderdale,_Florida' },
-    { '@type': 'City', name: 'Pompano Beach' },
-    { '@type': 'City', name: 'Boca Raton', sameAs: 'https://en.wikipedia.org/wiki/Boca_Raton,_Florida' },
-    { '@type': 'City', name: 'Delray Beach' },
-    { '@type': 'City', name: 'Palm Beach' },
-    // The seven cities with their own page on the site, added 2026-10-01 on the
-    // owner's word: the pages already said we serve them, the schema did not.
-    { '@type': 'City', name: 'North Miami Beach' },
-    { '@type': 'City', name: 'Bal Harbour' },
-    { '@type': 'City', name: 'Pembroke Pines' },
-    { '@type': 'City', name: 'Weston' },
-    { '@type': 'City', name: 'Coral Springs' },
-    { '@type': 'City', name: 'Sunrise' },
-    { '@type': 'City', name: 'Boynton Beach' },
-  ],
+  // Generated from the city pages. The hand-typed list it replaced named two
+  // cities with no page (Pompano Beach, Palm Beach) and missed three that have
+  // one (Miramar, Pembroke Park, Lauderdale Lakes): the same fact in two places.
+  areaServed: CITIES.map((c) => ({
+    '@type': 'City',
+    name: c.name,
+    ...(CITY_WIKI[c.name] ? { sameAs: CITY_WIKI[c.name] } : {}),
+  })),
   openingHoursSpecification: hoursSchema(),
   contactPoint: [
     {
@@ -184,7 +177,8 @@ const localBusinessSchema = {
     'Small Handyman Services',
   ],
   priceRange: '$$',
-  // foundingDate confirmed by the owner 2026-10-01; streetAddress 2026-09-11.
+  // foundingDate confirmed by the owner 2026-10-01. No streetAddress since
+  // 2026-11-09: see ADDRESS in lib/data/contact.ts.
   foundingDate: '2021',
   founder: { '@id': `${siteUrl}/#founder` },
   sameAs: SAME_AS,
@@ -276,7 +270,8 @@ const organizationSchema = {
   // "EasyMove Elite" removed: it named an entity that does not exist in the
   // Florida Division of Corporations register, and asserting it as an alternate
   // name works against resolving this business to the right entity.
-  alternateName: ['Easy Move FL'],
+  // No alternateName. "Easy Move FL" stood here while the directory packages
+  // in docs/ told the owner never to use that spelling.
   url: siteUrl,
   description:
     'Owner-led moving company serving South Florida — Hollywood, Aventura, Sunny Isles, Hallandale, Fort Lauderdale, Boca Raton, Miami. English + Russian.',
@@ -311,7 +306,7 @@ const founderSchema = {
   alternateName: [...OWNER.alternateNames],
   jobTitle: OWNER.jobTitle,
   description:
-    'Owner of Easy Move Florida. Runs dispatch and crew leadership himself in English and Russian; reachable directly on WhatsApp at +1 786-305-1844.',
+    'Owner of Easy Move Florida. Answers the phone and writes every estimate himself, in English and Russian; reachable directly on WhatsApp at +1 786-305-1844.',
   knowsLanguage: ['en', 'ru'],
   worksFor: { '@id': `${siteUrl}/#organization` },
   url: `${siteUrl}/about`,

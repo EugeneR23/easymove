@@ -51,15 +51,15 @@ export const metadata: Metadata = {
 const SECTIONS = [
   {
     title: `The whole move can run in Russian`,
-    body: `Plenty of companies put "Russian speaking" in their ads and then route you to a call center. At Easy Move Florida the language is simply how the company runs. Owner Evgenii Romanov speaks Russian, the coordinator who takes your call and builds your estimate works in Russian, and most crew members speak Russian on move day. Your parents can explain which boxes hold the fragile things and hear the answer in their own language, without you standing by as interpreter. The first call, the walkthrough, the written estimate, the contract and the final bill can all happen in Russian, in English, or switching between the two, whichever your family prefers.`,
+    body: `Plenty of companies put "Russian speaking" in their ads and then route you to a call center. At Easy Move Florida the language is simply how the company runs. Owner Evgenii Romanov speaks Russian, takes your call himself and builds your estimate in Russian, and the crew leader speaks Russian on move day. Your parents can explain which boxes hold the fragile things and hear the answer in their own language, without you standing by as interpreter. The first call, the walkthrough, the written estimate, the contract and the final bill can all happen in Russian, in English, or switching between the two, whichever your family prefers.`,
   },
   {
-    title: `Where we work every day`,
-    body: `Our base is Hollywood, FL, and we serve all of Miami-Dade, Broward and Palm Beach counties. Most of our work happens where South Florida's Russian-speaking community is concentrated: Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood and Miami itself. The condo towers along Collins Avenue in Sunny Isles, from Winston Towers to Trump Towers, Porsche Design Tower and Jade, sit inside our regular service area, and their freight-elevator bookings and insurance paperwork are routine for us. Whether it is a one-bedroom moving two floors within the same tower or a family house going from Aventura to Boca Raton, this is home ground for our crews, not a special request.`,
+    title: `Where we work`,
+    body: `Our base is Hollywood, FL, and we serve all of Miami-Dade, Broward and Palm Beach counties. That includes the places where South Florida's Russian-speaking community is concentrated: Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood and Miami itself. Many condo towers along Collins Avenue in Sunny Isles require a certificate of insurance and a reserved freight elevator, so we send the COI and book the elevator window with your building before move day. Whether it is a one-bedroom moving two floors within the same tower or a family house going from Aventura to Boca Raton, the hourly rate is the same.`,
   },
   {
     title: `Pricing in plain terms`,
-    body: `The rate is set by crew size: $129 per hour for two movers, $179 for three, $219 for four, with a three-hour minimum on every job. The truck is billed once per day at the same rate as your crew, $129, $179 or $219, so the smallest possible invoice is $516 with a two-mover crew. There are no weekend, fuel or stairs fees. Typical totals: a studio runs $516–$645, a one-bedroom $516–$774, a two-bedroom $645–$1,253, a three-bedroom $1,253–$1,611, and larger homes $1,611–$2,327. Packing help is available from $99 per hour, or $297 for a complete studio packing package, and storage starts at $200 per month.`,
+    body: `The rate is set by crew size: $129 per hour for two movers, $179 for three, $219 for four, with a three-hour minimum on every job. The truck is billed once per day at the same rate as your crew, $129, $179 or $219, so the smallest possible invoice is $516 with a two-mover crew. There are no weekend, fuel or stairs fees. Typical totals: a studio runs $516–$645, a one-bedroom $516–$774, a two-bedroom $645–$1,253, a three-bedroom $1,253–$1,611, and larger homes from $1,611. Packing help is available from $99 per hour, or $297 for a complete studio packing package, and storage starts at $200 per month.`,
   },
   {
     title: `High-rise paperwork, handled for you`,
@@ -67,22 +67,22 @@ const SECTIONS = [
   },
   {
     title: `Snowbirds and seasonal moves`,
-    body: `Seasonal moves in and out of Florida are a large part of our calendar — apartments closed up for the summer, homes opened before the season, belongings moved to storage and back. We do the Florida side of that work: the local move, the packing, the storage run. We do not do the interstate leg — that needs federal authority we do not hold — but we will point you toward a licensed carrier and handle everything once your shipment is here.`,
+    body: `Seasonal moves are common in South Florida: apartments closed up for the summer, homes opened before the season, belongings moved to storage and back. We do the Florida side of that work: the local move, the packing, the storage run. We do not do the interstate leg — that needs federal authority we do not hold — but we will point you toward a licensed carrier and handle everything once your shipment is here.`,
   },
 ];
 
 const FAQS = [
   {
     q: `Do the movers actually speak Russian?`,
-    a: `Yes. The owner, Evgenii Romanov, is Russian-speaking, the coordinator who handles your booking works in Russian, and most crew members speak Russian. It is not a line added for reviews; the company operates in both languages every day. Your entire move, from the first phone call to the final walkthrough, can be conducted in Russian. If some family members prefer English, the crew switches without any trouble.`,
+    a: `Yes. The owner, Evgenii Romanov, is Russian-speaking and answers the phone himself, and the crew leader speaks Russian. It is not a line added for reviews; the company operates in both languages every day. Your entire move, from the first phone call to the final walkthrough, can be conducted in Russian. If some family members prefer English, we switch without any trouble.`,
   },
   {
     q: `Can I get the estimate and contract in Russian?`,
-    a: `Yes. The coordinator can go through your inventory, explain the pricing and prepare your written estimate in Russian, and walk through every line of the contract in Russian before you sign. Nothing is signed until it is understood. If an English-speaking relative is arranging the move, we run the same conversation with them in English, so both sides see the same numbers.`,
+    a: `Yes. The owner can go through your inventory, explain the pricing and prepare your written estimate in Russian, and walk through every line of the contract in Russian before you sign. Nothing is signed until it is understood. If an English-speaking relative is arranging the move, we run the same conversation with them in English, so both sides see the same numbers.`,
   },
   {
     q: `What areas do you cover?`,
-    a: `Our base is Hollywood, FL, and we serve all of Miami-Dade, Broward and Palm Beach counties. Day to day, most of our work is in Miami, Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood, including the condo towers along Collins Avenue. We are a local mover only — for moves leaving Florida we will point you toward a licensed interstate carrier and can still handle the packing and the Florida-side work.`,
+    a: `Our base is Hollywood, FL, and we serve all of Miami-Dade, Broward and Palm Beach counties. That includes Miami, Sunny Isles Beach, Aventura, Hallandale Beach and Hollywood, and the condo towers along Collins Avenue. We are a local mover only — for moves leaving Florida we will point you toward a licensed interstate carrier and can still handle the packing and the Florida-side work.`,
   },
   {
     q: `How much do Russian-speaking movers in Miami cost?`,
@@ -94,12 +94,12 @@ const FAQS = [
   },
   {
     q: `Can I book a move for my Russian-speaking parents?`,
-    a: `Yes, and it is a common arrangement. You handle the booking in English from wherever you live; on move day the crew works with your parents directly in Russian. The coordinator keeps you updated by phone or text while speaking with your parents in their own language, so nobody has to translate and nothing gets lost between the two conversations.`,
+    a: `Yes. You handle the booking in English from wherever you live; on move day the crew leader works with your parents directly in Russian. The owner keeps you updated by phone or text, so nobody has to translate and nothing gets lost between the two conversations.`,
   },
   { ...SERVICE_SCOPE.en.faq },
   {
     q: `Do I need a deposit, and what if my plans change?`,
-    a: `No deposit is required to book, and cancellation is free with more than 48 hours' notice, which matters when a closing date shifts or a condo approval takes longer than promised. The written estimate you receive is what the crew works from on move day, with no weekend or fuel surcharges added later. Call 786-305-1844 and the coordinator will hold your date.`,
+    a: `No deposit is required to book, and cancellation is free with more than 48 hours' notice, which matters when a closing date shifts or a condo approval takes longer than promised. The written estimate you receive is what the crew works from on move day, with no weekend or fuel surcharges added later. Call 786-305-1844 and we will hold your date.`,
   },
 ];
 
@@ -137,7 +137,7 @@ export default function RussianSpeakingMoversPage() {
             <h1 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
               Russian-Speaking Movers in Miami & South Florida
             </h1>
-            <p className="text-gray-200 text-lg leading-relaxed mb-8">Easy Move Florida is a Russian-speaking moving company based in Hollywood, FL, run by owner Evgenii Romanov and serving Miami-Dade, Broward and Palm Beach counties. The coordinator and most crew members work in Russian, so the entire move can run in Russian from the first call to the final walkthrough, or in English, or both. Rates start at $129 per hour for two movers, with the truck billed once per day at the same crew rate and a three-hour minimum. There are no weekend, fuel or stairs fees, and if your building requires a certificate of insurance, we issue it free within 24 hours.</p>
+            <p className="text-gray-200 text-lg leading-relaxed mb-8">Easy Move Florida is a Russian-speaking moving company based in Hollywood, FL, run by owner Evgenii Romanov and serving Miami-Dade, Broward and Palm Beach counties. The owner answers the phone himself and the crew leader speaks Russian, so the entire move can run in Russian from the first call to the final walkthrough, or in English, or both. Rates start at $129 per hour for two movers, with the truck billed once per day at the same crew rate and a three-hour minimum. There are no weekend, fuel or stairs fees, and if your building requires a certificate of insurance, we issue it free within 24 hours.</p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/quote">
                 <Button size="lg" variant="primary">Get a Written Estimate</Button>

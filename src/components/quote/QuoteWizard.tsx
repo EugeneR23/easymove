@@ -6,7 +6,10 @@ import { formatCurrency } from '@/lib/utils';
 import type { HomeSize, MoveType, QuoteInventory, QuoteAddons, QuotePricing } from '@/types';
 import { calculatePricing, normalizeMoveType, normalizeCrewSize } from '@/lib/pricing';
 import { GOOGLE_REVIEWS } from '@/lib/data/googleReviews';
+import { hoursLine } from '@/lib/data/hours';
 import { HONEYPOT_FIELD } from '@/lib/leadGuard';
+import { track } from '@vercel/analytics';
+import { readAttribution } from '@/lib/attribution';
 import Step1MoveType from './Step1_MoveType';
 import Step2HomeSize from './Step2_HomeSize';
 import Step5Schedule from './Step5_Schedule';
@@ -270,7 +273,7 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
         <a href="tel:+17863051844" className="inline-block text-gold text-xs font-semibold hover:text-gold-light transition-colors">
           Call or text: 786-305-1844
         </a>
-        <p className="text-white/30 text-[10px] mt-1">Available today</p>
+        <p className="text-white/30 text-[10px] mt-1">{hoursLine('en', 'short')}</p>
       </div>
     </div>
   );
@@ -279,7 +282,9 @@ function SidebarSteps({ current, data, steps }: { current: number; data: WizardD
 // ─── Mobile sticky estimate bar — fixed above the call bar ───────────────────
 function MobileEstimateBar({ data }: { data: WizardData }) {
   const estimate = getLiveEstimate(data);
-  if (!estimate) return null;
+  // A hand-quoted or referred job has total 0. The desktop sidebar already
+  // showed words for it; this bar printed "$0+".
+  if (!estimate || estimate.quoteMode !== 'priced') return null;
 
   return (
     <div
@@ -308,7 +313,8 @@ function MobileEstimateBar({ data }: { data: WizardData }) {
 function MobileProgress({ current, total, data, steps }: { current: number; total: number; data: WizardData; steps: { label: string; sub: string }[] }) {
   const pct     = Math.round(((current - 1) / (total - 1)) * 100);
   const micro   = STEP_MICRO[current] ?? '';
-  const estimate = getLiveEstimate(data);
+  const live     = getLiveEstimate(data);
+  const estimate = live && live.quoteMode === 'priced' ? live : null;
 
   return (
     <div className="lg:hidden bg-charcoal border-b border-white/10">
@@ -452,7 +458,7 @@ export default function QuoteWizard() {
     });
 
     try {
-      const bodyStr = JSON.stringify({ ...data, locale: 'en' });
+      const bodyStr = JSON.stringify({ ...data, locale: 'en', attribution: readAttribution() });
       console.log(tag, 'fetch → POST /api/quotes, body size:', bodyStr.length, 'bytes');
 
       const res = await fetch('/api/quotes', {
@@ -485,6 +491,9 @@ export default function QuoteWizard() {
             home_size: data.inventory.homeSize,
           });
           /* eslint-enable */
+          // Vercel Analytics too. This event reached only the dataLayer, so a
+          // submitted quote was invisible whenever GTM had not loaded.
+          track('quote_submitted', { move_type: data.moveType, home_size: data.inventory.homeSize ?? '' });
         } catch {}
       } else {
         const msg = payload?.error ?? `Server error ${res.status}`;

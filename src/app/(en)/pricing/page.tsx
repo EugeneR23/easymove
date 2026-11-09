@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import { CheckCircle, X, Phone, Shield, Clock, AlertCircle } from 'lucide-react';
 import { HOURLY_RATE, MIN_HOURS, TRUCK_FEE, minInvoice } from '@/lib/pricing';
 import { bandHours, bandCrew, bandRange } from '@/lib/pricingCopy';
+import { POLICY_COPY } from '@/lib/data/policies';
 import { alternatesFor } from '@/lib/seo/routes';
 import { lastModified } from '@/lib/seo/lastmod';
 import { TWITTER_CARD_URL, ogCard } from '@/lib/seo/og';
@@ -60,7 +61,7 @@ const INCLUDED = [
   'Dollies, straps, and the crew’s tools',
   'Standard disassembly and reassembly (beds, tables, basic IKEA)',
   'Certificate of Insurance (COI) for your building — issued within 24 hours of booking, no charge',
-  'A two-hour arrival window with a 30-minute heads-up call',
+  'A one-hour arrival window, and the crew calls 30 to 40 minutes before arriving',
   'Written estimate before any work begins',
 ];
 
@@ -68,9 +69,8 @@ const INCLUDED = [
 const NOT_INCLUDED = [
   `The truck: $${TRUCK_FEE[2]} per day with two movers, $${TRUCK_FEE[3]} with three, $${TRUCK_FEE[4]} with four — it matches the crew rate. Fuel, tolls and mileage are inside it; there is no fuel surcharge.`,
   'Packing materials (boxes, TV cartons, mattress bags you keep, corner protectors) — billed as flat packages, not per-item markups',
-  'Specialty items: piano, safe, marble slab — a flat line on the estimate, never a surprise fee',
+  'Heavy items: piano, safe, marble piece. A separate line on the estimate, agreed before you book',
   'Storage between move-out and move-in — coordinated with our storage partner; blankets left in storage are billed',
-  'Upgraded valuation coverage for high-value art / antiques / electronics — quoted upfront',
 ];
 
 const FACTORS = [
@@ -92,7 +92,7 @@ const FACTORS = [
   },
   {
     title: 'Specialty inventory',
-    body: 'Upright pianos, gun safes, marble dining tables, and oversize art are quoted as a flat add-on, not by the hour. The price is in your written estimate before the job is booked.',
+    body: 'Upright pianos, gun safes, marble dining tables, and oversize art are a separate line on the estimate, not part of the hourly clock. The amount is agreed with you before you book.',
   },
 ];
 
@@ -123,7 +123,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Are there fuel, stairs, or heavy-item fees?',
-    a: 'No. There is no stairs fee, no heavy item fee, no elevator fee and no long carry fee. On an hourly job those things cost time, not extra fees, so they are priced into the hours we estimate. Tell us about stairs, long carries and freight elevator rules up front and the estimate will be accurate. If we find out on move day, the hours go up — but the rate and the fee structure never change.',
+    a: 'Fuel and stairs: no. There is no fuel surcharge, no stairs fee, no elevator fee and no long carry fee. On an hourly job those things cost time, not extra fees, so they are priced into the hours we estimate. Tell us about stairs, long carries and freight elevator rules up front and the estimate will be accurate. If we find out on move day, the hours go up, but the rate never changes. Heavy items are different: a piano, safe or marble piece is a separate line on the estimate, agreed before you book.',
   },
   {
     q: 'When and how do I pay?',
@@ -131,7 +131,7 @@ const PRICING_FAQS = [
   },
   {
     q: 'Can I cancel or reschedule?',
-    a: 'Yes — free cancellation or reschedule when made more than 48 hours before the move. Inside 48 hours, we ask for a partial reschedule fee only if we cannot fill the slot.',
+    a: POLICY_COPY.en.cancellation,
   },
   { ...SERVICE_SCOPE.en.faq },
   {
@@ -463,7 +463,7 @@ export default function PricingPage() {
                 },
                 {
                   title: 'The lines on your estimate are the only lines on your invoice.',
-                  desc: 'No fuel surcharge, no stairs fee, no heavy item fee, no elevator fee, no long carry fee. Nothing appears that you did not already see and approve.',
+                  desc: 'No fuel surcharge, no stairs fee, no elevator fee, no long carry fee. Nothing appears that you did not already see and approve.',
                 },
                 {
                   title: 'You pay for hours worked.',

@@ -93,7 +93,7 @@ export function buildConfirmation(i: ConfirmationInput): { subject: string; html
     </ul>
     <p style="margin:0 0 4px;font-size:14px">${c.questions}</p>
     <p style="margin:16px 0 0;font-size:14px">${c.sign}<br>
-      <span style="color:#777">2130 Stirling Rd, Hollywood, FL 33020 · easy-move-florida.com</span></p>
+      <span style="color:#777">Hollywood, FL · easy-move-florida.com</span></p>
     <p style="margin:14px 0 0;font-size:12px;color:#999">${c.ref}: ${esc(i.ref)} · Zelle: ${PAYMENT.zelleAddress}</p>
   </div>
 </div>`;

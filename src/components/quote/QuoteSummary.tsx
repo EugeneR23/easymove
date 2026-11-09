@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { replyPromise } from '@/lib/data/policies';
+import { replyPromise, RESPONSE } from '@/lib/data/policies';
 import { CheckCircle, Phone, ArrowRight, Shield } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
 import { hoursLine } from '@/lib/data/hours';
@@ -23,6 +23,7 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
 
   const isPacking = data.moveType === 'packing-only';
   const size      = data.inventory.homeSize ?? '2br';
+  const hasPrice  = pricing.quoteMode === 'priced';
 
   // ── Labor label ────────────────────────────────────────────────────────────
   // Stairs are billed as time, never a fee — when present, the extra carry
@@ -98,21 +99,42 @@ export default function QuoteSummary({ quote, data, embedded = false }: Props) {
       <div className="p-5 sm:p-8 overflow-x-hidden w-full">
 
         {/* Price block — single-column on mobile */}
+        {/* Only a 'priced' quote has a number. A hand-quoted or referred job has
+            total 0 by design, and this block printed it as "Preliminary Starting
+            Price $0" until 2026-11-09. */}
         <div className="bg-charcoal p-5 mb-6 overflow-hidden">
-          <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
-          <p className="font-display text-4xl font-bold text-gold mb-1">
-            {formatCurrency(pricing.total)}
-          </p>
-          {isLocal && pricing.estimatedHours > 0 && (
-            <p className="text-gray-500 text-xs">
-              {pricing.crewSize} movers · est. {pricing.estimatedHours} hrs · 3-hr minimum
-            </p>
+          {!hasPrice ? (
+            <>
+              <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">
+                {pricing.quoteMode === 'referral' ? 'Outside Florida' : 'Written estimate'}
+              </p>
+              <p className="font-display text-2xl font-bold text-gold mb-2">
+                {pricing.quoteMode === 'referral' ? 'We will refer a licensed carrier' : 'Quoted by your coordinator'}
+              </p>
+              <p className="text-gray-400 text-xs leading-relaxed">
+                {pricing.quoteMode === 'referral'
+                  ? 'We do not move household goods across a state line. We will point you to a licensed carrier, and we can still pack your home and handle the Florida-side leg.'
+                  : `This move is priced per job on distance, volume and access at both ends, so there is no automatic figure. Your written estimate arrives within ${RESPONSE.writtenEstimateWithinHours} hours.`}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Preliminary Starting Price</p>
+              <p className="font-display text-4xl font-bold text-gold mb-1">
+                {formatCurrency(pricing.total)}
+              </p>
+              {isLocal && pricing.estimatedHours > 0 && (
+                <p className="text-gray-500 text-xs">
+                  {pricing.crewSize} movers · est. {pricing.estimatedHours} hrs · 3-hr minimum
+                </p>
+              )}
+              <p className="text-gray-600 text-xs mt-3 leading-snug">
+                Preliminary only. The final price is confirmed in writing before your move.
+              </p>
+            </>
           )}
-          <p className="text-gray-600 text-xs mt-3 leading-snug">
-            Preliminary only — final price confirmed in writing before your move.
-          </p>
 
-          {lineItems.length > 1 && (
+          {hasPrice && lineItems.length > 1 && (
             <div className="mt-4 pt-4 border-t border-white/10 space-y-2">
               {lineItems.map((item) => (
                 <div key={item.label} className="flex justify-between text-sm gap-2">

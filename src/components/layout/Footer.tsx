@@ -7,7 +7,7 @@ import { pathFor } from '@/lib/seo/routes';
 import { requestFormHref } from '@/lib/requestForm';
 import { COST_PAGES } from '@/lib/data/costPages';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
-import { whatsappUrl } from '@/lib/data/contact';
+import { whatsappUrl, BASE_AREA } from '@/lib/data/contact';
 
 /**
  * Site footer.
@@ -185,7 +185,7 @@ export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={13} className="text-gold shrink-0 mt-0.5" />
-                <span>2130 Stirling Rd, Hollywood, FL 33020<br />serving all of South Florida</span>
+                <span>Crew based in the {BASE_AREA}<br />serving all of South Florida</span>
               </li>
               <li className="text-xs text-gray-600 pt-1">
                 {hoursLine(f.hoursLocale)}
@@ -229,7 +229,9 @@ export default function Footer({ locale = 'en' }: { locale?: FooterLocale } = {}
             and the sitemap, which is how twenty-five pages shipped orphaned. */}
         <div className="border-t border-white/5 mt-8 pt-8" lang="uk">
           <p className="text-[10px] text-gray-500 text-center uppercase tracking-[0.2em] mb-3">
-            Говоримо українською
+            {/* Not "we speak Ukrainian": the owner's languages are English and
+                Russian (2026-10-01). These are pages in Ukrainian. */}
+            Сторінки українською
           </p>
           <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs">
             {[

@@ -11,8 +11,8 @@ const COLUMNS = [
       'House moves',
       'Office relocations (under 20 people)',
       'Storage unit loading / unloading',
-      'Single heavy items (piano, marble, safes) by quote',
-      'Long-distance — custom estimate',
+      'Heavy items (piano, marble, safes): a separate line on the estimate, agreed before you book',
+      'Long-distance within Florida, quoted per job',
     ],
   },
   {
@@ -31,7 +31,7 @@ const COLUMNS = [
     items: [
       'Disassembly (beds, IKEA, sectionals)',
       'Reassembly at destination',
-      'Heavy item handling (case-by-case quote)',
+      'Heavy item handling (a separate line on the estimate, agreed before you book)',
     ],
   },
   {
@@ -67,7 +67,7 @@ export default function ServicesPreview() {
             What we move. <span className="gold-text">What we don&rsquo;t.</span>
           </h2>
           <p className="text-gray-500 leading-relaxed">
-            Local moving plus a focused list of small handyman jobs. Bundle a move with handyman work and the handyman portion gets a discount.
+            Local moving plus a focused list of small handyman jobs. Handyman work done on move day is billed in the same hourly window, not as a separate trip.
           </p>
         </AnimateIn>
 

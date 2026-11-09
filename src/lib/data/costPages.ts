@@ -1,3 +1,4 @@
+import { hoursSentence } from './hours';
 import { SERVICE_SCOPE } from './scope';
 
 /**
@@ -101,7 +102,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is included in the hourly rate?',
-      a: 'The crew, blankets, wrap, tape, dollies, tools, furniture disassembly and reassembly, and all the loading work. The truck is the one separate line, billed per day at the crew rate. There are no charges for stairs, long carries, heavy items, weekends, or fuel; when access is hard we quote more hours, not more fees. Packing service is separate, from $99 per hour for two packers.',
+      a: 'The crew, blankets, wrap, tape, dollies, tools, furniture disassembly and reassembly, and all the loading work. The truck is the one separate line, billed per day at the crew rate. There are no charges for stairs, long carries, weekends, or fuel; when access is hard we quote more hours, not more fees. A piano, safe or marble piece is a separate line on the estimate, agreed before you book. Packing service is separate, from $99 per hour for two packers.',
     },
   ],
 },
@@ -109,13 +110,13 @@ export const COST_PAGES: CostPageData[] = [
   slug: 'moving-cost-hollywood',
   cityName: 'Hollywood',
   citySlug: 'hollywood-movers',
-  metaDescription: 'Hollywood FL movers cost $129–$219/hr with a 3-hour minimum. Our yard is in Hollywood, so you pay the least travel time. Call or WhatsApp 786-305-1844 now.',
-  answer: 'Hollywood movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Hollywood is our home base, with the yard on Stirling Road, so crews arrive with the least travel time we bill anywhere in South Florida. Beach towers along A1A run longer than the mainland because of elevators and parking, while single-family streets from Hollywood Hills to the Lakes load about as fast as a move can go.',
-  intro: 'If you are pricing a move in Hollywood, you are pricing us at our shortest reach. The rate card is the same one we run everywhere: $129 per hour for two movers, $179 for three, $219 for four, a three-hour minimum, and a truck day billed at the matching crew figure. What changes in Hollywood is the travel. The truck starts from Stirling Road, so the drive to almost any Hollywood address is minutes, and drive time is part of what an hourly mover bills. The other variable is which Hollywood you live in: a beachfront tower move and a Hollywood Hills house move carry identical rates and can still differ by hours, because the path from your door to the truck is nothing alike.',
+  metaDescription: 'Hollywood FL movers cost $129–$219/hr with a 3-hour minimum. No travel fee: the clock starts when the crew arrives. Call or WhatsApp 786-305-1844 now.',
+  answer: 'Hollywood movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Our crew is based in the Hollywood - Fort Lauderdale area, and the drive from our base to your first address is never billed. Beach towers along A1A run longer than the mainland because of elevators and parking, while single-family streets from Hollywood Hills to the Lakes load about as fast as a move can go.',
+  intro: 'If you are pricing a move in Hollywood, the rate card is the same one we run everywhere: $129 per hour for two movers, $179 for three, $219 for four, a three-hour minimum, and a truck day billed at the matching crew figure. Billable hours start when the crew arrives at your first address and include the drive between your two addresses; the drive from our base is not billed. The variable is which Hollywood you live in: a beachfront tower move and a Hollywood Hills house move carry identical rates and can still differ by hours, because the path from your door to the truck is nothing alike.',
   accessFactors: [
     {
-      title: 'The shortest drive we sell',
-      body: 'Hourly moving bills include the time the crew spends reaching you, and no city beats Hollywood on that line because the trucks are parked here. From the Stirling Road yard, most Hollywood addresses are inside a short local drive, which trims the billed clock at both ends of the day.',
+      title: 'When the clock starts',
+      body: 'Billable hours start when the crew arrives at your first address and include the drive between your two addresses. The drive from our base to you is not billed, and there is no travel fee or per-mile charge.',
     },
     {
       title: 'Beach towers east of the Intracoastal',
@@ -137,7 +138,7 @@ export const COST_PAGES: CostPageData[] = [
   faqs: [
     {
       q: 'Is Hollywood cheaper to move in because you are based here?',
-      a: 'On average, yes. Rates are identical across our map, but the billed clock starts with less travel because the yard is on Stirling Road. A Hollywood move also gives us the most scheduling flexibility for exact arrival windows and short-notice dates, since a crew finishing early nearby can start yours sooner. It is the one advantage of geography we can honestly pass to you.',
+      a: 'No. Rates are identical across our map, and the drive from our base to your first address is not billed anywhere: the clock starts when the crew arrives. What a Hollywood address can save is the drive between your two addresses, which is short inside the city.',
     },
     {
       q: 'Do Hollywood Beach towers cost more than mainland houses?',
@@ -149,15 +150,15 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the cheapest way to move within Hollywood?',
-      a: 'Two movers at the three-hour minimum with the matching $129 truck day comes to $516, and small Hollywood moves hit that number more often than anywhere else we work because travel time barely registers. To stay near the floor, be packed before the crew arrives and reserve the elevator early if your building uses one. Every ready box is minutes off the clock.',
+      a: 'Two movers at the three-hour minimum with the matching $129 truck day comes to $516, and a small move between two nearby Hollywood addresses can land on that number. To stay near the floor, be packed before the crew arrives and reserve the elevator early if your building uses one. Every ready box is minutes off the clock.',
     },
     {
       q: 'What does the hourly rate cover?',
-      a: 'Everything except the truck line: the crew, wrapping materials, blankets, dollies, disassembly and reassembly, loading and unloading. The truck bills per day at the same figure as your crew rate, $129 alongside two movers or $179 alongside three. There are no weekend, fuel, stair, or heavy-item charges, and after the three-hour minimum billing moves in 15-minute steps.',
+      a: 'Everything except the truck line: the crew, wrapping materials, blankets, dollies, disassembly and reassembly, loading and unloading. The truck bills per day at the same figure as your crew rate, $129 alongside two movers or $179 alongside three. There are no weekend, fuel, or stair charges; a piano, safe or marble piece is a separate line on the estimate, agreed before you book. After the three-hour minimum billing moves in 15-minute steps.',
     },
     {
       q: 'How do I get an exact number instead of a range?',
-      a: 'Send us a video walkthrough of the home on WhatsApp at 786-305-1844 or book a short call. Evgenii Romanov, the owner, prices Hollywood jobs personally, and because the crews work these streets daily the hour estimates run tight. You get a written figure with the crew size, hours, and truck day itemized, and no deposit is taken to hold the date.',
+      a: 'Send us a video walkthrough of the home on WhatsApp at 786-305-1844 or book a short call. Evgenii Romanov, the owner, prices Hollywood jobs personally. You get a written figure with the crew size, hours, and truck day itemized, and no deposit is taken to hold the date.',
     },
   ],
 },
@@ -167,7 +168,7 @@ export const COST_PAGES: CostPageData[] = [
   citySlug: 'aventura-movers',
   metaDescription: 'Aventura movers cost $129–$219/hr with a 3-hour minimum. Gate lists, COI, and elevator windows handled for you. No deposit. Call or WhatsApp 786-305-1844.',
   answer: 'Aventura movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Aventura is condo country, and the clock here is governed by gate houses and freight elevators more than by distance. Guard-gated communities of the Williams Island and Porto Vita type will not let a truck through until the visitor list and insurance paperwork are right, so we complete both days ahead. Land a weekday morning elevator window and the hours stay close to the minimum.',
-  intro: 'Aventura moves run on the same card as every city we serve, $129, $179, or $219 per hour for two, three, or four movers with a three-hour minimum and a truck day priced at the crew figure, but almost nothing in Aventura is a simple driveway job. The city is towers, gated island communities, and condo associations, each with its own admission ritual: certificate of insurance on file, gate list entry, dock reservation, elevator pads. None of that carries a fee from us. What it carries is schedule risk, and schedule risk becomes billed hours when it is handled late. Our answer is to finish every building requirement before the truck leaves the yard, so the paid clock is spent moving furniture.',
+  intro: 'Aventura moves run on the same card as every city we serve, $129, $179, or $219 per hour for two, three, or four movers with a three-hour minimum and a truck day priced at the crew figure, but almost nothing in Aventura is a simple driveway job. The city is towers, gated island communities, and condo associations, each with its own admission ritual: certificate of insurance on file, gate list entry, dock reservation, elevator pads. None of that carries a fee from us. What it carries is schedule risk, and schedule risk becomes billed hours when it is handled late. Our answer is to finish every building requirement before move day, so the paid clock is spent moving furniture.',
   accessFactors: [
     {
       title: 'Gate-house clearance',
@@ -221,7 +222,7 @@ export const COST_PAGES: CostPageData[] = [
   slug: 'moving-cost-sunny-isles',
   cityName: 'Sunny Isles Beach',
   citySlug: 'sunny-isles-movers',
-  metaDescription: 'Sunny Isles Beach movers cost $129–$219/hr, 3-hour minimum, no season surcharge. Collins Ave tower moves handled daily. Call or WhatsApp 786-305-1844 now.',
+  metaDescription: 'Sunny Isles Beach movers cost $129–$219/hr, 3-hour minimum, no season surcharge. Free COI for Collins Ave towers. Call or WhatsApp 786-305-1844 now.',
   answer: 'Sunny Isles Beach movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Sunny Isles is a single line of high-rises on Collins Avenue, so nearly every move here is a dock-and-freight-elevator job. Towers with one freight car book out fast in winter, when seasonal turnover peaks, and the elevator window you secure matters more to the final bill than the mileage ever will.',
   intro: 'Sunny Isles Beach pricing starts from the same numbers as the rest of our map: $129 per hour for two movers, $179 for three, $219 for four, a three-hour minimum, and the truck billed per day at whichever crew figure applies. The city itself is what makes the estimate interesting. Almost everyone here lives in a tower off Collins Avenue, which means a loading dock, a freight elevator, and a management office with rules, and in many buildings that elevator is a single car shared by hundreds of units. Getting the window right, arriving inside it, and moving fast while it lasts is the whole craft of a Sunny Isles move, and it is what our estimates are built around.',
   accessFactors: [
@@ -265,7 +266,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is included, and what costs extra?',
-      a: 'Included: the crew, all wrapping and padding, dollies, floor protection, disassembly and reassembly, and the loading work itself. Billed separately: the truck day at your crew rate, packing from $99 per hour for two packers if you want us boxing, and storage from $200 per month. Not billed at all: stairs, long carries, heavy items, fuel, weekends.',
+      a: 'Included: the crew, all wrapping and padding, dollies, floor protection, disassembly and reassembly, and the loading work itself. Billed separately: the truck day at your crew rate, packing from $99 per hour for two packers if you want us boxing, and storage from $200 per month. Not billed at all: stairs, long carries, fuel, weekends. A piano, safe or marble piece is a separate line on the estimate, agreed before you book.',
     },
     {
       q: 'Does Sunny Isles building management need insurance paperwork from you?',
@@ -277,13 +278,13 @@ export const COST_PAGES: CostPageData[] = [
   slug: 'moving-cost-hallandale-beach',
   cityName: 'Hallandale Beach',
   citySlug: 'hallandale-beach-movers',
-  metaDescription: 'Hallandale Beach movers cost $129–$219/hr with a 3-hour minimum. We are based 3 miles away, so travel time stays low. Call or WhatsApp 786-305-1844 today.',
-  answer: 'Hallandale Beach movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Hallandale sits about three miles from our Hollywood yard, so the travel portion of an hourly bill here is nearly nothing. The split that matters is east versus west: oceanfront towers on South Ocean Drive move at freight-elevator pace, while the condos and townhouses around the Three Islands and Golden Isles areas load faster and cheaper.',
-  intro: 'Hallandale Beach is one of the least expensive places on our map to hire us, not because the rates drop, since they are the same $129, $179, and $219 per hour for two, three, and four movers with a three-hour minimum and a truck day at the crew figure, but because the geography is kind. The yard is three miles up the road in Hollywood, so crews arrive with minimal billed travel, and the city is compact enough that a local move rarely spends meaningful time driving. What separates one Hallandale quote from another is the building. An oceanfront tower brings dock rules and weekday association windows; a west-side condo or townhouse often brings a parking lot and a short walk.',
+  metaDescription: 'Hallandale Beach movers cost $129–$219/hr with a 3-hour minimum. No travel fee: the clock starts when the crew arrives. Call or WhatsApp 786-305-1844 today.',
+  answer: 'Hallandale Beach movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. There is no travel fee: billable hours start when the crew arrives at your first address. The split that matters is east versus west: oceanfront towers on South Ocean Drive move at freight-elevator pace, while the condos and townhouses around the Three Islands and Golden Isles areas load faster and cheaper.',
+  intro: 'Hallandale Beach runs on the same rates as the rest of our map: $129, $179, and $219 per hour for two, three, and four movers with a three-hour minimum and a truck day at the crew figure. Billable hours start when the crew arrives at your first address, and the city is compact enough that a local move rarely spends meaningful time driving between addresses. What separates one Hallandale quote from another is the building. An oceanfront tower brings dock rules and weekday association windows; a west-side condo or townhouse often brings a parking lot and a short walk.',
   accessFactors: [
     {
-      title: 'Three miles from the yard',
-      body: 'Our trucks are based on Stirling Road in Hollywood, roughly three miles from most Hallandale Beach addresses. Travel is part of any hourly moving bill, and here it rounds down to almost nothing, which is why small Hallandale jobs land closer to the $516 minimum than the same jobs would ten cities away.',
+      title: 'When the clock starts',
+      body: 'Billable hours start when the crew arrives at your first address and include the drive between your two addresses. The drive from our base is not billed, and there is no travel fee or per-mile charge. Hallandale Beach is compact, so the drive between two local addresses is short.',
     },
     {
       title: 'Oceanfront towers on South Ocean Drive',
@@ -305,7 +306,7 @@ export const COST_PAGES: CostPageData[] = [
   faqs: [
     {
       q: 'Is Hallandale Beach actually cheaper because you are close by?',
-      a: 'Closeness does show up on the bill, honestly and mechanically: less travel time inside an hourly job. Three miles from the yard means Hallandale crews spend their clock on your furniture, not the highway. Rates are the same everywhere we work, so this is not a discount. It is simply the arithmetic of a short drive working in your favor.',
+      a: 'No. Rates are the same everywhere we work, and the drive from our base to your first address is not billed in any city: the clock starts when the crew arrives. What keeps a Hallandale bill low is the short drive between two local addresses.',
     },
     {
       q: 'Do the oceanfront towers here cost more to move out of?',
@@ -317,7 +318,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'What is the minimum I could pay for a small Hallandale move?',
-      a: '$516 covers two movers for the three-hour minimum plus the matching $129 truck day, and Hallandale is one of the likeliest places to actually finish inside it thanks to short travel. The one-bedroom band runs $516–$774 overall. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew, so the floor is competitive.',
+      a: '$516 covers two movers for the three-hour minimum plus the matching $129 truck day, and a small move between two nearby addresses can finish inside it. The one-bedroom band runs $516–$774 overall. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew, so the floor is competitive.',
     },
     {
       q: 'Why hourly instead of a flat price?',
@@ -335,7 +336,7 @@ export const COST_PAGES: CostPageData[] = [
   citySlug: 'boca-raton-movers',
   metaDescription: 'Boca Raton movers cost $129–$219/hr, 3-hour minimum, no hidden fees. Country club gate and HOA paperwork handled. Call or WhatsApp 786-305-1844 to book now.',
   answer: 'Boca Raton movers charge $129/hour for 2 movers or $179/hour for 3, with a 3-hour minimum, plus a truck fee per day that matches the crew rate. Boca is the far north of our regular map, and its costs are shaped by paperwork as much as by distance: guard-gated country club communities want crews registered and insured before entry, and many HOAs only open weekday move windows. Book the window first and the rest of a Boca estimate behaves.',
-  intro: 'Boca Raton moves use the standard card, two movers at $129 per hour, three at $179, four at $219, with a three-hour minimum and a truck day billed at the crew figure, and they reward planning more than any city we serve. The housing stock splits three ways: guard-gated country club communities with formal admission requirements, downtown towers around Mizner Park with docks and elevator reservations, and larger single-family and estate properties where volume, not access, drives the hours. Boca is also a real drive from our Hollywood yard, so we dedicate the crew and the day to your move rather than splitting either. Tell us the community name early; in Boca, the name predicts the paperwork, and the paperwork predicts the schedule.',
+  intro: 'Boca Raton moves use the standard card, two movers at $129 per hour, three at $179, four at $219, with a three-hour minimum and a truck day billed at the crew figure, and they reward planning more than any city we serve. The housing stock splits three ways: guard-gated country club communities with formal admission requirements, downtown towers around Mizner Park with docks and elevator reservations, and larger single-family and estate properties where volume, not access, drives the hours. Boca is also a real drive from our Hollywood base, so we dedicate the crew and the day to your move rather than splitting either. Tell us the community name early; in Boca, the name predicts the paperwork, and the paperwork predicts the schedule.',
   accessFactors: [
     {
       title: 'Country club gate requirements',
@@ -355,13 +356,13 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       title: 'Distance from our Hollywood base',
-      body: 'Boca sits at the top of our regular range, and travel time is part of an hourly bill, so a Boca move carries more drive than a Hollywood one. We are straightforward about that in the estimate and offset it with scheduling: one crew, one dedicated day, no mid-day repositioning between jobs.',
+      body: 'Boca sits at the top of our regular range, but the drive from our base to your first address is not billed: the clock starts when the crew arrives. We plan for the distance with scheduling: one crew, one dedicated day, no mid-day repositioning between jobs.',
     },
   ],
   faqs: [
     {
       q: 'Can you move me into a guard-gated country club community in Boca?',
-      a: 'Yes. The west Boca club communities are inside our service area, and their requirements are familiar: advance vendor registration, an insurance certificate on file, posted moving hours, occasionally a designated service gate. Give us the community name and your management contact at booking, and the clearance is complete before the truck leaves Hollywood.',
+      a: 'Yes. The west Boca club communities are inside our service area, and their requirements are procedural: advance vendor registration, an insurance certificate on file, posted moving hours, occasionally a designated service gate. Give us the community name and your management contact at booking, and the clearance is complete before move day.',
     },
     {
       q: 'Are weekend moves possible in Boca Raton?',
@@ -369,19 +370,19 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Does being far from your Hollywood base make Boca moves cost more?',
-      a: 'Somewhat, and we would rather say so than hide it: travel time exists in any hourly bill, and Boca carries more of it than our nearby cities. It does not change the rate card, the minimum, or the truck day, and it appears as ordinary time in the written estimate rather than as a mileage fee or fuel surcharge. We charge neither.',
+      a: 'No. The drive from our base to your first address is not billed: the clock starts when the crew arrives, and it includes the drive between your two addresses. Distance does not change the rate card, the minimum, or the truck day, and there is no mileage fee or fuel surcharge.',
     },
     {
       q: 'What is the least expensive Boca Raton move?',
-      a: 'The invoice floor is $516, meaning two movers for three hours plus the $129 truck day that pairs with a two-mover crew, though Boca jobs more commonly land mid-band because of travel and community procedures. A packed one-bedroom with clearances arranged can still finish low in the $516–$774 band. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew.',
+      a: 'The invoice floor is $516, meaning two movers for three hours plus the $129 truck day that pairs with a two-mover crew, though Boca jobs more commonly land mid-band because of community procedures. A packed one-bedroom with clearances arranged can still finish low in the $516–$774 band. Licensed movers in this market generally run $100–$180 per hour for a two-mover crew.',
     },
     {
       q: 'Which fees should I expect on top of the hourly rate?',
-      a: 'From us, one line beyond labor: the truck day, billed at your crew rate. Wrapping, blankets, tools, dollies, disassembly, and reassembly live inside the hourly price, and there are no charges for stairs, long carries, heavy pieces, weekends, or fuel. Your community may have its own deposits or elevator fees payable to the association; those are theirs, not ours, and we flag them when we collect your building requirements.',
+      a: 'From us, one line beyond labor: the truck day, billed at your crew rate. Wrapping, blankets, tools, dollies, disassembly, and reassembly live inside the hourly price, and there are no charges for stairs, long carries, weekends, or fuel. A piano, safe or marble piece is a separate line on the estimate, agreed before you book. Your community may have its own deposits or elevator fees payable to the association; those are theirs, not ours, and we flag them when we collect your building requirements.',
     },
     {
       q: 'How should I get a Boca Raton quote that will hold?',
-      a: 'Walk us through the house on video via WhatsApp at 786-305-1844, and name the community along with any destination building. Boca estimates are written by the owner with the gate, the window, and the travel already inside the hour count, which is why they tend to hold. You get crew size, hours, and the truck day in writing, with no deposit to reserve the date.',
+      a: 'Walk us through the house on video via WhatsApp at 786-305-1844, and name the community along with any destination building. Boca estimates are written by the owner with the gate and the window already inside the hour count. You get crew size, hours, and the truck day in writing, with no deposit to reserve the date.',
     },
   ],
 },
@@ -417,7 +418,7 @@ export const COST_PAGES: CostPageData[] = [
   faqs: [
     {
       q: 'Do you handle moves in Century Village and the 55+ communities?',
-      a: 'Regularly. The 55+ sections of Pembroke Pines are ordinary territory for us, and their procedures are familiar: notify the office, file the insurance certificate, respect posted moving hours, pad the elevator in the mid-rise buildings. Crews work in English and Russian, which residents and the family members coordinating for them often find useful. Arrange the paperwork with us once and the day itself runs quietly.',
+      a: 'Yes. The 55+ sections of Pembroke Pines are inside our service area, and their procedures are straightforward: notify the office, file the insurance certificate, respect posted moving hours, pad the elevator in the mid-rise buildings. Crews work in English and Russian, which residents and the family members coordinating for them often find useful. Arrange the paperwork with us once and the day itself runs quietly.',
     },
     {
       q: 'My townhouse only has guest parking nearby. Will that raise the price?',
@@ -425,7 +426,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Do stairs in a two-story Pines house cost extra?',
-      a: 'Not as a fee. Nothing on our price list charges for stairs, elevators, or heavy furniture. Stairs cost time: each upstairs bedroom adds minutes per carry, and a full two-story home typically runs an hour or so longer than the same volume on one level. We count that into the estimate, so the number you approve already contains your staircase.',
+      a: 'Not as a fee. Nothing on our price list charges for stairs or elevators. Stairs cost time: each upstairs bedroom adds minutes per carry, and a full two-story home typically runs an hour or so longer than the same volume on one level. We count that into the estimate, so the number you approve already contains your staircase.',
     },
     {
       q: 'What is the cheapest Pembroke Pines move possible?',
@@ -467,7 +468,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       title: 'Alleys and one-way streets',
-      body: 'South Beach blocks run one-way, with service alleys that predate box trucks; approach direction matters, and a wrong turn costs a loop around a crowded block. Crews that work the Beach weekly stage the truck nose-out toward the causeway and plan the approach street by street, which quietly shaves the day.',
+      body: 'South Beach blocks run one-way, with service alleys that predate box trucks; approach direction matters, and a wrong turn costs a loop around a crowded block. We stage the truck nose-out toward the causeway and plan the approach street by street, which quietly shaves the day.',
     },
   ],
   faqs: [
@@ -493,7 +494,7 @@ export const COST_PAGES: CostPageData[] = [
     },
     {
       q: 'Are there surcharges for beach addresses, weekends, or heavy furniture?',
-      a: 'None. The rate card has no zone pricing, no weekend or seasonal premium, no fuel line, and no charges for stairs, long carries, or heavy pieces. Difficult access is priced as estimated hours you see before booking, not as fees after. The truck day at your crew rate is the only line beyond labor, and billing after the minimum moves in 15-minute increments.',
+      a: 'None for beach addresses or weekends. The rate card has no zone pricing, no weekend or seasonal premium, no fuel line, and no charges for stairs or long carries. A piano, safe or marble piece is a separate line on the estimate, agreed before you book. Difficult access is priced as estimated hours you see before booking, not as fees after. The truck day at your crew rate is the only line beyond labor, and billing after the minimum moves in 15-minute increments.',
     },
   ],
 },
@@ -555,11 +556,11 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Берёте ли вы доплату за COI, бронирование лифта или высокий этаж?',
-      a: 'Нет. Страховой сертификат бесплатный, делаем его в течение 24 часов после бронирования и отправляем в менеджмент по их форме — во многих зданиях требуют лимиты в диапазоне $1–2 млн, точные требования вашего дома уточняем заранее. Переписка с офисом здания и бронирование лифта тоже входят в работу координатора. Отдельных сборов за этаж, лестницы или лифт у нас не бывает.',
+      a: 'Нет. Страховой сертификат бесплатный, делаем его в течение 24 часов после бронирования и отправляем в менеджмент по их форме — во многих зданиях требуют лимиты в диапазоне $1–2 млн, точные требования вашего дома уточняем заранее. Переписка с офисом здания и бронирование лифта тоже входят в нашу работу. Отдельных сборов за этаж, лестницы или лифт у нас не бывает.',
     },
     {
       q: 'Сколько стоит вывезти квартиру в хранение на лето?',
-      a: 'Работа считается так же почасово: двое грузчиков и трак — от $516 за минимальные три часа. Хранение идёт отдельной строкой, от $200 в месяц. Обратная доставка осенью считается снова по часам и обычно выходит короче, потому что вещи уже упакованы и описаны. Если вас в это время нет в стране, координатор ведёт переезд по видеосвязи и на русском языке.',
+      a: 'Работа считается так же почасово: двое грузчиков и трак — от $516 за минимальные три часа. Хранение идёт отдельной строкой, от $200 в месяц. Обратная доставка осенью считается снова по часам и обычно выходит короче, потому что вещи уже упакованы и описаны. Если вас в это время нет в стране, мы ведём переезд по видеосвязи и на русском языке.',
     },
     {
       q: 'Нужен ли депозит и можно ли отменить бронь?',
@@ -578,7 +579,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   accessFactors: [
     {
       title: 'Списки на КПП закрытых комьюнити',
-      body: 'Мы работаем в закрытых комьюнити Авентуры — Williams Island, Turnberry, Porto Vita и других, — и почти везде охрана пускает бригаду только по списку, поданному жильцом заранее. Имена и номер трака нужно передать за день. Если этого не сделать, машина стоит у шлагбаума, а время уже идёт: это самая обидная и самая частая потеря часов в городе.',
+      body: 'Закрытые комьюнити Авентуры, такие как Williams Island, Turnberry и Porto Vita, входят в нашу зону работы, и почти везде охрана пускает бригаду только по списку, поданному жильцом заранее. Имена и номер трака нужно передать за день. Если этого не сделать, машина стоит у шлагбаума, а время уже идёт: это самая обидная и самая частая потеря часов в городе.',
     },
     {
       title: 'Окна грузовых лифтов в башнях',
@@ -607,8 +608,8 @@ export const COST_PAGES_RU: CostPageData[] = [
       a: 'Обычно $645–$1,253. Нижняя часть диапазона — таунхаус или низкий кондо с погрузкой от двери, верхняя — башня с окном лифта, паркингом без заезда и длинным проносом. Считается это одинаково: часы бригады плюс трак за день по её ставке. Мебель мы разбираем и собираем сами, одеяла и плёнка входят в ставку. Чтобы оценка была точной, пришлите видео квартиры на WhatsApp 786-305-1844, и мы посчитаем часы, а не назовём диапазон наугад.',
     },
     {
-      q: 'Почему вы советуете начинать переезд в Авентуре в восемь утра?',
-      a: 'По двум причинам сразу. Окна грузовых лифтов в башнях чаще всего начинаются утром, и раннее окно даёт запас, если что-то пойдёт медленнее. И трафик на Biscayne до девяти ещё едет, а к полудню уже нет. Ранний старт в Авентуре обычно сокращает счёт на час просто за счёт того, что бригада не стоит.',
+      q: 'Почему вы советуете начинать переезд в Авентуре с утра?',
+      a: 'По двум причинам сразу. Окна грузовых лифтов в башнях чаще всего начинаются утром, и раннее окно даёт запас, если что-то пойдёт медленнее. И трафик на Biscayne с утра ещё едет, а к полудню уже нет. Ранний старт в Авентуре обычно сокращает счёт на час просто за счёт того, что бригада не стоит.',
     },
     {
       q: 'Трак поместится в паркинг моего здания?',
@@ -620,7 +621,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Можно ли провести весь переезд на русском языке?',
-      a: 'Да. Владелец компании Евгений Романов и координатор говорят по-русски, поэтому смета, договор, переписка с менеджментом здания и день переезда могут идти полностью на русском. В бригадах есть украиноязычные грузчики. Если вам важно, чтобы на объекте вас понимали без переводчика, скажите об этом при бронировании, и мы соберём бригаду соответственно.',
+      a: 'Да. Владелец компании Евгений Романов сам отвечает на звонки по-русски, и бригадир говорит по-русски, поэтому смета, договор и день переезда могут идти на русском.',
     },
   ],
 },
@@ -629,13 +630,13 @@ export const COST_PAGES_RU: CostPageData[] = [
   cityName: 'Hallandale Beach',
   cityNameRu: 'Халландейл-Бич',
   citySlug: 'ru/hallandale-beach-movers',
-  metaDescription: 'Сколько стоит переезд в Халландейл-Бич: $129/час за двоих, минимум 3 часа, трак за день. База в 3 милях — меньше дороги в счёте. Звоните 786-305-1844.',
-  answer: 'Переезд в Халландейл-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Наш двор стоит на Stirling Road в Голливуде, примерно в трёх милях отсюда, а дорога бригады — это оплачиваемое время, поэтому в Халландейле его уходит меньше, чем почти в любом другом городе, где мы работаем. Океанские башни на A1A и кондо западнее Federal Highway ведут себя по-разному: в первых всё решает окно грузового лифта, во вторых — будние часы, в которые ассоциация вообще разрешает переезд.',
-  intro: 'Прайс в Халландейл-Бич простой: $129 в час за двоих грузчиков, $179 за троих, $219 за четверых, минимум три часа, дальше шагами по 15 минут. Трак идёт в смете отдельной строкой, за день, по ставке бригады: $129 при двух грузчиках, $179 при трёх. Минимальный счёт получается $516 за двоих, $716 за троих. Депозита нет, бесплатная отмена более чем за 48 часов, COI для здания за 24 часа после брони. Дополнительная экономия здесь географическая и вполне честная: от нашего двора до Халландейла три мили, и подача трака утром занимает минуты, а не полчаса по I-95. На почасовой смете это заметно, особенно на маленьких переездах, которые целиком укладываются в минимум.',
+  metaDescription: 'Сколько стоит переезд в Халландейл-Бич: $129/час за двоих, минимум 3 часа, трак за день. Платы за дорогу до вас нет. Звоните 786-305-1844.',
+  answer: 'Переезд в Халландейл-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Платы за дорогу до вас нет: часы идут с момента, когда бригада приехала на первый адрес, и включают дорогу между двумя адресами. Океанские башни на A1A и кондо западнее Federal Highway ведут себя по-разному: в первых всё решает окно грузового лифта, во вторых — будние часы, в которые ассоциация вообще разрешает переезд.',
+  intro: 'Прайс в Халландейл-Бич простой: $129 в час за двоих грузчиков, $179 за троих, $219 за четверых, минимум три часа, дальше шагами по 15 минут. Трак идёт в смете отдельной строкой, за день, по ставке бригады: $129 при двух грузчиках, $179 при трёх. Минимальный счёт получается $516 за двоих, $716 за троих. Депозита нет, бесплатная отмена более чем за 48 часов, COI для здания за 24 часа после брони. Дорога от нашей базы до вашего первого адреса не оплачивается: часы идут с приезда бригады. Город компактный, поэтому маленький переезд внутри него может целиком уложиться в минимум.',
   accessFactors: [
     {
-      title: 'Три мили от нашего двора',
-      body: 'База с траками стоит на Stirling Road в Голливуде — до Халландейл-Бич отсюда около трёх миль. Дорога бригады оплачивается как часы, поэтому короткий выезд напрямую уменьшает счёт: утром машина у вас через несколько минут после старта, а не после сорока минут в потоке. По той же причине здесь легче поставить переезд на удобное вам время дня.',
+      title: 'С какого момента идут часы',
+      body: 'Оплачиваемые часы начинаются, когда бригада приехала на ваш первый адрес, и включают дорогу между двумя адресами. Дорога от нашей базы до вас не оплачивается, платы за подачу, пробег или топливо нет.',
     },
     {
       title: 'Океанские башни на A1A',
@@ -657,7 +658,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   faqs: [
     {
       q: 'Правда ли, что близость вашей базы что-то меняет в цене?',
-      a: 'Да, и вполне конкретно. Дорога бригады — это оплачиваемые часы, а от двора на Stirling Road до Халландейл-Бич около трёх миль. На небольшом переезде, который укладывается в три часа минимума, это разница между тем, чтобы уложиться, и тем, чтобы выйти за минимум. Никакого отдельного сбора за выезд, топливо или пробег при этом нет.',
+      a: 'Нет. Дорога от нашей базы до вашего первого адреса не оплачивается ни в одном городе: часы идут с приезда бригады. Никакого отдельного сбора за выезд, топливо или пробег при этом нет.',
     },
     {
       q: 'Мой дом разрешает переезды только в будни. Это дороже?',
@@ -669,7 +670,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Какой минимальный счёт и из чего он складывается?',
-      a: 'Из трёх часов минимума и трака за день по ставке бригады. Двое грузчиков — $516, трое — $716, четверо — $876. Всё, что дольше минимума, считается шагами по 15 минут, и вы платите за фактическое время. Никаких сборов за лифт, лестницы, тяжёлые вещи или длинный пронос сверху не появляется: это время, а не отдельные строки.',
+      a: 'Из трёх часов минимума и трака за день по ставке бригады. Двое грузчиков — $516, трое — $716, четверо — $876. Всё, что дольше минимума, считается шагами по 15 минут, и вы платите за фактическое время. Никаких сборов за лифт, лестницы или длинный пронос сверху не появляется: это время, а не отдельные строки. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони.',
     },
     {
       q: 'Можно заказать только упаковку, без перевозки?',
@@ -686,13 +687,13 @@ export const COST_PAGES_RU: CostPageData[] = [
   cityName: 'Hollywood',
   cityNameRu: 'Голливуд',
   citySlug: 'ru/hollywood-movers',
-  metaDescription: 'Сколько стоит переезд в Голливуде, Флорида: $129/час за двоих, $179 за троих, минимум 3 часа, трак за день. Наш двор на Stirling Rd. Звоните 786-305-1844.',
-  answer: 'Переезд в Голливуде стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Голливуд — наша домашняя база: двор с траками стоит на Stirling Road, поэтому выезд к местному адресу здесь самый короткий, а дорога бригады оплачивается как рабочее время. Дом на материке, в Hollywood Hills или Emerald Hills, грузится прямо от двери и часто заканчивается по минимальному счёту в $516. Квартира в башне у Broadwalk добавляет лифт, служебный вход и пронос через лобби — обычно час-полтора сверху.',
-  intro: 'Голливуд — город, где стоит наш двор, и прайс здесь тот же, что везде: двое грузчиков $129 в час, трое $179, четверо $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой, за день, по ставке бригады. Ни выходные, ни сезон, ни топливо цену не двигают; нет и сборов за лестницы, лифт, длинный пронос или тяжёлые вещи, потому что всё это просто время, уже посчитанное в часах. Лицензированные муверы в этом районе обычно берут $100–180 в час за бригаду из двух человек, так что $129 — середина рынка, а не демпинг. Экономия в Голливуде приходит с другой стороны: до вашего адреса нам ехать несколько минут.',
+  metaDescription: 'Сколько стоит переезд в Голливуде, Флорида: $129/час за двоих, $179 за троих, минимум 3 часа, трак за день. Без депозита. Звоните 786-305-1844.',
+  answer: 'Переезд в Голливуде стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Наша бригада базируется в районе Голливуд - Форт-Лодердейл; дорога от базы до вашего первого адреса не оплачивается, часы идут с приезда бригады. Дом на материке, в Hollywood Hills или Emerald Hills, грузится прямо от двери и часто заканчивается по минимальному счёту в $516. Квартира в башне у Broadwalk добавляет лифт, служебный вход и пронос через лобби — обычно час-полтора сверху.',
+  intro: 'Прайс в Голливуде тот же, что везде: двое грузчиков $129 в час, трое $179, четверо $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой, за день, по ставке бригады. Ни выходные, ни сезон, ни топливо цену не двигают; нет и сборов за лестницы, лифт или длинный пронос, потому что всё это просто время, уже посчитанное в часах. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони. Лицензированные муверы в этом районе обычно берут $100–180 в час за бригаду из двух человек, так что $129 — середина рынка, а не демпинг. Дорога от нашей базы до вашего первого адреса не оплачивается.',
   accessFactors: [
     {
-      title: 'Двор на Stirling Road — самый короткий выезд',
-      body: 'Наши траки стоят на Stirling Road, в самом Голливуде. Подача машины к местному адресу занимает минуты, и это единственный город, где дорога бригады почти не участвует в счёте. На переездах внутри города — из квартиры у Young Circle в дом в Emerald Hills — люди чаще всего платят ровно минимум, потому что вся работа помещается в три часа.',
+      title: 'С какого момента идут часы',
+      body: 'Оплачиваемые часы начинаются, когда бригада приехала на ваш первый адрес, и включают дорогу между двумя адресами. Дорога от нашей базы до вас не оплачивается. На переездах внутри города, например из квартиры у Young Circle в дом в Emerald Hills, дорога между адресами короткая, и небольшая работа может поместиться в три часа минимума.',
     },
     {
       title: 'Дома на материке грузятся от двери',
@@ -713,8 +714,8 @@ export const COST_PAGES_RU: CostPageData[] = [
   ],
   faqs: [
     {
-      q: 'Почему переезд внутри Голливуда так часто выходит по минимальному счёту?',
-      a: 'Потому что здесь складываются две вещи: наш двор в этом же городе и короткие расстояния между адресами. Дорога считается часами, и когда она занимает минуты, почти всё время уходит на саму работу. Студия или квартира с одной спальней с обычным доступом реально заканчивается за три часа — $516 за двоих вместе с траком.',
+      q: 'Почему переезд внутри Голливуда может выйти по минимальному счёту?',
+      a: 'Потому что расстояния между адресами здесь короткие. Дорога между двумя адресами считается часами, и когда она занимает минуты, почти всё время уходит на саму работу. Студия или квартира с одной спальней с обычным доступом реально заканчивается за три часа — $516 за двоих вместе с траком.',
     },
     {
       q: 'Что дороже: дом на материке или квартира на пляже?',
@@ -726,12 +727,12 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'У меня третий этаж без лифта. Будет доплата за лестницы?',
-      a: 'Нет. Отдельных сборов за лестницы, этажность, тяжёлые вещи и длинный пронос у нас не бывает — всё это входит в почасовую работу. Лестница влияет только на количество часов: подъём на третий этаж без лифта обычно добавляет от сорока минут до часа на квартиру с одной спальней. Мы говорим об этом в смете заранее, а не после переезда.',
+      a: 'Нет. Отдельных сборов за лестницы, этажность и длинный пронос у нас не бывает: всё это входит в почасовую работу. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони. Лестница влияет только на количество часов: подъём на третий этаж без лифта обычно добавляет от сорока минут до часа на квартиру с одной спальней. Мы говорим об этом в смете заранее, а не после переезда.',
     },
     { ...SERVICE_SCOPE.ru.faq },
     {
       q: 'Можно ли оставить вещи на хранение между двумя датами?',
-      a: 'Да, хранение — от $200 в месяц. Такая схема часто нужна, когда закрытие сделки по новому дому сдвигается на неделю-другую, а из старого выезжать надо уже сейчас. Вывоз считается по обычным часам, потом вещи стоят у нас, потом заносим их на новый адрес — снова по часам, по той же ставке. Депозит не требуется ни за переезд, ни за бронирование даты доставки.',
+      a: 'Да, хранение — от $200 в месяц. Такая схема часто нужна, когда закрытие сделки по новому дому сдвигается на неделю-другую, а из старого выезжать надо уже сейчас. Вывоз считается по обычным часам, потом вещи стоят на хранении у партнёра, потом заносим их на новый адрес, снова по часам, по той же ставке. Депозит не требуется ни за переезд, ни за бронирование даты доставки.',
     },
   ],
 },
@@ -779,8 +780,8 @@ export const COST_PAGES_RU: CostPageData[] = [
       a: 'Отправим трак меньшего размера и заложим в смету дополнительную ходку, если объём вещей в один рейс не помещается. Это честнее, чем пообещать одну поездку и застрять на повороте. Размер машины мы выбираем после короткого видео улицы и подъезда — обычно это две минуты вашего времени и минус час неожиданностей в день переезда.',
     },
     {
-      q: 'Почему вы предлагаете начинать в восемь утра, а не после обеда?',
-      a: 'Из-за трафика и лифтов. Дорога бригады оплачивается как часы, а I-95 и US-1 после четырёх едут вдвое медленнее. Плюс окна грузовых лифтов чаще дают в первой половине дня. Ранний старт в Майами — самый простой способ уменьшить итоговый счёт, и он не стоит ничего: ставка от времени суток у нас не меняется.',
+      q: 'Почему вы предлагаете начинать с утра, а не после обеда?',
+      a: 'Из-за трафика и лифтов. Дорога между адресами оплачивается как часы, а I-95 и US-1 после четырёх едут вдвое медленнее. Плюс окна грузовых лифтов чаще дают в первой половине дня. Ранний старт в Майами — самый простой способ уменьшить итоговый счёт, и он не стоит ничего: ставка от времени суток у нас не меняется.',
     },
     {
       q: 'Сколько стоит переезд квартиры с двумя спальнями в Майами?',
@@ -800,7 +801,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   citySlug: 'ru/fort-lauderdale-movers',
   metaDescription: 'Цены на переезд в Форт-Лодердейле: $129/час за двоих грузчиков, $179 за троих, минимум 3 часа, трак за день. Без доплат за выходные. Звоните 786-305-1844.',
   answer: 'Переезд в Форт-Лодердейле стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Часы здесь диктует вода. На канальных улицах Las Olas Isles и Rio Vista разворота для 26-футового трака нет, и работать приходится 16-футовой машиной, а значит иногда в две ходки. У башен на Las Olas и в даунтауне переезд идёт через док по забронированному окну. А разводные мосты умеют съесть пятнадцать минут у гружёной машины прямо посреди маршрута.',
-  intro: 'Прайс в Форт-Лодердейле такой же, как по всей Южной Флориде: двое грузчиков — $129 в час, трое — $179, четверо — $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой в смете, за день, по ставке бригады. Минимальный счёт: $516 вдвоём, $716 втроём, $876 вчетвером. Депозита нет, отмена более чем за 48 часов бесплатная. Доплат за субботу, за высокий сезон и за топливо нет, как нет и сборов за лифт, лестницы и тяжёлые вещи — это время, уже заложенное в оценку часов. Поэтому смета в Форт-Лодердейле начинается не с прайса, а с двух вопросов: какая машина заедет к вашему подъезду и в какое окно вас пускает здание.',
+  intro: 'Прайс в Форт-Лодердейле такой же, как по всей Южной Флориде: двое грузчиков — $129 в час, трое — $179, четверо — $219, минимум три часа, дальше по 15 минут. Трак — отдельной строкой в смете, за день, по ставке бригады. Минимальный счёт: $516 вдвоём, $716 втроём, $876 вчетвером. Депозита нет, отмена более чем за 48 часов бесплатная. Доплат за субботу, за высокий сезон и за топливо нет, как нет и сборов за лифт и лестницы: это время, уже заложенное в оценку часов. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони. Поэтому смета в Форт-Лодердейле начинается не с прайса, а с двух вопросов: какая машина заедет к вашему подъезду и в какое окно вас пускает здание.',
   accessFactors: [
     {
       title: 'Канальные улицы и размер трака',
@@ -842,11 +843,11 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Что входит в почасовую ставку?',
-      a: 'Бригада, трак, топливо, платные дороги и пробег, одеяла и стретч-плёнка для мебели, разборка и сборка кроватей, столов и шкафов, защита полов на входе, а также дорога между адресами. Сверху появляются только упаковочные материалы, если мы пакуем ваши вещи, и хранение, если оно нужно. Сборов за лифт, лестницы, длинный пронос и тяжёлые предметы не бывает вообще: это часы, а не отдельные строки в счёте.',
+      a: 'Бригада, одеяла и стретч-плёнка для мебели, разборка и сборка кроватей, столов и шкафов, защита полов на входе, а также дорога между адресами. Трак идёт отдельной строкой, за день, по ставке бригады; топливо, платные дороги и пробег уже внутри неё. Сверху появляются только упаковочные материалы, если мы пакуем ваши вещи, и хранение, если оно нужно. Сборов за лифт, лестницы и длинный пронос не бывает вообще: это часы, а не отдельные строки в счёте. Пианино, сейф или мраморная вещь идут отдельной строкой в смете, о которой договариваемся до брони.',
     },
     {
       q: 'Можно ли забронировать дату, не платя вперёд?',
-      a: 'Да, депозита мы не берём вообще: оплата идёт после работы, по факту отработанных часов, шагами по 15 минут после трёхчасового минимума. Отмена более чем за 48 часов бесплатная, перенос даты тоже. Это удобно в сезон, когда сроки закрытия сделки или заезда в кондо плавают, и вы не хотите привязывать деньги к дате, которая ещё может сдвинуться на неделю.',
+      a: 'Да, депозита мы не берём вообще: оплата на месте, примерно за 45-60 минут до конца работы, когда уже понятно итоговое число часов; время считается шагами по 15 минут после трёхчасового минимума. Отмена более чем за 48 часов бесплатная, перенос даты тоже. Это удобно в сезон, когда сроки закрытия сделки или заезда в кондо плавают, и вы не хотите привязывать деньги к дате, которая ещё может сдвинуться на неделю.',
     },
   ],
 },
@@ -856,7 +857,7 @@ export const COST_PAGES_RU: CostPageData[] = [
   cityNameRu: 'Майами-Бич',
   citySlug: 'ru/miami-beach-movers',
   metaDescription: 'Сколько стоит переезд в Майами-Бич: $129/час за двоих грузчиков, $179 за троих, минимум 3 часа, трак за день, COI бесплатно за 24 часа. WhatsApp 786-305-1844.',
-  answer: 'Переезд в Майами-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Остров добавляет к работе две вещи, которых нет на материке: место для трака, которое на многих улицах нужно оформлять через город заранее, и дамбы — весь въезд и выезд идёт через несколько мостов, а дорога бригады оплачивается как часы. Дальше всё зависит от дома: в ар-деко зданиях Саут-Бич лифта часто нет вовсе, а в новых башнях у Sunset Harbour работа идёт через док по расписанию.',
+  answer: 'Переезд в Майами-Бич стоит $129 в час за двух грузчиков или $179 за трёх, минимум 3 часа, плюс трак за день по ставке бригады. Остров добавляет к работе две вещи, которых нет на материке: место для трака, которое на многих улицах нужно оформлять через город заранее, и дамбы — весь въезд и выезд идёт через несколько мостов, а дорога между адресами оплачивается как часы. Дальше всё зависит от дома: в ар-деко зданиях Саут-Бич лифта часто нет вовсе, а в новых башнях у Sunset Harbour работа идёт через док по расписанию.',
   intro: 'В Майами-Бич действуют те же ставки, что и везде: $129 в час за двух грузчиков, $179 за трёх, $219 за четырёх, минимум три часа, потом шагами по 15 минут. Трак стоит в смете своей строкой и считается за день по той же цифре, что и бригада. Никаких надбавок за остров, за выходной день, за сезон или за топливо. Лицензированные муверы в этом районе обычно берут $100–180 в час за бригаду из двух человек, и разница между ними чаще всего не в цифре, а в том, кто заранее разобрался с парковкой и правилами дома. Именно на этом в Майами-Бич выигрываются или теряются часы, из которых потом складывается ваш счёт.',
   accessFactors: [
     {
@@ -865,7 +866,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       title: 'Дамбы и время въезда на остров',
-      body: 'Попасть на остров можно только по дамбам — Julia Tuttle, MacArthur, Venetian, — и в час пик они стоят. Дорога бригады входит в почасовую работу, отдельного сбора за пробег нет, поэтому единственный способ не платить за пробки — начинать рано. Утренний старт в Майами-Бич обычно экономит больше, чем любые торги о ставке.',
+      body: 'Попасть на остров можно только по дамбам — Julia Tuttle, MacArthur, Venetian, — и в час пик они стоят. Дорога между адресами входит в почасовую работу, отдельного сбора за пробег нет, поэтому единственный способ не платить за пробки — начинать рано. Утренний старт в Майами-Бич обычно экономит больше, чем любые торги о ставке.',
     },
     {
       title: 'Ар-деко дома без лифта в Саут-Бич',
@@ -895,7 +896,7 @@ export const COST_PAGES_RU: CostPageData[] = [
     },
     {
       q: 'Почему переезд с острова на материк дороже, чем внутри Майами-Бич?',
-      a: 'Из-за дамб. Дорога бригады оплачивается как рабочее время, и переезд, скажем, в Брикелл в пять вечера может занять час только на дорогу, а в девять утра — двадцать минут. Никакого сбора за пересечение дамбы не существует, просто в почасовой смете дорога видна. Поэтому мы почти всегда ставим такие переезды на утро.',
+      a: 'Из-за дамб. Дорога между адресами оплачивается как рабочее время, и переезд, скажем, в Брикелл в пять вечера может занять час только на дорогу, а в девять утра — двадцать минут. Никакого сбора за пересечение дамбы не существует, просто в почасовой смете дорога видна. Поэтому мы почти всегда ставим такие переезды на утро.',
     },
     {
       q: 'Есть ли доплата за выходные или за высокий сезон?',
@@ -941,7 +942,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       title: 'Довге перенесення — це години, а не збір',
-      body: 'Від вантажної зони до дверей квартири в океанській вежі буває сотня метрів коридорів і два повороти. Окремої плати за це немає: у нас не існує зборів ані за поверх, ані за ліфт, ані за важкі речі. Але кожен поворот додає хвилини на кожному рейсі, і в підсумку це видно в годинах. Тому список великих меблів наперед робить кошторис точнішим.',
+      body: 'Від вантажної зони до дверей квартири в океанській вежі буває сотня метрів коридорів і два повороти. Окремої плати за це немає: у нас не існує зборів ані за поверх, ані за ліфт; піаніно, сейф або мармурова річ ідуть окремим рядком у кошторисі, про який домовляємося до бронювання. Але кожен поворот додає хвилини на кожному рейсі, і в підсумку це видно в годинах. Тому список великих меблів наперед робить кошторис точнішим.',
     },
   ],
   faqs: [
@@ -955,11 +956,11 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Хто домовляється про вантажний ліфт і готує COI?',
-      a: 'Координатор із нашого боку. Після бронювання ми звʼязуємося з офісом будинку, надсилаємо сертифікат страхування протягом 24 годин і узгоджуємо вікно на ліфт та маршрут через службовий вхід. Від вас потрібні назва будинку, номер квартири й контакт менеджменту. Ця робота входить у вартість переїзду й не додає жодного рядка до рахунку.',
+      a: 'Ми. Після бронювання ми звʼязуємося з офісом будинку, надсилаємо сертифікат страхування протягом 24 годин і узгоджуємо вікно на ліфт та маршрут через службовий вхід. Від вас потрібні назва будинку, номер квартири й контакт менеджменту. Ця робота входить у вартість переїзду й не додає жодного рядка до рахунку.',
     },
     {
-      q: 'Чи буде бригада говорити українською?',
-      a: 'Серед наших вантажників є україномовні, тож бригаду, яка говоритиме українською, зберемо за попереднім запитом; кошторис і листування ведемо російською або англійською. Скажіть про це під час бронювання, щоб ми врахували це у графіку зміни. Писати у WhatsApp українською можна вільно — вас зрозуміють, а відповідь прийде російською чи англійською.',
+      q: 'Якою мовою ви відповідаєте?',
+      a: 'Російською або англійською: так ми ведемо кошторис і листування. Власник Євгеній Романов сам відповідає на дзвінки, бригадир говорить російською. Сайт ми ведемо українською, щоб ціни й умови можна було прочитати рідною мовою.',
     },
     {
       q: 'Чи є доплата за високий поверх або вихідний день?',
@@ -967,7 +968,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Скільки коштує трак і чи потрібен депозит?',
-      a: 'Трак іде окремим рядком за день, за тією самою ставкою, що й бригада: $129 при двох вантажниках, $179 при трьох, $219 при чотирьох. Окремої фіксованої ціни за трак у нас немає — вона завжди привʼязана до розміру бригади. Депозит не потрібен: дата бронюється без передоплати, розрахунок після роботи, скасування безкоштовне за 48 і більше годин.',
+      a: 'Трак іде окремим рядком за день, за тією самою ставкою, що й бригада: $129 при двох вантажниках, $179 при трьох, $219 при чотирьох. Окремої фіксованої ціни за трак у нас немає — вона завжди привʼязана до розміру бригади. Депозит не потрібен: дата бронюється без передоплати, оплата на місці, приблизно за 45-60 хвилин до завершення роботи, скасування безкоштовне за 48 і більше годин.',
     },
   ],
 },
@@ -977,12 +978,12 @@ export const COST_PAGES_UA: CostPageData[] = [
   cityNameUa: 'Халландейл-Біч',
   citySlug: 'ua/hallandale-beach-movers',
   metaDescription: 'Ціни на переїзд у Халландейл-Біч: бригада від $129/год, трак за ставкою бригади, мінімум 3 години, без депозиту й доплат. Телефон і WhatsApp 786-305-1844.',
-  answer: 'Переїзд у Халландейл-Біч коштує $129 на годину за двох вантажників або $179 за трьох, мінімум 3 години, плюс трак за день за ставкою бригади. Наш двір стоїть на Stirling Road у Голлівуді, приблизно за три милі звідси, тож оплаченої дороги в кошторисі мінімум, а бригада заходить у підʼїзд до початку ранкового вікна. Далі підсумок залежить від будинку: океанська вежа забирає більше годин, ніж двоповерхове кондо в західній частині міста.',
-  intro: 'Халландейл-Біч — найближче до нашої бази місто, і це видно в рахунку ще до того, як бригада візьме першу коробку. Ставки тут ті самі, що й скрізь: двоє вантажників $129 за годину, троє $179, четверо $219, трак окремим рядком за день за ставкою бригади, мінімум три години. Мінімальний рахунок виходить $516, $716 або $876 залежно від того, скільки людей працює. Різниця в тому, що дорога від двору до вашої адреси коротка, а короткий виїзд означає менше оплаченого часу в дорозі та реальний шанс почати рівно о девʼятій, коли асоціація відкриває вікно на переїзд. Далі все вирішує тип будинку — океанська вежа чи низьке кондо на заході.',
+  answer: 'Переїзд у Халландейл-Біч коштує $129 на годину за двох вантажників або $179 за трьох, мінімум 3 години, плюс трак за день за ставкою бригади. Дорога від нашої бази до вашої першої адреси не оплачується: години починаються, коли бригада приїхала до вас. Далі підсумок залежить від будинку: океанська вежа забирає більше годин, ніж двоповерхове кондо в західній частині міста.',
+  intro: 'У Халландейл-Біч ставки ті самі, що й скрізь: двоє вантажників $129 за годину, троє $179, четверо $219, трак окремим рядком за день за ставкою бригади, мінімум три години. Мінімальний рахунок виходить $516, $716 або $876 залежно від того, скільки людей працює. Дорога від нашої бази до вашої першої адреси не оплачується: години починаються, коли бригада приїхала до вас. Далі все вирішує тип будинку: океанська вежа чи низьке кондо на заході.',
   accessFactors: [
     {
-      title: 'Три милі від нашого двору',
-      body: 'База Easy Move Florida на Stirling Road у Голлівуді стоїть приблизно за три милі від центру Халландейл-Біч. Це найкоротший виїзд у нашому списку міст: менше часу в дорозі означає менше оплачених годин, а ще майже нульовий ризик спізнитися на початок вікна, яке асоціація відкрила саме на ваш ранок. Для переїзду з мінімальними трьома годинами така економія помітна.',
+      title: 'Коли починаються години',
+      body: 'Оплачені години починаються, коли бригада приїхала на вашу першу адресу, і включають дорогу між двома адресами. Дорога від нашої бази до вас не оплачується, плати за подачу, пробіг чи паливо немає.',
     },
     {
       title: 'Океанські вежі проти західних кондо',
@@ -1004,7 +1005,7 @@ export const COST_PAGES_UA: CostPageData[] = [
   faqs: [
     {
       q: 'Чи дешевший переїзд у Халландейлі через близькість вашої бази?',
-      a: 'Ставка однакова для всіх міст, але час у дорозі оплачується як частина роботи, і з трьох миль він мінімальний. На практиці це означає, що більша частина оплачених годин іде на речі, а не на трасу. Для короткого переїзду в межах міста це часто різниця між мінімальними трьома годинами й четвертою годиною, яку довелося б докласти.',
+      a: 'Ні. Ставка однакова для всіх міст, а дорога від нашої бази до вашої першої адреси не оплачується ніде: години починаються, коли бригада приїхала до вас. У межах міста коротка дорога між двома адресами залишає більшу частину оплачених годин на самі речі.',
     },
     {
       q: 'Мій кондомініум дозволяє переїзди тільки в будні. Це дорожче?',
@@ -1012,11 +1013,11 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'У будинку немає вантажного ліфта, а квартира на третьому поверсі. Скільки додасться?',
-      a: 'Окремої плати за сходи не існує, додається лише час. За нашим досвідом у низьких будинках Халландейла підйом на два-три поверхи додає приблизно годину до типової однокімнатної квартири, тобто рахунок частіше йде до $645–$774, ніж до мінімальних $516. Точніше скажемо, коли побачимо список великих меблів і зрозуміємо, що піде сходами.',
+      a: 'Окремої плати за сходи не існує, додається лише час. Зазвичай підйом на два-три поверхи додає приблизно годину до типової однокімнатної квартири, тобто рахунок частіше йде до $645–$774, ніж до мінімальних $516. Точніше скажемо, коли побачимо список великих меблів і зрозуміємо, що піде сходами.',
     },
     {
-      q: 'Чи можу я спілкуватися з бригадою українською?',
-      a: 'Так, якщо попередити при бронюванні. Україномовні вантажники в команді є, тож на конкретну дату ми складаємо зміну так, щоб у вашій бригаді така людина була. Кошторис, узгодження дати й листування ведемо російською або англійською — це наша робоча мова в офісі. Ваші повідомлення українською читаємо без проблем.',
+      q: 'Якою мовою ви відповідаєте?',
+      a: 'Російською або англійською: так ми ведемо кошторис, узгодження дати й листування. Власник Євгеній Романов сам відповідає на дзвінки, бригадир говорить російською. Сайт ми ведемо українською, щоб ціни й умови можна було прочитати рідною мовою.',
     },
     {
       q: 'Скільки коштує запакувати квартиру, а не лише перевезти?',
@@ -1024,7 +1025,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Ви возите з Халландейла в інші штати?',
-      a: 'Так. Письмовий кошторис надсилаємо протягом 24 годин після опису вантажу, депозит не потрібен. Якщо дати виїзду й заїзду не збігаються, речі можна залишити на зберіганні — від $200 на місяць.',
+      a: 'Ні. Ми працюємо лише в межах Флориди й через кордон штату речі не возимо. Далекий переїзд по Флориді рахуємо індивідуально: письмовий кошторис надсилаємо протягом 24 годин після опису вантажу, депозит не потрібен. Якщо дати виїзду й заїзду не збігаються, речі можна залишити на зберіганні, від $200 на місяць.',
     },
   ],
 },
@@ -1033,13 +1034,13 @@ export const COST_PAGES_UA: CostPageData[] = [
   cityName: 'Hollywood',
   cityNameUa: 'Голлівуд',
   citySlug: 'ua/hollywood-movers',
-  metaDescription: 'Скільки коштує переїзд у Голлівуді, Флорида: вантажники від $129/год, трак за ставкою бригади, мінімум 3 години. Наш двір на Stirling Rd. WhatsApp 786-305-1844.',
-  answer: 'Переїзд у Голлівуді коштує $129 на годину за двох вантажників або $179 за трьох, мінімум 3 години, плюс трак за день за ставкою бригади. Голлівуд — наша домашня база: двір компанії стоїть на Stirling Road, тож подача трака сюди найкоротша з усіх міст, які ми обслуговуємо. Найбільша різниця в підсумку — між пляжною вежею біля Ocean Drive і будинком на материку з власним заїздом: перший варіант забирає години на ліфт і папери, другий вантажиться майже з порога.',
-  intro: 'Голлівуд ми знаємо не з мапи: двір Easy Move Florida стоїть на Stirling Road, і більшість ранків бригада починає день саме звідси. Для вас це означає короткий виїзд, менше оплаченого часу в дорозі та можливість без нервів взяти ранній старт. Ціни ті самі, що й по всій Південній Флориді: двоє вантажників $129 за годину, троє $179, четверо $219; трак рахується за день за ставкою бригади; мінімум три години, потім кроки по 15 хвилин. Мінімальний рахунок — $516, $716 або $876. Депозиту немає, скасування безкоштовне за 48 і більше годин, COI для будинку — безкоштовно протягом доби. Власник компанії Євгеній Романов сам живе й працює в цьому місті.',
+  metaDescription: 'Скільки коштує переїзд у Голлівуді, Флорида: вантажники від $129/год, трак за ставкою бригади, мінімум 3 години. Без депозиту. WhatsApp 786-305-1844.',
+  answer: 'Переїзд у Голлівуді коштує $129 на годину за двох вантажників або $179 за трьох, мінімум 3 години, плюс трак за день за ставкою бригади. Наша бригада базується в районі Голлівуд - Форт-Лодердейл; дорога від бази до вашої першої адреси не оплачується. Найбільша різниця в підсумку буває між пляжною вежею біля Ocean Drive і будинком на материку з власним заїздом: перший варіант забирає години на ліфт і папери, другий вантажиться майже з порога.',
+  intro: 'Наша бригада базується в районі Голлівуд - Форт-Лодердейл. Дорога від бази до вашої першої адреси не оплачується: години починаються, коли бригада приїхала до вас. Ціни ті самі, що й по всій Південній Флориді: двоє вантажників $129 за годину, троє $179, четверо $219; трак рахується за день за ставкою бригади; мінімум три години, потім кроки по 15 хвилин. Мінімальний рахунок — $516, $716 або $876. Депозиту немає, скасування безкоштовне за 48 і більше годин, COI для будинку — безкоштовно протягом доби. Власник компанії Євгеній Романов сам відповідає на дзвінки.',
   accessFactors: [
     {
-      title: 'Двір на Stirling Road',
-      body: 'Найдорожчі години в будь-якому переїзді — ті, за які нічого не перенесено. У Голлівуді їх найменше просто тому, що трак виїжджає з двору на Stirling Road і за кілька хвилин уже стоїть біля вашого будинку. Це також означає, що коли в день переїзду раптово потрібні додаткові матеріали чи інший інструмент, ми привозимо їх без втрати години.',
+      title: 'Коли починаються години',
+      body: 'Оплачені години починаються, коли бригада приїхала на вашу першу адресу, і включають дорогу між двома адресами. Дорога від нашої бази до вас не оплачується, плати за подачу, пробіг чи паливо немає.',
     },
     {
       title: 'Пляжні вежі проти будинків на материку',
@@ -1054,8 +1055,8 @@ export const COST_PAGES_UA: CostPageData[] = [
       body: 'Дорога з материкової частини на пляж іде через мости, які розводять для човнів за розкладом. Завантажений трак, що стоїть перед розведеним мостом, стоїть на оплаченому часі. Ми плануємо маршрут і час старту з урахуванням цього, і зазвичай це питання пʼятнадцяти хвилин, а не години — але саме такі дрібниці відрізняють місцеву бригаду від приїжджої.',
     },
     {
-      title: 'Зберігання поруч із вашим будинком',
-      body: 'Коли дати виїзду й заїзду не збігаються, речі не мусять їхати через півштату: зберігання починається від $200 на місяць, а склад розташований поруч. Завантаження на зберігання рахується як звичайні години бригади, без окремого збору за занос. Це частий сценарій у Голлівуді, коли продаж однієї квартири закривається раніше, ніж передають ключі від наступної.',
+      title: 'Зберігання, коли дати не збігаються',
+      body: 'Коли дати виїзду й заїзду не збігаються, речі можна залишити на зберіганні: воно починається від $200 на місяць, на складі партнера. Завантаження на зберігання рахується як звичайні години бригади, без окремого збору за занос. Це частий сценарій у Голлівуді, коли продаж однієї квартири закривається раніше, ніж передають ключі від наступної.',
     },
   ],
   faqs: [
@@ -1064,16 +1065,16 @@ export const COST_PAGES_UA: CostPageData[] = [
       a: 'Найчастіше це $645–$1,253. Квартира на материку з ліфтом і близьким паркуванням тяжіє до нижньої межі; будинок із меблями на два поверхи або пляжна вежа з вікном на ліфт — до верхньої. Мінімальний рахунок у будь-якому випадку $516 із двома вантажниками. Надішліть у WhatsApp на 786-305-1844 список великих меблів, і ми повернемося з письмовим кошторисом.',
     },
     {
-      q: 'Ваш двір справді в Голлівуді?',
-      a: 'Так, на Stirling Road. Це не адреса для листів, а місце, звідки виїжджають траки. Практична різниця для клієнта з Голлівуда — коротка подача, менше оплаченого часу в дорозі та реальна можливість почати о восьмій ранку. Для сусідніх міст на кшталт Халландейл-Біч чи Авентури виїзд теж короткий, але Голлівуд у цьому сенсі перший у черзі.',
+      q: 'Де базується ваша бригада?',
+      a: `У районі Голлівуд - Форт-Лодердейл. Дорога від бази до вашої першої адреси не оплачується: години починаються, коли бригада приїхала до вас. Працюємо ${hoursSentence('uk')}.`,
     },
     {
       q: 'Переїзд із пляжної вежі дорожчий, ніж із будинку?',
       a: 'Ставка та сама, різниця тільки в годинах. У вежі на Hollywood Beach зазвичай потрібні бронь ліфта, COI і робота через службовий вхід; це додає час на початку і в кінці дня. Будинок на материку часто закривається за мінімальні три-чотири години. Ми пишемо очікувану кількість годин у кошторисі до бронювання, щоб різниця не стала несподіванкою.',
     },
     {
-      q: 'Чи є у вас україномовні працівники?',
-      a: 'Є: частина вантажників розмовляє українською. Якщо ви скажете про це при бронюванні, ми поставимо на вашу дату саме таку бригаду — тоді в день переїзду все спілкування на місці буде українською. Офісна частина, тобто кошторис, узгодження й переписка, іде російською або англійською. Обіцяти повністю україномовне обслуговування від дзвінка до підпису ми не станемо.',
+      q: 'Якою мовою ви відповідаєте?',
+      a: 'Російською або англійською: так ми ведемо кошторис, узгодження й переписку. Власник Євгеній Романов сам відповідає на дзвінки, бригадир говорить російською. Сайт ми ведемо українською, щоб ціни й умови можна було прочитати рідною мовою.',
     },
     {
       q: 'Що входить у мінімальні три години?',
@@ -1081,7 +1082,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Можна залишити речі на зберіганні між двома датами?',
-      a: 'Так. Зберігання коштує від $200 на місяць, склад поруч із базою, речі приймаються та видаються тією ж бригадою. Завантаження й вивантаження на складі оплачуються як звичайні години. Такий варіант часто дешевший, ніж орендувати житло на тиждень або платити за терміновий переїзд у незручну дату, коли будинок дає вікно тільки в конкретний день.',
+      a: 'Так. Зберігання коштує від $200 на місяць, на складі партнера. Завантаження й вивантаження на складі оплачуються як звичайні години. Такий варіант часто дешевший, ніж орендувати житло на тиждень або платити за терміновий переїзд у незручну дату, коли будинок дає вікно тільки в конкретний день.',
     },
   ],
 },
@@ -1108,7 +1109,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       title: 'Трафік на I-95 і US-1',
-      body: 'Час у дорозі — частина оплаченої роботи, а в Маямі він залежить від годинника більше, ніж від відстані. Той самий маршрут між Brickell і Доралем удень і в годину пік відрізняється вдвічі. Тому ми ставимо початок якомога раніше і плануємо рейси так, щоб важка частина припадала не на пікові години. Ставку в цей час ми не піднімаємо.',
+      body: 'Час у дорозі між вашими адресами входить в оплачену роботу, а в Маямі він залежить від годинника більше, ніж від відстані. Той самий маршрут між Brickell і Доралем удень і в годину пік відрізняється вдвічі. Тому ми ставимо початок якомога раніше і плануємо рейси так, щоб важка частина припадала не на пікові години. Ставку в цей час ми не піднімаємо.',
     },
     {
       title: 'Паркування там, де його немає',
@@ -1126,15 +1127,15 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Ви берете доплату за час у заторі?',
-      a: 'Окремої доплати за трафік немає, але дорога — це робочий час бригади, і вона входить у погодинний рахунок. Саме тому ми намагаємося ставити переїзди на ранній ранок і не планувати довгі перегони через місто на пʼяту вечора. Ставка не змінюється залежно від дня, часу доби чи сезону: $129, $179 або $219 за годину.',
+      a: 'Окремої доплати за трафік немає, але дорога між вашими адресами входить у погодинний рахунок. Саме тому ми намагаємося ставити переїзди на ранній ранок і не планувати довгі перегони через місто на пʼяту вечора. Ставка не змінюється залежно від дня, часу доби чи сезону: $129, $179 або $219 за годину.',
     },
     {
-      q: 'Чи можна вести переїзд українською?',
-      a: 'На обʼєкті — так, за попереднім запитом: україномовні вантажники в бригадах є, і ми складаємо зміну під ваше прохання, якщо сказати про це під час бронювання. Кошторис, узгодження з менеджментом будинку й листування ми ведемо російською або англійською. Пишіть нам українською у WhatsApp на 786-305-1844 — це зручно й нікого не спантеличить.',
+      q: 'Якою мовою ви відповідаєте?',
+      a: 'Російською або англійською: так ми ведемо кошторис, узгодження з менеджментом будинку й листування. Власник Євгеній Романов сам відповідає на дзвінки, бригадир говорить російською. Сайт ми ведемо українською, щоб ціни й умови можна було прочитати рідною мовою. WhatsApp: 786-305-1844.',
     },
     {
       q: 'Чи потрібен депозит для бронювання дати в Маямі?',
-      a: 'Ні. Дата закріплюється без передоплати, а розрахунок відбувається після виконаної роботи. Скасування безкоштовне, якщо попередити щонайменше за 48 годин. Письмовий кошторис ви отримуєте до бронювання й бачите в ньому обидва рядки — бригаду й трак — та очікувану кількість годин. Прихованих зборів за паливо, вихідний день чи важкі речі в підсумку не зʼявиться.',
+      a: 'Ні. Дата закріплюється без передоплати, а оплата відбувається на місці, приблизно за 45-60 хвилин до завершення роботи, коли вже зрозуміла кількість годин. Скасування безкоштовне, якщо попередити щонайменше за 48 годин. Письмовий кошторис ви отримуєте до бронювання й бачите в ньому обидва рядки — бригаду й трак — та очікувану кількість годин. Прихованих зборів за паливо чи вихідний день у підсумку не зʼявиться.',
     },
     {
       q: 'Скільки коштує пакування, якщо часу збиратися немає?',
@@ -1161,7 +1162,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       title: 'Трафік навколо Aventura Mall',
-      body: 'Вулиці навколо молу та Biscayne Boulevard стають щільними задовго до вечора, а в сезон і у вихідні — з обіду. Дорога оплачується як робочий час бригади, тож ми ставимо старт на ранок і плануємо рейси так, щоб не стояти в потоці із завантаженим траком. Ставка від часу доби не залежить: вона однакова о восьмій ранку й о пʼятій вечора.',
+      body: 'Вулиці навколо молу та Biscayne Boulevard стають щільними задовго до вечора, а в сезон і у вихідні — з обіду. Дорога оплачується як робочий час бригади, тож ми ставимо старт на ранок і плануємо рейси так, щоб не стояти в потоці із завантаженим траком. Ставка від часу доби не залежить: вона однакова вранці й о пʼятій вечора.',
     },
     {
       title: 'Паркінги з обмеженою висотою',
@@ -1179,15 +1180,15 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Хто вносить бригаду в список на КПП?',
-      a: 'Ми. Після бронювання координатор надсилає в офіс громади або будинку імена вантажників, номер і габарити трака та узгоджене вікно. Від вас потрібні лише контакт менеджменту й номер вашої одиниці. Це частина роботи координатора, за неї немає окремої плати, і саме вона економить ті десять-двадцять хвилин, які інакше трак простояв би перед шлагбаумом за ваш рахунок.',
+      a: 'Ми. Після бронювання ми надсилаємо в офіс громади або будинку імена вантажників, номер і габарити трака та узгоджене вікно. Від вас потрібні лише контакт менеджменту й номер вашої одиниці. Це частина нашої роботи, за неї немає окремої плати, і саме вона економить ті десять-двадцять хвилин, які інакше трак простояв би перед шлагбаумом за ваш рахунок.',
     },
     {
       q: 'Будинок дає ліфт лише на чотири години. Що робити?',
       a: 'Збільшити бригаду, а не розтягувати день. Троє вантажників коштують $179 на годину, четверо — $219, і в тісному вікні це майже завжди вигідніше, ніж двоє за $129, які не встигають. Ми рахуємо обидва сценарії в кошторисі й показуємо різницю в підсумку. Повторний виїзд іншого дня означав би другу подачу трака й нову бронь ліфта.',
     },
     {
-      q: 'Чи говорить хтось із бригади українською?',
-      a: 'Серед наших вантажників є україномовні. Якщо попросити при бронюванні, ми поставимо на вашу дату бригаду, яка спілкуватиметься українською на місці. Координацію — розрахунок вартості, погодження з асоціацією, листування — ведемо російською або англійською. Тобто розмова в квартирі може бути українською, а офіційне листування прийде іншою мовою; ми говоримо про це прямо, щоб не було непорозумінь.',
+      q: 'Якою мовою ви відповідаєте?',
+      a: 'Російською або англійською: так ми ведемо розрахунок вартості, погодження з асоціацією та листування. Власник Євгеній Романов сам відповідає на дзвінки, бригадир говорить російською. Сайт ми ведемо українською, щоб ціни й умови можна було прочитати рідною мовою; ми говоримо про це прямо, щоб не було непорозумінь.',
     },
     {
       q: 'Коли краще призначити переїзд, щоб не стояти в заторах?',
@@ -1195,7 +1196,7 @@ export const COST_PAGES_UA: CostPageData[] = [
     },
     {
       q: 'Чи можна скасувати або перенести дату?',
-      a: 'Так, безкоштовно, якщо попередити не пізніше ніж за 48 годин. Депозиту ми не беремо, тож повертати нічого не доводиться. Якщо асоціація раптом змінила вікно на ліфт чи правила заїзду, повідомте нам — ми перенесемо бригаду на іншу дату без штрафу. Оплата в будь-якому разі відбувається після виконаної роботи, а не наперед.',
+      a: 'Так, безкоштовно, якщо попередити не пізніше ніж за 48 годин. Депозиту ми не беремо, тож повертати нічого не доводиться. Якщо асоціація раптом змінила вікно на ліфт чи правила заїзду, повідомте нам — ми перенесемо бригаду на іншу дату без штрафу. Оплата в будь-якому разі відбувається на місці в день переїзду, а не наперед.',
     },
   ],
 }

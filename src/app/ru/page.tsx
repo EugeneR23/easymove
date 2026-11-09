@@ -226,7 +226,7 @@ export default function RuHomePage() {
                         <div className="relative">
                           <p className="text-gold text-[10px] uppercase tracking-[0.2em] font-semibold mb-1">Стоимость от</p>
                           <p className="font-display text-4xl font-bold text-white mb-1">{formatCurrency(price)}</p>
-                          <p className="text-gray-400 text-xs">{sizeHours} ч · {crew} {moveType === 'packing-only' ? 'упаковщ.' : 'мувера'}{moveType === 'local' ? ' · трак включён' : ''}</p>
+                          <p className="text-gray-400 text-xs">{sizeHours} ч · {crew} {moveType === 'packing-only' ? 'упаковщ.' : 'мувера'}{moveType === 'local' ? ' · сумма с траком' : ''}</p>
                         </div>
                       </div>
                     )}
@@ -268,7 +268,7 @@ export default function RuHomePage() {
               </div>
               <div className="flex items-center gap-1 text-white/60">
                 {[1, 2, 3, 4, 5].map(i => <Star key={i} size={10} className="fill-gold text-gold" />)}
-                <span className="text-[11px] tracking-wider uppercase ml-1">Топ-рейтинг</span>
+                <span className="text-[11px] tracking-wider uppercase ml-1">Рейтинг {THUMBTACK.rating} на Thumbtack</span>
               </div>
               <div className="flex items-center gap-2 text-white/60">
                 <span className="text-[11px] tracking-wider uppercase">Говорим по-русски</span>
@@ -369,7 +369,7 @@ export default function RuHomePage() {
               </h2>
               <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-xl mx-auto">
                 Большинство мувинговых компаний растут за счёт количества заказов и отправляют кого попало.
-                Мы растём за счёт качества. У каждого клиента — личный координатор.
+                Мы растём за счёт качества. На ваш звонок отвечаю я сам.
                 Правила вашего здания выясняем до дня переезда. Каждый переезд — тот, за который мы готовы отвечать.
               </p>
               <p className="text-gold/60 text-sm font-semibold mb-5">&mdash; Евгений Романов, Основатель</p>

@@ -1,5 +1,6 @@
 'use client';
 import { replyPromise } from '@/lib/data/policies';
+import { readAttribution } from '@/lib/attribution';
 import { useState, useEffect, useRef } from 'react';
 import { X, Phone } from 'lucide-react';
 
@@ -40,7 +41,7 @@ export default function ExitIntent() {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: phone.trim(), source: 'popup', createdAt: new Date().toISOString() }),
+        body: JSON.stringify({ phone: phone.trim(), source: 'popup', attribution: readAttribution(), createdAt: new Date().toISOString() }),
       });
       if (!res.ok) throw new Error('Failed');
       setSent(true);

@@ -7,6 +7,7 @@ import { sendEmail, sendTelegram, sendSMS, tgEscape, ownerEmailEnabled } from '@
 import { sendToAirtable } from '@/lib/airtable';
 import { rateLimited, isHoneypotFilled, hasContact } from '@/lib/leadGuard';
 import { sendCustomerConfirmation, confirmationNote, customerLocale } from '@/lib/customerEmail';
+import { attributionLine, sanitizeAttribution } from '@/lib/attribution';
 import type { Quote, MoveType } from '@/types';
 
 
@@ -144,6 +145,7 @@ export async function POST(req: NextRequest) {
     };
 
     const name = `${quote.firstName} ${quote.lastName}`.trim() || 'Unknown';
+    const sourceLine = attributionLine(sanitizeAttribution(body.attribution));
     console.log(`[api/quotes] Quote built: id=${quote.id} name="${name}" total=$${pricing.total}`);
 
     // Customer confirmation before the owner alert, so the alert can say
@@ -305,7 +307,7 @@ export async function POST(req: NextRequest) {
       `🚚 <b>${tgEscape(quote.moveType)}</b> · ${tgEscape(quote.inventory.homeSize)}${quote.inventory.bedrooms > 0 ? ` · ${quote.inventory.bedrooms} bed` : ''}`,
       `📍 ${tgEscape(quote.fromCity) || '?'} → ${tgEscape(quote.toCity) || '?'}`,
       `📅 ${tgEscape(quote.preferredDate) || 'Flexible'}`,
-      `💰 <b>~$${quote.pricing.total}</b> · ${quote.pricing.crewSize} movers · est. ${quote.pricing.estimatedHours}h${quote.pricing.travelMiles > 0 ? ` · 🛣 ~${quote.pricing.travelMiles}mi ~${quote.pricing.travelMinutes}min` : ''}${(quote.pricing.travelHours ?? 0) > 0 ? ` (${quote.pricing.travelHours}h drive billed)` : ''}`,
+      `💰 <b>${mode === 'priced' ? `~$${quote.pricing.total}` : 'NOT PRICED, write the estimate by hand'}</b> · ${quote.pricing.crewSize} movers · est. ${quote.pricing.estimatedHours}h${quote.pricing.travelMiles > 0 ? ` · 🛣 ~${quote.pricing.travelMiles}mi ~${quote.pricing.travelMinutes}min` : ''}${(quote.pricing.travelHours ?? 0) > 0 ? ` (${quote.pricing.travelHours}h drive billed)` : ''}`,
       ``,
       `🏠 ${tgEscape(propertyType)}`,
     ];
@@ -336,6 +338,7 @@ export async function POST(req: NextRequest) {
     }
 
     tgLines.push(``);
+    if (sourceLine) tgLines.push(`🧭 ${tgEscape(sourceLine)}`);
     tgLines.push(`✉️ ${tgEscape(confirmationLine)}`);
     tgLines.push(`⚡ Call: 786-305-1844`);
 
@@ -362,7 +365,9 @@ export async function POST(req: NextRequest) {
         'Property Type':   propertyType,
         'Floors / Stairs': floorsStairs,
         'Add-ons':         addonsList.join(', '),
-        'Notes':           (body.notes as string) || '',
+        // The source goes into Notes, not a column of its own: Airtable rejects
+        // a write that names a field the base does not have.
+        'Notes':           [(body.notes as string) || '', sourceLine ? `[${sourceLine}]` : ''].filter(Boolean).join(' '),
         'Estimated Price': mode === 'priced' ? quote.pricing.total : undefined,
         ...(quote.preferredDate ? { 'Job Date': quote.preferredDate } : {}),
         'Completed':       false,

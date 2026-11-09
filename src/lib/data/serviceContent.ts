@@ -28,7 +28,7 @@ export interface ServiceContent {
 export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'residential-moving': {
     longIntro: [
-      "Residential and high-rise moving in South Florida is its own discipline. A move from a Brickell tower has nothing in common with a move from a Coral Gables single-family home — different access, different paperwork, different timing rules. Easy Move Florida handles both with the same standard: the building's rules are checked before move day, the floor protection goes down before any furniture moves, and the coordinator stays reachable from the moment you book until the last item is placed.",
+      "Residential and high-rise moving in South Florida is its own discipline. A move from a Brickell tower has nothing in common with a move from a Coral Gables single-family home — different access, different paperwork, different timing rules. Easy Move Florida handles both with the same standard: the building's rules are checked before move day, the floor protection goes down before any furniture moves, and the owner stays reachable by phone from the moment you book until the last item is placed.",
       "We move clients into and out of every type of South Florida residence: 50-story oceanfront condos, gated estate communities, historic Coral Gables and Coconut Grove homes, and standard single-family neighborhoods across Miami-Dade, Broward, and Palm Beach counties. Every move is hourly-billed at $129/hour for two movers or $179/hour for three, with a transparent written estimate before booking. No deposit. No surprise fees on move day.",
     ],
     whyUs: [
@@ -42,7 +42,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
       {
         title: 'Disassembly and reassembly included',
-        body: "Bed frames, dining tables, desks, modular wall units — disassembled at origin and reassembled at destination at no additional charge. You don't end up with a truck full of parts and no help putting things back together.",
+        body: "Beds, tables and desks are disassembled at origin and reassembled at destination, and that is included in the hourly rate. You don't end up with a truck full of parts and no help putting things back together.",
       },
       {
         title: 'Direct line to the founder',
@@ -50,10 +50,10 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
     ],
     process: [
-      { step: 1, title: 'Free written estimate', body: 'Tell us your origin, destination, building details, and inventory. We send a written estimate the same day with the hourly rate, expected duration, and the truck fee — charged per day at the crew rate — as its own line. COI goes to your building management within 24 hours of booking, free. No deposit required.' },
+      { step: 1, title: 'Free written estimate', body: 'Tell us your origin, destination, building details, and inventory. We send a written estimate within 24 hours with the hourly rate, expected duration, and the truck fee — charged per day at the crew rate — as its own line. COI goes to your building management within 24 hours of booking, free. No deposit required.' },
       { step: 2, title: 'Building coordination', body: 'After booking, we contact your building management directly to reserve the freight elevator, schedule the loading dock window, and submit the COI. You confirm the move date — we handle the rest.' },
       { step: 3, title: 'Pre-move call', body: '24-48 hours before move day, your coordinator confirms timing, walks through any last-minute changes, and confirms crew size. Crew receives building briefing before departure.' },
-      { step: 4, title: 'Move day', body: 'Crew arrives within a 2-hour window with a 30-minute heads-up call. Floor protection laid first. Inventory walk-through with you. Loading begins. Transport. Unloading with placement guidance from you.' },
+      { step: 4, title: 'Move day', body: 'Crew arrives within a one-hour window and calls 30 to 40 minutes before arriving. Floor protection laid first. Inventory walk-through with you. Loading begins. Transport. Unloading with placement guidance from you.' },
       { step: 5, title: 'Reassembly and walk-through', body: 'Furniture reassembled, items placed where you want them. Final walk-through with you. Payment is collected on site roughly 45–60 minutes before the job wraps, once the final hour count is clear.' },
     ],
     pricingBreakdown: [
@@ -73,10 +73,9 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { q: 'Do you provide a Certificate of Insurance for my building?', a: "Yes — within 24 hours of your confirmed booking, free of charge. Send us your building's COI requirements (named insured, specific limits, additional insured language) and we issue it directly to building management." },
       { q: 'Can you move on weekends?', a: 'Yes. Saturday and Sunday are both regular operating days, billed at the same hourly rate as any weekday - there is no weekend surcharge. The limit is usually the building rather than us: many Brickell and Aventura towers do not permit Sunday moves at all, so we confirm your association allows the date before booking it.' },
       { q: 'Do you handle gated communities like Cocoplum or Williams Island?', a: 'Yes. We submit gate paperwork (COI with community named, vehicle registration, crew identification) 48 hours in advance so the gate clears your crew on arrival.' },
-      { q: 'What if my move takes longer than estimated?', a: "You're billed only for actual time worked, in 15-minute increments past the 3-hour minimum. We commit to realistic estimates — most moves come in within 15-30 minutes of estimate. If we underestimated significantly, we discuss it with you before continuing." },
+      { q: 'What if my move takes longer than estimated?', a: "You're billed only for actual time worked, in 15-minute increments past the 3-hour minimum. We commit to realistic estimates. If we underestimated significantly, we discuss it with you before continuing." },
     ],
-    // [TODO: confirm with Evgenii] — per-building move history is unverified; phrased below as buildings we work in (service area), not claimed history.
-    localContext: "We work in and out of most major South Florida buildings — Brickell City Centre, ICON Brickell, SLS Lux Brickell, 1010 Brickell, Aria on the Bay, Williams Island Towers I-V, Porto Vita, Turnberry Isle, Trump Towers I/II/III, Acqualina, Hollywood Beach Resort, Las Olas Riverhouse, and dozens more. If your building is in our service area, we know its rules.",
+    localContext: "Most South Florida condo towers set their own move rules: a certificate of insurance on file, a reserved freight elevator and a fixed loading dock window. Send us your building's requirements when you book. The COI goes to building management within 24 hours of booking, free, and we confirm the elevator and dock rules with the management office before move day.",
   },
 
   'long-distance-moving': {
@@ -114,7 +113,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { q: 'Do you move within Florida but outside South Florida - say Miami to Orlando?', a: 'Yes. That is a long-distance move for us and it is quoted individually rather than by the hour: we look at the volume, the distance and the access at both ends, and send one written figure. No deposit to book.' },
       { q: 'Can you move me from Miami to New York?', a: 'No. We do not hold the federal operating authority that interstate household moves require, so we do not quote or take them. Call us and we will point you toward a licensed carrier - that costs you nothing and saves you the round of calls.' },
       { q: 'Can you pack for me even if another company drives?', a: 'Yes, and it is common. Packing runs from $99 per hour for two packers, with a studio package from $297. We box, wrap and label so the long-haul crew loads a home that is ready, which usually saves you money on their end too.' },
-      { q: 'How do I check that a long-distance mover is legitimate?', a: 'Ask for their USDOT number and look it up in the federal register before you pay a deposit. A carrier that will not give you the number over the phone has told you something useful. This is the same check you could run on us, which is why we are telling you plainly that interstate is not ours.' },
+      { q: 'How do I check that a long-distance mover is legitimate?', a: 'Ask for their USDOT number and look it up in the federal register before you pay a deposit. A carrier that will not give you the number over the phone has told you something useful.' },
     ],
     localContext: "We are a Hollywood-based Florida mover: hourly across Miami-Dade, Broward and Palm Beach, and quoted per job for anywhere else in the state. That focus is deliberate, and it is why the pages on this site quote hourly rates for local work and say nothing about per-mile interstate pricing.",
   },
@@ -126,7 +125,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     whyUs: [
       {
         title: 'After-hours and weekend scheduling',
-        body: "We schedule around your business hours — most office moves happen Friday evening through Sunday so your team works in the new space Monday morning. After-hours rates apply, but the alternative is losing a workday across your entire team.",
+        body: "We schedule around your business hours — most office moves happen Friday evening through Sunday so your team works in the new space Monday morning. The hourly rate is the same in the evening and on weekends: there is no after-hours surcharge.",
       },
       {
         title: 'IT and AV equipment handled correctly',
@@ -138,38 +137,34 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       },
       {
         title: 'Direct owner involvement',
-        body: "Eugene is on-site or in direct contact throughout commercial moves. Mistakes on office moves cost real money in lost productivity, so the owner stays involved.",
+        body: "Eugene is in direct contact with you and the crew throughout a commercial move. Mistakes on office moves cost real money in lost productivity, so the owner stays involved.",
       },
     ],
     process: [
       { step: 1, title: 'Site walk-through', body: "We visit both origin and destination to confirm scope, identify equipment requiring special handling, and confirm building requirements (COI, freight elevator, parking, after-hours access)." },
-      { step: 2, title: 'Custom written quote', body: 'Quote includes crew size, total hours, after-hours premium if applicable, IT coordination, modular furniture disassembly/reassembly, and any specialty handling. Itemized so you know exactly what you\'re paying for.' },
+      { step: 2, title: 'Custom written quote', body: 'Quote includes crew size, total hours, IT coordination, modular furniture disassembly/reassembly, and any specialty handling. Itemized so you know exactly what you\'re paying for.' },
       { step: 3, title: 'Building paperwork', body: 'After booking, we coordinate COI submission, after-hours building access, freight elevator reservation, and parking arrangements at both addresses.' },
       { step: 4, title: 'Pre-move planning meeting', body: 'For larger moves (20+ workstations), we meet with your team or facilities lead 1 week before to confirm labeling system, reassembly plan, and contingencies.' },
       { step: 5, title: 'Move execution', body: 'Crew arrives on schedule. Floor protection. Disassembly with hardware tracking. Loading. Transport. Unloading. Reassembly per plan. Equipment placed in new layout.' },
       { step: 6, title: 'Punch list and handoff', body: 'Walk-through with you the morning your team returns. Anything that needs adjustment is fixed same-day. We don\'t leave until you confirm everything is in place.' },
     ],
-    // [TODO: confirm with Evgenii] — office/commercial rates below need confirmation.
     pricingBreakdown: [
-      'Minimum charge: $800 (small office, weekday)',
-      'Small office (5-10 workstations, after-hours): typical $1,800–$3,500',
-      'Mid-size office (15-30 workstations): typical $4,500–$9,500',
-      'Large office (40-80 workstations): typical $12,000–$24,000',
-      'After-hours premium: 25-40% over weekday rate',
+      'Office moves: from $1,253 (3 movers, 6 hours, truck as its own line inside that figure)',
+      'Larger offices: quoted per job, in writing, after the site walk-through',
+      'Evenings and weekends: same hourly rate, no after-hours surcharge',
       'Modular furniture disassembly/reassembly: included in quote',
       'IT coordination (basic disconnect/label): included',
       'Specialty AV/server equipment: case-by-case quote',
     ],
     faqs: [
-      { q: 'Can you move our office over a weekend so we don\'t lose a workday?', a: "Yes — most of our office moves happen Friday evening through Sunday for exactly that reason. After-hours premium applies, but the productivity savings typically pay for it many times over." },
+      { q: 'Can you move our office over a weekend so we don\'t lose a workday?', a: "Yes. Office moves can run Friday evening through Sunday for exactly that reason, at the same hourly rate: there is no after-hours or weekend surcharge." },
       { q: 'Do you handle IT equipment?', a: 'Yes — monitors, computers, AV gear, and basic disconnect/reconnect coordination. For complex server racks, network closets, or specialized equipment, we coordinate with your IT person or recommend a partner.' },
-      { q: 'What about modular furniture like Steelcase or Herman Miller?', a: "Yes. We disassemble with hardware tracking, transport carefully, and reassemble per your reassembly plan. Most major systems (Steelcase, Herman Miller, Knoll, Teknion) are familiar to us." },
+      { q: 'What about modular furniture like Steelcase or Herman Miller?', a: "Yes. We disassemble with hardware tracking, transport carefully, and reassemble per your reassembly plan." },
       // [TODO: confirm exact building COI limits with Evgenii]
       { q: 'Can you provide a Certificate of Insurance for our building?', a: "Yes — within 24 hours of booking, addressed to your building management. Commercial buildings commonly ask for limits in the $1M–$2M range, often with the building specifically named as additional insured. We confirm your building's exact requirements before move day and handle the paperwork." },
       { q: 'How far in advance should we book an office move?', a: 'Small offices (under 10 workstations): 2-3 weeks. Mid-size: 4-6 weeks. Large (40+): 6-8 weeks. The longer lead time is mostly about coordinating building access at both ends, not crew availability.' },
     ],
-    // [TODO: confirm with Evgenii] — per-building office-move history is unverified; phrased below as buildings we work in (service area), not claimed history.
-    localContext: "Most South Florida commercial buildings (Brickell, Downtown Miami, Las Olas, Boca Corporate Centre) have strict after-hours move-in windows and COI requirements. We work in and out of Brickell City Centre, Southeast Financial Center, Las Olas City Centre, and most major Class-A buildings in the region. We know the dock rules and plan around them.",
+    localContext: "Most South Florida commercial buildings (Brickell, Downtown Miami, Las Olas, Boca Corporate Centre) have strict after-hours move-in windows and COI requirements. We confirm your building's dock rules and move-in window with its management before the move and plan around them.",
   },
 
   'specialty-items': {
@@ -204,18 +199,18 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     // [TODO: confirm with Evgenii] — piano/specialty rates below need confirmation.
     pricingBreakdown: [
-      'Minimum specialty item charge: $800',
-      'Single grand piano move (local): typical $750–$1,400',
-      'Custom crate for fine art (per piece): $200–$800 depending on size',
+      'Specialty items: quoted per job, in writing, before you book',
+      'Piano move (local): quoted per job, a separate line on the estimate',
+      'Custom crate for fine art: quoted per piece, by size',
       'Climate-controlled transport, when a piece needs it: arranged with a specialist carrier and quoted by them',
       'Declared-value or full-replacement insurance: quoted by carrier based on item value',
       'Specialty rigging (oversized, awkward access): quoted case-by-case',
       'Photo documentation: included',
     ],
     faqs: [
-      { q: "Do you move grand pianos?", a: "Yes - upright, baby grand and concert grand. Each is a different job: an upright is weight and a doorway, a grand comes apart for the move and goes back together at the other end. A local piano move typically runs $750-$1,400; interstate piano transport we hand to a licensed carrier. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
+      { q: "Do you move grand pianos?", a: "Yes - upright, baby grand and concert grand. Each is a different job: an upright is weight and a doorway, a grand comes apart for the move and goes back together at the other end. A local piano move is quoted per job, as a separate line on the estimate agreed before you book; interstate piano transport we hand to a licensed carrier. We coordinate with piano tuners post-move when requested — pianos require re-tuning after any significant move." },
       { q: 'Can you move large oil paintings or sculpture?', a: "We prepare them for shipping: a crate built on-site for the piece, padding, and photos before it leaves. The shipping itself is done by our partner carriers. For pieces over 8 feet or weighing over 200 lbs, we may recommend a specialty fine art handler — we'll be honest about what's within our capability." },
-      { q: 'How do you handle insurance for high-value items?', a: 'Standard cargo insurance is included up to a per-pound limit. For high-value items (anything over $5,000 typically), we strongly recommend declared value or full-replacement coverage. Your coordinator walks you through options before booking.' },
+      { q: 'How do you handle insurance for high-value items?', a: 'For high-value items (anything over $5,000 typically), we strongly recommend declared value or full-replacement coverage. Your coordinator walks you through options before booking.' },
       { q: 'Do you handle antique or oversized furniture?', a: 'We can prepare any antique piece for shipping: assessment, padding, a crate where the piece needs one, and photos before and after. The shipping itself is done by our partner carriers.' },
       { q: 'Can you move a wine collection?', a: 'We prepare it: bottles inventoried and packed in proper wine boxes (cell-divided cardboard or wood). Transport, climate-controlled when the collection needs it, is done by a partner carrier.' },
     ],
@@ -224,13 +219,13 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
 
   'storage-solutions': {
     longIntro: [
-      "Storage between a closing and your new home, during a renovation, or as part of an extended move plan is one of the most-requested moving company add-ons. Easy Move Florida coordinates short- and long-term storage at trusted, climate-controlled facilities in Miami-Dade and Broward counties — and we handle the pickup from your current location and the redelivery when you're ready. You don't manage two relationships; we stay the single point of contact throughout.",
+      "Storage between a closing and your new home, during a renovation, or as part of an extended move plan is one of the most-requested moving company add-ons. Easy Move Florida coordinates short- and long-term storage at partner facilities in Miami-Dade and Broward counties, with climate-controlled units booked through a third party where you need them, and we handle the pickup from your current location and the redelivery when you're ready. You don't manage two relationships; we stay the single point of contact throughout.",
       "Storage is month-to-month with no annual contracts. We recommend the right facility based on what you're storing (art and antiques need different conditions than household goods) and how long you need it (short-term staging vs. multi-month renovation hold). Pricing starts at $200/month for small loads and scales with volume.",
     ],
     whyUs: [
       {
         title: 'Choosing the facility',
-        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. Your things go either into our own space or into a partner facility, depending on volume and how long you need it — we tell you which one before anything moves, and what it does and does not control. Climate-controlled space we do not run ourselves; where a piece needs it we arrange it with a facility that does.",
+        body: "South Florida heat and humidity are hard on unpadded furniture, oil paintings and some wood pieces, so climate control is worth asking about for anything sensitive. Your things go into a partner facility, chosen on volume and how long you need it. We tell you which one before anything moves, and what it does and does not control. Climate-controlled space we do not run ourselves; where a piece needs it we book a unit with a third-party facility that has it.",
       },
       {
         title: 'Pickup and redelivery handled',
@@ -248,30 +243,28 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     process: [
       { step: 1, title: 'Initial consultation', body: 'We discuss what you\'re storing, expected duration, and any special handling (art, electronics, wine). Recommendation on facility type and size.' },
       { step: 2, title: 'Pickup and inventory', body: 'On move day, we pick up items, photograph and inventory each piece, and transport directly to facility. You receive complete inventory list with photos.' },
-      { step: 3, title: 'Secure storage', body: "Items go into our own space or into a partner facility we book on your behalf, with monitored access either way. We stay the point of contact, so you never manage a separate storage relationship." },
+      { step: 3, title: 'Secure storage', body: "Items go into a partner facility we book on your behalf, with monitored access. We stay the point of contact, so you never manage a separate storage relationship." },
       { step: 4, title: 'Monthly billing', body: 'Storage billed month-to-month. Cancel any time with 7 days notice. No annual contracts, no early termination fees.' },
       { step: 5, title: 'Redelivery', body: 'When you\'re ready, schedule redelivery with us. Full delivery service to your new home — placement, reassembly of any disassembled items, walk-through.' },
     ],
     // [TODO: confirm with Evgenii] — storage rates below need confirmation.
     pricingBreakdown: [
       'Small load (studio worth): from $200/month',
-      '1-bedroom worth: typical $275–$425/month',
-      '2-bedroom worth: typical $425–$675/month',
-      '3-bedroom worth: typical $625–$975/month',
+      'Larger loads: quoted per job, on volume',
       'Pickup labor: hourly at our standard rates ($129/hr 2 movers)',
       'Redelivery labor: hourly at our standard rates',
-      'Storage insurance: optional, ~$15-50/month based on declared value',
+      'Storage insurance: optional, arranged with the storage facility and priced on declared value',
       'Climate-controlled space, where the facility offers it: priced by that facility, passed through without markup',
       'Month-to-month, no annual contract',
     ],
     faqs: [
-      { q: 'How long can I store items?', a: "Month-to-month — no minimum, no maximum. Some clients store for 30 days during a closing gap; others store for 18+ months during major renovations. Cancel any time with 7 days notice." },
-      { q: 'Is storage climate-controlled?', a: "That depends on where your things end up, and we name it before anything moves. Some jobs go into our own space, others into a partner facility in Miami-Dade or Broward. Climate-controlled space we do not operate ourselves — if what you are storing is wood, art or upholstered, say so and we will put it somewhere that has it. South Florida heat and humidity make the unconditioned kind a poor choice for those." },
-      { q: 'Can I access my items while in storage?', a: 'Yes — with 48-72 hours notice. We retrieve specific items and either deliver to you or hold for pickup at our office. Frequent access is unusual; if you need it, we recommend a self-storage unit instead and we just handle the transport.' },
-      { q: 'What about insurance?', a: "Optional storage insurance is available — typically $15-50/month based on declared value. For high-value items (art, antiques over $10K), we coordinate facility-partner coverage. Your homeowner's insurance may also extend to stored items — worth checking before adding storage insurance." },
-      { q: 'Can you store items between move-out and move-in dates?', a: 'Yes — this is one of our most common storage uses. Common during closings: move out Tuesday, store 5-30 days, deliver to new home. Pricing is prorated for partial months.' },
+      { q: 'How long can I store items?', a: "Month-to-month, no minimum, no maximum: a few weeks during a closing gap or many months during a renovation. Cancel any time with 7 days notice." },
+      { q: 'Is storage climate-controlled?', a: "That depends on the unit, and we name it before anything moves. Storage is at a partner facility in Miami-Dade or Broward. Climate-controlled units we do not operate ourselves; they are booked with a third party. If what you are storing is wood, art or upholstered, say so and we will book one. South Florida heat and humidity make the unconditioned kind a poor choice for those." },
+      { q: 'Can I access my items while in storage?', a: 'Yes, with 48-72 hours notice. We retrieve specific items and deliver them to you. Frequent access is unusual; if you need it, we recommend a self-storage unit instead and we just handle the transport.' },
+      { q: 'What about insurance?', a: "Optional storage insurance is arranged with the storage facility and priced on declared value. For high-value items (art, antiques over $10K), we coordinate facility-partner coverage. Your homeowner's insurance may also extend to stored items — worth checking before adding storage insurance." },
+      { q: 'Can you store items between move-out and move-in dates?', a: 'Yes. It is common during closings: move out Tuesday, store 5-30 days, deliver to new home. Pricing is prorated for partial months.' },
     ],
-    localContext: "Most of our storage volume is renovation-driven (Coral Gables, Coconut Grove, Brickell condo renovations) or closing-gap storage (Aventura, Sunny Isles, Boca Raton). We use facilities in Miami-Dade and Broward — proximity matters because pickup and redelivery labor is hourly. For Palm Beach county clients, we coordinate with facilities further north to minimize travel.",
+    localContext: "Storage usually bridges a renovation or a gap between closings. We use partner facilities in Miami-Dade and Broward, and proximity matters because pickup and redelivery labor is hourly. For Palm Beach county clients, we coordinate with facilities further north to minimize travel.",
   },
 };
 

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { track } from '@vercel/analytics';
+import { captureAttribution } from '@/lib/attribution';
 
 /**
  * Counts taps on phone, WhatsApp and email links, site-wide, with one listener.
@@ -24,6 +25,9 @@ function channelOf(href: string): 'phone' | 'whatsapp' | 'email' | 'sms' | null 
 
 export default function ContactClickTracker() {
   useEffect(() => {
+    // This component is mounted on every page, so it is also where the visit's
+    // first page and referrer are recorded for the lead forms (lib/attribution).
+    captureAttribution();
     const onClick = (e: MouseEvent) => {
       const target = e.target as Element | null;
       const link = target?.closest?.('a[href]') as HTMLAnchorElement | null;
