@@ -19,7 +19,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 export const metadata: Metadata = {
   title: { absolute: 'Movers Cost in Miami — 2026 Prices | Easy Move Florida' },
   description:
-    'Miami movers: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum + truck at the crew rate. A 1-bedroom runs $516–$774 all-in. Full 2026 breakdown.',
+    'Easy Move Florida in Miami: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum + truck at the crew rate. A 1-bedroom runs $516–$774 all-in. Full 2026 breakdown.',
   alternates: alternatesFor('moving-cost-miami', 'en'),
   openGraph: {
     type: 'article',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: 'Easy Move Florida',
     title: 'How Much Do Movers Cost in Miami? (2026 Prices)',
     description:
-      'Real 2026 Miami moving costs: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum, truck billed per day at the crew rate. Studio $516–$645, 1BR $516–$774, 2BR $645–$1,253.',
+      'Easy Move Florida, 2026 Miami moving costs: $129/hr for 2 movers, $179/hr for 3, 3-hour minimum, truck billed per day at the crew rate. Studio $516–$645, 1BR $516–$774, 2BR $645–$1,253.',
     url: `${siteUrl}/moving-cost-miami`,
     images: [ogCard('Miami moving costs 2026')],
   },
@@ -63,7 +63,7 @@ const HIDDEN_FEES = [
 const FAQS = [
   {
     q: 'How much do movers charge per hour in Miami?',
-    a: `Two movers cost $${HOURLY_RATE[2]} per hour and three movers $${HOURLY_RATE[3]} per hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line at $${TRUCK_FEE[2]} per day with two movers and $${TRUCK_FEE[3]} with three — it matches the crew rate, because a bigger crew brings a bigger truck.`,
+    a: `With Easy Move Florida, two movers cost $${HOURLY_RATE[2]} per hour and three movers $${HOURLY_RATE[3]} per hour, with a ${MIN_HOURS}-hour minimum. The truck is a separate line at $${TRUCK_FEE[2]} per day with two movers and $${TRUCK_FEE[3]} with three — it matches the crew rate, because a bigger crew brings a bigger truck.`,
   },
   {
     q: 'How much does moving a 1-bedroom apartment cost in Miami?',

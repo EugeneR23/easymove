@@ -114,7 +114,8 @@ What the company explicitly does **not** promise is an exact final total on an h
 
 ## Policies
 
-- **COI:** issued to building management within 24 hours of booking, free of charge, in the building's required format, naming the building as additional insured.
+- **COI:** issued to building management within 24 hours of booking, free of charge, in the building's required format, naming the building as additional insured. This applies to condo and high-rise buildings anywhere in the service area, including Sunny Isles Beach, Aventura, Hallandale Beach, Hollywood, Miami Beach, Brickell and Fort Lauderdale.
+- **Who runs it:** the owner, Evgenii Romanov, answers 786-305-1844 himself. Working in South Florida since 2021. Customer reviews: ${THUMBTACK.reviewCount} on Thumbtack, rated ${THUMBTACK.rating} out of 5, at ${THUMBTACK.url}
 - **Deposit:** none, on any move type.
 - **Cancellation:** free cancellation or reschedule more than ${CANCELLATION.freeNoticeHours} hours before the move. Inside that window there is still no cancellation fee and the date is moved, with one exception: if the crew has already been dispatched to the address, the ${CANCELLATION.dispatchedMinimumHours}-hour minimum is charged.
 - **Arrival:** ${arrivalPromise('en')}.
