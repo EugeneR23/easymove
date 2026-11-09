@@ -221,7 +221,7 @@ const localBusinessSchema = {
         itemOffered: {
           '@type': 'Service',
           name: 'Building / HOA / COI coordination',
-          description: 'Certificate of Insurance within 24 hours, elevator reservations, parking permits, freight elevator scheduling.',
+          description: 'Certificate of Insurance within 24 hours, elevator reservations, freight elevator scheduling. Parking for the truck is arranged by the customer.',
           areaServed: ['Hollywood', 'Aventura', 'Sunny Isles Beach', 'Hallandale', 'Fort Lauderdale', 'Miami'],
         },
       },

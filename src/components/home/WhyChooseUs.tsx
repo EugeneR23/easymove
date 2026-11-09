@@ -29,7 +29,7 @@ const reasons = [
   {
     icon: Building2,
     title: 'Building / HOA paperwork',
-    description: 'COI within 24 hours, elevator reservations, parking permits, freight elevator hours: we ask your building what it requires and arrange it before move day.',
+    description: 'COI within 24 hours, elevator reservations, freight elevator hours: we ask your building what it requires and arrange it before move day. Parking for the truck is yours to arrange.',
   },
   {
     icon: Languages,

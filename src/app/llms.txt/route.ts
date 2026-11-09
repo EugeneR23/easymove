@@ -1,6 +1,6 @@
 import { hoursLine } from '@/lib/data/hours';
 import { CITIES } from '@/lib/data/cities';
-import { replyPromise, sameDayCopy, arrivalPromise, CANCELLATION } from '@/lib/data/policies';
+import { replyPromise, sameDayCopy, arrivalPromise, parkingPolicy, CANCELLATION } from '@/lib/data/policies';
 import { HOURLY_RATE, TRUCK_FEE } from '@/lib/pricing';
 
 // The worked example, computed. It was typed as "labour 3 × 5 × $179 = $895",
@@ -116,6 +116,8 @@ What the company explicitly does **not** promise is an exact final total on an h
 - **Deposit:** none, on any move type.
 - **Cancellation:** free cancellation or reschedule more than ${CANCELLATION.freeNoticeHours} hours before the move. Inside that window there is still no cancellation fee and the date is moved, with one exception: if the crew has already been dispatched to the address, the ${CANCELLATION.dispatchedMinimumHours}-hour minimum is charged.
 - **Arrival:** ${arrivalPromise('en')}.
+- **Parking:** ${parkingPolicy('en')} The company does not obtain parking permits or reserve curb space.
+- **Storage:** in a unit at a public self-storage facility, from $200 a month. The key can be left for the customer, or the unit is opened on request.
 - **Payment:** collected on site roughly 45–60 minutes before the job wraps, once the final hour count is clear. Card (Visa, MasterCard, Amex, Discover), Zelle, Apple Pay, cash. No card surcharge.
 - **Reply time:** ${replyPromise('en')}
 - **Same-day moves:** ${sameDayCopy('en')}

@@ -57,7 +57,7 @@ const SEARCH_COPY: Record<string, { h1: string; title: string; description: (sta
     h1: 'Moving and Storage in South Florida',
     title: 'Moving and Storage in South Florida | Easy Move Florida',
     description: (startingPrice) =>
-      `Pickup, storage at a partner facility and redelivery in South Florida. From ${formatCurrency(startingPrice)} a month, month to month. Call ${PHONE.display}.`,
+      `Pickup, a public self-storage unit and redelivery in South Florida. From ${formatCurrency(startingPrice)} a month, month to month. Call ${PHONE.display}.`,
   },
 };
 

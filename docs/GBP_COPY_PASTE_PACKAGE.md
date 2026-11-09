@@ -103,7 +103,7 @@ Long-distance within Florida quoted per job. We do not do interstate moves.
 | Piano & Specialty Items | Upright and grand pianos, art, antiques | By quote |
 | Office & Commercial | Evening and weekend windows to keep you trading | By quote |
 | Long-Distance Within Florida | Orlando, Tampa, Naples, Jacksonville — quoted per job | By quote |
-| Storage Coordination | Short-term and monthly through our storage partner | From $200/mo |
+| Storage Coordination | Short-term and monthly, in a public self-storage unit | From $200/mo |
 
 ---
 

@@ -159,7 +159,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you offer storage near Fort Lauderdale?',
-        a: 'We offer short-term and monthly storage at a partner facility as an add-on. It\'s useful for staging between closings or when your new home isn\'t move-in ready.',
+        a: 'We offer short-term and monthly storage in a public self-storage unit as an add-on. It\'s useful for staging between closings or when your new home isn\'t move-in ready.',
       },
       {
         q: 'How do you handle HOA move-in requirements in Broward?',
@@ -501,7 +501,7 @@ export const CITIES: CityData[] = [
       },
       {
         q: 'Do you move on Hollywood Beach?',
-        a: 'Yes. Hollywood Beach is part of our daily service area. We coordinate parking and elevator access with your building management and arrive within the approved window.',
+        a: 'Yes. Hollywood Beach is part of our daily service area. We coordinate elevator access with your building management and arrive within the approved window. Parking for the truck is yours to arrange.',
       },
       {
         q: 'How much does a local move in Hollywood cost?',
@@ -679,7 +679,7 @@ export const CITIES: CityData[] = [
       },
       {
         title: 'Snowbird Season Specialists (October–March)',
-        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March the buildings here - Hemispheres, Olympus, Three Islands, the Beach Club - fill with seasonal residents arriving from the Northeast and Canada. We do the Florida side of those arrivals: unpacking, and moving furniture out of summer storage. Storage between seasons is at a partner facility (climate-controlled units are booked with a third party), and partial-pack service covers the items that stay behind.",
+        body: "Hallandale Beach has one of the highest snowbird concentrations in Broward County. From October through March the buildings here - Hemispheres, Olympus, Three Islands, the Beach Club - fill with seasonal residents arriving from the Northeast and Canada. We do the Florida side of those arrivals: unpacking, and moving furniture out of summer storage. Storage between seasons is in a public self-storage unit (climate-controlled units are booked with a third party), and partial-pack service covers the items that stay behind.",
       },
       {
         title: 'Russian Spoken',
@@ -760,7 +760,7 @@ export const CITIES: CityData[] = [
       {
         // Source: https://www.miamibeachfl.gov/city-hall/parking/permit-programs/space-rentals/ (checked 2026-11-09)
         title: 'Street parking for the truck',
-        body: 'According to the City of Miami Beach parking department, the city rents on-street parking spaces for moves. Requests go in at least three business days ahead, or fifteen business days for non-metered and residential streets. When we survey your address we tell you whether your street needs a rented space, so it is not something you discover on move morning.',
+        body: 'According to the City of Miami Beach parking department, the city rents on-street parking spaces for moves. Requests go in at least three business days ahead, or fifteen business days for non-metered and residential streets. Arranging that space is your side of the move: a legal place for the truck at both addresses is yours to provide, so settle it before move morning.',
       },
       {
         // Venetian Causeway toll: https://www.miamidade.gov/parks/causeways.asp ; drawbridge schedule, 33 CFR 117.261: https://www.law.cornell.edu/cfr/text/33/117.261 (checked 2026-11-09)

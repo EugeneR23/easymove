@@ -154,6 +154,25 @@ const SAME_DAY_COPY = {
   },
 } as const;
 
+/**
+ * Owner, 2026-11-09: "the customer sorts out the parking, it is their
+ * responsibility to provide a place for us". Until that day pages said "we
+ * pull these permits", "we coordinate parking" and "we arrange the reserved
+ * curb zone".
+ */
+export const PARKING = { arrangedBy: 'customer' } as const;
+
+const PARKING_COPY = {
+  en: 'Parking for the truck is arranged by you: a legal place for it at both addresses, including any permit or reserved space your city or building requires. Tell us what you have arranged and we plan the move around it.',
+  ru: 'Парковку для грузовика организует клиент: законное место у обоих адресов, включая разрешение или бронь места, если их требует город или здание. Скажите нам, что вы организовали, и мы спланируем переезд под это.',
+  uk: 'Паркування для вантажівки організовує клієнт: законне місце біля обох адрес, включно з дозволом або бронюванням місця, якщо їх вимагає місто чи будинок. Скажіть нам, що ви організували, і ми сплануємо переїзд під це.',
+} as const;
+
+/** Who arranges parking for the truck, in the visitor's language. */
+export function parkingPolicy(locale: AnyLocale = 'en'): string {
+  return PARKING_COPY[norm(locale)];
+}
+
 /** The same-day offer, in the visitor's language. */
 export function sameDayCopy(locale: AnyLocale = 'en', form: 'short' | 'sentence' = 'sentence'): string {
   return SAME_DAY_COPY[norm(locale)][form];
