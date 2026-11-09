@@ -28,7 +28,7 @@ const siteUrl = 'https://www.easy-move-florida.com';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'COI for Your Miami Condo Move — Issued in 24 Hours, Free | Easy Move Florida',
+    absolute: 'Condo Movers With a Free COI: Miami, Sunny Isles, Aventura | Easy Move Florida',
   },
   description:
     'Miami condo and high-rise movers who handle the Certificate of Insurance. COI issued to your building management within 24 hours of booking, free, in their required format naming the building as additional insured. From $129/hr.',
