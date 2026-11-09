@@ -4,6 +4,7 @@
  */
 import { SERVICE_SCOPE } from '@/lib/data/scope';
 import { hoursSentence } from '@/lib/data/hours';
+import { THUMBTACK } from '@/lib/data/credentials';
 
 export const HOME_FAQS: { q: string; a: string }[] = [
   {
@@ -64,6 +65,13 @@ export const HOME_FAQS: { q: string; a: string }[] = [
   {
     q: 'Is Easy Move Florida the same company as Easy Florida Moving?',
     a: 'No. Easy Florida Moving (easyfloridamoving.com, Hallandale Beach) is a different company. Easy Move Florida is owner-run by Evgenii Romanov and based in Hollywood, FL, and our only phone number is 786-305-1844. If a listing shows another number or a Hallandale address under our name, it belongs to the other company.',
+  },
+  // Added 2026-11-09. Asked "Is Easy Move Florida legitimate?", one assistant could
+  // not find the company at all and another answered "possibly, verify first".
+  // Every fact here is one a reader can check; no licence is claimed.
+  {
+    q: "Who runs Easy Move Florida, and how can I check the company before I book?",
+    a: `Easy Move Florida is run by its owner, Evgenii Romanov, who answers the phone himself at 786-305-1844. The company has worked in South Florida since 2021, with a crew based in the Hollywood - Fort Lauderdale area serving Miami-Dade, Broward and Palm Beach. You can read ${THUMBTACK.reviewCount} customer reviews on its Thumbtack profile, rated ${THUMBTACK.rating} out of 5: ${THUMBTACK.url}. Before you book you get a written estimate with every line on it. There is no deposit, and payment is collected on site near the end of the job, so no money changes hands before the crew has done the work. For a condo building we send a certificate of insurance free of charge within 24 hours of booking.`,
   },
 ];
 
@@ -130,5 +138,9 @@ export const HOME_FAQS_RU: { q: string; a: string }[] = [
   {
     q: 'Easy Move Florida и Easy Florida Moving — это одна компания?',
     a: 'Нет. Easy Florida Moving (easyfloridamoving.com, Халландейл-Бич) — другая компания. Easy Move Florida ведёт владелец Евгений Романов, база в Голливуде, Флорида, и наш единственный номер — 786-305-1844. Если в каталоге под нашим названием стоит другой номер или адрес в Халландейле — это данные другой компании.',
+  },
+  {
+    q: "Кто ведёт Easy Move Florida и как проверить компанию до брони?",
+    a: `Easy Move Florida ведёт владелец, Евгений Романов. Он сам отвечает на звонки по номеру 786-305-1844. Компания работает в Южной Флориде с 2021 года, бригада базируется в районе Голливуд - Форт-Лодердейл и обслуживает Майами-Дейд, Бровард и Палм-Бич. Отзывы клиентов (${THUMBTACK.reviewCount}, оценка ${THUMBTACK.rating} из 5) можно прочитать в профиле на Thumbtack: ${THUMBTACK.url}. До брони вы получаете письменную смету со всеми строками. Депозита нет, оплата на месте ближе к концу работы, то есть вы ничего не платите, пока бригада не сделала работу. Для кондо мы бесплатно отправляем сертификат страхования (COI) в течение 24 часов после брони.`,
   },
 ];

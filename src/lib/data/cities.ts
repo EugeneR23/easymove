@@ -281,6 +281,12 @@ export const CITIES: CityData[] = [
       },
     ],
     faqs: [
+      // Added 2026-11-09. No AI assistant named us for "condo movers Aventura that
+      // provide a COI": the pages it quoted answer that exact question, this one did not.
+      {
+        q: "Do you provide a COI for condo buildings in Aventura?",
+        a: "Yes. Easy Move Florida sends a certificate of insurance (COI) to your building's management office free of charge, within 24 hours of booking, in the format the building asks for and naming the building as additional insured. Tell us the building name and the management office contact when you book, and ask the office for its insurance wording so the certificate matches it.",
+      },
       {
         q: 'How much do movers in Aventura cost?',
         a: 'Two movers are $129 per hour and three are $179, with a three-hour minimum, plus the truck as its own line at the crew rate per day. A studio or one-bedroom inside Aventura typically lands near the minimum. The full math with examples is on our Aventura moving-cost page.',
@@ -412,6 +418,12 @@ export const CITIES: CityData[] = [
       },
     ],
     faqs: [
+      // Added 2026-11-09. No AI assistant named us for "condo movers Sunny Isles Beach that
+      // provide a COI": the pages it quoted answer that exact question, this one did not.
+      {
+        q: "Do you provide a COI for condo buildings in Sunny Isles Beach?",
+        a: "Yes. Easy Move Florida sends a certificate of insurance (COI) to your building's management office free of charge, within 24 hours of booking, in the format the building asks for and naming the building as additional insured. Tell us the building name and the management office contact when you book, and ask the office for its insurance wording so the certificate matches it.",
+      },
       {
         q: 'How much do movers in Sunny Isles Beach cost?',
         a: 'Two movers are $129 per hour and three are $179, three-hour minimum, plus the truck as its own line at the crew rate per day. Tower moves usually run with three movers because of elevator windows. Worked examples are on our Sunny Isles moving-cost page.',
@@ -700,6 +712,12 @@ export const CITIES: CityData[] = [
       },
     ],
     faqs: [
+      // Added 2026-11-09. No AI assistant named us for "condo movers Hallandale Beach that
+      // provide a COI": the pages it quoted answer that exact question, this one did not.
+      {
+        q: "Do you provide a COI for condo buildings in Hallandale Beach?",
+        a: "Yes. Easy Move Florida sends a certificate of insurance (COI) to your building's management office free of charge, within 24 hours of booking, in the format the building asks for and naming the building as additional insured. Tell us the building name and the management office contact when you book, and ask the office for its insurance wording so the certificate matches it.",
+      },
       {
         // Diplomat address: https://www.bexrealty.com/real-estate/Hollywood/Diplomat-Oceanfront-Residences/ (checked 2026-11-09)
         q: 'Do you move into the Diplomat Oceanfront Residences?',
