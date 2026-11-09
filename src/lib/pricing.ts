@@ -381,15 +381,29 @@ export function startingHours(size: HomeSize, packing = false): number {
 /** Owner, 2026-10-11 (Q5): an office move is never quoted with fewer than 3 movers. */
 export const OFFICE_MIN_CREW: CrewSize = 3;
 
+/**
+ * The smallest crew a home size is ever quoted with.
+ *
+ * Owner, 2026-11-09: "3 bedrooms only from 3 people". Until that day only the
+ * office had a floor, so the calculator offered two movers for a three-bedroom
+ * and printed "from $903" while /pricing said $1,253 for the same home, and an
+ * AI assistant quoted the lower figure. Four bedrooms and larger follow the
+ * same floor: the published band for them has always named three movers.
+ */
+export const MIN_CREW: Record<HomeSize, CrewSize> = {
+  'studio': 2, '1br': 2, '2br': 2, '3br': 3, '4br+': 3, 'office': OFFICE_MIN_CREW,
+};
+
 /** The crew sizes a calculator may offer for this home size. */
 export function crewOptions(size: HomeSize | null | undefined): CrewSize[] {
-  return size === 'office' ? [3, 4] : [2, 3, 4];
+  const floor = size ? MIN_CREW[size] : 2;
+  return CREW_SIZES.filter((c) => c >= floor);
 }
 
-/** The crew actually priced: an office is lifted to its minimum. */
+/** The crew actually priced: lifted to the floor for its home size. */
 export function effectiveCrew(size: HomeSize | null | undefined, crew: CrewSize, moveType?: MoveType): CrewSize {
-  const office = size === 'office' || moveType === 'office';
-  return office && crew < OFFICE_MIN_CREW ? OFFICE_MIN_CREW : crew;
+  const floor = moveType === 'office' ? OFFICE_MIN_CREW : size ? MIN_CREW[size] : 2;
+  return crew < floor ? floor : crew;
 }
 
 export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
@@ -399,5 +413,7 @@ export function localStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
 
 /** Packing-only floor: hours at the packers' rate. No truck on a packing job. */
 export function packingStartingPrice(size: HomeSize, crew: CrewSize = 2): number {
-  return Math.round(PACKING_HOURLY_RATE[crew] * startingHours(size, true));
+  // Same crew floor as a move, so the calculator agrees with /packing-services,
+  // which has always listed three packers for three bedrooms and larger.
+  return Math.round(PACKING_HOURLY_RATE[effectiveCrew(size, crew)] * startingHours(size, true));
 }
