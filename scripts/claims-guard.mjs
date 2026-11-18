@@ -234,6 +234,9 @@ const RULES = [
   { id: 'storage-notice-or-partner', why: 'Owner, 2026-11-09: storage is a unit at a public self-storage facility; the key is left for the customer or the unit is opened on request. "Partner facility" and "48-72 hours notice" were both unsourced.',
     re: /partner (?:storage )?facility|storage partner|with 48-72 hours notice/gi },
 
+  { id: 'microdata-second-copy', why: 'Structured data is JSON-LD only. /reviews also carried itemScope / itemProp attributes on the visible cards: a second, incomplete description of each review that Search Console rejected on 2026-11-18 (no itemReviewed, no ratingValue, author as plain text) while the JSON-LD beside it was valid.',
+    re: /\bitemScope\b|\bitemProp=|\bitemType=/g },
+
   { id: 'invented-testimonial', why: 'A review must be a real one, quoted from googleReviews.ts or Thumbtack. "Maria S., Brickell · Feb 2025" in the quote wizard and four /ru testimonials with avatar initials had no source anywhere (found 2026-10-11).',
     re: /initials:\s*['"]|—\s*[A-Z][a-z]+ [A-Z]\.,\s*[A-Z][a-z]+\s*·\s*[A-Z][a-z]{2} 20\d\d/g },
 ];
