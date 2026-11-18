@@ -102,10 +102,13 @@ const reviewArrayJson = REVIEWS.length
         position: i + 1,
         item: {
           '@type': 'Review',
-          // Typed, with the shared @id. A bare { '@id' } reference stood here from
-          // 2026-11-09 to 2026-11-18 and Search Console reported "Missing field
-          // itemReviewed": Google's review parser does not follow the reference.
-          itemReviewed: { '@type': 'MovingCompany', '@id': `${siteUrl}/#organization`, name: 'Easy Move Florida', url: siteUrl },
+          // Exactly the node that validated for a month before 2026-11-09: typed,
+          // named, and with NO @id. Two variants that linked it to the
+          // organization node failed in Search Console: a bare { '@id' }
+          // ("Missing field itemReviewed") and a typed node carrying the shared
+          // @id (validation refused on 2026-11-18, all nine reviews). Do not add
+          // the @id back for tidiness.
+          itemReviewed: { '@type': 'MovingCompany', name: 'Easy Move Florida', url: siteUrl },
           reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: r.name },
           ...(r.date ? { datePublished: r.date } : {}),
