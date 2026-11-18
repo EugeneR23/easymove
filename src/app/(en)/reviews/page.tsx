@@ -102,7 +102,10 @@ const reviewArrayJson = REVIEWS.length
         position: i + 1,
         item: {
           '@type': 'Review',
-          itemReviewed: { '@id': `${siteUrl}/#organization` },
+          // Typed, with the shared @id. A bare { '@id' } reference stood here from
+          // 2026-11-09 to 2026-11-18 and Search Console reported "Missing field
+          // itemReviewed": Google's review parser does not follow the reference.
+          itemReviewed: { '@type': 'MovingCompany', '@id': `${siteUrl}/#organization`, name: 'Easy Move Florida', url: siteUrl },
           reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: r.name },
           ...(r.date ? { datePublished: r.date } : {}),
