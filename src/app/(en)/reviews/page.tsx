@@ -102,12 +102,10 @@ const reviewArrayJson = REVIEWS.length
         position: i + 1,
         item: {
           '@type': 'Review',
-          // Exactly the node that validated for a month before 2026-11-09: typed,
-          // named, and with NO @id. Two variants that linked it to the
-          // organization node failed in Search Console: a bare { '@id' }
-          // ("Missing field itemReviewed") and a typed node carrying the shared
-          // @id (validation refused on 2026-11-18, all nine reviews). Do not add
-          // the @id back for tidiness.
+          // The form this page had before 2026-11-09: typed and named, no @id.
+          // The Search Console errors of 2026-11-18 turned out to come from
+          // microdata on the visible cards, not from this node, so whether an
+          // @id here is acceptable to Google was never actually tested.
           itemReviewed: { '@type': 'MovingCompany', name: 'Easy Move Florida', url: siteUrl },
           reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
           author: { '@type': 'Person', name: r.name },
@@ -199,10 +197,13 @@ export default function ReviewsPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {REVIEWS.map((r, i) => (
+                  // No microdata on these cards. They carried schema.org item
+                  // attributes that described each review a second time, and
+                  // badly: author as plain text, a rating with no ratingValue, no
+                  // itemReviewed. Those were the three errors Search Console
+                  // reported on 2026-11-18. The JSON-LD above is the one copy.
                   <article
                     key={i}
-                    itemScope
-                    itemType="https://schema.org/Review"
                     className="bg-cream border border-gray-100 p-6 flex flex-col"
                   >
                     <div className="flex items-center justify-between mb-4">
@@ -211,17 +212,16 @@ export default function ReviewsPage() {
                         {r.source}
                       </span>
                     </div>
-                    <meta itemProp="reviewRating" content={String(r.rating)} />
-                    <p itemProp="reviewBody" className="text-charcoal text-sm leading-relaxed mb-5 flex-1">
+                    <p className="text-charcoal text-sm leading-relaxed mb-5 flex-1">
                       {r.text}
                     </p>
                     <div className="border-t border-gray-200 pt-4">
-                      <p itemProp="author" className="font-semibold text-charcoal text-sm">
+                      <p className="font-semibold text-charcoal text-sm">
                         {r.name}
                       </p>
                       {r.date ? (
                         <p className="text-gray-400 text-xs mt-0.5">
-                          <time itemProp="datePublished" dateTime={r.date}>{r.date}</time>
+                          <time dateTime={r.date}>{r.date}</time>
                         </p>
                       ) : (
                         <p className="text-gray-400 text-xs mt-0.5">{r.source} review</p>
